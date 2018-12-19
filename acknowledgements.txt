@@ -1,0 +1,25 @@
+Cumulus MX thanks the respective authors for the use of the following:
+
+** Steve Loft ** The main man, the father of Cumulus. Enjoy your long retirement ;)
+
+Mark Crossley and Gerrit Grunwald for the SteelSeries gauges
+Highcharts
+James Bellinger for HidSharp
+The Bootstrap framework
+Carlos Alvirez for the Blocks Bootstrap template
+SQLite and System.Data.SQLite
+UnoSquare for EmbedIO web server
+Alchemy web sockets
+Joe Mayo for Linq2Twitter
+JP Trosclair for System.Net.FtpClient
+Newtonsoft JSON
+jQuery
+SpryMedia for jQuery DataTables
+Webismymind for EditableGrid
+Alpaca forms
+Microsoft Corporation for Visual Studio 2015 Community Edition
+NetBeans
+
+and...
+
+Cumulus users for their continued support
