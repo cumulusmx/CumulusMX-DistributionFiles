@@ -1,2 +1,4 @@
 *.dll
-CumulusMX.*
+*.exe
+*.exe.config
+*.pdb
