@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">  
-        
+        <meta name="description" content="">
+
         <link href="css/main.css" rel="stylesheet">
 
         <!-- jquery -->
@@ -26,20 +26,20 @@
 
         <!-- Custom Files -->
         <script src="js/calibrationsettings.js"></script>
-        
+
         <link href="css/cumulus.css" rel="stylesheet">
 
         <style type="text/css">
             .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
 
             .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-        </style>   
-        
+        </style>
+
         <script>
             $(document).ready(function () {
                 $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
                     $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);            
+                    $('#Build').text(result.Build);
                 }});
             });
         </script>
@@ -54,7 +54,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>   
+                    </button>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -70,14 +70,14 @@
                             <ul class="dropdown-menu">
                                 <li><a href="datalogs.html">Data logs</a></li>
                                 <li><a href="extradatalogs.html">Extra data logs</a></li>
-                                <li><a href="dayfileviewer.html">Dayfile</a></li>                                
+                                <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
-                                <li><a href="internetsettings.html">Internet settings</a></li> 
+                                <li><a href="internetsettings.html">Internet settings</a></li>
                                 <li><a href="extrawebfiles.html">Extra web files</a></li>
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
                                 <li><a href="noaasettings.html">NOAA settings</a></li>
@@ -87,7 +87,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="raintodayeditor.html">Today's rain</a></li>                              
+                                <li><a href="raintodayeditor.html">Today's rain</a></li>
+                                <li><a href="diaryeditor.html">Weather Diary</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -112,8 +113,8 @@
                     <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save</button>
                 </div>
             </div>
-        </div> 
-        <!-- FOOTER -->    
+        </div>
+        <!-- FOOTER -->
         <div id="footerwrap">
             <footer class="clearfix"></footer>
             <div class="container">
@@ -123,7 +124,7 @@
                         <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
                     </div>
                 </div><!-- /row -->
-            </div><!-- /container -->		
+            </div><!-- /container -->
         </div><!-- /footerwrap -->
 
     </body>

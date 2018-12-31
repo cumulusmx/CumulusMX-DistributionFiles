@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
 
+
+
+        <link href="css/font-style.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <!-- jquery -->
@@ -17,39 +20,21 @@
         <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
         <script src="lib/bootstrap/js/bootstrap.js"></script>
 
-        <!-- Alpaca -->
-        <script src="lib/alpaca/alpaca.js"></script>
-        <link href="lib/alpaca/alpaca.css" rel="stylesheet" />
+        <!-- datepicker -->
+        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
+        <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
-        <!-- Alpaca support for Bootstrap -->
-        <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
 
         <!-- Custom Files -->
-        <script src="js/mysqlsettings.js"></script>
-
+        <script src="js/diaryeditor.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
 
-        <style type="text/css">
-            body {
-                padding-top: 60px;
+        <style>
+            .activeClass {
+                border-radius: 50%;
+                background-color: #F00;
             }
-
-            .top-buffer { margin-top:40px; }
-
-            .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-
-            .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         </style>
-
-        <script>
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-                        $('#Version').text(result.Version);
-                        $('#Build').text(result.Build);
-                    }});
-            });
-        </script>
-
     </head>
     <body>
 
@@ -80,7 +65,7 @@
                                 <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
@@ -91,7 +76,7 @@
                                 <li><a href="mysqlsettings.html">MySQL settings</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="raintodayeditor.html">Today's rain</a></li>
@@ -105,33 +90,58 @@
         <!-- END NAVIGATION MENU -->
 
         <div class="container">
-            <h1>MySQL settings</h1>
+            <h1>Diary editor</h1>
+
+
             <div class="row">
-                <div class="col-md-12">
-                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again.
-                </div>
+                <div id="datepicker"></div>
+                <input type="hidden" id="date_hidden_input">
             </div>
 
             <div class="row">
                 <div class="col-md-12">
-                    <div id="form"></div>
+                    <form class="form-horizontal" id="rainform">
+                        <div class="form-group">
+                            <label for="inputComment" class="control-label col-xs-2">Comments</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" id="inputComment">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSnowFalling" class="control-label col-xs-2">Snow Falling</label>
+                            <div class="col-xs-10" style="width: 6%">
+                                <input type="checkbox" class="form-control" id="inputSnowFalling" style="min-width: 20px; min-height: 20px">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSnowLying" class="control-label col-xs-2">Snow Lying</label>
+                            <div class="col-xs-10" style="width: 6%">
+                                <input type="checkbox" class="form-control" id="inputSnowLying" style="min-width: 20px; min-height: 20px">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSnowDepth" class="control-label col-xs-2">Snow Depth (cm)</label>
+                            <div class="col-xs-10">
+                            </div>
+                                <input type="number" class="form-control" id="inputSnowDepth" step="0.01" style="width: 83%">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                                <button type="submit" class="btn btn-primary" form="diaryform" onclick="applyEntry()">Apply</button>
+                                <button type="submit" class="btn btn-primary" form="diaryform" onclick="deleteEntry()">Delete</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="status" class="control-label col-xs-2"></label>
+                            <div class="col-xs-10">
+                                <div id="status" class="form-control"></div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Create database table (save settings first)</h2>
-                    <button type="button" class="btn btn-default" id="createmonthly" style="margin:10px;">Create Monthly</button>
-                    <button type="button" class="btn btn-default" id="createdayfile" style="margin:10px;">Create Dayfile</button>
-                    <button type="button" class="btn btn-default" id="createrealtime" style="margin:10px;">Create Realtime</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" >
-                    <div class="alert alert-success" role="alert" id="results">...</div>
-                </div>
+
             </div>
         </div>
         <!-- FOOTER -->
@@ -146,6 +156,9 @@
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /footerwrap -->
+
+
+
 
     </body>
 
