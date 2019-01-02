@@ -6,7 +6,6 @@ $(document).ready(function () {
     var currYear = date.getFullYear();
     var currMonth = date.getMonth() + 1;
 
-
     $.ajax({
         url     : 'api/settings/version.json',
         dataType: 'json',
@@ -37,6 +36,7 @@ $(document).ready(function () {
         }
     });
 
+    $("#datepicker").datepicker('setDate', '0');
     getSummaryData(currYear, currMonth);
 
     $('#datepicker').on('changeDate', function () {
@@ -80,26 +80,29 @@ function deleteEntry() {
         '"snowFalling":"' + ($('#inputSnowFalling').prop('checked') ? 1 : 0) + '",' +
         '"snowLying":"' + ($('#inputSnowLying').prop('checked') ? 1 : 0) + '",' +
         '"snowDepth":"' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : 0) + '"}';
-    $.ajax({
-        url     : 'api/edit/diarydelete',
-        type    : 'POST',
-        data    : body,
-        dataType: 'json',
-        success : function (result) {
-            console.log(result.result);
-            // notify user
-            if (result.result === 'Success') {
-                $('#inputComment').val(null);
-                $('#inputSnowFalling').prop('checked', false);
-                $('#inputSnowLying').prop('checked', false);
-                $('#inputSnowDepth').val(null);
-                $('#status').text('Entry deleted.');
+    if ('' == date) {
+        $('#status').text('Error: You must select a date first.');
+    } else {
+        $.ajax({
+            url     : 'api/edit/diarydelete',
+            type    : 'POST',
+            data    : body,
+            dataType: 'json',
+            success : function (result) {
+                console.log(result.result);
+                // notify user
+                if (result.result === 'Success') {
+                    $('#inputComment').val(null);
+                    $('#inputSnowFalling').prop('checked', false);
+                    $('#inputSnowLying').prop('checked', false);
+                    $('#inputSnowDepth').val(null);
+                    $('#status').text('Entry deleted.');
+                }
+                // update datepicker
+                getSummaryData();
             }
-            // update datepicker
-            getSummaryData();
-        }
-
-    });
+        });
+    }
 }
 
 function applyEntry() {
@@ -109,20 +112,23 @@ function applyEntry() {
         '"snowFalling":"' + ($('#inputSnowFalling').prop('checked') ? 1 : 0) + '",' +
         '"snowLying":"' + ($('#inputSnowLying').prop('checked') ? 1 : 0) + '",' +
         '"snowDepth":"' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : 0) + '"}';
-    $.ajax({
-        url     : 'api/edit/diarydata',
-        type    : 'POST',
-        data    : body,
-        dataType: 'json',
-        success : function (result) {
-            console.log(result.result);
-            // notify user
-            if (result.result === 'Success') {
-                $('#status').text('Entry added/updated OK.');
+    if ('' == date) {
+        $('#status').text('Error: You must select a date first.');
+    } else {
+        $.ajax({
+            url     : 'api/edit/diarydata',
+            type    : 'POST',
+            data    : body,
+            dataType: 'json',
+            success : function (result) {
+                console.log(result.result);
+                // notify user
+                if (result.result === 'Success') {
+                    $('#status').text('Entry added/updated OK.');
+                }
+                // update datepicker
+                getSummaryData();
             }
-            // update datepicker
-            getSummaryData();
-        }
-    });
-
+        });
+    }
 }
