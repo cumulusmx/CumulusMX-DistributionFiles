@@ -240,19 +240,19 @@
                         "Bras"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "Select the alogorith to use for solar irradiation caclulations"
+                    "helper": "  Select the algorithm to use for solar irradiation calculations"
                 },
                 "sunthreshold": {
-                    "helper": "The percentage of the current theoretical solar value above which the sun should be considered to be shining"
+                    "helper": "The percentage of the current theoretical solar value above which the sun should be considered to be shining (default = 75)"
                 },
                 "solarmin": {
-                    "helper": "The minimum solar reading for the sun to be considered to be shining"
+                    "helper": "The minimum solar reading for the sun to be considered to be shining (default = 0)"
                 },
                 "transfactor": {
-                    "helper": "The R-S transmission factor of the solar radiation through the atmosphere (default=0.8)"
+                    "helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70 - 0.91, default 0.80)"
                 },
                 "turbidity": {
-                    "helper": "The Bras turbidity factor (2=clear - 5=smoggy, default=2)"
+                    "helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)"
                 },
                 "useblakelarsen": {
                     "rightLabel": "Use a Blake-Larsen sun recorder",

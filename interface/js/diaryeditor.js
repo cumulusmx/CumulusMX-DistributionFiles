@@ -3,8 +3,8 @@ var activeDates;
 
 $(document).ready(function () {
     var date = new Date();
-    var currYear = date.getFullYear();
-    var currMonth = date.getMonth() + 1;
+    var currYear = date.getUTCFullYear();
+    var currMonth = date.getUTCMonth() + 1;
 
     $.ajax({
         url     : 'api/settings/version.json',
@@ -21,12 +21,8 @@ $(document).ready(function () {
         startDate    : '-20y',
         beforeShowDay: function (date) {
             var d = date;
-            var currDate = ('0' + d.getDate()).slice(-2);
-            var currMonth = ('0' + (d.getMonth() + 1)).slice(-2);
-            var currYear = d.getFullYear();
-            var formattedDate = currYear + '-' + currMonth + '-' + currDate;
+            var formattedDate = getLocalFormattedString(date);
             var activeDate = $('#datepicker').datepicker('getFormattedDate');
-
             if ($.inArray(formattedDate, activeDates) != -1) {
                 if (formattedDate != activeDate) {
                     return {classes: 'activeClass'};
@@ -39,9 +35,12 @@ $(document).ready(function () {
     $("#datepicker").datepicker('setDate', '0');
     getSummaryData(currYear, currMonth);
 
+
     $('#datepicker').on('changeDate', function () {
+        var date = $('#datepicker').datepicker('getUTCDate');
+        var dateString = getUTCFormattedString(date, false);
         $.ajax({
-            url: 'api/data/diarydata?date=' + $('#datepicker').datepicker('getFormattedDate'),
+            url: 'api/data/diarydata?date=' + dateString ,
             dataType: 'json',
             success: function (result) {
                 $('#inputComment').val(result.entry);
@@ -59,7 +58,7 @@ $(document).ready(function () {
 
 
 function getSummaryData() {
-    var date = $('#datepicker').datepicker('getUTCDate');
+    var date = $('#datepicker').datepicker('getFormattedDate');
     $.ajax({
         url     : 'api/data/diarysummary',
         dataType: 'json',
@@ -74,12 +73,8 @@ function getSummaryData() {
 }
 
 function deleteEntry() {
-    var date = $('#datepicker').datepicker('getFormattedDate');
-    var body = '{"Timestamp":"' + date + 'Z00:00:00",' +
-        '"entry":"' + $('#inputComment').val() + '",' +
-        '"snowFalling":"' + ($('#inputSnowFalling').prop('checked') ? 1 : 0) + '",' +
-        '"snowLying":"' + ($('#inputSnowLying').prop('checked') ? 1 : 0) + '",' +
-        '"snowDepth":"' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : 0) + '"}';
+    var date = $('#datepicker').datepicker('getUTCDate');
+    var body = '{"Timestamp":"' + getUTCFormattedString(date, true) + '"}';
     if ('' == date) {
         $('#status').text('Error: You must select a date first.');
     } else {
@@ -106,8 +101,8 @@ function deleteEntry() {
 }
 
 function applyEntry() {
-    var date = $('#datepicker').datepicker('getFormattedDate');
-    var body = '{"Timestamp":"' + date + 'Z00:00:00",' +
+    var date = $('#datepicker').datepicker('getUTCDate');
+    var body = '{"Timestamp":"' + getUTCFormattedString(date, true) + '",' +
         '"entry":"' + $('#inputComment').val() + '",' +
         '"snowFalling":"' + ($('#inputSnowFalling').prop('checked') ? 1 : 0) + '",' +
         '"snowLying":"' + ($('#inputSnowLying').prop('checked') ? 1 : 0) + '",' +
@@ -131,4 +126,12 @@ function applyEntry() {
             }
         });
     }
+}
+
+function getUTCFormattedString(date, long) {
+    return date.getUTCFullYear() + '-' + ('0' + (date.getUTCMonth() + 1)).slice(-2) + '-' + ('0' + date.getUTCDate()).slice(-2) + (long ? 'T00:00:00Z' : '');
+}
+
+function getLocalFormattedString(date) {
+    return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 }
