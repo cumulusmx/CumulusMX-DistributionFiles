@@ -122,8 +122,8 @@ window.onload = function () {
             domwinddir: inp.DominantWindDirection.toString(),
             WindRoseData: inp.WindRoseData,
             windrun: inp.WindRunToday.toString(),
-            cloudbasevalue: "",
-            cloudbaseunit: "",
+            cloudbasevalue: inp.Cloudbase,
+            cloudbaseunit: inp.CloudbaseUnit,
             version: "",
             build: "",
             ver: "12"
