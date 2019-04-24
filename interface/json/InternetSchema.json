@@ -169,6 +169,35 @@
                 }
             }
         },
+        "windy": {
+            "title": "Windy.com",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "catchup": {
+                    "type": "boolean"
+                },
+                "stationidx": {
+                    "title": "Station Index",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9
+                },
+                "apikey": {
+                    "title": "API Key"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                }
+            }
+        },
         "pwsweather": {
             "title": "PWS Weather",
             "type": "object",

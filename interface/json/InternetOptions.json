@@ -146,6 +146,31 @@
                 }
             }
         },
+        "windy": {
+            "collapsed": "true",
+            "fields": {
+                "enabled": {
+                    "rightLabel": "Enabled"
+                },
+                "includeuv": {
+                    "rightLabel": "Include UV",
+                    "helper": "Include UV index in the update"
+                },
+                "catchup": {
+                    "rightLabel": "Catch up",
+                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                },
+                "interval": {
+                    "helper": "Interval in minutes between updates (min value = 5)."
+                },
+                "apikey": {
+                    "helper": "This is a very long string and is used for all your Windy.com stations"
+                },
+                "stationidx": {
+                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc."
+                }
+            }
+        },
         "pwsweather": {
             "collapsed": "true",
             "fields": {
