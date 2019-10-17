@@ -24,8 +24,12 @@
         <!-- Alpaca support for Bootstrap -->
         <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
 
+        <!-- datepicker -->
+        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
+        <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
         <!-- Custom Files -->
-        <script src="js/noaasettings.js"></script>
+        <!-- <script src="js/noaareports.js"></script> -->
 
         <link href="css/cumulus.css" rel="stylesheet">
 
@@ -42,12 +46,55 @@
         </style>
 
         <script>
+            //$.fn.dataTable.ext.errMode = 'none';
+
             $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-                        $('#Version').text(result.Version);
-                        $('#Build').text(result.Build);
-                    }});
+                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+
+                var now = new Date();
+                // subtract 1 day
+                now.setTime(now.getTime()-(1*24*3600000));
+                var dateStr = now.getFullYear() + '-' + (now.getMonth() + 1);
+
+                $('#datepicker').datepicker({
+                    format: "yyyy-mm",
+                    viewMode: "months",
+                    minViewMode: "months"
+                }).val(dateStr);
+
+                load();
             });
+
+            function load() {
+                var date = $('#datepicker').val();
+                var year = date.split('-')[0];
+                var month = date.split('-')[1];
+                $.ajax({
+                    url: 'api/reports/noaamonth?year='+year+'&month='+month
+                }).done(function(data) {
+                    $('#report').text(data.join('\n'));
+                }).fail(function(jqXHR, textStatus) {
+                    $('#report').text('Something went wrong! (' + textStatus + ')');
+                });
+            }
+
+            function generate() {
+                var date = $('#datepicker').val();
+                var year = date.split('-')[0];
+                var month = date.split('-')[1];
+                $.ajax({
+                    url: 'api/genreports/noaamonth?year='+year+'&month='+month
+                }).done(function(data) {
+                    $('#report').text(data.join('\n'));
+                    alert("Report (Re)generated");
+                }).fail(function(jqXHR, textStatus) {
+                    $('#report').text('Something went wrong! (' + textStatus + ')');
+                });
+
+            }
         </script>
 
     </head>
@@ -80,14 +127,14 @@
                                 <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
                                 <li><a href="noaayearreport.html">NOAA Year Report</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
@@ -112,21 +159,20 @@
         <!-- END NAVIGATION MENU -->
 
         <div class="container">
-            <h1>NOAA report settings</h1>
+            <h1>NOAA Monthly Report</h1>
+
             <div class="row">
-                <div class="col-md-12">
-                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again.
+                <div>
+                    Select month:&nbsp;<input type="text" data-date-format="yyyy-mm" id="datepicker" >
+                    <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
+                    <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-12">
-                    <div id="form"></div>
+                    <pre id="report"></pre>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save</button>
-                </div>
-            </div>
+
         </div>
         <!-- FOOTER -->
         <div id="footerwrap">
@@ -141,6 +187,9 @@
             </div><!-- /container -->
         </div><!-- /footerwrap -->
 
+        <div id="dialog" title="Status Message">
+                <p></p>
+        </div>
     </body>
 
 

@@ -13,7 +13,8 @@
                 "Fine Offset with Solar Sensors",
                 "Oregon Scientific WMR100",
                 "Oregon Scientific WMR200",
-                "Instromet"
+                "Instromet",
+                "Davis WeatherLink Live"
             ],
             "removeDefaultNone": true
         },
@@ -77,6 +78,271 @@
         },
         "comportname": {
             "helper": "Only required if your station is connected via a serial port (real or virtual)"
+        },
+        "daviswll": {
+            "collapsed": true,
+            "fields": {
+                "primary": {
+                    "collapsed": true,
+                    "fields": {
+                        "wind": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Select the ISS transmitter ID for your Wind sensor"
+                        },
+                        "temphum": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+                        },
+                        "rain": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Select the ISS transmitter ID for your Rain sensor"
+                        },
+                        "solar": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+                        },
+                        "uv": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+                        }
+                    }
+                },
+                "soilLeaf": {
+                    "collapsed": true,
+                    "fields": {
+                        "extraSoilTemp": {
+                            "collapsed": true,
+                            "fields": {
+                                "soilTempTx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra temperature sensor #1"
+                                },
+                                "soilTempIdx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra temperature sensor #1"
+                                },
+                                "soilTempTx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra temperature sensor #2"
+                                },
+                                "soilTtempIdx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra temperature sensor #2"
+                                },
+                                "soilTempTx3": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra temperature sensor #3"
+                                },
+                                "soilTempIdx3": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra temperature sensor #3"
+                                },
+                                "soilTempTx4": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra temperature sensor #4"
+                                },
+                                "soilTempIdx4": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra temperature sensor #4"
+                                }
+                            }
+                        },
+                        "extraSoilMoist": {
+                            "collapsed": true,
+                            "fields": {
+                                "soilMoistTx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #1"
+                                },
+                                "soilMoistIdx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra soil moisture sensor #1"
+                                },
+                                "soilMoistTx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #2"
+                                },
+                                "soilMoistIdx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your soil moisture leaf sensor #2"
+                                },
+                                "soilMoistTx3": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #3"
+                                },
+                                "soilMoistIdx3": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your soil moisture leaf sensor #3"
+                                },
+                                "soilMoistTx4": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your soil moisture leaf sensor #4"
+                                },
+                                "soilMoistIdx4": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra soil moisture sensor #4"
+                                }
+                            }
+                        },
+                        "extraLeaf": {
+                            "collapsed": true,
+                            "fields": {
+                                "leafTx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra leaf sensor #1"
+                                },
+                                "leafIdx1": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra leaf sensor #1"
+                                },
+                                "leafTx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the transmitter ID for your extra leaf sensor #2"
+                                },
+                                "leafIdx2": {
+                                    "type": "select",
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2"],
+                                    "helper": "Optional: Select the index within the transmitter ID for your extra leaf sensor #2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "extraTemp": {
+                    "collapsed": true,
+                    "fields": {
+                        "extraTempTx1": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #1"
+                        },
+                        "extraHumTx1": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx2": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #2"
+                        },
+                        "extraHumTx2": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx3": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #3"
+                        },
+                        "extraHumTx3": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx4": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #4"
+                        },
+                        "extraHumTx4": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx5": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #5"
+                        },
+                        "extraHumTx5": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx6": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #6"
+                        },
+                        "extraHumTx6": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx7": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #7"
+                        },
+                        "extraHumTx7": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        },
+                        "extraTempTx8": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                            "helper": "Optional: Select the transmitter ID for your extra temperature/humidity sensor #8"
+                        },
+                        "extraHumTx8": {
+                            "rightLabel": "Also has a humidity sensor?",
+                            "helper": "Is sensor #1 a combined temperature/humidity sensor?"
+                        }
+                    }
+                }
+            }
         },
         "loginterval": {
             "optionLabels": [
