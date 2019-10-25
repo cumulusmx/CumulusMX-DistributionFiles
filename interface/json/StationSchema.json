@@ -15,7 +15,8 @@
                 7,
                 8,
                 9,
-                10
+                10,
+                11
             ]
         },
         "units": {
@@ -89,6 +90,245 @@
         },
         "comportname": {
             "title": "Serial port name"
+        },
+        "daviswll": {
+            "title": "Davis WeatherLink Live",
+            "type": "object",
+            "properties": {
+                "primary": {
+                    "title": "Primary Sensors",
+                    "type": "object",
+                    "properties": {
+                        "wind": {
+                            "title": "Wind sensor Transmitter ID",
+                            "type": "select",
+                            "enum": [1,2,3,4,5,6,7,8]
+                        },
+                        "temphum": {
+                            "title": "Temperature/Humidity Transmitter ID",
+                            "type": "select",
+                            "enum": [1,2,3,4,5,6,7,8]
+                        },
+                        "rain": {
+                            "title": "Rain sensor Transmitter ID",
+                            "type": "select",
+                            "enum": [1,2,3,4,5,6,7,8]
+                        },
+                        "solar": {
+                            "title": "Solar sensor Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "uv": {
+                            "title": "UV sensor Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        }
+                    }
+                },
+                "soilLeaf": {
+                    "title": "Extra Soil/Leaf Sensors (6345)",
+                    "type": "object",
+                    "properties": {
+                        "extraSoilTemp": {
+                            "title": "Extra Soil Temperature Sensors",
+                            "type": "object",
+                            "properties": {
+                                "soilTempTx1": {
+                                    "title": "Extra Soil Temperature sensor #1 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilTempIdx1": {
+                                    "title": "Extra Soil Temperature sensor #1 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilTempTx2": {
+                                    "title": "Extra Soil Temperature sensor #2 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilTempIdx2": {
+                                    "title": "Extra Soil Temperature sensor #2 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilTempTx3": {
+                                    "title": "Extra Soil Temperature sensor #3 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilTempIdx3": {
+                                    "title": "Extra Soil Temperature sensor #3 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilTempTx4": {
+                                    "title": "Extra Soil Temperature sensor #4 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilTempIdx4": {
+                                    "title": "Extra Soil Temperature sensor #4 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                }
+                            }
+                        },
+                        "extraSoilMoist": {
+                            "title": "Extra Soil Moisture Sensors",
+                            "type": "object",
+                            "properties": {
+                                "soilMoistTx1": {
+                                    "title": "Extra Soil Moisture sensor #1 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilMoistIdx1": {
+                                    "title": "Extra Soil Moisture sensor #1 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilMoistTx2": {
+                                    "title": "Extra Soil Moisture sensor #2 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilMoistIdx2": {
+                                    "title": "Extra Soil Moisture sensor #2 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilMoistTx3": {
+                                    "title": "Extra Soil Moisture sensor #3 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilMoistIdx3": {
+                                    "title": "Extra Soil Moisture sensor #3 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                },
+                                "soilMoistTx4": {
+                                    "title": "Extra Soil Moisture sensor #4 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "soilMoistIdx4": {
+                                    "title": "Extra Soil Moisture sensor #4 Index",
+                                    "type": "select",
+                                    "enum": [1,2,3,4]
+                                }
+                            }
+                        },
+                        "extraLeaf": {
+                            "title": "Extra Leaf Wetness Sensors",
+                            "type": "object",
+                            "properties": {
+                                "leafTx1": {
+                                    "title": "Extra Leaf sensor #1 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "leafIdx1": {
+                                    "title": "Extra Leaf sensor #1 Index",
+                                    "type": "select",
+                                    "enum": [1,2]
+                                },
+                                "leafTx2": {
+                                    "title": "Extra Leaf sensor #2 Transmitter ID",
+                                    "type": "select",
+                                    "enum": [0,1,2,3,4,5,6,7,8]
+                                },
+                                "leafIdx2": {
+                                    "title": "Extra Leaf sensor #2 Index",
+                                    "type": "select",
+                                    "enum": [1,2]
+                                }
+                            }
+                        }
+                    }
+                },
+                "extraTemp": {
+                    "title": "Extra Temperature (Temp/Humidity) Sensors",
+                    "type": "object",
+                    "properties": {
+                        "extraTempTx1": {
+                            "title": "Extra Temperature Sensor #1 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx1": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx2": {
+                            "title": "Extra Temperature Sensor #2 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx2": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx3": {
+                            "title": "Extra Temperature Sensor #3 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx3": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx4": {
+                            "title": "Extra Temperature Sensor #4 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx4": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx5": {
+                            "title": "Extra Temperature Sensor #5 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx5": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx6": {
+                            "title": "Extra Temperature Sensor #6 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx6": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx7": {
+                            "title": "Extra Temperature Sensor #7 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx7": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        },
+                        "extraTempTx8": {
+                            "title": "Extra Temperature Sensor #8 Transmitter ID",
+                            "type": "select",
+                            "enum": [0,1,2,3,4,5,6,7,8]
+                        },
+                        "extraHumTx8": {
+                            "title": "Humidty sensor",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
         },
         "loginterval": {
             "title": "Log interval",

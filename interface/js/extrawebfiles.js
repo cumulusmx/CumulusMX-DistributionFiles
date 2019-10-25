@@ -12,7 +12,7 @@
 // create our editable grid
 var editableGrid = new EditableGrid("DemoGridFull", {
 	enableSort: false, // true is the default, set it to false if you don't want sorting to be enabled
-	pageSize: 10
+	pageSize: 20
 });
 
 // helper function to get path of a demo image
