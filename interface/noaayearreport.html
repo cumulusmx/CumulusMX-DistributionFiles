@@ -37,17 +37,13 @@
             body {
                 padding-top: 60px;
             }
-
             .top-buffer { margin-top:40px; }
-
             .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-
             .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         </style>
 
         <script>
             //$.fn.dataTable.ext.errMode = 'none';
-
             $(document).ready(function () {
                 $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
                     $('#Version').text(result.Version);
@@ -91,10 +87,8 @@
                 });
             }
         </script>
-
     </head>
     <body>
-
         <!-- NAVIGATION MENU -->
         <div class="navbar-nav navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -145,6 +139,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="raintodayeditor.html">Today's rain</a></li>
                                 <li><a href="diaryeditor.html">Weather Diary</a></li>
+                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -155,7 +151,6 @@
 
         <div class="container">
             <h1>NOAA Yearly Report</h1>
-
             <div class="row">
                 <div>
                     Select year:&nbsp;<input type="text" data-date-format="yyyy" id="datepicker" >
@@ -165,8 +160,8 @@
             </div>
 
             <div class="row">
-                    <pre id="report"></pre>
-                </div>
+                <pre id="report"></pre>
+            </div>
 
         </div>
         <!-- FOOTER -->
@@ -181,8 +176,5 @@
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /footerwrap -->
-
     </body>
-
-
 </html>

@@ -25,7 +25,6 @@
         <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
 
         <!-- Custom Files -->
-        <script src="js/stationsettings.js"></script>
 
         <link href="css/cumulus.css" rel="stylesheet">
 
@@ -36,15 +35,53 @@
             .top-buffer { margin-top:40px; }
             .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
             .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+            textarea {background: #fff}
         </style>
 
         <script>
+
             $(document).ready(function () {
                 $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
                     $('#Version').text(result.Version);
                     $('#Build').text(result.Build);
                 }});
+
+                load();
             });
+
+            function load() {
+                $.ajax({
+                    url: 'api/edit/currentcond.json'
+                }).done(function(resp) {
+                    //$('#inputCurrCond').val(resp.data);
+                    $('#inputCurrCond')[0].value = resp.data;
+                }).fail(function(jqXHR, textStatus) {
+                    alert('Something went wrong loading the text! (' + textStatus + ')');
+                });
+            }
+
+            function applyEntry() {
+                var body = $('#inputCurrCond')[0].value;
+                body = body.replace(/\n/g, ' ');
+                $.ajax({
+                    url     : 'api/edit/currcond',
+                    type    : 'POST',
+                    data    : body,
+                    dataType: 'json'
+                }).done(function (result) {
+                        console.log(result.result);
+                        // notify user
+                        if (result.result === 'Success') {
+                            alert('Entry added/updated OK.');
+                            load();
+                        } else {
+                            alert('Failed to add/update entry!');
+                        }
+                    }
+                ).fail(function(jqXHR, textStatus) {
+                    alert('Something went wrong updating the text! (' + textStatus + ')');
+                });
+            }
         </script>
     </head>
     <body>
@@ -82,7 +119,7 @@
                                 <li><a href="noaayearreport.html">NOAA Year Report</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
@@ -93,7 +130,7 @@
                                 <li><a href="mysqlsettings.html">MySQL settings</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="raintodayeditor.html">Today's rain</a></li>
@@ -109,21 +146,15 @@
         <!-- END NAVIGATION MENU -->
 
         <div class="container">
-            <h1>Station settings</h1>
+            <h1>Current Conditions</h1>
             <div class="row">
                 <div class="col-md-12">
-                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again. Click the  &apos;Save&apos; button to save the settings.
+                    <label for="inputCurrCond">Text to display - Note new lines will be replaced by spaces</label>
+                    <textarea wrap="hard" id="inputCurrCond" style="height: 120px"></textarea>
+                    <button type="button" class="btn btn-default" id="apply-button" onclick="applyEntry()" style="margin:10px;">Apply</button>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="form"></div>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin: 10px;">Save</button>
-                </div>
-            </div>
         </div>
         <!-- FOOTER -->
         <div id="footerwrap">
