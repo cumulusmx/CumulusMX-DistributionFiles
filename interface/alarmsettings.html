@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cumulus MX</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <link href="css/font-style.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <!-- jquery -->
+        <script src="lib/jquery/jquery-latest.min.js"></script>
+        <script src="lib/jquery/jquery.tmpl.js"></script>
+        <!-- Bootstrap -->
+        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Custom Files -->
+        <script src="js/alarmsettings.js"></script>
+        <link href="css/cumulus.css" rel="stylesheet">
+        <script>
+            $(document).ready(function () {
+                $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+                        $('#Version').text(result.Version);
+                        $('#Build').text(result.Build);
+                    }});
+            });
+        </script>
+        <style>
+            td,th {padding: 1px}
+        </style>
+    </head>
+    <body>
+        <!-- NAVIGATION MENU -->
+        <div class="navbar-nav navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="now.html">Now</a></li>
+                        <li><a href="gauges.html">Gauges</a></li>
+                        <li><a href="charts.html">Charts</a></li>
+                        <li><a href="todayyest.html">Today/Yesterday</a></li>
+                        <li><a href="records.html">Records</a></li>
+                        <li><a href="extra.html">Extra sensors</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="datalogs.html">Data logs</a></li>
+                                <li><a href="extradatalogs.html">Extra data logs</a></li>
+                                <li><a href="dayfileviewer.html">Dayfile</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
+                                <li><a href="noaayearreport.html">NOAA Year Report</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="stationsettings.html">Station settings</a></li>
+                                <li><a href="internetsettings.html">Internet settings</a></li>
+                                <li><a href="extrawebfiles.html">Extra web files</a></li>
+                                <li><a href="calibrationsettings.html">Calibration settings</a></li>
+                                <li><a href="noaasettings.html">NOAA settings</a></li>
+                                <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                                <li><a href="alarmsettings.html">Alarms</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
+                                <li><a href="raintodayeditor.html">Today's rain</a></li>
+                                <li><a href="diaryeditor.html">Weather Diary</a></li>
+                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <!-- END NAVIGATION MENU -->
+
+        <div id="container" class="container">
+            <h1>Alarm Settings</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="/" id="alarmForm">
+                    <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
+                        <tr>
+                            <th>Enabled</th>
+                            <th>Alarm</th>
+                            <th colspan="2">Value</th>
+                            <th>Play sound</th>
+                            <th>Set sound file</th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="tempBelowEnabled"></td>
+                            <td>Alarm if temperature falls below:</td>
+                            <td><input id="tempBelowVal" type="number" min="-50" max="50" step="0.1"></td>
+                            <td class="tempUnits"></td>
+                            <td><input type="checkbox" id="tempBelowSoundEnabled"></td>
+                            <td><input id="tempBelowSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="tempAboveEnabled"></td>
+                            <td>Alarm if temperature rises above:</td>
+                            <td><input id="tempAboveVal" type="number" min="-50" max="50" step="0.1"></td>
+                            <td class="tempUnits"></td>
+                            <td><input type="checkbox" id="tempAboveSoundEnabled"></td>
+                            <td><input id="tempAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="tempChangeEnabled"></td>
+                            <td>Alarm if temperature changes by:</td>
+                            <td><input id="tempChangeVal" type="number" min="0" max="10" step="0.1"></td>
+                            <td><span class="tempUnits"></span>/hr</td>
+                            <td><input type="checkbox" id="tempChangeSoundEnabled"></td>
+                            <td><input id="tempChangeSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="pressBelowEnabled"></td>
+                            <td>Alarm if pressure falls below:</td>
+                            <td><input id="pressBelowVal" type="number" min="20" max="1050"></td>
+                            <td class="pressUnits"></td>
+                            <td><input type="checkbox" id="pressBelowSoundEnabled"></td>
+                            <td><input id="pressBelowSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="pressAboveEnabled"></td>
+                            <td>Alarm if pressure rises above:</td>
+                            <td><input id="pressAboveVal" type="number" min="20" max="1050"></td>
+                            <td class="pressUnits"></td>
+                            <td><input type="checkbox" id="pressAboveSoundEnabled"></td>
+                            <td><input id="pressAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="pressChangeEnabled"></td>
+                            <td>Alarm if pressure changes by:</td>
+                            <td><input id="pressChangeVal" type="number" min="0" max="20" step="0.1"></td>
+                            <td><span class="pressUnits"></span>/hr</td>
+                            <td><input type="checkbox" id="pressChangeSoundEnabled"></td>
+                            <td><input id="pressChangeSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="rainAboveEnabled"></td>
+                            <td>Alarm if rainfall today more than:</td>
+                            <td><input id="rainAboveVal" type="number" min="0" max="200" step="0.1"></td>
+                            <td class="rainUnits"></td>
+                            <td><input type="checkbox" id="rainAboveSoundEnabled"></td>
+                            <td><input id="rainAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="rainRateAboveEnabled"></td>
+                            <td>Alarm if rainfall rate rises above:</td>
+                            <td><input id="rainRateAboveVal" type="number" min="0" max="200" step="0.1"></td>
+                            <td><span class="rainUnits"></span>/hr</td>
+                            <td><input type="checkbox" id="rainRateAboveSoundEnabled"></td>
+                            <td><input id="rainRateAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="gustAboveEnabled"></td>
+                            <td>Alarm if wind gust more than:</td>
+                            <td><input id="gustAboveVal" type="number" min="0" max="100" step="0.1"></td>
+                            <td class="windUnits"></td>
+                            <td><input type="checkbox" id="gustAboveSoundEnabled"></td>
+                            <td><input id="gustAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="windAboveEnabled"></td>
+                            <td>Alarm if average wind more than:</td>
+                            <td><input  id="windAboveVal" type="number" min="0" max="100" step="0.1"></td>
+                            <td class="windUnits"></td>
+                            <td><input type="checkbox" id="windAboveSoundEnabled"></td>
+                            <td><input id="windAboveSound"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="contactLostEnabled"></td>
+                            <td>Alarm if sensor contact lost</td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="checkbox" id="contactLostSoundEnabled"></td>
+                            <td><input id="contactLostSound"></td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row top-buffer bottom-buffer" style="margin-bottom: 10px;">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <button type="submit" form="recsform" class="btn btn-primary" onclick="updateAlarms()">Update Alarms</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- FOOTER -->
+        <div id="footerwrap">
+            <footer class="clearfix"></footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <!--<p><img src="img/logo.png" alt=""></p>-->
+                        <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                    </div>
+                </div><!-- /row -->
+            </div><!-- /container -->
+        </div><!-- /footerwrap -->
+    </body>
+</html>

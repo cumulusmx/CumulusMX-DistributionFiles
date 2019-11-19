@@ -16,7 +16,8 @@
                 8,
                 9,
                 10,
-                11
+                11,
+                12
             ]
         },
         "units": {
@@ -327,6 +328,15 @@
                             "type": "boolean"
                         }
                     }
+                }
+            }
+        },
+        "gw1000": {
+            "title": "Ecowitt GW1000 Settings",
+            "type": "object",
+            "properties": {
+                "ipaddress": {
+                    "title": "IP address"
                 }
             }
         },

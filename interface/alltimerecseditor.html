@@ -97,6 +97,7 @@
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
                                 <li><a href="noaasettings.html">NOAA settings</a></li>
                                 <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                                <li><a href="alarmsettings.html">Alarms</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
@@ -354,6 +355,15 @@
                             <td id="longestWetPeriodTimeLogfile"></td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="row top-buffer bottom-buffer">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()">Fetch Monthly Log Data (caution, lengthy process)</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
