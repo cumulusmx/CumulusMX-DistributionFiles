@@ -7,7 +7,7 @@
  * Please, feel free to contact me if you have any questions regarding this theme.
  *
  *
- * Copyright 2013 
+ * Copyright 2013
  * Created by: Carlos Alvarez
  * URL: http://Alvarez.is
  * Designed and built based on Twitter Bootstrap.
@@ -15,15 +15,15 @@
 
 /* COLOR REFERENCE
 - #1f1f1f (Background Color)
-- #3d3d3d (Dash-unit and half-unit Section) 
-- #262626 (Footer) 
-- #fa1d2d (Red - Used in selectors, paragraphs, bars and other) 
-- #b2c831 (Green - Used in titles, badges, bars and other) 
+- #3d3d3d (Dash-unit and half-unit Section)
+- #262626 (Footer)
+- #fa1d2d (Red - Used in selectors, paragraphs, bars and other)
+- #b2c831 (Green - Used in titles, badges, bars and other)
 - #bdbdbd & #fff (Font colors)
 */
 
 
-/**********BASE CONFIGURATIONS**********/   
+/**********BASE CONFIGURATIONS**********/
 body {
     background:#1f1f1f;
     font-family: sans-serif;
@@ -52,10 +52,49 @@ h5 {
     margin-left:5px;
 }
 
+.indicator {
+    border: 1px solid #383737;
+    border-radius: 10px;
+    margin: 0px;
+    margin-bottom: -4px;
+    height: 20px;
+    width: 20px;
+    background-color: #4f4f4f;
+    display: inline-block;
+}
+
+.indicatorOff {
+    background-color: green;
+}
+
+.indicatorOn {
+    -webkit-animation: indicatorFlash 1s infinite;
+    animation: indicatorFlash 1s infinite;
+}
+@-webkit-keyframes indicatorFlash {
+    0%, 49%  {
+        background-color: red;
+    }
+    50%, 100% {
+        background-color: darkred;
+    }
+}
+@keyframes indicatorFlash {
+    0%, 49% {
+        background-color: red;
+    }
+    50%, 100% {
+        background-color: darkred;
+    }
+}
+.show {
+    display: inline;
+}
+
 /***********BLOCKS & WRAPS***********/
 
 /*--- Dash Unit / Used in Dashboard page ---*/
-.dash-unit {		
+.dash-unit {
     margin-bottom: 30px;
     padding-bottom:10px;
     border: 1px solid #383737;
@@ -79,7 +118,7 @@ h5 {
     color:#ffffff;
     margin:8px;
     padding:0px;
-    height:inherit	
+    height:inherit
 }
 
 .dash-unit hr {
@@ -157,8 +196,8 @@ h5 {
 }
 
 
-/**********Half-Unit / Used in index.html**********/   
-.half-unit {		
+/**********Half-Unit / Used in index.html**********/
+.half-unit {
     margin-bottom: 30px;
     padding-bottom: 4px;
     border: 1px solid #383737;
@@ -182,7 +221,7 @@ h5 {
     color:#ffffff;
     margin:8px;
     padding:0px;
-    height:inherit	
+    height:inherit
 }
 
 .half-unit hr {
@@ -224,7 +263,7 @@ h5 {
     vertical-align:middle;
 }
 
-/**********Styling Elements**********/   
+/**********Styling Elements**********/
 .cont {
     text-align:center;
     margin-top:30px;
@@ -273,7 +312,7 @@ h5 {
     -moz-box-shadow: 0px;
     box-shadow: 0px;
     background: none;
-    text-align: center;      
+    text-align: center;
 
 }
 
@@ -313,7 +352,7 @@ textarea {
     line-height: 18px;
     padding: 18px;
     width: 100%;
-    text-indent: 0;	
+    text-indent: 0;
 }
 .textarea-container { margin: 0 18px; }
 .textarea-container textarea { margin-left: -18px; }
@@ -354,14 +393,14 @@ textarea {
     vertical-align: text-bottom
 }
 
-/**********Clock Configuration**********/   
+/**********Clock Configuration**********/
 
 .digiclock {
     font-size: 30px;
     color: #fff;
     text-align: center;
     line-height: 60px;
-    margin-left: auto	
+    margin-left: auto
 }
 
 .clockcenter {
@@ -369,7 +408,7 @@ textarea {
 }
 
 
-/**********Mail Style Configuration**********/   
+/**********Mail Style Configuration**********/
 
 .framemail {
     cursor: default;
@@ -452,9 +491,9 @@ textarea {
 }
 .framemail .window .mail li .message {
     color: #999;
-    overflow: hidden;  
+    overflow: hidden;
     text-overflow: ellipsis;
-    top: 21px;  
+    top: 21px;
     white-space: nowrap;
 }
 .framemail .window .mail li .message strong {
@@ -729,14 +768,14 @@ ul#jstwitter li a{
 }
 
 
-/**********Gauge Chart**********/   
+/**********Gauge Chart**********/
 #canvas {
     display: block;
     width: 150px;
     margin: 30px auto;
 }
 
-/**********Accordion Styling**********/   
+/**********Accordion Styling**********/
 
 .accordion-group {
     border: 1px solid #222;
@@ -755,7 +794,7 @@ ul#jstwitter li a{
     background-image: linear-gradient(to bottom, #707070, #707070);
 }
 
-/**********Link Styling**********/   
+/**********Link Styling**********/
 a {
     color: #3399ff;
     text-decoration: none;
@@ -768,7 +807,7 @@ a:hover {
 
 
 
-/**********FooterWrap Section**********/   
+/**********FooterWrap Section**********/
 #footerwrap {
     width: 100%;
     background:#262626;
@@ -785,7 +824,7 @@ a:hover {
 #footerwrap p {
     color:white;
     font-size:12px;
-} 
+}
 
 
 /***********FULLCALENDAR STYLE***********/
@@ -831,7 +870,7 @@ a:hover {
 }
 
 
-/**********Media Styles**********/   
+/**********Media Styles**********/
 
 @media (max-width: 360px){
     /*Calendar Adsjustments*/
@@ -863,5 +902,5 @@ a:hover {
 @media (min-width: 560px) and (max-width: 685px) {
     .info-aapl ul {
         margin-left:40%;
-    }  
+    }
 }

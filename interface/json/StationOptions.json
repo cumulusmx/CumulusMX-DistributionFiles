@@ -14,7 +14,8 @@
                 "Oregon Scientific WMR100",
                 "Oregon Scientific WMR200",
                 "Instromet",
-                "Davis WeatherLink Live"
+                "Davis WeatherLink Live",
+                "Ecowitt GW1000"
             ],
             "removeDefaultNone": true
         },
@@ -341,6 +342,14 @@
                             "helper": "Is sensor #1 a combined temperature/humidity sensor?"
                         }
                     }
+                }
+            }
+        },
+        "gw1000": {
+            "collapsed": true,
+            "fields": {
+                "ipaddress": {
+                    "type": "ipv4"
                 }
             }
         },

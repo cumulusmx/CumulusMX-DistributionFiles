@@ -3,9 +3,64 @@ var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
+var alarmSettings;
+var alarmTranslate = {
+    AlarmGust: 'gustAbove',
+    AlarmHighPress: 'pressAbove',
+    AlarmHighTemp: 'tempAbove',
+    AlarmLowPress: 'pressBelow',
+    AlarmLowTemp: 'tempBelow',
+    AlarmPressDn: 'pressChange',
+    AlarmPressUp: 'pressChange',
+    AlarmRain: 'rainAbove',
+    AlarmRainRate: 'rainRateAbove',
+    AlarmSensor: 'contactLost',
+    AlarmTempDn: 'tempChange',
+    AlarmTempUp: 'tempChange',
+    AlarmWind: 'windAbove'
+};
+var alarmState = {
+    AlarmGust: false,
+    AlarmHighPress: false,
+    AlarmHighTemp: false,
+    AlarmLowPress: false,
+    AlarmLowTemp: false,
+    AlarmPressDn: false,
+    AlarmPressUp: false,
+    AlarmRain: false,
+    AlarmRainRate: false,
+    AlarmSensor: false,
+    AlarmTempDn: false,
+    AlarmTempUp: false,
+    AlarmWind: false
+}
+var playList = [];
+
 $(document).ready(function () {
 
     var lastUpdateTimer, ws;
+
+    var audioElement = document.createElement('audio');
+
+    function playSnd() {
+        if (playList.length) {
+            playList[0].addEventListener('ended', function () {
+                playList.shift();
+                playSnd()
+            });
+            var promise = playList[0].play();
+            if (promise !== undefined) {
+                promise.then(_ => {}).catch(error => {
+                    // Autoplay prevented, ask user to enable it
+                    //alert("hi");
+                    $('#bt').addClass('show').click(function () {
+                        //audioElement.play();
+                        $('#bt').removeClass('show');
+                    })
+                })
+            }
+        }
+    }
 
     function OpenWebSocket(wsport) {
 
@@ -62,15 +117,34 @@ $(document).ready(function () {
             $('#DataStoppedIcon').attr('src', 'img/up.png');
         }
 
-
         // Get the keys from the object and set
         // the element with the same id to the value
         Object.keys(data).forEach(function (key) {
             var id = '#' + key;
-            if ($(id).length) {
-                $(id).text(data[key]);
+            if (key.indexOf('Alarm') == -1) {
+                if ($(id).length) {
+                    $(id).text(data[key]);
+                }
+            } else if (alarmSettings[alarmTranslate[key] + 'Enabled']) {
+                // alarm data
+                if (data[key]) {  // alarm set
+                    $(id).removeClass('indicatorOff').addClass('indicatorOn');
+                    if (!alarmState[key]) {
+                        // make a sound?
+                        if (alarmSettings[alarmTranslate[key] + 'SoundEnabled']) {
+                            var sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key] + 'Sound']
+                           playList.push(new Audio(sndFile));
+                        }
+                        alarmState[key] = true;
+                    }
+                } else {
+                    $(id).removeClass('indicatorOn').addClass('indicatorOff');
+                    alarmState[key] = false;
+                }
             }
         });
+
+        playSnd();
 
         $('.WindUnit').text(data.WindUnit);
         $('.PressUnit').text(data.PressUnit);
@@ -238,6 +312,89 @@ $(document).ready(function () {
         // start the timer for the display updates
         setInterval(doAjaxUpdate, updateInterval * 1000);
     }
+
+    // Get the alarm settings - only do this on page load
+        $.ajax({
+            url: 'api/settings/alarms.json',
+            dataType: 'json',
+            success: function (result) {
+                var data = result.data;
+                var playSnd = false;
+                // save the setting for later
+                alarmSettings = data;
+                // set enabled alarm indicators to the off state
+                if (data.tempBelowEnabled) {
+                    $('#AlarmLowTemp').addClass('indicatorOff');
+                    if (data.tempBelowSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.tempAboveEnabled) {
+                    $('#AlarmHighTemp').addClass('indicatorOff');
+                    if (data.tempAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.tempChangeEnabled) {
+                    $('#AlarmTempUp').addClass('indicatorOff');
+                    $('#AlarmTempDn').addClass('indicatorOff');
+                    if (data.tempChangeSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.pressBelowEnabled) {
+                    $('#AlarmLowPress').addClass('indicatorOff');
+                    if (data.pressBelowSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.pressAboveEnabled) {
+                    $('#AlarmHighPress').addClass('indicatorOff');
+                    if (data.pressAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+               }
+                if (data.pressChangeEnabled) {
+                    $('#AlarmPressUp').addClass('indicatorOff');
+                    $('#AlarmPressDn').addClass('indicatorOff');
+                    if (data.pressChangeSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.rainAboveEnabled) {
+                    $('#AlarmRain').addClass('indicatorOff');
+                    if (data.rainAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.rainRateAboveEnabled) {
+                    $('#AlarmRainRate').addClass('indicatorOff');
+                    if (data.rainRateAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.gustAboveEnabled) {
+                    $('#AlarmGust').addClass('indicatorOff');
+                    if (data.gustAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.windAboveEnabled) {
+                    $('#AlarmWind').addClass('indicatorOff');
+                    if (data.windAboveSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.contactLostEnabled) {
+                    $('#AlarmSensor').addClass('indicatorOff');
+                    if (data.contactLostSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (playSnd) {
+                }
+            }
+        });
 
     ticktock();
 

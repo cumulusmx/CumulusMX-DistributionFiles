@@ -15,12 +15,6 @@ $(document).ready(function() {
         });
     }});
 
-    $.ajax({url: "api/edit/alltimerecordslogfile.json", dataType:"json", success: function (result) {
-        $.each(result, function(key, value) {
-            $('#' + key).text(value);
-        });
-    }});
-
     $(document).ajaxStop(function() {
         $.fn.editable.defaults.mode = 'inline';
         $('#highTempVal').editable();
@@ -76,6 +70,15 @@ $(document).ready(function() {
         $('.loading-overlay').hide();
         $('.loading-overlay-image-container').hide();
     });
-
 });
-
+function getMonthlyLogs() {
+    $('.loading-overlay').show();
+    $('.loading-overlay-image-container').show();
+    $.ajax({url: "api/edit/alltimerecordslogfile.json", dataType:"json", success: function (result) {
+        $.each(result, function(key, value) {
+            $('#' + key).text(value);
+        });
+        $('.loading-overlay').hide();
+        $('.loading-overlay-image-container').hide();
+    }});
+}

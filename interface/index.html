@@ -80,6 +80,7 @@
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
                                 <li><a href="noaasettings.html">NOAA settings</a></li>
                                 <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                                <li><a href="alarmsettings.html">Alarms</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -102,6 +103,7 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="half-unit">
                         <div class="cont">
+                            <input id="bt" type="button" class="btn-sml btn-default" value="Play Alarm Sounds" style="display: none;">
                             <p><span>Sunrise</span>&nbsp;<span id="Sunrise" class="low"></span>  Sunset&nbsp;<span id="Sunset" class="high"></span>  Moonrise&nbsp;<span id="Moonrise" class="low"></span>  Moonset&nbsp;<span id="Moonset" class="high"></span></p>
                             <p><span id="Forecast"></span></p>
                         </div>
@@ -317,6 +319,33 @@
                 </div>
 
             </div><!--/row -->
+
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="half-unit">
+                        <div class="cont">
+                            <p>
+                                <div class="indicator" id="AlarmLowTemp"></div> Low temperature
+                                <div class="indicator" id="AlarmHighTemp"></div> High temperature
+                                <div class="indicator" id="AlarmTempUp"></div> Temp rising
+                                <div class="indicator" id="AlarmTempDn"></div> Temp falling
+                                <div class="indicator" id="AlarmRain"></div> Rain
+                                <div class="indicator" id="AlarmRainRate"></div> Rain rate
+                            </p>
+                            <p>
+                                <div class="indicator" id="AlarmLowPress"></div> Low pressure
+                                <div class="indicator" id="AlarmHighPress"></div> High pressure
+                                <div class="indicator" id="AlarmPressUp"></div> Press rising
+                                <div class="indicator" id="AlarmPressDn"></div> Press dropping
+                                <div class="indicator" id="AlarmGust"></div> Wind gust
+                                <div class="indicator" id="AlarmWind"></div> Wind speed
+                                <div class="indicator" id="AlarmSensor"></div> Sensor contact
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div> <!-- /container -->
         <div id="footerwrap">
