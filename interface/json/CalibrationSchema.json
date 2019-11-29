@@ -25,6 +25,10 @@
                     "title": "Wind direction",
                     "type": "integer"
                 },
+                "solar": {
+                    "title": "Solar",
+                    "type": "number"
+                },
                 "uv": {
                     "title": "UV",
                     "type": "number"
@@ -61,6 +65,10 @@
                 },
                 "rainfall": {
                     "title": "Rainfall",
+                    "type": "number"
+                },
+                "solar": {
+                    "title": "Solar",
                     "type": "number"
                 },
                 "uv": {

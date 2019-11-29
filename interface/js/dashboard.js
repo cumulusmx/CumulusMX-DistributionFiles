@@ -50,7 +50,7 @@ $(document).ready(function () {
             });
             var promise = playList[0].play();
             if (promise !== undefined) {
-                promise.then(_ => {}).catch(error => {
+                promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
                     //alert("hi");
                     $('#bt').addClass('show').click(function () {
