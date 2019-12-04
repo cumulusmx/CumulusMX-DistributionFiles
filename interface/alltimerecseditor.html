@@ -20,14 +20,6 @@
         <!-- Custom Files -->
         <script src="js/alltimerecseditor.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
-        <script>
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-                        $('#Version').text(result.Version);
-                        $('#Build').text(result.Build);
-                    }});
-            });
-        </script>
         <style>
         .loading-overlay {
             display: none;
