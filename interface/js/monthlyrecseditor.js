@@ -14,6 +14,11 @@ $(document).ready(function() {
         });
     }});
 
+    $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    }});
+
     $(document).ajaxStop(function() {
         $.fn.editable.defaults.mode = 'inline';
         for (var m = 1; m <= 12; m++) {
