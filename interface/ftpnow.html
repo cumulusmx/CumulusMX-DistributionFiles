@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
 
+        <link href="css/font-style.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <!-- jquery -->
@@ -17,26 +18,7 @@
         <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
         <script src="lib/bootstrap/js/bootstrap.js"></script>
 
-        <!-- Alpaca -->
-        <script src="lib/alpaca/alpaca.js"></script>
-        <link href="lib/alpaca/alpaca.css" rel="stylesheet" />
-
-        <!-- Alpaca support for Bootstrap -->
-        <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
-
-        <!-- Custom Files -->
-        <script src="js/noaasettings.js"></script>
-
         <link href="css/cumulus.css" rel="stylesheet">
-
-        <style type="text/css">
-            body {
-                padding-top: 60px;
-            }
-            .top-buffer { margin-top:40px; }
-            .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-            .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-        </style>
 
         <script>
             $(document).ready(function () {
@@ -44,9 +26,15 @@
                         $('#Version').text(result.Version);
                         $('#Build').text(result.Build);
                     }});
+
+                $("#startFtp").click(function(event) {
+                    $('#status').text('');
+                    $.post("api/setsettings/ftpnow.json", function(data) {
+                        $('#status').text(data.result)
+                    }, "json");
+                });
             });
         </script>
-
     </head>
     <body>
         <!-- NAVIGATION MENU -->
@@ -115,19 +103,12 @@
         <!-- END NAVIGATION MENU -->
 
         <div class="container">
-            <h1>NOAA report settings</h1>
+            <h1>FTP Now</h1>
             <div class="row">
                 <div class="col-md-12">
-                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again.
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="form"></div>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save</button>
+                    <div>Manually initiate the FTP process.</div>
+                    <button type="submit" class="btn btn-primary" id="startFtp" form="ftpform">Start FTP Now</button>
+                    <div><p>Status: <span id="status" style="height: 70px"></span></div>
                 </div>
             </div>
         </div>
