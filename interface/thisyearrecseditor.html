@@ -18,7 +18,7 @@
         <link href="lib/x-editable/bootstrap-editable.css" rel="stylesheet">
         <script src="lib/x-editable/bootstrap-editable.min.js"></script>
         <!-- Custom Files -->
-        <script src="js/alltimerecseditor.js"></script>
+        <script src="js/thisyearrecseditor.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
         <style>
         .loading-overlay {
@@ -112,7 +112,7 @@
         <!-- END NAVIGATION MENU -->
 
         <div id="container" class="container">
-            <h1>All Time Records Editor</h1>
+            <h1>This Year's Records Editor</h1>
             <div class="row">
                 <div class="col-md-12">
                     <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
@@ -127,8 +127,8 @@
                         </tr>
                         <tr>
                             <td>High temperature</td>
-                            <td id="highTempVal" data-pk="1" data-type="text" data-url="api/edit/alltime" data-title="Enter new high temp value"></td>
-                            <td id="highTempTime" data-pk="2" data-type="text" data-url="api/edit/alltime" data-title="Enter new high temp date/time">Loading...</td>
+                            <td id="highTempVal" data-pk="1" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high temp value"></td>
+                            <td id="highTempTime" data-pk="2" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high temp date/time">Loading...</td>
                             <td id="highTempValDayfile"></td>
                             <td id="highTempTimeDayfile"></td>
                             <td id="highTempValLogfile"></td>
@@ -136,8 +136,8 @@
                         </tr>
                         <tr>
                             <td>Low temperature</td>
-                            <td id="lowTempVal" data-pk="3" data-type="text" data-url="api/edit/alltime" data-title="Enter new low temp value"></td>
-                            <td id="lowTempTime" data-pk="4" data-type="text" data-url="api/edit/alltime" data-title="Enter new low temp date/time"></td>
+                            <td id="lowTempVal" data-pk="3" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low temp value"></td>
+                            <td id="lowTempTime" data-pk="4" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low temp date/time"></td>
                             <td id="lowTempValDayfile"></td>
                             <td id="lowTempTimeDayfile"></td>
                             <td id="lowTempValLogfile"></td>
@@ -145,8 +145,8 @@
                         </tr>
                         <tr>
                             <td>High dew point</td>
-                            <td id="highDewPointVal" data-pk="5" data-type="text" data-url="api/edit/alltime" data-title="Enter new high dew point value"></td>
-                            <td id="highDewPointTime" data-pk="6" data-type="text" data-url="api/edit/alltime" data-title="Enter new high dew point date/time"></td>
+                            <td id="highDewPointVal" data-pk="5" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high dew point value"></td>
+                            <td id="highDewPointTime" data-pk="6" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high dew point date/time"></td>
                             <td id="highDewPointValDayfile"></td>
                             <td id="highDewPointTimeDayfile"></td>
                             <td id="highDewPointValLogfile"></td>
@@ -154,8 +154,8 @@
                         </tr>
                         <tr>
                             <td>Low dew point</td>
-                            <td id="lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/alltime" data-title="Enter new low dew point value"></td>
-                            <td id="lowDewPointTime" data-pk="8" data-type="text" data-url="api/edit/alltime" data-title="Enter new low dew point date/time"></td>
+                            <td id="lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low dew point value"></td>
+                            <td id="lowDewPointTime" data-pk="8" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low dew point date/time"></td>
                             <td id="lowDewPointValDayfile"></td>
                             <td id="lowDewPointTimeDayfile"></td>
                             <td id="lowDewPointValLogfile"></td>
@@ -163,8 +163,8 @@
                         </tr>
                         <tr>
                             <td>High apparent temperature</td>
-                            <td id="highApparentTempVal" data-pk="7" data-type="text" data-url="api/edit/alltime" data-title="Enter new high apparent temp value"></td>
-                            <td id="highApparentTempTime" data-pk="8" data-type="text" data-url="api/edit/alltime" data-title="Enter new high apparent temp date/time"></td>
+                            <td id="highApparentTempVal" data-pk="7" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high apparent temp value"></td>
+                            <td id="highApparentTempTime" data-pk="8" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high apparent temp date/time"></td>
                             <td id="highApparentTempValDayfile"></td>
                             <td id="highApparentTempTimeDayfile"></td>
                             <td id="highApparentTempValLogfile"></td>
@@ -172,8 +172,8 @@
                         </tr>
                         <tr>
                             <td>Low apparent temperature</td>
-                            <td id="lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/alltime" data-title="Enter new low apparent temp value"></td>
-                            <td id="lowApparentTempTime" data-pk="10" data-type="text" data-url="api/edit/alltime" data-title="Enter new low apparent temp date/time"></td>
+                            <td id="lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low apparent temp value"></td>
+                            <td id="lowApparentTempTime" data-pk="10" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low apparent temp date/time"></td>
                             <td id="lowApparentTempValDayfile"></td>
                             <td id="lowApparentTempTimeDayfile"></td>
                             <td id="lowApparentTempValLogfile"></td>
@@ -181,8 +181,8 @@
                         </tr>
                         <tr>
                             <td>Low wind chill</td>
-                            <td id="lowWindChillVal" data-pk="11" data-type="text" data-url="api/edit/alltime" data-title="Enter new low wind chill value"></td>
-                            <td id="lowWindChillTime" data-pk="12" data-type="text" data-url="api/edit/alltime" data-title="Enter new low wind chill date/time"></td>
+                            <td id="lowWindChillVal" data-pk="11" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low wind chill value"></td>
+                            <td id="lowWindChillTime" data-pk="12" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low wind chill date/time"></td>
                             <td id="lowWindChillValDayfile"></td>
                             <td id="lowWindChillTimeDayfile"></td>
                             <td id="lowWindChillValLogfile"></td>
@@ -190,8 +190,8 @@
                         </tr>
                         <tr>
                             <td>High heat index</td>
-                            <td id="highHeatIndexVal" data-pk="13" data-type="text" data-url="api/edit/alltime" data-title="Enter new high heat index value"></td>
-                            <td id="highHeatIndexTime" data-pk="14" data-type="text" data-url="api/edit/alltime" data-title="Enter new high heat index date/time"></td>
+                            <td id="highHeatIndexVal" data-pk="13" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high heat index value"></td>
+                            <td id="highHeatIndexTime" data-pk="14" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high heat index date/time"></td>
                             <td id="highHeatIndexValDayfile"></td>
                             <td id="highHeatIndexTimeDayfile"></td>
                             <td id="highHeatIndexValLogfile"></td>
@@ -199,8 +199,8 @@
                         </tr>
                         <tr>
                             <td>High minimum temperature</td>
-                            <td id="highMinTempVal" data-pk="15" data-type="text" data-url="api/edit/alltime" data-title="Enter new high minimum temp value"></td>
-                            <td id="highMinTempTime" data-pk="16" data-type="text" data-url="api/edit/alltime" data-title="Enter new high minimum date"></td>
+                            <td id="highMinTempVal" data-pk="15" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high minimum temp value"></td>
+                            <td id="highMinTempTime" data-pk="16" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high minimum date"></td>
                             <td id="highMinTempValDayfile"></td>
                             <td id="highMinTempTimeDayfile"></td>
                             <td id="highMinTempValLogfile"></td>
@@ -208,8 +208,8 @@
                         </tr>
                         <tr>
                             <td>Low maximum temperature</td>
-                            <td id="lowMaxTempVal" data-pk="17" data-type="text" data-url="api/edit/alltime" data-title="Enter new low max temp value"></td>
-                            <td id="lowMaxTempTime" data-pk="18" data-type="text" data-url="api/edit/alltime" data-title="Enter new high minimum date"></td>
+                            <td id="lowMaxTempVal" data-pk="17" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low max temp value"></td>
+                            <td id="lowMaxTempTime" data-pk="18" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high minimum date"></td>
                             <td id="lowMaxTempValDayfile"></td>
                             <td id="lowMaxTempTimeDayfile"></td>
                             <td id="lowMaxTempValLogfile"></td>
@@ -217,8 +217,8 @@
                         </tr>
                         <tr>
                             <td>High daily temp range</td>
-                            <td id="highDailyTempRangeVal" data-pk="19" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily temp range value"></td>
-                            <td id="highDailyTempRangeTime" data-pk="20" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily temp range date"></td>
+                            <td id="highDailyTempRangeVal" data-pk="19" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily temp range value"></td>
+                            <td id="highDailyTempRangeTime" data-pk="20" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily temp range date"></td>
                             <td id="highDailyTempRangeValDayfile"></td>
                             <td id="highDailyTempRangeTimeDayfile"></td>
                             <td id="highDailyTempRangeValLogfile"></td>
@@ -226,8 +226,8 @@
                         </tr>
                         <tr>
                             <td>Low daily temp range</td>
-                            <td id="lowDailyTempRangeVal" data-pk="21" data-type="text" data-url="api/edit/alltime" data-title="Enter new low daily temp range value"></td>
-                            <td id="lowDailyTempRangeTime" data-pk="22" data-type="text" data-url="api/edit/alltime" data-title="Enter new low daily temp range date"></td>
+                            <td id="lowDailyTempRangeVal" data-pk="21" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low daily temp range value"></td>
+                            <td id="lowDailyTempRangeTime" data-pk="22" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low daily temp range date"></td>
                             <td id="lowDailyTempRangeValDayfile"></td>
                             <td id="lowDailyTempRangeTimeDayfile"></td>
                             <td id="lowDailyTempRangeValLogfile"></td>
@@ -235,8 +235,8 @@
                         </tr>
                         <tr>
                             <td>High humidity</td>
-                            <td id="highHumidityVal" data-pk="23" data-type="text" data-url="api/edit/alltime" data-title="Enter new high humidity value"></td>
-                            <td id="highHumidityTime" data-pk="24" data-type="text" data-url="api/edit/alltime" data-title="Enter new high humidity date/time"></td>
+                            <td id="highHumidityVal" data-pk="23" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high humidity value"></td>
+                            <td id="highHumidityTime" data-pk="24" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high humidity date/time"></td>
                             <td id="highHumidityValDayfile"></td>
                             <td id="highHumidityTimeDayfile"></td>
                             <td id="highHumidityValLogfile"></td>
@@ -244,8 +244,8 @@
                         </tr>
                         <tr>
                             <td>Low humidity</td>
-                            <td id="lowHumidityVal" data-pk="25" data-type="text" data-url="api/edit/alltime" data-title="Enter new low humidity value"></td>
-                            <td id="lowHumidityTime" data-pk="26" data-type="text" data-url="api/edit/alltime" data-title="Enter new low humidity date/time"></td>
+                            <td id="lowHumidityVal" data-pk="25" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low humidity value"></td>
+                            <td id="lowHumidityTime" data-pk="26" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low humidity date/time"></td>
                             <td id="lowHumidityValDayfile"></td>
                             <td id="lowHumidityTimeDayfile"></td>
                             <td id="lowHumidityValLogfile"></td>
@@ -253,8 +253,8 @@
                         </tr>
                         <tr>
                             <td>High barometer</td>
-                            <td id="highBarometerVal" data-pk="27" data-type="text" data-url="api/edit/alltime" data-title="Enter new high pressure value"></td>
-                            <td id="highBarometerTime" data-pk="28" data-type="text" data-url="api/edit/alltime" data-title="Enter new high pressure date/time"></td>
+                            <td id="highBarometerVal" data-pk="27" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high pressure value"></td>
+                            <td id="highBarometerTime" data-pk="28" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high pressure date/time"></td>
                             <td id="highBarometerValDayfile"></td>
                             <td id="highBarometerTimeDayfile"></td>
                             <td id="highBarometerValLogfile"></td>
@@ -262,8 +262,8 @@
                         </tr>
                         <tr>
                             <td>Low barometer</td>
-                            <td id="lowBarometerVal" data-pk="29" data-type="text" data-url="api/edit/alltime" data-title="Enter new low pressure value"></td>
-                            <td id="lowBarometerTime" data-pk="30" data-type="text" data-url="api/edit/alltime" data-title="Enter new low pressure date/time"></td>
+                            <td id="lowBarometerVal" data-pk="29" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low pressure value"></td>
+                            <td id="lowBarometerTime" data-pk="30" data-type="text" data-url="api/edit/thisyear" data-title="Enter new low pressure date/time"></td>
                             <td id="lowBarometerValDayfile"></td>
                             <td id="lowBarometerTimeDayfile"></td>
                             <td id="lowBarometerValLogfile"></td>
@@ -271,8 +271,8 @@
                         </tr>
                         <tr>
                             <td>High gust speed</td>
-                            <td id="highGustVal" data-pk="31" data-type="text" data-url="api/edit/alltime" data-title="Enter new high gust value"></td>
-                            <td id="highGustTime" data-pk="32" data-type="text" data-url="api/edit/alltime" data-title="Enter new high gust date/time"></td>
+                            <td id="highGustVal" data-pk="31" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high gust value"></td>
+                            <td id="highGustTime" data-pk="32" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high gust date/time"></td>
                             <td id="highGustValDayfile"></td>
                             <td id="highGustTimeDayfile"></td>
                             <td id="highGustValLogfile"></td>
@@ -280,8 +280,8 @@
                         </tr>
                         <tr>
                             <td>High wind speed</td>
-                            <td id="highWindVal" data-pk="33" data-type="text" data-url="api/edit/alltime" data-title="Enter new high wind speed value"></td>
-                            <td id="highWindTime" data-pk="34" data-type="text" data-url="api/edit/alltime" data-title="Enter new high wind speed date/time"></td>
+                            <td id="highWindVal" data-pk="33" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high wind speed value"></td>
+                            <td id="highWindTime" data-pk="34" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high wind speed date/time"></td>
                             <td id="highWindValDayfile"></td>
                             <td id="highWindTimeDayfile"></td>
                             <td id="highWindValLogfile"></td>
@@ -289,8 +289,8 @@
                         </tr>
                         <tr>
                             <td>High daily wind run</td>
-                            <td id="highWindRunVal" data-pk="35" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily wind run value"></td>
-                            <td id="highWindRunTime" data-pk="36" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily wind run date"></td>
+                            <td id="highWindRunVal" data-pk="35" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily wind run value"></td>
+                            <td id="highWindRunTime" data-pk="36" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily wind run date"></td>
                             <td id="highWindRunValDayfile"></td>
                             <td id="highWindRunTimeDayfile"></td>
                             <td id="highWindRunValLogfile"></td>
@@ -298,8 +298,8 @@
                         </tr>
                         <tr>
                             <td>High rain rate</td>
-                            <td id="highRainRateVal" data-pk="37" data-type="text" data-url="api/edit/alltime" data-title="Enter new high rain rate value"></td>
-                            <td id="highRainRateTime" data-pk="38" data-type="text" data-url="api/edit/alltime" data-title="Enter new high rain rate date/time"></td>
+                            <td id="highRainRateVal" data-pk="37" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high rain rate value"></td>
+                            <td id="highRainRateTime" data-pk="38" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high rain rate date/time"></td>
                             <td id="highRainRateValDayfile"></td>
                             <td id="highRainRateTimeDayfile"></td>
                             <td id="highRainRateValLogfile"></td>
@@ -307,8 +307,8 @@
                         </tr>
                         <tr>
                             <td>High hourly rain</td>
-                            <td id="highHourlyRainVal" data-pk="39" data-type="text" data-url="api/edit/alltime" data-title="Enter new high hourly rain value"></td>
-                            <td id="highHourlyRainTime" data-pk="40" data-type="text" data-url="api/edit/alltime" data-title="Enter new high hourly rain date/time"></td>
+                            <td id="highHourlyRainVal" data-pk="39" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high hourly rain value"></td>
+                            <td id="highHourlyRainTime" data-pk="40" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high hourly rain date/time"></td>
                             <td id="highHourlyRainValDayfile"></td>
                             <td id="highHourlyRainTimeDayfile"></td>
                             <td id="highHourlyRainValLogfile"></td>
@@ -316,8 +316,8 @@
                         </tr>
                         <tr>
                             <td>High daily rain</td>
-                            <td id="highDailyRainVal" data-pk="41" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily rain value"></td>
-                            <td id="highDailyRainTime" data-pk="42" data-type="text" data-url="api/edit/alltime" data-title="Enter new high daily rain date"></td>
+                            <td id="highDailyRainVal" data-pk="41" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily rain value"></td>
+                            <td id="highDailyRainTime" data-pk="42" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high daily rain date"></td>
                             <td id="highDailyRainValDayfile"></td>
                             <td id="highDailyRainTimeDayfile"></td>
                             <td id="highDailyRainValLogfile"></td>
@@ -325,8 +325,8 @@
                         </tr>
                         <tr>
                             <td>High monthly rain</td>
-                            <td id="highMonthlyRainVal" data-pk="43" data-type="text" data-url="api/edit/alltime" data-title="Enter new high monthly rain value"></td>
-                            <td id="highMonthlyRainTime" data-pk="44" data-type="text" data-url="api/edit/alltime" data-title="Enter new high monthly rain date"></td>
+                            <td id="highMonthlyRainVal" data-pk="43" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high monthly rain value"></td>
+                            <td id="highMonthlyRainTime" data-pk="44" data-type="text" data-url="api/edit/thisyear" data-title="Enter new high monthly rain date"></td>
                             <td id="highMonthlyRainValDayfile"></td>
                             <td id="highMonthlyRainTimeDayfile"></td>
                             <td id="highMonthlyRainValLogfile"></td>
@@ -334,8 +334,8 @@
                         </tr>
                         <tr>
                             <td>Longest dry period</td>
-                            <td id="longestDryPeriodVal" data-pk="45" data-type="text" data-url="api/edit/alltime" data-title="Enter new longest dry period value"></td>
-                            <td id="longestDryPeriodTime" data-pk="46" data-type="text" data-url="api/edit/alltime" data-title="Enter new longest dry period end date"></td>
+                            <td id="longestDryPeriodVal" data-pk="45" data-type="text" data-url="api/edit/thisyear" data-title="Enter new longest dry period value"></td>
+                            <td id="longestDryPeriodTime" data-pk="46" data-type="text" data-url="api/edit/thisyear" data-title="Enter new longest dry period end date"></td>
                             <td id="longestDryPeriodValDayfile"></td>
                             <td id="longestDryPeriodTimeDayfile"></td>
                             <td id="longestDryPeriodValLogfile"></td>
@@ -343,8 +343,8 @@
                         </tr>
                         <tr>
                             <td>Longest wet period</td>
-                            <td id="longestWetPeriodVal" data-pk="47" data-type="text" data-url="api/edit/alltime" data-title="Enter new longest wet period value"></td>
-                            <td id="longestWetPeriodTime" data-pk="48" data-type="text" data-url="api/edit/alltime" data-title="Enter new longest wet period end date"></td>
+                            <td id="longestWetPeriodVal" data-pk="47" data-type="text" data-url="api/edit/thisyear" data-title="Enter new longest wet period value"></td>
+                            <td id="longestWetPeriodTime" data-pk="48" data-type="text" data-url="api/edit/thisyear" data-title="Enter new longest wet period end date"></td>
                             <td id="longestWetPeriodValDayfile"></td>
                             <td id="longestWetPeriodTimeDayfile"></td>
                             <td id="longestWetPeriodValLogfile"></td>
@@ -355,11 +355,7 @@
             </div>
             <div class="row top-buffer bottom-buffer">
                 <div class="col-sm-12 col-lg-12">
-                    <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-10">
-                            <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()">Fetch Monthly Log Data (caution, lengthy process)</button>
-                        </div>
-                    </div>
+                    <div>* = excludes values that start before but end in this period</div>
                 </div>
             </div>
         </div>
