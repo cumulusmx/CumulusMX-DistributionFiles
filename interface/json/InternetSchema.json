@@ -13,8 +13,17 @@
                     "type": "integer",
                     "minimum": 0
                 },
+                "sslftp": {
+                    "type":"number",
+                    "title": "Select the FTP Protocol to use",
+                    "enum": [
+                        0,
+                        1,
+                        2
+                    ]
+                },
                 "directory": {
-                    "title": "Directory"
+                    "title": "Remote FTP Directory"
                 },
                 "username": {
                     "title": "Username"
@@ -44,9 +53,6 @@
                     "type": "boolean"
                 },
                 "activeftp": {
-                    "type": "boolean"
-                },
-                "sslftp": {
                     "type": "boolean"
                 },
                 "ftprename": {

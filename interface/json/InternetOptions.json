@@ -1,15 +1,27 @@
 ﻿{
     "fields": {
         "website": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
+                "sslftp": {
+                    "type": "select",
+                    "optionLabels": [
+                        "0 - FTP (plain old FTP)",
+                        "1 - Use SSL/TLS for FTP (FTPS)",
+                        "2 - Use SSH for FTP (SFTP)"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "Select the protcol required by your web hoster"
+                },
                 "password": {
                     "type": "password"
                 }
             }
         },
         "websettings": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "autoupdate": {
                     "rightLabel": "Auto update"
@@ -23,10 +35,8 @@
                     "helper": "Select this to have the graph data files uploaded"
                 },
                 "activeftp": {
-                    "rightLabel": "Active FTP mode"
-                },
-                "sslftp": {
-                    "rightLabel": "Use SSL for FTP (FTPS)"
+                    "rightLabel": "Active FTP mode",
+                    "helper": "Not normally required - use with caution"
                 },
                 "ftprename": {
                     "rightLabel": "FTP rename",
@@ -69,7 +79,8 @@
             }
         },
         "externalprograms": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "program": {
                     "helper": "A program or command to be run at each web update interval"
@@ -92,7 +103,8 @@
             }
         },
         "twitter": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -110,7 +122,8 @@
             }
         },
         "wunderground": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -147,7 +160,8 @@
             }
         },
         "windy": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -172,7 +186,8 @@
             }
         },
         "pwsweather": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -198,7 +213,8 @@
             }
         },
         "wow": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -224,7 +240,8 @@
             }
         },
         "weatherbug": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -250,7 +267,8 @@
             }
         },
         "cwop": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -265,7 +283,8 @@
             }
         },
         "awekas": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -294,7 +313,8 @@
             }
         },
         "weathercloud": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
@@ -310,13 +330,16 @@
             }
         },
         "proxies": {
-            "collapsed": "true"
+            "collapsible":true,
+            "collapsed": true
         },
         "customhttp": {
-            "collapsed": "true",
+            "collapsible":true,
+            "collapsed": true,
             "fields": {
                 "customseconds": {
-                    "collapsed": true,
+                    "collapsible":true,
+                    "collapsed": false,
                     "helper": "A custom HTTP URL to be invoked at an interval in seconds - can include webtags",
                     "fields": {
                         "enabled": {
@@ -325,7 +348,8 @@
                     }
                 },
                 "customminutes": {
-                    "collapsed": true,
+                    "collapsible":true,
+                    "collapsed": false,
                     "helper": "A custom HTTP URL to be invoked at an interval in minutes - can include webtags",
                     "fields": {
                         "enabled": {
@@ -351,7 +375,8 @@
                     }
                 },
                 "customrollover": {
-                    "collapsed": true,
+                    "collapsible":true,
+                    "collapsed": false,
                     "helper": "A custom HTTP URL to be invoked just before end of day rollover - can include webtags",
                     "fields": {
                         "enabled": {
