@@ -83,6 +83,20 @@
         "daviswll": {
             "collapsed": true,
             "fields": {
+                "api": {
+                    "collapsed": true,
+                    "fields": {
+                        "apiKey": {
+                            "helper": "Enter your WeatherLink.com APIv2 key"
+                        },
+                        "apiSecret": {
+                            "helper": "Enter your WeatherLink.com APIv2 secret"
+                        },
+                        "apiStationId": {
+                            "helper": "Enter the station id used for your WLL device in the WeatherLink.com APIv2"
+                        }
+                    }
+                },
                 "primary": {
                     "collapsed": true,
                     "fields": {

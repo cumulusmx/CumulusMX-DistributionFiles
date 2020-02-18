@@ -96,6 +96,22 @@
             "title": "Davis WeatherLink Live",
             "type": "object",
             "properties": {
+                "api": {
+                    "title": "WeatherLink.com API details",
+                    "type": "object",
+                    "properties": {
+                        "apiKey": {
+                            "title": "WeatherLink APIv2 key"
+                        },
+                        "apiSecret": {
+                            "title": "WeatherLink APIv2 secret"
+                        },
+                        "apiStationId": {
+                            "title": "WLL device id on WeatherLink APIv2",
+                            "type": "integer"
+                        }
+                    }
+                },
                 "primary": {
                     "title": "Primary Sensors",
                     "type": "object",
