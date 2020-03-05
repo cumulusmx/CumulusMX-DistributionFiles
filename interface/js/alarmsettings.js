@@ -78,7 +78,11 @@ function updateAlarms() {
 
             contactLostEnabled     : $('#contactLostEnabled').prop('checked'),
             contactLostSoundEnabled: $('#contactLostSoundEnabled').prop('checked'),
-            contactLostSound       : $('#contactLostSound').val()
+            contactLostSound       : $('#contactLostSound').val(),
+
+            dataStoppedEnabled     : $('#dataStoppedEnabled').prop('checked'),
+            dataStoppedSoundEnabled: $('#dataStoppedSoundEnabled').prop('checked'),
+            dataStoppedSound       : $('#dataStoppedSound').val()
         })
     }).done(function (result) {
         alert("Settings updated");
