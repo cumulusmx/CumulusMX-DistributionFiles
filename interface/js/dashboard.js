@@ -17,7 +17,8 @@ var alarmTranslate = {
     AlarmSensor: 'contactLost',
     AlarmTempDn: 'tempChange',
     AlarmTempUp: 'tempChange',
-    AlarmWind: 'windAbove'
+    AlarmWind: 'windAbove',
+    AlarmData: 'dataStopped'
 };
 var alarmState = {
     AlarmGust: false,
@@ -32,7 +33,8 @@ var alarmState = {
     AlarmSensor: false,
     AlarmTempDn: false,
     AlarmTempUp: false,
-    AlarmWind: false
+    AlarmWind: false,
+    AlarmData: false
 }
 var playList = [];
 
@@ -110,6 +112,8 @@ $(document).ready(function () {
         $('#LastUpdateIcon').attr('src', 'img/up.png');
 
         var dataStopped = data.DataStopped;
+        // Add an alarm value for dataStopped
+        data.AlarmData = data.DataStopped;
 
         if (dataStopped) {
             $('#DataStoppedIcon').attr('src', 'img/down.png');
@@ -388,6 +392,12 @@ $(document).ready(function () {
                 if (data.contactLostEnabled) {
                     $('#AlarmSensor').addClass('indicatorOff');
                     if (data.contactLostSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.dataStoppedEnabled) {
+                    $('#AlarmData').addClass('indicatorOff');
+                    if (data.dataStoppedSoundEnabled) {
                         playSnd = true;
                     }
                 }
