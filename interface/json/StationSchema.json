@@ -96,6 +96,16 @@
             "title": "Davis WeatherLink Live",
             "type": "object",
             "properties": {
+                "network": {
+                    "title": "Network Settings",
+                    "type": "object",
+                    "properties": {
+                        "autoDiscover": {
+                            "title": "Set a manual IP address in the TCP/IP settings section above",
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "api": {
                     "title": "WeatherLink.com API details",
                     "type": "object",
@@ -351,6 +361,9 @@
             "title": "Ecowitt GW1000 Settings",
             "type": "object",
             "properties": {
+                "autoDiscover" : {
+                    "type": "boolean"
+                },
                 "ipaddress": {
                     "title": "IP address"
                 }
