@@ -83,6 +83,14 @@
         "daviswll": {
             "collapsed": true,
             "fields": {
+                "network": {
+                    "fields": {
+                        "autoDiscover": {
+                            "rightLabel": "Auto-Discovery",
+                            "helper": "Enable auto-discovery of your WLL devices IP address - do not enable if you have more than one device"
+                        }
+                    }
+                },
                 "api": {
                     "collapsed": true,
                     "fields": {
@@ -362,6 +370,10 @@
         "gw1000": {
             "collapsed": true,
             "fields": {
+                "autoDiscover": {
+                    "rightLabel": "Auto-Discovery",
+                    "helper": "Enable auto-discovery of your GW1000 devices IP address - do not enable if you have more than one device"
+                },
                 "ipaddress": {
                     "type": "ipv4"
                 }
