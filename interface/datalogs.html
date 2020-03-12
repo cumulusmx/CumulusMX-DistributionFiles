@@ -14,65 +14,30 @@
         <script src="lib/jquery/jquery.tmpl.js"></script>
 
         <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
-        <script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css" href="lib/datatables/media/css/jquery.dataTables.css">
+        <link href="lib/datatables/datatables.min.css" rel="stylesheet">
 
         <!-- DataTables -->
-        <script src="lib/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="lib/datatables/datatables.min.js"></script>
+
+        <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
         <!-- datepicker -->
         <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
         <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
+        <script src="js/datalogs.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
 
-        <script>
-            $.fn.dataTable.ext.errMode = 'none';
-
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
-
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                var mon = now.getMonth() + 1;
-                mon = mon < 10 ? '0' + mon : mon;
-                var dateStr = mon + '-' + now.getFullYear();
-
-                $('#datepicker').datepicker({
-                    format: "mm-yyyy",
-                    viewMode: "months",
-                    minViewMode: "months"
-                }).val(dateStr);
-
-                table = $('#datalog').dataTable({
-
-                    serverSide: true,
-                    searching: false,
-                    ordering: false,
-                    ajax: {
-                        url: "api/data/logfile",
-                        data: function (data) {
-                            delete data.columns;
-                        }
-                    },
-                    deferLoading: 10
-                });
-            });
-
-            function load() {
-                value = $("#datepicker").val();
-
-                table.api().ajax.url('api/data/logfile'+'?month='+value).load();
+        <style>
+            .form-group {
+                margin-bottom: 0px;
             }
-        </script>
+        </style>
     </head>
     <body>
         <!-- NAVIGATION MENU -->
@@ -140,7 +105,7 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <div class="container">
+        <div class="container" style="margin-right:10px;margin-left:10px">
             <div class="row top-buffer">
                 <div class="col-md-12">
                     <h1>Data log viewer</h1>
@@ -152,72 +117,7 @@
 
             </div>
             <div class="row top-buffer">
-                <table id="datalog" class="display" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Date (dd/mm/yy)</th>
-                            <th>Time</th>
-                            <th>Temp</th>
-                            <th>Hum</th>
-                            <th>Dew point</th>
-                            <th>Wind speed</th>
-                            <th>Recent high gust</th>
-                            <th>Average wind bearing</th>
-                            <th>Rainfall rate</th>
-                            <th>Rainfall so far</th>
-                            <th>Sea level pressure</th>
-                            <th>Rainfall counter</th>
-                            <th>Inside temp</th>
-                            <th>Inside hum</th>
-                            <th>Current gust</th>
-                            <th>Wind chill</th>
-                            <th>Heat Index</th>
-                            <th>UV Index</th>
-                            <th>Solar Rad</th>
-                            <th>ET</th>
-                            <th>Annual ET</th>
-                            <th>Apparent temp</th>
-                            <th>Max Solar rad</th>
-                            <th>Sun hours</th>
-                            <th>Wind bearing</th>
-                            <th>RG-11 Rain</th>
-                            <th>Rain Since Midnight</th>
-                        </tr>
-                    </thead>
-
-                    <!--<tfoot>
-                        <tr>
-                            <th>Date (dd/mm/yy)</th>
-                            <th>Time</th>
-                            <th>Temp</th>
-                            <th>Hum</th>
-                            <th>Dew point</th>
-                            <th>Wind speed</th>
-                            <th>Recent high gust</th>
-                            <th>Average wind bearing</th>
-                            <th>Rainfall rate</th>
-                            <th>Rainfall so far</th>
-                            <th>Sea level pressure</th>
-                            <th>Rainfall counter</th>
-                            <th>Inside temp</th>
-                            <th>Inside hum</th>
-                            <th>Current gust</th>
-                            <th>Wind chill</th>
-                            <th>Heat Index</th>
-                            <th>UV Index</th>
-                            <th>Solar Rad</th>
-                            <th>ET</th>
-                            <th>Annual ET</th>
-                            <th>Apparent temp</th>
-                            <th>Max Solar rad</th>
-                            <th>Sun hours</th>
-                            <th>Wind bearing</th>
-                            <th>RG-11 Rain</th>
-                            <th>Rain Since Midnight</th>
-                        </tr>
-                    </tfoot>-->
-                </table>
-
+                <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
             </div>
         </div>
 

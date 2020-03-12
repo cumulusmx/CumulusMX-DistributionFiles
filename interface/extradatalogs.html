@@ -15,67 +15,30 @@
         <script src="lib/jquery/jquery.tmpl.js"></script>
 
         <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
-        <script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css" href="lib/datatables/media/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="lib/datatables/datatables.css">
 
         <!-- DataTables -->
-        <script src="lib/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="lib/datatables/datatables.min.js"></script>
 
         <!-- datepicker -->
         <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
         <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
+        <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
+
+        <script src ="js/extradatalogs.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
 
-        <script>
-            $.fn.dataTable.ext.errMode = 'none';
-
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
-
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                var mon = now.getMonth() + 1;
-                mon = mon < 10 ? '0' + mon : mon;
-                var dateStr = mon + '-' + now.getFullYear();
-
-                $('#datepicker').datepicker({
-                    format: "mm-yyyy",
-                    viewMode: "months",
-                    minViewMode: "months"
-                }).val(dateStr);
-
-                table = $('#datalog').dataTable({
-                    serverSide: true,
-                    searching: false,
-                    ordering: false,
-                    ajax: {
-                        url: "api/data/extralogfile",
-                        data: function (data) {
-                            delete data.columns;
-                        }
-                    },
-                    deferLoading: 10
-                });
-            });
-
-            function load() {
-                value = $("#datepicker").val();
-
-                table.api().ajax.url('api/data/extralogfile'+'?month='+value).load();
+        <style>
+            .form-group {
+                margin-bottom: 0px;
             }
-
-        </script>
-
-
+        </style>
     </head>
     <body>
 
@@ -144,10 +107,10 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <div class="container">
+        <div class="container" style="margin-right:10px;margin-left:10px">
             <div class="row top-buffer">
                 <div class="col-md-12">
-                    <h1>Extra data log viewer</h1>
+                    <h1>Extra data log viewer/editor</h1>
                 </div>
             </div>
             <div class="row">
@@ -156,138 +119,7 @@
 
             </div>
             <div class="row top-buffer">
-                <table id="datalog" class="display" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Date (dd/mm/yy)</th>
-                            <th>Time</th>
-                            <th>Temp 1</th>
-                            <th>Temp 2</th>
-                            <th>Temp 3</th>
-                            <th>Temp 4</th>
-                            <th>Temp 5</th>
-                            <th>Temp 6</th>
-                            <th>Temp 7</th>
-                            <th>Temp 8</th>
-                            <th>Temp 9</th>
-                            <th>Temp 10</th>
-                            <th>Hum 1</th>
-                            <th>Hum 2</th>
-                            <th>Hum 3</th>
-                            <th>Hum 4</th>
-                            <th>Hum 5</th>
-                            <th>Hum 6</th>
-                            <th>Hum 7</th>
-                            <th>Hum 8</th>
-                            <th>Hum 9</th>
-                            <th>Hum 10</th>
-                            <th>Dew point 1</th>
-                            <th>Dew point 2</th>
-                            <th>Dew point 3</th>
-                            <th>Dew point 4</th>
-                            <th>Dew point 5</th>
-                            <th>Dew point 6</th>
-                            <th>Dew point 7</th>
-                            <th>Dew point 8</th>
-                            <th>Dew point 9</th>
-                            <th>Dew point 10</th>
-                            <th>Soil Temp 1</th>
-                            <th>Soil Temp 2</th>
-                            <th>Soil Temp 3</th>
-                            <th>Soil Temp 4</th>
-                            <th>Soil Moisture 1</th>
-                            <th>Soil Moisture 2</th>
-                            <th>Soil Moisture 3</th>
-                            <th>Soil Moisture 4</th>
-                            <th>Leaf Temp 1</th>
-                            <th>Leaf Temp 2</th>
-                            <th>Leaf Wetness 1</th>
-                            <th>Leaf Wetness 2</th>
-                            <th>Soil Temp 5</th>
-                            <th>Soil Temp 6</th>
-                            <th>Soil Temp 7</th>
-                            <th>Soil Temp 8</th>
-                            <th>Soil Temp 9</th>
-                            <th>Soil Temp 10</th>
-                            <th>Soil Temp 11</th>
-                            <th>Soil Temp 12</th>
-                            <th>Soil Temp 13</th>
-                            <th>Soil Temp 14</th>
-                            <th>Soil Temp 15</th>
-                            <th>Soil Temp 16</th>
-                            <th>Soil Moisture 5</th>
-                            <th>Soil Moisture 6</th>
-                            <th>Soil Moisture 7</th>
-                            <th>Soil Moisture 8</th>
-                            <th>Soil Moisture 9</th>
-                            <th>Soil Moisture 10</th>
-                            <th>Soil Moisture 11</th>
-                            <th>Soil Moisture 12</th>
-                            <th>Soil Moisture 13</th>
-                            <th>Soil Moisture 14</th>
-                            <th>Soil Moisture 15</th>
-                            <th>Soil Moisture 16</th>
-                            <th>Air Quality 1</th>
-                            <th>Air Quality 2</th>
-                            <th>Air Quality 3</th>
-                            <th>Air Quality 4</th>
-                            <th>Air Quality Avg 1</th>
-                            <th>Air Quality Avg 2</th>
-                            <th>Air Quality Avg 3</th>
-                            <th>Air Quality Avg 4</th>
-                        </tr>
-                    </thead>
-
-                    <!--<tfoot>
-                        <tr>
-                            <th>Date (dd/mm/yy)</th>
-                            <th>Time</th>
-                            <th>Temp 1</th>
-                            <th>Temp 2</th>
-                            <th>Temp 3</th>
-                            <th>Temp 4</th>
-                            <th>Temp 5</th>
-                            <th>Temp 6</th>
-                            <th>Temp 7</th>
-                            <th>Temp 8</th>
-                            <th>Temp 9</th>
-                            <th>Temp 10</th>
-                            <th>Hum 1</th>
-                            <th>Hum 2</th>
-                            <th>Hum 3</th>
-                            <th>Hum 4</th>
-                            <th>Hum 5</th>
-                            <th>Hum 6</th>
-                            <th>Hum 7</th>
-                            <th>Hum 8</th>
-                            <th>Hum 9</th>
-                            <th>Hum 10</th>
-                            <th>Dew point 1</th>
-                            <th>Dew point 2</th>
-                            <th>Dew point 3</th>
-                            <th>Dew point 4</th>
-                            <th>Dew point 5</th>
-                            <th>Dew point 6</th>
-                            <th>Dew point 7</th>
-                            <th>Dew point 8</th>
-                            <th>Dew point 9</th>
-                            <th>Dew point 10</th>
-                            <th>Soil Temp 1</th>
-                            <th>Soil Temp 2</th>
-                            <th>Soil Temp 3</th>
-                            <th>Soil Temp 4</th>
-                            <th>Soil Moisture 1</th>
-                            <th>Soil Moisture 2</th>
-                            <th>Soil Moisture 3</th>
-                            <th>Soil Moisture 4</th>
-                            <th>Leaf Temp 1</th>
-                            <th>Leaf Temp 2</th>
-                            <th>Leaf Wetness 1</th>
-                            <th>Leaf Wetness 2</th>
-                        </tr>
-                    </tfoot>-->
-                </table>
-
+                <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
             </div>
         </div>
 

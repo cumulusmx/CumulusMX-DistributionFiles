@@ -1,9 +1,10 @@
 $(document).ready(function () {
 
     $("#form").alpaca({
-        "dataSource": "../api/settings/stationdata.json",
-        "optionsSource": "../api/settings/stationoptions.json",
-        "schemaSource": "../api/settings/stationschema.json",
+        "dataSource": "./api/settings/stationdata.json",
+        "optionsSource": "./api/settings/stationoptions.json",
+        "schemaSource": "./api/settings/stationschema.json",
+        //"view": "bootstrap-edit",
         "ui": "bootstrap",
         "postRender": function (form) {
             $("#save-button").click(function () {

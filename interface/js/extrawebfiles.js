@@ -1,6 +1,6 @@
 /*
  * examples/full/javascript/demo.js
- * 
+ *
  * This file is part of EditableGrid.
  * http://editablegrid.net
  *
@@ -12,7 +12,7 @@
 // create our editable grid
 var editableGrid = new EditableGrid("DemoGridFull", {
 	enableSort: false, // true is the default, set it to false if you don't want sorting to be enabled
-	pageSize: 20
+	pageSize: 15
 });
 
 // helper function to get path of a demo image
@@ -24,13 +24,9 @@ function image(relativePath) {
 editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) {
 
     $.ajax({
-
         url: "/api/setsettings/updateextrawebfiles.html",
-
         type: 'POST',
-
         dataType: "text",
-
         data: {
             id: editableGrid.getRowId(rowIndex),
             column: columnIndex,
@@ -51,30 +47,30 @@ editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) 
 
 
 // this function will initialize our editable grid
-EditableGrid.prototype.initializeGrid = function() 
+EditableGrid.prototype.initializeGrid = function()
 {
 	with (this) {
 
-		
-		
+
+
 		// update paginator whenever the table is rendered (after a sort, filter, page change, etc.)
 		tableRendered = function() { this.updatePaginator(); };
 
-		
-		
+
+
 		// render the grid (parameters will be ignored if we have attached to an existing HTML table)
 		renderGrid("tablecontent", "testgrid", "tableid");
-		
-		
+
+
 	}
 };
 
 
-EditableGrid.prototype.onloadJSON = function(url) 
+EditableGrid.prototype.onloadJSON = function(url)
 {
 	// register the function that will be called when the XML has been fully loaded
-	this.tableLoaded = function() { 
-		
+	this.tableLoaded = function() {
+
 		this.initializeGrid();
 	};
 
@@ -90,15 +86,15 @@ EditableGrid.prototype.updatePaginator = function()
 	var nbPages = this.getPageCount();
 
 	// get interval
-	var interval = this.getSlidingPageInterval(20);
+	var interval = this.getSlidingPageInterval(15);
 	if (interval == null) return;
-	
+
 	// get pages in interval (with links except for the current page)
 	var pages = this.getPagesInInterval(interval, function(pageIndex, isCurrent) {
 		if (isCurrent) return "" + (pageIndex + 1);
 		return $("<a>").css("cursor", "pointer").html(pageIndex + 1).click(function(event) { editableGrid.setPageIndex(parseInt($(this).html()) - 1); });
 	});
-		
+
 	// "first" link
 	var link = $("<a>").html("<img src='" + image("gofirst.png") + "'/>&nbsp;");
 	if (!this.canGoBack()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
@@ -113,7 +109,7 @@ EditableGrid.prototype.updatePaginator = function()
 
 	// pages
 	for (p = 0; p < pages.length; p++) paginator.append(pages[p]).append(" | ");
-	
+
 	// "next" link
 	link = $("<a>").html("<img src='" + image("next.png") + "'/>&nbsp;");
 	if (!this.canGoForward()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
