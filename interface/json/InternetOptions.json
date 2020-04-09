@@ -34,6 +34,10 @@
                     "rightLabel": "Include graph data files",
                     "helper": "Select this to have the graph data files uploaded"
                 },
+                "includemoonimage": {
+                    "rightLabel": "Include Moon image file",
+                    "helper": "Select this to have the Moon image file uploaded - you must enable the image file generation below"
+                },
                 "activeftp": {
                     "rightLabel": "Active FTP mode",
                     "helper": "Not normally required - use with caution"
@@ -326,6 +330,75 @@
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
                     "helper": "Include the solar radiation reading in the update"
+                }
+            }
+        },
+        "mqtt": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "server": {
+                    "helper": "Your MQTT Server network name or IP address"
+                },
+                "port": {
+                    "helper": "Your MQTT server port (default 1883)"
+                },
+                "useTls": {
+                    "rightLabel": "Use TLS",
+                    "helper": "Enable TLS support, currently special certificates are not supported"
+                },
+                "username": {
+                    "helper": "Enter your MQTT server username - if required"
+                },
+                "password": {
+                    "helper": "Enter your MQTT server password - if required"
+                },
+                "dataUpdate": {
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enabled"
+                        },
+                        "topic": {
+                            "helper": "Enter the topic name for these messages"
+                        },
+                        "template": {
+                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                        }
+                    }
+                },
+                "interval": {
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enabled"
+                        },
+                        "time": {
+                            "helper": "Enter the time in seconds between sending messages"
+                        },
+                        "topic": {
+                            "helper": "Enter the topic name for these messages"
+                        },
+                        "template": {
+                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                        }
+                    }
+                }
+            }
+        },
+        "moonimage" :{
+            "collapsible":true,
+            "collapsed":true,
+            "fields": {
+                "enabled": {
+                    "rightLabel": "Generate Moon image",
+                    "helper": "Generate a Moon image file '/web/moon.png' every hour"
+                },
+               "size": {
+                    "helper": "Set the image size in pixels"
+                },
+                "ftpdest": {
+                    "helper": "Set the folder and filename to use on your FTP server - if enabled above - default 'images/moon.png'"
                 }
             }
         },
