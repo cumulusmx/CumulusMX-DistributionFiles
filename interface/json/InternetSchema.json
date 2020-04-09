@@ -52,6 +52,9 @@
                 "includegraphdatafiles": {
                     "type": "boolean"
                 },
+                "includemoonimage": {
+                    "type": "boolean"
+                },
                 "activeftp": {
                     "type": "boolean"
                 },
@@ -376,6 +379,84 @@
                 },
                 "key": {
                     "title": "Key"
+                }
+            }
+        },
+        "mqtt": {
+            "title": "MQTT",
+            "type": "object",
+            "properties": {
+                "server": {
+                    "title": "Server Name"
+                },
+                "port": {
+                    "title": "Server port",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 65536
+                },
+                "useTls": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "title": "Username"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "dataUpdate": {
+                    "title": "Send message on data update",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "topic": {
+                            "title": "Topic Name"
+                        },
+                        "template": {
+                            "title": "Template File"
+                        }
+                    }
+                },
+                "interval": {
+                    "title": "Send messages at fixed intervals",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "time": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "title": "Interval Time (secs)"
+                        },
+                        "topic": {
+                            "title": "Topic Name"
+                        },
+                        "template": {
+                            "title": "Template File"
+                        }
+                    }
+                }
+            }
+        },
+        "moonimage": {
+            "title": "Moon Image",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "size": {
+                    "title": "Image Size",
+                    "type": "integer",
+                    "minimum": 20,
+                    "maximum": 400
+                },
+                "ftpdest": {
+                    "title": "FTP folder",
+                    "type": "string"
                 }
             }
         },

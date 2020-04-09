@@ -61,7 +61,7 @@ var doTemp = function () {
             alignTicks: false
         },
         title: {text: 'Temperature'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -197,7 +197,7 @@ var doPress = function () {
 			alignTicks: false
         },
         title: {text: 'Pressure'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -314,7 +314,7 @@ var doWindDir = function () {
             alignTicks: false
         },
         title: {text: 'Wind Direction'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -430,7 +430,7 @@ var doWind = function () {
             alignTicks: false
         },
         title: {text: 'Wind Speed'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -547,7 +547,7 @@ var doRain = function () {
             alignTicks: true
         },
         title: {text: 'Rainfall'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -668,7 +668,7 @@ var doHum = function () {
             alignTicks: false
         },
         title: {text: 'Relative Humidity'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -787,7 +787,7 @@ var doSolar = function () {
             alignTicks: true
         },
         title: {text: 'Solar'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -915,7 +915,7 @@ var doSunHours = function () {
             alignTicks: false
         },
         title: {text: 'Sunshine Hours'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1015,7 +1015,7 @@ var doDailyRain = function () {
             alignTicks: false
         },
         title: {text: 'Daily Rainfall'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1116,7 +1116,7 @@ var doDailyTemp = function () {
             alignTicks: false
         },
         title: {text: 'Daily Temperature'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,

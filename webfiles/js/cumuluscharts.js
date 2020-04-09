@@ -1,10 +1,10 @@
 var chart,config;
 
-$(document).ready(function () {    
+$(document).ready(function () {
     $.ajax({url: "graphconfig.json", dataType:"json", success: function (result) {
             config=result;
 			doTemp();
-            
+
         }});
 });
 
@@ -53,7 +53,7 @@ var doTemp = function () {
             alignTicks: false
         },
         title: {text: 'Temperature'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -133,7 +133,7 @@ var doTemp = function () {
         },
         series: [{
                 name: 'Temperature',
-                zIndex: 99  
+                zIndex: 99
             }, {
                 name: 'Dew Point'
             }, {
@@ -162,10 +162,10 @@ var doTemp = function () {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'tempdata.json',
         cache: false,
@@ -190,7 +190,7 @@ var doPress = function() {
 			alignTicks: false
         },
         title: {text: 'Pressure'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -211,7 +211,7 @@ var doPress = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                }                
+                }
             }, {
                 // right
                 linkedTo: 0,
@@ -262,7 +262,7 @@ var doPress = function() {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Pressure'                
+                name: 'Pressure'
             }],
         rangeSelector: {
             buttons: [{
@@ -280,10 +280,10 @@ var doPress = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'pressdata.json',
         dataType: 'json',
@@ -308,7 +308,7 @@ var doWindDir = function() {
             alignTicks: false
         },
         title: {text: 'Wind Direction'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -332,7 +332,7 @@ var doWindDir = function() {
                     formatter: function () {
                         return compassP(this.value);
                     }
-                }                
+                }
             }, {
                 // right
                 linkedTo: 0,
@@ -363,7 +363,7 @@ var doWindDir = function() {
 			},
 			shadow: false
 		}
-            
+
         },
         tooltip: {
             enabled: false
@@ -400,10 +400,10 @@ var doWindDir = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'wdirdata.json',
         dataType: 'json',
@@ -425,7 +425,7 @@ var doWind = function() {
             alignTicks: false
         },
         title: {text: 'Wind Speed'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -447,7 +447,7 @@ var doWind = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                }                
+                }
             }, {
                 // right
                 linkedTo: 0,
@@ -519,10 +519,10 @@ var doWind = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'winddata.json',
         dataType: 'json',
@@ -543,7 +543,7 @@ var doRain = function() {
             alignTicks: true
         },
         title: {text: 'Rainfall'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -565,7 +565,7 @@ var doRain = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                }                
+                }
             }, {
                 // right
                 opposite: true,
@@ -640,10 +640,10 @@ var doRain = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'raindata.json',
         dataType: 'json',
@@ -665,7 +665,7 @@ var doHum = function() {
             alignTicks: false
         },
         title: {text: 'Relative Humidity'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -688,7 +688,7 @@ var doHum = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                }                
+                }
             }, {
                 // right
                 linkedTo: 0,
@@ -761,10 +761,10 @@ var doHum = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'humdata.json',
         dataType: 'json',
@@ -785,7 +785,7 @@ var doSolar = function() {
             alignTicks: true
         },
         title: {text: 'Solar'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -807,7 +807,7 @@ var doSolar = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                }                
+                }
             }, {
                 // right
                 opposite: true,
@@ -851,7 +851,7 @@ var doSolar = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,            
+            crosshairs: true,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
@@ -889,10 +889,10 @@ var doSolar = function() {
             inputEnabled: false
         }
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'solardata.json',
         dataType: 'json',
@@ -914,7 +914,7 @@ var doSunHours = function() {
             alignTicks: false
         },
         title: {text: 'Sunshine Hours'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -936,7 +936,7 @@ var doSunHours = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                 }                
+                 }
              }, {
                 // right
                 linkedTo: 0,
@@ -980,7 +980,7 @@ var doSunHours = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,            
+            crosshairs: true,
             xDateFormat: "%A, %b %e"
         },
         series: [{
@@ -992,10 +992,10 @@ var doSunHours = function() {
                 tooltip: {valueSuffix: 'Hrs'}
         }]
     };
-    
+
     chart = new Highcharts.Chart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'sunhours.json',
         dataType: 'json',
@@ -1015,7 +1015,7 @@ var doDailyRain = function() {
             alignTicks: false
         },
         title: {text: 'Daily Rainfall'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1037,7 +1037,7 @@ var doDailyRain = function() {
                     formatter: function () {
                         return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
-                 }                
+                 }
              }, {
                 // right
                 linkedTo: 0,
@@ -1081,7 +1081,7 @@ var doDailyRain = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,            
+            crosshairs: true,
             xDateFormat: "%A, %b %e"
         },
         series: [{
@@ -1093,10 +1093,10 @@ var doDailyRain = function() {
                 tooltip: {valueSuffix: config.rain.units}
         }]
     };
-    
+
     chart = new Highcharts.Chart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'dailyrain.json',
         dataType: 'json',
@@ -1117,7 +1117,7 @@ var doDailyTemp = function () {
             alignTicks: false
         },
         title: {text: 'Daily Temperature'},
-        credits: {enabled: false},
+        credits: {enabled: true},
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1209,10 +1209,10 @@ var doDailyTemp = function () {
                 color: 'red'
             }]
     };
-    
+
     chart = new Highcharts.StockChart(options);
     chart.showLoading();
-    
+
     $.ajax({
         url: 'dailytemp.json',
         dataType: 'json',
