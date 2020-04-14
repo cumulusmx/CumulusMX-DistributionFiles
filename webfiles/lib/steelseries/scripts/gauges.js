@@ -33,9 +33,9 @@ gauges = (function () {
     var strings = LANG.EN,         // Set to your default language. Store all the strings in one object
         config = {
             // Script configuration parameters you may want to 'tweak'
-            scriptVer          : '2.7.3',
+            scriptVer          : '2.7.4',
             weatherProgram     : 0,                      // Set 0=Cumulus, 1=Weather Display, 2=VWS, 3=WeatherCat, 4=Meteobridge, 5=WView, 6=WeeWX, 7=WLCOM
-            imgPathURL         : 'images/',              // *** Change this to the relative path for your 'Trend' graph images
+            imgPathURL         : './images/',            // *** Change this to the relative path for your 'Trend' graph images
             oldGauges          : 'gauges.htm',           // *** Change this to the relative path for your 'old' gauges page.
             realtimeInterval   : 15,                     // *** Download data interval, set to your realtime data update interval in seconds
             longPoll           : false,                  // if enabled, use long polling and PHP generated data !!only enable if you understand how this is implemented!!
@@ -48,7 +48,7 @@ gauges = (function () {
             digitalFont        : false,                  // Font control for the gauges & timer
             digitalForecast    : false,                  // Font control for the status display, set this to false for languages that use accented characters in the forecasts
             showPopupData      : true,                   // Pop-up data displayed
-            showPopupGraphs    : false,                  // If pop-up data is displayed, show the graphs?
+            showPopupGraphs    : true,                   // If pop-up data is displayed, show the graphs?
             mobileShowGraphs   : false,                  // If false, on a mobile/narrow display, always disable the graphs
             showWindVariation  : true,                   // Show variation in wind direction over the last 10 minutes on the direction gauge
             showWindMetar      : false,                  // Show the METAR substring for wind speed/direction over the last 10 minutes on the direction gauge popup
@@ -4214,7 +4214,9 @@ gauges = (function () {
     return {
         setLang    : setLang,
         setUnits   : setUnits,
-        processData: processData
+        processData: processData,
+        config     : config,
+        init       : init
     };
 }());
 
