@@ -18,7 +18,8 @@ var alarmTranslate = {
     AlarmTempDn: 'tempChange',
     AlarmTempUp: 'tempChange',
     AlarmWind: 'windAbove',
-    AlarmData: 'dataStopped'
+    AlarmData: 'dataStopped',
+    AlarmBattery: 'batteryLow'
 };
 var alarmState = {
     AlarmGust: false,
@@ -34,7 +35,8 @@ var alarmState = {
     AlarmTempDn: false,
     AlarmTempUp: false,
     AlarmWind: false,
-    AlarmData: false
+    AlarmData: false,
+    AlarmBattery: false
 }
 var playList = [];
 
@@ -65,7 +67,6 @@ $(document).ready(function () {
     }
 
     function OpenWebSocket(wsport) {
-
         if ('WebSocket' in window) {
             // Open the web socket
             ws = new WebSocket('ws://' + location.hostname + ':' + wsport + '/ws');

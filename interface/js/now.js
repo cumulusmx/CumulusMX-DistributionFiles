@@ -70,8 +70,16 @@ window.onload = function() {
             }
         });
 
-        $('#BearingCP').html(cp[Math.floor(((parseInt(data.Bearing) + 11) / 22.5) % 16)]);
-        $('#AvgbearingCP').html(cp[Math.floor(((parseInt(data.Avgbearing) + 11) / 22.5) % 16)]);
+        if (data.Bearing == 0) {
+            $('#BearingCP').html('-');
+        } else {
+            $('#BearingCP').html(cp[Math.floor(((parseInt(data.Bearing) + 11) / 22.5) % 16)]);
+        }
+        if (data.Avgbearing == 0) {
+            $('#AvgbearingCP').html('-');
+        } else {
+            $('#AvgbearingCP').html(cp[Math.floor(((parseInt(data.Avgbearing) + 11) / 22.5) % 16)]);
+        }
 
         $('.WindUnit').text(data.WindUnit);
         $('.PressUnit').text(data.PressUnit);
