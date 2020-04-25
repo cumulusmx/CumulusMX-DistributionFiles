@@ -82,7 +82,11 @@ function updateAlarms() {
 
             dataStoppedEnabled     : $('#dataStoppedEnabled').prop('checked'),
             dataStoppedSoundEnabled: $('#dataStoppedSoundEnabled').prop('checked'),
-            dataStoppedSound       : $('#dataStoppedSound').val()
+            dataStoppedSound       : $('#dataStoppedSound').val(),
+
+            batteryLowEnabled     : $('#batteryLowEnabled').prop('checked'),
+            batteryLowSoundEnabled: $('#batteryLowSoundEnabled').prop('checked'),
+            batteryLowSound       : $('#batteryLowSound').val()
         })
     }).done(function (result) {
         alert("Settings updated");

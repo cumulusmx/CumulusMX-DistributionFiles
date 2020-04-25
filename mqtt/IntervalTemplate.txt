@@ -1,1 +1,1 @@
-{"time":"<#timehhmmss>","temp":<#temp>,"humidity":<#hum>}
+{"time":"<#timehhmmss>","temp":<#temp rc=y>,"humidity":<#hum>}

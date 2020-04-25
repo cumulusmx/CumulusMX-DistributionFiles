@@ -126,7 +126,7 @@ var doTemp = function () {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueSuffix: '°' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
@@ -256,7 +256,7 @@ var doPress = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueSuffix: config.press.units,
             valueDecimals: config.press.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
@@ -493,7 +493,7 @@ var doWind = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueSuffix: config.wind.units,
             valueDecimals: config.wind.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
@@ -609,7 +609,7 @@ var doRain = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueDecimals: config.rain.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -735,7 +735,7 @@ var doHum = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueSuffix: '%',
             valueDecimals: config.hum.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
@@ -851,7 +851,7 @@ var doSolar = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
@@ -980,7 +980,7 @@ var doSunHours = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             xDateFormat: "%A, %b %e"
         },
         series: [{
@@ -1081,7 +1081,7 @@ var doDailyRain = function() {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             xDateFormat: "%A, %b %e"
         },
         series: [{
@@ -1190,7 +1190,7 @@ var doDailyTemp = function () {
         },
         tooltip: {
             shared: true,
-            crosshairs: true,
+            split: false,
             valueSuffix: '°' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e"
