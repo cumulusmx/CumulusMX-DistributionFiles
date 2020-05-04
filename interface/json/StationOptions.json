@@ -101,7 +101,7 @@
                             "helper": "Enter your WeatherLink.com APIv2 secret"
                         },
                         "apiStationId": {
-                            "helper": "Enter the station id used for your WLL device in the WeatherLink.com APIv2"
+                            "helper": "Enter the station id used for your WLL device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you"
                         }
                     }
                 },

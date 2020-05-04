@@ -40,6 +40,10 @@ $(document).ready(function() {
         $('#highApparentTempTime').editable({format:"dd/mm/yy hh:ii"});
         $('#lowApparentTempVal').editable();
         $('#lowApparentTempTime').editable({format:"dd/mm/yy hh:ii"});
+        $('#highFeelsLikeVal').editable();
+        $('#highFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
+        $('#lowFeelsLikeVal').editable();
+        $('#lowFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
         $('#lowWindChillVal').editable();
         $('#lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
         $('#highHeatIndexVal').editable();
