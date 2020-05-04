@@ -58,7 +58,8 @@ $(document).ready(function () {
         {title: "Sun hours"},
         {title: "Wind bearing"},
         {title: "RG-11 Rain"},
-        {title: "Rain Since Midnight"}
+        {title: "Rain Since Midnight"},
+        {title: "Feels like"},
     ];
 
     myTable = $('#datalog').dataTable({

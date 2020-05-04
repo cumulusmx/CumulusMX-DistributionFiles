@@ -34,6 +34,10 @@ $(document).ready(function() {
             $('#' + m + '-highApparentTempTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-lowApparentTempVal').editable();
             $('#' + m + '-lowApparentTempTime').editable({format:"dd/mm/yy hh:ii"});
+            $('#' + m + '-highFeelsLikeVal').editable();
+            $('#' + m + '-highFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
+            $('#' + m + '-lowFeelsLikeVal').editable();
+            $('#' + m + '-lowFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-lowWindChillVal').editable();
             $('#' + m + '-lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-highHeatIndexVal').editable();

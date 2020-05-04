@@ -59,7 +59,11 @@ $(document).ready(function() {
     {title: "High solar rad"},
     {title: "High solar rad time"},
     {title: "High UV-I"},
-    {title: "High UV-I time"}
+    {title: "High UV-I time"},
+    {title: "High feels like"},
+    {title: "High feels like time"},
+    {title: "Low feels like"},
+    {title: "Low feels like time"}
     ];
 
     var myTable = $('#dayfile').DataTable({
