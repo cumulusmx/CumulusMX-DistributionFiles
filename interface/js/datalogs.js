@@ -96,6 +96,15 @@ $(document).ready(function () {
                 name: 'refresh'      // do not change name
             }
         ],
+        language: {
+            altEditor: {
+                modalClose: 'Cancel',
+                edit: {
+                    title: 'Edit record',
+                    button: 'Save'
+                }
+            }
+        },
         onEditRow: function(datatable, rowdata, success, error) {
             $.ajax({
                 url: "api/edit/datalogs",
