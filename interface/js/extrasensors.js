@@ -68,6 +68,14 @@ $(document).ready(function () {
         "ajax": '../api/extra/lightning.json'
     });
 
+    var userTempTable = $('#UserTempTable').DataTable({
+        "paging": false,
+        "searching": false,
+        "info": false,
+        "ordering": false,
+        "ajax": '../api/extra/usertemp.json'
+    });
+
     setInterval(function () {
         tempTable.ajax.url('../api/extra/temp.json').load();
         humTable.ajax.url('../api/extra/hum.json').load();
@@ -77,6 +85,7 @@ $(document).ready(function () {
         leafTable.ajax.url('../api/extra/leaf.json').load();
         airqualTable.ajax.url('../api/extra/airqual.json').load();
         lightningTable.ajax.url('../api/extra/lightning.json').load();
+        userTempTable.ajax.url('../api/extra/usertemp.json').load();
     }, 10000);
 
 });

@@ -107,7 +107,15 @@ $(document).ready(function () {
         {title:"Air Qual Avg 1"},
         {title:"Air Qual Avg 2"},
         {title:"Air Qual Avg 3"},
-        {title:"Air Qual Avg 4"}
+        {title:"Air Qual Avg 4"},
+        {title:"User Temp 1"},
+        {title:"User Temp 2"},
+        {title:"User Temp 3"},
+        {title:"User Temp 4"},
+        {title:"User Temp 5"},
+        {title:"User Temp 6"},
+        {title:"User Temp 7"},
+        {title:"User Temp 8"}
     ];
 
     myTable = $('#datalog').dataTable({
