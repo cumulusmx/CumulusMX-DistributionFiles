@@ -101,7 +101,7 @@ $(document).ready(function() {
         ],
         language: {
             altEditor: {
-                modalClose: 'Cancel',
+                modalClose: 'Close',
                 edit: {
                     title: 'Edit record',
                     button: 'Save'
