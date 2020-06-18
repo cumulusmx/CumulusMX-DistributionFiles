@@ -48,7 +48,7 @@ gauges = (function () {
             digitalFont        : false,                  // Font control for the gauges & timer
             digitalForecast    : false,                  // Font control for the status display, set this to false for languages that use accented characters in the forecasts
             showPopupData      : true,                   // Pop-up data displayed
-            showPopupGraphs    : true,                   // If pop-up data is displayed, show the graphs?
+            showPopupGraphs    : false,                  // If pop-up data is displayed, show the graphs?
             mobileShowGraphs   : false,                  // If false, on a mobile/narrow display, always disable the graphs
             showWindVariation  : true,                   // Show variation in wind direction over the last 10 minutes on the direction gauge
             showWindMetar      : false,                  // Show the METAR substring for wind speed/direction over the last 10 minutes on the direction gauge popup
