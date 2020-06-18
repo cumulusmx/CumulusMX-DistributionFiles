@@ -32,25 +32,3 @@ body {
     background-color: #080808;
 }
 /* End increase navigation menu contrast */
-
-/* Below are five additions for new standard/extra/daily data log edit */
-.modal-header {
-    background-image:url('../img/sep-half.png');
-    color:#333;
-    background-color: #ccf;
-    padding-top: 1rem;
-    padding-left: 1rem;
-}
-.form-group {
-                margin-bottom: 0px;
-            }
-.form-group input {
-		width: 60%;
-}
-.form-group label {
-		float: right;
-}
-.modal-footer {
-    background-color: #ccf;
-}
-/* End of five additions for new standard/extra/daily data log edit */

@@ -2,39 +2,39 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Cumulus MX daily summary Log Editor</title>
+        <title>Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Editor for standard data log">
-        <link rel="icon" href = "./img/logo.png">
-        <link href="./css/font-style.css" rel="stylesheet">
+        <meta name="description" content="">
 
-	   <!-- BLOCKS - Responsive Dashboard Theme -->
-        <link href="./css/main.css" rel="stylesheet">
 
-        <!-- jQuery scripts -->
-        <script src="./lib/jquery/jquery-latest.min.js"></script>
-        <script src="./lib/jquery/jquery.tmpl.js"></script>
+        <link href="css/font-style.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
 
-        <!-- Bootstrap CSS styles and scripts -->
-        <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-        <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+        <!-- jquery -->
+        <script src="lib/jquery/jquery-latest.min.js"></script>
+        <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- DataTables CSS styles and script -->
-        <link href="./lib/datatables/datatables.min.css" rel="stylesheet">
-        <script src="./lib/datatables/datatables.min.js"></script>
-	   
-        <!-- datepicker CSS styles and script-->
-        <link href="./lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-        <script src="./lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-	   
-	   <!-- MX specific JavaScript -->
-        <script src="js/dayfileeditor.js"></script>
+        <!-- Bootstrap -->
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- DataTables CSS -->
+        <link href="lib/datatables/datatables.min.css" rel="stylesheet">
+
+        <!-- DataTables -->
+        <script src="lib/datatables/datatables.min.js"></script>
 
         <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
-        <!-- MX specific CSS (modifications to some standard styles in above sheets, and new styles) -->
-        <link href="./css/cumulus.css" rel="stylesheet">
+        <link href="css/cumulus.css" rel="stylesheet">
+
+        <script src="js/dayfileeditor.js"></script>
+        <style>
+            .form-group {
+                margin-bottom: 0px;
+            }
+        </style>
 
     </head>
     <body>
@@ -104,31 +104,30 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <article class="container" style="margin-right:10px;margin-left:10px"><!-- changed "div" to "article" to make structure more HTML5 compliant and easier to follow -->
-            <section class="row top-buffer"><!-- changed "div" to "section" to make structure more HTML5 compliant and easier to follow -->
+        <div class="container" style="margin-right:10px;margin-left:10px">
+            <div class="row top-buffer">
                 <div class="col-md-12">
-				<h1>Daily Summary Logging File</h1><!-- sfws - change to titles to differentiate this web page from version 3.4.5 web page -->
-				<h2>Dayfile.txt Viewer and Editor</h2>
+                    <h1>Dayfile viewer/editor</h1>
                 </div>
-            </section><!-- changed "/div" to "/section" to make structure more HTML5 compliant and easier to follow -->
-		  
-            <main id="surround" class="row top-buffer"><!-- changed "div" to "main", added id  -->
-			<!-- here is where dataTables adds th wrapper -->
-                <table id="dayfile" class="display dataTable" cellspacing="0" width="100%"><!-- this whole line is replaced --></table>
-            </main><!-- end surround -  changed "/div" to "/main"  to make structure more HTML5 compliant and easier to follow -->
-        </article><!-- end container - changed "/div" to "/article" to make structure more HTML5 compliant and easier to follow -->
+            </div>
+            <div class="row top-buffer">
+                <table id="dayfile" class="display dataTable" cellspacing="0" width="100%"></table>
+            </div>
+        </div>
 
-        <article id="footerwrap"><!-- changed "div" to "article" to make structure more HTML5 compliant and easier to follow -->
+        <div id="footerwrap">
             <footer class="clearfix"></footer>
-            <section class="container"><!-- changed "div" to "section" to make structure more HTML5 compliant and easier to follow -->
+            <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-lg-12">
-                       <p><img src="img/logo.png" alt=""></p><!-- removed comment symbols from around this line -->
+                        <!--<p><img src="img/logo.png" alt=""></p>-->
                         <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
                     </div>
                 </div><!-- /row -->
-            </section><!-- /container --><!-- changed "/div" to "/section" to make structure more HTML5 compliant and easier to follow -->
-        </article><!-- /footerwrap --><!-- changed "/div" to "/article" to make structure more HTML5 compliant and easier to follow -->
-	   <!-- here is where the modal is generated -->
+            </div><!-- /container -->
+        </div><!-- /footerwrap -->
+
     </body>
+
+
 </html>
