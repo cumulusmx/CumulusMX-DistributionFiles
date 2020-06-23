@@ -318,6 +318,10 @@ var doWindDir = function () {
         },
         title: {text: 'Wind Direction'},
         credits: {enabled: true},
+        boost: {
+            useGPUTranslations: true,
+            usePreAllocated: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -362,15 +366,19 @@ var doWindDir = function () {
         legend: {enabled: true},
         plotOptions: {
             scatter: {
+                animationLimit: 1,
                 cursor: 'pointer',
                 enableMouseTracking: false,
+                boostThreshold: 200,
                 marker: {
                     states: {
                         hover: {enabled: false},
-                        select: {enabled: false}
+                        select: {enabled: false},
+                        normal: {enabled: false}
                     }
                 },
-                shadow: false
+                shadow: false,
+                label: {enabled: false}
             }
 
         },
@@ -392,7 +400,8 @@ var doWindDir = function () {
                     symbol: 'circle',
                     radius: 2
                 }
-            }],
+            }
+        ],
         rangeSelector: {
             buttons: [{
                     count: 6,
