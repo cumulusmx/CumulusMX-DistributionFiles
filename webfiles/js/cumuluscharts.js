@@ -1,47 +1,50 @@
-var chart,config;
+var chart, config;
 
 $(document).ready(function () {
-    $.ajax({url: "graphconfig.json", dataType:"json", success: function (result) {
-            config=result;
-			doTemp();
-
-        }});
+    $.ajax({
+        url: "graphconfig.json",
+        dataType: "json",
+        success: function (result) {
+            config = result;
+            doTemp();
+        }
+    });
 });
 
 
 function changeGraph(graph) {
-	switch (graph) {
-		case 'temp':
-			doTemp();
+    switch (graph) {
+        case 'temp':
+            doTemp();
             break;
-		case 'dailytemp':
+        case 'dailytemp':
             doDailyTemp();
             break;
         case 'press':
             doPress();
             break;
         case 'wind':
-             doWind();
-             break;
+            doWind();
+            break;
         case 'windDir':
-             doWindDir();
-             break;
+            doWindDir();
+            break;
         case 'rain':
-             doRain();
-             break;
-		case 'dailyrain':
-             doDailyRain();
-             break;
+            doRain();
+            break;
+        case 'dailyrain':
+            doDailyRain();
+            break;
         case 'humidity':
-             doHum();
-             break;
+            doHum();
+            break;
         case 'solar':
-             doSolar();
-             break;
-		case 'sunhours':
-             doSunHours();
-             break;
-		}
+            doSolar();
+            break;
+        case 'sunhours':
+            doSunHours();
+            break;
+    }
 }
 
 var doTemp = function () {
@@ -52,8 +55,12 @@ var doTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Temperature'},
-        credits: {enabled: true},
+        title: {
+            text: 'Temperature'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -65,42 +72,48 @@ var doTemp = function () {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                },
-                plotLines: [{
-                        // freezing line
-                        value: freezing,
-                        color: 'rgb(0, 0, 180)',
-                        width: 1,
-                        zIndex: 2
-                    }]
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Temperature (°' + config.temp.units + ')'
+            },
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            },
+            plotLines: [{
+                // freezing line
+                value: freezing,
+                color: 'rgb(0, 0, 180)',
+                width: 1,
+                zIndex: 2
+            }]
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                }
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -108,7 +121,6 @@ var doTemp = function () {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -122,43 +134,45 @@ var doTemp = function () {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             valueSuffix: '°' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Temperature',
-                zIndex: 99
-            }, {
-                name: 'Dew Point'
-            }, {
-                name: 'Apparent'
-            }, {
-                name: 'Wind Chill'
-			}, {
-                name: 'Heat Index'
-            }, {
-                name: 'Inside',
-                visible: false
-            }],
+            name: 'Temperature',
+            zIndex: 99
+        }, {
+            name: 'Dew Point'
+        }, {
+            name: 'Apparent'
+        }, {
+            name: 'Wind Chill'
+        }, {
+            name: 'Heat Index'
+        }, {
+            name: 'Inside',
+            visible: false
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -176,21 +190,25 @@ var doTemp = function () {
             chart.series[1].setData(resp.dew);
             chart.series[2].setData(resp.apptemp);
             chart.series[3].setData(resp.wchill);
-			chart.series[4].setData(resp.heatindex);
+            chart.series[4].setData(resp.heatindex);
             chart.series[5].setData(resp.intemp);
         }
     });
 };
 
-var doPress = function() {
-   var options = {
+var doPress = function () {
+    var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
-			alignTicks: false
+            alignTicks: false
         },
-        title: {text: 'Pressure'},
-        credits: {enabled: true},
+        title: {
+            text: 'Pressure'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -202,35 +220,41 @@ var doPress = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Pressure (' + config.press.units + ')'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Pressure (' + config.press.units + ')'
+            },
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -238,7 +262,6 @@ var doPress = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -252,7 +275,9 @@ var doPress = function() {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
@@ -262,21 +287,21 @@ var doPress = function() {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Pressure'
-            }],
+            name: 'Pressure'
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -296,19 +321,27 @@ var doPress = function() {
 };
 
 var compassP = function (deg) {
-	var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-	return a[Math.floor((deg + 22.5) / 45) % 8];
+    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
-var doWindDir = function() {
+var doWindDir = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'scatter',
             alignTicks: false
         },
-        title: {text: 'Wind Direction'},
-        credits: {enabled: true},
+        title: {
+            text: 'Wind Direction'
+        },
+        credits: {
+            enabled: true
+        },
+        boost: {
+            useGPUTranslations: true,
+            usePreAllocated: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -320,83 +353,99 @@ var doWindDir = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Bearing'},
-                opposite: false,
-                min:0,
-                max:360,
-                tickInterval: 45,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return compassP(this.value);
-                    }
+            // left
+            title: {
+                text: 'Bearing'
+            },
+            opposite: false,
+            min: 0,
+            max: 360,
+            tickInterval: 45,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return compassP(this.value);
                 }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                min:0,
-                max:360,
-                tickInterval: 45,
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return compassP(this.value);
-                    }
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            min: 0,
+            max: 360,
+            tickInterval: 45,
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return compassP(this.value);
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             scatter: {
-			cursor: 'pointer',
-			enableMouseTracking: false,
-			marker: {
-				states: {
-					hover: {enabled: false},
-					select: {enabled: false}
-				}
-			},
-			shadow: false
-		}
-
+                cursor: 'pointer',
+                enableMouseTracking: false,
+                boostThreshold: 200,
+                marker: {
+                    states: {
+                        hover: {
+                            enabled: false
+                        },
+                        select: {
+                            enabled: false
+                        },
+                        normal: {
+                            enabled: false
+                        }
+                    }
+                },
+                shadow: false,
+                label: {
+                    enabled: false
+                }
+            }
         },
         tooltip: {
             enabled: false
         },
         series: [{
-                name: 'Bearing',
-                type: 'scatter',
-		marker: {
-			symbol: 'circle',
-			radius: 2
-		}
-            }, {
-                name: 'Avg Bearing',
-                type: 'scatter',
-                color: 'red',
-                marker: {
-			symbol: 'circle',
-			radius: 2
-		}
-            }],
+            name: 'Bearing',
+            type: 'scatter',
+            marker: {
+                symbol: 'circle',
+                radius: 2
+            }
+        }, {
+            name: 'Avg Bearing',
+            type: 'scatter',
+            color: 'red',
+            marker: {
+                symbol: 'circle',
+                radius: 2
+            }
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -417,15 +466,19 @@ var doWindDir = function() {
 };
 
 
-var doWind = function() {
+var doWind = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Wind Speed'},
-        credits: {enabled: true},
+        title: {
+            text: 'Wind Speed'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -437,37 +490,43 @@ var doWind = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Wind Speed ('+config.wind.units+')'},
-                opposite: false,
-				min:0,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Wind Speed (' + config.wind.units + ')'
+            },
+            opposite: false,
+            min: 0,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-				min:0,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            min: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -475,7 +534,6 @@ var doWind = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -489,33 +547,35 @@ var doWind = function() {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             valueSuffix: config.wind.units,
             valueDecimals: config.wind.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Wind Speed'
-            }, {
-                name: 'Wind Gust'
-            }],
+            name: 'Wind Speed'
+        }, {
+            name: 'Wind Gust'
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -535,15 +595,19 @@ var doWind = function() {
     });
 };
 
-var doRain = function() {
+var doRain = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: true
         },
-        title: {text: 'Rainfall'},
-        credits: {enabled: true},
+        title: {
+            text: 'Rainfall'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -555,35 +619,41 @@ var doRain = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
-                min: 0,
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Rainfall rate (' + config.rain.units + '/hr)'
+            },
+            min: 0,
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }, {
-                // right
-                opposite: true,
-                title: {text: 'Rainfall (' + config.rain.units + ')'},
-                min: 0,
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            }
+        }, {
+            // right
+            opposite: true,
+            title: {
+                text: 'Rainfall (' + config.rain.units + ')'
+            },
+            min: 0,
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -591,7 +661,6 @@ var doRain = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -605,38 +674,44 @@ var doRain = function() {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             valueDecimals: config.rain.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Rain rate',
-                type: 'line',
-                yAxis: 0,
-                tooltip: {valueSuffix: config.rain.units+'/hr'}
-            }, {
-                name: 'Daily rain',
-                type: 'area',
-                yAxis: 1,
-                tooltip: {valueSuffix: config.rain.units}
-            }],
+            name: 'Rain rate',
+            type: 'line',
+            yAxis: 0,
+            tooltip: {
+                valueSuffix: config.rain.units + '/hr'
+            }
+        }, {
+            name: 'Daily rain',
+            type: 'area',
+            yAxis: 1,
+            tooltip: {
+                valueSuffix: config.rain.units
+            }
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -657,15 +732,19 @@ var doRain = function() {
 };
 
 
-var doHum = function() {
+var doHum = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Relative Humidity'},
-        credits: {enabled: true},
+        title: {
+            text: 'Relative Humidity'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -677,39 +756,45 @@ var doHum = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Humidity (%)'},
-                opposite: false,
-				min:0,
-				max:100,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Humidity (%)'
+            },
+            opposite: false,
+            min: 0,
+            max: 100,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-				min:0,
-				max:100,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            min: 0,
+            max: 100,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -717,7 +802,6 @@ var doHum = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -731,33 +815,35 @@ var doHum = function() {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             valueSuffix: '%',
             valueDecimals: config.hum.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Outdoor Humidity'
-            }, {
-                name: 'Indoor Humidity'
-            }],
+            name: 'Outdoor Humidity'
+        }, {
+            name: 'Indoor Humidity'
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -777,15 +863,19 @@ var doHum = function() {
     });
 };
 
-var doSolar = function() {
+var doSolar = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: true
         },
-        title: {text: 'Solar'},
-        credits: {enabled: true},
+        title: {
+            text: 'Solar'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -797,35 +887,41 @@ var doSolar = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Solar Radiation (W/m\u00B2)'},
-                min: 0,
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Solar Radiation (W/m\u00B2)'
+            },
+            min: 0,
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }, {
-                // right
-                opposite: true,
-                title: {text: 'UV Index'},
-                min: 0,
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            }
+        }, {
+            // right
+            opposite: true,
+            title: {
+                text: 'UV Index'
+            },
+            min: 0,
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -833,7 +929,6 @@ var doSolar = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -847,45 +942,53 @@ var doSolar = function() {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Solar Radiation',
-                type: 'area',
-                yAxis: 0,
-                valueDecimals: 0,
-                tooltip: {valueSuffix: 'W/m\u00B2'}
-            }, {
-                name: 'Theoretical Max',
-                type: 'area',
-                yAxis: 0,
-                valueDecimals: 0,
-                tooltip: {valueSuffix: 'W/m\u00B2'}
-            }, {
-                name: 'UV Index',
-                type: 'line',
-                yAxis: 1,
-                valueDecimals: config.uv.decimals,
-                tooltip: {valueSuffix: ''}
-            }],
+            name: 'Solar Radiation',
+            type: 'area',
+            yAxis: 0,
+            valueDecimals: 0,
+            tooltip: {
+                valueSuffix: 'W/m\u00B2'
+            }
+        }, {
+            name: 'Theoretical Max',
+            type: 'area',
+            yAxis: 0,
+            valueDecimals: 0,
+            tooltip: {
+                valueSuffix: 'W/m\u00B2'
+            }
+        }, {
+            name: 'UV Index',
+            type: 'line',
+            yAxis: 1,
+            valueDecimals: config.uv.decimals,
+            tooltip: {
+                valueSuffix: ''
+            }
+        }],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
+                count: 6,
+                type: 'hour',
+                text: '6h'
+            }, {
+                count: 12,
+                type: 'hour',
+                text: '12h'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
             inputEnabled: false
         }
     };
@@ -906,15 +1009,19 @@ var doSolar = function() {
     });
 };
 
-var doSunHours = function() {
+var doSunHours = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: false
         },
-        title: {text: 'Sunshine Hours'},
-        credits: {enabled: true},
+        title: {
+            text: 'Sunshine Hours'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -926,36 +1033,42 @@ var doSunHours = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Sunshine Hours'},
-                min: 0,
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -12,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                 }
-             }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 12,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Sunshine Hours'
+            },
+            min: 0,
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -12,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 12,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                }
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -963,7 +1076,6 @@ var doSunHours = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -980,16 +1092,18 @@ var doSunHours = function() {
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             xDateFormat: "%A, %b %e"
         },
         series: [{
-                name: 'Sunshine Hours',
-                type: 'column',
-                color: 'gold',
-                yAxis: 0,
-                valueDecimals: 1,
-                tooltip: {valueSuffix: 'Hrs'}
+            name: 'Sunshine Hours',
+            type: 'column',
+            color: 'gold',
+            yAxis: 0,
+            valueDecimals: 1,
+            tooltip: {
+                valueSuffix: 'Hrs'
+            }
         }]
     };
 
@@ -1007,15 +1121,19 @@ var doSunHours = function() {
     });
 };
 
-var doDailyRain = function() {
+var doDailyRain = function () {
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: false
         },
-        title: {text: 'Daily Rainfall'},
-        credits: {enabled: true},
+        title: {
+            text: 'Daily Rainfall'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1027,36 +1145,42 @@ var doDailyRain = function() {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Daily Rainfall'},
-                min: 0,
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -12,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                 }
-             }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 12,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Daily Rainfall'
+            },
+            min: 0,
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -12,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            }
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 12,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                }
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -1064,7 +1188,6 @@ var doDailyRain = function() {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -1081,16 +1204,18 @@ var doDailyRain = function() {
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             xDateFormat: "%A, %b %e"
         },
         series: [{
-                name: 'Daily Rainfall',
-                type: 'column',
-                color: 'blue',
-                yAxis: 0,
-                valueDecimals: config.rain.decimals,
-                tooltip: {valueSuffix: config.rain.units}
+            name: 'Daily Rainfall',
+            type: 'column',
+            color: 'blue',
+            yAxis: 0,
+            valueDecimals: config.rain.decimals,
+            tooltip: {
+                valueSuffix: config.rain.units
+            }
         }]
     };
 
@@ -1116,8 +1241,12 @@ var doDailyTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Daily Temperature'},
-        credits: {enabled: true},
+        title: {
+            text: 'Daily Temperature'
+        },
+        credits: {
+            enabled: true
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -1129,42 +1258,48 @@ var doDailyTemp = function () {
             }
         },
         yAxis: [{
-                // left
-                title: {text: 'Daily Temperature (°' + config.temp.units + ')'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                },
-                plotLines: [{
-                        // freezing line
-                        value: freezing,
-                        color: 'rgb(0, 0, 180)',
-                        width: 1,
-                        zIndex: 2
-                    }]
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
+            // left
+            title: {
+                text: 'Daily Temperature (°' + config.temp.units + ')'
+            },
+            opposite: false,
+            labels: {
+                align: 'right',
+                x: -5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
                 }
-            }],
-        legend: {enabled: true},
+            },
+            plotLines: [{
+                // freezing line
+                value: freezing,
+                color: 'rgb(0, 0, 180)',
+                width: 1,
+                zIndex: 2
+            }]
+        }, {
+            // right
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'left',
+                x: 5,
+                formatter: function () {
+                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                }
+            }
+        }],
+        legend: {
+            enabled: true
+        },
         plotOptions: {
             series: {
-                dataGrouping:{
-                    enabled:false
+                dataGrouping: {
+                    enabled: false
                 },
                 states: {
                     hover: {
@@ -1172,7 +1307,6 @@ var doDailyTemp = function () {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -1186,28 +1320,30 @@ var doDailyTemp = function () {
                     }
                 }
             },
-            line: {lineWidth: 2}
+            line: {
+                lineWidth: 2
+            }
         },
         tooltip: {
             shared: true,
-            split: false,
+            crosshairs: true,
             valueSuffix: '°' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e"
         },
-        rangeSelector:{
-            enabled:false
+        rangeSelector: {
+            enabled: false
         },
         series: [{
-                name: 'Avg Temp',
-                color: 'green'
-            }, {
-                name: 'Min Temp',
-                color: 'blue'
-            }, {
-                name: 'Max Temp',
-                color: 'red'
-            }]
+            name: 'Avg Temp',
+            color: 'green'
+        }, {
+            name: 'Min Temp',
+            color: 'blue'
+        }, {
+            name: 'Max Temp',
+            color: 'red'
+        }]
     };
 
     chart = new Highcharts.StockChart(options);
@@ -1225,6 +1361,3 @@ var doDailyTemp = function () {
         }
     });
 };
-
-
-
