@@ -318,10 +318,6 @@ var doWindDir = function () {
         },
         title: {text: 'Wind Direction'},
         credits: {enabled: true},
-        boost: {
-            useGPUTranslations: true,
-            usePreAllocated: true
-        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
