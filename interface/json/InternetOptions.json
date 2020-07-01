@@ -16,6 +16,9 @@
                 },
                 "password": {
                     "type": "password"
+                },
+                "localcopypath": {
+                    "helper": "Enter a path here (e.g. /var/www/html) to copy files to a local web server folder instead of FTP"
                 }
             }
         },
