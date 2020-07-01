@@ -36,6 +36,9 @@
                 },
                 "webcamurl": {
                     "title": "Webcam URL"
+                },
+                "localcopypath": {
+                    "title": "Local web files copy path"
                 }
             }
         },
