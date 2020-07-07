@@ -153,6 +153,8 @@ var doTemp = function () {
         }, {
             name: 'Apparent'
         }, {
+            name: 'Feels Like'
+        }, {
             name: 'Wind Chill'
         }, {
             name: 'Heat Index'
@@ -189,9 +191,10 @@ var doTemp = function () {
             chart.series[0].setData(resp.temp);
             chart.series[1].setData(resp.dew);
             chart.series[2].setData(resp.apptemp);
-            chart.series[3].setData(resp.wchill);
-            chart.series[4].setData(resp.heatindex);
-            chart.series[5].setData(resp.intemp);
+            chart.series[3].setData(resp.feelslike);
+            chart.series[4].setData(resp.wchill);
+            chart.series[5].setData(resp.heatindex);
+            chart.series[6].setData(resp.intemp);
         }
     });
 };
