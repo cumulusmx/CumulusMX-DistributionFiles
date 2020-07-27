@@ -659,6 +659,36 @@
                     "title": "Graph days",
                     "type": "number",
                     "minimum": 1
+                },
+                "graphTempVis": {
+                    "type": "boolean"
+                },
+                "graphInTempVis": {
+                    "type": "boolean"
+                },
+                "graphHeatIndexVis": {
+                    "type": "boolean"
+                },
+                "graphDewPointVis": {
+                    "type": "boolean"
+                },
+                "graphWindChillVis": {
+                    "type": "boolean"
+                },
+                "graphAppTempVis": {
+                    "type": "boolean"
+                },
+                "graphFeelsLikeVis": {
+                    "type": "boolean"
+                },
+                "graphHumidexVis": {
+                    "type": "boolean"
+                },
+                "graphHumVis": {
+                    "type": "boolean"
+                },
+                "graphInHumVis": {
+                    "type": "boolean"
                 }
             }
         }

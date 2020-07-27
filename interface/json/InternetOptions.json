@@ -243,33 +243,6 @@
                 }
             }
         },
-        "weatherbug": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
-                },
-                "password": {
-                    "type": "password"
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes"
-                }
-            }
-        },
         "cwop": {
             "collapsible":true,
             "collapsed": true,

@@ -44,6 +44,8 @@ $(document).ready(function() {
         $('#highFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
         $('#lowFeelsLikeVal').editable();
         $('#lowFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
+        $('#highHumidexVal').editable();
+        $('#highHumidexTime').editable({format:"dd/mm/yy hh:ii"});
         $('#lowWindChillVal').editable();
         $('#lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
         $('#highHeatIndexVal').editable();

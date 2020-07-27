@@ -96,9 +96,7 @@ var doTemp = function () {
             linkedTo: 0,
             gridLineWidth: 0,
             opposite: true,
-            title: {
-                text: null
-            },
+            title: {text: "Humidex"},
             labels: {
                 align: 'left',
                 x: 5,
@@ -145,23 +143,7 @@ var doTemp = function () {
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
-        series: [{
-            name: 'Temperature',
-            zIndex: 99
-        }, {
-            name: 'Dew Point'
-        }, {
-            name: 'Apparent'
-        }, {
-            name: 'Feels Like'
-        }, {
-            name: 'Wind Chill'
-        }, {
-            name: 'Heat Index'
-        }, {
-            name: 'Inside',
-            visible: false
-        }],
+        series: [],
         rangeSelector: {
             buttons: [{
                 count: 6,
@@ -187,14 +169,45 @@ var doTemp = function () {
         cache: false,
         dataType: 'json',
         success: function (resp) {
+            var titles = {
+                'temp'     : 'Temperature',
+                'dew'      : 'Dew Point',
+                'apptemp'  : 'Apparent',
+                'feelslike': 'Feels Like',
+                'wchill'   : 'Wind Chill',
+                'heatindex': 'Heat Index',
+                'humidex'  : 'Humidex',
+                'intemp'   : 'Inside'
+            }
+            var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
+            var cnt = 0;
+            idxs.forEach(function(idx) {
+                if (idx in resp) {
+                    chart.addSeries({
+                        name: titles[idx],
+                        data: resp[idx]
+                    }, false);
+
+                    if (idx === 'humidex') {
+                        chart.series[cnt].tooltipOptions.valueSuffix = '';
+                        // Link Humidex and temp scales if using Celsius
+                        // For fahrenheit use separate scales
+                        if (config.temp.units = 'C') {
+                            chart.yAxis[1].options.title.text = '';
+                        } else {
+                            chart.yAxis[1].options.linkedTo = null;
+                            chart.series[cnt].yAxis = 1;
+                        }
+                    }
+
+                    if (idx === 'temp') {
+                        chart.series[cnt].options.zIndex = 99;
+                    }
+                    cnt++;
+                }
+            });
             chart.hideLoading();
-            chart.series[0].setData(resp.temp);
-            chart.series[1].setData(resp.dew);
-            chart.series[2].setData(resp.apptemp);
-            chart.series[3].setData(resp.feelslike);
-            chart.series[4].setData(resp.wchill);
-            chart.series[5].setData(resp.heatindex);
-            chart.series[6].setData(resp.intemp);
+            chart.redraw();
         }
     });
 };
@@ -825,11 +838,7 @@ var doHum = function () {
             valueDecimals: config.hum.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
-        series: [{
-            name: 'Outdoor Humidity'
-        }, {
-            name: 'Indoor Humidity'
-        }],
+        series: [],
         rangeSelector: {
             buttons: [{
                 count: 6,
@@ -855,9 +864,25 @@ var doHum = function () {
         dataType: 'json',
         cache: false,
         success: function (resp) {
+            var titles = {
+                'hum'  : 'Outdoor Humidity',
+                'inhum': 'Indoor Humidity'
+             }
+             var idxs = ['hum', 'inhum'];
+             var cnt = 0;
+             idxs.forEach(function(idx) {
+                 if (idx in resp) {
+                     chart.addSeries({
+                         name: titles[idx],
+                         data: resp[idx]
+                     }, false);
+
+                     cnt++;
+                 }
+             });
+
             chart.hideLoading();
-            chart.series[0].setData(resp.hum);
-            chart.series[1].setData(resp.inhum);
+            chart.redraw();
         }
     });
 };

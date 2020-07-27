@@ -7,12 +7,13 @@
             "collapsed": "true"
         },
         "spikeremoval": {
-            "collapsed": "true",
-            "fields": {
-                "log": {
-                    "rightLabel": "Log to error log"
-                }
-            }
+            "collapsed": "true"
+        },
+        "limits": {
+            "collapsed": "true"
+        },
+        "log": {
+            "rightLabel": "Log spike and limit violations to error log"
         }
     }
 }
