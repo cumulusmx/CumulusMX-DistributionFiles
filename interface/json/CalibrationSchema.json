@@ -112,11 +112,41 @@
                 "maxhourlyrain": {
                     "title": "Max hourly rain (mm)",
                     "type": "number"
-                },
-                "log": {
-                    "type": "boolean"
                 }
             }
+        },
+        "limits": {
+            "type": "object",
+            "title": "Limits",
+            "properties": {
+                "temphigh": {
+                    "title": "Max temp (C)",
+                    "type": "number"
+                },
+                "templow": {
+                    "title": "Min temp (C)",
+                    "type": "number"
+                },
+                "dewhigh": {
+                    "title": "Max dew point (C)",
+                    "type": "number"
+                },
+                "presshigh": {
+                    "title": "Max pressure (mb)",
+                    "type": "number"
+                },
+                "presslow": {
+                    "title": "Min pressure (mb)",
+                    "type": "number"
+                },
+                "windhigh": {
+                    "title": "Max wind gust (m/s)",
+                    "type": "number"
+                }
+            }
+        },
+        "log": {
+            "type": "boolean"
         }
     }
 }

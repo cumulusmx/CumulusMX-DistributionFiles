@@ -38,10 +38,12 @@ $(document).ready(function() {
             $('#' + m + '-highFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-lowFeelsLikeVal').editable();
             $('#' + m + '-lowFeelsLikeTime').editable({format:"dd/mm/yy hh:ii"});
-            $('#' + m + '-lowWindChillVal').editable();
-            $('#' + m + '-lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
+            $('#' + m + '-highHumidexVal').editable();
+            $('#' + m + '-highHumidexTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-highHeatIndexVal').editable();
             $('#' + m + '-highHeatIndexTime').editable({format:"dd/mm/yy hh:ii"});
+            $('#' + m + '-lowWindChillVal').editable();
+            $('#' + m + '-lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-highMinTempVal').editable();
             $('#' + m + '-highMinTempTime').editable({format:"dd/mm/yy"});
             $('#' + m + '-lowMaxTempVal').editable();

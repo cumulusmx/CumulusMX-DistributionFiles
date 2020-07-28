@@ -86,7 +86,11 @@ function updateAlarms() {
 
             batteryLowEnabled     : $('#batteryLowEnabled').prop('checked'),
             batteryLowSoundEnabled: $('#batteryLowSoundEnabled').prop('checked'),
-            batteryLowSound       : $('#batteryLowSound').val()
+            batteryLowSound       : $('#batteryLowSound').val(),
+
+            spikeEnabled     : $('#spikeEnabled').prop('checked'),
+            spikeSoundEnabled: $('#spikeSoundEnabled').prop('checked'),
+            spikeSound       : $('#spikeSound').val(),
         })
     }).done(function (result) {
         alert("Settings updated");

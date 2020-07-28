@@ -60,6 +60,7 @@ $(document).ready(function () {
         {title: "RG-11 Rain"},
         {title: "Rain Since Midnight"},
         {title: "Feels like"},
+        {title: "Humidex"}
     ];
 
     myTable = $('#datalog').dataTable({

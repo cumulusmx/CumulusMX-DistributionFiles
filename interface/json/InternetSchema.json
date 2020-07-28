@@ -265,38 +265,6 @@
                 }
             }
         },
-        "weatherbug": {
-            "title": "Weatherbug",
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
-                "includeuv": {
-                    "type": "boolean"
-                },
-                "includesolar": {
-                    "type": "boolean"
-                },
-                "catchup": {
-                    "type": "boolean"
-                },
-                "publisherid": {
-                    "title": "Publisher ID"
-                },
-                "number": {
-                    "title": "Number"
-                },
-                "password": {
-                    "title": "password"
-                },
-                "interval": {
-                    "title": "Interval",
-                    "type": "integer",
-                    "minimum": 1
-                }
-            }
-        },
         "cwop": {
             "title": "APRS/CWOP",
             "type": "object",

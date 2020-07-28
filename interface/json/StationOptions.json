@@ -595,6 +595,46 @@
                 },
                 "graphdays": {
                     "helper": "The number of days shown on the daily graphs"
+                },
+                "graphTempVis": {
+                    "rightLabel": "Show temperature on graphs",
+                    "helper": "Add outdoor temperature to the graph data files and display it on the interface"
+                },
+                "graphInTempVis": {
+                    "rightLabel": "Show indoor temperature on graphs",
+                    "helper": "Add indoor temperature to the graph data files and display it on the interface"
+                },
+                "graphHeatIndexVis": {
+                    "rightLabel": "Show heat index on graphs",
+                    "helper": "Add heat index to the graph data files and display it on the interface"
+                },
+                "graphDewPointVis": {
+                    "rightLabel": "Show dew point on graphs",
+                    "helper": "Add dew point to the graph data files and display it on the interface"
+                },
+                "graphWindChillVis": {
+                    "rightLabel": "Show wind chill on graphs",
+                    "helper": "Add wind chill to the graph data files and display it on the interface"
+                },
+                "graphAppTempVis": {
+                    "rightLabel": "Show apparent temperature on graphs",
+                    "helper": "Add apparent temperature to the graph data files and display it on the interface"
+                },
+                "graphFeelsLikeVis": {
+                    "rightLabel": "Show feels like on graphs",
+                    "helper": "Add feels like to the graph data files and display it on the interface"
+                },
+                "graphHumidexVis": {
+                    "rightLabel": "Show humidex on graphs",
+                    "helper": "Add humidex to the graph data files and display it on the interface"
+                },
+                "graphHumVis": {
+                    "rightLabel": "Show humidity on graphs",
+                    "helper": "Add outdoor humidity to the graph data files and display it on the interface"
+                },
+                "graphInHumVis": {
+                    "rightLabel": "Show indoor humidity on graphs",
+                    "helper": "Add indoor humidity to the graph data files and display it on the interface"
                 }
             }
         }

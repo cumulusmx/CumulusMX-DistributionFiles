@@ -19,7 +19,8 @@ var alarmTranslate = {
     AlarmTempUp: 'tempChange',
     AlarmWind: 'windAbove',
     AlarmData: 'dataStopped',
-    AlarmBattery: 'batteryLow'
+    AlarmBattery: 'batteryLow',
+    AlarmSpike: 'spike'
 };
 var alarmState = {
     AlarmGust: false,
@@ -36,7 +37,8 @@ var alarmState = {
     AlarmTempUp: false,
     AlarmWind: false,
     AlarmData: false,
-    AlarmBattery: false
+    AlarmBattery: false,
+    AlarmSpike: false
 }
 var playList = [];
 
@@ -399,6 +401,18 @@ $(document).ready(function () {
                 if (data.dataStoppedEnabled) {
                     $('#AlarmData').addClass('indicatorOff');
                     if (data.dataStoppedSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.batteryLowEnabled) {
+                    $('#AlarmBattery').addClass('indicatorOff');
+                    if (data.batteryLowSoundEnabled) {
+                        playSnd = true;
+                    }
+                }
+                if (data.spikeEnabled) {
+                    $('#AlarmSpike').addClass('indicatorOff');
+                    if (data.spikeSoundEnabled) {
                         playSnd = true;
                     }
                 }
