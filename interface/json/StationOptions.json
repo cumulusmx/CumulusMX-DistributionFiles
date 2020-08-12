@@ -635,6 +635,10 @@
                 "graphInHumVis": {
                     "rightLabel": "Show indoor humidity on graphs",
                     "helper": "Add indoor humidity to the graph data files and display it on the interface"
+                },
+                "graphUvVis": {
+                    "rightLabel": "Show UV Index on graphs",
+                    "helper": "Add UV index to the graph data files and display it on the interface"
                 }
             }
         }

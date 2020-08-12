@@ -276,13 +276,27 @@
                 },
                 "includesoiltemp": {
                     "rightLabel": "Include soil temp",
-                    "helper": "Include soil temperature in the update"
+                    "helper": "Include soil temperature 1-4 in the update"
+                },
+                "includesoilmoisture": {
+                    "rightLabel": "Include soil moisture",
+                    "helper": "Include soil moisture 1-4 in the update"
+                },
+                "includeleafwetness": {
+                    "rightLabel": "Include leaf wetness",
+                    "helper": "Include leaf wetness 1-2 in the update"
+                },
+                "includeindoor": {
+                    "rightLabel": "Include indoor data",
+                    "helper": "Include indoor temperature and humidity in the update"
                 },
                 "lang": {
+                    "optionLabels": ["English", "German", "French", "Italain", "Dutch"],
+                    "removeDefaultNone": true,
                     "helper": "One of fr/de/en/it/nl"
                 },
                 "interval": {
-                    "helper": "Update interval in minutes"
+                    "helper": "Update interval in seconds. Min value 15 seconds"
                 },
                 "password": {
                     "type": "password"
