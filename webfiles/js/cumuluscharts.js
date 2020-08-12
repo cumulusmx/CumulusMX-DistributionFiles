@@ -243,10 +243,7 @@ var doPress = function () {
             opposite: false,
             labels: {
                 align: 'right',
-                x: -5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -5
             }
         }, {
             // right
@@ -258,10 +255,7 @@ var doPress = function () {
             },
             labels: {
                 align: 'left',
-                x: 5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 5
             }
         }],
         legend: {
@@ -477,7 +471,6 @@ var doWindDir = function () {
     });
 };
 
-
 var doWind = function () {
     var options = {
         chart: {
@@ -510,10 +503,7 @@ var doWind = function () {
             min: 0,
             labels: {
                 align: 'right',
-                x: -5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -5
             }
         }, {
             // right
@@ -526,10 +516,7 @@ var doWind = function () {
             },
             labels: {
                 align: 'left',
-                x: 5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 5
             }
         }],
         legend: {
@@ -639,10 +626,7 @@ var doRain = function () {
             opposite: false,
             labels: {
                 align: 'right',
-                x: -5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -5
             }
         }, {
             // right
@@ -653,10 +637,7 @@ var doRain = function () {
             min: 0,
             labels: {
                 align: 'left',
-                x: 5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 5
             }
         }],
         legend: {
@@ -743,7 +724,6 @@ var doRain = function () {
     });
 };
 
-
 var doHum = function () {
     var options = {
         chart: {
@@ -777,10 +757,7 @@ var doHum = function () {
             max: 100,
             labels: {
                 align: 'right',
-                x: -5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -5
             }
         }, {
             // right
@@ -794,10 +771,7 @@ var doHum = function () {
             },
             labels: {
                 align: 'left',
-                x: 5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 5
             }
         }],
         legend: {
@@ -919,24 +893,16 @@ var doSolar = function () {
             opposite: false,
             labels: {
                 align: 'right',
-                x: -5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -5
             }
         }, {
             // right
             opposite: true,
-            title: {
-                text: 'UV Index'
-            },
+            linkedTo: 0,
             min: 0,
             labels: {
                 align: 'left',
-                x: 5,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 5
             }
         }],
         legend: {
@@ -975,31 +941,7 @@ var doSolar = function () {
             crosshairs: true,
             xDateFormat: "%A, %b %e, %H:%M"
         },
-        series: [{
-            name: 'Solar Radiation',
-            type: 'area',
-            yAxis: 0,
-            valueDecimals: 0,
-            tooltip: {
-                valueSuffix: 'W/m\u00B2'
-            }
-        }, {
-            name: 'Theoretical Max',
-            type: 'area',
-            yAxis: 0,
-            valueDecimals: 0,
-            tooltip: {
-                valueSuffix: 'W/m\u00B2'
-            }
-        }, {
-            name: 'UV Index',
-            type: 'line',
-            yAxis: 1,
-            valueDecimals: config.uv.decimals,
-            tooltip: {
-                valueSuffix: ''
-            }
-        }],
+        series: [],
         rangeSelector: {
             buttons: [{
                 count: 6,
@@ -1025,10 +967,66 @@ var doSolar = function () {
         dataType: 'json',
         cache: false,
         success: function (resp) {
+            var titles = {
+                SolarRad       : 'Solar Radiation',
+                CurrentSolarMax: 'Theoretical Max',
+                UV: 'UV Index'
+            };
+            var types = {
+                SolarRad: 'area',
+                CurrentSolarMax: 'area',
+                UV: 'line'
+            };
+            var yAxes = {
+                SolarRad: 0,
+                CurrentSolarMax: 0,
+                UV: 'UV'
+            };
+            var tooltips = {
+                SolarRad: {
+                    valueSuffix: 'W/m\u00B2',
+                    valueDecimals: 0
+                },
+                CurrentSolarMax: {
+                    valueSuffix: 'W/m\u00B2',
+                    valueDecimals: 0
+                },
+                UV: {
+                    valueSuffix: '',
+                    valueDecimals: config.uv.decimals
+                }
+            };
+            var idxs = ['SolarRad', 'CurrentSolarMax', 'UV'];
+            var cnt = 0;
+            idxs.forEach(function(idx) {
+                if (idx in resp) {
+                    if (idx === 'UV') {
+                        chart.yAxis[1].remove();
+                        chart.addAxis({
+                            id: 'UV',
+                            title:{text: 'UV Index'},
+                            opposite: true,
+                            min: 0,
+                            labels: {
+                                align: 'left'
+                            }
+                        });
+                    }
+
+                    chart.addSeries({
+                        name: titles[idx],
+                        type: types[idx],
+                        yAxis: yAxes[idx],
+                        tooltip: tooltips[idx],
+                        data: resp[idx]
+                    }, false);
+
+                    cnt++;
+                }
+            });
+
             chart.hideLoading();
-            chart.series[0].setData(resp.SolarRad);
-            chart.series[1].setData(resp.CurrentSolarMax);
-            chart.series[2].setData(resp.UV);
+            chart.redraw();
         }
     });
 };
@@ -1065,10 +1063,7 @@ var doSunHours = function () {
             opposite: false,
             labels: {
                 align: 'right',
-                x: -12,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -12
             }
         }, {
             // right
@@ -1080,10 +1075,7 @@ var doSunHours = function () {
             },
             labels: {
                 align: 'left',
-                x: 12,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 12
             }
         }],
         legend: {
@@ -1177,10 +1169,7 @@ var doDailyRain = function () {
             opposite: false,
             labels: {
                 align: 'right',
-                x: -12,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: -12
             }
         }, {
             // right
@@ -1192,10 +1181,7 @@ var doDailyRain = function () {
             },
             labels: {
                 align: 'left',
-                x: 12,
-                formatter: function () {
-                    return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                }
+                x: 12
             }
         }],
         legend: {

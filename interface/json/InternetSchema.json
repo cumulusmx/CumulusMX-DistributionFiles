@@ -313,6 +313,15 @@
                 "includesoiltemp": {
                     "type": "boolean"
                 },
+                "includesoilmoisture": {
+                    "type": "boolean"
+                },
+                "includeleafwetness": {
+                    "type": "boolean"
+                },
+                "includeindoor": {
+                    "type": "boolean"
+                },
                 "user": {
                     "title": "User"
                 },
@@ -320,12 +329,13 @@
                     "title": "Password"
                 },
                 "lang": {
-                    "title": "Language"
+                    "title": "Language",
+                    "enum": ["en", "de", "fr", "it", "nl"]
                 },
                 "interval": {
-                    "title": "Interval",
+                    "title": "Interval (seconds)",
                     "type": "integer",
-                    "minimum": 1
+                    "minimum": 15
                 }
             }
         },

@@ -689,6 +689,9 @@
                 },
                 "graphInHumVis": {
                     "type": "boolean"
+                },
+                "graphUvVis": {
+                    "type": "boolean"
                 }
             }
         }
