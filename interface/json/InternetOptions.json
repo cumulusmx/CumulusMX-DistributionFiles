@@ -16,6 +16,18 @@
                 },
                 "password": {
                     "type": "password"
+                },
+                "sshAuth": {
+                    "type": "select",
+                    "optionLabels": [
+                        "Password",
+                        "Pre-shared key",
+                        "Password or pre-shared key"
+                    ],
+                    "helper": "Select the authentication method for SFTP connections"
+                },
+                "pskFile": {
+                    "helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder"
                 }
             }
         },
