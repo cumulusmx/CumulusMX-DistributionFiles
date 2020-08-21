@@ -158,13 +158,13 @@ $(document).ready(function () {
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
 
-        if (data.TempTrend < 0) {
+        if (data.TempTrend.replace(',','.') < 0) {
             $('#TempTrendImg').attr('src', 'img/down-small.png');
         } else {
             $('#TempTrendImg').attr('src', 'img/up-small.png');
         }
 
-        if (data.PressTrend < 0) {
+        if (data.PressTrend.replace(',','.') < 0) {
             $('#PressTrendImg').attr('src', 'img/down-small.png');
         } else {
             $('#PressTrendImg').attr('src', 'img/up-small.png');

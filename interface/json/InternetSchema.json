@@ -31,6 +31,18 @@
                 "password": {
                     "title": "Password"
                 },
+                "sshAuth": {
+                    "type": "string",
+                    "title": "SFTP Authentication method",
+                    "enum": [
+                        "password",
+                        "psk",
+                        "password_psk"
+                    ]
+                },
+                "pskFile": {
+                    "title": "Pre-shared Private Key file for SFTP"
+                },
                 "forumurl": {
                     "title": "Forum URL"
                 },
