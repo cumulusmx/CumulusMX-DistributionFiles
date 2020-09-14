@@ -82,48 +82,21 @@
 
 			<div id="chartcontainer">
 			</div>
-			<table cellpadding="0" cellspacing="0" id="Graph_menu" style="margin: 0 auto">
-				<tbody>
-					<tr>
-						<td colspan="10">Click on a button to show the corresponding graph above.</td>
-					</tr>
-						<tr>
-						<td class="td_left">
-							<input name="btnTemp" class="button" tabindex="1" type="button" value="Temperature" onclick="changeGraph(&quot;temp&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnDailyTemp" class="button" tabindex="2" type="button" value="Daily Temp" onclick="changeGraph(&quot;dailytemp&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnPress" class="button" tabindex="3" type="button" value="Pressure" onclick="changeGraph(&quot;press&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnWind" class="button" tabindex="4" type="button" value="Wind Speed" onclick="changeGraph(&quot;wind&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnWindDir" class="button" tabindex="5" type="button" value="Wind Dir." onclick="changeGraph(&quot;windDir&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnHum" class="button" tabindex="6" type="button" value="Humidity" onclick="changeGraph(&quot;humidity&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnRain" class="button" tabindex="7" type="button" value="Rainfall" onclick="changeGraph(&quot;rain&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnDailyRain" class="button" tabindex="8" type="button" value="Daily Rain" onclick="changeGraph(&quot;dailyrain&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph(&quot;solar&quot;);">
-						</td>
-						<td class="td_left">
-							<input name="btnSunHours" class="button" tabindex="10" type="button" value="Sun Hours" onclick="changeGraph(&quot;sunhours&quot;);">
-						</td>
-					</tr>
-					<tr>
-					<td colspan="10" class="td_navigation_bar">:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<#forum><#webcam></td>
-					</tr>
-				</tbody>
-			</table>
+
+			<div>Click on a button to show the corresponding graph above.</div>
+			<div>
+				<input name="btnTemp" class="button" tabindex="1" type="button" value="Temperature" onclick="changeGraph('temp');">
+				<input name="btnDailyTemp" class="button" tabindex="2" type="button" value="Daily Temp" onclick="changeGraph('dailytemp');">
+				<input name="btnPress" class="button" tabindex="3" type="button" value="Pressure" onclick="changeGraph('press');">
+				<input name="btnWind" class="button" tabindex="4" type="button" value="Wind Speed" onclick="changeGraph('wind');">
+				<input name="btnWindDir" class="button" tabindex="5" type="button" value="Wind Dir." onclick="changeGraph('windDir');">
+				<input name="btnHum" class="button" tabindex="6" type="button" value="Humidity" onclick="changeGraph('humidity');">
+				<input name="btnRain" class="button" tabindex="7" type="button" value="Rainfall" onclick="changeGraph('rain');">
+				<input name="btnDailyRain" class="button" tabindex="8" type="button" value="Daily Rain" onclick="changeGraph('dailyrain');">
+				<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph('solar');">
+				<input name="btnSunHours" class="button" tabindex="10" type="button" value="Sun Hours" onclick="changeGraph('sunhours');">
+			</div>
+			<div class="td_navigation_bar">:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>::<a href="https://cumulus.hosiene.co.uk/">forum</a>::<a href="../pictures/sebec/image.jpg">webcam</a>:</div>
 			<p class="credits"><br>
 			charts by <a href="https://www.highcharts.com/" target="_blank">Highcharts</a><br>
 			page updated <#update><br>
