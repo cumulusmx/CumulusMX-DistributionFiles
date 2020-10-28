@@ -1,0 +1,361 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cumulus MX</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/font-style.css" rel="stylesheet">
+        <link href="css/table.css" rel="stylesheet">
+
+        <!-- jquery -->
+        <script src="lib/jquery/jquery-latest.min.js"></script>
+        <script src="lib/jquery/jquery.tmpl.js"></script>
+
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="lib/datatables/datatables.min.js"></script>
+
+        <script src="js/airlink.js"></script>
+
+        <link href="css/cumulus.css" rel="stylesheet">
+
+        <style>
+            th, td {
+                width: 16%;
+            }
+        </style>
+
+    </head>
+    <body>
+        <!-- NAVIGATION MENU -->
+        <div class="navbar-nav navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="now.html">Now</a></li>
+                        <li><a href="gauges.html">Gauges</a></li>
+                        <li><a href="charts.html">Charts</a></li>
+                        <li><a href="todayyest.html">Today/Yesterday</a></li>
+                        <li><a href="records.html">Records</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="extra.html">Station Extra sensors</a></li>
+                                <li class="active"><a href="airlink.html">AirLink sensors</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="datalogs.html">Data logs</a></li>
+                                <li><a href="extradatalogs.html">Extra data logs</a></li>
+                                <li><a href="dayfileviewer.html">Dayfile</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
+                                <li><a href="noaayearreport.html">NOAA Year Report</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="stationsettings.html">Station settings</a></li>
+                                <li><a href="internetsettings.html">Internet settings</a></li>
+                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
+                                <li><a href="extrawebfiles.html">Extra web files</a></li>
+                                <li><a href="calibrationsettings.html">Calibration settings</a></li>
+                                <li><a href="noaasettings.html">NOAA settings</a></li>
+                                <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                                <li><a href="alarmsettings.html">Alarms</a></li>
+                                <li><a href="ftpnow.html">FTP Now!</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="raintodayeditor.html">Today's rain</a></li>
+                                <li><a href="diaryeditor.html">Weather Diary</a></li>
+                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
+                                <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
+                                <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
+                                <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <!-- END NAVIGATION MENU -->
+
+        <div class="container">
+             <div class="row top-buffer">
+                <div class="col-md-12">
+                    <h1>AirLink Sensors</h1>
+                </div>
+            </div>
+            <div class="row top-buffer">
+
+                <!-- COUNTS OUT BLOCK -->
+                <div class="col-md-10">
+                    <h2>Particle Counts - Outdoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="CountsOutTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;1 Minute</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>1 μm</td>
+                            <td><span id="pm1_out">--</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td><span id="pm2p5_out">--</span></td>
+                            <td><span id="pm2p5_out_1hr">--</span></td>
+                            <td><span id="pm2p5_out_3hr">--</span></td>
+                            <td><span id="pm2p5_out_24hr">--</span></td>
+                            <td><span id="pm2p5_out_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td><span id="pm10_out">--</span></td>
+                            <td><span id="pm10_out_1hr">--</span></td>
+                            <td><span id="pm10_out_3hr">--</span></td>
+                            <td><span id="pm10_out_24hr">--</span></td>
+                            <td><span id="pm10_out_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AQI OUT BLOCK -->
+                <div class="col-md-10">
+                    <h2>Air Quality Index - Outdoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="AqiOutTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;1 Minute</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td><span id="pm2p5_out_aqi">--</span></td>
+                            <td><span id="pm2p5_out_aqi_1hr">--</span></td>
+                            <td><span id="pm2p5_out_aqi_3hr">--</span></td>
+                            <td><span id="pm2p5_out_aqi_24hr">--</span></td>
+                            <td><span id="pm2p5_out_aqi_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td><span id="pm10_out_aqi">--</span></td>
+                            <td><span id="pm10_out_aqi_1hr">--</span></td>
+                            <td><span id="pm10_out_aqi_3hr">--</span></td>
+                            <td><span id="pm10_out_aqi_24hr">--</span></td>
+                            <td><span id="pm10_out_aqi_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AQI PERCENT OUT BLOCK -->
+                <div class="col-md-10">
+                    <h2>Air Quality Index Confidence (%)- Outdoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="PctOutTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td>--</td>
+                            <td><span id="pm2p5_out_pct_1hr">--</span></td>
+                            <td><span id="pm2p5_out_pct_3hr">--</span></td>
+                            <td><span id="pm2p5_out_pct_24hr">--</span></td>
+                            <td><span id="pm2p5_out_pct_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td>--</td>
+                            <td><span id="pm10_out_pct_1hr">--</span></td>
+                            <td><span id="pm10_out_pct_3hr">--</span></td>
+                            <td><span id="pm10_out_pct_24hr">--</span></td>
+                            <td><span id="pm10_out_pct_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row top-buffer"></div>
+                <!-- COUNTS IN BLOCK -->
+                <div class="col-md-10">
+                    <h2>Particle Counts - Indoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="CountsInTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;1 Minute</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>1 μm</td>
+                            <td><span id="pm1_in">--</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td><span id="pm2p5_in">--</span></td>
+                            <td><span id="pm2p5_in_1hr">--</span></td>
+                            <td><span id="pm2p5_in_3hr">--</span></td>
+                            <td><span id="pm2p5_in_24hr">--</span></td>
+                            <td><span id="pm2p5_in_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td><span id="pm10_in">--</span></td>
+                            <td><span id="pm10_in_1hr">--</span></td>
+                            <td><span id="pm10_in_3hr">--</span></td>
+                            <td><span id="pm10_in_24hr">--</span></td>
+                            <td><span id="pm10_in_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AQI IN BLOCK -->
+                <div class="col-md-10">
+                    <h2>Air Quality Index - Indoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="AqiInTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;1 Minute</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td><span id="pm2p5_in_aqi">--</span></td>
+                            <td><span id="pm2p5_in_aqi_1hr">--</span></td>
+                            <td><span id="pm2p5_in_aqi_3hr">--</span></td>
+                            <td><span id="pm2p5_in_aqi_24hr">--</span></td>
+                            <td><span id="pm2p5_in_aqi_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td><span id="pm10_in_aqi">--</span></td>
+                            <td><span id="pm10_in_aqi_1hr">--</span></td>
+                            <td><span id="pm10_in_aqi_3hr">--</span></td>
+                            <td><span id="pm10_in_aqi_24hr">--</span></td>
+                            <td><span id="pm10_in_aqi_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AQI PERCENT IN BLOCK -->
+                <div class="col-md-10">
+                    <h2>Air Quality Index Confidence (%)- Indoor</h2>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <table id="PctInTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;PM Size</th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;1 Hour</th>
+                                <th>&nbsp;3 Hour</th>
+                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;Nowcast</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>2.5 μm</td>
+                            <td>--</td>
+                            <td><span id="pm2p5_in_pct_1hr">--</span></td>
+                            <td><span id="pm2p5_in_pct_3hr">--</span></td>
+                            <td><span id="pm2p5_in_pct_24hr">--</span></td>
+                            <td><span id="pm2p5_in_pct_nowcast">--</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 μm</td>
+                            <td>--</td>
+                            <td><span id="pm10_in_pct_1hr">--</span></td>
+                            <td><span id="pm10_in_pct_3hr">--</span></td>
+                            <td><span id="pm10_in_pct_24hr">--</span></td>
+                            <td><span id="pm10_in_pct_nowcast">--</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+        </div>
+
+        </div>
+
+        <div id="footerwrap">
+            <footer class="clearfix"></footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <!--<p><img src="img/logo.png" alt=""></p>-->
+                        <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                    </div>
+                </div><!-- /row -->
+            </div><!-- /container -->
+        </div><!-- /footerwrap -->
+
+    </body>
+
+
+</html>

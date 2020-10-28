@@ -607,9 +607,6 @@
                     "type": "number",
                     "minimum": 0,
                     "maximum": 5
-                },
-                "useblakelarsen": {
-                    "type": "boolean"
                 }
             }
         },
@@ -691,6 +688,9 @@
                     "type": "boolean"
                 },
                 "graphUvVis": {
+                    "type": "boolean"
+                },
+                "graphSolarVis": {
                     "type": "boolean"
                 }
             }

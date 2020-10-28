@@ -23,8 +23,17 @@ body {
     color: #28e1ff;
 }
 
-.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+.navbar-inverse .navbar-nav .open .dropdown-menu>a {
     color: #28e1ff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a {
+    color: #3fff3c;
+    background-color: #080808;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #3fff3c;
+    background-color: #080808;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {

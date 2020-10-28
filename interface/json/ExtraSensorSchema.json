@@ -1,0 +1,116 @@
+﻿{
+    "type": "object",
+    "properties": {
+        "airLink": {
+            "title": "Davis AirLink",
+            "type": "object",
+            "properties": {
+                "apiKey": {
+                    "title": "WeatherLink API key"
+                },
+                "apiSecret": {
+                    "title": "WeatherLink API secret"
+                },
+                "autoUpdateIp": {
+                    "type": "boolean"
+                },
+                "indoor": {
+                    "title": "Indoor AirLink",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "isNode": {
+                            "type": "boolean"
+                        },
+                        "ipAddress": {
+                            "title": "IP Address"
+                        },
+                        "stationId": {
+                            "title": "Station Id"
+                        }
+                    }
+                },
+                "outdoor": {
+                    "title": "Outdoor AirLink",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "isNode": {
+                            "type": "boolean"
+                        },
+                        "ipAddress": {
+                            "title": "IP Address"
+                        },
+                        "stationId": {
+                            "title": "Station ID"
+                        }
+                    }
+                },
+                "aqi": {
+                    "title": "Air Quality Index",
+                    "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+                }
+            }
+        },
+        "blakeLarsen": {
+            "title": "Blake-Larsen Sunshine recorder",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "rg11": {
+            "title": "Hydreon RG-11 rain device",
+            "type": "object",
+            "properties": {
+                "port1": {
+                    "title": "Device 1",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "commPort": {
+                            "title": "Serial Port"
+                        },
+                        "tipMode": {
+                            "type": "boolean"
+                        },
+                        "tipSize": {
+                        },
+                        "dtrMode": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "port2": {
+                    "title": "Device 2",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "commPort": {
+                            "title": "Serial Port"
+                        },
+                        "tipMode": {
+                            "type": "boolean"
+                        },
+                        "tipSize": {
+                        },
+                        "dtrMode": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -363,6 +363,9 @@
                         },
                         "template": {
                             "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                        },
+                        "retained": {
+                            "rightLabel": "Message retained on server"
                         }
                     }
                 },
@@ -380,6 +383,9 @@
                         },
                         "template": {
                             "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                        },
+                        "retained": {
+                            "rightLabel": "Message retained on server"
                         }
                     }
                 }

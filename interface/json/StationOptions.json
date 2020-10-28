@@ -554,10 +554,6 @@
                 },
                 "turbidity": {
                     "helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)"
-                },
-                "useblakelarsen": {
-                    "rightLabel": "Use a Blake-Larsen sun recorder",
-                    "helper": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine"
                 }
             }
         },
@@ -639,6 +635,10 @@
                 "graphUvVis": {
                     "rightLabel": "Show UV Index on graphs",
                     "helper": "Add UV index to the graph data files and display it on the interface"
+                },
+                "graphSolarVis": {
+                    "rightLabel": "Show Solar data on graphs",
+                    "helper": "Add solar data to the graph data files and display it on the interface"
                 }
             }
         }
