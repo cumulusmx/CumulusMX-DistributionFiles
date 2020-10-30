@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Cumulus MX</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
+        <title>Cumulus MX</title>
 
         <link href="css/main.css" rel="stylesheet">
 
@@ -12,31 +13,42 @@
         <script src="lib/jquery/jquery-latest.min.js"></script>
         <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- bootstrap -->
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- Highcharts -->
-        <script src="https://code.highcharts.com/stock/8.0/highstock.js"></script>
-        <script src="https://code.highcharts.com/8.0/modules/boost.js"></script>
-        <script src="https://code.highcharts.com/8.0/themes/grid.js"></script>
+
+        <!-- Alpaca -->
+        <script src="lib/handlebars/handlebars.js"></script>
+        <link href="lib/alpaca/alpaca.css" rel="stylesheet" />
+        <script src="lib/alpaca/alpaca.js"></script>
+
+        <!-- Alpaca support for Bootstrap -->
+        <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
+
+        <!-- Custom Files -->
+        <script src="js/extrasensorsettings.js"></script>
 
         <link href="css/cumulus.css" rel="stylesheet">
-        <script src="js/charts.js"></script>
 
         <style type="text/css">
             body {
                 padding-top: 60px;
-                background-color:lightsteelblue;
             }
-            #chartcontainer  {
-                min-height: 700px;
-                height: 700px;
-                margin-top:50px;
-                margin-bottom: 10px;
-                background-color:white;
-            }
+            .top-buffer { margin-top:40px; }
+            .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+            .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         </style>
+
+        <script>
+            $(document).ready(function () {
+                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+            });
+        </script>
     </head>
     <body>
         <!-- NAVIGATION MENU -->
@@ -54,7 +66,7 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li class="active"><a href="charts.html">Charts</a></li>
+                        <li><a href="charts.html">Charts</a></li>
                         <li><a href="todayyest.html">Today/Yesterday</a></li>
                         <li><a href="records.html">Records</a></li>
                         <li class="dropdown">
@@ -79,12 +91,12 @@
                                 <li><a href="noaayearreport.html">NOAA Year Report</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
                                 <li><a href="internetsettings.html">Internet settings</a></li>
-                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
+                                <li class="active"><a href="extrasensorsettings.html">Extra sensor settings</a></li>
                                 <li><a href="extrawebfiles.html">Extra web files</a></li>
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
                                 <li><a href="noaasettings.html">NOAA settings</a></li>
@@ -112,46 +124,22 @@
         <!-- END NAVIGATION MENU -->
 
         <div class="container">
-            <div id="chartcontainer">
-            </div>
-
-            <div class="text-center">
-                <div class="btn-group"  id="btngroup" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="temp" value="temp" checked> Temperature
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="dailytemp" value="dailytemp"> Daily Temp
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="press" value="press"> Pressure
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="wind" value="wind"> Wind Speed
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="windDir" value="windDir"> Wind Dir.
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="humidity" value="humidity"> Humidity
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="rain" value="rain"> Rainfall
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="dailyrain" value="dailyrain"> Daily Rain
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="solar" value="solar"> Solar
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="sunhours" value="sunhours"> Sun Hours
-                    </label>
+            <h1>Extra Sensor settings</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again. Click the  &apos;Save&apos; button to save the settings.
                 </div>
             </div>
-            <br>
-        </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="form"></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-default" id="save-button" style="margin: 10px;">Save</button>
+                </div>
+            </div>
+        </div>
         <!-- FOOTER -->
         <div id="footerwrap">
             <footer class="clearfix"></footer>

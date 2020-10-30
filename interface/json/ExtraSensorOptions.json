@@ -1,0 +1,132 @@
+﻿{
+    "fields": {
+        "airLink": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "apiKey": {
+                    "helper": "Enter this only if your AirLink is not added as a node to your WeatherLink Live station"
+                },
+                "apiSecret": {
+                    "helper": "Enter this only if your AirLink is not added as a node to your WeatherLink Live station"
+                },
+                "autoUpdateIp": {
+                    "rightLabel": "Use automatic IP address discovery and updates",
+                    "helper": "NOTE: only enable this if you have a single AirLink device and it uses DCHP"
+                },
+                "indoor": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable Indoor AirLink",
+                            "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
+                        },
+                        "isNode": {
+                            "rightLabel": "This AirLink has been added as Node to another station",
+                            "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
+                        },
+                        "ipAddress": {
+                        },
+                        "stationId": {
+                            "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
+                        }
+                    }
+                },
+                "outdoor": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable Outdoor AirLink",
+                            "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
+                        },
+                        "isNode": {
+                            "rightLabel": "This AirLink has been added as Node to another station",
+                            "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
+                        },
+                        "ipAddress": {
+                        },
+                        "stationId": {
+                            "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
+                        }
+                    }
+                },
+                "aqi": {
+                    "helper": "Select the AQI index calcuation method you want to use",
+                    "optionLabels": [
+                        "USA - EPA",
+                        "UK - COMEAP",
+                        "EU - AQI",
+                        "EU - CAQI",
+                        "Canada - AQHI",
+                        "Australia - NEPM",
+                        "Netherlands - LKI",
+                        "Belgium - BelAQI"
+                    ],
+                    "removeDefaultNone": true
+                }
+            }
+        },
+        "blakeLarsen": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "enabled": {
+                    "rightLabel": "Use a Blake-Larsen sunshine recorder for sunshine hours",
+                    "helper": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine - reads the SRsunshine.dat file"
+                }
+            }
+        },
+        "rg11": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "port1": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable RG-11 device 1"
+                        },
+                        "commPort": {
+                        },
+                        "tipMode": {
+                            "rightLabel": "Enable tipping bucket detection mode",
+                            "helper": "Disabled puts the device in \"It's raining\" mode"
+                        },
+                        "tipSize": {
+                            "helper": "The tip size in the units Cumulus is configured to use for rain"
+                        },
+                        "dtrMode": {
+                            "rightLabel": "Use DTR/DSR mode",
+                            "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
+                        }
+                    }
+                },
+                "port2": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable RG-11 device 2"
+                        },
+                        "commPort": {
+                        },
+                        "tipMode": {
+                            "rightLabel": "Enable tipping bucket detection mode",
+                            "helper": "Disabled puts the device in \"It's raining\" mode"
+                        },
+                        "tipSize": {
+                            "helper": "The tip size in the units Cumulus is configured to use for rain"
+                        },
+                        "dtrMode": {
+                            "rightLabel": "Use DTR/DSR mode",
+                            "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

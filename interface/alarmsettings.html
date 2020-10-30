@@ -48,7 +48,13 @@
                         <li><a href="charts.html">Charts</a></li>
                         <li><a href="todayyest.html">Today/Yesterday</a></li>
                         <li><a href="records.html">Records</a></li>
-                        <li><a href="extra.html">Extra sensors</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="extra.html">Station Extra sensors</a></li>
+                                <li><a href="airlink.html">AirLink sensors</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -69,11 +75,12 @@
                             <ul class="dropdown-menu">
                                 <li><a href="stationsettings.html">Station settings</a></li>
                                 <li><a href="internetsettings.html">Internet settings</a></li>
+                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
                                 <li><a href="extrawebfiles.html">Extra web files</a></li>
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
                                 <li><a href="noaasettings.html">NOAA settings</a></li>
                                 <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                                <li><a href="alarmsettings.html">Alarms</a></li>
+                                <li class="active"><a href="alarmsettings.html">Alarms</a></li>
                                 <li><a href="ftpnow.html">FTP Now!</a></li>
                             </ul>
                         </li>
@@ -98,7 +105,7 @@
         <div id="container" class="container">
             <h1>Alarm Settings</h1>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <form action="/" id="alarmForm">
                     <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
                         <tr>
@@ -107,6 +114,8 @@
                             <th colspan="2">Value</th>
                             <th>Play sound</th>
                             <th>Set sound file</th>
+                            <th>Latches</th>
+                            <th>Latch hrs</th>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempBelowEnabled"></td>
@@ -115,6 +124,8 @@
                             <td class="tempUnits"></td>
                             <td><input type="checkbox" id="tempBelowSoundEnabled"></td>
                             <td><input id="tempBelowSound"></td>
+                            <td><input type="checkbox" id="tempBelowLatches"></td>
+                            <td><input id="tempBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempAboveEnabled"></td>
@@ -123,6 +134,8 @@
                             <td class="tempUnits"></td>
                             <td><input type="checkbox" id="tempAboveSoundEnabled"></td>
                             <td><input id="tempAboveSound"></td>
+                            <td><input type="checkbox" id="tempAboveLatches"></td>
+                            <td><input id="tempAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempChangeEnabled"></td>
@@ -131,6 +144,8 @@
                             <td><span class="tempUnits"></span>/hr</td>
                             <td><input type="checkbox" id="tempChangeSoundEnabled"></td>
                             <td><input id="tempChangeSound"></td>
+                            <td><input type="checkbox" id="tempChangeLatches"></td>
+                            <td><input id="tempChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressBelowEnabled"></td>
@@ -139,6 +154,8 @@
                             <td class="pressUnits"></td>
                             <td><input type="checkbox" id="pressBelowSoundEnabled"></td>
                             <td><input id="pressBelowSound"></td>
+                            <td><input type="checkbox" id="pressBelowLatches"></td>
+                            <td><input id="pressBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressAboveEnabled"></td>
@@ -147,6 +164,8 @@
                             <td class="pressUnits"></td>
                             <td><input type="checkbox" id="pressAboveSoundEnabled"></td>
                             <td><input id="pressAboveSound"></td>
+                            <td><input type="checkbox" id="pressAboveLatches"></td>
+                            <td><input id="pressAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressChangeEnabled"></td>
@@ -155,6 +174,8 @@
                             <td><span class="pressUnits"></span>/hr</td>
                             <td><input type="checkbox" id="pressChangeSoundEnabled"></td>
                             <td><input id="pressChangeSound"></td>
+                            <td><input type="checkbox" id="pressChangeLatches"></td>
+                            <td><input id="pressChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="rainAboveEnabled"></td>
@@ -163,6 +184,8 @@
                             <td class="rainUnits"></td>
                             <td><input type="checkbox" id="rainAboveSoundEnabled"></td>
                             <td><input id="rainAboveSound"></td>
+                            <td><input type="checkbox" id="rainAboveLatches"></td>
+                            <td><input id="rainAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="rainRateAboveEnabled"></td>
@@ -171,6 +194,8 @@
                             <td><span class="rainUnits"></span>/hr</td>
                             <td><input type="checkbox" id="rainRateAboveSoundEnabled"></td>
                             <td><input id="rainRateAboveSound"></td>
+                            <td><input type="checkbox" id="rainRateAboveLatches"></td>
+                            <td><input id="rainRateAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="gustAboveEnabled"></td>
@@ -179,6 +204,8 @@
                             <td class="windUnits"></td>
                             <td><input type="checkbox" id="gustAboveSoundEnabled"></td>
                             <td><input id="gustAboveSound"></td>
+                            <td><input type="checkbox" id="gustAboveLatches"></td>
+                            <td><input id="gustAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="windAboveEnabled"></td>
@@ -187,6 +214,8 @@
                             <td class="windUnits"></td>
                             <td><input type="checkbox" id="windAboveSoundEnabled"></td>
                             <td><input id="windAboveSound"></td>
+                            <td><input type="checkbox" id="windAboveLatches"></td>
+                            <td><input id="windAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="contactLostEnabled"></td>
@@ -195,6 +224,8 @@
                             <td></td>
                             <td><input type="checkbox" id="contactLostSoundEnabled"></td>
                             <td><input id="contactLostSound"></td>
+                            <td><input type="checkbox" id="contactLostLatches"></td>
+                            <td><input id="contactLostLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="dataStoppedEnabled"></td>
@@ -203,6 +234,8 @@
                             <td></td>
                             <td><input type="checkbox" id="dataStoppedSoundEnabled"></td>
                             <td><input id="dataStoppedSound"></td>
+                            <td><input type="checkbox" id="dataStoppedLatches"></td>
+                            <td><input id="dataStoppedLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="batteryLowEnabled"></td>
@@ -211,7 +244,9 @@
                             <td></td>
                             <td><input type="checkbox" id="batteryLowSoundEnabled"></td>
                             <td><input id="batteryLowSound"></td>
-                        </tr>
+                            <td><input type="checkbox" id="batteryLowLatches"></td>
+                            <td><input id="batteryLowLatchHrs" type="number" min="1" max="9999" step="1"></td>
+                         </tr>
                         <tr>
                             <td><input type="checkbox" id="spikeEnabled"></td>
                             <td>Alarm if a data spike is detected</td>
@@ -219,6 +254,8 @@
                             <td></td>
                             <td><input type="checkbox" id="spikeSoundEnabled"></td>
                             <td><input id="spikeSound"></td>
+                            <td><input type="checkbox" id="spikeLatches"></td>
+                            <td><input id="spikeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                     </table>
                     </form>
