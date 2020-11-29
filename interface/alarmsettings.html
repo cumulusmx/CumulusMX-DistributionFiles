@@ -27,6 +27,8 @@
         </script>
         <style>
             td,th {padding: 1px}
+            .valInput {width: 90%; min-width: 50px}
+            .alarmName {min-width: 170px}
         </style>
     </head>
     <body>
@@ -45,7 +47,13 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li><a href="charts.html">Charts</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="charts.html">Recent Charts</a></li>
+                                <li><a href="chartshistoric.html">Historic Charts</a></li>
+                            </ul>
+                        </li>
                         <li><a href="todayyest.html">Today/Yesterday</a></li>
                         <li><a href="records.html">Records</a></li>
                         <li class="dropdown">
@@ -108,112 +116,134 @@
                 <div class="col-md-12">
                     <form action="/" id="alarmForm">
                     <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
+                        <colgroup>
+                            <col style="width: 4%;">
+                            <col style="width: 15%; min-width: 200px;">
+                            <col style="width: 5%;">
+                            <col style="width: 5%">
+                            <col style="width: 5%">
+                            <col style="width: 10%">
+                            <col style="width: 4%">
+                            <col style="width: 4%">
+                            <col style="width: 5%">
+                        </colgroup>
                         <tr>
-                            <th>Enabled</th>
+                            <th>Enable</th>
                             <th>Alarm</th>
                             <th colspan="2">Value</th>
-                            <th>Play sound</th>
+                            <th>Play<br>sound</th>
                             <th>Set sound file</th>
+                            <th>Notify</th>
                             <th>Latches</th>
                             <th>Latch hrs</th>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempBelowEnabled"></td>
-                            <td>Temperature falls below:</td>
-                            <td><input id="tempBelowVal" type="number" min="-50" max="50" step="0.1"></td>
+                            <td class="alarmName">Temperature falls below:</td>
+                            <td><input class="valInput" id="tempBelowVal" type="number" min="-50" max="50" step="0.1"></td>
                             <td class="tempUnits"></td>
                             <td><input type="checkbox" id="tempBelowSoundEnabled"></td>
                             <td><input id="tempBelowSound"></td>
+                            <td><input type="checkbox" id="tempBelowNotify"></td>
                             <td><input type="checkbox" id="tempBelowLatches"></td>
                             <td><input id="tempBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempAboveEnabled"></td>
                             <td>Temperature rises above:</td>
-                            <td><input id="tempAboveVal" type="number" min="-50" max="50" step="0.1"></td>
+                            <td><input class="valInput" id="tempAboveVal" type="number" min="-50" max="50" step="0.1"></td>
                             <td class="tempUnits"></td>
                             <td><input type="checkbox" id="tempAboveSoundEnabled"></td>
                             <td><input id="tempAboveSound"></td>
+                            <td><input type="checkbox" id="tempAboveNotify"></td>
                             <td><input type="checkbox" id="tempAboveLatches"></td>
                             <td><input id="tempAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="tempChangeEnabled"></td>
                             <td>Temperature changes by:</td>
-                            <td><input id="tempChangeVal" type="number" min="0" max="10" step="0.1"></td>
+                            <td><input class="valInput" id="tempChangeVal" type="number" min="0" max="10" step="0.1"></td>
                             <td><span class="tempUnits"></span>/hr</td>
                             <td><input type="checkbox" id="tempChangeSoundEnabled"></td>
                             <td><input id="tempChangeSound"></td>
+                            <td><input type="checkbox" id="tempChangeNotify"></td>
                             <td><input type="checkbox" id="tempChangeLatches"></td>
                             <td><input id="tempChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressBelowEnabled"></td>
                             <td>Pressure falls below:</td>
-                            <td><input id="pressBelowVal" type="number" min="20" max="1050"></td>
+                            <td><input class="valInput" id="pressBelowVal" type="number" min="20" max="1050"></td>
                             <td class="pressUnits"></td>
                             <td><input type="checkbox" id="pressBelowSoundEnabled"></td>
                             <td><input id="pressBelowSound"></td>
+                            <td><input type="checkbox" id="pressBelowNotify"></td>
                             <td><input type="checkbox" id="pressBelowLatches"></td>
                             <td><input id="pressBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressAboveEnabled"></td>
                             <td>Pressure rises above:</td>
-                            <td><input id="pressAboveVal" type="number" min="20" max="1050"></td>
+                            <td><input class="valInput" id="pressAboveVal" type="number" min="20" max="1050"></td>
                             <td class="pressUnits"></td>
                             <td><input type="checkbox" id="pressAboveSoundEnabled"></td>
                             <td><input id="pressAboveSound"></td>
+                            <td><input type="checkbox" id="pressAboveNotify"></td>
                             <td><input type="checkbox" id="pressAboveLatches"></td>
                             <td><input id="pressAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="pressChangeEnabled"></td>
                             <td>Pressure changes by:</td>
-                            <td><input id="pressChangeVal" type="number" min="0" max="20" step="0.1"></td>
+                            <td><input class="valInput" id="pressChangeVal" type="number" min="0" max="20" step="0.1"></td>
                             <td><span class="pressUnits"></span>/hr</td>
                             <td><input type="checkbox" id="pressChangeSoundEnabled"></td>
                             <td><input id="pressChangeSound"></td>
+                            <td><input type="checkbox" id="pressChangeNotify"></td>
                             <td><input type="checkbox" id="pressChangeLatches"></td>
                             <td><input id="pressChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="rainAboveEnabled"></td>
                             <td>Rainfall today more than:</td>
-                            <td><input id="rainAboveVal" type="number" min="0" max="200" step="0.1"></td>
+                            <td><input class="valInput" id="rainAboveVal" type="number" min="0" max="200" step="0.1"></td>
                             <td class="rainUnits"></td>
                             <td><input type="checkbox" id="rainAboveSoundEnabled"></td>
                             <td><input id="rainAboveSound"></td>
+                            <td><input type="checkbox" id="rainAboveNotify"></td>
                             <td><input type="checkbox" id="rainAboveLatches"></td>
                             <td><input id="rainAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="rainRateAboveEnabled"></td>
                             <td>Rainfall rate rises above:</td>
-                            <td><input id="rainRateAboveVal" type="number" min="0" max="200" step="0.1"></td>
+                            <td><input class="valInput" id="rainRateAboveVal" type="number" min="0" max="200" step="0.1"></td>
                             <td><span class="rainUnits"></span>/hr</td>
                             <td><input type="checkbox" id="rainRateAboveSoundEnabled"></td>
                             <td><input id="rainRateAboveSound"></td>
+                            <td><input type="checkbox" id="rainRateAboveNotify"></td>
                             <td><input type="checkbox" id="rainRateAboveLatches"></td>
                             <td><input id="rainRateAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="gustAboveEnabled"></td>
                             <td>Wind gust more than:</td>
-                            <td><input id="gustAboveVal" type="number" min="0" max="100" step="0.1"></td>
+                            <td><input class="valInput" id="gustAboveVal" type="number" min="0" max="100" step="0.1"></td>
                             <td class="windUnits"></td>
                             <td><input type="checkbox" id="gustAboveSoundEnabled"></td>
                             <td><input id="gustAboveSound"></td>
+                            <td><input type="checkbox" id="gustAboveNotify"></td>
                             <td><input type="checkbox" id="gustAboveLatches"></td>
                             <td><input id="gustAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="windAboveEnabled"></td>
                             <td>Average wind more than:</td>
-                            <td><input  id="windAboveVal" type="number" min="0" max="100" step="0.1"></td>
+                            <td><input class="valInput"  id="windAboveVal" type="number" min="0" max="100" step="0.1"></td>
                             <td class="windUnits"></td>
                             <td><input type="checkbox" id="windAboveSoundEnabled"></td>
                             <td><input id="windAboveSound"></td>
+                            <td><input type="checkbox" id="windAboveNotify"></td>
                             <td><input type="checkbox" id="windAboveLatches"></td>
                             <td><input id="windAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -224,6 +254,7 @@
                             <td></td>
                             <td><input type="checkbox" id="contactLostSoundEnabled"></td>
                             <td><input id="contactLostSound"></td>
+                            <td><input type="checkbox" id="contactLostNotify"></td>
                             <td><input type="checkbox" id="contactLostLatches"></td>
                             <td><input id="contactLostLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -234,6 +265,7 @@
                             <td></td>
                             <td><input type="checkbox" id="dataStoppedSoundEnabled"></td>
                             <td><input id="dataStoppedSound"></td>
+                            <td><input type="checkbox" id="dataStoppedNotify"></td>
                             <td><input type="checkbox" id="dataStoppedLatches"></td>
                             <td><input id="dataStoppedLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -244,6 +276,7 @@
                             <td></td>
                             <td><input type="checkbox" id="batteryLowSoundEnabled"></td>
                             <td><input id="batteryLowSound"></td>
+                            <td><input type="checkbox" id="batteryLowNotify"></td>
                             <td><input type="checkbox" id="batteryLowLatches"></td>
                             <td><input id="batteryLowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                          </tr>
@@ -254,6 +287,7 @@
                             <td></td>
                             <td><input type="checkbox" id="spikeSoundEnabled"></td>
                             <td><input id="spikeSound"></td>
+                            <td><input type="checkbox" id="spikeNotify"></td>
                             <td><input type="checkbox" id="spikeLatches"></td>
                             <td><input id="spikeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>

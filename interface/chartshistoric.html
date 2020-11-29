@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -6,42 +6,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
 
-
-        <link href="css/font-style.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <!-- jquery -->
         <script src="lib/jquery/jquery-latest.min.js"></script>
         <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <!-- bootstrap -->
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" href="lib/datatables/datatables.min.css">
+        <!-- Highcharts -->
+        <script src="https://code.highcharts.com/stock/8.0/highstock.js"></script>
+        <script src="https://code.highcharts.com/8.0/modules/boost.js"></script>
+        <script src="https://code.highcharts.com/8.0/themes/grid.js"></script>
 
-        <!-- DataTables -->
-        <script src="lib/datatables/datatables.min.js"></script>
-
-        <!-- datepicker -->
-        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-        <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-        <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
-
-        <script src ="js/extradatalogs.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
+        <script src="js/chartshistoric.js"></script>
 
-        <style>
-            .form-group {
-                margin-bottom: 0px;
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                background-color:lightsteelblue;
+            }
+            #chartcontainer  {
+                min-height: 700px;
+                height: 700px;
+                margin-top:50px;
+                margin-bottom: 10px;
+                background-color:white;
             }
         </style>
     </head>
     <body>
-
         <!-- NAVIGATION MENU -->
         <div class="navbar-nav navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -57,11 +54,11 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="charts.html">Recent Charts</a></li>
-                                <li><a href="chartshistoric.html">Historic Charts</a></li>
+                                <li class="active"><a href="chartshistoric.html">Historic Charts</a></li>
                             </ul>
                         </li>
                         <li><a href="todayyest.html">Today/Yesterday</a></li>
@@ -73,11 +70,11 @@
                                 <li><a href="airlink.html">AirLink sensors</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="datalogs.html">Data logs</a></li>
-                                <li class="active"><a href="extradatalogs.html">Extra data logs</a></li>
+                                <li><a href="extradatalogs.html">Extra data logs</a></li>
                                 <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
@@ -120,22 +117,36 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <div class="container" style="margin-right:10px;margin-left:10px">
-            <div class="row top-buffer">
-                <div class="col-md-12">
-                    <h1>Extra data log viewer/editor</h1>
+        <div class="container">
+            <div id="chartcontainer">
+            </div>
+
+            <div class="text-center">
+                <div class="btn-group"  id="btngroup" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="temp" value="temp" checked> Temperature
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="press" value="press"> Pressure
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="wind" value="wind"> Wind Speed
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="humidity" value="humidity"> Humidity
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="rain" value="rain"> Rainfall
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="solar" value="solar"> Solar
+                    </label>
                 </div>
             </div>
-            <div class="row">
-                Select month:&nbsp;<input type="text" data-date-format="mm/yyyy" id="datepicker" >
-                <button type="button" class="btn btn-default" onclick="load()">Load</button>
-
-            </div>
-            <div class="row top-buffer">
-                <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
-            </div>
+            <br>
         </div>
 
+        <!-- FOOTER -->
         <div id="footerwrap">
             <footer class="clearfix"></footer>
             <div class="container">
@@ -147,8 +158,5 @@
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /footerwrap -->
-
     </body>
-
-
 </html>

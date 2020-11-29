@@ -9,6 +9,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/temp.json'
     });
 
@@ -17,6 +21,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/hum.json'
     });
 
@@ -25,6 +33,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/dew.json'
     });
 
@@ -33,6 +45,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/soiltemp.json'
     });
 
@@ -41,6 +57,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/soilmoisture.json'
     });
 
@@ -49,6 +69,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/leaf.json'
     });
 
@@ -57,6 +81,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/airqual.json'
     });
 
@@ -65,6 +93,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/lightning.json'
     });
 
@@ -73,6 +105,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/extra/usertemp.json'
     });
 

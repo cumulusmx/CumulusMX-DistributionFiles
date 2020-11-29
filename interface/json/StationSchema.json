@@ -692,6 +692,9 @@
                 },
                 "graphSolarVis": {
                     "type": "boolean"
+                },
+                "graphSunshineVis": {
+                    "type": "boolean"
                 }
             }
         }

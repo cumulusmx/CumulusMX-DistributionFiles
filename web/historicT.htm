@@ -76,7 +76,7 @@
 		<div id="content">
 			<h1><#location> weather</h1>
 			<h2 style="text-align: left; text-transform: none;">&nbsp;Latitude&nbsp;<#latitude>&nbsp;&nbsp; &nbsp;&nbsp;Longitude&nbsp;<#longitude>&nbsp;&nbsp; &nbsp;&nbsp;Elevation&nbsp;<#altitude></h2>
-			<p>Click on a button to display the corresponding chart.</p>
+			<p>Click on a button to display the corresponding daily data chart.</p>
 			<p>Mouse over the chart to see the values at any given time.</p>
 			<p>You can add or remove data sets from the chart by clicking the entry on the chart legend.</p>
 
@@ -84,17 +84,12 @@
 			</div>
 			<div>Click on a button to show the corresponding graph above.</div>
 			<div style="text-align:center;">
-				<input name="btnTemp" class="button" tabindex="1" type="button" value="Temperature" onclick="changeGraph('temp');">
-				<input name="btnDailyTemp" class="button" tabindex="2" type="button" value="Daily Temp" onclick="changeGraph('dailytemp');">
+				<input name="btnTemp" class="button" tabindex="2" type="button" value="Temperature" onclick="changeGraph('temp');">
 				<input name="btnPress" class="button" tabindex="3" type="button" value="Pressure" onclick="changeGraph('press');">
 				<input name="btnWind" class="button" tabindex="4" type="button" value="Wind Speed" onclick="changeGraph('wind');">
-				<input name="btnWindDir" class="button" tabindex="5" type="button" value="Wind Dir." onclick="changeGraph('windDir');">
 				<input name="btnHum" class="button" tabindex="6" type="button" value="Humidity" onclick="changeGraph('humidity');">
-				<input name="btnRain" class="button" tabindex="7" type="button" value="Rainfall" onclick="changeGraph('rain');">
-				<input name="btnDailyRain" class="button" tabindex="8" type="button" value="Daily Rain" onclick="changeGraph('dailyrain');">
+				<input name="btnRain" class="button" tabindex="8" type="button" value="Rainfall" onclick="changeGraph('rain');">
 				<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph('solar');">
-				<input name="btnSunHours" class="button" tabindex="10" type="button" value="Sun Hours" onclick="changeGraph('sunhours');">
-				<input name="btnAirQuality" class="button" tabindex="11" type="button" value="Air Quality" onclick="changeGraph('airquality');">
 			</div>
 			<div class="td_navigation_bar">
 				:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><#forum><wbr><#webcam>
@@ -109,6 +104,6 @@
 		<script src="https://code.highcharts.com/stock/8.0/highstock.js"></script>
 		<script src="https://code.highcharts.com/8.0/modules/boost.js"></script>
 		<script src="https://code.highcharts.com/8.0/themes/grid.js"></script>
-		<script src="js/cumuluscharts.js"></script>
+		<script src="js/historiccharts.js"></script>
 	</body>
 </html>

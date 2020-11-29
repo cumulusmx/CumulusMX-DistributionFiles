@@ -1,10 +1,10 @@
 // Configuration section
-var useWebSockets = true; // set to false to use Ajax updating
-var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
+let useWebSockets = true; // set to false to use Ajax updating
+let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-var alarmSettings;
-var alarmTranslate = {
+let alarmSettings;
+let alarmTranslate = {
     AlarmGust: 'gustAbove',
     AlarmHighPress: 'pressAbove',
     AlarmHighTemp: 'tempAbove',
@@ -22,7 +22,7 @@ var alarmTranslate = {
     AlarmBattery: 'batteryLow',
     AlarmSpike: 'spike'
 };
-var alarmState = {
+let alarmState = {
     AlarmGust: false,
     AlarmHighPress: false,
     AlarmHighTemp: false,
@@ -40,13 +40,31 @@ var alarmState = {
     AlarmBattery: false,
     AlarmSpike: false
 }
-var playList = [];
+let alarmDisplay = {
+    AlarmGust: 'Wind gust above',
+    AlarmHighPress: 'Pressure above',
+    AlarmHighTemp: 'Temperature above',
+    AlarmLowPress: 'Pressure below',
+    AlarmLowTemp: 'Temperature below',
+    AlarmPressDn: 'Pressure decrease >',
+    AlarmPressUp: 'Pressure increase >',
+    AlarmRain: 'Rain above',
+    AlarmRainRate: 'Rain Rate above',
+    AlarmSensor: 'Sensor contact lost',
+    AlarmTempDn: 'Temperature decrease >',
+    AlarmTempUp: 'Temperature increase >',
+    AlarmWind: 'Average wind speed above',
+    AlarmData: 'Data Stopped',
+    AlarmBattery: 'Battery Low',
+    AlarmSpike: 'Data Spike'
+};
+let playList = [];
 
 $(document).ready(function () {
 
-    var lastUpdateTimer, ws;
+    let lastUpdateTimer, ws;
 
-    var audioElement = document.createElement('audio');
+    let audioElement = document.createElement('audio');
 
     function playSnd() {
         if (playList.length) {
@@ -54,7 +72,7 @@ $(document).ready(function () {
                 playList.shift();
                 playSnd()
             });
-            var promise = playList[0].play();
+            let promise = playList[0].play();
             if (promise !== undefined) {
                 promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
@@ -66,6 +84,16 @@ $(document).ready(function () {
                 })
             }
         }
+    }
+
+    function createNotification(text) {
+        // Create and show the notification
+        let img = '/img/logo30.png';
+        let title = 'Cumulus MX Alarm';
+        if ((text.match(/\n/g)).length > 1) {
+            title += 's';
+        }
+        let notification = new Notification(title, { body: text, icon: img });
     }
 
     function OpenWebSocket(wsport) {
@@ -102,7 +130,7 @@ $(document).ready(function () {
     }
 
     function onMessage(evt) {
-        var data = JSON.parse(evt.data);
+        let data = JSON.parse(evt.data);
 
         updateDisplay(data);
     }
@@ -114,7 +142,7 @@ $(document).ready(function () {
 
         $('#LastUpdateIcon').attr('src', 'img/up.png');
 
-        var dataStopped = data.DataStopped;
+        let dataStopped = data.DataStopped;
         // Add an alarm value for dataStopped
         data.AlarmData = data.DataStopped;
 
@@ -124,10 +152,15 @@ $(document).ready(function () {
             $('#DataStoppedIcon').attr('src', 'img/up.png');
         }
 
+
+        // Firefox gets arsy about multiple notifications so roll them up into one
+        let sendNotification = false;
+        let notificationMessage = "";
+
         // Get the keys from the object and set
         // the element with the same id to the value
         Object.keys(data).forEach(function (key) {
-            var id = '#' + key;
+            let id = '#' + key;
             if (key.indexOf('Alarm') == -1) {
                 if ($(id).length) {
                     $(id).text(data[key]);
@@ -139,8 +172,17 @@ $(document).ready(function () {
                     if (!alarmState[key]) {
                         // make a sound?
                         if (alarmSettings[alarmTranslate[key] + 'SoundEnabled']) {
-                            var sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key] + 'Sound']
-                           playList.push(new Audio(sndFile));
+                            let sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key] + 'Sound']
+                            playList.push(new Audio(sndFile));
+                        }
+                        if (alarmSettings[alarmTranslate[key] + 'Notify']) {
+                            sendNotification = true;
+                            let message = '‣ ' + alarmDisplay[key];
+                            if (alarmTranslate[key] + 'Val' in alarmSettings) {
+                                message += ' ' + alarmSettings[alarmTranslate[key] + 'Val'];
+                            }
+                            console.log('Notify: ' + message);
+                            notificationMessage += message + "\n";
                         }
                         alarmState[key] = true;
                     }
@@ -150,6 +192,10 @@ $(document).ready(function () {
                 }
             }
         });
+
+        if (sendNotification) {
+            createNotification(notificationMessage);
+        }
 
         playSnd();
 
@@ -172,7 +218,7 @@ $(document).ready(function () {
 
         wrData = data.WindRoseData.split(',');
         // convert array to numbers
-        for (var i = 0; i < wrData.length; i++) {
+        for (let i = 0; i < wrData.length; i++) {
             wrData[i] = +wrData[i];
         }
         data.WindRoseData = wrData;
@@ -180,28 +226,28 @@ $(document).ready(function () {
         gauges.processData(convertJson(data));
 
 
-        var lastupdatetime = new Date();
-        var hours = pad(lastupdatetime.getHours());
-        var minutes = pad(lastupdatetime.getMinutes());
-        var seconds = pad(lastupdatetime.getSeconds());
+        let lastupdatetime = new Date();
+        let hours = pad(lastupdatetime.getHours());
+        let minutes = pad(lastupdatetime.getMinutes());
+        let seconds = pad(lastupdatetime.getSeconds());
 
-        var time = [hours, minutes, seconds].join(':');
+        let time = [hours, minutes, seconds].join(':');
 
         $('#lastupdatetime').text(time);
     }
 
-    var pad = function (x) {
+    let pad = function (x) {
         return x < 10 ? '0' + x : x;
     };
 
-    var ticktock = function () {
-        var d = new Date();
+    let ticktock = function () {
+        let d = new Date();
 
-        var h = pad(d.getHours());
-        var m = pad(d.getMinutes());
-        var s = pad(d.getSeconds());
+        let h = pad(d.getHours());
+        let m = pad(d.getMinutes());
+        let s = pad(d.getSeconds());
 
-        var current_time = [h, m, s].join(':');
+        let current_time = [h, m, s].join(':');
 
         $('.digiclock').text(current_time);
 
@@ -321,105 +367,182 @@ $(document).ready(function () {
     }
 
     // Get the alarm settings - only do this on page load
-        $.ajax({
-            url: 'api/settings/alarms.json',
-            dataType: 'json',
-            success: function (result) {
-                var data = result.data;
-                var playSnd = false;
-                // save the setting for later
-                alarmSettings = data;
-                // set enabled alarm indicators to the off state
-                if (data.tempBelowEnabled) {
-                    $('#AlarmLowTemp').addClass('indicatorOff');
-                    if (data.tempBelowSoundEnabled) {
-                        playSnd = true;
-                    }
+    $.ajax({
+        url: 'api/settings/alarms.json',
+        dataType: 'json',
+        success: function (result) {
+            let data = result.data;
+            let playSnd = false;
+            let notify = false;
+
+            // save the setting for later
+            alarmSettings = data;
+            // set enabled alarm indicators to the off state
+            if (data.tempBelowEnabled) {
+                $('#AlarmLowTemp').addClass('indicatorOff');
+                if (data.tempBelowSoundEnabled) {
+                    playSnd = true;
                 }
-                if (data.tempAboveEnabled) {
-                    $('#AlarmHighTemp').addClass('indicatorOff');
-                    if (data.tempAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.tempChangeEnabled) {
-                    $('#AlarmTempUp').addClass('indicatorOff');
-                    $('#AlarmTempDn').addClass('indicatorOff');
-                    if (data.tempChangeSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.pressBelowEnabled) {
-                    $('#AlarmLowPress').addClass('indicatorOff');
-                    if (data.pressBelowSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.pressAboveEnabled) {
-                    $('#AlarmHighPress').addClass('indicatorOff');
-                    if (data.pressAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-               }
-                if (data.pressChangeEnabled) {
-                    $('#AlarmPressUp').addClass('indicatorOff');
-                    $('#AlarmPressDn').addClass('indicatorOff');
-                    if (data.pressChangeSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.rainAboveEnabled) {
-                    $('#AlarmRain').addClass('indicatorOff');
-                    if (data.rainAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.rainRateAboveEnabled) {
-                    $('#AlarmRainRate').addClass('indicatorOff');
-                    if (data.rainRateAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.gustAboveEnabled) {
-                    $('#AlarmGust').addClass('indicatorOff');
-                    if (data.gustAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.windAboveEnabled) {
-                    $('#AlarmWind').addClass('indicatorOff');
-                    if (data.windAboveSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.contactLostEnabled) {
-                    $('#AlarmSensor').addClass('indicatorOff');
-                    if (data.contactLostSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.dataStoppedEnabled) {
-                    $('#AlarmData').addClass('indicatorOff');
-                    if (data.dataStoppedSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.batteryLowEnabled) {
-                    $('#AlarmBattery').addClass('indicatorOff');
-                    if (data.batteryLowSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (data.spikeEnabled) {
-                    $('#AlarmSpike').addClass('indicatorOff');
-                    if (data.spikeSoundEnabled) {
-                        playSnd = true;
-                    }
-                }
-                if (playSnd) {
+                if (data.tempBelowNotify) {
+                    notify = true;
                 }
             }
-        });
+            if (data.tempAboveEnabled) {
+                $('#AlarmHighTemp').addClass('indicatorOff');
+                if (data.tempAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.tempAboveNotify) {
+                    notify = true;
+                }
+             }
+            if (data.tempChangeEnabled) {
+                $('#AlarmTempUp').addClass('indicatorOff');
+                $('#AlarmTempDn').addClass('indicatorOff');
+                if (data.tempChangeSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.tempChangeNotify) {
+                    notify = true;
+                }
+            }
+            if (data.pressBelowEnabled) {
+                $('#AlarmLowPress').addClass('indicatorOff');
+                if (data.pressBelowSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.pressBelowNotify) {
+                    notify = true;
+                }
+           }
+            if (data.pressAboveEnabled) {
+                $('#AlarmHighPress').addClass('indicatorOff');
+                if (data.pressAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.pressAboveNotify) {
+                    notify = true;
+                }
+            }
+            if (data.pressChangeEnabled) {
+                $('#AlarmPressUp').addClass('indicatorOff');
+                $('#AlarmPressDn').addClass('indicatorOff');
+                if (data.pressChangeSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.pressChangeNotify) {
+                    notify = true;
+                }
+            }
+            if (data.rainAboveEnabled) {
+                $('#AlarmRain').addClass('indicatorOff');
+                if (data.rainAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.rainAboveNotify) {
+                    notify = true;
+                }
+            }
+            if (data.rainRateAboveEnabled) {
+                $('#AlarmRainRate').addClass('indicatorOff');
+                if (data.rainRateAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.rainAboveNotify) {
+                    notify = true;
+                }
+            }
+            if (data.gustAboveEnabled) {
+                $('#AlarmGust').addClass('indicatorOff');
+                if (data.gustAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.gustAboveNotify) {
+                    notify = true;
+                }
+            }
+            if (data.windAboveEnabled) {
+                $('#AlarmWind').addClass('indicatorOff');
+                if (data.windAboveSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.windAboveNotify) {
+                    notify = true;
+                }
+            }
+            if (data.contactLostEnabled) {
+                $('#AlarmSensor').addClass('indicatorOff');
+                if (data.contactLostSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.contactLostNotify) {
+                    notify = true;
+                }
+            }
+            if (data.dataStoppedEnabled) {
+                $('#AlarmData').addClass('indicatorOff');
+                if (data.dataStoppedSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.dataStoppedNotify) {
+                    notify = true;
+                }
+            }
+            if (data.batteryLowEnabled) {
+                $('#AlarmBattery').addClass('indicatorOff');
+                if (data.batteryLowSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.batteryLowNotify) {
+                    notify = true;
+                }
+            }
+            if (data.spikeEnabled) {
+                $('#AlarmSpike').addClass('indicatorOff');
+                if (data.spikeSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.spikeSoundNotify) {
+                    notify = true;
+                }
+            }
+            if (playSnd) {
+            }
+            if (notify) {
+                // Request notification permission
+                function handlePermission(permission) {
+                    // Whatever the user answers, we make sure Chrome stores the information
+                    if (!('permission' in Notification)) {
+                        Notification.permission = permission;
+                    }
+                }
+
+                function checkNotificationPromise() {
+                    try {
+                        Notification.requestPermission().then();
+                    } catch(e) {
+                        return false;
+                    }
+                    return true;
+                }
+
+                if (!('Notification' in window)) {
+                    console.log("This browser does not support notifications.");
+                    } else {
+                        if (checkNotificationPromise()) {
+                            Notification.requestPermission()
+                            .then((permission) => {
+                                handlePermission(permission);
+                            })
+                        } else {
+                            Notification.requestPermission(function(permission) {
+                            handlePermission(permission);
+                        });
+                    }
+                }
+            }
+        }
+    });
 
     ticktock();
 

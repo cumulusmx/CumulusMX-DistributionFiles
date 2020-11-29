@@ -1,14 +1,18 @@
 $(document).ready(function () {
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
-        $('#Build').text(result.Build);            
+        $('#Build').text(result.Build);
     }});
-    
+
     var tempTable = $('#TempTable').DataTable({
         "paging": false,
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
         "ajax": '../api/todayyest/temp.json'
     });
 
@@ -17,7 +21,11 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
-        "ajax": '../api/todayyest/rain.json'
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
+         "ajax": '../api/todayyest/rain.json'
     });
 
     var windTable = $('#WindTable').DataTable({
@@ -25,7 +33,11 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
-        "ajax": '../api/todayyest/wind.json'
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
+         "ajax": '../api/todayyest/wind.json'
     });
 
     var humidityTable = $('#HumidityTable').DataTable({
@@ -33,6 +45,10 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
         "ajax": '../api/todayyest/hum.json'
     });
 
@@ -41,7 +57,11 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
-        "ajax": '../api/todayyest/pressure.json'
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
+         "ajax": '../api/todayyest/pressure.json'
     });
 
     var solarTable = $('#SolarTable').DataTable({
@@ -49,7 +69,11 @@ $(document).ready(function () {
         "searching": false,
         "info": false,
         "ordering": false,
-        "ajax": '../api/todayyest/solar.json'
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1,3]}
+        ],
+         "ajax": '../api/todayyest/solar.json'
     });
 
     setInterval(function () {
