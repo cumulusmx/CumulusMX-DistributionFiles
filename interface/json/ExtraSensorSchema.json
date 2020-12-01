@@ -2,7 +2,7 @@
     "type": "object",
     "properties": {
         "primaryaqsensor": {
-            "title": "Primary Air Quality Sesnor",
+            "title": "Primary Air Quality Sensor",
             "enum": [
                 -1,
                 0,
