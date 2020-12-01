@@ -125,15 +125,15 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
-                "sendlocation": {
-                    "rightLabel": "Send location",
-                    "helper": "Send your location with each update"
-                },
                 "password": {
                     "type": "password"
                 },
                 "interval": {
                     "helper":  "Interval between updates in minutes"
+                },
+                "sendlocation": {
+                    "rightLabel": "Send location",
+                    "helper": "Send your location with each update"
                 }
             }
         },
@@ -143,6 +143,13 @@
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
+                },
+                "password": {
+                    "type": "password",
+                    "helper": "Used to be your password, but changed to the Station Key (case sensitive)"
+                },
+                "interval": {
+                    "helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)"
                 },
                 "includeindoor": {
                     "rightLabel": "Include indoor data",
@@ -163,15 +170,13 @@
                     "rightLabel": "Send average wind speed",
                     "helper": "Send the average wind speed for the current speed"
                 },
+                "includeaq": {
+                    "rightLabel": "Include air quality data",
+                    "helper": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings"
+                },
                 "catchup": {
                     "rightLabel": "Catch up",
                     "helper": "When Cumulus starts, send each entry read from the station logger"
-                },
-                "interval": {
-                    "helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)"
-                },
-                "password": {
-                    "type": "password"
                 }
             }
         },
@@ -182,6 +187,15 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "apikey": {
+                    "helper": "This is a very long string and is used for all your Windy.com stations"
+                },
+                "stationidx": {
+                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc."
+                },
+                "interval": {
+                    "helper": "Interval in minutes between updates (min value = 5)."
+                },
                 "includeuv": {
                     "rightLabel": "Include UV",
                     "helper": "Include UV index in the update"
@@ -189,15 +203,6 @@
                 "catchup": {
                     "rightLabel": "Catch up",
                     "helper": "When Cumulus starts, send each entry read from the station logger"
-                },
-                "interval": {
-                    "helper": "Interval in minutes between updates (min value = 5)."
-                },
-                "apikey": {
-                    "helper": "This is a very long string and is used for all your Windy.com stations"
-                },
-                "stationidx": {
-                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc."
                 }
             }
         },
@@ -208,6 +213,12 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "password": {
+                    "type": "password"
+                },
+                "interval": {
+                    "helper":  "Interval between updates in minutes"
+                },
                 "includeuv": {
                     "rightLabel": "Include UV",
                     "helper": "Include UV index in the update"
@@ -219,12 +230,6 @@
                 "catchup": {
                     "rightLabel": "Catch up",
                     "helper": "When Cumulus starts, send each entry read from the station logger"
-                },
-                "password": {
-                    "type": "password"
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes"
                 }
             }
         },
@@ -235,6 +240,12 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "password": {
+                    "type": "password"
+                },
+                "interval": {
+                    "helper":  "Interval between updates in minutes"
+                },
                 "includeuv": {
                     "rightLabel": "Include UV",
                     "helper": "Include UV index in the update"
@@ -246,12 +257,6 @@
                 "catchup": {
                     "rightLabel": "Catch up",
                     "helper": "When Cumulus starts, send each entry read from the station logger"
-                },
-                "password": {
-                    "type": "password"
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes"
                 }
             }
         },
@@ -262,12 +267,12 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "password": {
+                    "helper":  "Leave at -1 unless you are using an amateur radio callsign"
+                },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
                     "helper": "Include the solar radiation reading in the update"
-                },
-                "password": {
-                    "helper":  "Leave at -1 unless you are using an amateur radio callsign"
                 }
             }
         },
@@ -277,6 +282,17 @@
             "fields": {
                 "enabled": {
                     "rightLabel": "Enabled"
+                },
+                "password": {
+                    "type": "password"
+                },
+                "lang": {
+                    "optionLabels": ["English", "German", "French", "Italain", "Dutch"],
+                    "removeDefaultNone": true,
+                    "helper": "One of fr/de/en/it/nl"
+                },
+                "interval": {
+                    "helper": "Update interval in seconds. Min value 15 seconds"
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
@@ -302,16 +318,9 @@
                     "rightLabel": "Include indoor data",
                     "helper": "Include indoor temperature and humidity in the update"
                 },
-                "lang": {
-                    "optionLabels": ["English", "German", "French", "Italain", "Dutch"],
-                    "removeDefaultNone": true,
-                    "helper": "One of fr/de/en/it/nl"
-                },
-                "interval": {
-                    "helper": "Update interval in seconds. Min value 15 seconds"
-                },
-                "password": {
-                    "type": "password"
+                "includeaq": {
+                    "rightLabel": "Include air quality data",
+                    "helper": "Include the pm2.5 (and pm10 if available). You also need to set the Primary AQ sensor in Station Options settings"
                 }
             }
         },
@@ -358,14 +367,15 @@
                         "enabled": {
                             "rightLabel": "Enabled"
                         },
+                        "retained": {
+                            "rightLabel": "Message retained on server",
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients"
+                        },
                         "topic": {
                             "helper": "Enter the topic name for these messages"
                         },
                         "template": {
                             "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
-                        },
-                        "retained": {
-                            "rightLabel": "Message retained on server"
                         }
                     }
                 },
@@ -375,6 +385,10 @@
                         "enabled": {
                             "rightLabel": "Enabled"
                         },
+                        "retained": {
+                            "rightLabel": "Message retained on server",
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients"
+                        },
                         "time": {
                             "helper": "Enter the time in seconds between sending messages"
                         },
@@ -383,9 +397,6 @@
                         },
                         "template": {
                             "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
-                        },
-                        "retained": {
-                            "rightLabel": "Message retained on server"
                         }
                     }
                 }

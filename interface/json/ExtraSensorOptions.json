@@ -1,5 +1,31 @@
 ﻿{
     "fields": {
+        "primaryaqsensor": {
+            "optionLabels": [
+                "Undefined",
+                "Davis AirLink Outdoor",
+                "Ecowitt Sensor 1",
+                "Ecowitt Sensor 2",
+                "Ecowitt Sensor 3",
+                "Ecowitt Sensor 4"
+            ],
+            "removeDefaultNone": true,
+            "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation"
+        },
+        "aqi": {
+            "helper": "Select the AQI index calcuation method you want to use",
+            "optionLabels": [
+                "USA - EPA",
+                "UK - COMEAP",
+                "EU - AQI",
+                "EU - CAQI",
+                "Canada - AQHI",
+                "Australia - NEPM",
+                "Netherlands - LKI",
+                "Belgium - BelAQI"
+            ],
+            "removeDefaultNone": true
+        },
         "airLink": {
             "collapsible":true,
             "collapsed": true,
@@ -29,7 +55,7 @@
                         "ipAddress": {
                         },
                         "stationId": {
-                            "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
+                            "helper": "Enter the weatherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be completed automatically"
                         }
                     }
                 },
@@ -51,20 +77,6 @@
                             "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
                         }
                     }
-                },
-                "aqi": {
-                    "helper": "Select the AQI index calcuation method you want to use",
-                    "optionLabels": [
-                        "USA - EPA",
-                        "UK - COMEAP",
-                        "EU - AQI",
-                        "EU - CAQI",
-                        "Canada - AQHI",
-                        "Australia - NEPM",
-                        "Netherlands - LKI",
-                        "Belgium - BelAQI"
-                    ],
-                    "removeDefaultNone": true
                 }
             }
         },

@@ -21,6 +21,11 @@
         <script src="js/todayyest.js"></script>
 
         <link href="css/cumulus.css" rel="stylesheet">
+        <style>
+            .left   {text-align:left;}
+            .center {text-align:center;}
+            .right  {text-align:right;}
+        </style>
     </head>
     <body>
         <!-- NAVIGATION MENU -->
@@ -38,7 +43,13 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li><a href="charts.html">Charts</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="charts.html">Recent Charts</a></li>
+                                <li><a href="chartshistoric.html">Historic Charts</a></li>
+                            </ul>
+                        </li>
                         <li class="active"><a href="todayyest.html">Today/Yesterday</a></li>
                         <li><a href="records.html">Records</a></li>
                         <li class="dropdown">
@@ -114,8 +125,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>
@@ -176,8 +187,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>
@@ -202,8 +213,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>
@@ -229,8 +240,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>
@@ -267,8 +278,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>
@@ -317,8 +328,8 @@
                             </tr>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th colspan="2">Today</th>
-                                <th colspan="2">Yesterday</th>
+                                <th class="center" colspan="2">Today</th>
+                                <th class="center" colspan="2">Yesterday</th>
                             </tr>
                         </thead>
                         <tr>

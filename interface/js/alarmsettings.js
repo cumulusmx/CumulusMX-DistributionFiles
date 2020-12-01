@@ -5,7 +5,7 @@ $(document).ready(function() {
         dataType:"json",
         success: function (result) {
             $.each(result.data, function(key, value) {
-                if (key.indexOf('Enabled') === -1 && key.indexOf('Latches') === -1) {
+                if (key.indexOf('Enabled') === -1 && key.indexOf('Latches') === -1 && key.indexOf('Notify') === -1) {
                     $('#' + key).val(value);
                 } else {
                     $('#' + key).prop('checked', value);
@@ -30,6 +30,7 @@ function updateAlarms() {
             tempBelowVal         : parseFloat($('#tempBelowVal').val()),
             tempBelowSoundEnabled: $('#tempBelowSoundEnabled').prop('checked'),
             tempBelowSound       : $('#tempBelowSound').val(),
+            tempBelowNotify      : $('#tempBelowNotify').prop('checked'),
             tempBelowLatches     : $('#tempBelowLatches').prop('checked'),
             tempBelowLatchHrs    : $('#tempBelowLatchHrs').val(),
 
@@ -37,6 +38,7 @@ function updateAlarms() {
             tempAboveVal         : parseFloat($('#tempAboveVal').val()),
             tempAboveSoundEnabled: $('#tempAboveSoundEnabled').prop('checked'),
             tempAboveSound       : $('#tempAboveSound').val(),
+            tempAboveNotify      : $('#tempAboveNotify').prop('checked'),
             tempAboveLatches     : $('#tempAboveLatches').prop('checked'),
             tempAboveLatchHrs    : $('#tempAboveLatchHrs').val(),
 
@@ -44,6 +46,7 @@ function updateAlarms() {
             tempChangeVal         : parseFloat($('#tempChangeVal').val()),
             tempChangeSoundEnabled: $('#tempChangeSoundEnabled').prop('checked'),
             tempChangeSound       : $('#tempChangeSound').val(),
+            tempChangeNotify      : $('#tempChangeNotify').prop('checked'),
             tempChangeLatches     : $('#tempChangeLatches').prop('checked'),
             tempChangeLatchHrs    : $('#tempChangeLatchHrs').val(),
 
@@ -51,6 +54,7 @@ function updateAlarms() {
             pressBelowVal         : parseFloat($('#pressBelowVal').val()),
             pressBelowSoundEnabled: $('#pressBelowSoundEnabled').prop('checked'),
             pressBelowSound       : $('#pressBelowSound').val(),
+            pressBelowNotify      : $('#pressBelowNotify').prop('checked'),
             pressBelowLatches     : $('#pressBelowLatches').prop('checked'),
             pressBelowLatchHrs    : $('#pressBelowLatchHrs').val(),
 
@@ -58,6 +62,7 @@ function updateAlarms() {
             pressAboveVal         : parseFloat($('#pressAboveVal').val()),
             pressAboveSoundEnabled: $('#pressAboveSoundEnabled').prop('checked'),
             pressAboveSound       : $('#pressAboveSound').val(),
+            pressAboveNotify      : $('#pressAboveNotify').prop('checked'),
             pressAboveLatches     : $('#pressAboveLatches').prop('checked'),
             pressAboveLatchHrs    : $('#pressAboveLatchHrs').val(),
 
@@ -65,6 +70,7 @@ function updateAlarms() {
             pressChangeVal         : parseFloat($('#pressChangeVal').val()),
             pressChangeSoundEnabled: $('#pressChangeSoundEnabled').prop('checked'),
             pressChangeSound       : $('#pressChangeSound').val(),
+            pressChangeNotify      : $('#pressChangeNotify').prop('checked'),
             pressChangeLatches     : $('#pressChangeLatches').prop('checked'),
             pressChangeLatchHrs    : $('#pressChangeLatchHrs').val(),
 
@@ -72,6 +78,7 @@ function updateAlarms() {
             rainAboveVal         : parseFloat($('#rainAboveVal').val()),
             rainAboveSoundEnabled: $('#rainAboveSoundEnabled').prop('checked'),
             rainAboveSound       : $('#rainAboveSound').val(),
+            rainAboveNotify      : $('#rainAboveNotify').prop('checked'),
             rainAboveLatches     : $('#rainAboveLatches').prop('checked'),
             rainAboveLatchHrs    : $('#rainAboveLatchHrs').val(),
 
@@ -79,6 +86,7 @@ function updateAlarms() {
             rainRateAboveVal         : parseFloat($('#rainRateAboveVal').val()),
             rainRateAboveSoundEnabled: $('#rainRateAboveSoundEnabled').prop('checked'),
             rainRateAboveSound       : $('#rainRateAboveSound').val(),
+            rainRateAboveNotify      : $('#rainRateAboveNotify').prop('checked'),
             rainRateAboveLatches     : $('#rainRateAboveLatches').prop('checked'),
             rainRateAboveLatchHrs    : $('#rainRateAboveLatchHrs').val(),
 
@@ -86,6 +94,7 @@ function updateAlarms() {
             gustAboveVal         : parseFloat($('#gustAboveVal').val()),
             gustAboveSoundEnabled: $('#gustAboveSoundEnabled').prop('checked'),
             gustAboveSound       : $('#gustAboveSound').val(),
+            gustAboveNotify      : $('#gustAboveNotify').prop('checked'),
             gustAboveLatches     : $('#gustAboveLatches').prop('checked'),
             gustAboveLatchHrs    : $('#gustAboveLatchHrs').val(),
 
@@ -93,30 +102,35 @@ function updateAlarms() {
             windAboveVal         : parseFloat($('#windAboveVal').val()),
             windAboveSoundEnabled: $('#windAboveSoundEnabled').prop('checked'),
             windAboveSound       : $('#windAboveSound').val(),
+            windAboveNotify      : $('#windAboveNotify').prop('checked'),
             windAboveLatches     : $('#windAboveLatches').prop('checked'),
             windAboveLatchHrs    : $('#windAboveLatchHrs').val(),
 
             contactLostEnabled     : $('#contactLostEnabled').prop('checked'),
             contactLostSoundEnabled: $('#contactLostSoundEnabled').prop('checked'),
             contactLostSound       : $('#contactLostSound').val(),
+            contactLostNotify      : $('#contactLostNotify').prop('checked'),
             contactLostLatches     : $('#contactLostLatches').prop('checked'),
             contactLostLatchHrs    : $('#contactLostLatchHrs').val(),
 
             dataStoppedEnabled     : $('#dataStoppedEnabled').prop('checked'),
             dataStoppedSoundEnabled: $('#dataStoppedSoundEnabled').prop('checked'),
             dataStoppedSound       : $('#dataStoppedSound').val(),
+            dataStoppedNotify      : $('#dataStoppedNotify').prop('checked'),
             dataStoppedLatches     : $('#dataStoppedLatches').prop('checked'),
             dataStoppedLatchHrs    : $('#dataStoppedLatchHrs').val(),
 
             batteryLowEnabled     : $('#batteryLowEnabled').prop('checked'),
             batteryLowSoundEnabled: $('#batteryLowSoundEnabled').prop('checked'),
             batteryLowSound       : $('#batteryLowSound').val(),
+            batteryLowNotify      : $('#batteryLowNotify').prop('checked'),
             batteryLowLatches     : $('#batteryLowLatches').prop('checked'),
             batteryLowLatchHrs    : $('#batteryLowLatchHrs').val(),
 
             spikeEnabled     : $('#spikeEnabled').prop('checked'),
             spikeSoundEnabled: $('#spikeSoundEnabled').prop('checked'),
             spikeSound       : $('#spikeSound').val(),
+            spikeNotify      : $('#spikeNotify').prop('checked'),
             spikeLatches     : $('#spikeLatches').prop('checked'),
             spikeLatchHrs    : $('#spikeLatchHrs').val(),
         })

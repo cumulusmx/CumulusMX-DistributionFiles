@@ -639,6 +639,10 @@
                 "graphSolarVis": {
                     "rightLabel": "Show Solar data on graphs",
                     "helper": "Add solar data to the graph data files and display it on the interface"
+                },
+                "graphSunshineVis": {
+                    "rightLabel": "Show Sunshine hours data on graphs",
+                    "helper": "Add sunshine data to the graph data files and display it on the interface"
                 }
             }
         }

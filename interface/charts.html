@@ -54,7 +54,13 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li class="active"><a href="charts.html">Charts</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="charts.html">Recent Charts</a></li>
+                                <li><a href="chartshistoric.html">Historic Charts</a></li>
+                            </ul>
+                        </li>
                         <li><a href="todayyest.html">Today/Yesterday</a></li>
                         <li><a href="records.html">Records</a></li>
                         <li class="dropdown">
@@ -146,6 +152,9 @@
                     </label>
                     <label class="btn btn-primary">
                         <input type="radio" name="options" id="sunhours" value="sunhours"> Sun Hours
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="airquality" value="airquality"> Air Quality
                     </label>
                 </div>
             </div>

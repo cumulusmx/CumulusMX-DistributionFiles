@@ -1,6 +1,21 @@
 ﻿{
     "type": "object",
     "properties": {
+        "primaryaqsensor": {
+            "title": "Primary Air Quality Sensor",
+            "enum": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        "aqi": {
+            "title": "Air Quality Index",
+            "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+        },
         "airLink": {
             "title": "Davis AirLink",
             "type": "object",
@@ -49,10 +64,6 @@
                             "title": "Station ID"
                         }
                     }
-                },
-                "aqi": {
-                    "title": "Air Quality Index",
-                    "enum": [0, 1, 2, 3, 4, 5, 6, 7]
                 }
             }
         },

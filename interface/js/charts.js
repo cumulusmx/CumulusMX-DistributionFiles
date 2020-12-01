@@ -37,6 +37,9 @@ $(document).ready(function () {
             case 'sunhours':
                 doSunHours();
                 break;
+            case 'airquality':
+                doAirQuality();
+                break;
         }
     });
 
@@ -50,7 +53,6 @@ $(document).ready(function () {
             doTemp();
         }});
 });
-
 
 var doTemp = function () {
     var freezing = config.temp.units === 'C' ? 0 : 32;
@@ -94,12 +96,11 @@ var doTemp = function () {
                 // right
                 gridLineWidth: 0,
                 opposite: true,
-                linkedTo: 0,
                 labels: {
                     align: 'left',
                     x: 5,
                     formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
                     }
                 }
             }],
@@ -134,7 +135,6 @@ var doTemp = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: '°' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -175,24 +175,33 @@ var doTemp = function () {
             };
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
             var cnt = 0;
-            idxs.forEach(function(idx) {
-                if (idx in resp) {
-                    chart.addSeries({
-                        name: titles[idx],
-                        data: resp[idx]
-                    }, false);
+            var yaxis = 0;
 
+            // Do we link the yAxes? Yes if no Humidex, or we have Humidex and we are using Celcius
+            if (resp.humidex == null || (resp.humidex != null && config.temp.units == 'C')) {
+                chart.yAxis[1].options.linkedTo = 0;
+                chart.yAxis[1].isLinked = true;
+            }
+
+            idxs.forEach(function(idx) {
+                var valueSuffix = '°' + config.temp.units;
+                yaxis = 0;
+
+                if (idx in resp) {
                     if (idx === 'humidex') {
-                        chart.series[cnt].tooltipOptions.valueSuffix = '';
-                        // Link Humidex and temp scales if using Celsius
-                        // For fahrenheit use separate scales
-                        if (config.temp.units = 'C') {
-                            chart.yAxis[1].options.title.text = '';
-                        } else {
-                            chart.yAxis[1].options.linkedTo = null;
-                            chart.series[cnt].yAxis = 1;
+                        valueSuffix = null;
+                        if (config.temp.units == 'F') {
+                            chart.yAxis[1].options.title.text = 'Humidex';
+                            yaxis = 1
                         }
                     }
+
+                    chart.addSeries({
+                        name: titles[idx],
+                        data: resp[idx],
+                        yAxis: yaxis,
+                        tooltip: {valueSuffix: valueSuffix}
+                    }, false);
 
                     if (idx === 'temp') {
                         chart.series[cnt].options.zIndex = 99;
@@ -440,7 +449,6 @@ var doWindDir = function () {
         }
     });
 };
-
 
 var doWind = function () {
     var options = {
@@ -1257,3 +1265,126 @@ var doDailyTemp = function () {
     });
 };
 
+var doAirQuality = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Air Quality'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'µg/m³'},
+                opposite: false,
+                min: 0,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                min: 0,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: 'µg/m³',
+            valueDecimals: 1,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: {
+            buttons: [{
+                    count: 6,
+                    type: 'hour',
+                    text: '6h'
+                }, {
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
+        }
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'api/graphdata/airqualitydata.json',
+        dataType: 'json',
+        success: function (resp) {
+            var titles = {
+                'pm2p5': 'PM 2.5',
+                'pm10' : 'PM 10'
+             }
+             var idxs = ['pm2p5', 'pm10'];
+             var cnt = 0;
+             idxs.forEach(function(idx) {
+                 if (idx in resp) {
+                     chart.addSeries({
+                         name: titles[idx],
+                         data: resp[idx]
+                     }, false);
+
+                     cnt++;
+                 }
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};

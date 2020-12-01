@@ -5,6 +5,10 @@ $(document).ready(function () {
         "info": false,
         "ordering": false,
         "columns": [{"width": "50%"}, {"width": "20%"}, null],
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/records/alltime/temperature.json'
     });
 
@@ -14,6 +18,10 @@ $(document).ready(function () {
         "info": false,
         "ordering": false,
         "columns": [{"width": "50%"}, {"width": "20%"}, null],
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/records/alltime/humidity.json'
     });
 
@@ -23,6 +31,10 @@ $(document).ready(function () {
         "info": false,
         "ordering": false,
         "columns": [{"width": "50%"}, {"width": "20%"}, null],
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/records/alltime/pressure.json'
     });
 
@@ -32,6 +44,10 @@ $(document).ready(function () {
         "info": false,
         "ordering": false,
         "columns": [{"width": "50%"}, {"width": "20%"}, null],
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/records/alltime/wind.json'
     });
 
@@ -41,20 +57,24 @@ $(document).ready(function () {
         "info": false,
         "ordering": false,
         "columns": [{"width": "50%"}, {"width": "20%"}, null],
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
         "ajax": '../api/records/alltime/rain.json'
     });
-    
+
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
-        $('#Build').text(result.Build);            
+        $('#Build').text(result.Build);
     }});
 
     $(document).ready(function () {
         $('.btn').change(function () {
-            
+
             var myRadio = $('input[name=options]');
             var checkedValue = myRadio.filter(':checked').val();
-            
+
             var urlPrefix;
             if (checkedValue === 'alltime') {
                 urlPrefix = "../api/records/alltime/";
@@ -65,7 +85,7 @@ $(document).ready(function () {
             } else {
                 urlPrefix = "../api/records/month/"+checkedValue+"/";
             }
-            
+
             tempTable.api().ajax.url( urlPrefix+'temperature.json' ).load();
             humTable.api().ajax.url( urlPrefix+'humidity.json' ).load();
             pressTable.api().ajax.url( urlPrefix+'pressure.json' ).load();
@@ -74,4 +94,3 @@ $(document).ready(function () {
         });
     });
 });
-     
