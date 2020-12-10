@@ -418,17 +418,17 @@ var doRain = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
-                min: 0,
+                title: {text: 'Rainfall (' + config.rain.units + ')'},
                 opposite: false,
+                min: 0,
                 labels: {
                     align: 'right',
                     x: -5
                 }
             }, {
                 // right
+                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
                 opposite: true,
-                title: {text: 'Rainfall (' + config.rain.units + ')'},
                 min: 0,
                 labels: {
                     align: 'left',
@@ -474,12 +474,12 @@ var doRain = function () {
         series: [{
                 name: 'Daily rain',
                 type: 'column',
-                yAxis: 1,
+                yAxis: 0,
                 tooltip: {valueSuffix: config.rain.units}
             }, {
                 name: 'Rain rate',
                 type: 'column',
-                yAxis: 0,
+                yAxis: 1,
                 tooltip: {valueSuffix: config.rain.units + '/hr'},
                 visible: false
             }],
@@ -497,8 +497,8 @@ var doRain = function () {
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
-            chart.series[0].setData(resp.maxRainRate);
-            chart.series[1].setData(resp.rain);
+            chart.series[0].setData(resp.rain);
+            chart.series[1].setData(resp.maxRainRate);
         }
     });
 };
