@@ -4,13 +4,14 @@
             "optionLabels": [
                 "Undefined",
                 "Davis AirLink Outdoor",
+                "Davis AirLink Indoor",
                 "Ecowitt Sensor 1",
                 "Ecowitt Sensor 2",
                 "Ecowitt Sensor 3",
                 "Ecowitt Sensor 4"
             ],
             "removeDefaultNone": true,
-            "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation"
+            "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
         },
         "aqi": {
             "helper": "Select the AQI index calcuation method you want to use",

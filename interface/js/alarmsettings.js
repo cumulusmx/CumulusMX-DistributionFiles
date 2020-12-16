@@ -133,6 +133,13 @@ function updateAlarms() {
             spikeNotify      : $('#spikeNotify').prop('checked'),
             spikeLatches     : $('#spikeLatches').prop('checked'),
             spikeLatchHrs    : $('#spikeLatchHrs').val(),
+
+            upgradeEnabled     : $('#upgradeEnabled').prop('checked'),
+            upgradeSoundEnabled: $('#upgradeSoundEnabled').prop('checked'),
+            upgradeSound       : $('#upgradeSound').val(),
+            upgradeNotify      : $('#upgradeNotify').prop('checked'),
+            upgradeLatches     : $('#upgradeLatches').prop('checked'),
+            upgradeLatchHrs    : $('#upgradeLatchHrs').val(),
         })
     }).done(function (result) {
         alert("Settings updated");

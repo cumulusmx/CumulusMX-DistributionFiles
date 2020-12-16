@@ -20,7 +20,8 @@ let alarmTranslate = {
     AlarmWind: 'windAbove',
     AlarmData: 'dataStopped',
     AlarmBattery: 'batteryLow',
-    AlarmSpike: 'spike'
+    AlarmSpike: 'spike',
+    AlarmUpgrade: 'upgrade'
 };
 let alarmState = {
     AlarmGust: false,
@@ -38,7 +39,8 @@ let alarmState = {
     AlarmWind: false,
     AlarmData: false,
     AlarmBattery: false,
-    AlarmSpike: false
+    AlarmSpike: false,
+    AlarmUpgrade: false
 }
 let alarmDisplay = {
     AlarmGust: 'Wind gust above',
@@ -56,7 +58,8 @@ let alarmDisplay = {
     AlarmWind: 'Average wind speed above',
     AlarmData: 'Data Stopped',
     AlarmBattery: 'Battery Low',
-    AlarmSpike: 'Data Spike'
+    AlarmSpike: 'Data spike',
+    AlarmUpgrade: 'Upgrade available'
 };
 let playList = [];
 
@@ -502,7 +505,16 @@ $(document).ready(function () {
                 if (data.spikeSoundEnabled) {
                     playSnd = true;
                 }
-                if (data.spikeSoundNotify) {
+                if (data.spikeNotify) {
+                    notify = true;
+                }
+            }
+            if (data.upgradeEnabled) {
+                $('#AlarmUpgrade').addClass('indicatorOff');
+                if (data.upgradeSoundEnabled) {
+                    playSnd = true;
+                }
+                if (data.upgradeNotify) {
                     notify = true;
                 }
             }
