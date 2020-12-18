@@ -137,6 +137,8 @@ $(document).ready(function() {
                 response += '"' + rowdata[key] + '",';
             }
         }
+        // remove trailing comma
+        response = response.slice(0, -1);
         response += ']}';
         return response;
     }
