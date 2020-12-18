@@ -3,14 +3,7 @@
     "properties": {
         "primaryaqsensor": {
             "title": "Primary Air Quality Sensor",
-            "enum": [
-                -1,
-                0,
-                1,
-                2,
-                3,
-                4
-            ]
+            "enum": [-1, 0, 5, 1, 2, 3, 4]
         },
         "aqi": {
             "title": "Air Quality Index",

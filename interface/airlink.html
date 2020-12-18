@@ -114,14 +114,14 @@
 
         <div class="container">
              <div class="row top-buffer">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <h1>AirLink Sensors</h1>
                 </div>
             </div>
-            <div class="row top-buffer">
 
+            <div class="row top-buffer">
                 <!-- COUNTS OUT BLOCK -->
-                <div class="col-md-10">
+                <div class="col-sm-10 col-lg-10">
                     <h2>Particle Counts - Outdoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
@@ -129,42 +129,44 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;PM Size</th>
-                                <th>&nbsp;1 Minute</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 min</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
                         <tr>
                             <td>1 μm</td>
-                            <td><span id="pm1_out">--</span></td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
+                            <td><span id="pm1_out">-</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
                         </tr>
                         <tr>
                             <td>2.5 μm</td>
-                            <td><span id="pm2p5_out">--</span></td>
-                            <td><span id="pm2p5_out_1hr">--</span></td>
-                            <td><span id="pm2p5_out_3hr">--</span></td>
-                            <td><span id="pm2p5_out_24hr">--</span></td>
-                            <td><span id="pm2p5_out_nowcast">--</span></td>
+                            <td><span id="pm2p5_out">-</span></td>
+                            <td><span id="pm2p5_out_1hr">-</span></td>
+                            <td><span id="pm2p5_out_3hr">-</span></td>
+                            <td><span id="pm2p5_out_24hr">-</span></td>
+                            <td><span id="pm2p5_out_nowcast">-</span></td>
                         </tr>
                         <tr>
                             <td>10 μm</td>
-                            <td><span id="pm10_out">--</span></td>
-                            <td><span id="pm10_out_1hr">--</span></td>
-                            <td><span id="pm10_out_3hr">--</span></td>
-                            <td><span id="pm10_out_24hr">--</span></td>
-                            <td><span id="pm10_out_nowcast">--</span></td>
+                            <td><span id="pm10_out">-</span></td>
+                            <td><span id="pm10_out_1hr">-</span></td>
+                            <td><span id="pm10_out_3hr">-</span></td>
+                            <td><span id="pm10_out_24hr">-</span></td>
+                            <td><span id="pm10_out_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
+            </div>
 
+            <div class="row top-buffer">
                 <!-- AQI OUT BLOCK -->
-                <div class="col-md-10">
+                <div class="col-sm-10 col-lg-10">
                     <h2>Air Quality Index - Outdoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
@@ -172,35 +174,37 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;PM Size</th>
-                                <th>&nbsp;1 Minute</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 min</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
                         <tr>
                             <td>2.5 μm</td>
-                            <td><span id="pm2p5_out_aqi">--</span></td>
-                            <td><span id="pm2p5_out_aqi_1hr">--</span></td>
-                            <td><span id="pm2p5_out_aqi_3hr">--</span></td>
-                            <td><span id="pm2p5_out_aqi_24hr">--</span></td>
-                            <td><span id="pm2p5_out_aqi_nowcast">--</span></td>
+                            <td><span id="pm2p5_out_aqi">-</span></td>
+                            <td><span id="pm2p5_out_aqi_1hr">-</span></td>
+                            <td><span id="pm2p5_out_aqi_3hr">-</span></td>
+                            <td><span id="pm2p5_out_aqi_24hr">-</span></td>
+                            <td><span id="pm2p5_out_aqi_nowcast">-</span></td>
                         </tr>
                         <tr>
                             <td>10 μm</td>
-                            <td><span id="pm10_out_aqi">--</span></td>
-                            <td><span id="pm10_out_aqi_1hr">--</span></td>
-                            <td><span id="pm10_out_aqi_3hr">--</span></td>
-                            <td><span id="pm10_out_aqi_24hr">--</span></td>
-                            <td><span id="pm10_out_aqi_nowcast">--</span></td>
+                            <td><span id="pm10_out_aqi">-</span></td>
+                            <td><span id="pm10_out_aqi_1hr">-</span></td>
+                            <td><span id="pm10_out_aqi_3hr">-</span></td>
+                            <td><span id="pm10_out_aqi_24hr">-</span></td>
+                            <td><span id="pm10_out_aqi_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
+            </div>
 
+            <div class="row top-buffer">
                 <!-- AQI PERCENT OUT BLOCK -->
-                <div class="col-md-10">
-                    <h2>Air Quality Index Confidence (%)- Outdoor</h2>
+                <div class="col-sm-10 col-lg-10">
+                    <h2>Air Quality Index Confidence (%) - Outdoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
                     <table id="PctOutTable" style="width:100%">
@@ -208,35 +212,35 @@
                             <tr>
                                 <th>&nbsp;PM Size</th>
                                 <th>&nbsp;</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
                         <tr>
                             <td>2.5 μm</td>
-                            <td>--</td>
-                            <td><span id="pm2p5_out_pct_1hr">--</span></td>
-                            <td><span id="pm2p5_out_pct_3hr">--</span></td>
-                            <td><span id="pm2p5_out_pct_24hr">--</span></td>
-                            <td><span id="pm2p5_out_pct_nowcast">--</span></td>
+                            <td>-</td>
+                            <td><span id="pm2p5_out_pct_1hr">-</span></td>
+                            <td><span id="pm2p5_out_pct_3hr">-</span></td>
+                            <td><span id="pm2p5_out_pct_24hr">-</span></td>
+                            <td><span id="pm2p5_out_pct_nowcast">-</span></td>
                         </tr>
                         <tr>
                             <td>10 μm</td>
-                            <td>--</td>
-                            <td><span id="pm10_out_pct_1hr">--</span></td>
-                            <td><span id="pm10_out_pct_3hr">--</span></td>
-                            <td><span id="pm10_out_pct_24hr">--</span></td>
-                            <td><span id="pm10_out_pct_nowcast">--</span></td>
+                            <td>-</td>
+                            <td><span id="pm10_out_pct_1hr">-</span></td>
+                            <td><span id="pm10_out_pct_3hr">-</span></td>
+                            <td><span id="pm10_out_pct_24hr">-</span></td>
+                            <td><span id="pm10_out_pct_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
             </div>
 
-            <div class="row top-buffer"></div>
+            <div class="row top-buffer">
                 <!-- COUNTS IN BLOCK -->
-                <div class="col-md-10">
+                <div class="col-sm-10 col-lg-10">
                     <h2>Particle Counts - Indoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
@@ -244,42 +248,44 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;PM Size</th>
-                                <th>&nbsp;1 Minute</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 min</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
                         <tr>
                             <td>1 μm</td>
-                            <td><span id="pm1_in">--</span></td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
+                            <td><span id="pm1_in">-</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
                         </tr>
                         <tr>
                             <td>2.5 μm</td>
-                            <td><span id="pm2p5_in">--</span></td>
-                            <td><span id="pm2p5_in_1hr">--</span></td>
-                            <td><span id="pm2p5_in_3hr">--</span></td>
-                            <td><span id="pm2p5_in_24hr">--</span></td>
-                            <td><span id="pm2p5_in_nowcast">--</span></td>
+                            <td><span id="pm2p5_in">-</span></td>
+                            <td><span id="pm2p5_in_1hr">-</span></td>
+                            <td><span id="pm2p5_in_3hr">-</span></td>
+                            <td><span id="pm2p5_in_24hr">-</span></td>
+                            <td><span id="pm2p5_in_nowcast">-</span></td>
                         </tr>
                         <tr>
                             <td>10 μm</td>
                             <td><span id="pm10_in">--</span></td>
-                            <td><span id="pm10_in_1hr">--</span></td>
-                            <td><span id="pm10_in_3hr">--</span></td>
-                            <td><span id="pm10_in_24hr">--</span></td>
-                            <td><span id="pm10_in_nowcast">--</span></td>
+                            <td><span id="pm10_in_1hr">-</span></td>
+                            <td><span id="pm10_in_3hr">-</span></td>
+                            <td><span id="pm10_in_24hr">-</span></td>
+                            <td><span id="pm10_in_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
+            </div>
 
+            <div class="row top-buffer">
                 <!-- AQI IN BLOCK -->
-                <div class="col-md-10">
+                <div class="col-sm-10 col-lg-10">
                     <h2>Air Quality Index - Indoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
@@ -287,10 +293,10 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;PM Size</th>
-                                <th>&nbsp;1 Minute</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 min</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
@@ -304,18 +310,20 @@
                         </tr>
                         <tr>
                             <td>10 μm</td>
-                            <td><span id="pm10_in_aqi">--</span></td>
-                            <td><span id="pm10_in_aqi_1hr">--</span></td>
-                            <td><span id="pm10_in_aqi_3hr">--</span></td>
-                            <td><span id="pm10_in_aqi_24hr">--</span></td>
-                            <td><span id="pm10_in_aqi_nowcast">--</span></td>
+                            <td><span id="pm10_in_aqi">-</span></td>
+                            <td><span id="pm10_in_aqi_1hr">-</span></td>
+                            <td><span id="pm10_in_aqi_3hr">-</span></td>
+                            <td><span id="pm10_in_aqi_24hr">-</span></td>
+                            <td><span id="pm10_in_aqi_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
+            </div>
 
+            <div class="row top-buffer">
                 <!-- AQI PERCENT IN BLOCK -->
-                <div class="col-md-10">
-                    <h2>Air Quality Index Confidence (%)- Indoor</h2>
+                <div class="col-sm-10 col-lg-10">
+                    <h2>Air Quality Index Confidence (%) - Indoor</h2>
                 </div>
                 <div class="col-sm-10 col-lg-10">
                     <table id="PctInTable" style="width:100%">
@@ -323,32 +331,31 @@
                             <tr>
                                 <th>&nbsp;PM Size</th>
                                 <th>&nbsp;</th>
-                                <th>&nbsp;1 Hour</th>
-                                <th>&nbsp;3 Hour</th>
-                                <th>&nbsp;24 Hour</th>
+                                <th>&nbsp;1 hr</th>
+                                <th>&nbsp;3 hr</th>
+                                <th>&nbsp;24 hr</th>
                                 <th>&nbsp;Nowcast</th>
                             </tr>
                         </thead>
                         <tr>
                             <td>2.5 μm</td>
-                            <td>--</td>
-                            <td><span id="pm2p5_in_pct_1hr">--</span></td>
-                            <td><span id="pm2p5_in_pct_3hr">--</span></td>
-                            <td><span id="pm2p5_in_pct_24hr">--</span></td>
+                            <td>-</td>
+                            <td><span id="pm2p5_in_pct_1hr">-</span></td>
+                            <td><span id="pm2p5_in_pct_3hr">-</span></td>
+                            <td><span id="pm2p5_in_pct_24hr">-</span></td>
                             <td><span id="pm2p5_in_pct_nowcast">--</span></td>
                         </tr>
                         <tr>
                             <td>10 μm</td>
-                            <td>--</td>
-                            <td><span id="pm10_in_pct_1hr">--</span></td>
-                            <td><span id="pm10_in_pct_3hr">--</span></td>
-                            <td><span id="pm10_in_pct_24hr">--</span></td>
-                            <td><span id="pm10_in_pct_nowcast">--</span></td>
+                            <td>-</td>
+                            <td><span id="pm10_in_pct_1hr">-</span></td>
+                            <td><span id="pm10_in_pct_3hr">-</span></td>
+                            <td><span id="pm10_in_pct_24hr">-</span></td>
+                            <td><span id="pm10_in_pct_nowcast">-</span></td>
                         </tr>
                     </table>
                 </div>
-
-        </div>
+            </div>
 
         </div>
 
