@@ -51,9 +51,9 @@ $(document).ready(function() {
         $('#highHeatIndexVal').editable();
         $('#highHeatIndexTime').editable({format:"dd/mm/yy hh:ii"});
         $('#highMinTempVal').editable();
-        $('#highMinTempTime').editable({format:"dd/mm/yy"});
+        $('#highMinTempTime').editable({format:"dd/mm/yy hh:ii"});
         $('#lowMaxTempVal').editable();
-        $('#lowMaxTempTime').editable({format:"dd/mm/yy"});
+        $('#lowMaxTempTime').editable({format:"dd/mm/yy hh:ii"});
         $('#highDailyTempRangeVal').editable();
         $('#highDailyTempRangeTime').editable({format:"dd/mm/yy"});
         $('#lowDailyTempRangeVal').editable();

@@ -163,7 +163,7 @@
                     "title": "Device ID"
                 },
                 "password": {
-                    "title": "Station Key"
+                    "title": "Password"
                 },
                 "interval": {
                     "title": "Interval",

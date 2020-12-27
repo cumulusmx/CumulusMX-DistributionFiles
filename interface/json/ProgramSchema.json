@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "startuphostping": {
+            "title": "Host to PING on program start-up",
+            "type": "string"
+        },
+        "startupdelay": {
+            "title": "Startup Delay (secs)",
+            "type": "integer",
+            "minimum": 0
+        },
+        "startupdelaymaxuptime" : {
+            "title": "Max system uptime to apply the startup delay",
+            "type": "integer",
+            "minimum": 0
+        },
+        "debuglogging": {
+            "type": "boolean"
+        },
+        "datalogging": {
+            "type": "boolean"
+        },
+        "stopsecondinstance": {
+            "type": "boolean"
+        }
+    }
+}

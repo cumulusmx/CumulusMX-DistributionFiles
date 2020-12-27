@@ -473,7 +473,7 @@ var doWind = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: config.wind.units,
+            valueSuffix: ' ' + config.wind.units,
             valueDecimals: config.wind.decimals,
             xDateFormat: '%e %b %y'
         },
@@ -484,7 +484,11 @@ var doWind = function () {
             }, {
                 name: 'Wind Run',
                 yAxis: 1,
-                visible: false
+                visible: false,
+                tooltip: {
+                    valueSuffix: ' ' + config.wind.rununits,
+                    valueDecimals: 0
+                }
             }],
         rangeSelector: {
             inputEnabled: false,
