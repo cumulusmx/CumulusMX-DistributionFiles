@@ -341,6 +341,28 @@
                 }
             }
         },
+        "openweathermap": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "enabled": {
+                    "rightLabel": "Enabled"
+                },
+                "interval": {
+                    "helper":  "Interval between updates in minutes"
+                },
+                "apikey": {
+                    "helper": "Enter the API key you want to use for these uploads"
+                },
+                "stationid": {
+                    "helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you"
+                },
+                "catchup": {
+                    "rightLabel": "Catch up",
+                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                }
+            }
+        },
         "mqtt": {
             "collapsible":true,
             "collapsed": true,

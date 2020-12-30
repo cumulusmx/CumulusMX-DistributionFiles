@@ -41,6 +41,7 @@ address:
 .has-error .glyphicon
 {
     color: #b94a48;
+    margin-right: 3px;
 }
 
 /**

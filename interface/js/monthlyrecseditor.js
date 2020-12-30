@@ -45,9 +45,9 @@ $(document).ready(function() {
             $('#' + m + '-lowWindChillVal').editable();
             $('#' + m + '-lowWindChillTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-highMinTempVal').editable();
-            $('#' + m + '-highMinTempTime').editable({format:"dd/mm/yy"});
+            $('#' + m + '-highMinTempTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-lowMaxTempVal').editable();
-            $('#' + m + '-lowMaxTempTime').editable({format:"dd/mm/yy"});
+            $('#' + m + '-lowMaxTempTime').editable({format:"dd/mm/yy hh:ii"});
             $('#' + m + '-highDailyTempRangeVal').editable();
             $('#' + m + '-highDailyTempRangeTime').editable({format:"dd/mm/yy"});
             $('#' + m + '-lowDailyTempRangeVal').editable();

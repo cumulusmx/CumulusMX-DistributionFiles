@@ -531,15 +531,6 @@
                 "synchroniseforeads": {
                     "type": "boolean"
                 },
-                "debuglogging": {
-                    "type": "boolean"
-                },
-                "datalogging": {
-                    "type": "boolean"
-                },
-                "stopsecondinstance": {
-                    "type": "boolean"
-                },
                 "readreceptionstats": {
                     "type": "boolean"
                 }

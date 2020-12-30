@@ -163,7 +163,7 @@
                     "title": "Device ID"
                 },
                 "password": {
-                    "title": "Station Key"
+                    "title": "Password"
                 },
                 "interval": {
                     "title": "Interval",
@@ -374,6 +374,29 @@
                     "type": "boolean"
                 },
                 "includesolar": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "openweathermap": {
+            "title": "OpenWeatherMap",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
+                "apikey": {
+                    "title": "API key"
+                },
+                "stationid": {
+                    "title": "Station Id"
+                },
+                "catchup": {
                     "type": "boolean"
                 }
             }

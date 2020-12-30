@@ -490,18 +490,6 @@
                     "rightLabel": "Synchronise Fine Offset reads",
                     "helper": "Work around for Fine Offset console USB lockup problem"
                 },
-                "debuglogging": {
-                    "rightLabel": "Debug logging",
-                    "helper": "Enable extra diagnostic logging to the MX diags files. Changing setting here affects current session only"
-                },
-                "datalogging": {
-                    "rightLabel": "Data logging",
-                    "helper": "Enable diagnostic logging to the MX diags files of data transfers from the station. Changing setting here affects current session only"
-                },
-                "stopsecondinstance": {
-                    "rightLabel": "Stop second instance",
-                    "helper": "Prevent multiple instances of Cumulus running. This setting requires a restart to take effect"
-                },
                 "readreceptionstats": {
                     "rightLabel": "Read Davis reception stats",
                     "helper": "Read Davis reception stats to provide values for corresponding web tags"
