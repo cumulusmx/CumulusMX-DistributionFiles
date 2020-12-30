@@ -378,6 +378,29 @@
                 }
             }
         },
+        "openweathermap": {
+            "title": "OpenWeatherMap",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
+                "apikey": {
+                    "title": "API key"
+                },
+                "stationid": {
+                    "title": "Station Id"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            }
+        },
         "mqtt": {
             "title": "MQTT",
             "type": "object",
