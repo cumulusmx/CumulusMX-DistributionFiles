@@ -47,7 +47,7 @@ function changeGraph(graph) {
         case 'airquality':
             doAirQuality();
             break;
-    }
+        }
 }
 
 var doTemp = function () {
@@ -190,7 +190,7 @@ var doTemp = function () {
             }
 
             idxs.forEach(function(idx) {
-                var valueSuffix = '°' + config.temp.units;
+                var valueSuffix = ' °' + config.temp.units;
                 yaxis = 0;
 
                 if (idx in resp) {
@@ -302,7 +302,7 @@ var doPress = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: config.press.units,
+            valueSuffix: ' ' + config.press.units,
             valueDecimals: config.press.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -563,7 +563,7 @@ var doWind = function () {
         tooltip: {
             shared: true,
             crosshairs: true,
-            valueSuffix: config.wind.units,
+            valueSuffix: ' ' + config.wind.units,
             valueDecimals: config.wind.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -692,14 +692,14 @@ var doRain = function () {
             type: 'line',
             yAxis: 0,
             tooltip: {
-                valueSuffix: config.rain.units + '/hr'
+                valueSuffix: ' ' + config.rain.units + '/hr'
             }
         }, {
             name: 'Daily rain',
             type: 'area',
             yAxis: 1,
             tooltip: {
-                valueSuffix: config.rain.units
+                valueSuffix: ' ' + config.rain.units
             }
         }],
         rangeSelector: {
@@ -818,7 +818,7 @@ var doHum = function () {
         tooltip: {
             shared: true,
             crosshairs: true,
-            valueSuffix: '%',
+            valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -984,7 +984,7 @@ var doSolar = function () {
             };
             var types = {
                 SolarRad: 'area',
-                CurrentSolarMax: 'area',
+                CurrentSolarMax: 'line',
                 UV: 'line'
             };
             var yAxes = {
@@ -994,15 +994,15 @@ var doSolar = function () {
             };
             var tooltips = {
                 SolarRad: {
-                    valueSuffix: 'W/m\u00B2',
+                    valueSuffix: ' W/m\u00B2',
                     valueDecimals: 0
                 },
                 CurrentSolarMax: {
-                    valueSuffix: 'W/m\u00B2',
+                    valueSuffix: ' W/m\u00B2',
                     valueDecimals: 0
                 },
                 UV: {
-                    valueSuffix: '',
+                    valueSuffix: null,
                     valueDecimals: config.uv.decimals
                 }
             };
@@ -1128,7 +1128,7 @@ var doSunHours = function () {
             yAxis: 0,
             valueDecimals: 1,
             tooltip: {
-                valueSuffix: 'Hrs'
+                valueSuffix: ' Hrs'
             }
         }]
     };
@@ -1234,7 +1234,7 @@ var doDailyRain = function () {
             yAxis: 0,
             valueDecimals: config.rain.decimals,
             tooltip: {
-                valueSuffix: config.rain.units
+                valueSuffix: ' ' + config.rain.units
             }
         }]
     };
@@ -1347,7 +1347,7 @@ var doDailyTemp = function () {
         tooltip: {
             shared: true,
             crosshairs: true,
-            valueSuffix: '°' + config.temp.units,
+            valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e"
         },
@@ -1453,7 +1453,7 @@ var doAirQuality = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: 'µg/m³',
+            valueSuffix: ' µg/m³',
             valueDecimals: 1,
             xDateFormat: "%A, %b %e, %H:%M"
         },

@@ -38,17 +38,20 @@ CellRenderer.prototype._render = function(rowIndex, columnIndex, element, value)
 	element.setAttribute('data-title', this.column.label);
 
 	// call the specialized render method
-	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, ' &nbsp;')) : value);
+	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/  /g, ' &nbsp;')) : value);
 };
 
 CellRenderer.prototype.render = function(element, value, escapehtml) 
 {
-	var _value = escapehtml ? (typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, ' &nbsp;')) : value) : value;
+	var _value = escapehtml ? (typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/  /g, ' &nbsp;')) : value) : value;
 	element.innerHTML = _value ? _value : "";
 };
 
 CellRenderer.prototype.getDisplayValue = function(rowIndex, value) 
 {
+	// for html data type, sort and filter after replacing html entities
+	if (this.column.datatype == 'html') return html_entity_decode(value);
+			
 	return value;
 };
 
@@ -62,17 +65,17 @@ function EnumCellRenderer(config) { this.init(config); }
 EnumCellRenderer.prototype = new CellRenderer();
 EnumCellRenderer.prototype.getLabel = function(rowIndex, value)
 {
-	var label = "";
+	var label = null;
 	if (typeof value != 'undefined') {
 		value = value ? value : '';
 		var optionValues = this.column.getOptionValuesForRender(rowIndex);
 		if (optionValues && value in optionValues) label = optionValues[value];
-		if (label == "") {
+		if (label === null) {
 			var isNAN = typeof value == 'number' && isNaN(value);
 			label = isNAN ? "" : value;
 		}
 	}
-	return label;
+	return label ? label : '';
 };
 
 EnumCellRenderer.prototype.render = function(element, value)
@@ -84,7 +87,7 @@ EnumCellRenderer.prototype.render = function(element, value)
 EnumCellRenderer.prototype.getDisplayValue = function(rowIndex, value) 
 {
 	// if the column has enumerated values, sort and filter on the value label
-	return this.getLabel(rowIndex, value);
+	return value === null ? null : this.getLabel(rowIndex, value);
 };
 
 /**
@@ -115,7 +118,8 @@ NumberCellRenderer.prototype.render = function(element, value)
 	}
 
 	element.innerHTML = displayValue;
-	element.style.fontWeight = isNAN ? "normal" : "";
+	if (isNAN) EditableGrid.prototype.addClassName(element, "nan");
+	else EditableGrid.prototype.removeClassName(element, "nan");
 };
 
 /**
@@ -219,7 +223,7 @@ DateCellRenderer.prototype.render = function(cell, value)
 {
 	var date = this.editablegrid.checkDate(value);
 	if (typeof date == "object") cell.innerHTML = date.formattedDate;
-	else cell.innerHTML = value;
+	else cell.innerHTML = value ? value : "";
 	cell.style.whiteSpace = 'nowrap';
 };
 
@@ -282,7 +286,7 @@ SortHeaderRenderer.prototype.render = function(cell, value)
 		// add an arrow to indicate if sort is ascending or descending
 		if (this.editablegrid.sortedColumnName == this.columnName) {
 			cell.appendChild(document.createTextNode("\u00a0"));
-			cell.appendChild(this.editablegrid.sortDescending ? this.editablegrid.sortDownImage: this.editablegrid.sortUpImage);
+			cell.appendChild(this.editablegrid.sortDescending ? this.editablegrid.sortDownElement: this.editablegrid.sortUpElement);
 		}
 
 		// call user renderer if any
