@@ -4,6 +4,12 @@
             "collapsible":true,
             "collapsed": true,
             "fields": {
+                "hostname": {
+                    "helper": "Enter the host name of the remote FTP server. Leaving this blank suppresses all FTP activeties."
+                },
+                "ftpport": {
+                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"
+                },
                 "sslftp": {
                     "type": "select",
                     "optionLabels": [
