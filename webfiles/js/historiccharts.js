@@ -180,6 +180,11 @@ var doTemp = function () {
                             chart.yAxis[1].options.linkedTo = null;
                             chart.series[cnt].yAxis = 1;
                         }
+                    } else if (idx === 'minTemp') {
+                        chart.series[cnt].color = 'blue';
+                    } else if (idx === 'maxTemp') {
+                        chart.series[cnt].options.zIndex = 99;
+                        chart.series[cnt].color = '#ff1a1a'; // red
                     }
                     cnt++;
                 }
@@ -422,7 +427,6 @@ var doRain = function () {
         yAxis: [{
                 // left
                 title: {text: 'Rainfall (' + config.rain.units + ')'},
-                min: 0,
                 opposite: false,
                 min: 0,
                 labels: {
@@ -698,6 +702,11 @@ var doSolar = function () {
                 uvi     : 'line',
                 sunHours: 'bar'
             };
+            var colours = {
+                solarRad: 'rgb(210,255,0)',
+                uvi     : 'red',
+                sunHours: 'orange'
+            };
             var yAxes = {
                 solarRad: 'solar',
                 uvi     : 'UV',
@@ -718,6 +727,7 @@ var doSolar = function () {
                 }
             };
             var idxs = ['solarRad', 'uvi', 'sunHours'];
+            var cnt = 0;
             idxs.forEach(function(idx) {
                 if (idx in resp) {
                     if (idx === 'uvi') {
@@ -755,10 +765,17 @@ var doSolar = function () {
                     chart.addSeries({
                         name: titles[idx],
                         type: types[idx],
+                        color: colours[idx],
                         yAxis: yAxes[idx],
                         tooltip: tooltips[idx],
-                        data: resp[idx]
+                        data: resp[idx],
+                        fillOpacity: 0.2
                     }, false);
+
+                    if (idx === 'uvi') {
+                        chart.series[cnt].options.zIndex = 99;
+                    }
+                    cnt++;
                 }
             });
 

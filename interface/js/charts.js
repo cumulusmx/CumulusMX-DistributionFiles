@@ -643,7 +643,8 @@ var doRain = function () {
                 name: 'Daily rain',
                 type: 'area',
                 yAxis: 1,
-                tooltip: {valueSuffix: ' ' + config.rain.units}
+                tooltip: {valueSuffix: ' ' + config.rain.units},
+                fillOpacity: 0.3
             }],
         rangeSelector: {
             buttons: [{
@@ -907,6 +908,11 @@ var doSolar = function () {
                 CurrentSolarMax: 'area',
                 UV: 'line'
             };
+            var colours = {
+                SolarRad: 'orange',
+                UV: 'red',
+                CurrentSolarMax: 'rgb(210,255,0)'
+            };
             var yAxes = {
                 SolarRad: 0,
                 CurrentSolarMax: 0,
@@ -948,7 +954,10 @@ var doSolar = function () {
                         type: types[idx],
                         yAxis: yAxes[idx],
                         tooltip: tooltips[idx],
-                        data: resp[idx]
+                        data: resp[idx],
+                        color: colours[idx],
+                        fillOpacity: idx === 'CurrentSolarMax' ? 0.2 : 0.5,
+                        zIndex: 100 - cnt
                     }, false);
 
                     cnt++;

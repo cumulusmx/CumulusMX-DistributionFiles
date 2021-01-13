@@ -179,12 +179,11 @@ var doTemp = function () {
                     }, false);
 
                     if (idx === 'humidex') {
-                        chart.series[cnt].tooltipOptions.valueSuffix = '';
+                        chart.series[cnt].tooltipOptions.valueSuffix = null;
                         // Link Humidex and temp scales if using Celsius
-                        // For farenheight use separate scales
-                        if (config.temp.units = 'C') {
-                            chart.yAxis[1].options.title.text = '';
-                        } else {
+                        // For fahrenheit use separate scales
+                        if (config.temp.units = 'F') {
+                            chart.yAxis[1].options.title.text = null;
                             chart.yAxis[1].options.linkedTo = null;
                             chart.series[cnt].yAxis = 1;
                         }
@@ -808,6 +807,11 @@ var doSolar = function () {
                 uvi     : 'line',
                 sunHours: 'bar'
             };
+            var colours = {
+                solarRad: 'rgb(210,255,0)',
+                uvi     : 'red',
+                sunHours: 'orange'
+            };
             var yAxes = {
                 solarRad: 'solar',
                 uvi     : 'UV',
@@ -867,7 +871,9 @@ var doSolar = function () {
                         type: types[idx],
                         yAxis: yAxes[idx],
                         tooltip: tooltips[idx],
-                        data: resp[idx]
+                        data: resp[idx],
+                        color: colours[idx],
+                        fillOpacity: 0.2
                     }, false);
                 }
             });
