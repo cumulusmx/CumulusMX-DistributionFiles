@@ -174,7 +174,7 @@ var doTemp = function () {
                         chart.series[cnt].tooltipOptions.valueSuffix = '';
                         // Link Humidex and temp scales if using Celsius
                         // For Fahrenheit use separate scales
-                        if (config.temp.units = 'C') {
+                        if (config.temp.units === 'C') {
                             chart.yAxis[1].options.title.text = '';
                         } else {
                             chart.yAxis[1].options.linkedTo = null;
