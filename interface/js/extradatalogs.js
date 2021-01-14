@@ -115,7 +115,15 @@ $(document).ready(function () {
         {title:"User Temp 5"},
         {title:"User Temp 6"},
         {title:"User Temp 7"},
-        {title:"User Temp 8"}
+        {title:"User Temp 8"},
+        {title:"CO<sub>2</sub>"},
+        {title:"CO<sub>2</sub> Avg"},
+        {title:"CO<sub>2</sub> PM2.5"},
+        {title:"CO<sub>2</sub> PM2.5 Avg"},
+        {title:"CO<sub>2</sub> PM10"},
+        {title:"CO<sub>2</sub> PM10 Avg"},
+        {title:"CO<sub>2</sub> Temp"},
+        {title:"CO<sub>2</sub> Hum"},
     ];
 
     myTable = $('#datalog').dataTable({

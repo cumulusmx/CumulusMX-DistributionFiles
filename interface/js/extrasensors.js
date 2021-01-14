@@ -88,6 +88,18 @@ $(document).ready(function () {
         "ajax": '../api/extra/airqual.json'
     });
 
+    var co2Table = $('#CO2Table').DataTable({
+        "paging": false,
+        "searching": false,
+        "info": false,
+        "ordering": false,
+        "columnDefs": [
+            {"className": "left", "targets": [0,2]},
+            {"className": "right", "targets": [1]}
+        ],
+        "ajax": '../api/extra/co2sensor.json'
+    });
+
     var lightningTable = $('#LightningTable').DataTable({
         "paging": false,
         "searching": false,
@@ -120,6 +132,7 @@ $(document).ready(function () {
         soilmoistureTable.ajax.url('../api/extra/soilmoisture.json').load();
         leafTable.ajax.url('../api/extra/leaf.json').load();
         airqualTable.ajax.url('../api/extra/airqual.json').load();
+        co2Table.ajax.url('../api/extra/co2sensor.json').load();
         lightningTable.ajax.url('../api/extra/lightning.json').load();
         userTempTable.ajax.url('../api/extra/usertemp.json').load();
     }, 10000);

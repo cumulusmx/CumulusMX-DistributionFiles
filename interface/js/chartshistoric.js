@@ -124,7 +124,7 @@ var doTemp = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: '°' + config.temp.units,
+            valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: '%e %b %y'
         },
@@ -179,12 +179,11 @@ var doTemp = function () {
                     }, false);
 
                     if (idx === 'humidex') {
-                        chart.series[cnt].tooltipOptions.valueSuffix = '';
+                        chart.series[cnt].tooltipOptions.valueSuffix = null;
                         // Link Humidex and temp scales if using Celsius
                         // For fahrenheit use separate scales
-                        if (config.temp.units = 'C') {
-                            chart.yAxis[1].options.title.text = '';
-                        } else {
+                        if (config.temp.units = 'F') {
+                            chart.yAxis[1].options.title.text = null;
                             chart.yAxis[1].options.linkedTo = null;
                             chart.series[cnt].yAxis = 1;
                         }
@@ -266,7 +265,7 @@ var doPress = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: config.press.units,
+            valueSuffix: ' ' + config.press.units,
             valueDecimals: config.press.decimals,
             xDateFormat: '%e %b %y'
         },
@@ -589,12 +588,12 @@ var doRain = function () {
                 name: 'Daily rain',
                 type: 'column',
                 yAxis: 0,
-                tooltip: {valueSuffix: config.rain.units}
+                tooltip: {valueSuffix: ' ' + config.rain.units}
             }, {
                 name: 'Rain rate',
                 type: 'column',
                 yAxis: 1,
-                tooltip: {valueSuffix: config.rain.units + '/hr'},
+                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'},
                 visible: false
             }],
         rangeSelector: {
@@ -690,7 +689,7 @@ var doHum = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: '%',
+            valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
             xDateFormat: '%e %b %y'
         },
@@ -808,6 +807,11 @@ var doSolar = function () {
                 uvi     : 'line',
                 sunHours: 'bar'
             };
+            var colours = {
+                solarRad: 'rgb(210,255,0)',
+                uvi     : 'red',
+                sunHours: 'orange'
+            };
             var yAxes = {
                 solarRad: 'solar',
                 uvi     : 'UV',
@@ -815,15 +819,15 @@ var doSolar = function () {
             };
             var tooltips = {
                 solarRad: {
-                    valueSuffix: 'W/m\u00B2',
+                    valueSuffix: ' W/m\u00B2',
                     valueDecimals: 0
                 },
                 uvi: {
-                    valueSuffix: '',
+                    valueSuffix: ' ',
                     valueDecimals: config.uv.decimals
                 },
                 sunHours: {
-                    valueSuffix: 'hours',
+                    valueSuffix: ' hours',
                     valueDecimals: 0
                 }
             };
@@ -867,7 +871,9 @@ var doSolar = function () {
                         type: types[idx],
                         yAxis: yAxes[idx],
                         tooltip: tooltips[idx],
-                        data: resp[idx]
+                        data: resp[idx],
+                        color: colours[idx],
+                        fillOpacity: 0.2
                     }, false);
                 }
             });

@@ -135,6 +135,7 @@ var doTemp = function () {
         tooltip: {
             shared: true,
             split: false,
+            valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -184,7 +185,7 @@ var doTemp = function () {
             }
 
             idxs.forEach(function(idx) {
-                var valueSuffix = '°' + config.temp.units;
+                var valueSuffix = ' °' + config.temp.units;
                 yaxis = 0;
 
                 if (idx in resp) {
@@ -284,7 +285,7 @@ var doPress = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: config.press.units,
+            valueSuffix: ' ' + config.press.units,
             valueDecimals: config.press.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -521,7 +522,7 @@ var doWind = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: config.wind.units,
+            valueSuffix: ' ' + config.wind.units,
             valueDecimals: config.wind.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -637,12 +638,13 @@ var doRain = function () {
                 name: 'Rain rate',
                 type: 'line',
                 yAxis: 0,
-                tooltip: {valueSuffix: config.rain.units + '/hr'}
+                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
             }, {
                 name: 'Daily rain',
                 type: 'area',
                 yAxis: 1,
-                tooltip: {valueSuffix: config.rain.units}
+                tooltip: {valueSuffix: ' ' + config.rain.units},
+                fillOpacity: 0.3
             }],
         rangeSelector: {
             buttons: [{
@@ -748,7 +750,7 @@ var doHum = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: '%',
+            valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -906,6 +908,11 @@ var doSolar = function () {
                 CurrentSolarMax: 'area',
                 UV: 'line'
             };
+            var colours = {
+                SolarRad: 'orange',
+                UV: 'red',
+                CurrentSolarMax: 'rgb(210,255,0)'
+            };
             var yAxes = {
                 SolarRad: 0,
                 CurrentSolarMax: 0,
@@ -913,15 +920,15 @@ var doSolar = function () {
             };
             var tooltips = {
                 SolarRad: {
-                    valueSuffix: 'W/m\u00B2',
+                    valueSuffix: ' W/m\u00B2',
                     valueDecimals: 0
                 },
                 CurrentSolarMax: {
-                    valueSuffix: 'W/m\u00B2',
+                    valueSuffix: ' W/m\u00B2',
                     valueDecimals: 0
                 },
                 UV: {
-                    valueSuffix: '',
+                    valueSuffix: null,
                     valueDecimals: config.uv.decimals
                 }
             };
@@ -947,7 +954,10 @@ var doSolar = function () {
                         type: types[idx],
                         yAxis: yAxes[idx],
                         tooltip: tooltips[idx],
-                        data: resp[idx]
+                        data: resp[idx],
+                        color: colours[idx],
+                        fillOpacity: idx === 'CurrentSolarMax' ? 0.2 : 0.5,
+                        zIndex: 100 - cnt
                     }, false);
 
                     cnt++;
@@ -1037,7 +1047,7 @@ var doSunHours = function () {
                 color: 'gold',
                 yAxis: 0,
                 valueDecimals: 1,
-                tooltip: {valueSuffix: 'Hrs'}
+                tooltip: {valueSuffix: ' Hrs'}
             }]
     };
 
@@ -1131,7 +1141,7 @@ var doDailyRain = function () {
                 color: 'blue',
                 yAxis: 0,
                 valueDecimals: config.rain.decimals,
-                tooltip: {valueSuffix: config.rain.units}
+                tooltip: {valueSuffix: ' ' + config.rain.units}
             }]
     };
 
@@ -1231,7 +1241,7 @@ var doDailyTemp = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: '°' + config.temp.units,
+            valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
             xDateFormat: "%A, %b %e"
         },
@@ -1336,7 +1346,7 @@ var doAirQuality = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: 'µg/m³',
+            valueSuffix: ' µg/m³',
             valueDecimals: 1,
             xDateFormat: "%A, %b %e, %H:%M"
         },

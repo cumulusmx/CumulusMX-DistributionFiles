@@ -366,6 +366,9 @@
                 },
                 "ipaddress": {
                     "title": "IP address"
+                },
+                "macaddress": {
+                    "title": "MAC address (read the help below!)"
                 }
             }
         },

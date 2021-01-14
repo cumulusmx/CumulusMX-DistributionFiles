@@ -20,6 +20,7 @@ function image(relativePath) {
 	return "js/images/" + relativePath;
 }
 
+
 // register the function that will handle model changes
 editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) {
 
@@ -46,22 +47,56 @@ editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) 
 };
 
 
+// Override the checkbox renderer to make it accesible
+CheckboxCellRenderer.prototype.render = function(element, value)
+{
+	// convert value to boolean just in case
+	value = (value && value != 0 && value != "false") ? true : false;
+
+	// if check box already created, just update its state
+	if (element.firstChild) { element.firstChild.checked = value; return; }
+
+	// create and initialize checkbox
+	var htmlInput = document.createElement("input");
+	htmlInput.setAttribute("type", "checkbox");
+	htmlInput.setAttribute("id", this.column.name + "-" + element.rowIndex)
+	var htmlLabel = document.createElement("label");
+	htmlLabel.setAttribute("for", this.column.name + "-" + element.rowIndex)
+	htmlLabel.setAttribute("style", "position:absolute; top:-1000px");
+	htmlLabel.innerHTML = this.column.label;
+
+	// give access to the cell editor and element from the editor field
+	htmlInput.element = element;
+	htmlInput.cellrenderer = this;
+
+	// this renderer is a little special because it allows direct edition
+	var cellEditor = new CellEditor();
+	cellEditor.editablegrid = this.editablegrid;
+	cellEditor.column = this.column;
+	htmlInput.onclick = function(event) {
+		element.rowIndex = this.cellrenderer.editablegrid.getRowIndex(element.parentNode); // in case it has changed due to sorting or remove
+		element.isEditing = true;
+		cellEditor.applyEditing(element, htmlInput.checked ? true : false);
+	};
+
+	element.appendChild(htmlInput);
+	element.appendChild(htmlLabel);
+	htmlInput.checked = value;
+	htmlInput.disabled = (!this.column.editable || !this.editablegrid.isEditable(element.rowIndex, element.columnIndex));
+
+	EditableGrid.prototype.addClassName(element, "boolean");
+};
+
+
 // this function will initialize our editable grid
 EditableGrid.prototype.initializeGrid = function()
 {
 	with (this) {
-
-
-
 		// update paginator whenever the table is rendered (after a sort, filter, page change, etc.)
 		tableRendered = function() { this.updatePaginator(); };
 
-
-
 		// render the grid (parameters will be ignored if we have attached to an existing HTML table)
 		renderGrid("tablecontent", "testgrid", "tableid");
-
-
 	}
 };
 
@@ -70,7 +105,6 @@ EditableGrid.prototype.onloadJSON = function(url)
 {
 	// register the function that will be called when the XML has been fully loaded
 	this.tableLoaded = function() {
-
 		this.initializeGrid();
 	};
 

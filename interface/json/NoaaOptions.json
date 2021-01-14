@@ -10,6 +10,9 @@
         "utf8": {
             "rightLabel": "Use UTF-8 encoding"
         },
+        "dotdecimal": {
+            "rightLabel": "Force reports to use a 'dot' decimal point"
+        },
         "autosave": {
             "rightLabel": "Auto save after daily reset"
         },
