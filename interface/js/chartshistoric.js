@@ -182,10 +182,10 @@ var doTemp = function () {
                         chart.series[cnt].tooltipOptions.valueSuffix = null;
                         // Link Humidex and temp scales if using Celsius
                         // For fahrenheit use separate scales
-                        if (config.temp.units = 'F') {
+                        if (config.temp.units == 'F') {
                             chart.yAxis[1].options.title.text = null;
                             chart.yAxis[1].options.linkedTo = null;
-                            chart.series[cnt].yAxis = 1;
+                            chart.series[cnt].yAxis = chart.yAxis[1];
                         }
                     }
                     cnt++;
