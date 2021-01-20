@@ -56,6 +56,9 @@
                         },
                         "ipAddress": {
                         },
+                        "hostname": {
+                            "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
+                        },
                         "stationId": {
                             "helper": "Enter the weatherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be completed automatically"
                         }
@@ -74,6 +77,9 @@
                             "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
                         },
                         "ipAddress": {
+                        },
+                        "hostname": {
+                            "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
                         },
                         "stationId": {
                             "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"

@@ -168,27 +168,58 @@ var doTemp = function () {
                 'maxFeels' : false,
                 'humidex'  : false
              };
+             var colours = {
+                'minTemp'  : '#0000ff',
+                'maxTemp'  : '#ff1a1a',
+                'avgTemp'  : null,
+                'heatIndex': null,
+                'minApp'   : null,
+                'maxApp'   : false,
+                'minDew'   : false,
+                'maxDew'   : false,
+                'minFeels' : false,
+                'maxFeels' : false,
+                'humidex'  : false
+             }
+
             var idxs = ['minTemp', 'maxTemp', 'avgTemp', 'heatIndex', 'minApp', 'maxApp', 'minDew', 'maxDew', 'minFeels', 'maxFeels', 'humidex'];
-            var cnt = 0;
+
             idxs.forEach(function(idx) {
+                var valueSuffix = ' °' + config.temp.units;
+                yaxis = 0;
+
                 if (idx in resp) {
+                    if (idx === 'humidex') {
+                        valueSuffix = null;
+                        if (config.temp.units == 'F') {
+                            chart.yAxis[1].remove();
+                            chart.addAxis({
+                                id: 'humidex',
+                                title:{text: 'Humidex'},
+                                opposite: true,
+                                labels: {
+                                    align: 'left'
+                                },
+                                alignTicks: true,
+                                gridLineWidth: 0, // Not working?
+                                gridZIndex: -10, // Hides the grid lines for this axis
+                                showEmpty: false
+                            });
+
+                            yaxis = 'humidex';
+                        }
+                    }
+
                     chart.addSeries({
                         name: titles[idx],
                         data: resp[idx],
-                        visible: visibility[idx]
+                        color: colours[idx],
+                        visible: visibility[idx],
+                        showInNavigator: visibility[idx],
+                        yAxis: yaxis,
+                        tooltip: {valueSuffix: valueSuffix}
                     }, false);
 
-                    if (idx === 'humidex') {
-                        chart.series[cnt].tooltipOptions.valueSuffix = null;
-                        // Link Humidex and temp scales if using Celsius
-                        // For fahrenheit use separate scales
-                        if (config.temp.units == 'F') {
-                            chart.yAxis[1].options.title.text = null;
-                            chart.yAxis[1].options.linkedTo = null;
-                            chart.series[cnt].yAxis = chart.yAxis[1];
-                        }
-                    }
-                    cnt++;
                 }
             });
             chart.hideLoading();
@@ -546,7 +577,8 @@ var doRain = function () {
                 labels: {
                     align: 'left',
                     x: 5
-                }
+                },
+                showEmpty: false
             }],
         legend: {enabled: true},
         plotOptions: {
@@ -588,7 +620,7 @@ var doRain = function () {
                 name: 'Daily rain',
                 type: 'column',
                 yAxis: 0,
-                tooltip: {valueSuffix: ' ' + config.rain.units}
+                tooltip: {valueSuffix: ' ' + config.rain.units},
             }, {
                 name: 'Rain rate',
                 type: 'column',
@@ -752,17 +784,19 @@ var doSolar = function () {
         yAxis: [],
         legend: {enabled: true},
         plotOptions: {
+            boostThreshold: 0,
             series: {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
                             size: 5,
                             opacity: 0.25
                         }
-
                     }
                 },
                 cursor: 'pointer',
@@ -805,17 +839,12 @@ var doSolar = function () {
             var types = {
                 solarRad: 'area',
                 uvi     : 'line',
-                sunHours: 'bar'
+                sunHours: 'column'
             };
             var colours = {
-                solarRad: 'rgb(210,255,0)',
-                uvi     : 'red',
-                sunHours: 'orange'
-            };
-            var yAxes = {
-                solarRad: 'solar',
-                uvi     : 'UV',
-                sunHours: 'sunHrs'
+                solarRad: 'rgb(200,200,100)',
+                uvi     : 'rgb(0,0,255)',
+                sunHours: 'rgb(255,165,0)'
             };
             var tooltips = {
                 solarRad: {
@@ -831,50 +860,84 @@ var doSolar = function () {
                     valueDecimals: 0
                 }
             };
+            var indexes = {
+                solarRad: 1,
+                uvi     : 2,
+                sunHours: 0
+            }
+            var fillColor = {
+                solarRad: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, colours.solarRad],
+                        [1, Highcharts.color(colours.solarRad).setOpacity(0).get('rgba')]
+                    ]
+                },
+                uvi     : null,
+                sunHours: null
+            };
             var idxs = ['solarRad', 'uvi', 'sunHours'];
+            var cnt = 0;
+
             idxs.forEach(function(idx) {
                 if (idx in resp) {
                     if (idx === 'uvi') {
                         chart.addAxis({
-                            id: 'UV',
+                            id: idx,
                             title: {text: 'UV Index'},
                             opposite: true,
                             min: 0,
                             labels: {
                                 align: 'left'
-                            }
+                            },
+                            showEmpty: false
                         });
                     } else if (idx === 'sunHours') {
                         chart.addAxis({
-                            id: 'sunHrs',
+                            id: idx,
                             title: {text: 'Sunshine Hours'},
                             opposite: true,
                             min: 0,
                             labels: {
                                 align: 'left'
-                            }
+                            },
+                            showEmpty: false
                         });
                     } else if (idx === 'solarRad') {
                         chart.addAxis({
-                            id: 'solar',
+                            id: idx,
                             title: {text: 'Solar Radiation (W/m\u00B2)'},
                             min: 0,
                             opposite: false,
                             labels: {
                                 align: 'right',
                                 x: -5
-                            }
+                            },
+                            showEmpty: false
                         });
                     }
+
                     chart.addSeries({
                         name: titles[idx],
                         type: types[idx],
-                        yAxis: yAxes[idx],
+                        yAxis: idx,
                         tooltip: tooltips[idx],
                         data: resp[idx],
                         color: colours[idx],
-                        fillOpacity: 0.2
+                        showInNavigator: idx !== 'solarRad',
+                        index: indexes[idx],
+                        fillColor: fillColor[idx]
                     }, false);
+
+                    if (idx === 'uvi') {
+                        chart.series[cnt].options.zIndex = 99;
+                    }
+                    cnt++;
                 }
             });
 

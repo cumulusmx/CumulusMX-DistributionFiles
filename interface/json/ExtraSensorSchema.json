@@ -35,6 +35,9 @@
                         "ipAddress": {
                             "title": "IP Address"
                         },
+                        "hostname": {
+                            "title": "Airlink Hostname"
+                        },
                         "stationId": {
                             "title": "Station Id"
                         }
@@ -52,6 +55,9 @@
                         },
                         "ipAddress": {
                             "title": "IP Address"
+                        },
+                        "hostname": {
+                            "title": "Airlink Hostname"
                         },
                         "stationId": {
                             "title": "Station ID"

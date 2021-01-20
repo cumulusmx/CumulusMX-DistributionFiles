@@ -97,6 +97,7 @@ var doTemp = function () {
         }, {
             // right
             gridLineWidth: 0,
+            linkedTo: 0,
             opposite: true,
             labels: {
                 align: 'left',
@@ -146,18 +147,23 @@ var doTemp = function () {
         series: [],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -180,14 +186,7 @@ var doTemp = function () {
                 'intemp'   : 'Inside'
             }
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
-            var cnt = 0;
             var yaxis = 0;
-
-            // Do we link the yAxes? Yes if no Humidex, or we have Huidex and we are using Celcius
-            if (config.temp.units == 'C' || resp.humidex == null) {
-                chart.yAxis[1].options.linkedTo = 0;
-                chart.yAxis[1].isLinked = true;
-            }
 
             idxs.forEach(function(idx) {
                 var valueSuffix = ' °' + config.temp.units;
@@ -197,8 +196,21 @@ var doTemp = function () {
                     if (idx === 'humidex') {
                         valueSuffix = null;
                         if (config.temp.units == 'F') {
-                            chart.yAxis[1].options.title.text = 'Humidex';
-                            yaxis = 1
+                            chart.yAxis[1].remove();
+                            chart.addAxis({
+                                id: 'humidex',
+                                title:{text: 'Humidex'},
+                                opposite: true,
+                                labels: {
+                                    align: 'left'
+                                },
+                                alignTicks: true,
+                                gridLineWidth: 0, // Not working?
+                                gridZIndex: -10, // Hides the grid lines for this axis
+                                showEmpty: false
+                            }, false, false);
+
+                            yaxis = 'humidex';
                         }
                     }
 
@@ -210,9 +222,8 @@ var doTemp = function () {
                     }, false);
 
                     if (idx === 'temp') {
-                        chart.series[cnt].options.zIndex = 99;
+                        chart.series[chart.series.length - 1].options.zIndex = 99;
                     }
-                    cnt++;
                 }
             });
 
@@ -311,18 +322,23 @@ var doPress = function () {
         }],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -451,18 +467,23 @@ var doWindDir = function () {
         }],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -574,18 +595,23 @@ var doWind = function () {
         }],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -637,7 +663,8 @@ var doRain = function () {
             labels: {
                 align: 'right',
                 x: -5
-            }
+            },
+            showEmpty: false
         }, {
             // right
             opposite: true,
@@ -655,9 +682,11 @@ var doRain = function () {
         },
         plotOptions: {
             series: {
+                boostThreshold: 0,
                 dataGrouping: {
                     enabled: false
                 },
+                showInNavigator: true,
                 states: {
                     hover: {
                         halo: {
@@ -688,35 +717,36 @@ var doRain = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-            name: 'Rain rate',
-            type: 'line',
-            yAxis: 0,
-            tooltip: {
-                valueSuffix: ' ' + config.rain.units + '/hr'
-            }
-        }, {
-            name: 'Daily rain',
-            type: 'area',
-            yAxis: 1,
-            tooltip: {
-                valueSuffix: ' ' + config.rain.units
-            },
-            fillOpacity: 0.3
+                name: 'Daily rain',
+                type: 'area',
+                yAxis: 1,
+                tooltip: {valueSuffix: ' ' + config.rain.units},
+                fillOpacity: 0.3
+            }, {
+                name: 'Rain rate',
+                type: 'line',
+                yAxis: 0,
+                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
         }],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -729,8 +759,8 @@ var doRain = function () {
         cache: false,
         success: function (resp) {
             chart.hideLoading();
-            chart.series[0].setData(resp.rrate);
-            chart.series[1].setData(resp.rfall);
+            chart.series[0].setData(resp.rfall);
+            chart.series[1].setData(resp.rrate);
         }
     });
 };
@@ -826,18 +856,23 @@ var doHum = function () {
         series: [],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -895,35 +930,17 @@ var doSolar = function () {
                 year: '%Y'
             }
         },
-        yAxis: [{
-            // left
-            title: {
-                text: 'Solar Radiation (W/m\u00B2)'
-            },
-            min: 0,
-            opposite: false,
-            labels: {
-                align: 'right',
-                x: -5
-            }
-        }, {
-            // right
-            opposite: true,
-            linkedTo: 0,
-            min: 0,
-            labels: {
-                align: 'left',
-                x: 5
-            }
-        }],
+        yAxis: [],
         legend: {
             enabled: true
         },
         plotOptions: {
             series: {
+                boostThreshold: 0,
                 dataGrouping: {
                     enabled: false
                 },
+                showInNavigator: true,
                 states: {
                     hover: {
                         halo: {
@@ -955,18 +972,23 @@ var doSolar = function () {
         series: [],
         rangeSelector: {
             buttons: [{
-                count: 6,
-                type: 'hour',
-                text: '6h'
-            }, {
-                count: 12,
-                type: 'hour',
-                text: '12h'
-            }, {
-                type: 'all',
-                text: 'All'
-            }],
-            inputEnabled: false
+                    count: 12,
+                    type: 'hour',
+                    text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+            inputEnabled: false,
+            selected: 1
         }
     };
 
@@ -989,14 +1011,9 @@ var doSolar = function () {
                 UV: 'line'
             };
             var colours = {
-                SolarRad: 'orange',
-                UV: 'red',
-                CurrentSolarMax: 'rgb(210,255,0)'
-            };
-            var yAxes = {
-                SolarRad: 0,
-                CurrentSolarMax: 0,
-                UV: 'UV'
+                SolarRad: 'rgb(255,165,0)',
+                CurrentSolarMax: 'rgb(128,128,128)',
+                UV: 'rgb(0,0,255)'
             };
             var tooltips = {
                 SolarRad: {
@@ -1012,27 +1029,42 @@ var doSolar = function () {
                     valueDecimals: config.uv.decimals
                 }
             };
+
             var idxs = ['SolarRad', 'CurrentSolarMax', 'UV'];
             var cnt = 0;
+
             idxs.forEach(function(idx) {
                 if (idx in resp) {
                     if (idx === 'UV') {
-                        chart.yAxis[1].remove();
                         chart.addAxis({
-                            id: 'UV',
+                            id: 'uv',
                             title:{text: 'UV Index'},
                             opposite: true,
                             min: 0,
                             labels: {
                                 align: 'left'
-                            }
+                            },
+                            showEmpty: false
+                        });
+                    } else if (idx === 'SolarRad') {
+                        chart.addAxis({
+                            id: 'solar',
+                            title: {text: 'Solar Radiation (W/m\u00B2)'},
+                            min: 0,
+                            opposite: false,
+                            labels: {
+                                align: 'right',
+                                x: -5
+                            },
+                            showEmpty: false
                         });
                     }
+
 
                     chart.addSeries({
                         name: titles[idx],
                         type: types[idx],
-                        yAxis: yAxes[idx],
+                        yAxis: idx === 'UV' ? 'uv' : 'solar',
                         tooltip: tooltips[idx],
                         data: resp[idx],
                         color: colours[idx],
@@ -1105,6 +1137,8 @@ var doSunHours = function () {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
@@ -1133,7 +1167,7 @@ var doSunHours = function () {
         series: [{
             name: 'Sunshine Hours',
             type: 'column',
-            color: 'gold',
+            color: 'rgb(255,165,0)',
             yAxis: 0,
             valueDecimals: 1,
             tooltip: {
@@ -1211,6 +1245,8 @@ var doDailyRain = function () {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
@@ -1469,13 +1505,17 @@ var doAirQuality = function () {
         series: [],
         rangeSelector: {
             buttons: [{
-                    count: 6,
-                    type: 'hour',
-                    text: '6h'
-                }, {
                     count: 12,
                     type: 'hour',
                     text: '12h'
+                }, {
+                    count: 24,
+                    type: 'hour',
+                    text: '24h'
+                }, {
+                    count: 2,
+                    type: 'day',
+                    text: '2d'
                 }, {
                     type: 'all',
                     text: 'All'
