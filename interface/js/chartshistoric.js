@@ -168,9 +168,22 @@ var doTemp = function () {
                 'maxFeels' : false,
                 'humidex'  : false
              };
+             var colours = {
+                'minTemp'  : '#0000ff',
+                'maxTemp'  : '#ff1a1a',
+                'avgTemp'  : null,
+                'heatIndex': null,
+                'minApp'   : null,
+                'maxApp'   : false,
+                'minDew'   : false,
+                'maxDew'   : false,
+                'minFeels' : false,
+                'maxFeels' : false,
+                'humidex'  : false
+             }
 
             var idxs = ['minTemp', 'maxTemp', 'avgTemp', 'heatIndex', 'minApp', 'maxApp', 'minDew', 'maxDew', 'minFeels', 'maxFeels', 'humidex'];
-            var cnt = 0;
+
             idxs.forEach(function(idx) {
                 var valueSuffix = ' °' + config.temp.units;
                 yaxis = 0;
@@ -200,12 +213,13 @@ var doTemp = function () {
                     chart.addSeries({
                         name: titles[idx],
                         data: resp[idx],
+                        color: colours[idx],
                         visible: visibility[idx],
+                        showInNavigator: visibility[idx],
                         yAxis: yaxis,
                         tooltip: {valueSuffix: valueSuffix}
                     }, false);
 
-                    cnt++;
                 }
             });
             chart.hideLoading();
@@ -777,7 +791,6 @@ var doSolar = function () {
                 },
                 pointPadding: 0,
                 groupPadding: 0.1,
-                showInNavigator: true,
                 states: {
                     hover: {
                         halo: {
@@ -916,6 +929,7 @@ var doSolar = function () {
                         tooltip: tooltips[idx],
                         data: resp[idx],
                         color: colours[idx],
+                        showInNavigator: idx !== 'solarRad',
                         index: indexes[idx],
                         fillColor: fillColor[idx]
                     }, false);

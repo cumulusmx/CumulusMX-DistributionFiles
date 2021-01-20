@@ -186,7 +186,6 @@ var doTemp = function () {
                 'intemp'   : 'Inside'
             }
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
-            var cnt = 0;
             var yaxis = 0;
 
             idxs.forEach(function(idx) {
@@ -209,7 +208,7 @@ var doTemp = function () {
                                 gridLineWidth: 0, // Not working?
                                 gridZIndex: -10, // Hides the grid lines for this axis
                                 showEmpty: false
-                            });
+                            }, false, false);
 
                             yaxis = 'humidex';
                         }
@@ -223,9 +222,8 @@ var doTemp = function () {
                     }, false);
 
                     if (idx === 'temp') {
-                        chart.series[cnt].options.zIndex = 99;
+                        chart.series[chart.series.length - 1].options.zIndex = 99;
                     }
-                    cnt++;
                 }
             });
 
@@ -1139,6 +1137,8 @@ var doSunHours = function () {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
@@ -1245,6 +1245,8 @@ var doDailyRain = function () {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
