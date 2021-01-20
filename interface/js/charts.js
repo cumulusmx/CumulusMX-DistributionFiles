@@ -1143,6 +1143,8 @@ var doDailyRain = function () {
                 dataGrouping: {
                     enabled: false
                 },
+                pointPadding: 0,
+                groupPadding: 0.1,
                 states: {
                     hover: {
                         halo: {
