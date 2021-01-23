@@ -955,12 +955,13 @@ var doSolar = function () {
 
             var idxs = ['SolarRad', 'CurrentSolarMax', 'UV'];
             var cnt = 0;
+            var solarAxisCreated = false;
 
             idxs.forEach(function(idx) {
                 if (idx in resp) {
                     if (idx === 'UV') {
                         chart.addAxis({
-                            id: 'UV',
+                            id: 'uv',
                             title:{text: 'UV Index'},
                             opposite: true,
                             min: 0,
@@ -968,7 +969,7 @@ var doSolar = function () {
                                 align: 'left'
                             }
                         });
-                    } else if (idx === 'SolarRad') {
+                    } else if (!solarAxisCreated) {
                         chart.addAxis({
                             id: 'solar',
                             title: {text: 'Solar Radiation (W/m\u00B2)'},
@@ -980,6 +981,7 @@ var doSolar = function () {
                             },
                             showEmpty: false
                         });
+                        solarAxisCreated = true;
                     }
 
                     chart.addSeries({
