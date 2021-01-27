@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Last updated 24/01/2021 19:51 -->
         <meta charset="utf-8">
         <title>Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +20,8 @@
         <!-- Highcharts -->
         <script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
         <script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
         <script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
+        <script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
 
         <link href="css/cumulus.css" rel="stylesheet">
         <script src="js/chartscompare.js"></script>
@@ -30,12 +31,44 @@
                 padding-top: 60px;
                 background-color:lightsteelblue;
             }
-            #chartcontainer  {
+            #chartcontainer {
                 min-height: 700px;
                 height: 700px;
                 margin-top:50px;
                 margin-bottom: 10px;
                 background-color:white;
+            }
+            .no-wrapping {
+                display: inline-block;
+                white-space: nowrap;
+            }
+            .selecta-area {
+                display: flex;
+            }
+            @media only screen and (min-width: 0px) and (max-width: 370px) {
+                .selecta-area {
+                    flex-wrap: wrap;
+                }
+                .selecta-1 .selecta-2 {
+                    min-width: 100%;
+                }
+            }
+            @media only screen and (min-width: 371px) and (max-width: 5000px) {
+                .selecta-area {
+                    text-align: center;
+                }
+                .selecta-1 {
+                    flex: 50%;
+                    margin-left: 0;
+                    margin-right: 15px;
+                    text-align: left;
+                }
+                .selecta-2 {
+                    flex: 50%;
+                    margin-left: 15px;
+                    margin-right: 0;
+                    text-align: right;
+                }
             }
         </style>
     </head>
@@ -123,17 +156,42 @@
         <div class="container">
             <div id="chartcontainer">
             </div>
-
-            <div class="text-center">
-                <div class="btn-group"  id="btngroup" data-toggle="buttons">
-                    <select class="select" name="data0" id="data0" onchange="updateChart(this)"></select>
-                    <select class="select" name="data1" id="data1" onchange="updateChart(this)"></select>
-                    <select class="select" name="data2" id="data2" onchange="updateChart(this)"></select>
-                    <select class="select" name="data3" id="data3" onchange="updateChart(this)"></select>
+            <div class="selecta-area">
+                <div class="selecta-1">
+                    <div class="btn-group"  id="btngroup1" data-toggle="buttons">
+                        <div class="no-wrapping">
+                            <select class="select" name="data0" id="data0" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour0" id="colour0" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data1" id="data1" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour1" id="colour1" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data2" id="data2" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour2" id="colour2" onchange="updateColour(this)"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="selecta-2">
+                    <div class="btn-group"  id="btngroup2" data-toggle="buttons">
+                        <div class="no-wrapping">
+                            <select class="select" name="data3" id="data3" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour3" id="colour3" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data4" id="data4" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour4" id="colour4" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data5" id="data5" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour5" id="colour5" onchange="updateColour(this)"></select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br>
         </div>
+        <br>
 
         <!-- FOOTER -->
         <div id="footerwrap">
