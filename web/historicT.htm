@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
 		<meta name="Description" content="<#location> weather data">
 		<meta name="Keywords" content="Cumulus, <#location> weather data, weather, data, weather station">
 		<title><#location> weather</title>
@@ -92,7 +92,7 @@
 				<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph('solar');">
 			</div>
 			<div class="td_navigation_bar">
-				:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><#forum><wbr><#webcam>
+				:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><#forum><wbr><#webcam>
 			</div>
 			<p class="credits"><br>
 				charts by <a href="https://www.highcharts.com/" target="_blank">Highcharts</a><br>
@@ -101,9 +101,10 @@
 			</p>
 		</div>
 		<script src="lib/jquery/jquery-latest.min.js"></script>
-		<script src="https://code.highcharts.com/stock/8.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/8.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/8.0/themes/grid.js"></script>
+		<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
+		<script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
 		<script src="js/historiccharts.js"></script>
 	</body>
 </html>

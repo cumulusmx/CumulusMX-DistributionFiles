@@ -1,47 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
+        <!-- Last updated 24/01/2021 19:51 -->
         <meta charset="utf-8">
         <title>Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
 
-
-        <link href="css/font-style.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <!-- jquery -->
         <script src="lib/jquery/jquery-latest.min.js"></script>
         <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <!-- bootstrap -->
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" href="lib/datatables/datatables.min.css">
+        <!-- Highcharts -->
+        <script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
+        <script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
+        <script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
 
-        <!-- DataTables -->
-        <script src="lib/datatables/datatables.min.js"></script>
-
-        <!-- datepicker -->
-        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-        <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-        <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
-
-        <script src ="js/extradatalogs.js"></script>
         <link href="css/cumulus.css" rel="stylesheet">
+        <script src="js/chartscompare.js"></script>
 
-        <style>
-            .form-group {
-                margin-bottom: 0px;
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                background-color:lightsteelblue;
+            }
+            #chartcontainer {
+                min-height: 700px;
+                height: 700px;
+                margin-top:50px;
+                margin-bottom: 10px;
+                background-color:white;
+            }
+            .no-wrapping {
+                display: inline-block;
+                white-space: nowrap;
+            }
+            .selecta-area {
+                display: flex;
+            }
+            @media only screen and (min-width: 0px) and (max-width: 370px) {
+                .selecta-area {
+                    flex-wrap: wrap;
+                }
+                .selecta-1 .selecta-2 {
+                    min-width: 100%;
+                }
+            }
+            @media only screen and (min-width: 371px) and (max-width: 5000px) {
+                .selecta-area {
+                    text-align: center;
+                }
+                .selecta-1 {
+                    flex: 50%;
+                    margin-left: 0;
+                    margin-right: 15px;
+                    text-align: left;
+                }
+                .selecta-2 {
+                    flex: 50%;
+                    margin-left: 15px;
+                    margin-right: 0;
+                    text-align: right;
+                }
             }
         </style>
     </head>
     <body>
-
         <!-- NAVIGATION MENU -->
         <div class="navbar-nav navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -57,11 +88,11 @@
                         <li><a href="index.html">Dashboard</a></li>
                         <li><a href="now.html">Now</a></li>
                         <li><a href="gauges.html">Gauges</a></li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="charts.html">Recent Charts</a></li>
-                                <li><a href="chartscompare.html">Recent SelectaChart</a></li>
+                                <li class="active"><a href="chartscompare.html">Recent SelectaChart</a></li>
                                 <li><a href="chartshistoric.html">Historic Charts</a></li>
                             </ul>
                         </li>
@@ -74,11 +105,11 @@
                                 <li><a href="airlink.html">AirLink sensors</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="datalogs.html">Data logs</a></li>
-                                <li class="active"><a href="extradatalogs.html">Extra data logs</a></li>
+                                <li><a href="extradatalogs.html">Extra data logs</a></li>
                                 <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
@@ -122,22 +153,47 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <div class="container" style="margin-right:10px;margin-left:10px">
-            <div class="row top-buffer">
-                <div class="col-md-12">
-                    <h1>Extra data log viewer/editor</h1>
+        <div class="container">
+            <div id="chartcontainer">
+            </div>
+            <div class="selecta-area">
+                <div class="selecta-1">
+                    <div class="btn-group"  id="btngroup1" data-toggle="buttons">
+                        <div class="no-wrapping">
+                            <select class="select" name="data0" id="data0" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour0" id="colour0" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data1" id="data1" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour1" id="colour1" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data2" id="data2" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour2" id="colour2" onchange="updateColour(this)"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="selecta-2">
+                    <div class="btn-group"  id="btngroup2" data-toggle="buttons">
+                        <div class="no-wrapping">
+                            <select class="select" name="data3" id="data3" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour3" id="colour3" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data4" id="data4" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour4" id="colour4" onchange="updateColour(this)"></select>
+                        </div>
+                        <div class="no-wrapping">
+                            <select class="select" name="data5" id="data5" onchange="procDataSelect(this)"></select>
+                            <select class="select" name="colour5" id="colour5" onchange="updateColour(this)"></select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                Select month:&nbsp;<input type="text" data-date-format="mm/yyyy" id="datepicker" >
-                <button type="button" class="btn btn-default" onclick="load()">Load</button>
-
-            </div>
-            <div class="row top-buffer">
-                <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
-            </div>
         </div>
+        <br>
 
+        <!-- FOOTER -->
         <div id="footerwrap">
             <footer class="clearfix"></footer>
             <div class="container">
@@ -149,6 +205,5 @@
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /footerwrap -->
-
     </body>
 </html>

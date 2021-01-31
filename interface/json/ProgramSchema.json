@@ -5,6 +5,11 @@
             "title": "Host to PING on program start-up",
             "type": "string"
         },
+        "startuppingescape": {
+            "title": "PING escape time (mins)",
+            "type": "integer",
+            "minimum": 1
+        },
         "startupdelay": {
             "title": "Startup Delay (secs)",
             "type": "integer",

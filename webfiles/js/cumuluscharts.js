@@ -1032,6 +1032,7 @@ var doSolar = function () {
 
             var idxs = ['SolarRad', 'CurrentSolarMax', 'UV'];
             var cnt = 0;
+            var solarAxisCreated = false;
 
             idxs.forEach(function(idx) {
                 if (idx in resp) {
@@ -1046,7 +1047,7 @@ var doSolar = function () {
                             },
                             showEmpty: false
                         });
-                    } else if (idx === 'SolarRad') {
+                    } else if (!solarAxisCreated) {
                         chart.addAxis({
                             id: 'solar',
                             title: {text: 'Solar Radiation (W/m\u00B2)'},
@@ -1058,6 +1059,7 @@ var doSolar = function () {
                             },
                             showEmpty: false
                         });
+                        solarAxisCreated = true;
                     }
 
 

@@ -187,6 +187,9 @@ $(document).ready(function () {
                             console.log('Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
+                        if (id == '#AlarmUpgrade') {
+                            $(id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+                        }
                         alarmState[key] = true;
                     }
                 } else {
