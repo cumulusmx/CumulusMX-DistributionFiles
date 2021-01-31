@@ -198,3 +198,16 @@ td {
 	font-weight: 400;
 	background-position: left;
 }
+
+@media only screen and (min-width: 0px) and (max-width: 800px) {
+	#content {
+		margin-left: 0%;
+		margin-right:0%
+	}
+}
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
+	#content {
+		margin-left: 5%;
+		margin-right:5%
+	}
+}

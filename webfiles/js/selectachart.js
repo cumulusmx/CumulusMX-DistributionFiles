@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2021/01/26 23:13:31
+// Last modified: 2021/01/29 12:01:36
 
 var chart, config, options;
 var settings;
@@ -194,9 +194,12 @@ var procDataSelect = function (sel) {
     var num = +id.slice(-1);
     var val = sel.value;
 
-    // Has this series already been selected?
+    // Has this series already been selected? If so set the dropdown back to its previous value, then abort
     if (val != '0' &&  settings.series.indexOf(val) != -1) {
-        $('#' + id).val(txtSelect);
+        if (settings.series[num] == "0")
+            $('#' + id).val(txtSelect);
+        else
+            $('#' + id).val(settings.series[num]);
         return;
     }
 
@@ -373,7 +376,7 @@ var clearSeries = function (val) {
         chart.navigator.update();
         chart.redraw();
     }
-}
+};
 
 
 var checkAxisExists = function (name) {
