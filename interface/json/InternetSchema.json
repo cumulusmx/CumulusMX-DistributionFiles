@@ -14,22 +14,12 @@
                     "minimum": 0
                 },
                 "sslftp": {
-                    "type":"number",
                     "title": "Select the FTP Protocol to use",
                     "enum": [
                         0,
                         1,
                         2
                     ]
-                },
-                "directory": {
-                    "title": "Remote FTP Directory"
-                },
-                "username": {
-                    "title": "Username"
-                },
-                "password": {
-                    "title": "Password"
                 },
                 "sshAuth": {
                     "type": "string",
@@ -43,12 +33,27 @@
                 "pskFile": {
                     "title": "Pre-shared Private Key file for SFTP"
                 },
+                "directory": {
+                    "title": "Remote FTP Directory"
+                },
+                "username": {
+                    "title": "Username"
+                },
+                "password": {
+                    "title": "Password"
+                },
                 "forumurl": {
-                    "title": "Forum URL"
+                    "title": "Forum URL",
+                    "type": "uri"
                 },
                 "webcamurl": {
-                    "title": "Webcam URL"
+                    "title": "Webcam URL",
+                    "type": "uri"
                 }
+            },
+            "dependencies": {
+                "sshAuth": ["sslftp"],
+                "pskFile": ["sshAuth"]
             }
         },
         "websettings": {
@@ -62,9 +67,6 @@
                     "type": "boolean"
                 },
                 "includegraphdatafiles": {
-                    "type": "boolean"
-                },
-                "includemoonimage": {
                     "type": "boolean"
                 },
                 "activeftp": {
@@ -150,6 +152,12 @@
                 "sendlocation": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "sendlocation": ["enabled"]
             }
         },
         "wunderground": {
@@ -191,6 +199,18 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "rapidfire": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "sendavgwind": ["enabled"],
+                "includeaq": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "windy": {
@@ -220,6 +240,13 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationidx": ["enabled"],
+                "apikey": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "pwsweather": {
@@ -249,6 +276,14 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "wow": {
@@ -278,6 +313,14 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "cwop": {
@@ -310,6 +353,14 @@
                     "title": "",
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "id": ["enabled"],
+                "password": ["enabled"],
+                "server": ["enabled"],
+                "port": ["enabled"],
+                "interval": ["enabled"],
+                "includesolar": ["enabled"]
             }
         },
         "awekas": {
@@ -355,6 +406,19 @@
                 "includeaq": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "lang": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "includesoiltemp": ["enabled"],
+                "includesoilmoisture": ["enabled"],
+                "includeleafwetness": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeaq": ["enabled"]
             }
         },
         "weathercloud": {
@@ -376,6 +440,12 @@
                 "includesolar": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "wid": ["enabled"],
+                "key": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"]
             }
         },
         "openweathermap": {
@@ -399,6 +469,12 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "interval": ["enabled"],
+                "apikey": ["enabled"],
+                "stationid": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "mqtt": {
@@ -439,6 +515,11 @@
                         "template": {
                             "title": "Template File"
                         }
+                    },
+                    "dependencies": {
+                        "retained": ["enabled"],
+                        "topic": ["enabled"],
+                        "template": ["enabled"]
                     }
                 },
                 "interval": {
@@ -462,6 +543,12 @@
                         "template": {
                             "title": "Template File"
                         }
+                    },
+                    "dependencies": {
+                        "retained": ["enabled"],
+                        "time": ["enabled"],
+                        "topic": ["enabled"],
+                        "template": ["enabled"]
                     }
                 }
             }
@@ -471,6 +558,9 @@
             "type": "object",
             "properties": {
                 "enabled": {
+                    "type": "boolean"
+                },
+                "includemoonimage": {
                     "type": "boolean"
                 },
                 "size": {
@@ -483,6 +573,11 @@
                     "title": "FTP folder",
                     "type": "string"
                 }
+            },
+            "dependencies": {
+                "includemoonimage": ["enabled"],
+                "size": ["enabled"],
+                "ftpdest": ["enabled"]
             }
         },
         "proxies": {
@@ -531,6 +626,10 @@
                             "title": "Interval (seconds)",
                             "type": "number"
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "interval": ["enabled"]
                     }
                 },
                 "customminutes": {
@@ -560,6 +659,10 @@
                                 11
                             ]
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "intervalindex": ["enabled"]
                     }
                 },
                 "customrollover": {
@@ -572,6 +675,9 @@
                         "url": {
                             "title": "HTTP URL"
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"]
                     }
                 }
             }

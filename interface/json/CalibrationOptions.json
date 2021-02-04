@@ -1,16 +1,20 @@
 ﻿{
     "fields": {
         "offsets": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true
         },
         "multipliers": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true
         },
         "spikeremoval": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true
         },
         "limits": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true
         },
         "log": {
             "rightLabel": "Log spike and limit violations to error log"

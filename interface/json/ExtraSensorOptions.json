@@ -2,7 +2,7 @@
     "fields": {
         "primaryaqsensor": {
             "optionLabels": [
-                "Undefined",
+                "No Sensor",
                 "Davis AirLink Outdoor",
                 "Davis AirLink Indoor",
                 "Ecowitt Sensor 1",
@@ -11,6 +11,7 @@
                 "Ecowitt Sensor 4",
                 "Ecowitt CO₂ Sensor"
             ],
+            "sort": false,
             "removeDefaultNone": true,
             "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
         },
@@ -26,6 +27,7 @@
                 "Netherlands - LKI",
                 "Belgium - BelAQI"
             ],
+            "sort": false,
             "removeDefaultNone": true
         },
         "airLink": {
@@ -42,19 +44,20 @@
                     "rightLabel": "Use automatic IP address discovery and updates",
                     "helper": "NOTE: only enable this if you have a single AirLink device and it uses DCHP"
                 },
+                "indoorenabled": {
+                    "rightLabel": "Enable Indoor AirLink",
+                    "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
+                },
                 "indoor": {
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable Indoor AirLink",
-                            "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
-                        },
                         "isNode": {
                             "rightLabel": "This AirLink has been added as Node to another station",
                             "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
                         },
                         "ipAddress": {
+                            "type": "ipv4"
                         },
                         "hostname": {
                             "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
@@ -62,21 +65,25 @@
                         "stationId": {
                             "helper": "Enter the weatherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be completed automatically"
                         }
+                    },
+                    "dependencies": {
+                        "indoorenabled": true
                     }
+                },
+                "outdoorenabled": {
+                    "rightLabel": "Enable Outdoor AirLink",
+                    "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
                 },
                 "outdoor": {
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable Outdoor AirLink",
-                            "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
-                        },
                         "isNode": {
                             "rightLabel": "This AirLink has been added as Node to another station",
                             "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
                         },
                         "ipAddress": {
+                            "type": "ipv4"
                         },
                         "hostname": {
                             "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
@@ -84,6 +91,9 @@
                         "stationId": {
                             "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
                         }
+                    },
+                    "dependencies": {
+                        "outdoorenabled": true
                     }
                 }
             }
@@ -102,13 +112,13 @@
             "collapsible":true,
             "collapsed": true,
             "fields": {
+                "dev1enabled": {
+                    "rightLabel": "Enable RG-11 device 1"
+                },
                 "port1": {
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable RG-11 device 1"
-                        },
                         "commPort": {
                         },
                         "tipMode": {
@@ -122,15 +132,18 @@
                             "rightLabel": "Use DTR/DSR mode",
                             "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
                         }
+                    },
+                    "dependencies": {
+                        "dev1enabled": true
                     }
+                },
+                "dev2enabled": {
+                    "rightLabel": "Enable RG-11 device 2"
                 },
                 "port2": {
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable RG-11 device 2"
-                        },
                         "commPort": {
                         },
                         "tipMode": {
@@ -144,6 +157,9 @@
                             "rightLabel": "Use DTR/DSR mode",
                             "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
                         }
+                    },
+                    "dependencies": {
+                        "dev2enabled": true
                     }
                 }
             }

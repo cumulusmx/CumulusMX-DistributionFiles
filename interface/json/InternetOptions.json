@@ -5,7 +5,7 @@
             "collapsed": true,
             "fields": {
                 "hostname": {
-                    "helper": "Enter the host name of the remote FTP server. Leaving this blank suppresses all FTP activeties."
+                    "helper": "Enter the host name of the remote FTP server. Leaving this blank suppresses all FTP activities."
                 },
                 "ftpport": {
                     "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"
@@ -20,9 +20,6 @@
                     "removeDefaultNone": true,
                     "helper": "Select the protcol required by your web hoster"
                 },
-                "password": {
-                    "type": "password"
-                },
                 "sshAuth": {
                     "type": "select",
                     "optionLabels": [
@@ -30,10 +27,28 @@
                         "Pre-shared key",
                         "Password or pre-shared key"
                     ],
-                    "helper": "Select the authentication method for SFTP connections"
+                    "removeDefaultNone": true,
+                    "helper": "Select the authentication method for SFTP connections",
+                    "dependencies": {
+                        "sslftp": 2
+                    }
                 },
                 "pskFile": {
-                    "helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder"
+                    "helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
+                    "dependencies": {
+                        "sshAuth": ["psk","password_psk"]
+                    }
+                },
+                "username": {
+                },
+                "password": {
+                    "type": "password"
+                },
+                "forumurl": {
+                    "type": "url"
+                },
+                "webcamurl": {
+                    "type": "url"
                 }
             }
         },
@@ -42,19 +57,19 @@
             "collapsed": true,
             "fields": {
                 "autoupdate": {
-                    "rightLabel": "Auto update"
+                    "rightLabel": "Auto update (enable interval updates)",
+                    "helper": "Select this to have Cumulus enable processing of files at the web interval, and FTP them if enabled"
                 },
                 "includestdfiles": {
                     "rightLabel": "Include standard files",
-                    "helper": "Select this to have the standard web site files uploaded"
+                    "helper": "Select this to have the standard web site files uploaded every update interval"
                 },
                 "includegraphdatafiles": {
                     "rightLabel": "Include graph data files",
-                    "helper": "Select this to have the graph data files uploaded"
-                },
-                "includemoonimage": {
-                    "rightLabel": "Include Moon image file",
-                    "helper": "Select this to have the Moon image file uploaded - you must enable the image file generation below"
+                    "helpers": [
+                        "Select this to have the graph data files uploaded",
+                        "The recent data files are uploaded every interval update, the daily files once a day after rollover (and the first interval after start-up)"
+                    ]
                 },
                 "activeftp": {
                     "rightLabel": "Active FTP mode",
@@ -131,15 +146,29 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "user": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
-                    "type": "password"
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper":  "Interval between updates in minutes"
+                    "helper":  "Interval between updates in minutes",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "sendlocation": {
                     "rightLabel": "Send location",
-                    "helper": "Send your location with each update"
+                    "helper": "Send your location with each update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -150,39 +179,71 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "stationid": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
                     "type": "password",
-                    "helper": "Used to be your password, but changed to the Station Key (case sensitive)"
+                    "helper": "Used to be your password, but changed to the Station Key (case sensitive)",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)"
+                    "helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "rapidfire": {
+                    "rightLabel": "Use Rapid Fire",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeindoor": {
                     "rightLabel": "Include indoor data",
-                    "helper": "Include indoor temperature and humidity in the update"
+                    "helper": "Include indoor temperature and humidity in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
-                },
-                "rapidfire": {
-                    "rightLabel": "Use Rapid Fire"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "sendavgwind": {
                     "rightLabel": "Send average wind speed",
-                    "helper": "Send the average wind speed for the current speed"
+                    "helper": "Send the average wind speed for the current speed",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeaq": {
                     "rightLabel": "Include air quality data",
-                    "helper": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings"
+                    "helper": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "catchup": {
                     "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                    "helper": "When Cumulus starts, send each entry read from the station logger",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -193,22 +254,37 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
-                "apikey": {
-                    "helper": "This is a very long string and is used for all your Windy.com stations"
-                },
                 "stationidx": {
-                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc."
+                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc.",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "apikey": {
+                    "helper": "This is a very long string and is used for all your Windy.com stations",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper": "Interval in minutes between updates (min value = 5)."
+                    "helper": "Interval in minutes between updates (min value = 5).",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "catchup": {
                     "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                    "helper": "When Cumulus starts, send each entry read from the station logger",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -219,23 +295,43 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "stationid": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
-                    "type": "password"
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper":  "Interval between updates in minutes"
+                    "helper":  "Interval between updates in minutes",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "catchup": {
                     "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                    "helper": "When Cumulus starts, send each entry read from the station logger",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -246,23 +342,43 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "stationid": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
-                    "type": "password"
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper":  "Interval between updates in minutes"
+                    "helper":  "Interval between updates in minutes",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "catchup": {
                     "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                    "helper": "When Cumulus starts, send each entry read from the station logger",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -273,12 +389,38 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "id": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
-                    "helper":  "Leave at -1 unless you are using an amateur radio callsign"
+                    "helper":  "Leave at -1 unless you are using an amateur radio callsign",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "server": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "port": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "interval": {
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -289,44 +431,79 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "user": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "password": {
-                    "type": "password"
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "lang": {
                     "optionLabels": ["English", "German", "French", "Italain", "Dutch"],
                     "removeDefaultNone": true,
-                    "helper": "One of fr/de/en/it/nl"
+                    "helper": "One of fr/de/en/it/nl",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "interval": {
-                    "helper": "Update interval in seconds. Min value 15 seconds"
+                    "helper": "Update interval in seconds. Min value 15 seconds",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesoiltemp": {
                     "rightLabel": "Include soil temp",
-                    "helper": "Include soil temperature 1-4 in the update"
+                    "helper": "Include soil temperature 1-4 in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesoilmoisture": {
                     "rightLabel": "Include soil moisture",
-                    "helper": "Include soil moisture 1-4 in the update"
+                    "helper": "Include soil moisture 1-4 in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeleafwetness": {
                     "rightLabel": "Include leaf wetness",
-                    "helper": "Include leaf wetness 1-2 in the update"
+                    "helper": "Include leaf wetness 1-2 in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeindoor": {
                     "rightLabel": "Include indoor data",
-                    "helper": "Include indoor temperature and humidity in the update"
+                    "helper": "Include indoor temperature and humidity in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includeaq": {
                     "rightLabel": "Include air quality data",
-                    "helper": "Include the pm2.5 (and pm10 if available). You also need to set the Primary AQ sensor in Station Options settings"
+                    "helper": "Include the pm2.5 (and pm10 if available). You also need to set the Primary AQ sensor in Station Options settings",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -337,13 +514,29 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
+                "wid": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "key": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "includeuv": {
                     "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update"
+                    "helper": "Include UV index in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "includesolar": {
                     "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update"
+                    "helper": "Include the solar radiation reading in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -355,17 +548,29 @@
                     "rightLabel": "Enabled"
                 },
                 "interval": {
-                    "helper":  "Interval between updates in minutes"
+                    "helper":  "Interval between updates in minutes",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "apikey": {
-                    "helper": "Enter the API key you want to use for these uploads"
+                    "helper": "Enter the API key you want to use for these uploads",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "stationid": {
-                    "helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you"
+                    "helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "catchup": {
                     "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger"
+                    "helper": "When Cumulus starts, send each entry read from the station logger",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -397,13 +602,22 @@
                         },
                         "retained": {
                             "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients"
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "topic": {
-                            "helper": "Enter the topic name for these messages"
+                            "helper": "Enter the topic name for these messages",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "template": {
-                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         }
                     }
                 },
@@ -415,16 +629,28 @@
                         },
                         "retained": {
                             "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients"
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "time": {
-                            "helper": "Enter the time in seconds between sending messages"
+                            "helper": "Enter the time in seconds between sending messages",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "topic": {
-                            "helper": "Enter the topic name for these messages"
+                            "helper": "Enter the topic name for these messages",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "template": {
-                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages"
+                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages",
+                            "dependencies": {
+                                "enabled": true
+                            }
                         }
                     }
                 }
@@ -438,11 +664,24 @@
                     "rightLabel": "Generate Moon image",
                     "helper": "Generate a Moon image file '/web/moon.png' every hour"
                 },
+                "includemoonimage": {
+                    "rightLabel": "Upload Moon image file",
+                    "helper": "Select this to have the Moon image file uploaded to your FTP server",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                "size": {
-                    "helper": "Set the image size in pixels"
+                    "helper": "Set the image size in pixels",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "ftpdest": {
-                    "helper": "Set the folder and filename to use on your FTP server - if enabled above - default 'images/moon.png'"
+                    "helper": "Set the folder and filename to use on your FTP server - if enabled above - default 'images/moon.png'",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -461,6 +700,16 @@
                     "fields": {
                         "enabled": {
                             "rightLabel": "Enabled"
+                        },
+                        "url": {
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "interval": {
+                            "dependencies": {
+                                "enabled": true
+                            }
                         }
                     }
                 },
@@ -471,6 +720,11 @@
                     "fields": {
                         "enabled": {
                             "rightLabel": "Enabled"
+                        },
+                        "url": {
+                            "dependencies": {
+                                "enabled": true
+                            }
                         },
                         "intervalindex": {
                             "optionLabels": [
@@ -487,7 +741,10 @@
                                 "30 minutes",
                                 "60 minutes"
                             ],
-                            "removeDefaultNone": true
+                            "removeDefaultNone": true,
+                            "dependencies": {
+                                "enabled": true
+                            }
                         }
                     }
                 },
@@ -498,6 +755,11 @@
                     "fields": {
                         "enabled": {
                             "rightLabel": "Enabled"
+                        },
+                        "url": {
+                            "dependencies": {
+                                "enabled": true
+                            }
                         }
                     }
                 }

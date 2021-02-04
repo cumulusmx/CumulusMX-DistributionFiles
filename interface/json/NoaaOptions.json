@@ -1,29 +1,182 @@
 ﻿{
     "fields": {
+        "autosave": {
+            "rightLabel": "Create NOAA files after daily rollover",
+            "helper": "Enables the creation of the report files"
+        },
+        "sitename": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "city": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "state": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
         "timeformat": {
             "removeDefaultNone": "true",
             "optionLabels": [
                 "12 Hour",
                 "24 Hour"
-            ]
+            ],
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "monthfileformat": {
+            "helper": "Specify the filename template using C# date formatting. Default = 'NOAAMO'MMyy'.txt'",
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "yearfileformat": {
+            "helper": "Specify the filename template using C# date formatting. Default = 'NOAAYR'yyyy'.txt'",
+            "dependencies": {
+                "autosave": true
+            }
         },
         "utf8": {
-            "rightLabel": "Use UTF-8 encoding"
+            "rightLabel": "Use UTF-8 encoding",
+            "helper": "Create the report files using the UTF-8 file format. Default = enabled",
+            "dependencies": {
+                "autosave": true
+            }
         },
         "dotdecimal": {
-            "rightLabel": "Force reports to use a 'dot' decimal point"
-        },
-        "autosave": {
-            "rightLabel": "Auto save after daily reset"
+            "rightLabel": "Use a 'dot' decimal point",
+            "helper": "Overrides your local locale setting for decimal points and always uses a dot decimal",
+            "dependencies": {
+                "autosave": true
+            }
         },
         "autoftp": {
-            "rightLabel": "Auto FTP after auto save"
+            "rightLabel": "Auto FTP files after creation",
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "ftpdirectory": {
+            "helper": "You can specify a different folder from the default FTP folder if you wish to up the reports to a different location",
+            "dependencies": {
+                "autoftp": true
+            }
+        },
+        "heatingthreshold": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "coolingthreshold": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "maxtempcomp1": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "maxtempcomp2": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "mintempcomp1": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "mintempcomp2": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "raincomp1": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "raincomp2": {
+            "dependencies": {
+                "autosave": true
+            }
+        },
+        "raincomp3": {
+            "dependencies": {
+                "autosave": true
+            }
         },
         "normalmeantemps": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "jan": {
+                },
+                "feb": {
+                },
+                "mar": {
+                },
+                "apr": {
+                },
+                "may": {
+                },
+                "jun": {
+                },
+                "jul": {
+                },
+                "aug": {
+                },
+                "sep": {
+                },
+                "oct": {
+                },
+                "nov": {
+                },
+                "dec": {
+                }
+            },
+            "dependencies": {
+                "autosave": true
+            }
         },
         "normalrain": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "jan": {
+                },
+                "feb": {
+                },
+                "mar": {
+                },
+                "apr": {
+                },
+                "may": {
+                },
+                "jun": {
+                },
+                "jul": {
+                },
+                "aug": {
+                },
+                "sep": {
+                },
+                "oct": {
+                },
+                "nov": {
+                },
+                "dec": {
+                }
+            }
+        },
+        "dependencies": {
+            "autosave": true
         }
     }
 }

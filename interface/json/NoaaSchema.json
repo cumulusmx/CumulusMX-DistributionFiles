@@ -1,6 +1,9 @@
 ﻿{
     "type": "object",
     "properties": {
+        "autosave": {
+            "type": "boolean"
+        },
         "sitename": {
             "title": "Site name"
         },
@@ -28,9 +31,6 @@
             "type": "boolean"
         },
         "dotdecimal": {
-            "type": "boolean"
-        },
-        "autosave": {
             "type": "boolean"
         },
         "autoftp": {
@@ -183,5 +183,28 @@
                 }
             }
         }
+    },
+    "dependencies": {
+        "sitename": ["autosave"],
+        "city": ["autosave"],
+        "state": ["autosave"],
+        "timeformat": ["autosave"],
+        "monthfileformat": ["autosave"],
+        "yearfileformat": ["autosave"],
+        "utf8": ["autosave"],
+        "dotdecimal": ["autosave"],
+        "autoftp": ["autosave"],
+        "ftpdirectory": ["autoftp"],
+        "heatingthreshold": ["autosave"],
+        "coolingthreshold": ["autosave"],
+        "maxtempcomp1": ["autosave"],
+        "maxtempcomp2": ["autosave"],
+        "mintempcomp1": ["autosave"],
+        "mintempcomp2": ["autosave"],
+        "raincomp1": ["autosave"],
+        "raincomp2": ["autosave"],
+        "raincomp3": ["autosave"],
+        "normalmeantemps": ["autosave"],
+        "normalrain": ["autosave"]
     }
 }

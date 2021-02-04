@@ -1,33 +1,45 @@
 {
     "type": "object",
     "properties": {
-        "startuphostping": {
-            "title": "Host to PING on program start-up",
-            "type": "string"
+        "startup": {
+            "title": "Program Start-up Options",
+            "type": "object",
+            "properties": {
+                "startuphostping": {
+                    "title": "Host to PING on program start-up",
+                    "type": "string"
+                },
+                "startuppingescape": {
+                    "title": "PING escape time (mins)",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "startupdelay": {
+                    "title": "Start-up Delay (secs)",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "startupdelaymaxuptime" : {
+                    "title": "Max system uptime to apply the start-up delay",
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
         },
-        "startuppingescape": {
-            "title": "PING escape time (mins)",
-            "type": "integer",
-            "minimum": 1
-        },
-        "startupdelay": {
-            "title": "Startup Delay (secs)",
-            "type": "integer",
-            "minimum": 0
-        },
-        "startupdelaymaxuptime" : {
-            "title": "Max system uptime to apply the startup delay",
-            "type": "integer",
-            "minimum": 0
-        },
-        "debuglogging": {
-            "type": "boolean"
-        },
-        "datalogging": {
-            "type": "boolean"
-        },
-        "stopsecondinstance": {
-            "type": "boolean"
+        "options": {
+            "title": "Program General Options",
+            "type": "object",
+            "properties": {
+                "debuglogging": {
+                "type": "boolean"
+                },
+                "datalogging": {
+                    "type": "boolean"
+                },
+                "stopsecondinstance": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }

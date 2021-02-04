@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $("#form").alpaca({
         "dataSource": "../api/settings/calibrationdata.json",
         "optionsSource": "../api/settings/calibrationoptions.json",
@@ -20,11 +19,9 @@ $(document).ready(function() {
                         error: function (error) {
                             alert("error " + error);
                         }
-
                     });
                 }
             });
         }
     });
-    
 });

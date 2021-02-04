@@ -10,7 +10,9 @@
                 },
                 "port": {
                     "title": "Port",
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 65535
                 },
                 "user": {
                     "title": "User name"
@@ -23,25 +25,13 @@
                 }
             }
         },
-        "monthly": {
-            "type": "object",
-            "title": "Monthly log file upload",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
-                "table": {
-                    "title": "Table name"
-                }
-            }
+        "realtimeenabled": {
+            "type": "boolean"
         },
         "realtime": {
             "type": "object",
             "title": "Realtime.txt upload",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
                 "table": {
                     "title": "Table name"
                 },
@@ -50,25 +40,37 @@
                 }
             }
         },
+        "dayenabled": {
+            "type": "boolean"
+        },
         "dayfile": {
             "type": "object",
             "title": "Dayfile.txt upload",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
                 "table": {
                     "title": "Table name"
                 }
             }
         },
+        "monthenabled": {
+            "type": "boolean"
+        },
+        "monthly": {
+            "type": "object",
+            "title": "Monthly log file upload",
+            "properties": {
+                "table": {
+                    "title": "Table name"
+                }
+            }
+        },
+        "custsecsenabled": {
+            "type": "boolean"
+        },
         "customseconds": {
             "type": "object",
             "title": "Custom upload - seconds interval",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
                 "command": {
                     "title": "SQL command"
                 },
@@ -78,13 +80,13 @@
                 }
             }
         },
+        "custminsenabled": {
+            "type": "boolean"
+        },
         "customminutes": {
             "type": "object",
             "title": "Custom upload - minutes interval",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
                 "command": {
                     "title": "SQL command"
                 },
@@ -107,17 +109,25 @@
                 }
             }
         },
+        "custrollenabled": {
+            "type": "boolean"
+        },
         "customrollover": {
             "type": "object",
             "title": "Custom upload - at rollover",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
                 "command": {
                     "title": "SQL command"
                 }
             }
         }
+    },
+    "dependencies": {
+        "realtime": ["realtimeenabled"],
+        "dayfile": ["dayenabled"],
+        "monthly": ["monthenabled"],
+        "customseconds": ["custsecsenabled"],
+        "customminutes": ["custminsenabled"],
+        "customrollover": ["custrollenabled"]
     }
 }

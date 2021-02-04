@@ -1,86 +1,299 @@
 ﻿{
     "fields": {
-        "stationtype": {
-            "optionLabels": [
-                "Undefined",
-                "Davis Vantage Pro",
-                "Davis Vantage Pro2/Vue",
-                "Oregon Scientific WMR-928",
-                "Oregon Scientific WM-918",
-                "EasyWeather",
-                "Fine Offset",
-                "LaCrosse WS2300",
-                "Fine Offset with Solar Sensors",
-                "Oregon Scientific WMR100",
-                "Oregon Scientific WMR200",
-                "Instromet",
-                "Davis WeatherLink Live",
-                "Ecowitt GW1000"
-            ],
-            "removeDefaultNone": true
+        "stationid": {
+            "type": "integer",
+            "fieldClass": "hideme"
         },
-        "units": {
+        "general": {
+            "collapsible": true,
+            "collapsed": true,
             "fields": {
-                "wind": {
+                "stationtype": {
                     "type": "select",
-                    "removeDefaultNone": true,
+                    "sort": false,
                     "optionLabels": [
-                        "m/s",
-                        "mph",
-                        "km/h",
-                        "kts"
-                    ]
-                },
-                "pressure": {
-                    "type": "select",
-                    "removeDefaultNone": true,
-                    "optionLabels": [
-                        "mb",
-                        "hPa",
-                        "inHg"
-                    ]
-                },
-                "temp": {
-                    "type": "select",
-                    "removeDefaultNone": true,
-                    "optionLabels": [
-                        "C",
-                        "F"
-                    ]
-                },
-                "rain": {
-                    "type": "select",
-                    "removeDefaultNone": true,
-                    "optionLabels": [
-                        "mm",
-                        "in"
-                    ]
-                }
-            },
-            "helper": "DO NOT change units after you have chosen them for the first time!"
-        },
-        "davisconn": {
-            "fields": {
-                "conntype": {
-                    "optionLabels": [
-                        "Serial",
-                        "TCP/IP"
+                        " Select Station",
+                        "Davis Vantage Pro",
+                        "Davis Vantage Pro2/Vue",
+                        "Oregon Scientific WMR-928",
+                        "Oregon Scientific WM-918",
+                        "EasyWeather",
+                        "Fine Offset",
+                        "LaCrosse WS2300",
+                        "Fine Offset with Solar Sensors",
+                        "Oregon Scientific WMR100",
+                        "Oregon Scientific WMR200",
+                        "Instromet",
+                        "Davis WeatherLink Live",
+                        "Ecowitt GW1000"
                     ],
                     "removeDefaultNone": true
                 },
-                "tcpsettings": {
+                "comportname": {
+                    "helper": "Only required if your station is connected via a serial port (real or virtual)",
+                    "dependencies": {
+                        "stationtype": [0,1,2,3,6,10]
+                    }
+                },
+                "loginterval": {
+                    "sort": false,
+                    "optionLabels": [
+                        "1 minute",
+                        "5 minutes",
+                        "10 minutes",
+                        "15 minutes",
+                        "20 minutes",
+                        "30 minutes"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "Frequency of Cumulus log entries - set your station to the same"
+                },
+                "logrollover": {
+                    "collapsible": true,
+                    "collapsed": true,
                     "fields": {
-                        "ipaddress": {
-                            "type": "ipv4"
+                        "time": {
+                            "removeDefaultNone": true
+                        },
+                        "summer10am": {
+                            "dependencies": {
+                                "time": "9am"
+                            },
+                            "rightLabel": "Use 10am in Summer"
+                        }
+                    }
+                },
+                "units": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "wind": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": [
+                                "m/s",
+                                "mph",
+                                "km/h",
+                                "kts"
+                            ]
+                        },
+                        "pressure": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": [
+                                "mb",
+                                "hPa",
+                                "inHg"
+                            ]
+                        },
+                        "temp": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": [
+                                "C",
+                                "F"
+                            ]
+                        },
+                        "rain": {
+                            "type": "select",
+                            "removeDefaultNone": true,
+                            "optionLabels": [
+                                "mm",
+                                "in"
+                            ]
+                        },
+                        "advanced": {
+                            "collapsible": true,
+                            "collapsed": true,
+                            "helpers": [
+                                "Here be dragons! Only alter these settings if you understand what they do.",
+                                "THESE OVERIDES ARE ONLY VALID AFTER THE UNITS CONFIGURATION ABOVE HAS BEEN SET, SAVED AND THIS PAGE RELOADED"
+                            ],
+                            "helpersPosition": "above",
+                            "fields": {
+                                "tempdp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "pressdp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "raindp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "winddp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "windavgdp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "windrundp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "airqulaitydp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "sunshinedp": {
+                                    "helper": "Override the default number of decimal places"
+                                },
+                                "uvdp": {
+                                    "helper": "Override the default number of decimal places"
+                                }
+                            }
+                        }
+                    },
+                    "helper": "DO NOT change units after you have chosen them for the first time!",
+                    "helpersPosition": "above"
+                },
+                "Location": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "sitename": {
+                            "type": "text",
+                            "helper": "A short name for the location"
+                        },
+                        "description": {
+                            "type": "text",
+                            "helper": "A longer description of the location"
+                        },
+                        "Latitude": {
+                            "collapsible": true,
+                            "collapsed": true,
+                            "fields": {
+                                "hemisphere": {
+                                    "type": "radio",
+                                    "helper": "Is the station North or South of the equator?"
+                                }
+                            }
+                        },
+                        "Longitude": {
+                            "collapsible": true,
+                            "collapsed": true,
+                            "fields": {
+                                "hemisphere": {
+                                    "type": "radio",
+                                    "helper": "Is the station East or West of the Prime Meridian (Greenwich)?"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "comportname": {
-            "helper": "Only required if your station is connected via a serial port (real or virtual)"
+        "daviscommon": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "davisconn": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "conntype": {
+                            "type": "select",
+                            "optionLabels": [
+                                "Serial",
+                                "TCP/IP"
+                            ],
+                            "removeDefaultNone": true
+                        },
+                        "tcpsettings": {
+                            "fields": {
+                                "ipaddress": {
+                                    "type": "ipv4"
+                                },
+                                "tcpport": {
+                                },
+                                "disconperiod": {
+                                    "helper": "Period to disconnect once a minute from IP loggers to allow them to upload to WeatherLink.com. Time in seconds"
+                                }
+                            },
+                            "dependencies": {
+                                "conntype": 2
+                            }
+                        }
+                    }
+                },
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "raingaugetype": {
+                            "type": "select",
+                            "optionLabels": [
+                                "Auto",
+                                "Metric (0.2 mm)",
+                                "Imperial (0.01 in)"
+                            ],
+                            "removeDefaultNone": true,
+                            "helper": "Default is auto, the size is inferred from the units selected for the station"
+                        }
+                    }
+                }
+            },
+            "dependencies": {
+                "stationid": [0, 1, 11]
+            }
+        },
+        "davisvp2": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "readreceptionstats": {
+                    "rightLabel": "Read Davis reception stats",
+                    "helper": "Read Davis reception stats to provide values for corresponding web tags"
+                },
+                "setloggerinterval": {
+                    "rightLabel": "Set the Davis Logger interval to match Cumulus MX interval",
+                    "helpers": [
+                        "WARNING: This will clear all data from your logger if it is invoked.",
+                        "If the Davis logger interval does not match the Cumulus interval, set it to match.",
+                        "Requires a restart of Cumulus MX"
+                    ]
+                },
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "useloop2": {
+                            "rightLabel": "Enable use of the LOOP2 data packets (UseDavisLoop2)",
+                            "helper": "This should only be disabled on VP consoles or VP2 consoles using firmware versions before version 1.90"
+                        },
+                        "vp1minbarupdate": {
+                            "rightLabel": "Davis VP 1-minute barometer update (ForceVPBarUpdate)",
+                            "helpers": [
+                                "Force older Vantage Pro and Pro2 barometer to update once a minute instead of the default 15 minutes",
+                                "This is not required for the majority of stations in use today"
+                            ]
+                        },
+                        "initwaittime": {
+                            "helpers": [
+                                "Time to wait after establishing a connection to an IP logger before sending commands",
+                                "Time is in milliseconds"
+                            ]
+                        },
+                        "ipresponsetime": {
+                            "helpers": [
+                                "Time to wait after sending a command to an IP logger before trying to read the response",
+                                "Time is in milliseconds"
+                            ]
+                        },
+                        "baudrate": {
+                            "removeDefaultNone": true,
+                            "helper": "Serial port baud rate in bps"
+                        }
+                    }
+                }
+            },
+            "dependencies": {
+                "stationid": [0, 1]
+            }
         },
         "daviswll": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
                 "network": {
@@ -92,6 +305,7 @@
                     }
                 },
                 "api": {
+                    "collapsible": true,
                     "collapsed": true,
                     "fields": {
                         "apiKey": {
@@ -106,34 +320,40 @@
                     }
                 },
                 "primary": {
+                    "collapsible": true,
                     "collapsed": true,
                     "fields": {
                         "wind": {
                             "type": "select",
+                            "sort": false,
                             "removeDefaultNone": true,
                             "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
                             "helper": "Select the ISS transmitter ID for your Wind sensor"
                         },
                         "temphum": {
                             "type": "select",
+                            "sort": false,
                             "removeDefaultNone": true,
                             "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
                             "helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
                         },
                         "rain": {
                             "type": "select",
+                            "sort": false,
                             "removeDefaultNone": true,
                             "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
                             "helper": "Select the ISS transmitter ID for your Rain sensor"
                         },
                         "solar": {
                             "type": "select",
+                            "sort": false,
                             "removeDefaultNone": true,
                             "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                             "helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
                         },
                         "uv": {
                             "type": "select",
+                            "sort": false,
                             "removeDefaultNone": true,
                             "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                             "helper": "Optional: Select the ISS transmitter ID for your UV sensor"
@@ -141,13 +361,16 @@
                     }
                 },
                 "soilLeaf": {
+                    "collapsible": true,
                     "collapsed": true,
                     "fields": {
                         "extraSoilTemp": {
+                            "collapsible": true,
                             "collapsed": true,
                             "fields": {
                                 "soilTempTx1": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra temperature sensor #1"
@@ -160,6 +383,7 @@
                                 },
                                 "soilTempTx2": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra temperature sensor #2"
@@ -172,6 +396,7 @@
                                 },
                                 "soilTempTx3": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra temperature sensor #3"
@@ -184,6 +409,7 @@
                                 },
                                 "soilTempTx4": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra temperature sensor #4"
@@ -197,10 +423,12 @@
                             }
                         },
                         "extraSoilMoist": {
+                            "collapsible": true,
                             "collapsed": true,
                             "fields": {
                                 "soilMoistTx1": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #1"
@@ -213,6 +441,7 @@
                                 },
                                 "soilMoistTx2": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #2"
@@ -225,6 +454,7 @@
                                 },
                                 "soilMoistTx3": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra soil moisture sensor #3"
@@ -237,6 +467,7 @@
                                 },
                                 "soilMoistTx4": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your soil moisture leaf sensor #4"
@@ -250,10 +481,12 @@
                             }
                         },
                         "extraLeaf": {
+                            "collapsible": true,
                             "collapsed": true,
                             "fields": {
                                 "leafTx1": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra leaf sensor #1"
@@ -266,6 +499,7 @@
                                 },
                                 "leafTx2": {
                                     "type": "select",
+                                    "sort": false,
                                     "removeDefaultNone": true,
                                     "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
                                     "helper": "Optional: Select the transmitter ID for your extra leaf sensor #2"
@@ -281,6 +515,7 @@
                     }
                 },
                 "extraTemp": {
+                    "collapsible": true,
                     "collapsed": true,
                     "fields": {
                         "extraTempTx1": {
@@ -365,9 +600,13 @@
                         }
                     }
                 }
+            },
+            "dependencies": {
+                "stationid": 11
             }
         },
         "gw1000": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
                 "autoDiscover": {
@@ -378,69 +617,114 @@
                     "type": "ipv4"
                 },
                 "macaddress": {
-                    "helper": "Populated by Cumulus when using auto-discovery. Do not edit unless you change your GW1000 device for a new one, then just delete this entry and the new MAC address will be added for you."
+                    "helpers": [
+                        "Populated by Cumulus when using auto-discovery.",
+                        "Do not edit unless you change your GW1000 device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+                    ]
                 }
+            },
+            "dependencies": {
+                "stationid": 12
             }
         },
-        "loginterval": {
-            "optionLabels": [
-                "1 minute",
-                "5 minutes",
-                "10 minutes",
-                "15 minutes",
-                "20 minutes",
-                "30 minutes"
-            ],
-            "removeDefaultNone": true,
-            "helper": "Frequency of Cumulus log entries - set your station to the same"
-        },
-        "logrollover": {
-            "fields": {
-                "time": {
-                    "removeDefaultNone": true
-                },
-                "summer10am": {
-                    "dependencies": {
-                        "time": "9am"
-                    },
-                    "rightLabel": "Use 10am in Summer"
-                }
-            }
-        },
-        "Location": {
+        "fineoffset": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
-                "Latitude": {
-                    "collapsed": true,
-                    "fields": {
-                        "hemisphere": {
-                            "type": "radio",
-                            "helper": "Is the station North or South of the equator?"
-                        }
-                    }
+                "syncreads": {
+                    "rightLabel": "Synchronise Reads",
+                    "helper": "Attempts to synchronise console reads to avoid clashing with the console writing the data"
                 },
-                "Longitude": {
-                    "collapsed": true,
-                    "fields": {
-                        "hemisphere": {
-                            "type": "radio",
-                            "helper": "Is the station East or West of the Prime Meridian (Greenwich)?"
-                        }
-                    }
+                "readavoid": {
+                    "helpers": [
+                        "The time span around the synchronised read to avoid reading from the console.",
+                        "The default 3 seconds means do not read from  3 secs before to 3 secs after the expected write time.",
+                         "Time in seconds"
+                        ]
                 },
-                "sitename": {
-                    "type": "text",
-                    "helper": "A short name for the location"
-                },
-                "description": {
-                    "type": "text",
-                    "helper": "A longer description of the location"
+                "readtime": {
+                    "helpers": [
+                        "Delay after requesting a memory read before trying to read data from the USB connection",
+                        "Time in milli-seconds"
+                    ]
                 }
+            },
+            "dependencies": {
+                "stationid": [5, 7]
+            }
+        },
+        "easyw": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "interval": {
+                    "helpers": ["How often to read the EasyWeather data file in minutes"]
+                },
+                "filename": {
+                    "helpers": ["Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"]
+                },
+                "minpressmb": {
+                    "helpers": ["Pressure value below which Cumulus will ignore the value in the file. Value in hPa/mbar"]
+                },
+                "maxpressmb": {
+                    "helpers": ["Pressure value above which Cumulus will ignore the value in the file. Value in hPa/mbar"]
+                },
+                "raintipdiff": {
+                    "helpers": ["Number of rain bucket tips between data reads above which Cumulus will ignore the increase"]
+                },
+                "pressoffset": {
+                    "helpers": ["Offset value to apply to the pressure value in EasyWeather data file"]
+                }
+            },
+            "dependencies": {
+                "stationid": 4
+            }
+        },
+        "imet": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "baudrate": {
+                    "removeDefaultNone": true,
+                    "helper": "Serial port baud rate in bps"
+                },
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "updatepointer": {
+                            "rightLabel": "Update logger pointer",
+                            "helper": "Update the memory pointer to the last record after every 30 data reads"
+                        },
+                        "waittime": {
+                            "helpers": [
+                                "Delay after sending a command before trying to read data from the serial port",
+                                "Time in milli-seconds"
+                            ]
+                        },
+                        "readdelay": {
+                            "helpers": [
+                                "Delay between sending data read commands",
+                                "Time in milli-seconds"
+                            ]
+                        }
+                    }
+                }
+            },
+            "dependencies": {
+                "stationid": 10
             }
         },
         "Options": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
+                "stationid": {
+                    "type": "integer",
+                    "fieldClass": "hideme"
+                },
                 "usezerobearing": {
                     "rightLabel": "Use bearing zero when calm",
                     "helper": "Use zero for current bearing if speed is zero"
@@ -467,15 +751,21 @@
                 },
                 "syncstationclock": {
                     "rightLabel": "Synchronise station clock",
-                    "helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
+                    "helper": "Keep station clock in line with computer clock (Davis/Instromet only)",
+                    "dependencies": {
+                        "stationid": [0,1,10]
+                    }
+                },
+                "syncclockhour": {
+                    "helper": "The hour of the day to synchronsie the station clock (Davis/Instromet only)",
+                    "removeDefaultNone": true,
+                    "dependencies": {
+                        "syncstationclock": true
+                    }
                 },
                 "cumuluspresstrendnames": {
                     "rightLabel": "Cumulus pressure trend names",
                     "helper": "Use Cumulus names for pressure trends instead of station"
-                },
-                "vp1minbarupdate": {
-                    "rightLabel": "Davis VP 1-minute barometer update",
-                    "helper": "Force older Vantage Pro and Pro2 barometer to update once a minute instead of the default 15 minutes"
                 },
                 "roundwindspeeds": {
                     "rightLabel": "Round wind speeds",
@@ -483,23 +773,40 @@
                 },
                 "ignorelacrosseclock": {
                     "rightLabel": "Ignore LaCrosse clock",
-                    "helper": "Use computer clock instead of LaCrosse station clock for archive data"
+                    "helper": "Use computer clock instead of LaCrosse station clock for archive data",
+                    "dependencies": {
+                        "stationid": 6
+                    }
                 },
                 "extrasensors": {
                     "rightLabel": "Extra sensors",
                     "helper": "Display and log extra sensors, if fitted"
                 },
-                "synchroniseforeads": {
-                    "rightLabel": "Synchronise Fine Offset reads",
-                    "helper": "Work around for Fine Offset console USB lockup problem"
+                "nosensorcheck": {
+                    "rightLabel": "No sensor check",
+                    "helper": "Make Cumulus MX run even if you do not have the minimum sensors required (temp, press, wind)"
                 },
-                "readreceptionstats": {
-                    "rightLabel": "Read Davis reception stats",
-                    "helper": "Read Davis reception stats to provide values for corresponding web tags"
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "avgbearingmins": {
+                            "helper": "Period of time in minutes to average out wind bearings"
+                        },
+                        "avgspeedmins": {
+                            "helper": "Period of time in minutes to average out wind speeds"
+                        },
+                        "peakgustmins": {
+                            "helper": "Period of time in minutes to record the peak gust speed"
+                        }
+                    }
                 }
             }
         },
         "Forecast": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
                 "usecumulusforecast": {
@@ -507,26 +814,41 @@
                     "helper": "Use the Zambretti forecast generated by Cumulus"
                 },
                 "updatehourly": {
+                    "dependencies": {
+                        "usecumulusforecast": true
+                    },
                     "rightLabel": "Update forecast hourly",
-                    "helper": "If using the Cumulus forecast, update only once an hour"
+                    "helper": "If using the Cumulus forecast, update only once an hour rather than every data update"
                 },
                 "lowpressureextreme": {
+                    "dependencies": {
+                        "usecumulusforecast": true
+                    },
                     "helper": "The low pressure extreme for your location"
                 },
                 "highpressureextreme": {
+                    "dependencies": {
+                        "usecumulusforecast": true
+                    },
                     "helper": "The high pressure extreme for your location"
                 },
                 "pressureunit": {
+                    "dependencies": {
+                        "usecumulusforecast": true
+                    },
                     "removeDefaultNone": true,
                     "helper": "The units that you have used for the pressure extremes"
                 }
             }
         },
         "Solar": {
+            "collapsible": true,
             "collapsed": true,
             "helper": "Settings used for determining hours of sunshine",
+            "helpersPosition": "above",
             "fields": {
                 "solarcalc": {
+                    "type": "select",
                     "optionLabels": [
                         "Ryan-Stolzenbach",
                         "Bras"
@@ -541,14 +863,24 @@
                     "helper": "The minimum solar reading for the sun to be considered to be shining (default = 0)"
                 },
                 "transfactor": {
-                    "helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70 - 0.91, default 0.80)"
+                    "helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70 - 0.91, default 0.80)",
+                    "dependencies": {
+                        "solarcalc": 0
+                    }
                 },
                 "turbidity": {
-                    "helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)"
+                    "helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)",
+                    "dependencies": {
+                        "solarcalc": 1
+                    }
                 }
+            },
+            "dependencies": {
+                "stationid": [0,1,4,7,10,11,12]
             }
         },
         "AnnualRainfall": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
                 "ytdamount": {
@@ -557,6 +889,8 @@
                 "rainseasonstart": {
                     "helper": "Select the month from which the annual total is to be calculated",
                     "removeDefaultNone": true,
+                    "sort": false,
+                    "type": "select",
                     "optionLabels": [
                         "January",
                         "February",
@@ -575,6 +909,7 @@
             }
         },
         "Graphs": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
                 "graphhours": {
@@ -583,57 +918,81 @@
                 "graphdays": {
                     "helper": "The number of days shown on the daily graphs"
                 },
-                "graphTempVis": {
-                    "rightLabel": "Show temperature on graphs",
-                    "helper": "Add outdoor temperature to the graph data files and display it on the interface"
-                },
-                "graphInTempVis": {
-                    "rightLabel": "Show indoor temperature on graphs",
-                    "helper": "Add indoor temperature to the graph data files and display it on the interface"
-                },
-                "graphHeatIndexVis": {
-                    "rightLabel": "Show heat index on graphs",
-                    "helper": "Add heat index to the graph data files and display it on the interface"
-                },
-                "graphDewPointVis": {
-                    "rightLabel": "Show dew point on graphs",
-                    "helper": "Add dew point to the graph data files and display it on the interface"
-                },
-                "graphWindChillVis": {
-                    "rightLabel": "Show wind chill on graphs",
-                    "helper": "Add wind chill to the graph data files and display it on the interface"
-                },
-                "graphAppTempVis": {
-                    "rightLabel": "Show apparent temperature on graphs",
-                    "helper": "Add apparent temperature to the graph data files and display it on the interface"
-                },
-                "graphFeelsLikeVis": {
-                    "rightLabel": "Show feels like on graphs",
-                    "helper": "Add feels like to the graph data files and display it on the interface"
-                },
-                "graphHumidexVis": {
-                    "rightLabel": "Show humidex on graphs",
-                    "helper": "Add humidex to the graph data files and display it on the interface"
-                },
-                "graphHumVis": {
-                    "rightLabel": "Show humidity on graphs",
-                    "helper": "Add outdoor humidity to the graph data files and display it on the interface"
-                },
-                "graphInHumVis": {
-                    "rightLabel": "Show indoor humidity on graphs",
-                    "helper": "Add indoor humidity to the graph data files and display it on the interface"
-                },
-                "graphUvVis": {
-                    "rightLabel": "Show UV Index on graphs",
-                    "helper": "Add UV index to the graph data files and display it on the interface"
-                },
-                "graphSolarVis": {
-                    "rightLabel": "Show Solar data on graphs",
-                    "helper": "Add solar data to the graph data files and display it on the interface"
-                },
-                "graphSunshineVis": {
-                    "rightLabel": "Show Sunshine hours data on graphs",
-                    "helper": "Add sunshine data to the graph data files and display it on the interface"
+                "datavisibility": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "temperature": {
+                            "collapsible": true,
+                            "collapsed": false,
+                            "fields": {
+                                "graphTempVis": {
+                                    "rightLabel": "Show temperature on graphs",
+                                    "helper": "Add outdoor temperature to the graph data files and display it on the interface"
+                                },
+                                "graphInTempVis": {
+                                    "rightLabel": "Show indoor temperature on graphs",
+                                    "helper": "Add indoor temperature to the graph data files and display it on the interface"
+                                },
+                                "graphHeatIndexVis": {
+                                    "rightLabel": "Show heat index on graphs",
+                                    "helper": "Add heat index to the graph data files and display it on the interface"
+                                },
+                                "graphDewPointVis": {
+                                    "rightLabel": "Show dew point on graphs",
+                                    "helper": "Add dew point to the graph data files and display it on the interface"
+                                },
+                                "graphWindChillVis": {
+                                    "rightLabel": "Show wind chill on graphs",
+                                    "helper": "Add wind chill to the graph data files and display it on the interface"
+                                },
+                                "graphAppTempVis": {
+                                    "rightLabel": "Show apparent temperature on graphs",
+                                    "helper": "Add apparent temperature to the graph data files and display it on the interface"
+                                },
+                                "graphFeelsLikeVis": {
+                                    "rightLabel": "Show feels like on graphs",
+                                    "helper": "Add feels like to the graph data files and display it on the interface"
+                                },
+                                "graphHumidexVis": {
+                                    "rightLabel": "Show humidex on graphs",
+                                    "helper": "Add humidex to the graph data files and display it on the interface"
+                                }
+                            }
+                        },
+                        "humidity": {
+                            "collapsible": true,
+                            "collapsed": false,
+                            "fields": {
+                                "graphHumVis": {
+                                    "rightLabel": "Show humidity on graphs",
+                                    "helper": "Add outdoor humidity to the graph data files and display it on the interface"
+                                },
+                                "graphInHumVis": {
+                                    "rightLabel": "Show indoor humidity on graphs",
+                                    "helper": "Add indoor humidity to the graph data files and display it on the interface"
+                                }
+                            }
+                        },
+                        "solar": {
+                            "collapsible": true,
+                            "collapsed": false,
+                            "fields": {
+                                "graphUvVis": {
+                                    "rightLabel": "Show UV Index on graphs",
+                                    "helper": "Add UV index to the graph data files and display it on the interface"
+                                },
+                                "graphSolarVis": {
+                                    "rightLabel": "Show Solar data on graphs",
+                                    "helper": "Add solar data to the graph data files and display it on the interface"
+                                },
+                                "graphSunshineVis": {
+                                    "rightLabel": "Show Sunshine hours data on graphs",
+                                    "helper": "Add sunshine data to the graph data files and display it on the interface"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

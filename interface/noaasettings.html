@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Cumulus MX</title>
@@ -18,11 +18,9 @@
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Alpaca -->
-        <script src="lib/alpaca/alpaca.js"></script>
-        <link href="lib/alpaca/alpaca.css" rel="stylesheet" />
-
-        <!-- Alpaca support for Bootstrap -->
-        <link href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
+        <script src="lib/handlebars/handlebars.js"></script>
+        <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+        <script src="lib/alpaca/alpaca.min.js"></script>
 
         <!-- Custom Files -->
         <script src="js/noaasettings.js"></script>
@@ -36,6 +34,25 @@
             .top-buffer { margin-top:40px; }
             .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
             .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+            .help-block {
+                font-size: 12px;
+                padding-left: 20px;
+            }
+            .alpaca-container-label:after {
+                content: url("/lib/alpaca/images/right.png");
+                padding-left: 5px;
+            }
+            .alpaca-container-has-items {
+                margin-left: 30px;
+            }
+            .collapse.in {
+                margin-left: 30px;
+            }
+            .hideme {
+                visibility: hidden;
+                width: 0px;
+                height: 0px;
+            }
         </style>
 
         <script>
@@ -142,7 +159,7 @@
                     <div id="form"></div>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save</button>
+                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save Settings</button>
                 </div>
             </div>
         </div>
