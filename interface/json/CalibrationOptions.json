@@ -1,20 +1,34 @@
 ﻿{
     "fields": {
+        "explanation": {
+            "type": "textarea"
+        },
         "offsets": {
             "collapsible": true,
-            "collapsed": true
+            "collapsed": true,
+            "helpers" : ["Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"],
+            "helpersPosition": "above"
         },
         "multipliers": {
             "collapsible": true,
-            "collapsed": true
+            "collapsed": true,
+            "helpers" : [
+                "Multiply the raw reading by a constant, this affects the slope of the response",
+                "The Multiplier2 affects the curve of the correction"
+            ],
+            "helpersPosition": "above"
         },
         "spikeremoval": {
             "collapsible": true,
-            "collapsed": true
+            "collapsed": true,
+            "helpers" : ["If the change in a raw value between consecutive readings is greater than the spike value it will be ignored"],
+            "helpersPosition": "above"
         },
         "limits": {
             "collapsible": true,
-            "collapsed": true
+            "collapsed": true,
+            "helpers" : ["If the raw value exceeds a limit value it will be ignored"],
+            "helpersPosition": "above"
         },
         "log": {
             "rightLabel": "Log spike and limit violations to error log"

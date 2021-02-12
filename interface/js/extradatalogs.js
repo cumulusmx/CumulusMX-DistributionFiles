@@ -127,11 +127,13 @@ $(document).ready(function () {
     ];
 
     myTable = $('#datalog').dataTable({
-        sPaginationType: "full_numbers",
+        pagingType: "input",
         processing: true,
         serverSide: true,
         searching: false,
         ordering: false,
+        pageLength: 10,
+        lengthMenu: [10,20,50,100],
         ajax: {
             url: "api/data/extralogfile",
             data: function (data) {
@@ -140,7 +142,7 @@ $(document).ready(function () {
         },
         deferLoading: 10,
         columns: columnDefs,
-	    dom: 'Bfrtip',        // Needs button container
+        dom: '<"top"Bfrtip<"clear">>rt<"bottom"frtip<"clear">>',
         select: 'single',
         responsive: false,
         altEditor: true,     // Enable altEditor
@@ -158,7 +160,8 @@ $(document).ready(function () {
             {
                 text: 'Refresh',
                 name: 'refresh'      // do not change name
-            }
+            },
+            'pageLength'
         ],
         language: {
             altEditor: {

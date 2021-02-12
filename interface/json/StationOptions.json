@@ -70,36 +70,40 @@
                         "wind": {
                             "type": "select",
                             "removeDefaultNone": true,
+                            "sort": false,
                             "optionLabels": [
-                                "m/s",
-                                "mph",
-                                "km/h",
-                                "kts"
+                                "Metres per second (m/s)",
+                                "Miles per hour (mph)",
+                                "Kilometres per hour (km/h)",
+                                "Knots (kts)"
                             ]
                         },
                         "pressure": {
                             "type": "select",
                             "removeDefaultNone": true,
+                            "sort": false,
                             "optionLabels": [
-                                "mb",
-                                "hPa",
-                                "inHg"
+                                "Milli-bar (mbar)",
+                                "Hectopascal (hPa)",
+                                "Inches of mercury (inHg)"
                             ]
                         },
                         "temp": {
                             "type": "select",
                             "removeDefaultNone": true,
+                            "sort": false,
                             "optionLabels": [
-                                "C",
-                                "F"
+                                "Celsius",
+                                "Fahrenheit"
                             ]
                         },
                         "rain": {
                             "type": "select",
                             "removeDefaultNone": true,
+                            "sort": false,
                             "optionLabels": [
-                                "mm",
-                                "in"
+                                "Millimetres",
+                                "Inches"
                             ]
                         },
                         "advanced": {
@@ -642,11 +646,25 @@
                          "Time in seconds"
                         ]
                 },
-                "readtime": {
-                    "helpers": [
-                        "Delay after requesting a memory read before trying to read data from the USB connection",
-                        "Time in milli-seconds"
-                    ]
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "readtime": {
+                            "helpers": [
+                                "Delay after requesting a memory read before trying to read data from the USB connection",
+                                "Time in milli-seconds"
+                            ]
+                        },
+                        "vid": {
+                            "helpers": ["Specify an non-standard VID. Use -1 to use the normal setting"]
+                        },
+                        "pid": {
+                            "helpers": ["Specify an non-standard PID. Use -1 to use the normal setting"]
+                        }
+                    }
                 }
             },
             "dependencies": {
@@ -721,10 +739,6 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
-                "stationid": {
-                    "type": "integer",
-                    "fieldClass": "hideme"
-                },
                 "usezerobearing": {
                     "rightLabel": "Use bearing zero when calm",
                     "helper": "Use zero for current bearing if speed is zero"
@@ -802,6 +816,10 @@
                             "helper": "Period of time in minutes to record the peak gust speed"
                         }
                     }
+                },
+                "stationid": {
+                    "type": "integer",
+                    "fieldClass": "hideme"
                 }
             }
         },
@@ -886,6 +904,9 @@
                 "ytdamount": {
                     "helper": "Enter a rainfall amount to be added to the total for the year when you started using Cumulus - for the period for which you have no Cumulus data"
                 },
+                "ytdyear": {
+                    "helper": "Enter the year to apply the correct to (normally this year or last year) as a four digit number. Leave as zero to disable"
+                },
                 "rainseasonstart": {
                     "helper": "Select the month from which the annual total is to be calculated",
                     "removeDefaultNone": true,
@@ -921,42 +942,45 @@
                 "datavisibility": {
                     "collapsible": true,
                     "collapsed": true,
+                    "helper": "Show or hide data series on the dashboard and web site",
+                    "helpersPosition": "above",
                     "fields": {
                         "temperature": {
                             "collapsible": true,
                             "collapsed": false,
                             "fields": {
                                 "graphTempVis": {
-                                    "rightLabel": "Show temperature on graphs",
-                                    "helper": "Add outdoor temperature to the graph data files and display it on the interface"
+                                    "rightLabel": "Outdoor Temperature"
                                 },
                                 "graphInTempVis": {
-                                    "rightLabel": "Show indoor temperature on graphs",
-                                    "helper": "Add indoor temperature to the graph data files and display it on the interface"
+                                    "rightLabel": "Indoor Temperature"
                                 },
                                 "graphHeatIndexVis": {
-                                    "rightLabel": "Show heat index on graphs",
-                                    "helper": "Add heat index to the graph data files and display it on the interface"
+                                    "rightLabel": "Heat Index"
                                 },
                                 "graphDewPointVis": {
-                                    "rightLabel": "Show dew point on graphs",
-                                    "helper": "Add dew point to the graph data files and display it on the interface"
+                                    "rightLabel": "Dew Point"
                                 },
                                 "graphWindChillVis": {
-                                    "rightLabel": "Show wind chill on graphs",
-                                    "helper": "Add wind chill to the graph data files and display it on the interface"
+                                    "rightLabel": "Wind Chill"
                                 },
                                 "graphAppTempVis": {
-                                    "rightLabel": "Show apparent temperature on graphs",
-                                    "helper": "Add apparent temperature to the graph data files and display it on the interface"
+                                    "rightLabel": "Apparent Temperature"
                                 },
                                 "graphFeelsLikeVis": {
-                                    "rightLabel": "Show feels like on graphs",
-                                    "helper": "Add feels like to the graph data files and display it on the interface"
+                                    "rightLabel": "Feels Like"
                                 },
                                 "graphHumidexVis": {
-                                    "rightLabel": "Show humidex on graphs",
-                                    "helper": "Add humidex to the graph data files and display it on the interface"
+                                    "rightLabel": "Humidex"
+                                },
+                                "graphDailyMaxTempVis": {
+                                    "rightLabel": "Daily Maximum Temperature"
+                                },
+                                "graphDailyAvgTempVis": {
+                                    "rightLabel": "Daily Average Temperature"
+                                },
+                                "graphDailyMinTempVis": {
+                                    "rightLabel": "Daily Minimum Temperature"
                                 }
                             }
                         },
@@ -965,12 +989,10 @@
                             "collapsed": false,
                             "fields": {
                                 "graphHumVis": {
-                                    "rightLabel": "Show humidity on graphs",
-                                    "helper": "Add outdoor humidity to the graph data files and display it on the interface"
+                                    "rightLabel": "Outdoor Humidity"
                                 },
                                 "graphInHumVis": {
-                                    "rightLabel": "Show indoor humidity on graphs",
-                                    "helper": "Add indoor humidity to the graph data files and display it on the interface"
+                                    "rightLabel": "Indoor Humidity"
                                 }
                             }
                         },
@@ -979,16 +1001,13 @@
                             "collapsed": false,
                             "fields": {
                                 "graphUvVis": {
-                                    "rightLabel": "Show UV Index on graphs",
-                                    "helper": "Add UV index to the graph data files and display it on the interface"
+                                    "rightLabel": "UV Index"
                                 },
                                 "graphSolarVis": {
-                                    "rightLabel": "Show Solar data on graphs",
-                                    "helper": "Add solar data to the graph data files and display it on the interface"
+                                    "rightLabel": "Solar Irradiation"
                                 },
                                 "graphSunshineVis": {
-                                    "rightLabel": "Show Sunshine hours data on graphs",
-                                    "helper": "Add sunshine data to the graph data files and display it on the interface"
+                                    "rightLabel": "Sunshine Hours"
                                 }
                             }
                         }

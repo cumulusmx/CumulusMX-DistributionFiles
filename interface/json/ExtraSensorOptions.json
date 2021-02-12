@@ -1,44 +1,63 @@
 ﻿{
     "fields": {
-        "primaryaqsensor": {
-            "optionLabels": [
-                "No Sensor",
-                "Davis AirLink Outdoor",
-                "Davis AirLink Indoor",
-                "Ecowitt Sensor 1",
-                "Ecowitt Sensor 2",
-                "Ecowitt Sensor 3",
-                "Ecowitt Sensor 4",
-                "Ecowitt CO₂ Sensor"
-            ],
-            "sort": false,
-            "removeDefaultNone": true,
-            "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
-        },
-        "aqi": {
-            "helper": "Select the AQI index calcuation method you want to use",
-            "optionLabels": [
-                "USA - EPA",
-                "UK - COMEAP",
-                "EU - AQI",
-                "EU - CAQI",
-                "Canada - AQHI",
-                "Australia - NEPM",
-                "Netherlands - LKI",
-                "Belgium - BelAQI"
-            ],
-            "sort": false,
-            "removeDefaultNone": true
+        "airquality": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "primaryaqsensor": {
+                    "optionLabels": [
+                        "No Sensor",
+                        "Davis AirLink Outdoor",
+                        "Davis AirLink Indoor",
+                        "Ecowitt Sensor 1",
+                        "Ecowitt Sensor 2",
+                        "Ecowitt Sensor 3",
+                        "Ecowitt Sensor 4",
+                        "Ecowitt CO₂ Sensor"
+                    ],
+                    "sort": false,
+                    "removeDefaultNone": true,
+                    "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
+                },
+                "aqi": {
+                    "helper": "Select the AQI index calculation method you want to use",
+                    "optionLabels": [
+                        "USA - EPA",
+                        "UK - COMEAP",
+                        "EU - AQI",
+                        "EU - CAQI",
+                        "Canada - AQHI",
+                        "Australia - NEPM",
+                        "Netherlands - LKI",
+                        "Belgium - BelAQI"
+                    ],
+                    "sort": false,
+                    "removeDefaultNone": true
+                }
+            }
         },
         "airLink": {
             "collapsible":true,
             "collapsed": true,
             "fields": {
+                "isNode": {
+                    "rightLabel": "This AirLink has been added as a Node to my main WLL station",
+                    "helpers": [
+                        "Enable this if you added the AirLink(s) as a node to an existing WLL weatherlink.com main station.",
+                        "Disable if this if your AirLink(s) is configured as a standalone station, or has been added to a VP2/Vue or other type of station."
+                    ]
+                },
                 "apiKey": {
-                    "helper": "Enter this only if your AirLink is not added as a node to your WeatherLink Live station"
+                    "helpers": ["Enter this only if your AirLink(s) is not added as a node to your main WeatherLink Live station"],
+                    "dependencies": {
+                        "isNode": false
+                    }
                 },
                 "apiSecret": {
-                    "helper": "Enter this only if your AirLink is not added as a node to your WeatherLink Live station"
+                    "helper": "Enter this only if your AirLink is not added as a node to your mainWeatherLink Live station",
+                    "dependencies": {
+                        "isNode": false
+                    }
                 },
                 "autoUpdateIp": {
                     "rightLabel": "Use automatic IP address discovery and updates",
@@ -52,10 +71,6 @@
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "isNode": {
-                            "rightLabel": "This AirLink has been added as Node to another station",
-                            "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
-                        },
                         "ipAddress": {
                             "type": "ipv4"
                         },
@@ -78,10 +93,6 @@
                     "collapsible":true,
                     "collapsed": true,
                     "fields": {
-                        "isNode": {
-                            "rightLabel": "This AirLink has been added as Node to another station",
-                            "helper": "Enable this if you added the AirLink as a node to an existing weatherlink.com station. Disable if this AirLink is configured as a standalone station."
-                        },
                         "ipAddress": {
                             "type": "ipv4"
                         },
@@ -123,7 +134,7 @@
                         },
                         "tipMode": {
                             "rightLabel": "Enable tipping bucket detection mode",
-                            "helper": "Disabled puts the device in \"It's raining\" mode"
+                            "helper": "Disabled puts the device into \"It's raining\" mode"
                         },
                         "tipSize": {
                             "helper": "The tip size in the units Cumulus is configured to use for rain"
@@ -151,7 +162,7 @@
                             "helper": "Disabled puts the device in \"It's raining\" mode"
                         },
                         "tipSize": {
-                            "helper": "The tip size in the units Cumulus is configured to use for rain"
+                            "helper": "The tip size in the units Cumulus tois configured to use for rain"
                         },
                         "dtrMode": {
                             "rightLabel": "Use DTR/DSR mode",

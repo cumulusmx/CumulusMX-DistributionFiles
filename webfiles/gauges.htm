@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="keywords" content="<#location> weather data, weather, data, weather station, steelseries">
-  <title><#location> weather</title>
+  <meta name="description" content="weather data">
+  <meta name="keywords" content="Cumulus, weather, data, weather station">
+  <title</title>
   <link rel="stylesheet" href="weatherstyle.css">
   <link rel="stylesheet" href="lib/steelseries/css/gauges-ss.css">
 </head>
 
 <body>
   <div class="content">
-    <h1><#location> <span id='lang_weather'>weather</span></h1>
-    <h2 style="text-align: left; text-transform: none;">&nbsp;<span id='lang_latitude'>Latitude</span>&nbsp;<#latitude>&nbsp;&nbsp; &nbsp;<span id="lang_longtitude">Longitude</span>&nbsp;<#longitude>&nbsp;&nbsp; &nbsp;<span id="lang_elevation">Elevation</span>&nbsp;<#altitude></h2>
+    <h1><span id="cmx-location"></span> <span id='lang_weather'>weather</span></h1>
+    <h2 style="text-align: left; text-transform: none;">&nbsp;<span id='lang_latitude'>Latitude</span>&nbsp;<span id="cmx-latitude"></span>&nbsp;&nbsp; &nbsp;<span id="lang_longtitude">Longitude</span>&nbsp;<span id="cmx-longitude"></span>&nbsp;&nbsp; &nbsp;<span id="lang_elevation">Elevation</span>&nbsp;<span id="cmx-altitude"></span></h2>
     <noscript>
       <h2 style="color:red; text-align:center">&gt;&gt;This pages requires JavaScript enabling in your browser.&lt;&lt;<br>&gt;&gt;Please enable scripting it to enjoy this site at its best.&lt;&lt;</h2>
     </noscript>
@@ -162,13 +163,13 @@
 
     <!-- Start of navigation menus at the bottom -->
       <div class="td_navigation_bar">
-        :<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><#forum><wbr><#webcam>
+        :<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><span id="cmx-forum"></span><wbr><span id="cmx-webcam"></span>
       </div>
 
     <!-- Credits -->
     <p class="credits">
       <br>
-      Page updated <#update><br>
+      Page updated <span id="cmx-update"></span><br>
       powered by <span id="programName"></span> v<span id="programVersion"></span> (b<span id="programBuild"></span>)
     </p><!-- Credits -->
   </div><!-- id content -->
@@ -193,6 +194,8 @@
 
   <script src="lib/steelseries/scripts/RGraph.common.core.min.js"></script>
   <script src="lib/steelseries/scripts/RGraph.rose.min.js"></script>
+
+  <script src="js/setpagedata.js"></script>
 
 </body>
 </html>

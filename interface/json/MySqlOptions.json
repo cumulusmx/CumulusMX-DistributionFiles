@@ -13,6 +13,11 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
+                "table": {
+                },
+                "retention": {
+                    "helpers": ["A retention string in format \"retainVal=NNN retainUnit=XXXX\" where NNN is a number from 1 to 3 digits long, and XXX is a time unit e.g. second, minute, hour, day, week, month, quarter, or year"]
+                }
             },
             "dependencies": {
                 "realtimeenabled": true

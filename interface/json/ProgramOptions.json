@@ -20,7 +20,7 @@
         },
         "options": {
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "fields": {
                 "debuglogging": {
                 "rightLabel": "Debug logging",

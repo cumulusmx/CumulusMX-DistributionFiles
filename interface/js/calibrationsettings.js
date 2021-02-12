@@ -4,6 +4,7 @@ $(document).ready(function() {
         "optionsSource": "../api/settings/calibrationoptions.json",
         "schemaSource": "../api/settings/calibrationschema.json",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
             $("#save-button").click(function () {
                 if (form.isValid(true)) {

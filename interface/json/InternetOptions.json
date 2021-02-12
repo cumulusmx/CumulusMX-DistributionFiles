@@ -18,7 +18,7 @@
                         "2 - Use SSH for FTP (SFTP)"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "Select the protcol required by your web hoster"
+                    "helper": "Select the protocol required by your web hoster"
                 },
                 "sshAuth": {
                     "type": "select",
@@ -48,7 +48,50 @@
                     "type": "url"
                 },
                 "webcamurl": {
-                    "type": "url"
+                    "type": "url",
+                    "helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+                },
+                "advanced": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "activeftp": {
+                            "rightLabel": "Active FTP/S mode",
+                            "helpers": ["Not normally required - use with caution"],
+                            "dependencies": {
+                                "ftpmode": [0,1]
+                            }
+                        },
+                        "disableftpsepsv": {
+                            "rightLabel": "Disable EPSV mode in FTP/S",
+                            "helpers": [
+                                "Not normally required - use with caution",
+                                "Extended passive mode is a newer standard of PSV. Disabling this forces PSV mode connections"
+                            ],
+                            "dependencies": {
+                                "ftpmode": [0,1]
+                            }
+                        },
+                        "disableftpsexplicit": {
+                            "rightLabel": "Disable Explicit mode in FTPS",
+                            "helpers": [
+                                "Not normally required - use with caution",
+                                "Explicit mode is the newer standard of FTPS. Disabling this forces Implicit mode connections"
+                            ],
+                            "dependencies": {
+                                "ftpmode": 1
+                            }
+                        },
+                        "ftpmode": {
+                            "type": "integer",
+                            "fieldClass": "hideme"
+                        }
+                    },
+                    "dependencies": {
+                        "sslftp": [0,1]
+                    }
                 }
             }
         },
@@ -56,62 +99,183 @@
             "collapsible":true,
             "collapsed": true,
             "fields": {
-                "autoupdate": {
-                    "rightLabel": "Auto update (enable interval updates)",
-                    "helper": "Select this to have Cumulus enable processing of files at the web interval, and FTP them if enabled"
-                },
-                "includestdfiles": {
-                    "rightLabel": "Include standard files",
-                    "helper": "Select this to have the standard web site files uploaded every update interval"
-                },
-                "includegraphdatafiles": {
-                    "rightLabel": "Include graph data files",
+                "stdwebsite": {
+                    "rightLabel": "I want to use the supplied default web site",
                     "helpers": [
-                        "Select this to have the graph data files uploaded",
-                        "The recent data files are uploaded every interval update, the daily files once a day after rollover (and the first interval after start-up)"
+                        "Enabling this will automatically enable all the required options below",
+                        "You will still need to save the configuration after setting this option",
+                        "This switch setting is not saved, it is just a switch to configure the defaults for the standard web site. It overwrites any settings you may already have set"
                     ]
                 },
-                "activeftp": {
-                    "rightLabel": "Active FTP mode",
-                    "helper": "Not normally required - use with caution"
+                "interval": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable web update interval",
+                            "helpers": ["Enable the update interval timer so interval actions can take place"]
+                        },
+                        "ftpinterval": {
+                            "helper": "Interval between web updates in minutes",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "autoupdate": {
+                            "rightLabel": "Enable update interval FTP",
+                            "helper": "Select this to have Cumulus enable FTP files at the web update interval",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "stdfiles": {
+                            "collapsible":true,
+                            "collapsed": true,
+                            "fields": {
+                                "files": {
+                                    "type": "table",
+                                    "showActionsColumn": false,
+                                    "dragAndDrop": false,
+                                    "dragRows": false,
+                                    "items": {
+                                        "fields": {
+                                            "filename": {
+                                                "readonly": true
+                                            }
+                                        }
+                                    },
+                                    "helpers": [
+                                        "Select which standard files are to be created uploaded every update interval",
+                                        "Note the websiteinfo.json file is required for the default web site and is uploaded once or when the station configuration is changed",
+                                        "Note the wxnow.txt file is created every minute, regardless of your web interval"
+                                    ]
+                                }
+                            },
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "graphfiles": {
+                            "collapsible":true,
+                            "collapsed": true,
+                            "fields": {
+                                "files": {
+                                    "type": "table",
+                                    "showActionsColumn": false,
+                                    "dragAndDrop": false,
+                                    "dragRows": false,
+                                    "items": {
+                                        "fields": {
+                                            "filename": {
+                                                "readonly": true
+                                            }
+                                        }
+                                    },
+                                    "helpers": [
+                                        "Select which graph data files are to be created uploaded every update interval",
+                                        "Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+                                    ]
+                                }
+                            },
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "graphfileseod": {
+                            "collapsible":true,
+                            "collapsed": true,
+                            "fields": {
+                                "files": {
+                                    "type": "table",
+                                    "showActionsColumn": false,
+                                    "dragAndDrop": false,
+                                    "dragRows": false,
+                                    "items": {
+                                        "fields": {
+                                            "filename": {
+                                                "readonly": true
+                                            }
+                                        }
+                                    },
+                                    "helpers": [
+                                        "Select which graph data files are to be created uploaded at the daily rollover",
+                                        "Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+                                    ]
+                                }
+                            },
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        }
+                    }
                 },
-                "ftprename": {
-                    "rightLabel": "FTP rename",
-                    "helper": "Use this if your FTP server supports it (most do)"
+                "realtime": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "enabled": {
+                            "rightLabel": "Enable Realtime",
+                            "helper": "Start the realtime timer so that realtime actions can take place"
+                        },
+                        "realtimeinterval": {
+                            "helper": "Interval between realtime updates in seconds",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "enablerealtimeftp": {
+                            "rightLabel": "Enable realtime FTP",
+                            "helper": "Establish the realtime FTP connection so that FTP uploads can take place at the realtime interval",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "files": {
+                            "type": "table",
+                            "showActionsColumn": false,
+                            "dragAndDrop": false,
+                            "dragRows": false,
+                            "items": {
+                                "fields": {
+                                    "filename": {
+                                        "readonly": true
+                                    }
+                                }
+                            },
+                            "dependencies": {
+                                "enabled": true
+                            },
+                            "helpers": ["Select which standard files are to be created and uploaded every real-time interval"]
+                        }
+                    }
                 },
-                "ftpdelete": {
-                    "rightLabel": "Delete before upload",
-                    "helper": "Use this only if your FTP server requires it (most do not)"
-                },
-                "utf8encode": {
-                    "rightLabel": "UTF-8 encoding",
-                    "helper": "Use UTF-8 encoding for the standard files"
-                },
-                "ftplogging": {
-                    "rightLabel": "FTP logging",
-                    "helper": "Log FTP activity to ftplog.txt for diagnostic purposes"
-                },
-                "updateinterval": {
-                    "helper": "Interval between web page updates in minutes"
-                },
-                "enablerealtime": {
-                    "rightLabel": "Enable Realtime",
-                    "helper": "Start the realtime timer so that realtime actions can take place"
-                },
-                "enablerealtimeftp": {
-                    "rightLabel": "Enable realtime FTP",
-                    "helper": "Establish the realtime FTP connection so that FTP uploads can take place at the realtime interval"
-                },
-                "realtimetxtftp": {
-                    "rightLabel": "Realtime.txt FTP",
-                    "helper": "FTP the realtime.txt file at the realtime interval. Cumulus MX does not use this file itself"
-                },
-                "realtimegaugestxtftp": {
-                    "rightLabel": "Realtimegauges.txt FTP",
-                    "helper": "FTP the realtimegauges.txt file at the realtime interval. Cumulus MX uses this for the SteelSeries gauges"
-                },
-                "realtimeinterval": {
-                    "helper": "Interval between realtime updates in seconds"
+                "general": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "ftprename": {
+                            "rightLabel": "FTP rename",
+                            "helpers": [
+                                "Use this if your FTP server supports it (most do)",
+                                "It minimises the time the file will be unavailable to your web serevr"
+                            ]
+                        },
+                        "ftpdelete": {
+                            "rightLabel": "Delete before upload",
+                            "helpers": [
+                                "Use this only if your FTP server requires it (most do not)",
+                                "It deletes the destination file before uploading the new version"
+                            ]
+                        },
+                        "utf8encode": {
+                            "rightLabel": "UTF-8 encoding",
+                            "helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
+                        },
+                        "ftplogging": {
+                            "rightLabel": "FTP logging",
+                            "helper": "Log FTP activity to ftplog.txt for diagnostic purposes"
+                        }
+                    }
                 }
             }
         },
@@ -395,7 +559,7 @@
                     }
                 },
                 "password": {
-                    "helper":  "Leave at -1 unless you are using an amateur radio callsign",
+                    "helper":  "Leave at -1 unless you are using an amateur radio call sign",
                     "dependencies": {
                         "enabled": true
                     }
@@ -443,7 +607,7 @@
                     }
                 },
                 "lang": {
-                    "optionLabels": ["English", "German", "French", "Italain", "Dutch"],
+                    "optionLabels": ["English", "German", "French", "Italian", "Dutch"],
                     "removeDefaultNone": true,
                     "helper": "One of fr/de/en/it/nl",
                     "dependencies": {
@@ -602,7 +766,7 @@
                         },
                         "retained": {
                             "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients",
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be available to clients",
                             "dependencies": {
                                 "enabled": true
                             }
@@ -629,7 +793,7 @@
                         },
                         "retained": {
                             "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be avialable to clients",
+                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be available to clients",
                             "dependencies": {
                                 "enabled": true
                             }

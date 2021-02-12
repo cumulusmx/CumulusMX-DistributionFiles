@@ -2,6 +2,31 @@ var chart, config;
 
 $(document).ready(function () {
     $.ajax({
+        url: "availabledata.json",
+        dataType: "json",
+        success: function (result) {
+            if (result.Temperature === undefined || result.Temperature.Count == 0) {
+                $('input[name="btnTemp"').remove();
+            }
+            if (result.DailyTemp === undefined || result.DailyTemp.Count == 0) {
+                $('input[name="btnDailyTemp"').remove();
+            }
+            if (result.Humidity === undefined || result.Humidity.Count == 0) {
+                $('input[name="btnHum"').remove();
+            }
+            if (result.Solar === undefined || result.Solar.Count == 0) {
+                $('input[name="btnSolar"').remove();
+            }
+            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
+                $('input[name="btnSunHours"').remove();
+            }
+            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
+                $('input[name="btnAirQuality"').remove();
+            }
+        }
+    });
+
+    $.ajax({
         url: "graphconfig.json",
         dataType: "json",
         success: function (result) {
@@ -184,7 +209,7 @@ var doTemp = function () {
                 'heatindex': 'Heat Index',
                 'humidex'  : 'Humidex',
                 'intemp'   : 'Inside'
-            }
+            };
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
             var yaxis = 0;
 
@@ -1401,16 +1426,7 @@ var doDailyTemp = function () {
         rangeSelector: {
             enabled: false
         },
-        series: [{
-            name: 'Avg Temp',
-            color: 'green'
-        }, {
-            name: 'Min Temp',
-            color: 'blue'
-        }, {
-            name: 'Max Temp',
-            color: 'red'
-        }]
+        series: []
     };
 
     chart = new Highcharts.StockChart(options);
@@ -1421,10 +1437,30 @@ var doDailyTemp = function () {
         dataType: 'json',
         cache: false,
         success: function (resp) {
+            var titles = {
+                'avgtemp': 'Avg Temp',
+                'mintemp': 'Min Temp',
+                'maxtemp': 'Max Temp'
+            };
+            var colours = {
+                'avgtemp': 'green',
+                'mintemp': 'blue',
+                'maxtemp': 'red'
+            };
+            var idxs = ['avgtemp', 'mintemp', 'maxtemp'];
+
+            idxs.forEach(function (idx) {
+                if (idx in resp) {
+                    chart.addSeries({
+                        name: titles[idx],
+                        data: resp[idx],
+                        color: colours[idx]
+                    }, false);
+                }
+            });
+
             chart.hideLoading();
-            chart.series[0].setData(resp.avgtemp);
-            chart.series[1].setData(resp.mintemp);
-            chart.series[2].setData(resp.maxtemp);
+            chart.redraw();
         }
     });
 };

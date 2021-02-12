@@ -1,18 +1,27 @@
 ﻿{
     "type": "object",
     "properties": {
-        "primaryaqsensor": {
-            "title": "Primary Air Quality Sensor",
-            "enum": [-1, 0, 5, 1, 2, 3, 4, 6]
-        },
-        "aqi": {
-            "title": "Air Quality Index",
-            "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+        "airquality": {
+            "title": "Air Quality Settings",
+            "type": "object",
+            "properties": {
+                "primaryaqsensor": {
+                    "title": "Primary Air Quality Sensor",
+                    "enum": [-1, 0, 5, 1, 2, 3, 4, 6]
+                },
+                "aqi": {
+                    "title": "Air Quality Index",
+                    "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+                }
+            }
         },
         "airLink": {
             "title": "Davis AirLink",
             "type": "object",
             "properties": {
+                "isNode": {
+                    "type": "boolean"
+                },
                 "apiKey": {
                     "title": "WeatherLink API key"
                 },
@@ -29,9 +38,6 @@
                     "title": "Indoor AirLink",
                     "type": "object",
                     "properties": {
-                        "isNode": {
-                            "type": "boolean"
-                        },
                         "ipAddress": {
                             "title": "IP Address"
                         },
@@ -50,9 +56,6 @@
                     "title": "Outdoor AirLink",
                     "type": "object",
                     "properties": {
-                        "isNode": {
-                            "type": "boolean"
-                        },
                         "ipAddress": {
                             "title": "IP Address"
                         },
@@ -66,6 +69,8 @@
                 }
             },
             "dependencies": {
+                "apiKey": ["isNode"],
+                "apiSecret": ["isNode"],
                 "indoor": ["indoorenabled"],
                 "outdoor": ["outdoorenabled"]
             }

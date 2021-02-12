@@ -4,76 +4,105 @@
         "autosave": {
             "type": "boolean"
         },
-        "sitename": {
-            "title": "Site name"
+        "sitedetails": {
+            "type": "object",
+            "title": "Site Details",
+            "properties": {
+                "sitename": {
+                    "title": "Site name"
+                },
+                "city": {
+                    "title": "City"
+                },
+                "state": {
+                    "title": "State"
+                }
+            }
         },
-        "city": {
-            "title": "City"
+        "outputfiles": {
+            "type": "object",
+            "title": "Output Files",
+            "properties": {
+                "monthfileformat": {
+                    "title": "Monthly filename format"
+                },
+                "yearfileformat": {
+                    "title": "Yearly filename format"
+                }
+            }
         },
-        "state": {
-            "title": "State"
+        "options": {
+            "type": "object",
+            "title": "Report Format Options",
+            "properties": {
+                "timeformat": {
+                    "title": "Time format",
+                    "enum": [0, 1]
+                },
+                "utf8": {
+                    "type": "boolean"
+                },
+                "dotdecimal": {
+                    "type": "boolean"
+                }
+            }
         },
-        "timeformat": {
-            "title": "Time format",
-            "type": "integer",
-            "enum": [
-                0,
-                1
-            ]
+        "ftp": {
+            "type": "object",
+            "title": "FTP Options",
+            "properties": {
+                "autoftp": {
+                    "type": "boolean"
+                },
+                "ftpdirectory": {
+                    "title": "FTP directory"
+                }
+            },
+            "dependencies": {
+                "ftpdirectory": ["autoftp"]
+            }
         },
-        "monthfileformat": {
-            "title": "Monthly filename format"
-        },
-        "yearfileformat": {
-            "title": "Yearly filename format"
-        },
-        "utf8": {
-            "type": "boolean"
-        },
-        "dotdecimal": {
-            "type": "boolean"
-        },
-        "autoftp": {
-            "type": "boolean"
-        },
-        "ftpdirectory": {
-            "title": "FTP directory"
-        },
-        "heatingthreshold": {
-            "title": "Heating threshold",
-            "type": "number"
-        },
-        "coolingthreshold": {
-            "title": "Cooling threshold",
-            "type": "number"
-        },
-        "maxtempcomp1": {
-            "title": "Max temp comparison 1",
-            "type": "number"
-        },
-        "maxtempcomp2": {
-            "title": "Max temp comparison 2",
-            "type": "number"
-        },
-        "mintempcomp1": {
-            "title": "Min temp comparison 1",
-            "type": "number"
-        },
-        "mintempcomp2": {
-            "title": "Min temp comparison 2",
-            "type": "number"
-        },
-        "raincomp1": {
-            "title": "Rain comparison 1",
-            "type": "number"
-        },
-        "raincomp2": {
-            "title": "Rain comparison 2",
-            "type": "number"
-        },
-        "raincomp3": {
-            "title": "Rain comparison 3",
-            "type": "number"
+        "thresholds": {
+            "type": "object",
+            "title": "Thresholds",
+            "properties": {
+                "heatingthreshold": {
+                    "title": "Heating threshold",
+                    "type": "number"
+                },
+                "coolingthreshold": {
+                    "title": "Cooling threshold",
+                    "type": "number"
+                },
+                "maxtempcomp1": {
+                    "title": "Max temp comparison 1",
+                    "type": "number"
+                },
+                "maxtempcomp2": {
+                    "title": "Max temp comparison 2",
+                    "type": "number"
+                },
+                "mintempcomp1": {
+                    "title": "Min temp comparison 1",
+                    "type": "number"
+                },
+                "mintempcomp2": {
+                    "title": "Min temp comparison 2",
+                    "type": "number"
+                },
+                "raincomp1": {
+                    "title": "Rain comparison 1",
+                    "type": "number"
+                },
+                "raincomp2": {
+                    "title": "Rain comparison 2",
+                    "type": "number"
+                },
+                "raincomp3": {
+                    "title": "Rain comparison 3",
+                    "type": "number"
+                }
+            }
         },
         "normalmeantemps": {
             "type": "object",
@@ -183,28 +212,5 @@
                 }
             }
         }
-    },
-    "dependencies": {
-        "sitename": ["autosave"],
-        "city": ["autosave"],
-        "state": ["autosave"],
-        "timeformat": ["autosave"],
-        "monthfileformat": ["autosave"],
-        "yearfileformat": ["autosave"],
-        "utf8": ["autosave"],
-        "dotdecimal": ["autosave"],
-        "autoftp": ["autosave"],
-        "ftpdirectory": ["autoftp"],
-        "heatingthreshold": ["autosave"],
-        "coolingthreshold": ["autosave"],
-        "maxtempcomp1": ["autosave"],
-        "maxtempcomp2": ["autosave"],
-        "mintempcomp1": ["autosave"],
-        "mintempcomp2": ["autosave"],
-        "raincomp1": ["autosave"],
-        "raincomp2": ["autosave"],
-        "raincomp3": ["autosave"],
-        "normalmeantemps": ["autosave"],
-        "normalrain": ["autosave"]
     }
 }
