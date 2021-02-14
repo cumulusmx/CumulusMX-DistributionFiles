@@ -7,9 +7,6 @@
                 "hostname": {
                     "helper": "Enter the host name of the remote FTP server. Leaving this blank suppresses all FTP activities."
                 },
-                "ftpport": {
-                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"
-                },
                 "sslftp": {
                     "type": "select",
                     "optionLabels": [
@@ -19,6 +16,9 @@
                     ],
                     "removeDefaultNone": true,
                     "helper": "Select the protocol required by your web hoster"
+                },
+                "ftpport": {
+                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"
                 },
                 "sshAuth": {
                     "type": "select",

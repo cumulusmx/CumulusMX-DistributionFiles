@@ -8,11 +8,6 @@
                 "hostname": {
                     "title": "Host name"
                 },
-                "ftpport": {
-                    "title": "FTP port",
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "sslftp": {
                     "title": "Select the FTP Protocol to use",
                     "enum": [
@@ -20,6 +15,11 @@
                         1,
                         2
                     ]
+                },
+                "ftpport": {
+                    "title": "FTP port",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "sshAuth": {
                     "type": "string",

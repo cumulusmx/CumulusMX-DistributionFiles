@@ -241,13 +241,14 @@ var doTemp = function () {
 
                     chart.addSeries({
                         name: titles[idx],
+                        id: 'series-' + idx,
                         data: resp[idx],
                         yAxis: yaxis,
                         tooltip: {valueSuffix: valueSuffix}
                     }, false);
 
                     if (idx === 'temp') {
-                        chart.series[chart.series.length - 1].options.zIndex = 99;
+                        chart.get('series-' + idx).options.zIndex = 99;
                     }
                 }
             });

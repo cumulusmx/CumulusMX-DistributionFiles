@@ -29,12 +29,6 @@
                     ],
                     "removeDefaultNone": true
                 },
-                "comportname": {
-                    "helper": "Only required if your station is connected via a serial port (real or virtual)",
-                    "dependencies": {
-                        "stationtype": [0,1,2,3,6,10]
-                    }
-                },
                 "loginterval": {
                     "sort": false,
                     "optionLabels": [
@@ -184,7 +178,7 @@
                 }
             }
         },
-        "daviscommon": {
+        "davisvp2": {
             "collapsible": true,
             "collapsed": true,
             "fields": {
@@ -200,12 +194,18 @@
                             ],
                             "removeDefaultNone": true
                         },
+                        "comportname": {
+                            "helper": "Your station serial port (real or virtual)",
+                            "dependencies": {
+                                "conntype": 0
+                            }
+                        },
                         "tcpsettings": {
-                            "fields": {
+                            "collapsible": true,
+                            "collapsed": false,
+                                    "fields": {
                                 "ipaddress": {
                                     "type": "ipv4"
-                                },
-                                "tcpport": {
                                 },
                                 "disconperiod": {
                                     "helper": "Period to disconnect once a minute from IP loggers to allow them to upload to WeatherLink.com. Time in seconds"
@@ -223,6 +223,34 @@
                     "helper": "Here be dragons! Only alter these settings if you understand what they do.",
                     "helpersPosition": "above",
                     "fields": {
+                        "conntype": {
+                            "type": "integer",
+                            "fieldClass": "hideme"
+                        },
+                        "syncstationclock": {
+                            "rightLabel": "Synchronise station clock",
+                            "helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
+                        },
+                        "syncclockhour": {
+                            "helper": "The hour of the day to synchronise the station clock (Davis/Instromet only)",
+                            "removeDefaultNone": true
+                        },
+                        "readreceptionstats": {
+                            "rightLabel": "Read Davis reception stats",
+                            "helper": "Read Davis reception stats to provide values for corresponding web tags"
+                        },
+                        "setloggerinterval": {
+                            "rightLabel": "Set the Davis Logger interval to match Cumulus MX interval",
+                            "helpers": [
+                                "WARNING: This will clear all data from your logger if it is invoked.",
+                                "If the Davis logger interval does not match the Cumulus interval, set it to match.",
+                                "Requires a restart of Cumulus MX"
+                            ]
+                        },
+                        "useloop2": {
+                            "rightLabel": "Enable use of the LOOP2 data packets (UseDavisLoop2)",
+                            "helper": "This should only be disabled on VP consoles or VP2 consoles using firmware versions before version 1.90"
+                        },
                         "raingaugetype": {
                             "type": "select",
                             "optionLabels": [
@@ -232,39 +260,6 @@
                             ],
                             "removeDefaultNone": true,
                             "helper": "Default is auto, the size is inferred from the units selected for the station"
-                        }
-                    }
-                }
-            },
-            "dependencies": {
-                "stationid": [0, 1, 11]
-            }
-        },
-        "davisvp2": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-                "readreceptionstats": {
-                    "rightLabel": "Read Davis reception stats",
-                    "helper": "Read Davis reception stats to provide values for corresponding web tags"
-                },
-                "setloggerinterval": {
-                    "rightLabel": "Set the Davis Logger interval to match Cumulus MX interval",
-                    "helpers": [
-                        "WARNING: This will clear all data from your logger if it is invoked.",
-                        "If the Davis logger interval does not match the Cumulus interval, set it to match.",
-                        "Requires a restart of Cumulus MX"
-                    ]
-                },
-                "advanced": {
-                    "collapsible": true,
-                    "collapsed": true,
-                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
-                    "helpersPosition": "above",
-                    "fields": {
-                        "useloop2": {
-                            "rightLabel": "Enable use of the LOOP2 data packets (UseDavisLoop2)",
-                            "helper": "This should only be disabled on VP consoles or VP2 consoles using firmware versions before version 1.90"
                         },
                         "vp1minbarupdate": {
                             "rightLabel": "Davis VP 1-minute barometer update (ForceVPBarUpdate)",
@@ -277,17 +272,33 @@
                             "helpers": [
                                 "Time to wait after establishing a connection to an IP logger before sending commands",
                                 "Time is in milliseconds"
-                            ]
+                            ],
+                            "dependencies": {
+                                "conntype": 2
+                            }
                         },
                         "ipresponsetime": {
                             "helpers": [
                                 "Time to wait after sending a command to an IP logger before trying to read the response",
                                 "Time is in milliseconds"
-                            ]
+                            ],
+                            "dependencies": {
+                                "conntype": 2
+                            }
                         },
+                        "tcpport": {
+                            "helper": "TCP/IP port for your logger. Default is 22222",
+                            "dependencies": {
+                                "conntype": 2
+                            }
+                        },
+
                         "baudrate": {
                             "removeDefaultNone": true,
-                            "helper": "Serial port baud rate in bps"
+                            "helper": "Serial port speed in bps",
+                            "dependencies": {
+                                "conntype": 0
+                            }
                         }
                     }
                 }
@@ -301,10 +312,15 @@
             "collapsed": true,
             "fields": {
                 "network": {
+                    "collapsible": true,
+                    "collapsed": true,
                     "fields": {
                         "autoDiscover": {
                             "rightLabel": "Auto-Discovery",
                             "helper": "Enable auto-discovery of your WLL devices IP address - do not enable if you have more than one device"
+                        },
+                        "ipaddress": {
+                            "type": "ipv4"
                         }
                     }
                 },
@@ -603,6 +619,26 @@
                             "helper": "Is sensor #1 a combined temperature/humidity sensor?"
                         }
                     }
+                },
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "raingaugetype": {
+                            "type": "select",
+                            "optionLabels": [
+                                "Auto",
+                                "Metric (0.2 mm)",
+                                "Imperial (0.01 in)"
+                            ],
+                            "removeDefaultNone": true,
+                            "helper": "Default is auto, the size is inferred from the units selected for the station"
+                        },
+                        "tcpport": {
+                        }
+                    }
                 }
             },
             "dependencies": {
@@ -702,6 +738,9 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
+                "comportname": {
+                    "helper": "Only required if your station is connected via a serial port (real or virtual)"
+                },
                 "baudrate": {
                     "removeDefaultNone": true,
                     "helper": "Serial port baud rate in bps"
@@ -712,6 +751,14 @@
                     "helper": "Here be dragons! Only alter these settings if you understand what they do.",
                     "helpersPosition": "above",
                     "fields": {
+                        "syncstationclock": {
+                            "rightLabel": "Synchronise station clock",
+                            "helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
+                        },
+                        "syncclockhour": {
+                            "helper": "The hour of the day to synchronsie the station clock (Davis/Instromet only)",
+                            "removeDefaultNone": true
+                        },
                         "updatepointer": {
                             "rightLabel": "Update logger pointer",
                             "helper": "Update the memory pointer to the last record after every 30 data reads"
@@ -762,20 +809,6 @@
                 "calculatewindchill": {
                     "rightLabel": "Calculate wind chill",
                     "helper": "Use Cumulus value instead of station"
-                },
-                "syncstationclock": {
-                    "rightLabel": "Synchronise station clock",
-                    "helper": "Keep station clock in line with computer clock (Davis/Instromet only)",
-                    "dependencies": {
-                        "stationid": [0,1,10]
-                    }
-                },
-                "syncclockhour": {
-                    "helper": "The hour of the day to synchronsie the station clock (Davis/Instromet only)",
-                    "removeDefaultNone": true,
-                    "dependencies": {
-                        "syncstationclock": true
-                    }
                 },
                 "cumuluspresstrendnames": {
                     "rightLabel": "Cumulus pressure trend names",
