@@ -308,7 +308,11 @@
             "collapsed": true,
             "fields": {
                 "enabled": {
-                    "rightLabel": "Enabled"
+                    "rightLabel": "Enabled",
+                    "helpers": [
+                        "Twitter support is currently depreciated. It is not recommended to try using this",
+                        "This is provided for legacy users who migrated from Cumulus 1 and had used Twitter in that program"
+                    ]
                 },
                 "user": {
                     "dependencies": {
@@ -828,6 +832,12 @@
                     "rightLabel": "Generate Moon image",
                     "helper": "Generate a Moon image file '/web/moon.png' every hour"
                 },
+               "size": {
+                    "helper": "Set the image size in pixels",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "includemoonimage": {
                     "rightLabel": "Upload Moon image file",
                     "helper": "Select this to have the Moon image file uploaded to your FTP server",
@@ -835,16 +845,10 @@
                         "enabled": true
                     }
                 },
-               "size": {
-                    "helper": "Set the image size in pixels",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
                 "ftpdest": {
-                    "helper": "Set the folder and filename to use on your FTP server - if enabled above - default 'images/moon.png'",
+                    "helper": "Set the folder and filename to use on your FTP server - default 'images/moon.png'",
                     "dependencies": {
-                        "enabled": true
+                        "includemoonimage": true
                     }
                 }
             }

@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:34:43
+
 $(document).ready(function() {
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();

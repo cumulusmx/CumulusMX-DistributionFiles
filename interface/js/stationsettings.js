@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:37:19
+
 var StashedStationId;
 $(document).ready(function () {
     var layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
@@ -10,6 +12,7 @@ $(document).ready(function () {
         "postRender": function (form) {
             var stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
 
+            // On changing the station type, propogate down to sub-sections
             stationIdObj.on("change", function () {
                 var form = $("#form").alpaca("get");
                 var stationid = this.getValue();
@@ -17,9 +20,23 @@ $(document).ready(function () {
                 form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
             });
 
+            // On changing the Davis VP connection type, propogate down to advanced settings
+            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].on("change", function () {
+                var form = $("#form").alpaca("get");
+                var conntype = this.getValue();
+                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(conntype);
+                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].refresh();
+            });
+
+            // Set the initial value of the sub-section  station ids
             var stationid = form.childrenByPropertyId["stationid"].getValue();
             form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
+            // Keep a record of the last value
             StashedStationId = stationid;
+
+            // Set the inital value of Davis advanced conntype
+            var conntype = form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].getValue();
+            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(+conntype);
 
             $("#save-button").click(function () {
                 if (form.isValid(true)) {

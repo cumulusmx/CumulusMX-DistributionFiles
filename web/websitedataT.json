@@ -8,6 +8,7 @@
 "cmx-longitude":"<#longitude>",
 "cmx-altitude":"<#altitude>",
 "cmx-recordsbegandate":"<#recordsbegandate>",
+"cmx-forum":"<#forum>",
 
 "cmx-dawn":"<#dawn>",
 "cmx-sunrise":"<#sunrise>",

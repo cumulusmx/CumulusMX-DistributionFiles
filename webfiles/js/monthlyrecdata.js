@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 09:34:13
+
 $('#cmx-location').change(function () {
     var yesterday = new Date()
     yesterday.setDate(yesterday.getDate() - 1)

@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 12:16:17
+
 $(document).ready(function() {
 
     var setDefaultWebSite = function () {
@@ -109,22 +111,28 @@ $(document).ready(function() {
         "dataSource": "../api/settings/internetdata.json",
         "optionsSource": "../api/settings/internetoptions.json",
         "schemaSource": "../api/settings/internetschema.json",
-        "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
             var ftpmodeObj = form.childrenByPropertyId["website"].childrenByPropertyId["sslftp"];
             var ftpmode = ftpmodeObj.getValue();
             form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
 
+            // Trigger updates based on FTP protocol changes
             ftpmodeObj.on("change", function () {
                 var form = $("#form").alpaca("get");
                 var ftpmode = this.getValue();
+                // Set the hidden advanced options protocol field to match
                 form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
+                // Set the default port to match
+                var newPort = ftpmode == 0 ? 21 : (ftpmode == 1 ? 990 : 22);
+                form.childrenByPropertyId["website"].childrenByPropertyId["ftpport"].setValue(newPort);
             });
 
+            // Trigger updates on "Use standard web site being enabled"
             form.childrenByPropertyId["websettings"].childrenByPropertyId["stdwebsite"].on("change", function () {
                 setDefaultWebSite();
             });
+
 
             // enable/disable realtime files FTP option
             updateFtpDisabledOption(

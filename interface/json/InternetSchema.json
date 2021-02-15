@@ -702,14 +702,14 @@
                 "enabled": {
                     "type": "boolean"
                 },
-                "includemoonimage": {
-                    "type": "boolean"
-                },
                 "size": {
                     "title": "Image Size",
                     "type": "integer",
                     "minimum": 20,
                     "maximum": 400
+                },
+                "includemoonimage": {
+                    "type": "boolean"
                 },
                 "ftpdest": {
                     "title": "FTP folder",
@@ -719,7 +719,7 @@
             "dependencies": {
                 "includemoonimage": ["enabled"],
                 "size": ["enabled"],
-                "ftpdest": ["enabled"]
+                "ftpdest": ["includemoonimage"]
             }
         },
         "proxies": {

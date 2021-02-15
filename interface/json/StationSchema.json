@@ -596,7 +596,7 @@
                     "properties": {
                         "raingaugetype": {
                             "title": "Rain gauge type (VPrainGaugeType)",
-                            "enum": [-1, 0, 1]
+                            "enum": [-1, 0, 1, 2, 3]
                         },
                         "tcpport": {
                             "title": "TCP port",

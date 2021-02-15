@@ -628,15 +628,22 @@
                     "fields": {
                         "raingaugetype": {
                             "type": "select",
+                            "sort": false,
                             "optionLabels": [
                                 "Auto",
-                                "Metric (0.2 mm)",
-                                "Imperial (0.01 in)"
+                                "Metric (0.2 mm)*",
+                                "Imperial (0.01 in)*",
+                                "Metric (0.1 mm)",
+                                "Imperial (0.001 in)"
                             ],
                             "removeDefaultNone": true,
-                            "helper": "Default is auto, the size is inferred from the units selected for the station"
+                            "helpers": [
+                                "Default is auto, the size will be set when Cumulus connects to your WLL",
+                                "* Denotes normal Davis tipper sizes"
+                            ]
                         },
                         "tcpport": {
+                            "helpers": ["The UDP multicast port used by the WLL, this will normally be discovered from the WLL"]
                         }
                     }
                 }

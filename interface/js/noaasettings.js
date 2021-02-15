@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:34:31
+
 $(document).ready(function() {
 
     $("#form").alpaca({
@@ -20,11 +22,10 @@ $(document).ready(function() {
                         error: function (error) {
                             alert("error " + error);
                         }
-
                     });
                 }
             });
         }
     });
-    
+
 });
