@@ -1,119 +1,110 @@
+<!--
+	trendsT.htm		v:0.0.1		d:Feb 2021	Neil Thomas
+	Page: 1 main panel plus a sidebar
+	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
+-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<!--
-	Last modified: 2021/02/15 09:35:46
-	-->
-	<meta charset="utf-8">
-	<meta name="description" content="weather data">
-	<meta name="keywords" content="Cumulus, weather, data, weather station">
-	<title></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="weatherstyle.css" rel="stylesheet" type="text/css">
-	<style>
-		body {
-			overflow-y:scroll;
-		}
-		text {
-			font: 12px sans-serif;
-		}
-		#chartcontainer  {
-			min-height: 700px;
-			height: 700px;
-			margin-top:50px;
-			margin-bottom: 10px;
-			background-color:white;
-		}
-		.button {
-			-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-			-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-			box-shadow:inset 0px 1px 0px 0px #ffffff;
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
-			background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
-			background-color:#f9f9f9;
-			-webkit-border-top-left-radius:0px;
-			-moz-border-radius-topleft:0px;
-			border-top-left-radius:0px;
-			-webkit-border-top-right-radius:0px;
-			-moz-border-radius-topright:0px;
-			border-top-right-radius:0px;
-			-webkit-border-bottom-right-radius:0px;
-			-moz-border-radius-bottomright:0px;
-			border-bottom-right-radius:0px;
-			-webkit-border-bottom-left-radius:0px;
-			-moz-border-radius-bottomleft:0px;
-			border-bottom-left-radius:0px;
-			text-indent:0;
-			border:1px solid #dcdcdc;
-			display:inline-block;
-			color:#666666;
-			font-family:Arial;
-			font-size:15px;
-			font-weight:bold;
-			font-style:normal;
-			height:40px;
-			line-height:40px;
-			width:100px;
-			text-decoration:none;
-			text-align:center;
-			text-shadow:1px 1px 0px #ffffff;
-		}
-		.button:hover {
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
-			background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
-			background-color:#e9e9e9;
-		}
-		.button:active {
-			position:relative;
-			top:1px;
-		}
-		.td_left {
-			width: 85px;
-		}
-</style>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="weather data">
+		<meta name="keywords" content="Cumulus, weather, data, weather station">
+		<title>Cumulus MX</title>
+		<link rel="icon" type="image/png" href="images/favicon.png">
 
-</head>
-<body>
-	<div id="content">
-		<h1><span id="cmx-location"></span> weather</h1>
-		<h2 style="text-align: left; text-transform: none;">&nbsp;Latitude&nbsp;<span id="cmx-latitude"></span>&nbsp;&nbsp; &nbsp;&nbsp;Longitude&nbsp;<span id="cmx-longitude"></span>&nbsp;&nbsp; &nbsp;&nbsp;Elevation&nbsp;<span id="cmx-altitude"></span></h2>
-		<p>Click on a button to display the corresponding chart.</p>
-		<p>Mouse over the chart to see the values at any given time.</p>
-		<p>You can add or remove data sets from the chart by clicking the entry on the chart legend.</p>
+		<!--	jQuery Local	-->
+		<script src="lib/jquery/jquery-latest.min.js"></script>
 
-		<div id="chartcontainer">
+		<!--	Fonts	System will default to a sans-serif font if no Internet connection -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rosario:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+		<!--	All Styles	-->
+		<link href="css/w3Pro.css" rel="stylesheet">			<!--	Basic w3shools responsive styles	-->
+		<link href="css/colours.css" rel="stylesheet">		<!--	Slightly enhanced w3schools colours	-->
+		<link href="css/mx-templates.css" rel="stylesheet">	<!--	Specific styles for these templates.	-->
+
+		<!--	Scripts	-->
+		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
+
+		<style>
+			#chartcontainer  {
+				min-height: 550px;
+				margin-top:16px;
+				margin-bottom: 16px;
+			}
+			button {
+				margin-bottom: 5px;
+				border-radius: 4px;
+			}
+			.graphs-width {
+				max-width:1250px;
+				margin: auto
+			}
+		</style>
+	</head>
+	<body>
+		<div id="Header" class="w3-row w3-top w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
+					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
+					<div class="w3-right-align" style="max-width:600px;">
+						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+					</div>
+				</div>
+				<!--	Start of Menu	-->
+				<div id="Main_Menu" class="w3-bar w3-theme-d4 w3-theme-bdr">
+				</div>
+				<!--	Mobile menu	-->
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large">
+				</div>	<!-- End of Mobile menu -->
+			</div>
 		</div>
-		<div>Click on a button to show the corresponding chart above.</div>
-		<div style="text-align:center;">
-			<input name="btnTemp" class="button" tabindex="1" type="button" value="Temperature" onclick="changeGraph('temp');">
-			<input name="btnDailyTemp" class="button" tabindex="2" type="button" value="Daily Temp" onclick="changeGraph('dailytemp');">
-			<input name="btnPress" class="button" tabindex="3" type="button" value="Pressure" onclick="changeGraph('press');">
-			<input name="btnWind" class="button" tabindex="4" type="button" value="Wind Speed" onclick="changeGraph('wind');">
-			<input name="btnWindDir" class="button" tabindex="5" type="button" value="Wind Dir." onclick="changeGraph('windDir');">
-			<input name="btnHum" class="button" tabindex="6" type="button" value="Humidity" onclick="changeGraph('humidity');">
-			<input name="btnRain" class="button" tabindex="7" type="button" value="Rainfall" onclick="changeGraph('rain');">
-			<input name="btnDailyRain" class="button" tabindex="8" type="button" value="Daily Rain" onclick="changeGraph('dailyrain');">
-			<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph('solar');">
-			<input name="btnSunHours" class="button" tabindex="10" type="button" value="Sun Hours" onclick="changeGraph('sunhours');">
-			<input name="btnAirQuality" class="button" tabindex="11" type="button" value="Air Quality" onclick="changeGraph('airquality');">
+		<div id="Content">	<!--	Start of main content	-->
+			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	Page Title	-->
+				<div class="w3-col l12">
+					<h1>Trends</h1>
+				</div>
+			</div>	<!--	End of title row	-->
+			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	First Row	-->
+				<div class="w3-col s12">	<!--	First column of first row	-->
+					<div class="w3-panel w3-card w3-theme-white">
+						<div id="chartcontainer"></div>
+					</div>
+				</div>	<!--	End of first coloumn of first row	-->
+			</div>
+			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	Second row	-->
+				<div class="w3-col s12">
+					<div class="w3-cardX w3-panelX w3-center">
+						<div class="w3-bar w3-center">
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('temp');">Temperature</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailytemp');">Daily temperature</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('press');">Pressure</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('wind');">Wind speed</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('windDir');">Wind direction</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('humidity');">Humidity</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('rain');">Rainfall</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailyrain');">Daily Rainfall</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('solar');">Solar</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('sunhours');">Sun Hours</button>
+							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('airquality');">Air Quality</button>
+						</div>
+					</div>
+				</div>
+			</div>	<!--	End of row	-->
+		</div>	<!--	End of Content	-->
+		<div class="w3-row-padding"></div>
+			<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
+				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span id="cmx-version"></span>, b:<span id="cmx-build"></span></span></em></p>
+			</div>
 		</div>
-		<div class="td_navigation_bar">
-			:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><span id="cmx-forum"></span><wbr><span id="cmx-webcam"></span>
-		</div>
-		<p class="credits"><br>
-			charts by <a href="https://www.highcharts.com/" target="_blank">Highcharts</a><br>
-			page updated <span id="cmx-update"></span><br>
-			powered by <a href="https://cumuluswiki.wxforum.net/a/Software" target="_blank">Cumulus</a> v<span id="cmx-version"></span> (<span id="cmx-build"></span>)
-		</p>
-	</div>
-	<script src="lib/jquery/jquery-latest.min.js"></script>
-	<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
-	<script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
-	<script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
-	<script src="js/cumuluscharts.js"></script>
-	<script src="js/setpagedata.js"></script>
-</body>
+		<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
+		<script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
+		<script src="js/cumuluscharts.js"></script>	<!--	Script needed to run charts	-->
+	</body>
 </html>

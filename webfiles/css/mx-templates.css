@@ -1,0 +1,92 @@
+/*	------------------------------
+ * 	Styles for CumulusMX Interface
+ * 	------------------------------*/
+
+html, body, p, h1, h2, h3, h4, h5, h6, li, td, th {
+	font-family: 'Rosario', sans-serif;
+}
+
+p {
+	font-size: 15px;
+}
+
+#Header {
+	border-style: solid;
+	border-width: 0 0 10px 0;
+}
+
+.site-width {
+	max-width:1140px;
+	margin:auto;
+}
+
+#Footer {
+	border-width:5px 0 0 0;
+	border-style: solid;
+}
+
+.logo {
+	max-width:250px;
+	margin: 5px 0 5px 16px;
+}
+
+.subText {
+	font-size: 80% !important;
+	font-weight:400;
+}
+
+.at-flex-start { display:flex; justify-content: flex-start;}
+.at-flex-end   { display:flex; justify-content: flex-end;}
+.at-flex-justify {display:flex; justify-content: space-around; flex-wrap:wrap;}
+.at-flex-between {display:flex;justify-content: space-between;}
+.at-flex-bottom {display:flex; align-items: flex-end;}
+
+body {
+	background-image: url('../images/picture.jpg');
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+/*	--------------------------------------------------
+ * 	Menu enhancements
+ * 	--------------------------------------------------*/
+#Main_Menu {
+	margin-bottom: 4px;
+	border-width:2px 0 0 0 ;
+	border-style: solid;
+}
+
+.at-slim {
+	padding: 4px 14px!important;
+}
+
+.at-divider {
+	margin: 0 5px;
+	color:#F80;
+}
+
+.at-spacer {
+    min-height:2em;
+}
+
+.at-menu-lable {
+	display:block;
+	width:100%;
+	font-size: 13px;
+	font-style: italic;
+	color: #0C3;
+	padding-bottom: 2px!important;
+	padding-top:4px!important;
+	border-bottom: 1px dotted #c2cfa5!important;
+}
+
+.at-menu-bar {
+	display:block;
+	height: 2px;
+	padding: 0 2px!important;
+}
+
+.at-indent {
+	padding-left: 40px!important;
+}

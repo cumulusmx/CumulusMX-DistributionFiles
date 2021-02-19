@@ -33,7 +33,7 @@ gauges = (function () {
     var strings = LANG.EN,         // Set to your default language. Store all the strings in one object
         config = {
             // Script configuration parameters you may want to 'tweak'
-            scriptVer          : '2.7.6',
+            scriptVer          : '2.7.4',
             weatherProgram     : 0,                      // Set 0=Cumulus, 1=Weather Display, 2=VWS, 3=WeatherCat, 4=Meteobridge, 5=WView, 6=WeeWX, 7=WLCOM
             imgPathURL         : './images/',            // *** Change this to the relative path for your 'Trend' graph images
             oldGauges          : 'gauges.htm',           // *** Change this to the relative path for your 'old' gauges page.
@@ -48,7 +48,7 @@ gauges = (function () {
             digitalFont        : false,                  // Font control for the gauges & timer
             digitalForecast    : false,                  // Font control for the status display, set this to false for languages that use accented characters in the forecasts
             showPopupData      : true,                   // Pop-up data displayed
-            showPopupGraphs    : true,                   // If pop-up data is displayed, show the graphs?
+            showPopupGraphs    : false,                  // If pop-up data is displayed, show the graphs?
             mobileShowGraphs   : false,                  // If false, on a mobile/narrow display, always disable the graphs
             showWindVariation  : true,                   // Show variation in wind direction over the last 10 minutes on the direction gauge
             showWindMetar      : false,                  // Show the METAR substring for wind speed/direction over the last 10 minutes on the direction gauge popup
@@ -2166,7 +2166,11 @@ gauges = (function () {
                             height: cache.odoHeight
                         });
                         // Position it
-                        $(buffers.Odo).attr("class", "odo");
+                        $(buffers.Odo).css({
+                            position: 'absolute',
+                            top     : Math.ceil(cache.gaugeSize * 0.7 + $('#canvas_rose').position().top) + 'px',
+                            left    : Math.ceil((cache.gaugeSize - cache.odoWidth) / 2 + $('#canvas_rose').position().left) + 'px'
+                        });
                         // Insert it into the DOM before the Rose gauge
                         $(buffers.Odo).insertBefore('#canvas_rose');
                         // Create the odometer
@@ -2731,7 +2735,7 @@ gauges = (function () {
         //
         getRealtime = function () {
             var url = config.realTimeURL;
-            if ($.active > 0 && undefined != jqXHR) {
+            if ($.active > 0) {
                 // kill any outstanding requests
                 jqXHR.abort();
             }
@@ -4010,14 +4014,10 @@ gauges = (function () {
 
             // temperature
             if (gaugeTemp) {
-                if (config.showIndoorTempHum) {
-                    if ($('#rad_temp1').is(':checked')) {
-                        gaugeTemp.data.title = strings.temp_title_out;
-                    } else {
-                        gaugeTemp.data.title = strings.temp_title_in;
-                    }
-                } else {
+                if ($('#rad_temp1').is(':checked')) {
                     gaugeTemp.data.title = strings.temp_title_out;
+                } else {
+                    gaugeTemp.data.title = strings.temp_title_in;
                 }
                 gaugeTemp.gauge.setTitleString(gaugeTemp.data.title);
                 if (data.ver) {gaugeTemp.update();}
@@ -4058,14 +4058,10 @@ gauges = (function () {
             }
             // humidity
             if (gaugeHum) {
-                if (config.showIndoorTempHum) {
-                    if ($('#rad_hum1').is(':checked')) {
-                        gaugeHum.data.title = strings.hum_title_out;
-                    } else {
-                        gaugeHum.data.title = strings.hum_title_in;
-                    }
-                } else {
+                if ($('#rad_hum1').is(':checked')) {
                     gaugeHum.data.title = strings.hum_title_out;
+                } else {
+                    gaugeHum.data.title = strings.hum_title_in;
                 }
                 gaugeHum.gauge.setTitleString(gaugeHum.data.title);
                 if (data.ver) {gaugeHum.update();}

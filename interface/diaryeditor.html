@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--
-        Last modified: 2021/02/15 18:25:55
+        Last modified: 2021/02/16 11:51:48
         -->
         <meta charset="utf-8">
         <title>Cumulus MX</title>
@@ -24,7 +24,7 @@
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- datepicker -->
-        <script src="lib/datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
         <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 
@@ -33,9 +33,17 @@
         <link href="css/cumulus.css" rel="stylesheet">
 
         <style>
-            .activeClass {
-                border-radius: 50%;
-                background-color: #F00;
+            .hasData {
+                color: #f00;
+                font-weight: 900;
+                border-color: #f00 !important;
+                border-style: solid !important;
+                border-width: thin !important;
+            }
+            .active {
+                border-radius: 50% !important;
+                background-color: #0044cca6 !important;
+                background-image: none !important;
             }
         </style>
     </head>

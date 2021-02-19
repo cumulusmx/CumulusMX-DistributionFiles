@@ -1,21 +1,9 @@
-// Last modified: 2021/02/17 17:24:24
+// Last modified: 2021/02/15 09:34:13
 
 $('#cmx-location').change(function () {
     var yesterday = new Date()
     yesterday.setDate(yesterday.getDate() - 1)
     changeData(yesterday.getMonth());
-});
-
-$(document).ready(function () {
-	// Wait for the JSON load to complete
-	$(document).ajaxStop(function () {
-		// No more active requests?
-		if ($.active === 0) {
-			var yesterday = new Date()
-			yesterday.setDate(yesterday.getDate() - 1)
-			changeData(yesterday.getMonth());
-		}
-	});
 });
 
 var monthnames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");

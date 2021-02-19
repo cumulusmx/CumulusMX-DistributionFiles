@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!--
+	Last modified: 2021/02/15 09:37:42
+	-->
+	<meta charset="utf-8">
+	<meta name="description" content="weather data">
+	<meta name="keywords" content="Cumulus, weather, data, weather station">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="weatherstyle.css" rel="stylesheet" type="text/css">
+	<style>
+		body {
+			overflow-y:scroll;
+		}
+		text {
+			font: 12px sans-serif;
+		}
+		#chartcontainer  {
+			min-height: 700px;
+			height: 700px;
+			margin-top:50px;
+			margin-bottom: 10px;
+			background-color:white;
+		}
+		.button {
+			-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+			box-shadow:inset 0px 1px 0px 0px #ffffff;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+			background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
+			background-color:#f9f9f9;
+			-webkit-border-top-left-radius:0px;
+			-moz-border-radius-topleft:0px;
+			border-top-left-radius:0px;
+			-webkit-border-top-right-radius:0px;
+			-moz-border-radius-topright:0px;
+			border-top-right-radius:0px;
+			-webkit-border-bottom-right-radius:0px;
+			-moz-border-radius-bottomright:0px;
+			border-bottom-right-radius:0px;
+			-webkit-border-bottom-left-radius:0px;
+			-moz-border-radius-bottomleft:0px;
+			border-bottom-left-radius:0px;
+			text-indent:0;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			font-style:normal;
+			height:40px;
+			line-height:40px;
+			width:100px;
+			text-decoration:none;
+			text-align:center;
+			text-shadow:1px 1px 0px #ffffff;
+		}
+		.button:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
+			background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
+			background-color:#e9e9e9;
+		}
+		.button:active {
+			position:relative;
+			top:1px;
+		}
+		.td_left {
+			width: 85px;
+		}
+</style>
+
+</head>
+<body>
+	<div id="content">
+		<h1><span id="cmx-location"></span> weather</h1>
+		<h2 style="text-align: left; text-transform: none;">&nbsp;Latitude&nbsp;<span id="cmx-latitude"></span>&nbsp;&nbsp; &nbsp;&nbsp;Longitude&nbsp;<span id="cmx-longitude"></span>&nbsp;&nbsp; &nbsp;&nbsp;Elevation&nbsp;<span id="cmx-altitude"></span></h2>
+		<p>Click on a button to display the corresponding daily data chart.</p>
+		<p>Mouse over the chart to see the values at any given time.</p>
+		<p>You can add or remove data sets from the chart by clicking the entry on the chart legend.</p>
+
+		<div id="chartcontainer">
+		</div>
+		<div>Click on a button to show the corresponding chart above.</div>
+		<div style="text-align:center;">
+			<input name="btnTemp" class="button" tabindex="2" type="button" value="Temperature" onclick="changeGraph('temp');">
+			<input name="btnPress" class="button" tabindex="3" type="button" value="Pressure" onclick="changeGraph('press');">
+			<input name="btnWind" class="button" tabindex="4" type="button" value="Wind Speed" onclick="changeGraph('wind');">
+			<input name="btnHum" class="button" tabindex="6" type="button" value="Humidity" onclick="changeGraph('humidity');">
+			<input name="btnRain" class="button" tabindex="8" type="button" value="Rainfall" onclick="changeGraph('rain');">
+			<input name="btnSolar" class="button" tabindex="9" type="button" value="Solar" onclick="changeGraph('solar');">
+		</div>
+		<div class="td_navigation_bar">
+			:<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><span id="cmx-forum"></span><wbr><span id="cmx-webcam"></span>
+		</div>
+		<p class="credits"><br>
+			charts by <a href="https://www.highcharts.com/" target="_blank">Highcharts</a><br>
+			page updated <span id="cmx-update"></span><br>
+			powered by <a href="https://cumuluswiki.wxforum.net/a/Software" target="_blank">Cumulus</a> v<span id="cmx-version"></span> (<span id="cmx-build"></span>)
+		</p>
+	</div>
+	<script src="lib/jquery/jquery-latest.min.js"></script>
+	<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
+	<script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
+	<script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
+	<script src="js/historiccharts.js"></script>
+	<script src="js/setpagedata.js"></script>
+</body>
+</html>
