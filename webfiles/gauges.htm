@@ -1,7 +1,7 @@
 <!--
 	gaugesT.html	v:0.0.1		d:Feb 2021	Neil Thomas
 	Page: 1 main panel plus a sidebar
-	Last modified: 2021/02/19 12:56:37
+	Last modified: 2021/02/19 17:36:42
 	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
 -->
 <!DOCTYPE html>
@@ -41,6 +41,11 @@
 				display: inline-block;
 				font-size: 12px;
 			}
+			.at-flex-evenly {
+				display:flex;
+				justify-content:space-evenly;
+				flex-wrap:wrap;
+			}
 		</style>
 	</head>
 	<body>
@@ -68,21 +73,23 @@
 			</div>	<!--	End of title row	-->
 			<div class="w3-row site-width w3-theme-light">	<!--	Start of Main panel	-->
 				<div class="w3-col l9 m12">						<!--	3/4 width panel	-->
-					<div class="w3-row-padding">				<!--	Row 1 of 3/4 width panel	-->
-						<div class="w3-col l4 m6 s12">		<!-- 	Panel 1 of 3: 1/3rd width of above row 1	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+					<div class="w3-col s12 at-flex-evenly" style="padding-left:8px;padding-right:8px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Temperature</h3>
 								<div class="gauge w3-center">
 									<div id="tip_0">
 										<canvas id="canvas_temp" class="gaugeSmall"></canvas>
 									</div>
-									<input id="rad_temp1" type="radio" class="w3-radio" name="rad_temp" value="out" checked onclick="gauges.doTemp(this);"><label id="lab_temp1" for="rad_temp1">Outside</label>
-									<input id="rad_temp2" type="radio" class="w3-radio" name="rad_temp" value="in" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label>
+									<div class="">
+										<input id="rad_temp1" type="radio" class="w3-radio" name="rad_temp" value="out" checked onclick="gauges.doTemp(this);"><label id="lab_temp1" for="rad_temp1">Outside</label>
+										<input id="rad_temp2" type="radio" class="w3-radio" name="rad_temp" value="in" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m6 s12">		<!-- 	Panel 2 of 3: 1/3rd width of above row 1	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Other Temps</h3>
 								<div class="gauge w3-center">
 									<div id="tip_1">
@@ -100,8 +107,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m12 s12">		<!-- 	Panel 3 of 3: 1/3rd width of above row 1	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Humidity</h3>
 								<div class="gauge w3-center">
 									<div id="tip_4">
@@ -112,74 +119,72 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="w3-row-padding">	<!--	Row 2 of 3/4 width panel	-->
-						<div class="w3-col l4 m6 s12">		<!-- 	Panel 1 of 3: 1/3rd width of row 2	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind</h3>
 								<div id="tip_6" class="gauge w3-center">
 									<canvas id="canvas_wind" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m6 s12">		<!-- 	panel 2 of 3: 1/3rd width of row 2	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind Direction</h3>
 								<div id="tip_7" class="gauge w3-center">
 									<canvas id="canvas_dir" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m12 s12">		<!-- 	Panel 3 of 3: 1/3rd width of row 2	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind Rose</h3>
 								<div id="tip_10" class="gauge w3-center">
 									<canvas id="canvas_rose" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="w3-row-padding">				<!--	Row 3 of 3/4 width panel	-->
-						<div class="w3-col l4 m6 s12">		<!-- 	Panel 1 of 3: 1/3rd width of row 3-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Pressure</h3>
 								<div id="tip_5" class="gauge w3-center">
 									<canvas id="canvas_baro" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m6 s12">		<!-- 	Panel 2 of 3: 1/3rd width of row 3	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Rainfall</h3>
 								<div id="tip_2" class="gauge w3-center">
 									<canvas id="canvas_rain" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-						<div class="w3-col l4 m12 s12">		<!-- 	Panel 3 of 3: 1/3rd width of row 3	-->
-							<div class="w3-panel w3-card w3-theme-white" style="padding-bottom:16px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Rainfall Rate</h3>
 								<div id="tip_3" class="gauge w3-center">
 									<canvas id="canvas_rrate" class="gaugeSmall"></canvas>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="w3-row-padding">	<!--	Row 4 of 3/4 width panel - flex	-->
-						<div class="at-flex-justify">
-							<div class="w3-third w3-panel w3-card w3-theme-white w3-hide uv-data" style="padding-bottom:16px;margin: 8px;">
+						<div class="w3-hide uv-data" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>UV Radiation</h3>
 								<div id="tip_8" class="gauge w3-center">
 									<canvas id="canvas_uv" class="gaugeSmall"></canvas>
 								</div>
 							</div>
-							<div class="w3-third w3-panel w3-card w3-theme-white w3-hide solar-data" style="padding-bottom:16px; margin:8px;">
+						</div>
+						<div class="w3-hide solar-data" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>Solar</h3>
 								<div id="tip_9" class="gauge w3-center">
 									<canvas id="canvas_solar" class="gaugeSmall"></canvas>
 								</div>
 							</div>
-							<div class="w3-third w3-panel w3-card w3-theme-white" style="padding-bottom:16px; margin:8px;">
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>Cloudbase</h3>
 								<div id="tip_11" class="gauge w3-center">
 									<canvas id="canvas_cloud" class="gaugeSmall"></canvas>
