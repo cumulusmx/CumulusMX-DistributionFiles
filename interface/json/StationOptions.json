@@ -1054,6 +1054,34 @@
                     }
                 }
             }
+        },
+        "DisplayOptions": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "windrosepoints": {
+                    "removeDefaultNone": true,
+                    "helpers": [
+                        "The number of cardinal points to display on the Wind Rose",
+                        "Set this to 8 for Fine Offset stations"
+                    ]
+                },
+                "useapparent": {
+                    "rightLabel": "Use Apparent Temperature",
+                    "helpers": [
+                        "Enabling this option will display Apparent temperature on the default web site",
+                        "Disabling this option will display Feels Like temperature on the default web site"
+                    ]
+                },
+                "displaysolar": {
+                    "rightLabel": "Display Solar data",
+                    "helpers": ["Enabling this option will display solar data on the default web site"]
+                },
+                "displayuv": {
+                    "rightLabel": "Display UV-I data",
+                    "helpers": ["Enabling this option will display UV-I data on the default web site"]
+                }
+            }
         }
     }
 }

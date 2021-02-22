@@ -1,4 +1,7 @@
 /*!
+ * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
+ * Last Modified: 2021/02/21 00:17:00
+ *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
  *
@@ -9,6 +12,7 @@
  * See the enclosed License file
  *
  * File encoding = UTF-8
+ *
  *
  */
 
@@ -962,6 +966,10 @@ gauges = (function () {
                     cache.title = strings.apptemp_title;
                     cache.popupImg = 1;
                     break;
+                case 'feel':
+                    cache.title = strings.feel_title;
+                    cache.popupImg = 1;
+                    break;
                 case 'wnd':
                     cache.title = strings.chill_title;
                     cache.popupImg = 2;
@@ -1057,6 +1065,20 @@ gauges = (function () {
                              '<br>' +
                              '- ' + strings.lowestF_info + ': ' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTL +
                              ' | ' + strings.highestF_info + ': ' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH;
+                        break;
+                    case 'feel': // feels like
+                        cache.low = extractDecimal(data.feelslikeTL);
+                        cache.high = extractDecimal(data.feelslikeTH);
+                        cache.value = extractDecimal(data.feelslike);
+                        cache.areas = [steelseries.Section(+cache.low, +cache.high, gaugeGlobals.minMaxArea)];
+                        cache.title = strings.feel_title;
+                        cache.minMeasuredVisible = false;
+                        cache.maxMeasuredVisible = false;
+                        cache.popupImg = 1;
+                        tip = tip = strings.feel_info + ':' +
+                             '<br>' +
+                             '- ' + strings.lowestF_info + ': ' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTL +
+                             ' | ' + strings.highestF_info + ': ' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH;
                         break;
                     case 'wnd': // wind chill
                         cache.low = extractDecimal(data.wchillTL);
@@ -4029,6 +4051,9 @@ gauges = (function () {
                     break;
                 case 'app':
                     gaugeDew.data.title = strings.apptemp_title;
+                    break;
+                case 'feel':
+                    gaugeDew.data.title = strings.feel_title;
                     break;
                 case 'wnd':
                     gaugeDew.data.title = strings.chill_title;

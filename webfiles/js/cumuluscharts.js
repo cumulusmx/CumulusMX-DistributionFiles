@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 09:34:31
+// Last modified: 2021/02/21 22:50:00
 
 var chart, config;
 
@@ -8,22 +8,22 @@ $(document).ready(function () {
         dataType: "json",
         success: function (result) {
             if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('input[name="btnTemp"').remove();
+                $('#btnTemp').remove();
             }
             if (result.DailyTemp === undefined || result.DailyTemp.Count == 0) {
-                $('input[name="btnDailyTemp"').remove();
+                $('#btnDailyTemp').remove();
             }
             if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('input[name="btnHum"').remove();
+                $('#btnHum').remove();
             }
             if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('input[name="btnSolar"').remove();
+                $('#btnSolar').remove();
             }
             if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-                $('input[name="btnSunHours"').remove();
+                $('#btnSunHours').remove();
             }
             if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-                $('input[name="btnAirQuality"').remove();
+                $('#btnAirQuality').remove();
             }
         }
     });

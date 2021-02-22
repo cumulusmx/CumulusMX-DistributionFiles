@@ -1,4 +1,4 @@
-// Last modified: 2021/02/17 17:24:24
+// Last modified: 2021/02/21 16:41:57
 
 $('#cmx-location').change(function () {
     var yesterday = new Date()
@@ -34,6 +34,10 @@ function changeData(month) {
 	document.getElementById('AppTempHT').innerHTML = cmx_data.monthlyrecs.highapptempT[month];
 	document.getElementById('AppTempL').innerHTML = cmx_data.monthlyrecs.lowapptemp[month];
 	document.getElementById('AppTempLT').innerHTML = cmx_data.monthlyrecs.lowapptempT[month];
+	document.getElementById('FeelsLikeH').innerHTML = cmx_data.monthlyrecs.highfeelslike[month];
+	document.getElementById('FeelsLikeHT').innerHTML = cmx_data.monthlyrecs.highfeelslikeT[month];
+	document.getElementById('FeelsLikeL').innerHTML = cmx_data.monthlyrecs.lowfeelslike[month];
+	document.getElementById('FeelsLikeLT').innerHTML = cmx_data.monthlyrecs.lowfeelslikeT[month];
 	document.getElementById('WChillL').innerHTML = cmx_data.monthlyrecs.lowchill[month];
 	document.getElementById('WChillLT').innerHTML = cmx_data.monthlyrecs.lowchillT[month];
 	document.getElementById('HeatIndexH').innerHTML = cmx_data.monthlyrecs.highheatindex[month];

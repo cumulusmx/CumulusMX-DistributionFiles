@@ -1,6 +1,6 @@
 <!--
 	indexT.html		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/19 08:54:49
+	Last modified: 2021/02/22 09:15:06
 	Page: 1 main panel plus a right sidebar
 -->
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -48,7 +48,7 @@
 		<div id="Content">	<!--	Start of panel content	-->
 			<div class="w3-row-padding w3-theme-light site-width">	<!--	Page Title	-->
 				<div class="w3-col l12">
-					<h1><span id="cmx-location"></span> Weather <span class="subText"></span></h1>
+					<h1><span data-cmxdata="location"></span> Weather <span class="subText"></span></h1>
 				</div>
 			</div>	<!--	End of title row	-->
 			<div class="w3-row site-width w3-theme-light">	<!--	Start of Main panel	-->
@@ -62,31 +62,31 @@
 										<tbody>
 											<tr>
 												<td class="">Dawn:</td>
-												<td class=""><span id="cmx-dawn"></span></td>
+												<td class=""><span data-cmxdata="dawn"></span></td>
 												<td class="">Sunrise:</td>
-												<td class=""><span id="cmx-sunrise"></span></td>
+												<td class=""><span data-cmxdata="sunrise"></span></td>
 												<td class="">Moonrise:</td>
-												<td class=""><span id="cmx-moonrise"></span></td>
+												<td class=""><span data-cmxdata="moonrise"></span></td>
 												<td rowspan="3" style="width:75px; padding:0"><img src="images/moon.png" alt="Moon" width="75" height="75" class="w3-image" /></td>
 											</tr>
 											<tr>
 												<td class="">Dusk:</td>
-												<td class=""><span id="cmx-dusk"></span></td>
+												<td class=""><span data-cmxdata="dusk"></span></td>
 												<td class="">Sunset:</td>
-												<td class=""><span id="cmx-sunset"></span></td>
+												<td class=""><span data-cmxdata="sunset"></span></td>
 												<td class="">Moonset:</td>
-												<td class=""><span id="cmx-moonset"></span></td>
+												<td class=""><span data-cmxdata="moonset"></span></td>
 											</tr>
 											<tr>
 												<td class="">Daylight:</td>
-												<td class=""><span id="cmx-daylightlength"></span></td>
+												<td class=""><span data-cmxdata="daylightlength"></span></td>
 												<td class="">Day length:</td>
-												<td class=""><span id="cmx-daylength"></span></td>
+												<td class=""><span data-cmxdata="daylength"></span></td>
 												<td class="">Moon Phase:</td>
-												<td class=""><span id="cmx-moonphase"></span></td>
+												<td class=""><span data-cmxdata="moonphase"></span></td>
 											</tr>
 											<tr>
-												<td colspan="7"><strong>Current conditions</strong>: <span id="cmx-currcond"></span></td>
+												<td colspan="7"><strong>Current conditions</strong>: <span data-cmxdata="currcond"></span></td>
 											</tr>
 										</tbody>
 									</table>
@@ -97,7 +97,7 @@
 					<div class="w3-row-padding">	<!--	Row 2 of 3/4 width panel	-->
 						<div class="w3-col s12">		<!-- 	Full width of above panel	-->
 							<div class="w3-panel w3-card w3-theme-white">
-								<h3 class="">Conditions at local time <span id="cmx-time"></span></h3>
+								<h3 class="">Conditions at local time <span data-cmxdata="time"></span></h3>
 								<div class="w3-responsive">
 									<table class="w3-table w3-hoverable" style="min-width:100%;">
 										<tr>
@@ -105,95 +105,97 @@
 										</tr>
 										<tr class="w3-theme-l2">
 											<td>Temperature:</td>
-											<td><span id="cmx-temp"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+											<td><span data-cmxdata="temp"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 											<td>Dew Point:</td>
-											<td><span id="cmx-dew"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+											<td><span data-cmxdata="dew"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td>Windchill:</td>
-											<td><span id="cmx-wchill"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+											<td><span data-cmxdata="wchill"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 											<td>Humidity:</td>
-											<td><span id="cmx-hum"></span>&nbsp;%</td>
+											<td><span data-cmxdata="hum"></span>&nbsp;%</td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td>Heat Index:</td>
-											<td><span id="cmx-heatindex"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td>Apparent Temperature:</td>
-											<td><span id="cmx-apptemp"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+											<td >Heat Index:</td>
+											<td><span data-cmxdata="heatindex"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td data-cmx-apparent="1" class="w3-hide">Apparent Temperature:</td>
+											<td data-cmx-apparent="1" class="w3-hide"><span data-cmxdata="apptemp"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td data-cmx-feels="1">Feels Like:</td>
+											<td data-cmx-feels="1"><span data-cmxdata="feelslike"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td>THW Index:</td>
-											<td><span id="cmx-THWindex"></span></td>
+											<td><span data-cmxdata="THWindex"></span></td>
 											<td>Temp change last hour:</td>
-											<td><span id="cmx-TempChangeLastHour"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+											<td><span data-cmxdata="TempChangeLastHour"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr>
 											<td colspan="4" class="w3-theme-d4">Rainfall</td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td>Rainfall Today:</td>
-											<td><span id="cmx-rfall"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="rfall"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 											<td>Rainfall Rate:</td>
-											<td><span id="cmx-rrate"></span>&nbsp;<span class="cmx-rainunit"></span>/hr</td>
+											<td><span data-cmxdata="rrate"></span>&nbsp;<span data-cmxdata="rainunit"></span>/hr</td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td>Rainfall This Month:</td>
-											<td><span id="cmx-rmonth"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="rmonth"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 											<td>Rainfall This Year:</td>
-											<td><span id="cmx-ryear"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="ryear"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td>Rainfall Last Hour:</td>
-											<td><span id="cmx-rhour"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="rhour"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 											<td>Last rainfall:</td>
-											<td><span id="cmx-LastRainTipISO"></span></td>
+											<td><span data-cmxdata="LastRainTipISO"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td>Rainfall Since Midnight:</td>
-											<td><span id="cmx-rmidnight"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="rmidnight"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 											<td>Rainfall Last 24 Hours:</td>
-											<td><span id="cmx-r24hour"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="r24hour"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 										</tr>
 										<tr>
 											<td colspan="4" class="w3-theme-d3">Wind</td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td>Wind Speed (gust):</td>
-											<td><span id="cmx-wgust"></span>&nbsp;<span class="cmx-windunit"></span></td>
+											<td><span data-cmxdata="wgust"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
 											<td>Wind Speed(avg):</td>
-											<td><span id="cmx-wspeed"></span>&nbsp;<span class="cmx-windunit"></span></td>
+											<td><span data-cmxdata="wspeed"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td>Wind Bearing:</td>
-											<td><span id="cmx-avgbearing"></span>&deg; <span id="cmx-wdir"></span></td>
-											<td>Beaufort <span id="cmx-beaufort"></span></td>
-											<td><span id="cmx-beaudesc"></span></td>
+											<td><span data-cmxdata="avgbearing"></span>&deg; <span data-cmxdata="wdir"></span></td>
+											<td>Beaufort <span data-cmxdata="beaufort"></span></td>
+											<td><span data-cmxdata="beaudesc"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td>Wind Variation (last 10 minutes)</td>
-											<td colspan="3">From <span id="cmx-BearingRangeFrom"></span>&deg; to <span id="cmx-BearingRangeTo"></span>&deg;</td>
+											<td colspan="3">From <span data-cmxdata="BearingRangeFrom"></span>&deg; to <span data-cmxdata="BearingRangeTo"></span>&deg;</td>
 										</tr>
 										<tr>
 											<td colspan="4" class="w3-theme-d2">Pressure</td>
 										</tr>
 										<tr class="w3-theme-l5">
 											<td>Barometer:</td>
-											<td><span id="cmx-press"></span>&nbsp;<span class="cmx-pressunit"></span></td>
-											<td><span id="cmx-presstrend"></span></td>
-											<td><span id="cmx-presstrendval"></span>&nbsp;<span class="cmx-pressunit"></span>/hr</td>
+											<td><span data-cmxdata="press"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
+											<td><span data-cmxdata="presstrend"></span></td>
+											<td><span data-cmxdata="presstrendval"></span>&nbsp;<span data-cmxdata="pressunit"></span>/hr</td>
 										</tr>
-										<tr class="w3-hide solar-data">
+										<tr class="w3-hide" data-cmx-solar>
 											<td colspan="4" class="w3-theme-d1">Solar</td>
 										</tr>
-										<tr class="w3-theme-l6 w3-hide solar-data">
+										<tr class="w3-theme-l6 w3-hide" data-cmx-solar>
 											<td>Solar Radiation:</td>
-											<td><span id="cmx-SolarRad"></span>&nbsp;W/m&sup2;</td>
+											<td><span data-cmxdata="SolarRad"></span>&nbsp;W/m&sup2;</td>
 											<td>Evapotranspiration Today</td>
-											<td><span id="cmx-ET"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+											<td><span data-cmxdata="ET"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 										</tr>
 									</table>
 								</div>
-								<p class="w3-small credits">Page updated <span id="cmx-update"></span>.</p>
+								<p class="w3-small credits">Page updated <span data-cmxdata="update"></span>.</p>
 							</div>
 						</div>
 					</div>
@@ -202,12 +204,12 @@
 					<div class="w3-row-padding">
 						<div class="w3-col l12">
 							<div class="w3-panel w3-container w3-theme-light">
-								<h3 class="w3-center">Welcome to <br/><span class="subText"><span id="cmx-longlocation"></span></span></h3>
-								<p>The weather station in use is the <span id="cmx-stationtype"></span>, and these pages are updated
-									every <span id="cmx-interval"></span> minutes. The meteorological day used at this station ends at
-									<span id="cmx-rollovertime"></span>.
+								<h3 class="w3-center">Welcome to <br/><span class="subText"><span data-cmxdata="longlocation"></span></span></h3>
+								<p>The weather station in use is the <span data-cmxdata="stationtype"></span>, and these pages are updated
+									every <span data-cmxdata="interval"></span> minutes. The meteorological day used at this station ends at
+									<span data-cmxdata="rollovertime"></span>.
 								</p>
-								<p><strong>Forecast:</strong> <span id="cmx-forecast"></span></p>
+								<p><strong>Forecast:</strong> <span data-cmxdata="forecast"></span></p>
 							</div>
 						</div>
 					</div>
@@ -217,7 +219,7 @@
 		<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
 			<div class="w3-row-padding site-width">
 				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
-				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span id="cmx-version"></span>, b:<span id="cmx-build"></span></span></em></p>
+				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
 	</body>

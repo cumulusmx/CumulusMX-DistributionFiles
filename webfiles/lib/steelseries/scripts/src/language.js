@@ -1,4 +1,8 @@
 /*
+ * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
+ * Last Modified: 2021/02/21 17:04:13
+ * MODIFIED ENGLISH ONLY
+ *
  * A language file for the starter SteelSeries gauges page for Cumulus
  *
  * Created by Mark Crossley, July 2011
@@ -65,6 +69,9 @@ LANG.EN = {
     apptemp_title     : 'Apparent',
     apptemp_info      : 'Apparent (Feels-Like) Temperature',
     apptemp_web       : 'Apparent',
+    feel_title        : 'Feels Like',
+    feel_info         : 'Feels Like Temperature',
+    feel_web          : 'Feels',
     chill_title       : 'Wind Chill',
     chill_info        : 'Wind Chill',
     chill_web         : 'Wind Chill',
@@ -2617,10 +2624,11 @@ function changeLang(newLang, updateGauges) {
     $('#lab_temp1').html(newLang.temp_out_web);
     $('#lab_temp2').html(newLang.temp_in_web);
     $('#lab_dew1').html(newLang.dew_web);
-    $('#lab_dew2').html(newLang.apptemp_web);
+    $('#lab_dew2').html(newLang.app_web);
     $('#lab_dew3').html(newLang.chill_web);
     $('#lab_dew4').html(newLang.heat_web);
     $('#lab_dew5').html(newLang.humdx_web);
+    $('#lab_dew6').html(newLang.feel_web);
     $('#lab_hum1').html(newLang.hum_out_web);
     $('#lab_hum2').html(newLang.hum_in_web);
 

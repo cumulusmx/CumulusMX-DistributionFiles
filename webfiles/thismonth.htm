@@ -1,6 +1,6 @@
 <!--
 	thismonthT.htm		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/19 12:59:35
+	Last modified: 2021/02/21 16:50:55
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -48,7 +48,7 @@
 		<div id="Content">	<!--	Start of panel content	-->
 			<div class="w3-row-padding w3-theme-light site-width">	<!--	Page Title	-->
 				<div class="w3-col l12">
-					<h1><span class="cmx-monthname"></span> highs &amp; lows</h1>
+					<h1><span data-cmxdata="monthname"></span> highs &amp; lows</h1>
 				</div>
 			</div>	<!--	End of title row	-->
 			<div class="w3-row site-width w3-theme-light">	<!--	Start of Main panel	-->
@@ -56,7 +56,7 @@
 					<div class="w3-row-padding">	<!--	Row 1 of 3/4 width panel	-->
 						<div class="w3-col s12">		<!-- 	Full width of above panel	-->
 							<div class="w3-panel w3-card w3-theme-white">
-								<h2 class=""><span class="cmx-monthname"></span> <span class="cmx-year"></span> records</h2>
+								<h2 class=""><span data-cmxdata="monthname"></span> <span data-cmxdata="year"></span> records</h2>
 								<div class="w3-responsive">
 									<table class="w3-table w3-hoverable" style="width:100%;">
 										<tr class="w3-theme-d5">
@@ -64,135 +64,145 @@
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Temperature</td>
-											<td class="w3-right-align"><span id="cmx-MonthTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthTempHT"></span> on <span id="cmx-MonthTempHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthTempH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthTempHT"></span> on <span data-cmxdata="MonthTempHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td class="">Lowest Temperature </td>
-											<td class="w3-right-align"><span id="cmx-MonthTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthTempLT"></span> on <span id="cmx-MonthTempLD"></span></td>
+											<td class="">Lowest Temperature</td>
+											<td class="w3-right-align"><span data-cmxdata="MonthTempL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthTempLT"></span> on <span data-cmxdata="MonthTempLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Dew Point</td>
-											<td class="w3-right-align"><span id="cmx-MonthDewPointH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthDewPointHT"></span> on <span id="cmx-MonthDewPointHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthDewPointH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthDewPointHT"></span> on <span data-cmxdata="MonthDewPointHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td class="">Lowest Dew Point </td>
-											<td class="w3-right-align"><span id="cmx-MonthDewPointL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthDewPointLT"></span> on <span id="cmx-MonthDewPointLD"></span></td>
+											<td class="">Lowest Dew Point</td>
+											<td class="w3-right-align"><span data-cmxdata="MonthDewPointL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthDewPointLT"></span> on <span data-cmxdata="MonthDewPointLD"></span></td>
 										</tr>
-										<tr class="w3-theme-l2">
+										<tr data-cmx-apparent class="w3-theme-l2 w3-hide">
 											<td class="">Highest Apparent Temperature</td>
-											<td class="w3-right-align"><span id="cmx-MonthAppTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthAppTempHT"></span> on <span id="cmx-MonthAppTempHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthAppTempH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthAppTempHT"></span> on <span data-cmxdata="MonthAppTempHD"></span></td>
 										</tr>
-										<tr class="w3-theme-l2">
+										<tr data-cmx-apparent class="w3-theme-l2 w3-hide">
 											<td class="">Lowest Apparent Temperature </td>
-											<td class="w3-right-align"><span id="cmx-MonthAppTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthAppTempLT"></span> on <span id="cmx-MonthAppTempLD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthAppTempL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthAppTempLT"></span> on <span data-cmxdata="MonthAppTempLD"></span></td>
+										</tr>
+										<tr data-cmx-feels class="w3-theme-l2">
+											<td class="">Highest Feels Like</td>
+											<td class="w3-right-align"><span data-cmxdata="MonthFeelsLikeH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthFeelsLikeHT"></span> on <span data-cmxdata="MonthFeelsLikeHD"></span></td>
+										</tr>
+										<tr data-cmx-feels class="w3-theme-l2">
+											<td class="">Lowest Feels Like</td>
+											<td class="w3-right-align"><span data-cmxdata="MonthFeelsLikeL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthFeelsLikeLT"></span> on <span data-cmxdata="MonthFeelsLikeLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Lowest Wind Chill Temperature</td>
-											<td class="w3-right-align"><span id="cmx-MonthWChillL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthWChillLT"></span> on <span id="cmx-MonthWChillLD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthWChillL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthWChillLT"></span> on <span data-cmxdata="MonthWChillLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Heat Index</td>
-											<td class="w3-right-align"><span id="cmx-MonthHeatIndexH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthHeatIndexHT"></span> on <span id="cmx-MonthHeatIndexHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthHeatIndexH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthHeatIndexHT"></span> on <span data-cmxdata="MonthHeatIndexHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Minimum</td>
-											<td class="w3-right-align"><span id="cmx-MonthMinTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthMinTempHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthMinTempH"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthMinTempHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Lowest Maximum</td>
-											<td class="w3-right-align"><span id="cmx-MonthMaxTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthMaxTempLD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthMaxTempL"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthMaxTempLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Humidity</td>
-											<td class="w3-right-align"><span id="cmx-MonthHumH"></span>&nbsp;%</td>
-											<td class=""><span id="cmx-MonthHumHT"></span> on <span id="cmx-MonthHumHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthHumH"></span>&nbsp;%</td>
+											<td class=""><span data-cmxdata="MonthHumHT"></span> on <span data-cmxdata="MonthHumHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Lowest Humidity </td>
-											<td class="w3-right-align"><span id="cmx-MonthHumL"></span>&nbsp;%</td>
-											<td class=""><span id="cmx-MonthHumLT"></span> on <span id="cmx-MonthHumLD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthHumL"></span>&nbsp;%</td>
+											<td class=""><span data-cmxdata="MonthHumLT"></span> on <span data-cmxdata="MonthHumLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Highest Daily Range</td>
-											<td class="w3-right-align"><span id="cmx-MonthHighDailyTempRange"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthHighDailyTempRangeD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthHighDailyTempRange"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthHighDailyTempRangeD"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td class="">Lowest Daily Range</td>
-											<td class="w3-right-align"><span id="cmx-MonthLowDailyTempRange"></span>&nbsp;<span class="cmx-tempunit"></span></td>
-											<td class=""><span id="cmx-MonthLowDailyTempRangeD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthLowDailyTempRange"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td class=""><span data-cmxdata="MonthLowDailyTempRangeD"></span></td>
 										</tr>
 										<tr class="w3-theme-d4">
 											<td colspan="3">Rainfall</td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td class="">Highest Rain Rate</td>
-											<td class="w3-right-align"><span id="cmx-MonthRainRateH"></span>&nbsp;<span class="cmx-rainunit"></span>/hr</td>
-											<td class=""><span id="cmx-MonthRainRateHT"></span> on <span id="cmx-MonthRainRateHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthRainRateH"></span>&nbsp;<span data-cmxdata="rainunit"></span>/hr</td>
+											<td class=""><span data-cmxdata="MonthRainRateHT"></span> on <span data-cmxdata="MonthRainRateHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td class="">Highest Hourly Rainfall</td>
-											<td class="w3-right-align"><span id="cmx-MonthHourlyRainH"></span>&nbsp;<span class="cmx-rainunit"></span></td>
-											<td class=""><span id="cmx-MonthHourlyRainHT"></span> on <span id="cmx-MonthHourlyRainHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthHourlyRainH"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
+											<td class=""><span data-cmxdata="MonthHourlyRainHT"></span> on <span data-cmxdata="MonthHourlyRainHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td class="">Highest Daily Rainfall</td>
-											<td class="w3-right-align"><span id="cmx-MonthDailyRainH"></span>&nbsp;<span class="cmx-rainunit"></span></td>
-											<td class=""><span id="cmx-MonthDailyRainHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthDailyRainH"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
+											<td class=""><span data-cmxdata="MonthDailyRainHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td class="">Longest Dry Period</td>
-											<td class="w3-right-align"><span id="cmx-MonthLongestDryPeriod"></span>&nbsp;days</td>
-											<td class="">to <span id="cmx-MonthLongestDryPeriodD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthLongestDryPeriod"></span>&nbsp;days</td>
+											<td class="">to <span data-cmxdata="MonthLongestDryPeriodD"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
 											<td class="">Longest Wet Period</td>
-											<td class="w3-right-align"><span id="cmx-MonthLongestWetPeriod"></span>&nbsp;days</td>
-											<td class="">to <span id="cmx-MonthLongestWetPeriodD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthLongestWetPeriod"></span>&nbsp;days</td>
+											<td class="">to <span data-cmxdata="MonthLongestWetPeriodD"></span></td>
 										</tr>
 										<tr class="w3-theme-d3">
 											<td colspan="3">Wind</td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td class="">Highest Wind Gust</td>
-											<td class="w3-right-align"><span id="cmx-MonthGustH"></span>&nbsp;<span class="cmx-windunit"></span></td>
-											<td class=""><span id="cmx-MonthGustHT"></span> on <span id="cmx-MonthGustHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthGustH"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
+											<td class=""><span data-cmxdata="MonthGustHT"></span> on <span data-cmxdata="MonthGustHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td class="">Highest Wind Speed 10-minute Average</td>
-											<td class="w3-right-align"><span id="cmx-MonthWindH"></span>&nbsp;<span class="cmx-windunit"></span></td>
-											<td class=""><span id="cmx-MonthWindHT"></span> on <span id="cmx-MonthWindHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthWindH"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
+											<td class=""><span data-cmxdata="MonthWindHT"></span> on <span data-cmxdata="MonthWindHD"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
 											<td class="">Highest Daily Wind Run</td>
-											<td class="w3-right-align"><span id="cmx-MonthWindRunH"></span>&nbsp;<span class="cmx-windrununit"></span></td>
-											<td class=""><span id="cmx-MonthWindRunHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthWindRunH"></span>&nbsp;<span data-cmxdata="windrununit"></span></td>
+											<td class=""><span data-cmxdata="MonthWindRunHD"></span></td>
 										</tr>
 										<tr class="w3-theme-d2">
 											<td colspan="3">Pressure</td>
 										</tr>
 										<tr class="w3-theme-l5">
 											<td class="">Lowest Pressure (sl) </td>
-											<td class="w3-right-align"><span id="cmx-MonthPressL"></span>&nbsp;<span class="cmx-pressunit"></span></td>
-											<td class=""><span id="cmx-MonthPressLT"></span> on <span id="cmx-MonthPressLD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthPressL"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
+											<td class=""><span data-cmxdata="MonthPressLT"></span> on <span data-cmxdata="MonthPressLD"></span></td>
 										</tr>
 										<tr class="w3-theme-l5">
 											<td class="">Highest Pressure (sl)</td>
-											<td class="w3-right-align"><span id="cmx-MonthPressH"></span>&nbsp;<span class="cmx-pressunit"></span></td>
-											<td class=""><span id="cmx-MonthPressHT"></span> on <span id="cmx-MonthPressHD"></span></td>
+											<td class="w3-right-align"><span data-cmxdata="MonthPressH"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
+											<td class=""><span data-cmxdata="MonthPressHT"></span> on <span data-cmxdata="MonthPressHD"></span></td>
 										</tr>
 									</table>
-									<p class="w3-small">Page data updated <span id="cmx-update"></span>.</p>
+									<p class="w3-small">Page data updated <span data-cmxdata="update"></span>.</p>
 								</div>
 							</div>
 						</div>
@@ -202,8 +212,8 @@
 					<div class="w3-row-padding">
 						<div class="w3-col l12">
 							<div class="w3-panel w3-container w3-theme-light">
-								<h3 class="w3-center">Welcome to <br/><span class="subText"><span id="cmx-longlocation"></span></span></h3>
-								<p>The high and low records for the month of <span class="cmx-monthname"></span> <span class="cmx-year"></span>.</p>
+								<h3 class="w3-center">Welcome to <br/><span class="subText"><span data-cmxdata="longlocation"></span></span></h3>
+								<p>The high and low records for the month of <span data-cmxdata="monthname"></span> <span data-cmxdata="year"></span>.</p>
 							</div>
 						</div>
 					</div>
@@ -213,7 +223,7 @@
 		<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
 			<div class="w3-row-padding site-width">
 				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
-				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span id="cmx-version"></span>, b:<span id="cmx-build"></span></span></em></p>
+				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
 	</body>

@@ -1003,6 +1003,25 @@
                     }
                 }
             }
+        },
+        "DisplayOptions": {
+            "title": "Display Options",
+            "type": "object",
+            "properties": {
+                "windrosepoints": {
+                    "title": "Number of wind rose points",
+                    "enum": [8, 16]
+                },
+                "useapparent": {
+                    "type": "boolean"
+                },
+                "displaysolar": {
+                    "type": "boolean"
+                },
+                "displayuv": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }

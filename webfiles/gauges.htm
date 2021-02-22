@@ -1,7 +1,7 @@
 <!--
 	gaugesT.html	v:0.0.1		d:Feb 2021	Neil Thomas
 	Page: 1 main panel plus a sidebar
-	Last modified: 2021/02/19 17:36:42
+	Last modified: 2021/02/22 10:35:15
 	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
 -->
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
 				<div class="at-flex-between" style="align-items:center;flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -97,7 +97,8 @@
 									</div>
 									<div class="w3-small">
 										<input id="rad_dew1" type="radio" name="rad_dew" class="w3-radio" value="dew" onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label>
-										<input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio" value="app" checked onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2">Apparent</label>
+										<input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio w3-hide" data-cmx-apparent value="app" checked onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2" data-cmx-apparent class="w3-hide">Apparent</label>
+										<input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" data-cmx-feels value="feel" checked onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6" data-cmx-feels>Feels Like</label>
 										<br>
 										<input id="rad_dew3" type="radio" name="rad_dew" class="w3-radio" value="wnd" onclick="gauges.doDew(this);"><label id="lab_dew3" for="rad_dew3">Wind Chill</label>
 										<input id="rad_dew4" type="radio" name="rad_dew" class="w3-radio" value="hea" onclick="gauges.doDew(this);"><label id="lab_dew4" for="rad_dew4">Heat Index</label>
@@ -167,7 +168,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="w3-hide uv-data" style="min-width:264px;">
+						<div data-cmx-uv-gauge style="min-width:264px;">
 							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>UV Radiation</h3>
 								<div id="tip_8" class="gauge w3-center">
@@ -175,7 +176,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="w3-hide solar-data" style="min-width:264px;">
+						<div data-cmx-solar-gauge style="min-width:264px;">
 							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>Solar</h3>
 								<div id="tip_9" class="gauge w3-center">

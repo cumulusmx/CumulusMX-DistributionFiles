@@ -1,6 +1,6 @@
 <!--
 	historicT.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/19 12:56:12
+	Last modified: 2021/02/21 16:31:54
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -49,7 +49,7 @@
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -64,7 +64,7 @@
 			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	Page Title	-->
 				<div class="w3-col l12">
 					<h1>Charts based on summary data</h1>
-					<h3 class="w3-center w3-hide">Welcome to <br/><span class="subText"><span class="cmx-longlocation"></span></span></h3>
+					<h3 class="w3-center w3-hide">Welcome to <br/><span class="subText"><span data-cmxdata="longlocation"></span></span></h3>
 				</div>
 			</div>	<!--	End of title row	-->
 			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	First Row	-->
@@ -94,7 +94,7 @@
 		<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
 			<div class="w3-row-padding site-width">
 				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
-				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span id="cmx-version"></span>, b:<span id="cmx-build"></span></span></em></p>
+				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
 		<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>

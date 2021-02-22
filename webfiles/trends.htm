@@ -50,7 +50,7 @@
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span id="cmx-latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span id="cmx-longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span id="cmx-altitude"></span></h5>
+						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -78,17 +78,17 @@
 				<div class="w3-col s12">
 					<div class="w3-cardX w3-panelX w3-center">
 						<div class="w3-bar w3-center">
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('temp');">Temperature</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailytemp');">Daily temperature</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('press');">Pressure</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('wind');">Wind speed</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('windDir');">Wind direction</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('humidity');">Humidity</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('rain');">Rainfall</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailyrain');">Daily Rainfall</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('solar');">Solar</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('sunhours');">Sun Hours</button>
-							<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('airquality');">Air Quality</button>
+							<button id="btnTemp"       class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('temp');">Temperature</button>
+							<button id="btnDailyTemp"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailytemp');">Daily temperature</button>
+							<button id="btnPress"      class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('press');">Pressure</button>
+							<button id="btnWindSpd"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('wind');">Wind speed</button>
+							<button id="btnWindDir"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('windDir');">Wind direction</button>
+							<button id="btnHum"        class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('humidity');">Humidity</button>
+							<button id="btnRain"       class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('rain');">Rainfall</button>
+							<button id="btnDailyRain"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('dailyrain');">Daily Rainfall</button>
+							<button id="btnSolar"      class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('solar');">Solar</button>
+							<button id="btnSunHours"   class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('sunhours');">Sun Hours</button>
+							<button id="btnAirQuality" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim" onClick="changeGraph('airquality');">Air Quality</button>
 						</div>
 					</div>
 				</div>

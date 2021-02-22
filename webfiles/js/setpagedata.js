@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	at-basic.js		v:0.0.2		d:Feb 2021		a:Neil  Thomas
- *  Last modified: 2021/02/19 23:20:06
+ *  Last modified: 2021/02/22 10:15:51
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Combined with existing MX setpagedata.js
  * 	Requires jQuery
@@ -33,8 +33,8 @@ let menu = '<a href="index.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim w
 			'<a href="historic.htm" class="w3-bar-item w3-btn w3-theme-d5-hvr at-slim">Historic</a>' +
 		'</div>' +
 	'</div>' +
-	'<a href="https://cumulus.hosiene.co.uk/index.php" class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-small w3-hide-medium w3-hide forumlink" target="_blank">Forum</a>' +
-	'<a href="#" class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-small w3-hide-medium w3-hide webcamlink">Webcam</a>' +
+	'<a href="https://cumulus.hosiene.co.uk/index.php" data-cmx-forumlink class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-small w3-hide-medium w3-hide" target="_blank">Forum</a>' +
+	'<a href="#" data-cmx-webcamlink class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-small w3-hide-medium w3-hide webcamlink">Webcam</a>' +
 	'<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-large w3-right" onClick="toggleMenu(\'Main_Menu_Mobile\')">&#9776;</button>';
 
 let mobileMenu = '<a href="index.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Now</a>' +
@@ -48,14 +48,13 @@ let mobileMenu = '<a href="index.htm" class="w3-bar-item w3-btn w3-theme-hvr at-
 	'<a href="trends.html" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Trends</a>' +
 	'<a href="selectachart.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Select-a-graph</a>' +
 	'<a href="historic.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Historic</a>' +
-	'<a href="https://cumulus.hosiene.co.uk/index.php" class="w3-bar-item w3-btn w3-theme-hvr w3-hide at-slim forumlink" target="_blank">Forum</a>' +
-	'<a href="#" class="w3-bar-item w3-btn w3-theme-hvr w3-hide at slim webcamlink">Webcam</a>';
+	'<a href="https://cumulus.hosiene.co.uk/index.php" data-cmx-forumlink class="w3-bar-item w3-btn w3-theme-hvr w3-hide at-slim forumlink" target="_blank">Forum</a>' +
+	'<a href="#" data-cmx-webcamlink class="w3-bar-item w3-btn w3-theme-hvr w3-hide at slim webcamlink">Webcam</a>';
 
 let cmx_data;
 
 $(document).ready( function() {
 	setupPage();
-	getAvail();
 	getPageData();
 });
 
@@ -102,28 +101,43 @@ let getPageData = function () {
 		cmx_data = json;
 
 		// Set some header stuff
-		$(document).prop('title', cmx_data['cmx-location'] + ' weather');
-		$('meta[name=description]').attr('content', cmx_data['cmx-location'] + ' weather data');
-		$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data['cmx-location'] + ' weather data');
+		$(document).prop('title', cmx_data.location + ' weather');
+		$('meta[name=description]').attr('content', cmx_data.location + ' weather data');
+		$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data.location + ' weather data');
 
-		// Update all spans with id beginning "cmx-"
-		$('span[id^=cmx-]').each(function () {
-			this.innerHTML = cmx_data[this.id];
-		});
-		// Update all spans with class beginning "cmx-"
-		$('span[class^=cmx-]').each(function () {
-			this.innerHTML = cmx_data[this.className];
+		// Show/hide Apparent/Feels Like
+		if (cmx_data.options.useApparent === "1") {
+			$('[data-cmx-apparent]').removeClass('w3-hide');
+			$('[data-cmx-feels]').addClass('w3-hide');
+		}
+
+		if (cmx_data.options.showSolar === "1") {
+			$('[data-cmx-solar]').removeClass('w3-hide');
+		} else {
+			$('[data-cmx-solar-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+		}
+
+		if (cmx_data.options.showUV === "1") {
+			$('[data-cmx-uv]').removeClass('w3-hide');
+		} else {
+			$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+		}
+
+		// Update all spans having data-cmxdata with data values
+		$('span[data-cmxdata]').each(function () {
+			this.innerHTML = cmx_data[this.dataset.cmxdata];
 		});
 
-		if (cmx_data['cmx-forumurl'] != '') {
-			$('.forumlink').removeClass('w3-hide').each(function () {
-				this.href = cmx_data['cmx-forumurl'];
+
+		if (cmx_data.forumurl != '') {
+			$('[data-cmx-forumlink]').removeClass('w3-hide').each(function () {
+				this.href = cmx_data.forumurl;
 			});
 		}
 
-		if (cmx_data['cmx-webcamurl'] != '') {
-			$('.webcamlink').removeClass('w3-hide').each(function () {
-				this.href = cmx_data['cmx-webcamurl'];
+		if (cmx_data.webcamurl != '') {
+			$('[data-cmx-webcamlink]').removeClass('w3-hide').each(function () {
+				this.href = cmx_data.webcamurl;
 			});
 		}
 
@@ -135,15 +149,3 @@ let getPageData = function () {
 		console.log('Data Request Failed: ' + err );
 	});
 };
-
-// get the graph config file
-let getAvail = function () {
-	$.getJSON('availabledata.json', function (json) {
-		if (undefined !== json.Solar && json.Solar.length > 0 && json.Solar[0] === 'Solar Rad') {
-			$('.solar-data').removeClass('w3-hide');
-		}
-		if (undefined !== json.Solar && json.Solar.length > 0 && (json.Solar[0] === 'UV Index' || json.Solar[1] === 'UV Index')) {
-			$('.uv-data').removeClass('w3-hide');
-		}
-	});
-}
