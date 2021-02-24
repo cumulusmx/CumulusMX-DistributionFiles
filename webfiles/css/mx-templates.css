@@ -1,5 +1,6 @@
 /*	------------------------------
  * 	Styles for CumulusMX Interface
+ * Last modified: 2021/02/24 10:37:56
  * 	------------------------------*/
 
 html, body, p, h1, h2, h3, h4, h5, h6, li, td, th {
@@ -89,4 +90,25 @@ body {
 
 .at-indent {
 	padding-left: 40px!important;
+}
+
+/* Gauges enhancements */
+.at-panel {
+	height: 90%;
+}
+
+/* Footer enhancements */
+@media screen and (max-width:780px) {
+	#Footer { position: unset; }
+	#Content {
+		margin-top: 170px!important;
+		margin-bottom: 5px!important;
+	}
+}
+
+@media screen and (max-height:768px) {
+	#Footer { position: unset; }
+	#Content {
+		margin-bottom: 5px!important;
+	}
 }

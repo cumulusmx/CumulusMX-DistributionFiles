@@ -1,7 +1,7 @@
 <!--
 	gaugesT.html	v:0.0.1		d:Feb 2021	Neil Thomas
 	Page: 1 main panel plus a sidebar
-	Last modified: 2021/02/22 10:35:15
+	Last modified: 2021/02/24 10:55:30
 	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
 -->
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
 				<div class="at-flex-between" style="align-items:center;flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
+						<h5>Lat<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|<wbr></span>Long<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Alt<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -75,7 +75,7 @@
 				<div class="w3-col l9 m12">						<!--	3/4 width panel	-->
 					<div class="w3-col s12 at-flex-evenly" style="padding-left:8px;padding-right:8px;">
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Temperature</h3>
 								<div class="gauge w3-center">
 									<div id="tip_0">
@@ -89,16 +89,16 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Other Temps</h3>
 								<div class="gauge w3-center">
 									<div id="tip_1">
 										<canvas id="canvas_dew" class="gaugeSmall"></canvas>
 									</div>
 									<div class="w3-small">
-										<input id="rad_dew1" type="radio" name="rad_dew" class="w3-radio" value="dew" onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label>
-										<input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio w3-hide" data-cmx-apparent value="app" checked onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2" data-cmx-apparent class="w3-hide">Apparent</label>
-										<input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" data-cmx-feels value="feel" checked onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6" data-cmx-feels>Feels Like</label>
+										<input id="rad_dew1" type="radio" name="rad_dew" class="w3-radio" value="dew" checked onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label>
+										<input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio w3-hide" data-cmx-apparent value="app" onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2" data-cmx-apparent class="w3-hide">Apparent</label>
+										<input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" data-cmx-feels value="feel" onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6" data-cmx-feels>Feels Like</label>
 										<br>
 										<input id="rad_dew3" type="radio" name="rad_dew" class="w3-radio" value="wnd" onclick="gauges.doDew(this);"><label id="lab_dew3" for="rad_dew3">Wind Chill</label>
 										<input id="rad_dew4" type="radio" name="rad_dew" class="w3-radio" value="hea" onclick="gauges.doDew(this);"><label id="lab_dew4" for="rad_dew4">Heat Index</label>
@@ -109,7 +109,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Humidity</h3>
 								<div class="gauge w3-center">
 									<div id="tip_4">
@@ -121,7 +121,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind</h3>
 								<div id="tip_6" class="gauge w3-center">
 									<canvas id="canvas_wind" class="gaugeSmall"></canvas>
@@ -129,7 +129,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind Direction</h3>
 								<div id="tip_7" class="gauge w3-center">
 									<canvas id="canvas_dir" class="gaugeSmall"></canvas>
@@ -137,7 +137,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Wind Rose</h3>
 								<div id="tip_10" class="gauge w3-center">
 									<canvas id="canvas_rose" class="gaugeSmall"></canvas>
@@ -145,7 +145,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Pressure</h3>
 								<div id="tip_5" class="gauge w3-center">
 									<canvas id="canvas_baro" class="gaugeSmall"></canvas>
@@ -153,7 +153,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Rainfall</h3>
 								<div id="tip_2" class="gauge w3-center">
 									<canvas id="canvas_rain" class="gaugeSmall"></canvas>
@@ -161,7 +161,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3 class="">Rainfall Rate</h3>
 								<div id="tip_3" class="gauge w3-center">
 									<canvas id="canvas_rrate" class="gaugeSmall"></canvas>
@@ -169,7 +169,7 @@
 							</div>
 						</div>
 						<div data-cmx-uv-gauge style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>UV Radiation</h3>
 								<div id="tip_8" class="gauge w3-center">
 									<canvas id="canvas_uv" class="gaugeSmall"></canvas>
@@ -177,7 +177,7 @@
 							</div>
 						</div>
 						<div data-cmx-solar-gauge style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>Solar</h3>
 								<div id="tip_9" class="gauge w3-center">
 									<canvas id="canvas_solar" class="gaugeSmall"></canvas>
@@ -185,7 +185,7 @@
 							</div>
 						</div>
 						<div class="" style="min-width:264px;">
-							<div class="w3-card w3-panel w3-theme-white" style="padding-bottom:16px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
 								<h3>Cloudbase</h3>
 								<div id="tip_11" class="gauge w3-center">
 									<canvas id="canvas_cloud" class="gaugeSmall"></canvas>
@@ -197,7 +197,7 @@
 				<div class="w3-col l3 m12">	<!--	Start of Sidebar 1/4 site width	-->
 					<div class="w3-row-padding">
 						<div class="w3-col l12">
-							<div class="w3-panel w3-container w3-theme-light">
+							<div class="w3-panel at-panel w3-container w3-theme-light">
 								<h3 class="w3-center">Welcome to <br/><span class="subText"><span id="cmx-longlocation"></span></span></h3>
 								<p class="w3-center">Forecast</p>
 								<div class="w3-center" style="width:100%"><canvas id="canvas_status" style="width:100%;height:25px;" width="100" height="25"></canvas></div>
@@ -208,7 +208,7 @@
 							</div>
 						</div>
 						<div class="w3-col l12">
-							<div class="w3-panel w3-container w3-theme-light">
+							<div class="w3-panel at-panel w3-container w3-theme-light">
 								<h4>Select your units</h4>
 								<div class="w3-border-bottom w3-theme-bdr units-row">
 									<div class=""><span id="lang_temperature">Temperature</span></div>
@@ -251,7 +251,7 @@
 					scripts by mark crossley - version <span id="scriptVer"></span> gauges drawn using gerrit grunwald's steelseries javascript library, wind rose drawn using rgraph</em>
 				</p>
 				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
-					<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span id="cmx-version"></span>, b:<span id="cmx-build"></span></span></em></p>
+					<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
 		<!-- Combined steelseries.js & tween.js -->

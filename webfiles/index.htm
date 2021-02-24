@@ -1,6 +1,6 @@
 <!--
 	indexT.html		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/22 09:15:06
+	Last modified: 2021/02/24 10:57:32
 	Page: 1 main panel plus a right sidebar
 -->
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
 					<div class="w3-right-align" style="max-width:600px;">
-						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
+						<h5>Lat<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|<wbr></span>Long<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Alt<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -118,10 +118,8 @@
 										<tr class="w3-theme-l2">
 											<td >Heat Index:</td>
 											<td><span data-cmxdata="heatindex"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
-											<td data-cmx-apparent="1" class="w3-hide">Apparent Temperature:</td>
-											<td data-cmx-apparent="1" class="w3-hide"><span data-cmxdata="apptemp"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
-											<td data-cmx-feels="1">Feels Like:</td>
-											<td data-cmx-feels="1"><span data-cmxdata="feelslike"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
+											<td><span data-cmx-apparent class="w3-hide">Apparent Temperature:</span><span data-cmx-feels>Feels Like:</span></td>
+											<td><span data-cmx-apparent data-cmxdata="apptemp" class="w3-hide"></span><span data-cmx-feels data-cmxdata="feelslike"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
 											<td>THW Index:</td>

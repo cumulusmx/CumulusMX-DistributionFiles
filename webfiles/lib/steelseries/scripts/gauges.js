@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2021/02/21 00:17:00
+ * Last Modified: 2021/02/23 09:55:43
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -80,10 +80,11 @@ gauges = (function () {
             useCookies         : true,                   // Persistently store user preferences in a cookie?
             tipImages          : [],
             dashboardMode      : false,                  // Used by Cumulus MX dashboard - SET TO FALSE OTHERWISE
-            dewDisplayType     : 'app'                   // Initial 'scale' to display on the 'dew point' gauge.
+            dewDisplayType     : 'dew'                   // Initial 'scale' to display on the 'dew point' gauge.
                                                          // 'dew' - Dewpoint
                                                          // 'app' - Apparent temperature
                                                          // 'wnd' - Wind Chill
+                                                         // 'feel' - Feels Like
                                                          // 'hea' - Heat Index
                                                          // 'hum' - Humidex
         },
@@ -876,7 +877,7 @@ gauges = (function () {
                         // Indoor and min/max avaiable
                         cache.areas = [steelseries.Section(+cache.low, +cache.high, gaugeGlobals.minMaxArea)];
                     } else {
-                        // Nndoor no min/max avaiable
+                        // Indoor no min/max avaiable
                         cache.areas = [];
                     }
 
@@ -2188,7 +2189,7 @@ gauges = (function () {
                             height: cache.odoHeight
                         });
                         // Position it
-                        $(buffers.Odo).attr("class", "odo");
+                        $(buffers.Odo).attr('class', 'odo');
                         // Insert it into the DOM before the Rose gauge
                         $(buffers.Odo).insertBefore('#canvas_rose');
                         // Create the odometer
@@ -2826,7 +2827,7 @@ gauges = (function () {
 
             // and check we have the expected version number
             if (typeof data.ver !== 'undefined' && data.ver >= realtimeVer) {
-                // mainpulate the last rain time into something more friendly
+                // manpulate the last rain time into something more friendly
                 try {
                     str = data.LastRainTipISO.split(' ');
                     dt = str[0].replace(/\//g, '-').split('-');  // WD uses dd/mm/yyyy, we use a '-'
@@ -3436,6 +3437,7 @@ gauges = (function () {
                 extractDecimal(data.tempTL, deflt),
                 extractDecimal(data.dewpointTL, deflt),
                 extractDecimal(data.apptempTL, deflt),
+                extractDecimal(data.feelslikeTL, deflt),
                 extractDecimal(data.wchillTL, deflt));
         },
 
@@ -3446,6 +3448,7 @@ gauges = (function () {
             return Math.max(
                 extractDecimal(data.tempTH, deflt),
                 extractDecimal(data.apptempTH, deflt),
+                extractDecimal(data.feelslikeTH, deflt),
                 extractDecimal(data.heatindexTH, deflt),
                 extractDecimal(data.humidex, deflt));
         },
@@ -3580,6 +3583,9 @@ gauges = (function () {
             data.apptemp = convFunc(data.apptemp);
             data.apptempTH = convFunc(data.apptempTH);
             data.apptempTL = convFunc(data.apptempTL);
+            data.feelslike = convFunc(data.feelslike);
+            data.feelslikeTH = convFunc(data.feelslikeTH);
+            data.feelslikeTL = convFunc(data.feelslikeTL);
             data.dew = convFunc(data.dew);
             data.dewpointTH = convFunc(data.dewpointTH);
             data.dewpointTL = convFunc(data.dewpointTL);

@@ -1,11 +1,12 @@
 <!--
 	todayT.htm		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/21 22:30:31
+	Last modified: 2021/02/24 10:58:13
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="weather data">
 		<meta name="keywords" content="Cumulus, weather, data, weather station">
@@ -32,8 +33,8 @@
 			<div class="w3-row-padding site-width">
 				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
 					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
-					<div class="w3-right-align" style="max-width:500px;">
-						<h5>Latitude:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|</span>Longitude:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Altitude:&nbsp;<span data-cmxdata="altitude"></span></h5>
+					<div class="w3-right-align" style="max-width:600px;">
+						<h5>Lat<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|<wbr></span>Long<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Alt<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="altitude"></span></h5>
 					</div>
 				</div>
 				<!--	Start of Menu	-->
@@ -55,9 +56,9 @@
 					<div class="w3-row-padding">	<!--	Row 1 of 3/4 width panel	-->
 						<div class="w3-col s12">		<!-- 	Full width of above panel	-->
 							<div class="w3-panel w3-card w3-theme-white">
+								<h2>Today&#39;s  data</h2>
 								<div class="w3-responsive">
-									<h3>Today&#39;s  data</h3>
-									<table class="w3-table w3-reponsive w3-stripped" style="width:100%;">
+									<table class="w3-table w3-hoverable" style="width:100%">
 										<tbody>
 											<tr class="w3-theme-d5">
 												<td colspan="3">Temperature and Humidity</td>
