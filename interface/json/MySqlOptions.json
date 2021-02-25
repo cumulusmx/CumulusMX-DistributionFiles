@@ -1,45 +1,73 @@
 ﻿{
     "fields": {
-        "monthly": {
+        "server": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                }
             }
+        },
+        "realtimeenabled": {
+            "rightLabel": "Realtime Enabled"
         },
         "realtime": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
+                "table": {
+                },
+                "retention": {
+                    "helpers": ["A retention string in format \"retainVal=NNN retainUnit=XXXX\" where NNN is a number from 1 to 3 digits long, and XXX is a time unit e.g. second, minute, hour, day, week, month, quarter, or year"]
                 }
+            },
+            "dependencies": {
+                "realtimeenabled": true
             }
+        },
+        "dayenabled": {
+            "rightLabel": "Dayfile Enabled"
         },
         "dayfile": {
+            "collapsible": true,
             "collapsed": true,
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                }
+            },
+            "dependencies": {
+                "dayenabled": true
             }
         },
+        "monthenabled": {
+            "rightLabel": "Monthly Log Enabled"
+        },
+        "monthly": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+            },
+            "dependencies": {
+                "monthenabled": true
+            }
+        },
+        "custsecsenabled": {
+            "rightLabel": "Custom Seconds Enabled"
+        },
         "customseconds": {
+            "collapsible": true,
             "collapsed": true,
             "helper": "A custom SQL command to be executed at an interval in seconds - can include webtags",
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                }
+            },
+            "dependencies": {
+                "custsecsenabled": true
             }
         },
+        "custminsenabled": {
+            "rightLabel": "Custom Minutes Enabled"
+        },
         "customminutes": {
+            "collapsible": true,
             "collapsed": true,
             "helper": "A custom SQL command to be executed at an interval in minutes - can include webtags",
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
                 "intervalindex": {
                     "optionLabels": [
                         "1 minute",
@@ -57,15 +85,22 @@
                     ],
                     "removeDefaultNone": true
                 }
+            },
+            "dependencies": {
+                "custminsenabled": true
             }
         },
-        "customrollover": {
+        "custrollenabled": {
+            "rightLabel": "Custom Rollover Enabled"
+        },
+       "customrollover": {
+            "collapsible": true,
             "collapsed": true,
             "helper": "A custom SQL command to be executed just before end of day rollover - can include webtags",
             "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                }
+            },
+            "dependencies": {
+                "custrollenabled": true
             }
         }
     }

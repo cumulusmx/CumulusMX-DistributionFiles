@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <!--
+  Last modified: 2021/02/15 09:36:19
+  -->
+  <meta charset="utf-8">
+  <meta name="description" content="weather data">
+  <meta name="keywords" content="Cumulus, weather, data, weather station">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="weatherstyle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="content">
+<h1><span id="cmx-location"></span> weather</h1>
+<h2 style="text-align: left; text-transform: none;">&nbsp;Latitude&nbsp;<span id="cmx-latitude"></span>&nbsp;&nbsp; &nbsp;Longitude&nbsp;<span id="cmx-longitude"></span>&nbsp;&nbsp; &nbsp;Elevation&nbsp;<span id="cmx-altitude"></span></h2>
+
+<table style="width:100%;border-collapse: collapse; border-spacing: 0;" id="Current_Weather_Records">
+   <caption>This year's highs and lows</caption>
+  <tr>
+    <td colspan="3" class="tableseparator_temp">Temperature and Humidity </td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Temperature</td>
+    <td class="right_align_indented"><span id="cmx-YearTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearTempHT"></span>&nbsp;on&nbsp;<span id="cmx-YearTempHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Temperature </td>
+    <td class="right_align_indented"><span id="cmx-YearTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearTempLT"></span>&nbsp;on&nbsp;<span id="cmx-YearTempLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Dew&nbsp;Point</td>
+    <td class="right_align_indented"><span id="cmx-YearDewPointH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearDewPointHT"></span>&nbsp;on&nbsp;<span id="cmx-YearDewPointHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Dew&nbsp;Point </td>
+    <td class="right_align_indented"><span id="cmx-YearDewPointL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearDewPointLT"></span>&nbsp;on&nbsp;<span id="cmx-YearDewPointLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Apparent&nbsp;Temperature</td>
+    <td class="right_align_indented"><span id="cmx-YearAppTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearAppTempHT"></span>&nbsp;on&nbsp;<span id="cmx-YearAppTempHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Apparent&nbsp;Temperature </td>
+    <td class="right_align_indented"><span id="cmx-YearAppTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearAppTempLT"></span>&nbsp;on&nbsp;<span id="cmx-YearAppTempLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Wind&nbsp;Chill&nbsp;Temperature</td>
+    <td class="right_align_indented"><span id="cmx-YearWChillL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearWChillLT"></span>&nbsp;on&nbsp;<span id="cmx-YearWChillLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Heat&nbsp;Index</td>
+    <td class="right_align_indented"><span id="cmx-YearHeatIndexH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearHeatIndexHT"></span>&nbsp;on&nbsp;<span id="cmx-YearHeatIndexHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Minimum</td>
+    <td class="right_align_indented"><span id="cmx-YearMinTempH"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearMinTempHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Maximum</td>
+    <td class="right_align_indented"><span id="cmx-YearMaxTempL"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearMaxTempLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Humidity</td>
+    <td class="right_align_indented"><span id="cmx-YearHumH"></span>&nbsp;%</td>
+    <td class="right_align_indented"><span id="cmx-YearHumHT"></span>&nbsp;on&nbsp;<span id="cmx-YearHumHD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Humidity </td>
+    <td class="right_align_indented"><span id="cmx-YearHumL"></span>&nbsp;%</td>
+    <td class="right_align_indented"><span id="cmx-YearHumLT"></span>&nbsp;on&nbsp;<span id="cmx-YearHumLD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Highest&nbsp;Daily&nbsp;Range</td>
+    <td class="right_align_indented"><span id="cmx-YearHighDailyTempRange"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearHighDailyTempRangeD"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Daily&nbsp;Range</td>
+    <td class="right_align_indented"><span id="cmx-YearLowDailyTempRange"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearLowDailyTempRangeD"></span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="tableseparator_rainfall">Rainfall</td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Highest&nbsp;Rain&nbsp;Rate</td>
+    <td class="right_align_indented"><span id="cmx-YearRainRateH"></span>&nbsp;<span class="cmx-rainunit"></span>/hr</td>
+    <td class="right_align_indented"><span id="cmx-YearRainRateHT"></span>&nbsp;on&nbsp;<span id="cmx-YearRainRateHD"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Highest&nbsp;Hourly&nbsp;Rainfall</td>
+    <td class="right_align_indented"><span id="cmx-YearHourlyRainH"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearHourlyRainHT"></span>&nbsp;on&nbsp;<span id="cmx-YearHourlyRainHD"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Highest&nbsp;Daily&nbsp;Rainfall</td>
+    <td class="right_align_indented"><span id="cmx-YearDailyRainH"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearDailyRainHD"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Highest&nbsp;Monthly&nbsp;Rainfall</td>
+    <td class="right_align_indented"><span id="cmx-YearMonthlyRainH"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearMonthlyRainHD"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Longest&nbsp;Dry&nbsp;Period</td>
+    <td class="right_align_indented"><span id="cmx-YearLongestDryPeriod"></span>&nbsp;days</td>
+    <td class="right_align_indented">to&nbsp;<span id="cmx-YearLongestDryPeriodD"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td class="main_table_text_labels">Longest&nbsp;Wet&nbsp;Period</td>
+    <td class="right_align_indented"><span id="cmx-YearLongestWetPeriod"></span>&nbsp;days</td>
+    <td class="right_align_indented">to&nbsp;<span id="cmx-YearLongestWetPeriodD"></span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="tableseparator_wind">Wind</td>
+  </tr>
+  <tr class="td_wind_data">
+    <td class="main_table_text_labels">Highest&nbsp;Wind&nbsp;Gust</td>
+    <td class="right_align_indented"><span id="cmx-YearGustH"></span>&nbsp;<span class="cmx-windunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearGustHT"></span>&nbsp;on&nbsp;<span id="cmx-YearGustHD"></span></td>
+  </tr>
+  <tr class="td_wind_data">
+    <td class="main_table_text_labels">Highest&nbsp;Wind&nbsp;Speed&nbsp;10-minute&nbsp;Average</td>
+    <td class="right_align_indented"><span id="cmx-YearWindH"></span>&nbsp;<span class="cmx-windunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearWindHT"></span>&nbsp;on&nbsp;<span id="cmx-YearWindHD"></span></td>
+  </tr>
+  <tr class="td_wind_data">
+    <td class="main_table_text_labels">Highest&nbsp;Daily&nbsp;Wind&nbsp;Run</td>
+    <td class="right_align_indented"><span id="cmx-YearWindRunH"></span>&nbsp;<span class="cmx-windrununit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearWindRunHD"></span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="tableseparator_pressure">Pressure</td>
+  </tr>
+  <tr class="td_pressure_data">
+    <td class="main_table_text_labels">Lowest&nbsp;Pressure&nbsp;(sl) </td>
+    <td class="right_align_indented"><span id="cmx-YearPressL"></span>&nbsp;<span class="cmx-pressunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearPressLT"></span>&nbsp;on&nbsp;<span id="cmx-YearPressLD"></span></td>
+  </tr>
+  <tr class="td_pressure_data">
+    <td class="main_table_text_labels">Highest&nbsp;Pressure&nbsp;(sl)</td>
+    <td class="right_align_indented"><span id="cmx-YearPressH"></span>&nbsp;<span class="cmx-pressunit"></span></td>
+    <td class="right_align_indented"><span id="cmx-YearPressHT"></span>&nbsp;on&nbsp;<span id="cmx-YearPressHD"></span></td>
+  </tr>
+</table>
+<div class="td_navigation_bar">
+  :<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><span id="cmx-forum"></span><wbr><span id="cmx-webcam"></span>
+</div>
+<p class="credits"><br />
+  Page updated <span id="cmx-update"></span><br />
+  powered by <a href="https://cumuluswiki.wxforum.net/a/Software" target="_blank">Cumulus</a> v<span id="cmx-version"></span> (<span id="cmx-build"></span>)
+</p>
+</div>
+  <!-- Google CDN hosted JQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <!-- or... -->
+  <!-- Local JQuery library, do not use if your containing page already pulls in a copy of JQuery -->
+  <!-- <script src="scripts/jquery-1.8.2.min.js"></script> -->
+  <script src="js/setpagedata.js"></script>
+</body>
+</html>

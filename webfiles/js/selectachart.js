@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2021/01/29 12:01:36
+// Last modified: 2021/02/17 22:20:32
 
 var chart, config, options;
 var settings;
@@ -143,6 +143,7 @@ $(document).ready(function () {
 
             // Set the dropdowns to defaults or previous values
             for (var i = 0; i < 6; i++) {
+                $('#colour' + i).css('text-indent', '-99px');
                 if (settings.colours[i] == '' || settings.colours[i] == null) {
                     $('#colour' + i).css('background', chart.options.colors[i]);
                     $('#colour' + i).val(chart.options.colors[i]);
@@ -209,7 +210,6 @@ var procDataSelect = function (sel) {
     } else {
         $('#' + id + ' option:contains(' + txtClear +')').text(txtSelect);
     }
-
 
     // clear the existing series
     if (chart.series.length > 0)
@@ -305,6 +305,7 @@ var updateColour = function (sel) {
 
     // set the selection colour
     $('#' + id).css('background', val);
+
     settings.colours[num] = val;
 
 

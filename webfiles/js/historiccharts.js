@@ -1,6 +1,24 @@
+// Last modified: 2021/02/18 23:07:40
+
 var chart, config;
 
 $(document).ready(function () {
+    $.ajax({
+        url: "availabledata.json",
+        dataType: "json",
+        success: function (result) {
+            if (result.Temperature === undefined || result.Temperature.Count == 0) {
+                $('#btnTemp').remove();
+            }
+            if (result.Humidity === undefined || result.Humidity.Count == 0) {
+                $('#btnHum').remove();
+            }
+            if (result.Solar === undefined || result.Solar.Count == 0) {
+                $('#btnSolar').remove();
+            }
+        }
+    });
+
     $.ajax({
         url: "graphconfig.json",
         dataType: "json",

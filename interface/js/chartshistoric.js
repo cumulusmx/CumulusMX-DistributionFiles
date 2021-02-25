@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:36:19
+
 var chart, config;
 
 $(document).ready(function () {
@@ -30,6 +32,23 @@ $(document).ready(function () {
                 break;
         }
     });
+
+    $.ajax({
+        url: "api/graphdata/availabledata.json",
+        dataType: "json",
+        success: function (result) {
+            if (result.Temperature === undefined || result.Temperature.Count == 0) {
+                $('#temp').parent().remove();
+            }
+            if (result.Humidity === undefined || result.Humidity.Count == 0) {
+                $('#humidity').parent().remove();
+            }
+            if (result.Solar === undefined || result.Solar.Count == 0) {
+                $('#solar').parent().remove();
+            }
+        }
+    });
+
 
     $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
             $('#Version').text(result.Version);

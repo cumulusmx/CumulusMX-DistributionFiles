@@ -1,10 +1,11 @@
+// Last modified: 2021/02/19 23:51:36
 
 var activeDates;
 
 $(document).ready(function () {
     var date = new Date();
-    var currYear = date.getUTCFullYear();
-    var currMonth = date.getUTCMonth() + 1;
+    var currYear = date.getFullYear();
+    var currMonth = date.getMonth() + 1;
 
     $.ajax({
         url     : 'api/settings/version.json',
@@ -19,22 +20,19 @@ $(document).ready(function () {
         format       : 'yyyy-mm-dd',
         endDate      : '0d',
         startDate    : '-20y',
+        todayBtn      : "linked",
+        weekStart: 1,
         beforeShowDay: function (date) {
-            var d = date;
-            var formattedDate = getLocalFormattedString(date);
+            var utcDate = getUTCFormattedString(date, false);
             var activeDate = $('#datepicker').datepicker('getFormattedDate');
-            if ($.inArray(formattedDate, activeDates) != -1) {
-                if (formattedDate != activeDate) {
-                    return {classes: 'activeClass'};
-                }
+            if ($.inArray(utcDate, activeDates) != -1) {
+                //if (utcDate != activeDate) {
+                    return {classes: 'hasData'};
+                //}
             }
             return;
         }
     });
-
-    $("#datepicker").datepicker('setDate', '0');
-    getSummaryData(currYear, currMonth);
-
 
     $('#datepicker').on('changeDate', function () {
         var date = $('#datepicker').datepicker('getUTCDate');
@@ -54,6 +52,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#datepicker").datepicker('setDate', '0');
+    getSummaryData(currYear, currMonth);
 });
 
 

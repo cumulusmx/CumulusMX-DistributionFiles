@@ -1,6 +1,10 @@
 ﻿{
     "type": "object",
     "properties": {
+        "explanation": {
+            "default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset",
+            "readonly": true
+        },
         "offsets": {
             "type": "object",
             "title": "Offsets",
@@ -59,8 +63,16 @@
                     "title": "Outdoor temperature",
                     "type": "number"
                 },
+                "outdoortemp2": {
+                    "title": "Outdoor temperature ^2",
+                    "type": "number"
+                },
                 "humidity": {
                     "title": "Outdoor humidity",
+                    "type": "number"
+                },
+                "humidity2": {
+                    "title": "Outdoor humidity ^2",
                     "type": "number"
                 },
                 "rainfall": {
@@ -120,23 +132,23 @@
             "title": "Limits",
             "properties": {
                 "temphigh": {
-                    "title": "Max temp (C)",
+                    "title": "Max temp (&deg;C)",
                     "type": "number"
                 },
                 "templow": {
-                    "title": "Min temp (C)",
+                    "title": "Min temp (&deg;C)",
                     "type": "number"
                 },
                 "dewhigh": {
-                    "title": "Max dew point (C)",
+                    "title": "Max dew point (&deg;C)",
                     "type": "number"
                 },
                 "presshigh": {
-                    "title": "Max pressure (mb)",
+                    "title": "Max pressure (hPa)",
                     "type": "number"
                 },
                 "presslow": {
-                    "title": "Min pressure (mb)",
+                    "title": "Min pressure (hPa)",
                     "type": "number"
                 },
                 "windhigh": {

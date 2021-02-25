@@ -1,10 +1,12 @@
-$(document).ready(function() {
+// Last modified: 2021/02/15 22:36:40
 
+$(document).ready(function() {
     $("#form").alpaca({
         "dataSource": "../api/settings/calibrationdata.json",
         "optionsSource": "../api/settings/calibrationoptions.json",
         "schemaSource": "../api/settings/calibrationschema.json",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
@@ -20,11 +22,9 @@ $(document).ready(function() {
                         error: function (error) {
                             alert("error " + error);
                         }
-
                     });
                 }
             });
         }
     });
-    
 });

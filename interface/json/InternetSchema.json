@@ -2,19 +2,13 @@
     "type": "object",
     "properties": {
         "website": {
-            "title": "Web/FTP site",
+            "title": "Web/FTP Site",
             "type": "object",
             "properties": {
                 "hostname": {
                     "title": "Host name"
                 },
-                "ftpport": {
-                    "title": "FTP port",
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "sslftp": {
-                    "type":"number",
                     "title": "Select the FTP Protocol to use",
                     "enum": [
                         0,
@@ -22,14 +16,10 @@
                         2
                     ]
                 },
-                "directory": {
-                    "title": "Remote FTP Directory"
-                },
-                "username": {
-                    "title": "Username"
-                },
-                "password": {
-                    "title": "Password"
+                "ftpport": {
+                    "title": "FTP port",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "sshAuth": {
                     "type": "string",
@@ -43,78 +33,232 @@
                 "pskFile": {
                     "title": "Pre-shared Private Key file for SFTP"
                 },
+                "directory": {
+                    "title": "Remote FTP Directory"
+                },
+                "username": {
+                    "title": "Username"
+                },
+                "password": {
+                    "title": "Password"
+                },
                 "forumurl": {
-                    "title": "Forum URL"
+                    "title": "Forum URL",
+                    "type": "uri"
                 },
                 "webcamurl": {
-                    "title": "Webcam URL"
+                    "title": "Webcam URL",
+                    "type": "uri"
+                },
+                "advanced": {
+                    "title": "Advanced Settings",
+                    "type": "object",
+                    "properties": {
+                        "activeftp": {
+                            "type": "boolean"
+                        },
+                        "disableftpsepsv": {
+                            "type": "boolean"
+                        },
+                        "disableftpsexplicit": {
+                            "type": "boolean"
+                        },
+                        "ftpmode": {
+                        }
+                    },
+                    "dependencies": {
+                        "activeftp": ["ftpmode"],
+                        "disableftpsepsv": ["ftpmode"],
+                        "disableftpsexplicit": ["ftpmode"]
+                    }
                 }
+            },
+            "dependencies": {
+                "sshAuth": ["sslftp"],
+                "pskFile": ["sshAuth"],
+                "advanced": ["sslftp"]
             }
         },
         "websettings": {
-            "title": "Web/FTP settings",
+            "title": "Web/FTP Settings",
             "type": "object",
             "properties": {
-                "autoupdate": {
+                "stdwebsite": {
                     "type": "boolean"
                 },
-                "includestdfiles": {
-                    "type": "boolean"
+                "interval": {
+                    "title": "Interval Settings",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "ftpinterval": {
+                            "title": "Web interval",
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "autoupdate": {
+                            "type": "boolean"
+                        },
+                        "stdfiles": {
+                            "title": "Standard File Settings",
+                            "type": "object",
+                            "properties": {
+                                "files": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "filename": {
+                                                "type": "string",
+                                                "title": "Filename"
+                                            },
+                                            "create": {
+                                                "type": "boolean",
+                                                "title": "Generate"
+                                            },
+                                            "ftp": {
+                                                "type": "boolean",
+                                                "title": "FTP Transfer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "graphfiles": {
+                            "title": "Graph File Settings",
+                            "type": "object",
+                            "properties": {
+                                "files": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "filename": {
+                                                "type": "string",
+                                                "title": "Filename"
+                                            },
+                                            "create": {
+                                                "type": "boolean",
+                                                "title": "Generate"
+                                            },
+                                            "ftp": {
+                                                "type": "boolean",
+                                                "title": "FTP Transfer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "graphfileseod": {
+                            "title": "Daily Graph File Settings",
+                            "type": "object",
+                            "properties": {
+                                "files": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "filename": {
+                                                "type": "string",
+                                                "title": "Filename"
+                                            },
+                                            "create": {
+                                                "type": "boolean",
+                                                "title": "Generate"
+                                            },
+                                            "ftp": {
+                                                "type": "boolean",
+                                                "title": "FTP Transfer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "dependencies": {
+                        "autoupdate": ["enabled"],
+                        "ftpinterval": ["enabled"],
+                        "stdfiles": ["enabled"],
+                        "graphfiles": ["enabled"],
+                        "graphfileseod": ["enabled"]
+                    }
                 },
-                "includegraphdatafiles": {
-                    "type": "boolean"
+                "realtime": {
+                    "title": "Realtime Settings",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "realtimeinterval": {
+                            "title": "Realtime interval",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "enablerealtimeftp": {
+                            "type": "boolean"
+                        },
+                        "files": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "filename": {
+                                        "type": "string",
+                                        "title": "Filename"
+                                    },
+                                    "create": {
+                                        "type": "boolean",
+                                        "title": "Generate"
+                                    },
+                                    "ftp": {
+                                        "type": "boolean",
+                                        "title": "FTP Transfer"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "dependencies": {
+                        "realtimeinterval": ["enabled"],
+                        "enablerealtimeftp": ["enabled"],
+                        "files": ["enabled"]
+                    }
                 },
-                "includemoonimage": {
-                    "type": "boolean"
-                },
-                "activeftp": {
-                    "type": "boolean"
-                },
-                "ftprename": {
-                    "type": "boolean"
-                },
-                "ftpdelete": {
-                    "type": "boolean"
-                },
-                "utf8encode": {
-                    "type": "boolean"
-                },
-                "ftplogging": {
-                    "type": "boolean"
-                },
-                "ftpinterval": {
-                    "title": "Upload interval",
-                    "type": "integer",
-                    "minimum": 1
-                },
-                "enablerealtime": {
-                    "type": "boolean"
-                },
-                "enablerealtimeftp": {
-                    "type": "boolean"
-                },
-                "realtimetxtftp": {
-                    "type": "boolean"
-                },
-                "realtimegaugestxtftp": {
-                    "type": "boolean"
-                },
-                "realtimeinterval": {
-                    "title": "Realtime interval",
-                    "type": "integer",
-                    "minimum": 0
+                "general": {
+                    "title": "General Settings",
+                    "type": "object",
+                    "properties": {
+                        "ftprename": {
+                            "type": "boolean"
+                        },
+                        "ftpdelete": {
+                            "type": "boolean"
+                        },
+                        "utf8encode": {
+                            "type": "boolean"
+                        },
+                        "ftplogging": {
+                            "type": "boolean"
+                        }
+                    }
                 }
             }
         },
         "externalprograms": {
-            "title": "External programs",
+            "title": "External Programs",
             "type": "object",
             "properties": {
                 "program": {
-                    "title": "Program"
+                    "title": "Interval program"
                 },
                 "programparams": {
-                    "title": "Program parameters"
+                    "title": "Interval program parameters"
                 },
                 "realtimeprogram": {
                     "title": "Realtime program"
@@ -150,6 +294,12 @@
                 "sendlocation": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "sendlocation": ["enabled"]
             }
         },
         "wunderground": {
@@ -191,6 +341,18 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "rapidfire": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "sendavgwind": ["enabled"],
+                "includeaq": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "windy": {
@@ -220,6 +382,13 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationidx": ["enabled"],
+                "apikey": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "pwsweather": {
@@ -249,6 +418,14 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "wow": {
@@ -278,6 +455,14 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "cwop": {
@@ -310,10 +495,18 @@
                     "title": "",
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "id": ["enabled"],
+                "password": ["enabled"],
+                "server": ["enabled"],
+                "port": ["enabled"],
+                "interval": ["enabled"],
+                "includesolar": ["enabled"]
             }
         },
         "awekas": {
-            "title": "Awekas",
+            "title": "AWEKAS",
             "type": "object",
             "properties": {
                 "enabled": {
@@ -355,6 +548,19 @@
                 "includeaq": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "lang": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "includesoiltemp": ["enabled"],
+                "includesoilmoisture": ["enabled"],
+                "includeleafwetness": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeaq": ["enabled"]
             }
         },
         "weathercloud": {
@@ -376,6 +582,12 @@
                 "includesolar": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "wid": ["enabled"],
+                "key": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"]
             }
         },
         "openweathermap": {
@@ -399,6 +611,12 @@
                 "catchup": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "interval": ["enabled"],
+                "apikey": ["enabled"],
+                "stationid": ["enabled"],
+                "catchup": ["enabled"]
             }
         },
         "mqtt": {
@@ -439,6 +657,11 @@
                         "template": {
                             "title": "Template File"
                         }
+                    },
+                    "dependencies": {
+                        "retained": ["enabled"],
+                        "topic": ["enabled"],
+                        "template": ["enabled"]
                     }
                 },
                 "interval": {
@@ -462,6 +685,12 @@
                         "template": {
                             "title": "Template File"
                         }
+                    },
+                    "dependencies": {
+                        "retained": ["enabled"],
+                        "time": ["enabled"],
+                        "topic": ["enabled"],
+                        "template": ["enabled"]
                     }
                 }
             }
@@ -479,10 +708,18 @@
                     "minimum": 20,
                     "maximum": 400
                 },
+                "includemoonimage": {
+                    "type": "boolean"
+                },
                 "ftpdest": {
                     "title": "FTP folder",
                     "type": "string"
                 }
+            },
+            "dependencies": {
+                "includemoonimage": ["enabled"],
+                "size": ["enabled"],
+                "ftpdest": ["includemoonimage"]
             }
         },
         "proxies": {
@@ -531,6 +768,10 @@
                             "title": "Interval (seconds)",
                             "type": "number"
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "interval": ["enabled"]
                     }
                 },
                 "customminutes": {
@@ -560,6 +801,10 @@
                                 11
                             ]
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "intervalindex": ["enabled"]
                     }
                 },
                 "customrollover": {
@@ -572,6 +817,9 @@
                         "url": {
                             "title": "HTTP URL"
                         }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"]
                     }
                 }
             }

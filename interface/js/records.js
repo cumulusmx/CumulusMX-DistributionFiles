@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:33:57
+
 $(document).ready(function () {
     var tempTable=$('#temperature').dataTable({
         "paging": false,

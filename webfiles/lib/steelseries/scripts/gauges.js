@@ -1,4 +1,7 @@
 /*!
+ * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
+ * Last Modified: 2021/02/23 09:55:43
+ *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
  *
@@ -9,6 +12,7 @@
  * See the enclosed License file
  *
  * File encoding = UTF-8
+ *
  *
  */
 
@@ -33,7 +37,7 @@ gauges = (function () {
     var strings = LANG.EN,         // Set to your default language. Store all the strings in one object
         config = {
             // Script configuration parameters you may want to 'tweak'
-            scriptVer          : '2.7.4',
+            scriptVer          : '2.7.6',
             weatherProgram     : 0,                      // Set 0=Cumulus, 1=Weather Display, 2=VWS, 3=WeatherCat, 4=Meteobridge, 5=WView, 6=WeeWX, 7=WLCOM
             imgPathURL         : './images/',            // *** Change this to the relative path for your 'Trend' graph images
             oldGauges          : 'gauges.htm',           // *** Change this to the relative path for your 'old' gauges page.
@@ -76,10 +80,11 @@ gauges = (function () {
             useCookies         : true,                   // Persistently store user preferences in a cookie?
             tipImages          : [],
             dashboardMode      : false,                  // Used by Cumulus MX dashboard - SET TO FALSE OTHERWISE
-            dewDisplayType     : 'app'                   // Initial 'scale' to display on the 'dew point' gauge.
+            dewDisplayType     : 'dew'                   // Initial 'scale' to display on the 'dew point' gauge.
                                                          // 'dew' - Dewpoint
                                                          // 'app' - Apparent temperature
                                                          // 'wnd' - Wind Chill
+                                                         // 'feel' - Feels Like
                                                          // 'hea' - Heat Index
                                                          // 'hum' - Humidex
         },
@@ -872,7 +877,7 @@ gauges = (function () {
                         // Indoor and min/max avaiable
                         cache.areas = [steelseries.Section(+cache.low, +cache.high, gaugeGlobals.minMaxArea)];
                     } else {
-                        // Nndoor no min/max avaiable
+                        // Indoor no min/max avaiable
                         cache.areas = [];
                     }
 
@@ -960,6 +965,10 @@ gauges = (function () {
                     break;
                 case 'app':
                     cache.title = strings.apptemp_title;
+                    cache.popupImg = 1;
+                    break;
+                case 'feel':
+                    cache.title = strings.feel_title;
                     cache.popupImg = 1;
                     break;
                 case 'wnd':
@@ -1057,6 +1066,20 @@ gauges = (function () {
                              '<br>' +
                              '- ' + strings.lowestF_info + ': ' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTL +
                              ' | ' + strings.highestF_info + ': ' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH;
+                        break;
+                    case 'feel': // feels like
+                        cache.low = extractDecimal(data.feelslikeTL);
+                        cache.high = extractDecimal(data.feelslikeTH);
+                        cache.value = extractDecimal(data.feelslike);
+                        cache.areas = [steelseries.Section(+cache.low, +cache.high, gaugeGlobals.minMaxArea)];
+                        cache.title = strings.feel_title;
+                        cache.minMeasuredVisible = false;
+                        cache.maxMeasuredVisible = false;
+                        cache.popupImg = 1;
+                        tip = tip = strings.feel_info + ':' +
+                             '<br>' +
+                             '- ' + strings.lowestF_info + ': ' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTL +
+                             ' | ' + strings.highestF_info + ': ' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH;
                         break;
                     case 'wnd': // wind chill
                         cache.low = extractDecimal(data.wchillTL);
@@ -2166,11 +2189,7 @@ gauges = (function () {
                             height: cache.odoHeight
                         });
                         // Position it
-                        $(buffers.Odo).css({
-                            position: 'absolute',
-                            top     : Math.ceil(cache.gaugeSize * 0.7 + $('#canvas_rose').position().top) + 'px',
-                            left    : Math.ceil((cache.gaugeSize - cache.odoWidth) / 2 + $('#canvas_rose').position().left) + 'px'
-                        });
+                        $(buffers.Odo).attr('class', 'odo');
                         // Insert it into the DOM before the Rose gauge
                         $(buffers.Odo).insertBefore('#canvas_rose');
                         // Create the odometer
@@ -2735,7 +2754,7 @@ gauges = (function () {
         //
         getRealtime = function () {
             var url = config.realTimeURL;
-            if ($.active > 0) {
+            if ($.active > 0 && undefined != jqXHR) {
                 // kill any outstanding requests
                 jqXHR.abort();
             }
@@ -2808,7 +2827,7 @@ gauges = (function () {
 
             // and check we have the expected version number
             if (typeof data.ver !== 'undefined' && data.ver >= realtimeVer) {
-                // mainpulate the last rain time into something more friendly
+                // manpulate the last rain time into something more friendly
                 try {
                     str = data.LastRainTipISO.split(' ');
                     dt = str[0].replace(/\//g, '-').split('-');  // WD uses dd/mm/yyyy, we use a '-'
@@ -3418,6 +3437,7 @@ gauges = (function () {
                 extractDecimal(data.tempTL, deflt),
                 extractDecimal(data.dewpointTL, deflt),
                 extractDecimal(data.apptempTL, deflt),
+                extractDecimal(data.feelslikeTL, deflt),
                 extractDecimal(data.wchillTL, deflt));
         },
 
@@ -3428,6 +3448,7 @@ gauges = (function () {
             return Math.max(
                 extractDecimal(data.tempTH, deflt),
                 extractDecimal(data.apptempTH, deflt),
+                extractDecimal(data.feelslikeTH, deflt),
                 extractDecimal(data.heatindexTH, deflt),
                 extractDecimal(data.humidex, deflt));
         },
@@ -3562,6 +3583,9 @@ gauges = (function () {
             data.apptemp = convFunc(data.apptemp);
             data.apptempTH = convFunc(data.apptempTH);
             data.apptempTL = convFunc(data.apptempTL);
+            data.feelslike = convFunc(data.feelslike);
+            data.feelslikeTH = convFunc(data.feelslikeTH);
+            data.feelslikeTL = convFunc(data.feelslikeTL);
             data.dew = convFunc(data.dew);
             data.dewpointTH = convFunc(data.dewpointTH);
             data.dewpointTL = convFunc(data.dewpointTL);
@@ -4014,10 +4038,14 @@ gauges = (function () {
 
             // temperature
             if (gaugeTemp) {
-                if ($('#rad_temp1').is(':checked')) {
-                    gaugeTemp.data.title = strings.temp_title_out;
+                if (config.showIndoorTempHum) {
+                    if ($('#rad_temp1').is(':checked')) {
+                        gaugeTemp.data.title = strings.temp_title_out;
+                    } else {
+                        gaugeTemp.data.title = strings.temp_title_in;
+                    }
                 } else {
-                    gaugeTemp.data.title = strings.temp_title_in;
+                    gaugeTemp.data.title = strings.temp_title_out;
                 }
                 gaugeTemp.gauge.setTitleString(gaugeTemp.data.title);
                 if (data.ver) {gaugeTemp.update();}
@@ -4029,6 +4057,9 @@ gauges = (function () {
                     break;
                 case 'app':
                     gaugeDew.data.title = strings.apptemp_title;
+                    break;
+                case 'feel':
+                    gaugeDew.data.title = strings.feel_title;
                     break;
                 case 'wnd':
                     gaugeDew.data.title = strings.chill_title;
@@ -4058,10 +4089,14 @@ gauges = (function () {
             }
             // humidity
             if (gaugeHum) {
-                if ($('#rad_hum1').is(':checked')) {
-                    gaugeHum.data.title = strings.hum_title_out;
+                if (config.showIndoorTempHum) {
+                    if ($('#rad_hum1').is(':checked')) {
+                        gaugeHum.data.title = strings.hum_title_out;
+                    } else {
+                        gaugeHum.data.title = strings.hum_title_in;
+                    }
                 } else {
-                    gaugeHum.data.title = strings.hum_title_in;
+                    gaugeHum.data.title = strings.hum_title_out;
                 }
                 gaugeHum.gauge.setTitleString(gaugeHum.data.title);
                 if (data.ver) {gaugeHum.update();}

@@ -1,6 +1,33 @@
+// Last modified: 2021/02/21 22:50:00
+
 var chart, config;
 
 $(document).ready(function () {
+    $.ajax({
+        url: "availabledata.json",
+        dataType: "json",
+        success: function (result) {
+            if (result.Temperature === undefined || result.Temperature.Count == 0) {
+                $('#btnTemp').remove();
+            }
+            if (result.DailyTemp === undefined || result.DailyTemp.Count == 0) {
+                $('#btnDailyTemp').remove();
+            }
+            if (result.Humidity === undefined || result.Humidity.Count == 0) {
+                $('#btnHum').remove();
+            }
+            if (result.Solar === undefined || result.Solar.Count == 0) {
+                $('#btnSolar').remove();
+            }
+            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
+                $('#btnSunHours').remove();
+            }
+            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
+                $('#btnAirQuality').remove();
+            }
+        }
+    });
+
     $.ajax({
         url: "graphconfig.json",
         dataType: "json",
@@ -184,7 +211,7 @@ var doTemp = function () {
                 'heatindex': 'Heat Index',
                 'humidex'  : 'Humidex',
                 'intemp'   : 'Inside'
-            }
+            };
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
             var yaxis = 0;
 
@@ -216,13 +243,14 @@ var doTemp = function () {
 
                     chart.addSeries({
                         name: titles[idx],
+                        id: 'series-' + idx,
                         data: resp[idx],
                         yAxis: yaxis,
                         tooltip: {valueSuffix: valueSuffix}
                     }, false);
 
                     if (idx === 'temp') {
-                        chart.series[chart.series.length - 1].options.zIndex = 99;
+                        chart.get('series-' + idx).options.zIndex = 99;
                     }
                 }
             });
@@ -1401,16 +1429,7 @@ var doDailyTemp = function () {
         rangeSelector: {
             enabled: false
         },
-        series: [{
-            name: 'Avg Temp',
-            color: 'green'
-        }, {
-            name: 'Min Temp',
-            color: 'blue'
-        }, {
-            name: 'Max Temp',
-            color: 'red'
-        }]
+        series: []
     };
 
     chart = new Highcharts.StockChart(options);
@@ -1421,10 +1440,30 @@ var doDailyTemp = function () {
         dataType: 'json',
         cache: false,
         success: function (resp) {
+            var titles = {
+                'avgtemp': 'Avg Temp',
+                'mintemp': 'Min Temp',
+                'maxtemp': 'Max Temp'
+            };
+            var colours = {
+                'avgtemp': 'green',
+                'mintemp': 'blue',
+                'maxtemp': 'red'
+            };
+            var idxs = ['avgtemp', 'mintemp', 'maxtemp'];
+
+            idxs.forEach(function (idx) {
+                if (idx in resp) {
+                    chart.addSeries({
+                        name: titles[idx],
+                        data: resp[idx],
+                        color: colours[idx]
+                    }, false);
+                }
+            });
+
             chart.hideLoading();
-            chart.series[0].setData(resp.avgtemp);
-            chart.series[1].setData(resp.mintemp);
-            chart.series[2].setData(resp.maxtemp);
+            chart.redraw();
         }
     });
 };

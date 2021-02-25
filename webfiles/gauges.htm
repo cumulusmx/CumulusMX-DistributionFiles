@@ -1,0 +1,267 @@
+<!--
+	gaugesT.html	v:0.0.1		d:Feb 2021	Neil Thomas
+	Page: 1 main panel plus a sidebar
+	Last modified: 2021/02/24 10:55:30
+	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cumulus MX</title>
+		<meta name="description" content="weather data" />
+		<meta name="keywords" content="Cumulus, weather, data, weather station">
+		<link rel="icon" type="image/png" href="images/favicon.png">
+
+		<!--	jQuery Local	 -->
+		<script src="lib/jquery/jquery-latest.min.js"></script>
+
+		<!--	Fonts	System will default to a sans-serif font if no Internet connection -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rosario:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+		<!--	All Styles	-->
+		<link href="css/w3Pro.css" rel="stylesheet">			<!--	Basic w3shools responsive styles	-->
+		<link href="css/colours.css" rel="stylesheet">		<!--	Slightly enhanced w3schools colours	-->
+		<link href="css/mx-templates.css" rel="stylesheet">	<!--	Specific styles for these templates.	-->
+		<link href="css/gauges.css" rel="stylesheet">				<!--	Stylesheet specifically for the gauges	-->
+
+		<!--	Scripts	-->
+		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
+
+		<style>
+			.units-row {
+				padding-bottom: 8px;
+				margin-bottom: 0.5em;
+				max-width: 400px;
+			}
+			.units-value {
+				width: 52px;
+				display: inline-block;
+				font-size: 12px;
+			}
+			.at-flex-evenly {
+				display:flex;
+				justify-content:space-evenly;
+				flex-wrap:wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="Header" class="w3-row w3-top w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<div class="at-flex-between" style="align-items:center;flex-wrap:wrap;">
+					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
+					<div class="w3-right-align" style="max-width:600px;">
+						<h5>Lat<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|<wbr></span>Long<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Alt<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="altitude"></span></h5>
+					</div>
+				</div>
+				<!--	Start of Menu	-->
+				<div id="Main_Menu" class="w3-bar w3-theme-d4 w3-theme-bdr">
+				</div>
+				<!--	Mobile menu	-->
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large">
+				</div>	<!-- End of Mobile menu -->
+			</div>
+		</div>
+		<div id="Content">	<!--	Start of panel content	-->
+			<div class="w3-row-padding w3-theme-light site-width">	<!--	Page Title	-->
+				<div class="w3-col l12">
+					<h1>Gauges <span class="subText">(Steelseries)</span></h1>
+				</div>
+			</div>	<!--	End of title row	-->
+			<div class="w3-row site-width w3-theme-light">	<!--	Start of Main panel	-->
+				<div class="w3-col l9 m12">						<!--	3/4 width panel	-->
+					<div class="w3-col s12 at-flex-evenly" style="padding-left:8px;padding-right:8px;">
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Temperature</h3>
+								<div class="gauge w3-center">
+									<div id="tip_0">
+										<canvas id="canvas_temp" class="gaugeSmall"></canvas>
+									</div>
+									<div class="">
+										<input id="rad_temp1" type="radio" class="w3-radio" name="rad_temp" value="out" checked onclick="gauges.doTemp(this);"><label id="lab_temp1" for="rad_temp1">Outside</label>
+										<input id="rad_temp2" type="radio" class="w3-radio" name="rad_temp" value="in" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Other Temps</h3>
+								<div class="gauge w3-center">
+									<div id="tip_1">
+										<canvas id="canvas_dew" class="gaugeSmall"></canvas>
+									</div>
+									<div class="w3-small">
+										<input id="rad_dew1" type="radio" name="rad_dew" class="w3-radio" value="dew" checked onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label>
+										<input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio w3-hide" data-cmx-apparent value="app" onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2" data-cmx-apparent class="w3-hide">Apparent</label>
+										<input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" data-cmx-feels value="feel" onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6" data-cmx-feels>Feels Like</label>
+										<br>
+										<input id="rad_dew3" type="radio" name="rad_dew" class="w3-radio" value="wnd" onclick="gauges.doDew(this);"><label id="lab_dew3" for="rad_dew3">Wind Chill</label>
+										<input id="rad_dew4" type="radio" name="rad_dew" class="w3-radio" value="hea" onclick="gauges.doDew(this);"><label id="lab_dew4" for="rad_dew4">Heat Index</label>
+										<br>
+										<input id="rad_dew5" type="radio" name="rad_dew" class="w3-radio" value="hum" onclick="gauges.doDew(this);"><label id="lab_dew5" for="rad_dew5">Humidex</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Humidity</h3>
+								<div class="gauge w3-center">
+									<div id="tip_4">
+										<canvas id="canvas_hum" class="gaugeSmall"></canvas>
+									</div>
+									<input id="rad_hum1" type="radio" name="rad_hum" class="w3-radio" value="out" checked onclick="gauges.doHum(this);"><label id="lab_hum1" for="rad_hum1">Outside</label>
+									<input id="rad_hum2" type="radio" name="rad_hum" class="w3-radio" value="in" onclick="gauges.doHum(this);"><label id="lab_hum2" for="rad_hum2">Inside</label>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Wind</h3>
+								<div id="tip_6" class="gauge w3-center">
+									<canvas id="canvas_wind" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Wind Direction</h3>
+								<div id="tip_7" class="gauge w3-center">
+									<canvas id="canvas_dir" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Wind Rose</h3>
+								<div id="tip_10" class="gauge w3-center">
+									<canvas id="canvas_rose" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Pressure</h3>
+								<div id="tip_5" class="gauge w3-center">
+									<canvas id="canvas_baro" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Rainfall</h3>
+								<div id="tip_2" class="gauge w3-center">
+									<canvas id="canvas_rain" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3 class="">Rainfall Rate</h3>
+								<div id="tip_3" class="gauge w3-center">
+									<canvas id="canvas_rrate" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div data-cmx-uv-gauge style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3>UV Radiation</h3>
+								<div id="tip_8" class="gauge w3-center">
+									<canvas id="canvas_uv" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div data-cmx-solar-gauge style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3>Solar</h3>
+								<div id="tip_9" class="gauge w3-center">
+									<canvas id="canvas_solar" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="" style="min-width:264px;">
+							<div class="w3-card w3-panel at-panel w3-theme-white" style="padding-bottom:16px;">
+								<h3>Cloudbase</h3>
+								<div id="tip_11" class="gauge w3-center">
+									<canvas id="canvas_cloud" class="gaugeSmall"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w3-col l3 m12">	<!--	Start of Sidebar 1/4 site width	-->
+					<div class="w3-row-padding">
+						<div class="w3-col l12">
+							<div class="w3-panel at-panel w3-container w3-theme-light">
+								<h3 class="w3-center">Welcome to <br/><span class="subText"><span id="cmx-longlocation"></span></span></h3>
+								<p class="w3-center">Forecast</p>
+								<div class="w3-center" style="width:100%"><canvas id="canvas_status" style="width:100%;height:25px;" width="100" height="25"></canvas></div>
+								<div class="at-flex-justify">
+									<div class="w3-third" style="width:20%"><canvas id="canvas_timer" style="max-width:70px; max-height:25px;" width="70" height="25"></canvas></div>
+									<div class="w3-third w3-center">Status: <canvas id="canvas_led" style="width:25px;height:25px;margin-bottom:-7px;" width="25" height="25"></canvas></div>
+								</div>
+							</div>
+						</div>
+						<div class="w3-col l12">
+							<div class="w3-panel at-panel w3-container w3-theme-light">
+								<h4>Select your units</h4>
+								<div class="w3-border-bottom w3-theme-bdr units-row">
+									<div class=""><span id="lang_temperature">Temperature</span></div>
+									<div class="units-value"><input id="rad_unitsTemp1" type="radio" class="w3-radio" name="rad_unitsTemp" value="C" checked onclick="gauges.setUnits(this);"><label id="lab_unitsTemp1" for="rad_unitsTemp1">&deg;C</label></div>
+									<div class="units-value"><input id="rad_unitsTemp2" type="radio" class="w3-radio" name="rad_unitsTemp" value="F" onclick="gauges.setUnits(this);"><label id="lab_unitsTemp2" for="rad_unitsTemp2">&deg;F</label></div>
+								</div>
+								<div class="w3-border-bottom w3-theme-bdr units-row">
+									<div class=""><span id="lang_rainfall">Rainfall</span></div>
+									<div class="units-value"><input id="rad_unitsRain1" type="radio" class="w3-radio" name="rad_unitsRain" value="mm" checked onclick="gauges.setUnits(this);"><label id="lab_unitsRain1" for="rad_unitsRain1">mm</label></div>
+									<div class="units-value"><input id="rad_unitsRain2" type="radio" class="w3-radio" name="rad_unitsRain" value="in" onclick="gauges.setUnits(this);"><label id="lab_unitsRain2" for="rad_unitsRain2">Inch</label></div>
+								</div>
+								<div class="w3-border-bottom w3-theme-bdr units-row">
+									<div class=""><span id="lang_pressure">Pressure</span></div>
+									<div class="units-value"><input id="rad_unitsPress1" type="radio" class="w3-radio" name="rad_unitsPress" value="hPa" checked onclick="gauges.setUnits(this);"><label id="lab_unitsPress1" for="rad_unitsPress1">hPa</label></div>
+									<div class="units-value"><input id="rad_unitsPress2" type="radio" class="w3-radio" name="rad_unitsPress" value="inHg" onclick="gauges.setUnits(this);"><label id="lab_unitsPress2" for="rad_unitsPress2">inHg</label></div>
+									<div class="units-value"><input id="rad_unitsPress3" type="radio" class="w3-radio" name="rad_unitsPress" value="mb" onclick="gauges.setUnits(this);"><label id="lab_unitsPress3" for="rad_unitsPress3">mb</label></div>
+									<div class="units-value"><input id="rad_unitsPress4" type="radio" class="w3-radio" name="rad_unitsPress" value="kPa" onclick="gauges.setUnits(this);"><label id="lab_unitsPress4" for="rad_unitsPress4">kPa</label></div>
+								</div>
+								<div class="w3-border-bottom w3-theme-bdr units-row">
+									<div class=""><span id="lang_windSpeed">Wind Speed</span></div>
+									<div class="units-value"><input id="rad_unitsWind4" type="radio" class="w3-radio" name="rad_unitsWind" value="km/h" checked onclick="gauges.setUnits(this);"><label id="lab_unitsWind4" for="rad_unitsWind4">km/h</label></div>
+									<div class="units-value"><input id="rad_unitsWind3" type="radio" class="w3-radio" name="rad_unitsWind" value="m/s" onclick="gauges.setUnits(this);"><label id="lab_unitsWind3" for="rad_unitsWind3">m/s</label></div>
+									<div class="units-value"><input id="rad_unitsWind1" type="radio" class="w3-radio" name="rad_unitsWind" value="mph" onclick="gauges.setUnits(this);"><label id="lab_unitsWind1" for="rad_unitsWind1">mph</label></div>
+									<div class="units-value"><input id="rad_unitsWind2" type="radio" class="w3-radio" name="rad_unitsWind" value="kts" onclick="gauges.setUnits(this);"><label id="lab_unitsWind2" for="rad_unitsWind2">knots</label></div>
+								</div>
+								<div class="w3-cell-row w3-border-bottom w3-theme-bdr units-row">
+									<div class=""><span id="lang_cloudbase">Cloud Base</span></div>
+									<div class="units-value"><input id="rad_unitsCloudBase1" type="radio" class="w3-radio" name="rad_unitsCloud" value="m" checked onclick="gauges.setUnits(this);"><label id="lab_unitsCloudBase1" for="rad_unitsCloudBase1">m</label></div>
+									<div class="units-value"><input id="rad_unitsCloudBase2" type="radio" class="w3-radio" name="rad_unitsCloud" value="ft" onclick="gauges.setUnits(this);"><label id="lab_unitsCloudBase2" for="rad_unitsCloudBase2">ft</label></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	<!--	End of panel content -->
+		</div>	<!--	End of content	-->
+		<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<p class="w3-center w3-small"><em>
+					scripts by mark crossley - version <span id="scriptVer"></span> gauges drawn using gerrit grunwald's steelseries javascript library, wind rose drawn using rgraph</em>
+				</p>
+				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
+					<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
+			</div>
+		</div>
+		<!-- Combined steelseries.js & tween.js -->
+		<script src="lib/steelseries/scripts/steelseries_tween.min.js"></script>
+		<!-- Once you have customised this scripts to your requirements you should minimise
+			and concatenate them into a single file in the same order  as below -->
+		<script src="lib/steelseries/scripts/language.min.js"></script>
+		<script src="lib/steelseries/scripts/gauges.js"></script>
+		<!--Optional Wind Rose scripts -->
+		<script src="lib/steelseries/scripts/RGraph.common.core.min.js"></script>
+		<script src="lib/steelseries/scripts/RGraph.rose.min.js"></script>
+	</body>
+</html>

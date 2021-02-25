@@ -1,14 +1,57 @@
-$(document).ready(function () {
+// Last modified: 2021/02/15 22:37:19
 
+var StashedStationId;
+$(document).ready(function () {
+    var layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
     $("#form").alpaca({
         "dataSource": "./api/settings/stationdata.json",
         "optionsSource": "./api/settings/stationoptions.json",
         "schemaSource": "./api/settings/stationschema.json",
-        //"view": "bootstrap-edit",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
+            var stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
+
+            // On changing the station type, propogate down to sub-sections
+            stationIdObj.on("change", function () {
+                var form = $("#form").alpaca("get");
+                var stationid = this.getValue();
+                form.childrenByPropertyId["stationid"].setValue(stationid);
+                form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
+            });
+
+            // On changing the Davis VP connection type, propogate down to advanced settings
+            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].on("change", function () {
+                var form = $("#form").alpaca("get");
+                var conntype = this.getValue();
+                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(conntype);
+                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].refresh();
+            });
+
+            // Set the initial value of the sub-section  station ids
+            var stationid = form.childrenByPropertyId["stationid"].getValue();
+            form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
+            // Keep a record of the last value
+            StashedStationId = stationid;
+
+            // Set the inital value of Davis advanced conntype
+            var conntype = form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].getValue();
+            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(+conntype);
+
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
+                    var stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
+                    var stationId = stationIdObj.getValue();
+
+                    if (stationId == -1) {
+                        alert("You have not selected a station type");
+                        return;
+                    }
+                    if (stationId != StashedStationId) {
+                        alert("You have changed the Station type, you must restart Cumulus MX");
+                        StashedStationId = stationId;
+                    }
+
                     var json = form.getValue();
                     $.ajax({
                         type: "POST",
@@ -21,11 +64,13 @@ $(document).ready(function () {
                         error: function (error) {
                             alert("error " + error);
                         }
-
                     });
+                } else {
+                    alert("Invalid value somewhere on the form!");
+                    this.focus();
+                    return;
                 }
             });
         }
     });
-
 });

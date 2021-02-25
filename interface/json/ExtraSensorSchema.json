@@ -1,18 +1,27 @@
 ﻿{
     "type": "object",
     "properties": {
-        "primaryaqsensor": {
-            "title": "Primary Air Quality Sensor",
-            "enum": [-1, 0, 5, 1, 2, 3, 4, 6]
-        },
-        "aqi": {
-            "title": "Air Quality Index",
-            "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+        "airquality": {
+            "title": "Air Quality Settings",
+            "type": "object",
+            "properties": {
+                "primaryaqsensor": {
+                    "title": "Primary Air Quality Sensor",
+                    "enum": [-1, 0, 5, 1, 2, 3, 4, 6]
+                },
+                "aqi": {
+                    "title": "Air Quality Index",
+                    "enum": [0, 1, 2, 3, 4, 5, 6, 7]
+                }
+            }
         },
         "airLink": {
             "title": "Davis AirLink",
             "type": "object",
             "properties": {
+                "isNode": {
+                    "type": "boolean"
+                },
                 "apiKey": {
                     "title": "WeatherLink API key"
                 },
@@ -22,16 +31,13 @@
                 "autoUpdateIp": {
                     "type": "boolean"
                 },
+                "indoorenabled": {
+                    "type": "boolean"
+                },
                 "indoor": {
                     "title": "Indoor AirLink",
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "isNode": {
-                            "type": "boolean"
-                        },
                         "ipAddress": {
                             "title": "IP Address"
                         },
@@ -43,16 +49,13 @@
                         }
                     }
                 },
+                "outdoorenabled": {
+                    "type": "boolean"
+                },
                 "outdoor": {
                     "title": "Outdoor AirLink",
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "isNode": {
-                            "type": "boolean"
-                        },
                         "ipAddress": {
                             "title": "IP Address"
                         },
@@ -64,6 +67,12 @@
                         }
                     }
                 }
+            },
+            "dependencies": {
+                "apiKey": ["isNode"],
+                "apiSecret": ["isNode"],
+                "indoor": ["indoorenabled"],
+                "outdoor": ["outdoorenabled"]
             }
         },
         "blakeLarsen": {
@@ -76,16 +85,16 @@
             }
         },
         "rg11": {
-            "title": "Hydreon RG-11 rain device",
+            "title": "Hydreon RG-11 rain device(s)",
             "type": "object",
             "properties": {
+                "dev1enabled": {
+                    "type": "boolean"
+                },
                 "port1": {
                     "title": "Device 1",
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
                         "commPort": {
                             "title": "Serial Port"
                         },
@@ -99,13 +108,13 @@
                         }
                     }
                 },
+                "dev2enabled": {
+                    "type": "boolean"
+                },
                 "port2": {
                     "title": "Device 2",
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
                         "commPort": {
                             "title": "Serial Port"
                         },
@@ -119,7 +128,10 @@
                         }
                     }
                 }
-
+            },
+            "dependencies": {
+                "port1": ["dev1enabled"],
+                "port2": ["dev2enabled"]
             }
         }
     }

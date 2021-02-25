@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:34:57
+
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used

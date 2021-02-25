@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="weather data">
+  <meta name="keywords" content="Cumulus, weather, data, weather station">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="weatherstyle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="content">
+<h1><span class="cmx-location"></span> weather</h1>
+<h2 style="text-align: left; text-transform: none;" >&nbsp;Latitude&nbsp;<span id="cmx-latitude"></span>&nbsp;&nbsp; &nbsp;Longitude&nbsp;<span id="cmx-longitude"></span>&nbsp;&nbsp; &nbsp;Elevation&nbsp;<span id="cmx-altitude"></span></h2>
+<!-- Almanac -->
+<table style="width:100%;border-collapse: collapse; border-spacing: 0;" >
+  <tbody><tr>
+    <td class="labels">Dawn:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-dawn"></span></td>
+    <td class="labels">Sunrise:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-sunrise"></span></td>
+    <td class="labels">Moonrise:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-moonrise"></span></td>
+    <td rowspan="3"><img src="images/moon.png" alt="Moon" width="64" height="64" style="margin: 0px 10px;" /></td>
+  </tr>
+  <tr>
+    <td class="labels">Dusk:</td>
+     <td class="site_data" style="text-align: left;"><span id="cmx-dusk"></span></td>
+    <td class="labels">Sunset:&nbsp;</td>
+    <td class="site_data" style="text-align: left;"><span id ="cmx-sunset"></span></td>
+    <td class="labels">Moonset:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-moonset"></span></td>
+  </tr>
+  <tr>
+    <td class="labels">Daylight:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-daylightlength"></span></td>
+    <td class="labels">Day length:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-daylength"></span></td>
+    <td class="labels">Moon Phase:</td>
+    <td class="site_data" style="text-align: left;"><span id="cmx-moonphase"></span></td>
+  </tr>
+</tbody>
+</table>
+<!-- END Almanac -->
+<p>Welcome to <span id="cmx-longlocation"></span>. </p>
+<p>The weather station in use is the <span id="cmx-stationtype">, and these pages are updated
+every <span id="cmx-interval"> minutes. The meteorological day used at this station ends at
+<span id="cmx-rollovertime"></span>.</p>
+<p><b>Forecast:</b> <span id="cmx-forecast"></span></p>
+<table style="width:100%;border-collapse: collapse; border-spacing: 0;" >
+  <caption>Conditions at local time <span id="cmx-time"></caption>
+  <tr>
+    <td colspan="4" class="tableseparator_temp">Temperature and Humidity </td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td>Temperature</td>
+    <td><span id="cmx-temp"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td>Dew&nbsp;Point </td>
+    <td><span id="cmx-dew"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td>Windchill</td>
+    <td><span id="cmx-wchill"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td>Humidity</td>
+    <td><span id="cmx-hum"></span>%</td>
+  </tr>
+  <tr class="td_temperature_data">
+    <td>Heat Index</td>
+    <td><span id="cmx-heatindex"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+    <td>Apparent Temperature</td>
+    <td><span id="cmx-apptemp"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+  </tr>
+  <!-- Solar data. If you don't have a solar sensor, you may wish to delete everything from here to the next comment -->
+  <tr class="td_temperature_data">
+    <td>Solar Radiation</td>
+    <td><span id="cmx-SolarRad"></span>&nbsp;W/m&sup2;</td>
+    <td>Evapotranspiration Today</td>
+    <td><span id="cmx-ET"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+  </tr>
+  <!-- End of solar data -->
+  <tr class="td_temperature_data">
+    <td>THW Index</td>
+    <td><span id="cmx-THWindex"></td>
+    <td>Temp change last hour</td>
+    <td><span id="cmx-TempChangeLastHour"></span>&nbsp;<span class="cmx-tempunit"></span></td>
+  </tr>
+  <tr>
+    <td colspan="4" class="tableseparator_rainfall">Rainfall</td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td>Rainfall&nbsp;Today</td>
+    <td><span id="cmx-rfall"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td>Rainfall&nbsp;Rate</td>
+    <td><span id="cmx-rrate"></span>&nbsp;<span class="cmx-rainunit"></span>/hr</td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td>Rainfall&nbsp;This&nbsp;Month</td>
+    <td><span id="cmx-rmonth"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td>Rainfall&nbsp;This&nbsp;Year</td>
+    <td><span id="cmx-ryear"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td>Rainfall&nbsp;Last Hour</td>
+    <td><span id="cmx-rhour"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td>Last rainfall</td>
+    <td><span id="cmx-LastRainTipISO"></td>
+  </tr>
+  <tr class="td_rainfall_data">
+    <td>Rainfall&nbsp;Since&nbsp;Midnight</td>
+    <td><span id="cmx-rmidnight"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+    <td>Rainfall&nbsp;Last&nbsp;24&nbsp;Hours</td>
+    <td><span id="cmx-r24hour"></span>&nbsp;<span class="cmx-rainunit"></span></td>
+  </tr>
+
+  <tr>
+    <td colspan="4" class="tableseparator_wind">Wind</td>
+  </tr>
+  <tr class="td_wind_data">
+    <td>Wind&nbsp;Speed&nbsp;(gust)</td>
+    <td><span id="cmx-wgust"></span>&nbsp;<span class="cmx-windunit"></span></td>
+    <td>Wind&nbsp;Speed&nbsp;(avg)</td>
+    <td><span id="cmx-wspeed"></span>&nbsp;<span class="cmx-windunit"></span></td>
+  </tr>
+  <tr class="td_wind_data">
+    <td>Wind Bearing</td>
+    <td><span id="cmx-avgbearing"></span>&deg; <span id="cmx-wdir"></span></td>
+    <td>Beaufort&nbsp;<span id="cmx-beaufort"></span></td>
+    <td><span id="cmx-beaudesc"></span></td>
+  </tr>
+  <tr class="td_wind_data">
+    <td>Wind Variation (last 10 minutes)</td>
+    <td>From&nbsp;<span id="cmx-BearingRangeFrom"></span>&deg;&nbsp;To&nbsp;<span id="cmx-BearingRangeTo"></span>&deg;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" class="tableseparator_pressure">Pressure</td>
+  </tr>
+  <tr class="td_pressure_data">
+    <td>Barometer&nbsp;</td>
+    <td><span id="cmx-press"></span>&nbsp;<span class="cmx-pressunit"></span></td>
+    <td><span id="cmx-presstrend"></span></td>
+    <td><span id="cmx-presstrendval"></span>&nbsp;<span class="cmx-pressunit"></span>/hr</td>
+  </tr>
+</table>
+<div class="td_navigation_bar">
+  :<a href="index.htm">now</a>:<wbr>:<a href="gauges.htm">gauges</a>:<wbr>:<a href="today.htm">today</a>:<wbr>:<a href="yesterday.htm">yesterday</a>:<wbr>:<a href="thismonth.htm">this&nbsp;month</a>:<wbr>:<a href="thisyear.htm">this&nbsp;year</a>:<wbr>:<a href="record.htm">records</a>:<wbr>:<a href="monthlyrecord.htm">monthly&nbsp;records</a>:<wbr>:<a href="trends.htm">trends</a>:<wbr>:<a href="selectachart.htm">selectachart</a>:<wbr>:<a href="historic.htm">historic</a>:<wbr><span id="cmx-forum"></span><wbr><span id="cmx-webcam"></span>
+</div>
+<p class="credits"><br />
+  Page updated <span id="cmx-update"></span><br />
+  powered by <a href="https://cumuluswiki.wxforum.net/a/Software" target="_blank">Cumulus</a> v<span id="cmx-version"></span> (<span id="cmx-build"></span>)
+</p>
+</div>
+  <!-- Google CDN hosted JQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <!-- or... -->
+  <!-- Local JQuery library, do not use if your containing page already pulls in a copy of JQuery -->
+  <!-- <script src="scripts/jquery-1.8.2.min.js"></script> -->
+  <script src="js/setpagedata.js"></script>
+</body>
+</html>

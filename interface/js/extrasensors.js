@@ -1,3 +1,5 @@
+// Last modified: 2021/02/15 22:35:42
+
 $(document).ready(function () {
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);

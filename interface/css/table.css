@@ -1,10 +1,10 @@
 ﻿/*
  *  File:         demo_table.css
  *  CVS:          $Id$
+ *  Created:      Tue May 12 06:47:22 BST 2009
+ *  Last modified: 2021/02/15 22:46:48
  *  Description:  CSS descriptions for DataTables demo pages
  *  Author:       Allan Jardine
- *  Created:      Tue May 12 06:47:22 BST 2009
- *  Modified:     $Date$ by $Author$
  *  Language:     CSS
  *  Project:      DataTables
  *
@@ -35,12 +35,12 @@ body {
 
 table thead tr {
     background:#353535;
-    height: 30px; 
+    height: 30px;
 }
 table thead th {
     //border-right: 1px solid #ccc;
     color: #b2c831;
-    font-size: 16px; 
+    font-size: 16px;
 }
 //table thead th:last-of-type { border-right: none; }
 table tbody {
@@ -167,7 +167,7 @@ table.display {
     width: 100%;
 
     /* Note Firefox 3.5 and before have a bug with border-collapse
-     * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 ) 
+     * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 )
      * border-spacing: 0; is one possible option. Conditional-css.com is
      * useful for this kind of thing
      *
@@ -175,7 +175,7 @@ table.display {
      * It subtracts one px relative to the other browsers from the first column, and
      * adds one to the end...
      *
-     * If you want that effect I'd suggest setting a border-top/left on th/td's and 
+     * If you want that effect I'd suggest setting a border-top/left on th/td's and
      * then filling in the gaps with other borders.
      */
 }
@@ -593,12 +593,12 @@ div.box {
 
 .hosting-table .clear {
     clear:both;
-} 
+}
 
 .hosting-table > div
 {
     margin-bottom:5em;
-} 
+}
 
 /* ---- Lists ---- */
 
@@ -618,7 +618,7 @@ div.box {
 .hosting-table ul {
     position:relative;
     border-bottom:10px solid #000;
-} 
+}
 
 
 .hosting-table .column li {
@@ -627,7 +627,7 @@ div.box {
     background:#e6e6e6;
     border-right:1px solid #b6b6b6;
     border-bottom:1px solid #b6b6b6;
-} 
+}
 
 .hosting-table .column ul li:first-child {
     padding: .5em .3em .8em;
@@ -642,7 +642,7 @@ div.box {
     /* Firefox */
     /* Opera 11  */
     /* Chrome 11  */
-    /* Chrome 10, Safari */	
+    /* Chrome 10, Safari */
     *border-left-style: none;
     border-left-color: inherit;
     border-left-width: medium;
@@ -657,24 +657,24 @@ div.box {
     font-size:12px;
     overflow:hidden;
     left:12px;
-    top:10px;	
+    top:10px;
 }
 
 .hosting-table .column:first-child ul {
     border-left:1px solid #b6b6b6;
-} 
+}
 
 .hosting-table .column ul li:first-child:after {
     display:none;
-} 
+}
 
 .hosting-table .column li:first-child {
     border-right:1px solid transparent;
-} 
+}
 
 .hosting-table .column .header_row:after {
     display:none;
-} 
+}
 
 .hosting-table .header_row span {
     color:#fff;
@@ -709,7 +709,7 @@ div.box {
 
 .hosting-table .column .footer_row:after {
     display:none;
-} 
+}
 
 /* ---- hover ----  */
 
@@ -721,23 +721,23 @@ div.box {
     -webkit-transition:all .2s linear 0s;
     -o-transition:all .2s linear 0s;
     z-index:5;
-} 
+}
 
 .hosting-table .column:hover ul li.header_row,
 .hosting-table .column:hover ul li:first-child {
     border-left: 1px solid transparent;
     *border-left: none;
-} 
+}
 
 .hosting-table .column:hover:first-child ul {
     border-left: none;
     *border-left: 1px solid #B6B6B6;
-} 
+}
 
 .hosting-table .column:hover ul li {
     border-left: 1px solid #B6B6B6;
     *border-left: none;
-} 
+}
 
 .hosting-table .column .header_row {
     height:6em;
@@ -763,8 +763,8 @@ div.box {
     border-radius:8px;
     text-decoration:none;
     display:inline-block;
-    padding:.7em 1.8em 1em 1.8em;	 
-    *padding:.7em 1.8em .6em 1.8em;	 
+    padding:.7em 1.8em 1em 1.8em;
+    *padding:.7em 1.8em .6em 1.8em;
     font-size:16px;
     color:#fff;
     position:relative;
@@ -777,7 +777,7 @@ div.box {
     -moz-transition:all .2ms ease-in-out 0s;
     -webkit-transition:all .2ms ease-in-out 0s;
     -o-transition:all .2ms ease-in-out 0s;
-} 
+}
 
 /* ---- bubble tooltip ----*/
 
@@ -795,7 +795,7 @@ div.box {
     display:block;
     position:absolute;
     bottom:0;
-    *bottom:-10px; 
+    *bottom:-10px;
     left:-44px;
     width:200px;
     color: #787878;
@@ -828,7 +828,7 @@ div.box {
     border-style:solid;
     border-color:#fff transparent;
     /* reduce the damage in FF3.0 */
-    display:block; 
+    display:block;
     width:0;
 }
 
@@ -842,7 +842,7 @@ div.box {
     border-style:solid;
     border-color:#fff transparent;
     /* reduce the damage in FF3.0 */
-    display:block; 
+    display:block;
     width:0;
 }
 /* =============== STYLE 4  =============== */
@@ -874,7 +874,7 @@ div.box {
     background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
         transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
         transparent 75%, transparent);
-} 
+}
 
 /* ---- button ----  */
 
@@ -902,7 +902,7 @@ div.box {
     -moz-box-shadow:inset 0 -5px 0 #25352f;
     -webkit-box-shadow:inset 0 -5px 0 #25352f;
     box-shadow:inset 0 -5px 0 #25352f;
-} 
+}
 
 /* --- button active ---  */
 
@@ -910,4 +910,4 @@ div.box {
     -moz-box-shadow:inset 0 -1px 0 #25352f;
     -webkit-box-shadow:inset 0 -1px 0 #25352f;
     box-shadow:inset 0 -1px 0 #25352f;
-}  
+}

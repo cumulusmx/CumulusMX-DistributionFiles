@@ -1,29 +1,177 @@
 ﻿{
     "fields": {
-        "timeformat": {
-            "removeDefaultNone": "true",
-            "optionLabels": [
-                "12 Hour",
-                "24 Hour"
-            ]
-        },
-        "utf8": {
-            "rightLabel": "Use UTF-8 encoding"
-        },
-        "dotdecimal": {
-            "rightLabel": "Force reports to use a 'dot' decimal point"
-        },
         "autosave": {
-            "rightLabel": "Auto save after daily reset"
+            "rightLabel": "Create NOAA files after daily rollover",
+            "helper": "Enables the creation of the report files"
         },
-        "autoftp": {
-            "rightLabel": "Auto FTP after auto save"
+        "sitedetails": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "sitename": {
+                },
+                "city": {
+                },
+                "state": {
+                }
+            }
+        },
+        "outputfiles": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "monthfileformat": {
+                    "helper": "Specify the filename template using C# date formatting. Default = 'NOAAMO'MMyy'.txt'"
+                },
+                "yearfileformat": {
+                    "helper": "Specify the filename template using C# date formatting. Default = 'NOAAYR'yyyy'.txt'"
+                }
+            }
+        },
+        "options": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "timeformat": {
+                    "removeDefaultNone": "true",
+                    "optionLabels": [
+                        "24 Hour",
+                        "12 Hour"
+                    ],
+                    "sort": false
+                },
+                "utf8": {
+                    "rightLabel": "Use UTF-8 encoding",
+                    "helper": "Create the report files using the UTF-8 file format. Default = enabled"
+                },
+                "dotdecimal": {
+                    "rightLabel": "Use a 'dot' decimal point",
+                    "helper": "Overrides your local locale setting for decimal points and always uses a dot decimal"
+                }
+            }
+        },
+        "ftp": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "autoftp": {
+                    "rightLabel": "Auto FTP NOAA report files",
+                    "helper": "Enabling this means your NOAA reports will be FTP'd to the folder below after they are created during the daily rollover"
+                },
+                "ftpdirectory": {
+                    "helpers": [
+                        "You can specify a different folder from the default FTP folder if you wish to up the reports to a different location",
+                        "Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings FTP folder",
+                        "Paths entered here are relative to the FTP folder in specified in the main Internet Settings"
+                    ],
+                    "dependencies": {
+                        "autoftp": true
+                    }
+                }
+            }
+        },
+        "thresholds": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "heatingthreshold": {
+                    "helpers": [
+                        "The base temperature which is to be used to calculate heating demand as heating degree days",
+                        "Default = 65 &deg;F / 18.3 &deg;C"
+                    ]
+                },
+                "coolingthreshold": {
+                    "helpers": [
+                        "The base temperature which is to be used to calculate chilling demand as cooling degree days",
+                        "Default = 65 &deg;F / 18.3 &deg;C"
+                    ]
+                },
+                "maxtempcomp1": {
+                    "helpers": ["Used in the reports for the counts of days with max temperatures above this temperature"]
+                },
+                "maxtempcomp2": {
+                    "helpers": ["Used in the reports for the counts of days with max temperatures above this temperature"]
+                },
+                "mintempcomp1": {
+                    "helpers": ["Used in the reports for the counts of days with min temperatures below this temperature"]
+                },
+                "mintempcomp2": {
+                    "helpers": ["Used in the reports for the counts of days with min temperatures below this temperature"]
+                },
+                "raincomp1": {
+                    "helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+                },
+                "raincomp2": {
+                    "helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+                },
+                "raincomp3": {
+                    "helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+                }
+            }
         },
         "normalmeantemps": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "jan": {
+                },
+                "feb": {
+                },
+                "mar": {
+                },
+                "apr": {
+                },
+                "may": {
+                },
+                "jun": {
+                },
+                "jul": {
+                },
+                "aug": {
+                },
+                "sep": {
+                },
+                "oct": {
+                },
+                "nov": {
+                },
+                "dec": {
+                }
+            },
+            "helpers": ["Enter the long term mean monthly temperature values expected for your station"],
+            "helperPosition": "above"
         },
         "normalrain": {
-            "collapsed": "true"
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "jan": {
+                },
+                "feb": {
+                },
+                "mar": {
+                },
+                "apr": {
+                },
+                "may": {
+                },
+                "jun": {
+                },
+                "jul": {
+                },
+                "aug": {
+                },
+                "sep": {
+                },
+                "oct": {
+                },
+                "nov": {
+                },
+                "dec": {
+                }
+            },
+            "helpers": ["Enter the long term mean monthly rainfall values expected for your station"],
+            "helperPosition": "above"
         }
     }
 }

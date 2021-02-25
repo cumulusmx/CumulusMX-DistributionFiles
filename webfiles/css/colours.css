@@ -1,0 +1,40 @@
+/*	-------------------------------------------------------------------
+ * 	Colours for the CumulusMX Alternative Interface
+ * 	Produced using w3Schools colour generator
+ * 
+ * 	Key Colour: #4e5b31
+ * 
+ * 	Theme modified to change font 'color's to either lightest or darkest
+ * 	theme colour.  Also modified names for text, borders & hover colours.
+ * 	I have added a few extras. Not all are used.
+ * 	Neil Thomas
+	------------------------------------------------------------------*/
+
+/*	Check that your theme is named as shown  below */
+
+.w3-theme-white {color:#2e5473; background-color:#FFFFFF;}
+.w3-theme-l5 {color:#2e5473; background-color:#f7fafc;}
+.w3-theme-l4 {color:#2e5473; background-color:#e4edf4;}
+.w3-theme-l3 {color:#2e5473 ; background-color:#c9dbe9;}
+.w3-theme-l2 {color:#2e5473 ; background-color:#aec9df;}
+.w3-theme-l1 {color:#2e5473 ; background-color:#93b7d4;}
+.w3-theme-d1 {color:#f7fafc ; background-color:#6195c0;}
+.w3-theme-d2 {color:#f7fafc ; background-color:#4a86b7;}
+.w3-theme-d3 {color:#f7fafc ; background-color:#4075a1;}
+.w3-theme-d4 {color:#f7fafc ; background-color:#37658a;}
+.w3-theme-d5 {color:#f7fafc ; background-color:#2e5473;}
+
+.w3-theme-light {color:#2e5473 ; background-color:#f7fafc;}
+.w3-theme-dark {color:#f7fafc ; background-color:#2e5473;}
+.w3-theme-action {color:#f7fafc ; background-color:#2e5473;}
+
+.w3-theme {color:#f7fafc ; background-color:#78a5c9;}
+.w3-theme-txt {color:#78a5c9;}
+.w3-theme-bdr {border-color:#78a5c9;}
+.w3-theme-d5-bdr {border-color:#2e5473;}
+.w3-theme-l1-bdr {border-color:#f7fafc;}
+
+.w3-theme-hvr:hover {color:#f7fafc; background-color:#78a5c9;}
+.w3-theme-d5-hvr:hover {color:#f7fafc; background-color:#2e5473;}
+.w3-theme-txt-hvr:hover {color:#78a5c9;}
+.w3-theme-bdr-hvr:hover {border-color:#78a5c9;}
