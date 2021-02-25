@@ -1,5 +1,5 @@
 // Created: 2021/02/09 10:51:54
-// Last modified: 2021/02/15 09:39:47
+// Last modified: 2021/02/20 23:29:27
 
 var cmx_data;
 
@@ -20,7 +20,7 @@ $.getJSON("websitedata.json", function (json) {
         this.innerHTML = cmx_data[this.className];
     });
 
-    // Use this to trigger otehr scripts on the page
+    // Use this to trigger other scripts on the page
     $('#cmx-location').trigger("change")
 })
 .fail(function (jqxhr, textStatus, error) {
