@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	at-basic.js		v:0.0.2		d:Feb 2021		a:Neil  Thomas
- *  Last modified: 2021/02/22 10:15:51
+ *  Last modified: 2021/02/26 00:09:35
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Combined with existing MX setpagedata.js
  * 	Requires jQuery
@@ -45,7 +45,7 @@ let mobileMenu = '<a href="index.htm" class="w3-bar-item w3-btn w3-theme-hvr at-
 	'<a href="thisyear.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">This Year</a>' +
 	'<a href="record.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Records</a>' +
 	'<a href="monthlyrecord.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Monthly Records</a>' +
-	'<a href="trends.html" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Trends</a>' +
+	'<a href="trends.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Trends</a>' +
 	'<a href="selectachart.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Select-a-graph</a>' +
 	'<a href="historic.htm" class="w3-bar-item w3-btn w3-theme-hvr at-slim">Historic</a>' +
 	'<a href="https://cumulus.hosiene.co.uk/index.php" data-cmx-forumlink class="w3-bar-item w3-btn w3-theme-hvr w3-hide at-slim forumlink" target="_blank">Forum</a>' +
