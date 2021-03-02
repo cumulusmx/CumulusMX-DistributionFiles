@@ -1,4 +1,4 @@
-// Last modified: 2021/02/21 22:50:00
+// Last modified: 2021/02/27 18:52:49
 
 var chart, config;
 
@@ -10,7 +10,7 @@ $(document).ready(function () {
             if (result.Temperature === undefined || result.Temperature.Count == 0) {
                 $('#btnTemp').remove();
             }
-            if (result.DailyTemp === undefined || result.DailyTemp.Count == 0) {
+            if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
                 $('#btnDailyTemp').remove();
             }
             if (result.Humidity === undefined || result.Humidity.Count == 0) {

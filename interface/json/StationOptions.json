@@ -1059,13 +1059,6 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
-                "windrosepoints": {
-                    "removeDefaultNone": true,
-                    "helpers": [
-                        "The number of cardinal points to display on the Wind Rose",
-                        "Set this to 8 for Fine Offset stations"
-                    ]
-                },
                 "useapparent": {
                     "rightLabel": "Use Apparent Temperature",
                     "helpers": [
@@ -1080,6 +1073,19 @@
                 "displayuv": {
                     "rightLabel": "Display UV-I data",
                     "helpers": ["Enabling this option will display UV-I data on the default web site"]
+                },
+                "windrosepoints": {
+                    "type": "select",
+                    "removeDefaultNone": true,
+                    "sort": false,
+                    "optionLabels": [
+                        "8 points",
+                        "16 points"
+                    ],
+                    "helpers": [
+                        "The number of cardinal points to display on the Wind Rose",
+                        "Set this to 8 for Fine Offset stations"
+                    ]
                 }
             }
         }

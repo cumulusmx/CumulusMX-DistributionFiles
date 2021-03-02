@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2021/02/17 22:20:32
+// Last modified: 2021/02/27 20:48:03
 
 var chart, config, options;
 var settings;
@@ -33,20 +33,22 @@ $(document).ready(function () {
 
             // then the real series options
             for (var k in result1) {
-                var optgrp = $('<optgroup />');
-                optgrp.attr('label', k);
-                result1[k].forEach(function (val) {
-                    var option = $('<option />');
-                    option.html(val);
-                    option.val(val);
-                    optgrp.append(option);
-                });
-                $('#data0').append(optgrp.clone());
-                $('#data1').append(optgrp.clone());
-                $('#data2').append(optgrp.clone());
-                $('#data3').append(optgrp.clone());
-                $('#data4').append(optgrp.clone());
-                $('#data5').append(optgrp);
+                if (k !== "DailyTemps") {
+                    var optgrp = $('<optgroup />');
+                    optgrp.attr('label', k);
+                    result1[k].forEach(function (val) {
+                        var option = $('<option />');
+                        option.html(val);
+                        option.val(val);
+                        optgrp.append(option);
+                    });
+                    $('#data0').append(optgrp.clone());
+                    $('#data1').append(optgrp.clone());
+                    $('#data2').append(optgrp.clone());
+                    $('#data3').append(optgrp.clone());
+                    $('#data4').append(optgrp.clone());
+                    $('#data5').append(optgrp);
+                }
             }
 
             // add the chart theme colours
