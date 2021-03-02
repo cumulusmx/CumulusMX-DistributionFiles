@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	at-basic.js		v:0.0.2		d:Feb 2021		a:Neil  Thomas
- *  Last modified: 2021/02/26 00:09:35
+ *  Last modified: 2021/03/01 23:27:08
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Combined with existing MX setpagedata.js
  * 	Requires jQuery
@@ -141,11 +141,27 @@ let getPageData = function () {
 			});
 		}
 
+		if (cmx_data.currcond != '') {
+			$('#currCond').removeClass('w3-hide');
+		}
+
 		// Use this to trigger other scripts on the page
 		$('#cmx-location').trigger('change');
+
+		// auto update every 60 seconds, only the index and today pages
+		let pageName = window.location.href.split('/').pop();
+		if (pageName == 'index.htm' || pageName == 'today.htm') {
+			setTimeout(function () {
+				getPageData();
+			}, 60 * 1000);
+		}
 	})
 	.fail(function (jqxhr, textStatus, error) {
 		let err = textStatus + ', ' + error;
 		console.log('Data Request Failed: ' + err );
+		// lets try that again
+		setTimeout(function () {
+			getPageData();
+		}, 5000);
 	});
 };
