@@ -1,0 +1,160 @@
+<!--
+	todayT.htm		v:0.0.1		d:Feb 2021	Neil Thomas
+	Last modified: 2021/02/24 10:58:13
+	Page: 1 main panel plus a sidebar
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="weather data">
+		<meta name="keywords" content="Cumulus, weather, data, weather station">
+		<title>Cumulus MX</title>
+		<link rel="icon" type="image/png" href="images/favicon.png">
+
+		<!--	jQuery Local	-->
+		<script src="lib/jquery/jquery-latest.min.js"></script>
+
+		<!--	Fonts	System will default to a sans-serif font if no Internet connection -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rosario:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+		<!--	All Styles	-->
+		<link href="css/w3Pro.css" rel="stylesheet">			<!--	Basic w3shools responsive styles	-->
+		<link href="css/colours.css" rel="stylesheet">		<!--	Slightly enhanced w3schools colours	-->
+  		<link href="css/mx-templates.css" rel="stylesheet">	<!--	Specific styles for these templates.	-->
+
+		<!--	Scripts	-->
+		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
+	</head>
+	<body>
+		<div id="Header" class="w3-row w3-top w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<div class="at-flex-between" style="align-items:center; flex-wrap:wrap;">
+					<img src="images/CumulusMX-Logo.png" class="w3-image logo" alt="Header logo"/>
+					<div class="w3-right-align" style="max-width:600px;">
+						<h5>Lat<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="latitude"></span><span class="at-divider">|<wbr></span>Long<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="longitude"></span><span class="at-divider">|<wbr></span>Alt<span class="w3-hide-small">itude</span>:&nbsp;<span data-cmxdata="altitude"></span></h5>
+					</div>
+				</div>
+				<!--	Start of Menu	-->
+				<div id="Main_Menu" class="w3-bar w3-theme-d4 w3-theme-bdr">
+				</div>
+				<!--	Mobile menu	-->
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large">
+				</div>	<!-- End of Mobile menu -->
+			</div>
+		</div>
+		<!--	START OF PAGE CONTENT	Don't change anything above	-->
+		<div id="Content">	<!--	Start of panel content	-->
+			<div class="w3-row-padding w3-theme-light site-width">
+				<div class="w3-col l12">
+					<!--	Page Title goes HERE	-->
+					<h1>Sample NOAA Reports Page<span class="subText"></span></h1>
+				</div>
+			</div>	<!--	End of title row	-->
+			<!--	Start of main content panels	-->
+			<div class="w3-row site-width w3-theme-light">
+				<div class="w3-col l9 m12">	<!--	3/4 width panel	-->
+					<div class="w3-row-padding">
+						<div class="w3-col s12">
+							<div id="NOAAMenu" class="w3-bar w3-theme-d4">
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('01');">Jan</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('02');">Feb</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('03');">Mar</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('04');">Apr</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('05');">May</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('06');">Jun</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('07');">Jul</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('08');">Aug</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('09');">Sep</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('10');">Oct</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('11');">Nov</button>
+								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('12');">Dec</button>
+								<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr w3-mobile w3-right at-slim" onClick="getRpt('-1');">Year</button>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="w3-row-padding">	<!--	Row 1 of 3/4 width panel	-->
+						<div class="w3-col s12">		<!-- 	Full width panel on all screens	-->
+							<div class="w3-panel w3-card w3-theme-white">
+								<!--	Panel title here	-->
+								<h3><span id="RptTitle">---</span></h3>
+								<!--	Panel content goes here	-->
+								<pre class="w3-responsive" style="min-height:500px;"><span id="noaareport">text</span></pre>
+								<p class="w3-small">Page data updated <span data-cmxdata="update"></span>.</p>
+							</div>
+						</div>
+					</div>
+					<!--	Second panel here - remove if not needed	-->
+					<div class="w3-row-padding w3-hide">
+						<div class="w3-col s12">		<!-- 	Full width of above panel	-->
+							<div class="w3-panel w3-card w3-theme-white">
+								<!--	Panel title here	-->
+								<h2>Panel title</h2>
+								<!--	Panel content goes here	-->
+
+								<p class="w3-small">Page data updated <span data-cmxdata="update"></span>.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--	Start of Sidebar	-->
+				<div class="w3-col l3 m12">
+					<div class="w3-row-padding">
+						<!--	First panel of sidebar	-->
+						<div class="w3-col l12">	<!--	Full width of sidebar -->
+							<div class="w3-panel w3-container w3-theme-light">
+								<!--	Sidebar content here	-->
+								<h3 class="w3-center">Welcome to <br/><span class="subText"><span data-cmxdata="longlocation"></span></span></h3>
+								<!--	You can remove the above line if you wish	-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	<!--	End of panel content -->
+		</div>	<!--	End of content	-->
+		<!--	CHANGE NOTHING BELOW HERE	-->
+		<!--	Footer	-->
+		<div id="Footer" class="w3-row w3-bottom w3-theme-dark w3-theme-bdr">
+			<div class="w3-row-padding site-width">
+				<p><em>Cumulus MX Template by Neil Thomas <script>document.write(new Date().getFullYear());</script>
+				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
+			</div>
+		</div>
+		<script>
+		/*	Script assumes that reports use the default name format and are in the root folder of your site	*/
+		var getRpt = function(month) {
+			var mon = new Date().getMonth() + 1;
+			var yr  = new Date().getFullYear();
+			var path = "";
+			if (month== -1 ) {
+				reqRpt = path + "NOAAYR" + yr + ".txt";
+			} else {
+				if(month <= mon) {
+					reqRpt = path + "NOAAMO" + month + (yr - 2000) + ".txt";
+				}else{
+					reqRpt = path + "NOAAMO" + month + (yr - 2001) + ".txt";
+				}
+			};
+			$('#RptTitle').text(reqRpt.slice(0,10));
+
+			$.ajax({
+				url: reqRpt,
+				dataType: 'text',
+				success: function(data) {
+					$('#noaareport').text(data);
+				},
+				error: function() {
+					alert("Did not find the required report\n\nPlease try another month");
+				}
+			});
+		}
+		/*	Remove the '//' to collect the year NOAA report on load.	*/
+		/*	To collect a month change '-1' to ' new Date().getMonth() '	*/
+		// getRpt("-1");
+		</script>
+	</body>
+</html>

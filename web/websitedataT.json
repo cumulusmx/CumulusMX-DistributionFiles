@@ -5,7 +5,7 @@
   "showUV":"<#Option_showUV>"
 },
 
-"location":"<#location>",
+"location":"<#locationenc>",
 "update":"<#update>",
 "version":"<#version>",
 "build":"<#build>",
@@ -32,7 +32,7 @@
 "stationtype":"<#stationtype>",
 "interval":"<#interval>",
 "rollovertime":"<#rollovertime>",
-"forecast":"<#forecast>",
+"forecast":"<#forecastenc>",
 "year":"<#year>",
 "yesterday":"<#yesterday>",
 "date":"<#date>",

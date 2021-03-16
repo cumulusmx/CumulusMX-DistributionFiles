@@ -252,6 +252,15 @@
                             }
                         }
                     }
+                },
+                "advanced": {
+                    "title": "Advanced Options",
+                    "type": "object",
+                    "properties": {
+                        "recsbegandate": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
