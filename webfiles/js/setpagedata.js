@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/03/16 12:40:57
+ *  Last modified: 2021/03/16 16:45:11
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Incorporating changes suggested by beteljuice
  * 	Requires jQuery
@@ -91,7 +91,7 @@ let createMainMenu = function(src, submenu) {
 
 let createMobileMenu = function(src, submenu) {
 	let classMobile = 'w3-bar-item w3-btn w3-theme-hvr at-slim';
-	let styleMobile = submenu ? 'margin-left:20px;' : '';
+	let styleMobile = submenu ? 'padding-left: 30px !important;' : '';
 
 	src.forEach(function(itm) {
 		if (itm.menu !== 'w') { // wanted in narrow menu
