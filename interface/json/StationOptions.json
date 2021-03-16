@@ -175,6 +175,22 @@
                             }
                         }
                     }
+                },
+                "advanced": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
+                    "helpersPosition": "above",
+                    "fields": {
+                        "recsbegandate": {
+                            "label": "Records Began Date",
+                            "helpers": [
+                                "IMPORTANT: You MUST keep the same date format when editing this field.",
+                                "This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
+                                "You may need to alter this if for instance you import historic data in Cumulus from another source, in that case set it to the first date of your imported data."
+                            ]
+                        }
+                    }
                 }
             }
         },
