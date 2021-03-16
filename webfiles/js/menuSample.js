@@ -1,6 +1,6 @@
 /*
  An example extended/modified Menu configuration file for NEW CuMX template
- Last modified: 2021/03/15 12:31:42
+ Last modified: 2021/03/16 15:04:30
  menuSample.js - typical name, you define the one used in setpagedata.js
 
  Properties:
@@ -27,9 +27,11 @@ menuSrc = [
 		{title: "Historic",          menu: "b",    url: "historic.htm"}
 	]},
 	{title: "Reports",   menu: "b",    url: "noaareport.htm"},
+	{title: "Forum",     menu: "n",    url: "#",    new_window: true},
+	{title: "Webcam",    menu: "n",    url: "#",    new_window: true},
 	{title: "Other Links",    menu: "w",    submenu: true,    items: [
-		{title: "Cumulus Forum",     menu: "w",    url: "#",    forum: true,   new_window: true},
-		{title: "Webcam",            menu: "b",    url: "#",    webcam: true},
+		{title: "Cumulus Forum",     menu: "w",    url: "#",    forum: true,     new_window: true},
+		{title: "Webcam",            menu: "b",    url: "#",    webcam: true,    new_window: true},
 		{title: "My Cat",            menu: "b",    url: "mycatpage.htm"},
 		{title: "Some Cat",          menu: "b",    url: "https://pixnio.com/free-images/2020/07/26/2020-07-26-08-52-19-1200x1200.jpg",    new_window: true}
 	]}

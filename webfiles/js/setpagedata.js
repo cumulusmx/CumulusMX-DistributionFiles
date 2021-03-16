@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/03/15 16:51:15
+ *  Last modified: 2021/03/16 12:40:57
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Incorporating changes suggested by beteljuice
  * 	Requires jQuery
@@ -64,28 +64,30 @@ let createMainMenu = function(src, submenu) {
 			} else {
 				infill = (itm.new_window ? ' target="_blank"' : '');
 
-				if (itm.forum && cmx_data.forumurl != '') {
-					menu += '<a href="' + cmx_data.forumurl + '"' + infill + ' class="' + (submenu ? classMainSub : classMain) + '">' + itm.title + '</a>\n';;
-				} else if (itm.webcam && cmx_data.webcamurl != '') {
-					menu += '<a href="' + cmx_data.webcamurl + '"' + infill + ' class="' + (submenu ? classMainSub : classMain) + '">' + itm.title + '</a>\n';
+				if (itm.forum) {
+					 if (cmx_data.forumurl != '') {
+						menu += '<a href="' + cmx_data.forumurl + '"' + infill + ' class="' + (submenu ? classMainSub : classMain) + '">' + itm.title + '</a>\n';
+					 }
+				} else if (itm.webcam) {
+					if (cmx_data.webcamurl != '') {
+						menu += '<a href="' + cmx_data.webcamurl + '"' + infill + ' class="' + (submenu ? classMainSub : classMain) + '">' + itm.title + '</a>\n';
+					}
 				} else {
 					menu += '<a href="' + itm.url + '"' + infill + ' class="' + (submenu ? classMainSub : classMain) + '">' + itm.title + '</a>\n';
 				}
-
 			}
-		} // end if wide or both
+		}
 	});
 
 	// if we are processing a sub menu, return to the main loop
 	if (submenu)
 		return;
 
-
 	menu += '<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-hide-large w3-right" onClick="toggleMenu(\'Main_Menu_Mobile\')">Menu  &#9776;</button>';
 
 	// stick the menus into the page
 	$('#Main_Menu').html(menu);
-}; // END createmenus
+};
 
 let createMobileMenu = function(src, submenu) {
 	let classMobile = 'w3-bar-item w3-btn w3-theme-hvr at-slim';
@@ -116,7 +118,7 @@ let createMobileMenu = function(src, submenu) {
 
 	// stick the menus into the page
 	$('#Main_Menu_Mobile').html(mobileMenu);
-}; // END createmenus
+};
 
 let setupPage = function() {
 
