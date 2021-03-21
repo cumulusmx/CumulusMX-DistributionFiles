@@ -1,6 +1,6 @@
 <!--
 	todayT.htm		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/02/24 10:58:13
+	Last modified: 2021/03/20 17:53:28
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -27,6 +27,13 @@
 
 		<!--	Scripts	-->
 		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
+		<script src="js/noaarptsY.js"></script>
+		<style>
+			#year {
+				padding-bottom: 4px;
+				padding-top: 5px;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="Header" class="w3-row w3-top w3-theme-dark w3-theme-bdr">
@@ -50,7 +57,9 @@
 			<div class="w3-row-padding w3-theme-light site-width">
 				<div class="w3-col l12">
 					<!--	Page Title goes HERE	-->
-					<h1>Sample NOAA Reports Page<span class="subText"></span></h1>
+					<div class="at-flex-between at-flex-items-center">
+						<h1>NOAA Reports<span class="subText"></span></h1>
+					</div>
 				</div>
 			</div>	<!--	End of title row	-->
 			<!--	Start of main content panels	-->
@@ -58,44 +67,37 @@
 				<div class="w3-col l9 m12">	<!--	3/4 width panel	-->
 					<div class="w3-row-padding">
 						<div class="w3-col s12">
-							<div id="NOAAMenu" class="w3-bar w3-theme-d4">
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('01');">Jan</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('02');">Feb</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('03');">Mar</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('04');">Apr</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('05');">May</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('06');">Jun</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('07');">Jul</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('08');">Aug</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('09');">Sep</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('10');">Oct</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('11');">Nov</button>
-								<button class="w3-bar-item w3-btn w3-theme-hvr at-slim w3-mobile" onClick="getRpt('12');">Dec</button>
-								<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr w3-mobile w3-right at-slim" onClick="getRpt('-1');">Year</button>
+							<div id="NOAAMenu" class="w3-bar">
+								<div class="w3-bar-item at-slim">
+									<select id="year" class="w3-select w3-theme-l4 w3-theme-hvr" onChange="getYearRpt(this);">Year</select>
+								</div>
+								<div class="w3-dropdown-hover">
+									<button id="monButton" class="w3-btn w3-theme-hvr at-slim ">Choose your month</button>
+									<div id="monSelector" class="w3-dropdown-content w3-theme-l4 w3-bar-block w3-card">
+										<button id="mon1" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('01');">January</button>
+										<button id="mon2" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('02');">February</button>
+										<button id="mon3" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('03');">March</button>
+										<button id="mon4" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('04');">April</button>
+										<button id="mon5" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('05');">May</button>
+										<button id="mon6" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('06');">June</button>
+										<button id="mon7" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('07');">July</button>
+										<button id="mon8" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('08');">August</button>
+										<button id="mon9" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('09');">September</button>
+										<button id="mon10" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('10');">October</button>
+										<button id="mon11" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('11');">November</button>
+										<button id="mon12" class="w3-bar-item w3-btn w3-theme-hvr at-slim" onClick="getMonRpt('12');">December</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-
-
 					<div class="w3-row-padding">	<!--	Row 1 of 3/4 width panel	-->
 						<div class="w3-col s12">		<!-- 	Full width panel on all screens	-->
 							<div class="w3-panel w3-card w3-theme-white">
 								<!--	Panel title here	-->
-								<h3><span id="RptTitle">---</span></h3>
+								<!-- <h3><span id="RptTitle">---</span></h3> -->
 								<!--	Panel content goes here	-->
-								<pre class="w3-responsive" style="min-height:500px;"><span id="noaareport">text</span></pre>
-								<p class="w3-small">Page data updated <span data-cmxdata="update"></span>.</p>
-							</div>
-						</div>
-					</div>
-					<!--	Second panel here - remove if not needed	-->
-					<div class="w3-row-padding w3-hide">
-						<div class="w3-col s12">		<!-- 	Full width of above panel	-->
-							<div class="w3-panel w3-card w3-theme-white">
-								<!--	Panel title here	-->
-								<h2>Panel title</h2>
-								<!--	Panel content goes here	-->
-
+								<pre class="w3-responsive" style="min-height:500px;"><span id="noaareport">Loading report...</span></pre>
 								<p class="w3-small">Page data updated <span data-cmxdata="update"></span>.</p>
 							</div>
 						</div>
@@ -124,37 +126,5 @@
 				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
-		<script>
-		/*	Script assumes that reports use the default name format and are in the root folder of your site	*/
-		var getRpt = function(month) {
-			var mon = new Date().getMonth() + 1;
-			var yr  = new Date().getFullYear();
-			var path = "";
-			if (month== -1 ) {
-				reqRpt = path + "NOAAYR" + yr + ".txt";
-			} else {
-				if(month <= mon) {
-					reqRpt = path + "NOAAMO" + month + (yr - 2000) + ".txt";
-				}else{
-					reqRpt = path + "NOAAMO" + month + (yr - 2001) + ".txt";
-				}
-			};
-			$('#RptTitle').text(reqRpt.slice(0,10));
-
-			$.ajax({
-				url: reqRpt,
-				dataType: 'text',
-				success: function(data) {
-					$('#noaareport').text(data);
-				},
-				error: function() {
-					alert("Did not find the required report\n\nPlease try another month");
-				}
-			});
-		}
-		/*	Remove the '//' to collect the year NOAA report on load.	*/
-		/*	To collect a month change '-1' to ' new Date().getMonth() '	*/
-		// getRpt("-1");
-		</script>
 	</body>
 </html>

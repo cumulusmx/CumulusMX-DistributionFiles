@@ -20,10 +20,20 @@
     width:100%;
     height:100%;
 }
+.at-gaugeSmall {
+	width: 221px;
+	margin-left:8px;
+	margin-right:8px;
+}
 
 .gaugeMedium {
     max-width: 221px;
     max-height:221px;
+}
+.at-gaugeMedium {
+	width: 261px;
+	margin-left:8px;
+	margin-right:8px;
 }
 
 .gaugeLarge {
@@ -32,6 +42,21 @@
     width:100%;
     height:100%;
 }
+
+.at-gaugeLarge {
+	width:301px;
+	margin-left:8px;
+	margin-right:8px;
+}
+
+@media screen and (max-width:550px) {
+	.at-gaugeSmall { width:100%; }
+	.at-gaugeMedium{ width:100%;}
+}
+
+@media screenand (max-width:640px) {
+	.at-gaugeLarge { width:100%;}
+	}
 
 @font-face {
 	font-family: 'LCDMono2Ultra';

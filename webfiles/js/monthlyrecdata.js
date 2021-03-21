@@ -1,20 +1,10 @@
-// Last modified: 2021/02/21 16:41:57
+// Last modified: 2021/03/19 09:17:51
 
-$('#cmx-location').change(function () {
-    var yesterday = new Date()
-    yesterday.setDate(yesterday.getDate() - 1)
-    changeData(yesterday.getMonth());
-});
-
-$(document).ready(function () {
-	// Wait for the JSON load to complete
-	$(document).ajaxStop(function () {
-		// No more active requests?
-		if ($.active === 0) {
-			var yesterday = new Date()
-			yesterday.setDate(yesterday.getDate() - 1)
-			changeData(yesterday.getMonth());
-		}
+$(document).ready(function() {
+	dataLoadedPromise.then(function() {
+		var yesterday = new Date()
+		yesterday.setDate(yesterday.getDate() - 1)
+		changeData(yesterday.getMonth());
 	});
 });
 
