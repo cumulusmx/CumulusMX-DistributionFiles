@@ -61,7 +61,7 @@
                 },
                 "autoUpdateIp": {
                     "rightLabel": "Use automatic IP address discovery and updates",
-                    "helper": "NOTE: only enable this if you have a single AirLink device and it uses DCHP"
+                    "helper": "NOTE: only enable this if you have a single AirLink device and it uses DHCP"
                 },
                 "indoorenabled": {
                     "rightLabel": "Enable Indoor AirLink",

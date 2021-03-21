@@ -1,7 +1,7 @@
-/*	------------------------------
- * 	Styles for CumulusMX Interface
- * Last modified: 2021/02/24 10:37:56
- * 	------------------------------*/
+/*	-----------------------------------
+ * 	Styles for CumulusMX Templates
+ Last modified: 2021/03/19 09:23:15
+ * 	----------------------------------*/
 
 html, body, p, h1, h2, h3, h4, h5, h6, li, td, th {
 	font-family: 'Rosario', sans-serif;
@@ -21,6 +21,11 @@ p {
 	margin:auto;
 }
 
+.graph-width {
+	max-width:1250px;
+	margin:auto;
+}
+
 #Footer {
 	border-width:5px 0 0 0;
 	border-style: solid;
@@ -36,17 +41,45 @@ p {
 	font-weight:400;
 }
 
-.at-flex-start { display:flex; justify-content: flex-start;}
-.at-flex-end   { display:flex; justify-content: flex-end;}
-.at-flex-justify {display:flex; justify-content: space-around; flex-wrap:wrap;}
-.at-flex-between {display:flex;justify-content: space-between;}
-.at-flex-bottom {display:flex; align-items: flex-end;}
-
 body {
 	background-image: url('../images/picture.jpg');
 	background-position: bottom left;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+.statusPanel h5 {
+	margin-bottom: -5px;
+}
+/*	-------------------------------------
+ * 	Flex boxes
+ * 	-------------------------------------*/
+.at-flex-start { display:flex;}
+.at-flex-end   {
+	display:flex;
+	justify-content: flex-end;
+	flex-wrap:wrap;
+}
+
+.at-flex-justify {
+	display:flex;
+	justify-content: space-around;
+	flex-wrap:wrap;
+}
+
+.at-flex-between {
+	display:flex;
+	justify-content: space-between;
+	flex-wrap:wrap;
+}
+
+.at-flex-bottom,
+.at-flex-items-bottom {
+	align-items: flex-end;
+}
+
+.at-flex-items-center {
+	align-items: center;
 }
 
 /*	--------------------------------------------------
@@ -56,6 +89,7 @@ body {
 	margin-bottom: 4px;
 	border-width:2px 0 0 0 ;
 	border-style: solid;
+	min-height: 32px;
 }
 
 .at-slim {
@@ -76,7 +110,6 @@ body {
 	width:100%;
 	font-size: 13px;
 	font-style: italic;
-	color: #0C3;
 	padding-bottom: 2px!important;
 	padding-top:4px!important;
 	border-bottom: 1px dotted #c2cfa5!important;
@@ -92,23 +125,91 @@ body {
 	padding-left: 40px!important;
 }
 
-/* Gauges enhancements */
-.at-panel {
-	height: 90%;
+/*	-------------------------------
+ * 	Model enhancements
+ * 	------------------------------*/
+
+.w3-modal-content {
+	margin-top:10%;
+	border-radius: 8px;
 }
 
-/* Footer enhancements */
+.w3-modal header { border-radius: 8px 8px 0 0;}
+.w3-modal footer { border-radius: 0 0 8px 8px;}
+.w3-modal .w3-btn { border-radius: 0 8px;}
+
+/* 	----------------------------------------
+ * 	Media enhancements
+ * 	---------------------------------------*/
 @media screen and (max-width:780px) {
 	#Footer { position: unset; }
 	#Content {
-		margin-top: 170px!important;
+		/*margin-top: 170px!important;*/
 		margin-bottom: 5px!important;
+	}
+
+	.statusPanel {
+		text-align:center!important;
+		margin:auto!important;
 	}
 }
 
 @media screen and (max-height:768px) {
-	#Footer { position: unset; }
+	#Footer { position: unset; item: center;}
 	#Content {
 		margin-bottom: 5px!important;
 	}
+}
+
+/*	--------------------------------------
+ * 	LED enhancements
+ * 	-------------------------------------*/
+.at-led-round {
+	display:inline-block;
+	height: 1.2em;
+	width: 1.2em;
+	margin: 0 0.5em -3px 0.5em;
+	border-radius: 50%;
+	background-color: #888;
+	box-shadow: inset 3px 3px 2px rgba(220, 220, 220, 0.6), inset -2px -2px 2px rgba(32, 32, 32,0.6);
+}
+
+.at-led-block {
+	display:inline-block;
+	height: 1.2em;
+	width: 1.2em;
+	margin: 0 0.5em -3px 0.5em;
+	background-color: #888;
+	box-shadow: inset 3px 3px 2px rgba(220, 220, 220, 0.6), inset -2px -2px 2px rgba(32, 32, 32,0.6);
+}
+
+.at-led-brick {
+	display:inline-block;
+	height:0.8em;
+	width:1.6em;
+	margin:0 0.5em -3px 0.5em;
+	background-color: #888;
+	box-shadow: inset 3px 3px 2px rgba(220, 220, 220, 0.6), inset -2px -2px 2px rgba(32, 32, 32,0.6);
+}
+.at-led-oval {
+	display:inline-block;
+	height:1em;
+	width:2em;
+	margin:0 0.5em -3px 0.5em;
+	border-radius: 50%;
+	background-color: #888;
+	box-shadow: inset 3px 3px 2px rgba(220, 220, 220, 0.6), inset -2px -2px 2px rgba(32, 32, 32,0.6);
+}
+
+.at-led-green {
+	background-color: #0b0;
+}
+
+.at-led-flash-red {
+	animation: flashR 1s infinite;
+}
+
+@keyframes flashR {
+	0%, 60%  {background-color: #f00;}
+	61%,100% {background-color: #800;}
 }

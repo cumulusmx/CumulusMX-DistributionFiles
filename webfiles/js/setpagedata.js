@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/03/16 16:45:11
+ *  Last modified: 2021/03/19 09:21:06
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Incorporating changes suggested by beteljuice
  * 	Requires jQuery
@@ -19,7 +19,6 @@ let load_menu =	"js/menu.js"; // menu file to load - path is relative to the pag
 
 //	Thats the only changes you should make unless you know better!
 
-
 let cmx_data;
 let menu = mobileMenu = "";
 let initialLoad = true;
@@ -28,9 +27,8 @@ window.onresize = function() {
 	borderpatrol();
 };
 
-$(document).ready( function() {
+$(document).ready(function() {
 	setupPage();
-	getPageData();
 });
 
 let borderpatrol = function() {
@@ -143,72 +141,77 @@ let toggleMenu = function(menuid) {
 
 
 // Get the main page data
-let getPageData = function () {
-	$.getJSON('websitedata.json', function (json) {
-		console.log('Data success');
-		cmx_data = json;
+let dataLoadedPromise = new Promise((resolve, reject) => {
+	(function () {
+		$.getJSON('websitedata.json', function (json) {
+			console.log('Data success');
+			cmx_data = json;
 
-		// Set some header stuff
-		$(document).prop('title', cmx_data.location + ' weather');
-		$('meta[name=description]').attr('content', cmx_data.location + ' weather data');
-		$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data.location + ' weather data');
+			// Set some header stuff
+			$(document).prop('title', cmx_data.location + ' weather');
+			$('meta[name=description]').attr('content', cmx_data.location + ' weather data');
+			$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data.location + ' weather data');
 
-		// do the menus
-		if (initialLoad) {
-			$.getScript(load_menu, function() { // path is relative to the page - allows for multiple vars to be available and ignores comments ;-)
-				createMainMenu(menuSrc, false);
-				createMobileMenu(menuSrc, false);
-				borderpatrol(); // duplicated here to ensure things OK if initial menu wrapped
+			// do the menus
+			if (initialLoad) {
+				$.getScript(load_menu, function() { // path is relative to the page - allows for multiple vars to be available and ignores comments ;-)
+					createMainMenu(menuSrc, false);
+					createMobileMenu(menuSrc, false);
+					borderpatrol(); // duplicated here to ensure things OK if initial menu wrapped
+				});
+				initialLoad = false;
+			}
+
+			// Show/hide Apparent/Feels Like
+			if (cmx_data.options.useApparent === "1") {
+				$('[data-cmx-apparent]').removeClass('w3-hide');
+				$('[data-cmx-feels]').addClass('w3-hide');
+			}
+
+			if (cmx_data.options.showSolar === "1") {
+				$('[data-cmx-solar]').removeClass('w3-hide');
+			} else {
+				$('[data-cmx-solar-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+			}
+
+			if (cmx_data.options.showUV === "1") {
+				$('[data-cmx-uv]').removeClass('w3-hide');
+			} else {
+				$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+			}
+
+			// Update all spans having data-cmxdata with data values
+			$('[data-cmxdata]').each(function () {
+				this.innerHTML = cmx_data[this.dataset.cmxdata];
 			});
-			initialLoad = false;
-		}
 
-		// Show/hide Apparent/Feels Like
-		if (cmx_data.options.useApparent === "1") {
-			$('[data-cmx-apparent]').removeClass('w3-hide');
-			$('[data-cmx-feels]').addClass('w3-hide');
-		}
+			if (cmx_data.currcond != '') {
+				$('#currCond').removeClass('w3-hide');
+			}
 
-		if (cmx_data.options.showSolar === "1") {
-			$('[data-cmx-solar]').removeClass('w3-hide');
-		} else {
-			$('[data-cmx-solar-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
-		}
+			// Use this to trigger other scripts on the page
+			$('#cmx-location').trigger('change');
 
-		if (cmx_data.options.showUV === "1") {
-			$('[data-cmx-uv]').removeClass('w3-hide');
-		} else {
-			$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
-		}
+			resolve();
 
-		// Update all spans having data-cmxdata with data values
-		$('[data-cmxdata]').each(function () {
-			this.innerHTML = cmx_data[this.dataset.cmxdata];
-		});
+			// auto update every 60 seconds, only the index and today pages
+			let pageName = window.location.href.split('/').pop();
+			if (pageName == 'index.htm' || pageName == 'today.htm') {
+				setTimeout(function () {
+					getPageData();
+				}, 60 * 1000);
+			}
+		})
+		.fail(function (jqxhr, textStatus, error) {
+			let err = textStatus + ', ' + error;
+			console.log('Data Request Failed: ' + err );
 
-		if (cmx_data.currcond != '') {
-			$('#currCond').removeClass('w3-hide');
-		}
+			reject();
 
-		// Use this to trigger other scripts on the page
-		$('#cmx-location').trigger('change');
-
-		// auto update every 60 seconds, only the index and today pages
-		let pageName = window.location.href.split('/').pop();
-		if (pageName == 'index.htm' || pageName == 'today.htm') {
+			// lets try that again
 			setTimeout(function () {
 				getPageData();
-			}, 60 * 1000);
-		}
-	})
-	.fail(function (jqxhr, textStatus, error) {
-		let err = textStatus + ', ' + error;
-		console.log('Data Request Failed: ' + err );
-
-		// lets try that again
-		setTimeout(function () {
-			getPageData();
-		}, 5000);
-	});
-};
-
+			}, 5000);
+		});
+	})();
+});

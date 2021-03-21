@@ -805,6 +805,18 @@
                 "stationid": 10
             }
         },
+        "wmr928": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "comportname": {
+                    "helper": "Only required if your station is connected via a serial port (real or virtual)"
+                }
+            },
+            "dependencies": {
+                "stationid": [2, 3]
+            }
+        },
         "Options": {
             "collapsible": true,
             "collapsed": true,

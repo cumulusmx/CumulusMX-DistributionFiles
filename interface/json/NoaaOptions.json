@@ -90,7 +90,7 @@
                     "helpers": ["Used in the reports for the counts of days with max temperatures above this temperature"]
                 },
                 "maxtempcomp2": {
-                    "helpers": ["Used in the reports for the counts of days with max temperatures above this temperature"]
+                    "helpers": ["Used in the reports for the counts of days with max temperatures below this temperature"]
                 },
                 "mintempcomp1": {
                     "helpers": ["Used in the reports for the counts of days with min temperatures below this temperature"]

@@ -753,6 +753,17 @@
             },
             "dependencies": ["stationid"]
         },
+        "wmr928": {
+            "title": "WM918/WMR928 Settings",
+            "type": "object",
+            "properties": {
+                "comportname": {
+                    "title": "Serial port name",
+                    "type": "string"
+                }
+            },
+            "dependencies": ["stationid"]
+        },
         "Options": {
             "title": "Common Options",
             "type": "object",

@@ -3,3 +3,4 @@
 *.exe.config
 *.pdb
 updates.txt
+webfiles/.vscode/settings.json

@@ -1,6 +1,6 @@
 /*
  An example extended/modified Menu configuration file for NEW CuMX template
- Last modified: 2021/03/16 15:04:30
+ Last modified: 2021/03/19 09:17:14
  menuSample.js - typical name, you define the one used in setpagedata.js
 
  Properties:
