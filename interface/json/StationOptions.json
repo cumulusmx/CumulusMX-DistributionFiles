@@ -25,7 +25,8 @@
                         "Oregon Scientific WMR200",
                         "Instromet",
                         "Davis WeatherLink Live",
-                        "Ecowitt GW1000"
+                        "Ecowitt GW1000",
+                        "WeatherFlow Tempest"
                     ],
                     "removeDefaultNone": true
                 },
@@ -689,6 +690,18 @@
             "dependencies": {
                 "stationid": 12
             }
+        },
+        "weatherflow": {
+            "collapsed": true,
+            "fields": {
+            "deviceid": {
+                "rightlabel": "Tempest Device Id",
+                "helper": "Get this from the weatherflow temp"
+                }
+            },
+            "dependencies": {
+                "stationid": 13
+                }
         },
         "fineoffset": {
             "collapsible": true,

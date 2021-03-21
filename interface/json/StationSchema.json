@@ -23,7 +23,8 @@
                         9,
                         10,
                         11,
-                        12
+                        12,
+                        13
                     ],
                     "required": true
                 },
@@ -634,6 +635,26 @@
             },
             "dependencies": ["stationid"]
         },
+		"weatherflow": {
+			"title": "WeatherFlow Settings",
+			"type": "object",
+            "properties": {
+                "tcpport": {
+                    "title": "TCP Port",
+                    "type": "integer",
+                    "minimum": 0
+                 },
+                "deviceid": {
+                    "title": "DeviceId",
+                    "type": "integer",
+					"minimum": 0
+                 },
+                "token": {
+                    "title": "Api Token"
+                 }
+			},
+            "dependencies": ["stationid"]
+		},
         "fineoffset": {
             "title": "Fine Offset Settings",
             "type": "object",
