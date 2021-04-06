@@ -576,18 +576,28 @@
                 "key": {
                     "title": "Key"
                 },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
                 "includeuv": {
                     "type": "boolean"
                 },
                 "includesolar": {
+                    "type": "boolean"
+                },
+                "includeaqi": {
                     "type": "boolean"
                 }
             },
             "dependencies": {
                 "wid": ["enabled"],
                 "key": ["enabled"],
+                "interval": ["enabled"],
                 "includeuv": ["enabled"],
-                "includesolar": ["enabled"]
+                "includesolar": ["enabled"],
+                "includeaqi": ["enabled"]
             }
         },
         "openweathermap": {
