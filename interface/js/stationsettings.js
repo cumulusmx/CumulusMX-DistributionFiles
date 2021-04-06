@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:37:19
+// Last modified: 2021/03/25 11:28:48
 
 var StashedStationId;
 $(document).ready(function () {
@@ -18,6 +18,8 @@ $(document).ready(function () {
                 var stationid = this.getValue();
                 form.childrenByPropertyId["stationid"].setValue(stationid);
                 form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
+                form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].setValue(this.getOptionLabels()[1 * stationid + 1]);
+                //form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].refresh();
             });
 
             // On changing the Davis VP connection type, propogate down to advanced settings

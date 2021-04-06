@@ -30,6 +30,10 @@
                     ],
                     "removeDefaultNone": true
                 },
+                "stationmodel": {
+                    "type": "text",
+                    "helper": "A descriptive name for your station type, this will default to the station type if blank. You can change this to whatever you like"
+                },
                 "loginterval": {
                     "sort": false,
                     "optionLabels": [

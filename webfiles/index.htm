@@ -1,6 +1,6 @@
 <!--
-	indexT.html		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/03/19 09:10:10
+	index.html		v:0.0.1		d:Feb 2021	Neil Thomas
+	Last modified: 2021/04/05 17:04:56
 	Page: 1 main panel plus a right sidebar
 -->
 <!DOCTYPE html>
@@ -67,7 +67,7 @@
 												<td class=""><span data-cmxdata="sunrise"></span></td>
 												<td class="">Moonrise:</td>
 												<td class=""><span data-cmxdata="moonrise"></span></td>
-												<td rowspan="3" style="width:75px; padding:0"><img src="images/moon.png" alt="Moon" width="75" height="75" class="w3-image" /></td>
+												<td rowspan="3" style="width:75px; height: 75px; padding:0"><img src="images/moon.png" alt="Moon" width="75" height="75" class="w3-image" /></td>
 											</tr>
 											<tr>
 												<td class="">Dusk:</td>
@@ -104,92 +104,98 @@
 											<td colspan="4" class="w3-theme-d5">Temperature and Humidity</td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td>Temperature:</td>
+											<td>Temperature</td>
 											<td><span data-cmxdata="temp"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
-											<td>Dew Point:</td>
+											<td>Dew Point</td>
 											<td><span data-cmxdata="dew"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td>Windchill:</td>
+											<td>Windchill</td>
 											<td><span data-cmxdata="wchill"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
-											<td>Humidity:</td>
+											<td>Humidity</td>
 											<td><span data-cmxdata="hum"></span>&nbsp;%</td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td >Heat Index:</td>
+											<td >Heat Index</td>
 											<td><span data-cmxdata="heatindex"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
-											<td><span data-cmx-apparent class="w3-hide">Apparent Temperature:</span><span data-cmx-feels>Feels Like:</span></td>
+											<td><span data-cmx-apparent class="w3-hide">Apparent Temperature</span><span data-cmx-feels>Feels Like</span></td>
 											<td><span data-cmx-apparent data-cmxdata="apptemp" class="w3-hide"></span><span data-cmx-feels data-cmxdata="feelslike"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l2">
-											<td>THW Index:</td>
+											<td>THW Index</td>
 											<td><span data-cmxdata="THWindex"></span></td>
-											<td>Temp change last hour:</td>
+											<td>Temp change last hour</td>
 											<td><span data-cmxdata="TempChangeLastHour"></span>&nbsp;<span data-cmxdata="tempunit"></span></td>
 										</tr>
 										<tr>
 											<td colspan="4" class="w3-theme-d4">Rainfall</td>
 										</tr>
 										<tr class="w3-theme-l3">
-											<td>Rainfall Today:</td>
+											<td>Rainfall Today</td>
 											<td><span data-cmxdata="rfall"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
-											<td>Rainfall Rate:</td>
+											<td>Rainfall Rate</td>
 											<td><span data-cmxdata="rrate"></span>&nbsp;<span data-cmxdata="rainunit"></span>/hr</td>
 										</tr>
 										<tr class="w3-theme-l3">
-											<td>Rainfall This Month:</td>
+											<td>Rainfall This Month</td>
 											<td><span data-cmxdata="rmonth"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
-											<td>Rainfall This Year:</td>
+											<td>Rainfall This Year</td>
 											<td><span data-cmxdata="ryear"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
-											<td>Rainfall Last Hour:</td>
+											<td>Rainfall Last Hour</td>
 											<td><span data-cmxdata="rhour"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
-											<td>Last rainfall:</td>
+											<td>Last rainfall</td>
 											<td><span data-cmxdata="LastRainTipISO"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
-											<td>Rainfall Since Midnight:</td>
+											<td>Rainfall Since Midnight</td>
 											<td><span data-cmxdata="rmidnight"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
-											<td>Rainfall Last 24 Hours:</td>
+											<td>Rainfall Last 24 Hours</td>
 											<td><span data-cmxdata="r24hour"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 										</tr>
 										<tr>
 											<td colspan="4" class="w3-theme-d3">Wind</td>
 										</tr>
 										<tr class="w3-theme-l4">
-											<td>Wind Speed (gust):</td>
+											<td>Wind Speed <span class="subText">(gust)</span></td>
 											<td><span data-cmxdata="wgust"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
-											<td>Wind Speed(avg):</td>
+											<td>Wind Speed <span class="subText">(avg)</span></td>
 											<td><span data-cmxdata="wspeed"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
-											<td>Wind Bearing:</td>
+											<td>Wind Bearing</td>
 											<td><span data-cmxdata="avgbearing"></span>&deg; <span data-cmxdata="wdir"></span></td>
 											<td>Beaufort <span data-cmxdata="beaufort"></span></td>
 											<td><span data-cmxdata="beaudesc"></span></td>
 										</tr>
 										<tr class="w3-theme-l4">
-											<td>Wind Variation (last 10 minutes)</td>
+											<td>Wind Variation <span class="subText">(last 10 minutes)</span></td>
 											<td colspan="3">From <span data-cmxdata="BearingRangeFrom"></span>&deg; to <span data-cmxdata="BearingRangeTo"></span>&deg;</td>
 										</tr>
 										<tr>
-											<td colspan="4" class="w3-theme-d2">Pressure</td>
+											<td colspan="4" class="w3-theme-d2">Pressure <span class="subText">(sea level)</span></td>
 										</tr>
 										<tr class="w3-theme-l5">
-											<td>Barometer:</td>
+											<td>Barometer</td>
 											<td><span data-cmxdata="press"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
 											<td><span data-cmxdata="presstrend"></span></td>
 											<td><span data-cmxdata="presstrendval"></span>&nbsp;<span data-cmxdata="pressunit"></span>/hr</td>
 										</tr>
-										<tr class="w3-hide" data-cmx-solar>
+										<tr class="w3-hide" data-cmx-solar data-cmx-uv>
 											<td colspan="4" class="w3-theme-d1">Solar</td>
 										</tr>
 										<tr class="w3-theme-l6 w3-hide" data-cmx-solar>
-											<td>Solar Radiation:</td>
+											<td>Solar Radiation</td>
 											<td><span data-cmxdata="SolarRad"></span>&nbsp;W/m&sup2;</td>
 											<td>Evapotranspiration Today</td>
 											<td><span data-cmxdata="ET"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
+										</tr>
+										<tr class="w3-theme-l6 w3-hide" data-cmx-uv>
+											<td>UV Index</td>
+											<td><span data-cmxdata="UV"></span></td>
+											<td></td>
+											<td></td>
 										</tr>
 									</table>
 								</div>

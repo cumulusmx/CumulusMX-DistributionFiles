@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/03/21 11:21:31
+ *  Last modified: 2021/04/04 11:05:19
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
@@ -60,7 +60,7 @@ $(document).ready(function() {
                     rptAvail[y][m] = true;
                     // checking...
                     $.ajax({
-                        url: rptPath + 'NOAAMO' + pad2(m) + (y - 2000) + '.txt',
+                        url: rptPath + 'NOAAMO' + pad2(m) + pad2(y - 2000) + '.txt',
                         type: 'HEAD',
                         error: function() {
                             rptAvail[y][m] = false;
@@ -99,7 +99,7 @@ let pad2 = function (num) {
 let getMonRpt = function(month) {
     let yr  = $('#year').val();
 
-    reqRpt = rptPath + 'NOAAMO' + month + (yr - 2000) + '.txt';
+    reqRpt = rptPath + 'NOAAMO' + month + pad2(yr - 2000) + '.txt';
 
     $.ajax({
         url: reqRpt,

@@ -1,6 +1,6 @@
 <!--
-	yesterdayT.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/03/19 09:15:09
+	yesterday.htm	v:0.0.1		d:Feb 2021	Neil Thomas
+	Last modified: 2021/04/05 17:04:05
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -140,12 +140,12 @@
 												<td colspan="3">Wind</td>
 											</tr>
 											<tr class="w3-theme-l4">
-												<td>Highest Gust</td>
+												<td>High Gust</td>
 												<td><span data-cmxdata="wgustYM"></span>&nbsp;<span data-cmxdata="windunit"></span></td>
 												<td>at <span data-cmxdata="TwgustYM"></span></td>
 											</tr>
 											<tr class="w3-theme-l4">
-												<td>Highest Speed <span class="subText">(10 minute average)</span></td>
+												<td>High Speed <span class="subText">(10 minute average)</span></td>
 												<td><span data-cmxdata="windYM"></span>&nbsp;<span data-cmxdata="windunit"></span> (<span data-cmxdata="Ybeaufort"></span>)</td>
 												<td>at <span data-cmxdata="TwindYM"></span></td>
 											</tr>
@@ -160,19 +160,19 @@
 												<td></td>
 											</tr>
 											<tr class="w3-theme-d2">
-												<td colspan="3">Pressure</td>
+												<td colspan="3">Pressure <span class="subText">(sea level)</span></td>
 											</tr>
 											<tr class="w3-theme-l5">
-												<td>High Pressure (SL)</td>
+												<td>High Pressure</td>
 												<td><span data-cmxdata="pressYH"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
 												<td>at <span data-cmxdata="TpressYH"></span></td>
 											</tr>
 											<tr class="w3-theme-l5">
-												<td>Low Pressure (SL)</td>
+												<td>Low Pressure</td>
 												<td><span data-cmxdata="pressYL"></span>&nbsp;<span data-cmxdata="pressunit"></span></td>
 												<td>at <span data-cmxdata="TpressYL"></span></td>
 											</tr>
-											<tr class="w3-theme-d1 w3-hide" data-cmx-solar>
+											<tr class="w3-theme-d1 w3-hide" data-cmx-solar data-cmx-uv>
 												<td colspan="3">Solar</td>
 											</tr>
 											<tr class="w3-theme-l6 w3-hide" data-cmx-solar>
@@ -184,6 +184,11 @@
 												<td>Hours of Sunshine</td>
 												<td><span data-cmxdata="YSunshineHours"></span>&nbsp;hrs</td>
 												<td></td>
+											</tr>
+											<tr class="w3-theme-l6 w3-hide" data-cmx-uv>
+												<td>High UV Index</td>
+												<td><span data-cmxdata="UVYH"></span></td>
+												<td><span data-cmxdata="TUVYH"></span></td>
 											</tr>
 										</tbody>
 									</table>
