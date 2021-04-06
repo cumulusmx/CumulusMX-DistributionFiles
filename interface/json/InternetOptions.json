@@ -692,6 +692,12 @@
                         "enabled": true
                     }
                 },
+                "interval": {
+                    "helper":  "Interval between updates in minutes",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
                 "includeuv": {
                     "rightLabel": "Include UV",
                     "helper": "Include UV index in the update",
@@ -705,6 +711,13 @@
                     "dependencies": {
                         "enabled": true
                     }
+                },
+                "includeaqi": {
+                    "rightLabel": "Include air quality",
+                    "helper": "Include air quality PM values and AQI in the update",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -715,12 +728,6 @@
                 "enabled": {
                     "rightLabel": "Enabled"
                 },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
                 "apikey": {
                     "helper": "Enter the API key you want to use for these uploads",
                     "dependencies": {
@@ -729,6 +736,12 @@
                 },
                 "stationid": {
                     "helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "interval": {
+                    "helper":  "Interval between updates in minutes",
                     "dependencies": {
                         "enabled": true
                     }

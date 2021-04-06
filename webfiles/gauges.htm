@@ -1,6 +1,6 @@
 <!--
-	ATN-gauges.htm	v:0.0.2		a:Neil Thomas
-	Last modified: 2021/03/14 15:00:19
+	gauges.htm	v:0.0.2		a:Neil Thomas
+	Last modified: 2021/04/05 17:04:27
 	CMX Template page: Gauges, No sidebar
 -->
 <!DOCTYPE html>
@@ -69,12 +69,12 @@
 										<div class="w3-bar-item at-slim"><input id="rad_temp2" type="radio" class="w3-radio" name="rad_temp" value="in" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label></div>
 										<div class="w3-bar-item at-slim at-menu-label w3-small w3-theme-l3 w3-center">Other Temps</div>
 										<div class="w3-bar-item at-slim"><input id="rad_dew1" type="radio" name="rad_dew" class="w3-radio" value="dew" checked onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label></div>
-										<div class="w3-bar-item at-slim"><input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio w3-hide" data-cmx-apparent value="app" onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2" data-cmx-apparent class="w3-hide">Apparent</label></div>
-										<div class="w3-bar-item at-slim"><input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" data-cmx-feels value="feel" onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6" data-cmx-feels>Feels Like</label></div>
+										<div class="w3-bar-item at-slim w3-hide" data-cmx-apparent><input id="rad_dew2" type="radio" name="rad_dew" class="w3-radio" value="app" onclick="gauges.doDew(this);"><label id="lab_dew2" for="rad_dew2">Apparent</label></div>
+										<div class="w3-bar-item at-slim" data-cmx-feels><input id="rad_dew6" type="radio" name="rad_dew" class="w3-radio" value="feel" onclick="gauges.doDew(this);"><label id="lab_dew6" for="rad_dew6">Feels Like</label></div>
 										<div class="w3-bar-item at-slim"><input id="rad_dew3" type="radio" name="rad_dew" class="w3-radio" value="wnd" onclick="gauges.doDew(this);"><label id="lab_dew3" for="rad_dew3">Wind Chill</label></div>
 										<div class="w3-bar-item at-slim"><input id="rad_dew4" type="radio" name="rad_dew" class="w3-radio" value="hea" onclick="gauges.doDew(this);"><label id="lab_dew4" for="rad_dew4">Heat Index</label></div>
 										<div class="w3-bar-item at-slim"><input id="rad_dew5" type="radio" name="rad_dew" class="w3-radio" value="hum" onclick="gauges.doDew(this);"><label id="lab_dew5" for="rad_dew5">Humidex</label></div>
-										<div class="w3-bar-item at-slim at-menu-label w3-tiny w3-theme-l3 w3-center">Humidity</div>
+										<div class="w3-bar-item at-slim at-menu-label w3-small w3-theme-l3 w3-center">Humidity</div>
 										<div class="w3-bar-item at-slim"><input id="rad_hum1" type="radio" name="rad_hum" class="w3-radio" value="out" checked onclick="gauges.doHum(this);"><label id="lab_hum1" for="rad_hum1">Outside</label></div>
 										<div class="w3-bar-item at-slim"><input id="rad_hum2" type="radio" name="rad_hum" class="w3-radio" value="in" onclick="gauges.doHum(this);"><label id="lab_hum2" for="rad_hum2">Inside</label></div>
 									</div>
@@ -213,7 +213,7 @@
 
 						<div class="w3-col l3 m3 s5"><span id="lang_rainfall">Rainfall</span></div>
 						<div class="w3-col l2 m3 s3"><input id="rad_unitsRain1" type="radio" class="w3-radio" name="rad_unitsRain" value="mm" checked onclick="gauges.setUnits(this);"><label id="lab_unitsRain1" for="rad_unitsRain1">mm</label></div>
-						<div class="w3-rest"><input id="rad_unitsRain2" type="radio" class="w3-radio" name="rad_unitsRain" value="F" onclick="gauges.setUnits(this);"><label id="lab_unitsRain2" for="rad_unitsRain2">mm</label></div>
+						<div class="w3-rest"><input id="rad_unitsRain2" type="radio" class="w3-radio" name="rad_unitsRain" value="in" onclick="gauges.setUnits(this);"><label id="lab_unitsRain2" for="rad_unitsRain2">Inch</label></div>
 
 						<div class="w3-col l3 m3 s5"><span id="lang_pressure">Pressure</span></div>
 						<div class="w3-col l2 m2 s3"><input id="rad_unitsPress1" type="radio" class="w3-radio" name="rad_unitsPress" value="hPa" checked onclick="gauges.setUnits(this);"><label id="lab_unitsPress1" for="rad_unitsPress1">hPa</label></div>
