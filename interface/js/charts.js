@@ -1,14 +1,42 @@
-// Last modified: 2021/02/15 22:36:32
+// Last modified: 2021/04/27 23:04:03
 
 var chart, config;
 
 $(document).ready(function () {
     $('.btn').change(function () {
-
         var myRadio = $('input[name=options]');
         var checkedValue = myRadio.filter(':checked').val();
 
-        switch (checkedValue) {
+        doGraph(checkedValue);
+    });
+
+    $.ajax({
+        url: "api/graphdata/availabledata.json",
+        dataType: "json",
+        success: function (result) {
+            if (result.Temperature === undefined || result.Temperature.Count == 0) {
+                $('#temp').parent().remove();
+            }
+            if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
+                $('#dailytemp').parent().remove();
+            }
+            if (result.Humidity === undefined || result.Humidity.Count == 0) {
+                $('#humidity').parent().remove();
+            }
+            if (result.Solar === undefined || result.Solar.Count == 0) {
+                $('#solar').parent().remove();
+            }
+            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
+                $('#sunhours').parent().remove();
+            }
+            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
+                $('#airquality').parent().remove();
+            }
+        }
+    });
+
+    var doGraph = function (value) {
+        switch (value) {
             case 'temp':
                 doTemp();
                 break;
@@ -42,44 +70,29 @@ $(document).ready(function () {
             case 'airquality':
                 doAirQuality();
                 break;
+            default:
+                doTemp();
+                break;
         }
-    });
 
-    $.ajax({
-        url: "api/graphdata/availabledata.json",
-        dataType: "json",
-        success: function (result) {
-            if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('#temp').parent().remove();
-            }
-            if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-                $('#dailytemp').parent().remove();
-            }
-            if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('#humidity').parent().remove();
-            }
-            if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#solar').parent().remove();
-            }
-            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-                $('#sunhours').parent().remove();
-            }
-            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-                $('#airquality').parent().remove();
-            }
-        }
-    });
-
+        parent.location.hash = value;
+    };
 
     $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-            $('#Version').text(result.Version);
-            $('#Build').text(result.Build);
-        }});
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    }});
 
     $.ajax({url: "api/graphdata/graphconfig.json", success: function (result) {
-            config = result;
-            doTemp();
-        }});
+        config = result;
+        var value = parent.location.hash.replace('#', '');
+        doGraph(value);
+        // set the correct button
+        if (value !== '') {
+            $('input[name=options]').removeAttr('checked').parent().removeClass('active');
+            $('input[name=options][value=' + value + ']').prop('checked', true).click().parent().addClass('active');
+        }
+    }});
 });
 
 var doTemp = function () {

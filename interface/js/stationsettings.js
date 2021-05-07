@@ -1,4 +1,4 @@
-// Last modified: 2021/03/25 11:28:48
+// Last modified: 2021/04/26 14:59:53
 
 var StashedStationId;
 $(document).ready(function () {
@@ -19,7 +19,6 @@ $(document).ready(function () {
                 form.childrenByPropertyId["stationid"].setValue(stationid);
                 form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
                 form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].setValue(this.getOptionLabels()[1 * stationid + 1]);
-                //form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].refresh();
             });
 
             // On changing the Davis VP connection type, propogate down to advanced settings
@@ -55,17 +54,18 @@ $(document).ready(function () {
                     }
 
                     var json = form.getValue();
+
                     $.ajax({
                         type: "POST",
                         url: "../api/setsettings/updatestationconfig.json",
                         data: {json: JSON.stringify(json)},
-                        dataType: "text",
-                        success: function (msg) {
-                            alert("Settings updated");
-                        },
-                        error: function (error) {
-                            alert("error " + error);
-                        }
+                        dataType: "text"
+                    })
+                    .done(function () {
+                        alert("Settings updated");
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
                     });
                 } else {
                     alert("Invalid value somewhere on the form!");

@@ -62,7 +62,7 @@
                     "helpers": [
                         "You can specify a different folder from the default FTP folder if you wish to up the reports to a different location",
                         "Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings FTP folder",
-                        "Paths entered here are relative to the FTP folder in specified in the main Internet Settings"
+                        "Paths entered here are relative to the FTP root folder"
                     ],
                     "dependencies": {
                         "autoftp": true

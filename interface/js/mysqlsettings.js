@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:34:37
+// Last modified: 2021/04/26 14:59:56
 
 $(document).ready(function () {
 
@@ -59,13 +59,13 @@ $(document).ready(function () {
                 $("#results").text("Attempting create...");
                 $.ajax({
                     type: "POST",
-                    url: "../api/setsettings/createrealtimesql.json",
-                    success: function (msg) {
-                        $("#results").text(msg.result);
-                    },
-                    error: function (xhr, textStatus, error) {
-                        $("#results").text(textStatus);
-                    }
+                    url: "../api/setsettings/createrealtimesql.json"
+                })
+                .done(function (msg) {
+                    $("#results").text(msg.result);
+                })
+                .fail(function (jqXHR, textStatus) {
+                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
                 });
             });
         }

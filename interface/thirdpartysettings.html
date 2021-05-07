@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <!--
-        Last modified: 2021/04/27 22:41:05
+        Last modified: 2021/04/14 19:32:21
         -->
         <meta charset="utf-8">
         <title>Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-
+        <title>Cumulus MX</title>
 
         <link href="css/font-style.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
@@ -22,27 +22,54 @@
         <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- DataTables CSS -->
-        <link href="lib/datatables/datatables.min.css" rel="stylesheet">
+        <!-- Alpaca -->
+        <script src="lib/handlebars/handlebars.min.js"></script>
+        <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+        <script src="lib/alpaca/alpaca.min.js"></script>
 
-        <!-- DataTables -->
-        <script src="lib/datatables/datatables.min.js"></script>
-        <script src="lib/datatables/pagination_input.js"></script>
-        <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
+        <!-- Custom Files -->
+        <script src="js/thirdpartysettings.js"></script>
 
         <link href="css/cumulus.css" rel="stylesheet">
 
-        <script src="js/dayfileeditor.js"></script>
-        <style>
-            .form-group {
-                margin-bottom: 0px;
+        <style type="text/css">
+            .help-block {
+                font-size: 12px;
+                padding-left: 20px;
             }
-            .paginate_input{
-                width: 50px
+            .alpaca-container-label:after {
+                content: url("/lib/alpaca/images/right.png");
+                padding-left: 5px;
+            }
+            .alpaca-container-has-items {
+                margin-left: 20px;
+            }
+            .collapse.in {
+                margin-left: 20px;
+            }
+            .hideme {
+                visibility: hidden;
+                width: 0px;
+                height: 0px;
+                display: flex;
+            }
+            .col-sm-offset-3 {
+                margin-left: 5%;
             }
         </style>
+
+        <script>
+            $(document).ready(function () {
+                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+            });
+        </script>
+
     </head>
     <body>
+
         <!-- NAVIGATION MENU -->
         <div class="navbar-nav navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -75,12 +102,12 @@
                                 <li><a href="airlink.html">AirLink sensors</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="datalogs.html">Data logs</a></li>
                                 <li><a href="extradatalogs.html">Extra data logs</a></li>
-                                <li class="active"><a href="dayfileviewer.html">Dayfile</a></li>
+                                <li><a href="dayfileviewer.html">Dayfile</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -90,13 +117,13 @@
                                 <li><a href="noaayearreport.html">NOAA Year Report</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="programsettings.html">Program settings</a></li>
                                 <li><a href="stationsettings.html">Station settings</a></li>
-                                <li><a href="internetsettings.html">Internet settings</a></li>
-                                <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
+                                <li ><a href="internetsettings.html">Internet settings</a></li>
+                                <li class="active"><a href="thirdpartysettings.html">Third party upload settings</a></li>
                                 <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
                                 <li><a href="extrawebfiles.html">Extra web files</a></li>
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
@@ -124,17 +151,24 @@
         </div>
         <!-- END NAVIGATION MENU -->
 
-        <div class="container" style="margin-right:10px;margin-left:10px">
-            <div class="row top-buffer">
+        <div class="container">
+            <h1>Third Party Upload Settings</h1>
+            <div class="row">
                 <div class="col-md-12">
-                    <h1>Dayfile Viewer/Editor</h1>
+                    Click on sections marked <img src="./lib/alpaca/images/right.png"></image> to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
                 </div>
             </div>
-            <div class="row top-buffer">
-                <table id="dayfile" class="display dataTable" cellspacing="0" width="100%"></table>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="form"></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-default" id="save-button" style="margin: 10px;">Save Settings</button>
+                </div>
             </div>
         </div>
-
+        <!-- FOOTER -->
         <div id="footerwrap">
             <footer class="clearfix"></footer>
             <div class="container">
@@ -146,6 +180,5 @@
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /footerwrap -->
-
     </body>
 </html>

@@ -661,6 +661,9 @@
                             "minimum": 10,
                             "maximum": 500
                         },
+                        "setlogger": {
+                            "type": "boolean"
+                        },
                         "vid": {
                             "title": "USB Vendor Id (VID)",
                             "type": "integer",
@@ -940,6 +943,57 @@
                 }
             }
         },
+        "GrowingDD": {
+            "title": "Growing Degree Days",
+            "type": "object",
+            "properties": {
+                "starts": {
+                    "title": "Growing season starting month",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                },
+                "basetemp1": {
+                    "title": "Base temperature #1",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 70
+                },
+                "basetemp2": {
+                    "title": "Base temperature #2",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 70
+                },
+                "cap30C": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "TempSum": {
+            "title": "Annual Temperature Sum",
+            "type": "object",
+            "properties": {
+                "starts": {
+                    "title": "Year summation starting month",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                },
+                "basetemp1": {
+                    "title": "Base temperature #1",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 70
+                },
+                "basetemp2": {
+                    "title": "Base temperature #2",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 70
+                }
+            }
+        },
         "Graphs": {
             "title": "Graphs",
             "type": "object",
@@ -994,6 +1048,15 @@
                                 },
                                 "graphDailyMinTempVis": {
                                     "type": "boolean"
+                                },
+                                "graphTempSumVis0": {
+                                    "type": "boolean"
+                                },
+                                "graphTempSumVis1": {
+                                    "type": "boolean"
+                                },
+                                "graphTempSumVis2": {
+                                    "type": "boolean"
                                 }
                             }
                         },
@@ -1020,6 +1083,18 @@
                                     "type": "boolean"
                                 },
                                 "graphSunshineVis": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "degreedays": {
+                            "title": "Degree Days",
+                            "type": "object",
+                            "properties": {
+                                "graphGrowingDegreeDaysVis1": {
+                                    "type": "boolean"
+                                },
+                                "graphGrowingDegreeDaysVis2": {
                                     "type": "boolean"
                                 }
                             }

@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/03/25 12:35:10
+ *  Last modified: 2021/05/04 09:12:08
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Incorporating changes suggested by beteljuice
  * 	Requires jQuery
@@ -177,18 +177,18 @@ let getPageData = function (resolve, reject) {
 		if (cmx_data.options.showSolar === "1") {
 			$('[data-cmx-solar]').removeClass('w3-hide');
 		} else {
-			$('[data-cmx-solar-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+			$('[data-cmx-solar-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if hidden from the start
 		}
 
 		if (cmx_data.options.showUV === "1") {
 			$('[data-cmx-uv]').removeClass('w3-hide');
 		} else {
-			$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if the hidden from the start
+			$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if hidden from the start
 		}
 
 		// Update all spans having data-cmxdata with data values
 		$('[data-cmxdata]').each(function () {
-			this.innerHTML = cmx_data[this.dataset.cmxdata];
+			this.innerText = cmx_data[this.dataset.cmxdata];
 		});
 
 		if (cmx_data.currcond != '') {

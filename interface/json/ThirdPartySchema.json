@@ -1,0 +1,486 @@
+﻿{
+    "type": "object",
+    "properties": {
+        "twitter": {
+            "title": "Twitter",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "user": {
+                    "title": "User"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer"
+                },
+                "sendlocation": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "sendlocation": ["enabled"]
+            }
+        },
+        "wunderground": {
+            "title": "Weather Underground",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "stationid": {
+                    "title": "Device ID"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "rapidfire": {
+                    "type": "boolean"
+                },
+                "includeindoor": {
+                    "type": "boolean"
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "includesolar": {
+                    "type": "boolean"
+                },
+                "sendavgwind": {
+                    "type": "boolean"
+                },
+                "includeaq": {
+                    "type":"boolean"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "rapidfire": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "sendavgwind": ["enabled"],
+                "includeaq": ["enabled"],
+                "catchup": ["enabled"]
+            }
+        },
+        "windy": {
+            "title": "Windy.com",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "stationidx": {
+                    "title": "Station Index",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9
+                },
+                "apikey": {
+                    "title": "API Key"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "stationidx": ["enabled"],
+                "apikey": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "catchup": ["enabled"]
+            }
+        },
+        "pwsweather": {
+            "title": "PWS Weather",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "stationid": {
+                    "title": "Station ID"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "includesolar": {
+                    "type": "boolean"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
+            }
+        },
+        "wow": {
+            "title": "Met Office WOW",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "stationid": {
+                    "title": "Site ID"
+                },
+                "password": {
+                    "title": "PIN"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "includesolar": {
+                    "type": "boolean"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "stationid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "catchup": ["enabled"]
+            }
+        },
+        "cwop": {
+            "title": "APRS/CWOP",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "title": "ID"
+                },
+                "password": {
+                    "title": "password"
+                },
+                "server": {
+                    "title": "Server"
+                },
+                "port": {
+                    "title": "Port",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "includesolar": {
+                    "title": "",
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "id": ["enabled"],
+                "password": ["enabled"],
+                "server": ["enabled"],
+                "port": ["enabled"],
+                "interval": ["enabled"],
+                "includesolar": ["enabled"]
+            }
+        },
+        "awekas": {
+            "title": "AWEKAS",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "user": {
+                    "title": "User"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "lang": {
+                    "title": "Language",
+                    "enum": ["en", "de", "fr", "it", "nl"]
+                },
+                "interval": {
+                    "title": "Interval (seconds)",
+                    "type": "integer",
+                    "minimum": 15
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "includesolar": {
+                    "type": "boolean"
+                },
+                "includesoiltemp": {
+                    "type": "boolean"
+                },
+                "includesoilmoisture": {
+                    "type": "boolean"
+                },
+                "includeleafwetness": {
+                    "type": "boolean"
+                },
+                "includeindoor": {
+                    "type": "boolean"
+                },
+                "includeaq": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "user": ["enabled"],
+                "password": ["enabled"],
+                "lang": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "includesoiltemp": ["enabled"],
+                "includesoilmoisture": ["enabled"],
+                "includeleafwetness": ["enabled"],
+                "includeindoor": ["enabled"],
+                "includeaq": ["enabled"]
+            }
+        },
+        "weathercloud": {
+            "title": "WeatherCloud",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "wid": {
+                    "title": "Wid"
+                },
+                "key": {
+                    "title": "Key"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
+                "includeuv": {
+                    "type": "boolean"
+                },
+                "includesolar": {
+                    "type": "boolean"
+                },
+                "includeaqi": {
+                    "type": "boolean"
+                },
+                "includesoilmoist": {
+                    "type": "boolean"
+                },
+                "moistsensor": {
+                    "title": "Soil moisture sensor number",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 16
+                },
+                "includeleafwet": {
+                    "type": "boolean"
+                },
+                "leafwetsensor": {
+                    "title": "Leaf wetness sensor number",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8
+                }
+
+            },
+            "dependencies": {
+                "wid": ["enabled"],
+                "key": ["enabled"],
+                "interval": ["enabled"],
+                "includeuv": ["enabled"],
+                "includesolar": ["enabled"],
+                "includeaqi": ["enabled"],
+                "includesoilmoist": ["enabled"],
+                "moistsensor": ["enabled", "includesoilmoist"],
+                "includeleafwet": ["enabled"],
+                "leafwetsensor": ["enabled", "includeleafwet"]
+            }
+        },
+        "openweathermap": {
+            "title": "OpenWeatherMap",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 5
+                },
+                "apikey": {
+                    "title": "API key"
+                },
+                "stationid": {
+                    "title": "Station Id"
+                },
+                "catchup": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "interval": ["enabled"],
+                "apikey": ["enabled"],
+                "stationid": ["enabled"],
+                "catchup": ["enabled"]
+            }
+        },
+        "windguru": {
+            "title": "Windguru",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "uid": {
+                    "title": "Station UID"
+                },
+                "password": {
+                    "title": "Secret password"
+                },
+                "interval": {
+                    "title": "Interval",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "includerain": {
+                    "type": "boolean"
+                }
+            },
+            "dependencies": {
+                "uid": ["enabled"],
+                "password": ["enabled"],
+                "interval": ["enabled"],
+                "includerain": ["enabled"]
+            }
+        },
+        "customhttp": {
+            "title": "Custom HTTP",
+            "type": "object",
+            "properties": {
+                "customseconds": {
+                    "type": "object",
+                    "title": "Custom HTTP call - seconds interval",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "url": {
+                            "title": "HTTP URL"
+                        },
+                        "interval": {
+                            "title": "Interval (seconds)",
+                            "type": "number"
+                        }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "interval": ["enabled"]
+                    }
+                },
+                "customminutes": {
+                    "type": "object",
+                    "title": "Custom HTTP call - minutes interval",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "url": {
+                            "title": "HTTP URL"
+                        },
+                        "intervalindex": {
+                            "title": "Interval",
+                            "enum": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                9,
+                                10,
+                                11
+                            ]
+                        }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"],
+                        "intervalindex": ["enabled"]
+                    }
+                },
+                "customrollover": {
+                    "type": "object",
+                    "title": "Custom HTTP call - at rollover",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "url": {
+                            "title": "HTTP URL"
+                        }
+                    },
+                    "dependencies": {
+                        "url": ["enabled"]
+                    }
+                }
+            }
+        }
+    }
+}
