@@ -1,4 +1,4 @@
-// Last modified: 2021/03/19 09:16:14
+// Last modified: 2021/04/24 15:04:55
 
 var chart, config;
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (result) {
             config = result;
-            doTemp();
+            changeGraph(parent.location.hash.replace('#', ''));
         }
     });
 });
@@ -74,7 +74,11 @@ function changeGraph(graph) {
         case 'airquality':
             doAirQuality();
             break;
+        default:
+            doTemp();
+            break;
         }
+        parent.location.hash = graph;
 }
 
 var doTemp = function () {

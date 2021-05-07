@@ -9,6 +9,7 @@
                 },
                 "sslftp": {
                     "type": "select",
+                    "sort": false,
                     "optionLabels": [
                         "0 - FTP (plain old FTP)",
                         "1 - Use SSL/TLS for FTP (FTPS)",
@@ -22,6 +23,7 @@
                 },
                 "sshAuth": {
                     "type": "select",
+                    "sort": false,
                     "optionLabels": [
                         "Password",
                         "Pre-shared key",
@@ -270,11 +272,71 @@
                         "utf8encode": {
                             "rightLabel": "UTF-8 encoding",
                             "helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
-                        },
-                        "ftplogging": {
-                            "rightLabel": "FTP logging",
-                            "helper": "Log FTP activity to ftplog.txt for diagnostic purposes"
                         }
+                    }
+                }
+            }
+        },
+        "emailsettings": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "enabled": {
+                    "rightLabel": "Enabled"
+                },
+                "server": {
+                    "helper": "The hostname (and domain) or IP address of your SMTP server",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "port": {
+                    "helper": "The SMTP port used by your SMTP server",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "ssloption": {
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "None",
+                        "Auto",
+                        "TLS on connect",
+                        "Start TLS",
+                        "Start TLS when available"
+                    ],
+                    "removeDefaultNone": true,
+                    "helpers": [
+                        "Select the protocol required by your email server:",
+                        "None - No SSL or TLS encryption will be used",
+                        "Auto - Cumulus decides which TLS/unencrypted options to use (default). Use this option unless you have good reason not to",
+                        "TlsOnConnect - The connection should use TLS encryption immediately" ,
+                        "StartTls - Use TLS encryption immediately. If the server does not support the STARTTLS extension then the connection will fail",
+                        "StartTlsWhenAvailable - use TLS encryption immediately, but only if the server supports the STARTTLS extension"
+                    ],
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "authenticate": {
+                    "rightLabel": "Use Authentication",
+                    "helper": "Does your SMTP server require username/password authentication",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "user": {
+                    "helper": "The username to connect to your SMTP server",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "password": {
+                    "type": "password",
+                    "helper": "The password used to authenticate with your SMTP server",
+                    "dependencies": {
+                        "enabled": true
                     }
                 }
             }
@@ -300,458 +362,6 @@
                 },
                 "dailyprogramparams": {
                     "helper": "Parameters for the above program or command"
-                }
-            }
-        },
-        "twitter": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled",
-                    "helpers": [
-                        "Twitter support is currently depreciated. It is not recommended to try using this",
-                        "This is provided for legacy users who migrated from Cumulus 1 and had used Twitter in that program"
-                    ]
-                },
-                "user": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "sendlocation": {
-                    "rightLabel": "Send location",
-                    "helper": "Send your location with each update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "wunderground": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "stationid": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "helper": "Used to be your password, but changed to the Station Key (case sensitive)",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "rapidfire": {
-                    "rightLabel": "Use Rapid Fire",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeindoor": {
-                    "rightLabel": "Include indoor data",
-                    "helper": "Include indoor temperature and humidity in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "sendavgwind": {
-                    "rightLabel": "Send average wind speed",
-                    "helper": "Send the average wind speed for the current speed",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeaq": {
-                    "rightLabel": "Include air quality data",
-                    "helper": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "windy": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "stationidx": {
-                    "helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc.",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "apikey": {
-                    "helper": "This is a very long string and is used for all your Windy.com stations",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper": "Interval in minutes between updates (min value = 5).",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "pwsweather": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "stationid": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "wow": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "stationid": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "cwop": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "id": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "helper":  "Leave at -1 unless you are using an amateur radio call sign",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "server": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "port": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "awekas": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "user": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "lang": {
-                    "optionLabels": ["English", "German", "French", "Italian", "Dutch"],
-                    "removeDefaultNone": true,
-                    "helper": "One of fr/de/en/it/nl",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper": "Update interval in seconds. Min value 15 seconds",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesoiltemp": {
-                    "rightLabel": "Include soil temp",
-                    "helper": "Include soil temperature 1-4 in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesoilmoisture": {
-                    "rightLabel": "Include soil moisture",
-                    "helper": "Include soil moisture 1-4 in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeleafwetness": {
-                    "rightLabel": "Include leaf wetness",
-                    "helper": "Include leaf wetness 1-2 in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeindoor": {
-                    "rightLabel": "Include indoor data",
-                    "helper": "Include indoor temperature and humidity in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeaq": {
-                    "rightLabel": "Include air quality data",
-                    "helper": "Include the pm2.5 (and pm10 if available). You also need to set the Primary AQ sensor in Station Options settings",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "weathercloud": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "wid": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "key": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeuv": {
-                    "rightLabel": "Include UV",
-                    "helper": "Include UV index in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includesolar": {
-                    "rightLabel": "Include solar radiation",
-                    "helper": "Include the solar radiation reading in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includeaqi": {
-                    "rightLabel": "Include air quality",
-                    "helper": "Include air quality PM values and AQI in the update",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "openweathermap": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "apikey": {
-                    "helper": "Enter the API key you want to use for these uploads",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "stationid": {
-                    "helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "interval": {
-                    "helper":  "Interval between updates in minutes",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "catchup": {
-                    "rightLabel": "Catch up",
-                    "helper": "When Cumulus starts, send each entry read from the station logger",
-                    "dependencies": {
-                        "enabled": true
-                    }
                 }
             }
         },
@@ -869,82 +479,6 @@
         "proxies": {
             "collapsible":true,
             "collapsed": true
-        },
-        "customhttp": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "customseconds": {
-                    "collapsible":true,
-                    "collapsed": false,
-                    "helper": "A custom HTTP URL to be invoked at an interval in seconds - can include webtags",
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enabled"
-                        },
-                        "url": {
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "interval": {
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                },
-                "customminutes": {
-                    "collapsible":true,
-                    "collapsed": false,
-                    "helper": "A custom HTTP URL to be invoked at an interval in minutes - can include webtags",
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enabled"
-                        },
-                        "url": {
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "intervalindex": {
-                            "optionLabels": [
-                                "1 minute",
-                                "2 minutes",
-                                "3 minutes",
-                                "4 minutes",
-                                "5 minutes",
-                                "6 minutes",
-                                "10 minutes",
-                                "12 minutes",
-                                "15 minutes",
-                                "20 minutes",
-                                "30 minutes",
-                                "60 minutes"
-                            ],
-                            "removeDefaultNone": true,
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                },
-                "customrollover": {
-                    "collapsible":true,
-                    "collapsed": false,
-                    "helper": "A custom HTTP URL to be invoked just before end of day rollover - can include webtags",
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enabled"
-                        },
-                        "url": {
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }

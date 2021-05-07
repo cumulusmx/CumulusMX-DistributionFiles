@@ -15,8 +15,21 @@
             "fields": {
                 "table": {
                 },
-                "retention": {
-                    "helpers": ["A retention string in format \"retainVal=NNN retainUnit=XXXX\" where NNN is a number from 1 to 3 digits long, and XXX is a time unit e.g. second, minute, hour, day, week, month, quarter, or year"]
+                "retentionVal": {
+                    "helpers": ["The number of \"units\" to retain in your table"]
+                },
+                "retentionUnit": {
+                    "optionLabels": [
+                        "Seconds",
+                        "Minutes",
+                        "Hours",
+                        "Days",
+                        "Weeks",
+                        "Months"
+                    ],
+                    "sort": false,
+                    "removeDefaultNone": true,
+                    "helpers": ["The the unit to use with the value above"]
                 }
             },
             "dependencies": {

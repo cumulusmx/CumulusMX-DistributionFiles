@@ -1,6 +1,6 @@
 <!--
 	historic.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/04/05 17:04:46
+	Last modified: 2021/04/21 14:39:20
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -72,18 +72,20 @@
 					<div class="w3-panel w3-card w3-theme-white">
 						<div id="chartcontainer"></div>
 					</div>
-				</div>	<!--	End of first coloumn of first row	-->
+				</div>	<!--	End of first column of first row	-->
 			</div>
 			<div class="w3-row-padding w3-theme-light graphs-width">
 				<div class="w3-col s12">
 					<div class="w3-container w3-panel w3-center">
 						<div class="w3-bar w3-center">
-							<button id="btnTemp"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('temp');">Temperature</button>
-							<button id="btnPress" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('press');">Pressure</button>
-							<button id="btnWind"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('wind');">Winds</button>
-							<button id="btnHum"   class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('humidity');">Humidity</button>
-							<button id="btnRain"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('rain');">Rainfall</button>
-							<button id="btnSolar" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('solar');">Solar radiation</button>
+							<button id="btnTemp"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('temp');">Temperature</button>
+							<button id="btnPress"   class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('press');">Pressure</button>
+							<button id="btnWind"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('wind');">Winds</button>
+							<button id="btnHum"     class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('humidity');">Humidity</button>
+							<button id="btnRain"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('rain');">Rainfall</button>
+							<button id="btnSolar"   class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('solar');">Solar Radiation</button>
+							<button id="btnDegDay"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('degday');">Degree Days</button>
+							<button id="btnTempSum" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('tempsum');">Temp Sum</button>
 						</div>
 						<p>Mouse over the chart to see the values at any given time.
 						You can add or remove data sets from the chart by clicking the entry on the chart legend.</p>

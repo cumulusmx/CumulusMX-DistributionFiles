@@ -1,20 +1,20 @@
-// Last modified: 2021/04/26 14:56:34
+// Last modified: 2021/04/26 15:01:34
 
 $(document).ready(function() {
+    // Create the form
+
     $("#form").alpaca({
-        "dataSource": "../api/settings/calibrationdata.json",
-        "optionsSource": "../api/settings/calibrationoptions.json",
-        "schemaSource": "../api/settings/calibrationschema.json",
-        "ui": "bootstrap",
+        "dataSource": "../api/settings/thirdpartydata.json",
+        "optionsSource": "../api/settings/thirdpartyoptions.json",
+        "schemaSource": "../api/settings/thirdpartyschema.json",
         "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
                     var json = form.getValue();
-
                     $.ajax({
                         type: "POST",
-                        url: "../api/setsettings/updatecalibrationconfig.json",
+                        url: "../api/setsettings/updatethirdpartyconfig.json",
                         data: {json: JSON.stringify(json)},
                         dataType: "text"
                     })

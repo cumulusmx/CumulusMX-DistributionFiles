@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 12:16:17
+// Last modified: 2021/04/26 14:58:14
 
 $(document).ready(function() {
 
@@ -173,17 +173,18 @@ $(document).ready(function() {
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
                     var json = form.getValue();
+
                     $.ajax({
                         type: "POST",
                         url: "../api/setsettings/updateinternetconfig.json",
                         data: {json: JSON.stringify(json)},
-                        dataType: "text",
-                        success: function (msg) {
-                            alert("Settings updated");
-                        },
-                        error: function (error) {
-                            alert("error " + error);
-                        }
+                        dataType: "text"
+                    })
+                    .done(function () {
+                        alert("Settings updated");
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
                     });
                 }
             });

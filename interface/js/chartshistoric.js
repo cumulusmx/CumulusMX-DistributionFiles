@@ -1,6 +1,6 @@
-// Last modified: 2021/02/15 22:36:19
+// Last modified: 2021/04/27 23:06:12
 
-var chart, config;
+var chart, config, available;
 
 $(document).ready(function () {
     $('.btn').change(function () {
@@ -8,7 +8,11 @@ $(document).ready(function () {
         var myRadio = $('input[name=options]');
         var checkedValue = myRadio.filter(':checked').val();
 
-        switch (checkedValue) {
+        doGraph(checkedValue);
+    });
+
+    var doGraph = function (value) {
+        switch (value) {
             case 'temp':
                 doTemp();
                 break;
@@ -30,13 +34,24 @@ $(document).ready(function () {
             case 'solar':
                 doSolar();
                 break;
+            case 'degdays':
+                doDegDays();
+                break;
+            case 'tempsum':
+                doTempSum();
+                break;
+            default:
+                doTemp();
+                break;
         }
-    });
+        parent.location.hash = value;
+    };
 
     $.ajax({
         url: "api/graphdata/availabledata.json",
         dataType: "json",
         success: function (result) {
+            available = result;
             if (result.Temperature === undefined || result.Temperature.Count == 0) {
                 $('#temp').parent().remove();
             }
@@ -46,19 +61,31 @@ $(document).ready(function () {
             if (result.Solar === undefined || result.Solar.Count == 0) {
                 $('#solar').parent().remove();
             }
+            if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
+                $('#degdays').parent().remove();
+            }
+            if (result.TempSum === undefined || result.TempSum.Count == 0) {
+                $('#tempsum').parent().remove();
+            }
         }
     });
 
 
     $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-            $('#Version').text(result.Version);
-            $('#Build').text(result.Build);
-        }});
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    }});
 
     $.ajax({url: "api/graphdata/graphconfig.json", success: function (result) {
-            config = result;
-            doTemp();
-        }});
+        config = result;
+        var value = parent.location.hash.replace('#', '');
+        doGraph(value);
+        // set the correct button
+        if (value != '') {
+            $('input[name=options]').removeAttr('checked').parent().removeClass('active');
+            $('input[name=options][value=' + value + ']').prop('checked', true).parent().addClass('active');
+        }
+    }});
 });
 
 
@@ -966,3 +993,250 @@ var doSolar = function () {
     });
 };
 
+var doDegDays = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false,
+            zoomType: 'x'
+        },
+        title: {text: 'Degree Days'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b',
+                month: '%b',
+                year: ''
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: '°' + config.temp.units + ' days'},
+                opposite: false,
+                min: 0,
+                labels: {
+                    align: 'right',
+                    x: -10
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                min: 0,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 10
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            xDateFormat: '%e %B',
+            useHTML: true,
+            headerFormat: '{point.key}<table>',
+            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
+            '<td style="text-align: right; font-weight: bold;">{point.y:.1f}</td></tr>',
+            footerFormat: '</table>'
+        },
+        series: []
+    };
+
+    chart = new Highcharts.Chart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'api/dailygraphdata/degdaydata.json',
+        dataType: 'json',
+        success: function (resp) {
+            var subtitle = '';
+            if (available.DegreeDays.indexOf('GDD1') != -1) {
+                subtitle = 'GDD#1 base: ' + resp.options.gddBase1 + '°' + config.temp.units;
+                if (available.DegreeDays.indexOf('GDD2') != -1) {
+                    subtitle += ' - ';
+                }
+            }
+            if (available.DegreeDays.indexOf('GDD2') != -1) {
+                subtitle += 'GDD#2 base: ' + resp.options.gddBase2 + '°' + config.temp.units;
+            }
+
+            chart.setSubtitle({text: subtitle});
+
+            available.DegreeDays.forEach(idx => {
+                 if (idx in resp) {
+                    Object.keys(resp[idx]).forEach(yr => {
+                        chart.addSeries({
+                            name: idx + '-' + yr,
+                            visible: false,
+                            data: resp[idx][yr]
+                        }, false);
+                    });
+                    // make the last series visible
+                    chart.series[chart.series.length -1].visible = true;
+                 }
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doTempSum = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false,
+            zoomType: 'x'
+        },
+        title: {text: 'Temperature Sum'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b',
+                month: '%b',
+                year: ''
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Total °' + config.temp.units},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -10
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 10
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            xDateFormat: '%e %B',
+            useHTML: true,
+            headerFormat: '{point.key}<table>',
+            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
+            '<td style="text-align: right; font-weight: bold;">{point.y:0f}</td></tr>',
+            footerFormat: '</table>'
+        },
+        series: []
+    };
+
+    chart = new Highcharts.Chart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'api/dailygraphdata/tempsumdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            var subtitle = '';
+            if (available.TempSum.indexOf('Sum0') != -1) {
+                subtitle = 'Sum#0 base: 0°' + config.temp.units;
+                if (available.TempSum.indexOf('Sum1') != -1 || available.TempSum.indexOf('Sum2') != -1) {
+                    subtitle += ' - ';
+                }
+            }
+            if (available.TempSum.indexOf('Sum1') != -1) {
+                subtitle += 'Sum#1 base: ' + resp.options.sumBase1 + '°' + config.temp.units;
+                if (available.TempSum.indexOf('Sum2') != -1) {
+                    subtitle += ' - ';
+                }
+            }
+            if (available.TempSum.indexOf('Sum2') != -1) {
+                subtitle += 'Sum#2 base: ' + resp.options.sumBase2 + '°' + config.temp.units;
+            }
+
+            chart.setSubtitle({text: subtitle});
+
+            available.TempSum.forEach(idx => {
+                if (idx in resp) {
+                   Object.keys(resp[idx]).forEach(yr => {
+                       chart.addSeries({
+                           name: idx + '-' + yr,
+                           visible: false,
+                           data: resp[idx][yr]
+                       }, false);
+                   });
+                   // make the last series visible
+                   chart.series[chart.series.length -1].visible = true;
+                }
+            });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};

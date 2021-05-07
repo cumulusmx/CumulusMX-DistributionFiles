@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:34:31
+// Last modified: 2021/04/26 15:00:31
 
 $(document).ready(function() {
 
@@ -11,21 +11,21 @@ $(document).ready(function() {
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
                     var json = form.getValue();
+
                     $.ajax({
                         type: "POST",
                         url: "../api/setsettings/updatenoaaconfig.json",
                         data: {json: JSON.stringify(json)},
-                        dataType: "text",
-                        success: function (msg) {
-                            alert("Settings updated");
-                        },
-                        error: function (error) {
-                            alert("error " + error);
-                        }
+                        dataType: "text"
+                    })
+                    .done(function () {
+                        alert("Settings updated");
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
                     });
                 }
             });
         }
     });
-
 });
