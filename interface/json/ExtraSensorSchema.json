@@ -1,6 +1,9 @@
 ﻿{
     "type": "object",
     "properties": {
+        "accessible": {
+            "type": "boolean"
+        },
         "airquality": {
             "title": "Air Quality Settings",
             "type": "object",

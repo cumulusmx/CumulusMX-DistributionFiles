@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <!--
-        Last modified: 2021/04/14 19:33:15
+        Last modified: 2021/05/08 18:31:38
         -->
         <meta charset="utf-8">
-        <title>Cumulus MX</title>
+        <title>Internet settings - Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <title>Cumulus MX</title>
@@ -37,8 +37,12 @@
                 font-size: 12px;
                 padding-left: 20px;
             }
-            .alpaca-container-label:after {
-                content: url("/lib/alpaca/images/right.png");
+            .alpaca-field > legend > .collapsed::before {
+                content: '\25B8';
+                padding-left: 5px;
+            }
+            .alpaca-field > legend > span::before {
+                content: '\25BE';
                 padding-left: 5px;
             }
             .alpaca-container-has-items {
@@ -155,7 +159,7 @@
             <h1>Internet Settings</h1>
             <div class="row">
                 <div class="col-md-12">
-                    Click on sections marked <img src="./lib/alpaca/images/right.png"></image> to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
+                    Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
                 </div>
             </div>
 

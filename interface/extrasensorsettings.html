@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <!--
-        Last modified: 2021/04/14 19:34:39
+        Last modified: 2021/05/08 18:30:58
         -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <title>Cumulus MX</title>
+        <title>Extra sensor settings - Cumulus MX</title>
 
         <link href="css/main.css" rel="stylesheet">
 
@@ -43,8 +43,12 @@
                 font-size: 12px;
                 padding-left: 20px;
             }
-            .alpaca-container-label:after {
-                content: url("/lib/alpaca/images/right.png");
+            .alpaca-field > legend > .collapsed::before {
+                content: '\25B8';
+                padding-left: 5px;
+            }
+            .alpaca-field > legend > span::before {
+                content: '\25BE';
                 padding-left: 5px;
             }
             .alpaca-container-has-items {
@@ -155,7 +159,7 @@
             <h1>Extra Sensor Settings</h1>
             <div class="row">
                 <div class="col-md-12">
-                    Click on <b class="alpaca-fieldset-legend-button glyphicon-circle-arrow-right glyphicon"></b> to expand a section. Click on <b class="alpaca-fieldset-legend-button glyphicon glyphicon-circle-arrow-down"></b> to collapse the section again. Click the  &apos;Save&apos; button to save the settings.
+                    Click on sections marked  &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
                 </div>
             </div>
 

@@ -1,9 +1,11 @@
-// Last modified: 2021/04/26 14:58:14
+// Last modified: 2021/05/08 17:56:26
+
+let accessMode;
 
 $(document).ready(function() {
 
-    var setDefaultWebSite = function () {
-        var form = $("#form").alpaca("get");
+    let setDefaultWebSite = function () {
+        let form = $("#form").alpaca("get");
         if (!form.childrenByPropertyId["websettings"].childrenByPropertyId["stdwebsite"].getValue()) {
             return;
         }
@@ -76,28 +78,28 @@ $(document).ready(function() {
 
     // Helper Functions
 
-    var updateFtpDisabledOption = function  (objArray, newVal) {
+    let updateFtpDisabledOption = function  (objArray, newVal) {
         objArray.forEach(function (child) {
             child.childrenByPropertyId["ftp"].options.disabled = newVal;
             child.childrenByPropertyId["ftp"].refresh();
         });
     };
 
-    var updateFtpOption = function updateFtpOption (objArray, newVal) {
+    let updateFtpOption = function updateFtpOption (objArray, newVal) {
         objArray.forEach(function (child) {
             child.childrenByPropertyId["ftp"].setValue(newVal);
             child.childrenByPropertyId["ftp"].refresh();
         });
     };
 
-    var updateCreateDisabledOption = function (objArray, newVal) {
+    let updateCreateDisabledOption = function (objArray, newVal) {
         objArray.forEach(function (child) {
             child.childrenByPropertyId["create"].options.disabled = newVal;
             child.childrenByPropertyId["create"].refresh();
         });
     };
 
-    var updateCreateOption = function (objArray, newVal) {
+    let updateCreateOption = function (objArray, newVal) {
         objArray.forEach(function (child) {
             child.childrenByPropertyId["create"].setValue(newVal);
             child.childrenByPropertyId["create"].refresh();
@@ -113,18 +115,30 @@ $(document).ready(function() {
         "schemaSource": "../api/settings/internetschema.json",
         "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
-            var ftpmodeObj = form.childrenByPropertyId["website"].childrenByPropertyId["sslftp"];
-            var ftpmode = ftpmodeObj.getValue();
+            // Change in accessibility is enabled
+            let accessObj = form.childrenByPropertyId["accessible"];
+            onAccessChange(null, accessObj.getValue());
+            accessMode = accessObj.getValue();
+
+            if (!accessMode) {
+                setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
+            }
+
+            // Trigger changes is the accessibility mode is changed
+            //accessObj.on("change", function() {onAccessChange(this)});
+
+            let ftpmodeObj = form.childrenByPropertyId["website"].childrenByPropertyId["sslftp"];
+            let ftpmode = ftpmodeObj.getValue();
             form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
 
             // Trigger updates based on FTP protocol changes
             ftpmodeObj.on("change", function () {
-                var form = $("#form").alpaca("get");
-                var ftpmode = this.getValue();
+                let form = $("#form").alpaca("get");
+                let ftpmode = this.getValue();
                 // Set the hidden advanced options protocol field to match
                 form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
                 // Set the default port to match
-                var newPort = ftpmode == 0 ? 21 : (ftpmode == 1 ? 990 : 22);
+                let newPort = ftpmode == 0 ? 21 : (ftpmode == 1 ? 990 : 22);
                 form.childrenByPropertyId["website"].childrenByPropertyId["ftpport"].setValue(newPort);
             });
 
@@ -141,12 +155,12 @@ $(document).ready(function() {
             );
 
             form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["enablerealtimeftp"].on("change", function () {
-                var val = !this.getValue();
+                let val = !this.getValue();
                 updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["files"].children, val);
             });
 
             // enable/disable interval std files FTP option
-            var autoupdate = form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["autoupdate"].getValue();
+            let autoupdate = form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["autoupdate"].getValue();
             updateFtpDisabledOption(
                 form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["stdfiles"].childrenByPropertyId["files"].children,
                 !autoupdate
@@ -159,20 +173,20 @@ $(document).ready(function() {
             );
 
             form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["autoupdate"].on("change", function () {
-                var val = !this.getValue();
+                let val = !this.getValue();
                 updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["stdfiles"].childrenByPropertyId["files"].children, val);
                 updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["graphfiles"].childrenByPropertyId["files"].children, val);
             });
 
             form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["enablerealtimeftp"].on("change", function () {
-                var val = !this.getValue();
+                let val = !this.getValue();
                 updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["files"].children, val);
             });
 
 
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
-                    var json = form.getValue();
+                    let json = form.getValue();
 
                     $.ajax({
                         type: "POST",
@@ -191,3 +205,82 @@ $(document).ready(function() {
         }
     });
 });
+
+function addButtons() {
+    $('#form legend').each(function () {
+        let span = $('span:first',this);
+        if (span.length === 0)
+            return;
+
+            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+            $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(span).text() +
+            '</button>');
+        $(span).remove();
+        $(this).prepend(butt);
+    });
+}
+
+function removeButtons() {
+    $('#form legend').each(function () {
+        let butt = $('button:first',this);
+        if (butt.length === 0)
+            return;
+
+            let span = $('<span data-toggle="collapse" data-target="' +
+            $(butt).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(butt).text() +
+            '</span>');
+        $(butt).remove();
+        $(this).prepend(span);
+    });
+}
+
+function setCollapsed() {
+    $('#form div.alpaca-container.collapse').each(function () {
+        let span = $(this).siblings('legend:first').children('span:first');
+        if ($(this).hasClass('in')) {
+            span.attr('role', 'treeitem');
+            span.attr('aria-expanded', true);
+        } else {
+            span.attr('role', 'treeitem');
+            span.attr('aria-expanded', false);
+            span.addClass('collapsed')
+        }
+    });
+}
+
+function getCSSRule(search) {
+    for (let x = 0; x < document.styleSheets.length; x++) {
+        let rules = document.styleSheets[x].rules || document.styleSheets[x].cssRules;
+        for (let i = 0; i < rules.length; i++) {
+            if (rules[i].selectorText && rules[i].selectorText.lastIndexOf(search) === 0  && search.length === rules[i].selectorText.length) {
+                return rules[i];
+            }
+        }
+    }
+    return null;
+}
+
+function onAccessChange(that, val) {
+    let mode = val == null ? that.getValue() : val;
+    if (mode == accessMode) {
+        return;
+    }
+
+    let expandable = getCSSRule('.alpaca-field > legend > .collapsed::before');
+    let expanded = getCSSRule('.alpaca-field > legend > span::before');
+
+    accessMode = mode;
+    if (mode) {
+        expandable.style.setProperty('display','none');
+        expanded.style.setProperty('display','none');
+        addButtons();
+    } else {
+        expandable.style.removeProperty('display');
+        expanded.style.removeProperty('display');
+        removeButtons();
+    }
+}

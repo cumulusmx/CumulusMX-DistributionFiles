@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/04/28 22:41:51
+ *  Last modified: 2021/05/07 14:14:36
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
@@ -21,10 +21,15 @@ $(document).ready(function() {
         endYear = cmx_data.metdateyesterdayISO.split('-')[0] * 1;
         endMonth = cmx_data.metdateyesterdayISO.split('-')[1] * 1;
 
-        // This does the initial disable of future months this year
+        // This does the initial disable of out of range months this year
         rptAvail[endYear] = [];
         for (let m = 1; m < 13; m++) {
+            // greater than end month
             rptAvail[endYear][m] = m <= endMonth;
+            // if start year is this year, then less start month
+            if (startYear == endYear) {
+                rptAvail[endYear][m] = rptAvail[endYear][m] && m >= startMonth
+            }
         }
 
         // get the current year repotr and display it whilst we sort out the rest in background
@@ -42,12 +47,9 @@ $(document).ready(function() {
 
             // The start and end years may be short, so no point in checking months that are out of range
             let monSt, monEnd;
-            if (y == startYear) {
-                monSt = startMonth;
-                monEnd = 12;
-            } else if (y == endYear) {
-                monSt = 1;
-                monEnd = endMonth;
+            if (y == startYear || y == endYear) {
+                monSt = y == startYear ? startMon : 1;
+                monEnd = y == endYear ? endMonth : 12;
             } else {
                 monSt = 1;
                 monEnd = 12;

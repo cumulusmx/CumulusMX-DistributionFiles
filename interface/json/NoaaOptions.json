@@ -1,5 +1,8 @@
 ﻿{
     "fields": {
+        "accessible": {
+            "fieldClass": "hideme"
+        },
         "autosave": {
             "rightLabel": "Create NOAA files after daily rollover",
             "helper": "Enables the creation of the report files"
