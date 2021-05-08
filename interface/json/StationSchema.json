@@ -3,6 +3,9 @@
     "properties": {
         "stationid": {
         },
+        "accessible": {
+            "type": "boolean"
+        },
         "general": {
             "title": "General Settings",
             "type": "object",

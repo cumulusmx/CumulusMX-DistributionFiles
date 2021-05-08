@@ -1,6 +1,9 @@
 {
     "type": "object",
     "properties": {
+        "accessible": {
+            "type": "boolean"
+        },
         "startup": {
             "title": "Program Start-up Options",
             "type": "object",

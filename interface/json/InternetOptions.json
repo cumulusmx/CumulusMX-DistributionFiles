@@ -1,5 +1,8 @@
 ﻿{
     "fields": {
+        "accessible": {
+            "fieldClass": "hideme"
+        },
         "website": {
             "collapsible":true,
             "collapsed": true,
@@ -16,7 +19,7 @@
                         "2 - Use SSH for FTP (SFTP)"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "Select the protocol required by your web hoster"
+                    "helper": "Select the protocol required by your web host"
                 },
                 "ftpport": {
                     "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"

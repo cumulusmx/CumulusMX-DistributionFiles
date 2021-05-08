@@ -1,5 +1,9 @@
 {
     "fields": {
+        "accessible": {
+            "rightLabel": "Enable accessibility features",
+            "helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting."
+        },
         "startup": {
             "collapsible": true,
             "collapsed": true,

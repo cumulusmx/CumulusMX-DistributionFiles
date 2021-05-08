@@ -1,5 +1,8 @@
 ﻿{
     "fields": {
+        "accessible": {
+            "fieldClass": "hideme"
+        },
         "server": {
             "collapsible": true,
             "collapsed": true,
