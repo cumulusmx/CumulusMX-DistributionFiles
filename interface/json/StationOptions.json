@@ -4,6 +4,10 @@
             "type": "integer",
             "fieldClass": "hideme"
         },
+        "accessible": {
+            "rightLabel": "Enable accessibility features",
+            "helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting."
+        },
         "general": {
             "collapsible": true,
             "collapsed": true,
@@ -734,6 +738,13 @@
                                 "Time in milli-seconds"
                             ]
                         },
+                        "setlogger": {
+                            "rightLabel": "Set the FineOffset Logger interval to match Cumulus MX interval",
+                            "helpers": [
+                                "If the Davis logger interval does not match the Cumulus interval, set it to match.",
+                                "Experimental - Use with caution"
+                            ]
+                        },
                         "vid": {
                             "helpers": ["Specify an non-standard VID. Use -1 to use the normal setting"]
                         },
@@ -1014,6 +1025,58 @@
                 }
             }
         },
+        "GrowingDD": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "starts": {
+                    "helpers": [
+                        "The month you want the growing season year to start",
+                        "Default: 1 = January, in Northern hemisphere / 7 = July, in Southern hemisphere"
+                    ]
+                },
+                "basetemp1": {
+                    "helpers": [
+                        "The first series base temperature which is to be used to calculate the growing degree days",
+                        "Default = 5&deg;C / 40&deg;F"
+                    ]
+                },
+                "basetemp2": {
+                    "helpers": [
+                        "The second series base temperature which is to be used to calculate the growing degree days",
+                        "Default = 10 &deg;C / 50&deg;F"
+                    ]
+                },
+                "cap30C": {
+                    "rightLabel": "Cap GDD at 30&deg;C / 86&deg;F",
+                    "helper": "Limits the maximum temperature used for the GDD to this value - most temperate crops will use this"
+                }
+            }
+        },
+        "TempSum": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "starts": {
+                    "helpers": [
+                        "The month you want the year summing to start",
+                        "Default: 1 = January, in Northern hemisphere / 7 = July, in Southern hemisphere"
+                    ]
+                },
+                "basetemp1": {
+                    "helpers": [
+                        "The first series base temperature which is subtracted from the annual temperature sum",
+                        "Default = 5&deg;C / 40&deg;F"
+                    ]
+                },
+                "basetemp2": {
+                    "helpers": [
+                        "The second series base temperature which is subtracted from the annual temperature sum",
+                        "Default = 10 &deg;C / 50&deg;F"
+                    ]
+                }
+            }
+        },
         "Graphs": {
             "collapsible": true,
             "collapsed": true,
@@ -1066,6 +1129,15 @@
                                 },
                                 "graphDailyMinTempVis": {
                                     "rightLabel": "Daily Minimum Temperature"
+                                },
+                                "graphTempSumVis0": {
+                                    "rightLabel": "Annual Temperature Sum 0"
+                                },
+                                "graphTempSumVis1": {
+                                    "rightLabel": "Annual Temperature Sum #1"
+                                },
+                                "graphTempSumVis2": {
+                                    "rightLabel": "Annual Temperature Sum #2"
                                 }
                             }
                         },
@@ -1093,6 +1165,18 @@
                                 },
                                 "graphSunshineVis": {
                                     "rightLabel": "Sunshine Hours"
+                                }
+                            }
+                        },
+                        "degreedays": {
+                            "collapsible": true,
+                            "collapsed": false,
+                            "fields": {
+                                "graphGrowingDegreeDaysVis1": {
+                                    "rightLabel": "Growing Degree Days series #1"
+                                },
+                                "graphGrowingDegreeDaysVis2": {
+                                    "rightLabel": "Growing Degree Days series #2"
                                 }
                             }
                         }

@@ -1,6 +1,9 @@
 {
     "type": "object",
     "properties": {
+        "accessible": {
+            "type": "boolean"
+        },
         "startup": {
             "title": "Program Start-up Options",
             "type": "object",
@@ -31,9 +34,15 @@
             "type": "object",
             "properties": {
                 "debuglogging": {
-                "type": "boolean"
+                    "type": "boolean"
                 },
                 "datalogging": {
+                    "type": "boolean"
+                },
+                "ftplogging": {
+                    "type": "boolean"
+                },
+                "emaillogging": {
                     "type": "boolean"
                 },
                 "stopsecondinstance": {

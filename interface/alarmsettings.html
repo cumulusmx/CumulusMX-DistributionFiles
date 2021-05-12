@@ -1,11 +1,11 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <!--
-        Last modified: 2021/02/15 10:40:40
+        Last modified: 2021/05/08 23:15:09
         -->
         <meta charset="utf-8">
-        <title>Cumulus MX</title>
+        <title>Alarm settings - Cumulus MX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <link href="css/font-style.css" rel="stylesheet">
@@ -29,7 +29,7 @@
             });
         </script>
         <style>
-            td,th {padding: 1px}
+            td,th {padding: 1px 5px 1px 1px; text-align: center}
             .valInput {width: 90%; min-width: 50px}
             .alarmName {min-width: 170px}
         </style>
@@ -88,6 +88,7 @@
                                 <li><a href="programsettings.html">Program settings</a></li>
                                 <li><a href="stationsettings.html">Station settings</a></li>
                                 <li><a href="internetsettings.html">Internet settings</a></li>
+                                <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
                                 <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
                                 <li><a href="extrawebfiles.html">Extra web files</a></li>
                                 <li><a href="calibrationsettings.html">Calibration settings</a></li>
@@ -122,15 +123,16 @@
                     <form action="/" id="alarmForm">
                     <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
                         <colgroup>
-                            <col style="width: 4%;">
-                            <col style="width: 15%; min-width: 200px;">
+                            <col style="width: 5%;">
+                            <col style="width: 18%; min-width: 200px;">
                             <col style="width: 5%;">
                             <col style="width: 5%">
                             <col style="width: 5%">
-                            <col style="width: 10%">
-                            <col style="width: 4%">
-                            <col style="width: 4%">
+                            <col style="width: 20%">
                             <col style="width: 5%">
+                            <col style="width: 5%">
+                            <col style="width: 5%">
+                            <col style="width: 8%">
                         </colgroup>
                         <tr>
                             <th>Enable</th>
@@ -139,6 +141,7 @@
                             <th>Play<br>sound</th>
                             <th>Set sound file</th>
                             <th>Notify</th>
+                            <th>Email</th>
                             <th>Latches</th>
                             <th>Latch hrs</th>
                         </tr>
@@ -150,6 +153,7 @@
                             <td><input type="checkbox" id="tempBelowSoundEnabled"></td>
                             <td><input id="tempBelowSound"></td>
                             <td><input type="checkbox" id="tempBelowNotify"></td>
+                            <td><input type="checkbox" id="tempBelowEmail"></td>
                             <td><input type="checkbox" id="tempBelowLatches"></td>
                             <td><input id="tempBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -161,6 +165,7 @@
                             <td><input type="checkbox" id="tempAboveSoundEnabled"></td>
                             <td><input id="tempAboveSound"></td>
                             <td><input type="checkbox" id="tempAboveNotify"></td>
+                            <td><input type="checkbox" id="tempAboveEmail"></td>
                             <td><input type="checkbox" id="tempAboveLatches"></td>
                             <td><input id="tempAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -172,6 +177,7 @@
                             <td><input type="checkbox" id="tempChangeSoundEnabled"></td>
                             <td><input id="tempChangeSound"></td>
                             <td><input type="checkbox" id="tempChangeNotify"></td>
+                            <td><input type="checkbox" id="tempChangeEmail"></td>
                             <td><input type="checkbox" id="tempChangeLatches"></td>
                             <td><input id="tempChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -183,6 +189,7 @@
                             <td><input type="checkbox" id="pressBelowSoundEnabled"></td>
                             <td><input id="pressBelowSound"></td>
                             <td><input type="checkbox" id="pressBelowNotify"></td>
+                            <td><input type="checkbox" id="pressBelowEmail"></td>
                             <td><input type="checkbox" id="pressBelowLatches"></td>
                             <td><input id="pressBelowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -194,6 +201,7 @@
                             <td><input type="checkbox" id="pressAboveSoundEnabled"></td>
                             <td><input id="pressAboveSound"></td>
                             <td><input type="checkbox" id="pressAboveNotify"></td>
+                            <td><input type="checkbox" id="pressAboveEmail"></td>
                             <td><input type="checkbox" id="pressAboveLatches"></td>
                             <td><input id="pressAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -205,6 +213,7 @@
                             <td><input type="checkbox" id="pressChangeSoundEnabled"></td>
                             <td><input id="pressChangeSound"></td>
                             <td><input type="checkbox" id="pressChangeNotify"></td>
+                            <td><input type="checkbox" id="pressChangeEmail"></td>
                             <td><input type="checkbox" id="pressChangeLatches"></td>
                             <td><input id="pressChangeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -216,6 +225,7 @@
                             <td><input type="checkbox" id="rainAboveSoundEnabled"></td>
                             <td><input id="rainAboveSound"></td>
                             <td><input type="checkbox" id="rainAboveNotify"></td>
+                            <td><input type="checkbox" id="rainAboveEmail"></td>
                             <td><input type="checkbox" id="rainAboveLatches"></td>
                             <td><input id="rainAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -227,6 +237,7 @@
                             <td><input type="checkbox" id="rainRateAboveSoundEnabled"></td>
                             <td><input id="rainRateAboveSound"></td>
                             <td><input type="checkbox" id="rainRateAboveNotify"></td>
+                            <td><input type="checkbox" id="rainRateAboveEmail"></td>
                             <td><input type="checkbox" id="rainRateAboveLatches"></td>
                             <td><input id="rainRateAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -238,6 +249,7 @@
                             <td><input type="checkbox" id="gustAboveSoundEnabled"></td>
                             <td><input id="gustAboveSound"></td>
                             <td><input type="checkbox" id="gustAboveNotify"></td>
+                            <td><input type="checkbox" id="gustAboveEmail"></td>
                             <td><input type="checkbox" id="gustAboveLatches"></td>
                             <td><input id="gustAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -249,6 +261,7 @@
                             <td><input type="checkbox" id="windAboveSoundEnabled"></td>
                             <td><input id="windAboveSound"></td>
                             <td><input type="checkbox" id="windAboveNotify"></td>
+                            <td><input type="checkbox" id="windAboveEmail"></td>
                             <td><input type="checkbox" id="windAboveLatches"></td>
                             <td><input id="windAboveLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -260,6 +273,7 @@
                             <td><input type="checkbox" id="contactLostSoundEnabled"></td>
                             <td><input id="contactLostSound"></td>
                             <td><input type="checkbox" id="contactLostNotify"></td>
+                            <td><input type="checkbox" id="contactLostEmail"></td>
                             <td><input type="checkbox" id="contactLostLatches"></td>
                             <td><input id="contactLostLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -271,6 +285,7 @@
                             <td><input type="checkbox" id="dataStoppedSoundEnabled"></td>
                             <td><input id="dataStoppedSound"></td>
                             <td><input type="checkbox" id="dataStoppedNotify"></td>
+                            <td><input type="checkbox" id="dataStoppedEmail"></td>
                             <td><input type="checkbox" id="dataStoppedLatches"></td>
                             <td><input id="dataStoppedLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -282,6 +297,7 @@
                             <td><input type="checkbox" id="batteryLowSoundEnabled"></td>
                             <td><input id="batteryLowSound"></td>
                             <td><input type="checkbox" id="batteryLowNotify"></td>
+                            <td><input type="checkbox" id="batteryLowEmail"></td>
                             <td><input type="checkbox" id="batteryLowLatches"></td>
                             <td><input id="batteryLowLatchHrs" type="number" min="1" max="9999" step="1"></td>
                          </tr>
@@ -293,6 +309,7 @@
                             <td><input type="checkbox" id="spikeSoundEnabled"></td>
                             <td><input id="spikeSound"></td>
                             <td><input type="checkbox" id="spikeNotify"></td>
+                            <td><input type="checkbox" id="spikeEmail"></td>
                             <td><input type="checkbox" id="spikeLatches"></td>
                             <td><input id="spikeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
@@ -304,10 +321,23 @@
                             <td><input type="checkbox" id="upgradeSoundEnabled"></td>
                             <td><input id="upgradeSound"></td>
                             <td><input type="checkbox" id="upgradeNotify"></td>
+                            <td><input type="checkbox" id="upgradeEmail"></td>
                             <td><input type="checkbox" id="upgradeLatches"></td>
                             <td><input id="upgradeLatchHrs" type="number" min="1" max="9999" step="1"></td>
                         </tr>
                     </table>
+                    <div style="margin-top: 10px">
+                        From email address: <input id="fromEmail" style="min-width: 200px; width: 50%">
+                    </div>
+                    <div style="margin-top: 10px">
+                        To email address(es):
+                        <input id="destEmail" style="min-width: 200px; width: 50%"><br>
+                        Separate multiple email addresses with a semicolon ";". Eg: joe@somewhere.com; jane@here.net
+                    </div>
+                    <div style="margin-top: 10px">
+                        <label><input type="checkbox" id="useHtml"> Email uses HTML text formatting</label><br>
+                        By default the email messages use UTF-8 plain text, but you can define your own in strings.ini and use HTML if you wish
+                    </div>
                     </form>
                 </div>
             </div>
@@ -317,6 +347,7 @@
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
                             <button type="submit" form="recsform" class="btn btn-primary" onclick="updateAlarms()">Update Alarms</button>
+                            <button type="button" class="btn btn-default" onclick="testEmail()">Send Test Email</button>
                         </div>
                     </div>
                 </div>

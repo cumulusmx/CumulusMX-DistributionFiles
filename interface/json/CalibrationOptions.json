@@ -1,5 +1,8 @@
 ﻿{
     "fields": {
+        "accessible": {
+            "fieldClass": "hideme"
+        },
         "explanation": {
             "type": "textarea"
         },

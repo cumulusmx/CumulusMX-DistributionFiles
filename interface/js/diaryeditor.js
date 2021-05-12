@@ -1,4 +1,4 @@
-// Last modified: 2021/02/19 23:51:36
+// Last modified: 2021/03/30 17:45:18
 
 var activeDates;
 
@@ -23,12 +23,9 @@ $(document).ready(function () {
         todayBtn      : "linked",
         weekStart: 1,
         beforeShowDay: function (date) {
-            var utcDate = getUTCFormattedString(date, false);
-            var activeDate = $('#datepicker').datepicker('getFormattedDate');
-            if ($.inArray(utcDate, activeDates) != -1) {
-                //if (utcDate != activeDate) {
-                    return {classes: 'hasData'};
-                //}
+            var localDate = getLocalFormattedString(date);
+            if ($.inArray(localDate, activeDates) != -1) {
+                return {classes: 'hasData'};
             }
             return;
         }

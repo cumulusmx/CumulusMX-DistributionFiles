@@ -1,6 +1,9 @@
 ﻿{
     "type": "object",
     "properties": {
+        "accessible": {
+            "type": "boolean"
+        },
         "server": {
             "type": "object",
             "title": "Server details",
@@ -35,8 +38,22 @@
                 "table": {
                     "title": "Table name"
                 },
-                "retention": {
-                    "title": "Retention string"
+                "retentionVal": {
+                    "title": "Data Retention value",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 999
+                },
+                "retentionUnit": {
+                    "title": "Data Retention unit",
+                    "enum": [
+                        "SECOND",
+                        "MINUTE",
+                        "HOUR",
+                        "DAY",
+                        "WEEK",
+                        "MONTH"
+                    ]
                 }
             }
         },

@@ -1,5 +1,8 @@
 ﻿{
     "fields": {
+        "accessible": {
+            "fieldClass": "hideme"
+        },
         "airquality": {
             "collapsible":true,
             "collapsed": true,

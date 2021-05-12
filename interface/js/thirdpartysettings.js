@@ -1,15 +1,14 @@
-// Last modified: 2021/05/08 17:46:45
+// Last modified: 2021/05/08 18:06:44
 
-let StashedStationId;
 let accessMode;
 
-$(document).ready(function () {
-    //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
+$(document).ready(function() {
+    // Create the form
+
     $("#form").alpaca({
-        "dataSource": "./api/settings/stationdata.json",
-        "optionsSource": "./api/settings/stationoptions.json",
-        "schemaSource": "./api/settings/stationschema.json",
-        "ui": "bootstrap",
+        "dataSource": "../api/settings/thirdpartydata.json",
+        "optionsSource": "../api/settings/thirdpartyoptions.json",
+        "schemaSource": "../api/settings/thirdpartyschema.json",
         "view": "bootstrap-edit-horizontal",
         "postRender": function (form) {
             // Change in accessibility is enabled
@@ -22,56 +21,14 @@ $(document).ready(function () {
             }
 
             // Trigger changes is the accessibility mode is changed
-            accessObj.on("change", function() {onAccessChange(this)});
-
-            let stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
-
-            // On changing the station type, propogate down to sub-sections
-            stationIdObj.on("change", function () {
-                let form = $("#form").alpaca("get");
-                let stationid = this.getValue();
-                form.childrenByPropertyId["stationid"].setValue(stationid);
-                form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
-                form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].setValue(this.getOptionLabels()[1 * stationid + 1]);
-            });
-
-            // On changing the Davis VP connection type, propogate down to advanced settings
-            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].on("change", function () {
-                let form = $("#form").alpaca("get");
-                let conntype = this.getValue();
-                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(conntype);
-                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].refresh();
-            });
-
-            // Set the initial value of the sub-section  station ids
-            let stationid = form.childrenByPropertyId["stationid"].getValue();
-            form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
-            // Keep a record of the last value
-            StashedStationId = stationid;
-
-            // Set the inital value of Davis advanced conntype
-            let conntype = form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].getValue();
-            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(+conntype);
+            //accessObj.on("change", function() {onAccessChange(this)});
 
             $("#save-button").click(function () {
                 if (form.isValid(true)) {
-                    let stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
-                    let stationId = stationIdObj.getValue();
-
-                    if (stationId == -1) {
-                        alert("You have not selected a station type");
-                        return;
-                    }
-                    if (stationId != StashedStationId) {
-                        alert("You have changed the Station type, you must restart Cumulus MX");
-                        StashedStationId = stationId;
-                    }
-
                     let json = form.getValue();
-
                     $.ajax({
                         type: "POST",
-                        url: "../api/setsettings/updatestationconfig.json",
+                        url: "../api/setsettings/updatethirdpartyconfig.json",
                         data: {json: JSON.stringify(json)},
                         dataType: "text"
                     })
@@ -81,10 +38,6 @@ $(document).ready(function () {
                     .fail(function (jqXHR, textStatus) {
                         alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
                     });
-                } else {
-                    alert("Invalid value somewhere on the form!");
-                    this.focus();
-                    return;
                 }
             });
         }

@@ -1,6 +1,9 @@
 ﻿{
     "type": "object",
     "properties": {
+        "accessible": {
+            "type": "boolean"
+        },
         "explanation": {
             "default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset",
             "readonly": true

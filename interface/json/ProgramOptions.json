@@ -1,5 +1,9 @@
 {
     "fields": {
+        "accessible": {
+            "rightLabel": "Enable accessibility features",
+            "helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting."
+        },
         "startup": {
             "collapsible": true,
             "collapsed": true,
@@ -23,12 +27,20 @@
             "collapsed": true,
             "fields": {
                 "debuglogging": {
-                "rightLabel": "Debug logging",
-                "helper": "Enable extra diagnostic logging to the MX diags files. Changing setting here affects current session only"
+                    "rightLabel": "Debug logging",
+                    "helper": "Enable extra diagnostic logging to the MX diags files. Changing setting here affects current session only"
                 },
                 "datalogging": {
                     "rightLabel": "Data logging",
                     "helper": "Enable diagnostic logging to the MX diags files of data transfers from the station. Changing setting here affects current session only"
+                },
+                "ftplogging": {
+                    "rightLabel": "FTP logging",
+                    "helper": "Log FTP activity to ftplog.txt for diagnostic purposes"
+                },
+                "emaillogging": {
+                    "rightLabel": "Email logging",
+                    "helper": "Enable extra SMTP logging to the smtp.log file in the MXdiags folder. Changing setting here affects current session only"
                 },
                 "stopsecondinstance": {
                     "rightLabel": "Stop second instance",
