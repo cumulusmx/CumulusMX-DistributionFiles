@@ -1,6 +1,6 @@
 <!--
 	selectachart.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/04/05 17:07:01
+	Last modified: 2021/05/12 15:02:39
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -78,12 +78,12 @@
 						<div id="chartcontainer"></div>
 					</div>
 				</div>
-			</div>	<!--	End of first coloumn of first row	-->
+			</div>	<!--	End of first column of first row	-->
 			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	Start of second row	-->
 				<div class="w3-col s12">
 					<div class="w3-center">
 						<!--	Selector buttons	-->
-						<div class="at-flex-between" style="flex-wrap:wrap"> <!--	Main flex container: betwen forces content left & right -->
+						<div class="at-flex-between" style="flex-wrap:wrap"> <!--	Main flex container: between forces content left & right -->
 							<div class="at-flex-justify" style="max-width:550px;flex-wrap:wrap;flex:2">	<!--	Left bar for selectors	-->
 								<div class="" style="max-width:170px;min-height:2.5em;">
 									<select class="w3-select select-value" name="data0" id="data0" onchange="procDataSelect(this)"></select>
@@ -124,10 +124,10 @@
 				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
-		<script src="https://code.highcharts.com/stock/8.2/highstock.js"></script>
-		<script src="https://code.highcharts.com/8.2/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/8.2/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/8.2/themes/grid.js"></script>
+		<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/themes/grid.js"></script>
 		<script src="js/selectachart.js"></script>
 	</body>
 </html>

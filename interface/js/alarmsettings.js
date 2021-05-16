@@ -1,16 +1,18 @@
-// Last modified: 2021/04/26 14:54:52
+// Last modified: 2021/05/16 20:53:17
 
 $(document).ready(function() {
     $.ajax({
         url: "api/settings/alarms.json",
         dataType:"json",
         success: function (result) {
-            $.each(result.data, function(key, value) {
-                if (key.indexOf('Enabled') === -1 && key.indexOf('Latches') === -1 && key.indexOf('Notify') === -1 && key.indexOf('Email') === -1) {
-                    $('#' + key).val(value);
-                } else {
-                    $('#' + key).prop('checked', value);
-                }
+            $.each(result.data, function(alarm, data) {
+                $.each(data, function(prop, value) {
+                    if (prop !=='Enabled' && prop !== 'Latches' && prop !== 'Notify' && prop !== 'Email') {
+                        $('#' + alarm + prop).val(value);
+                    } else {
+                        $('#' + alarm + prop).prop('checked', value);
+                    }
+                });
             });
             $.each(result.units, function(key, value) {
                 $("." + key).text(value);
@@ -33,135 +35,172 @@ function updateAlarms() {
         dataType: 'text',
         data: JSON.stringify({
             data: {
-                tempBelowEnabled     : $('#tempBelowEnabled').prop('checked'),
-                tempBelowVal         : parseFloat($('#tempBelowVal').val()),
-                tempBelowSoundEnabled: $('#tempBelowSoundEnabled').prop('checked'),
-                tempBelowSound       : $('#tempBelowSound').val(),
-                tempBelowNotify      : $('#tempBelowNotify').prop('checked'),
-                tempBelowEmail       : $('#tempBelowEmail').prop('checked'),
-                tempBelowLatches     : $('#tempBelowLatches').prop('checked'),
-                tempBelowLatchHrs    : $('#tempBelowLatchHrs').val(),
-
-                tempAboveEnabled     : $('#tempAboveEnabled').prop('checked'),
-                tempAboveVal         : parseFloat($('#tempAboveVal').val()),
-                tempAboveSoundEnabled: $('#tempAboveSoundEnabled').prop('checked'),
-                tempAboveSound       : $('#tempAboveSound').val(),
-                tempAboveNotify      : $('#tempAboveNotify').prop('checked'),
-                tempAboveEmail       : $('#tempAboveEmail').prop('checked'),
-                tempAboveLatches     : $('#tempAboveLatches').prop('checked'),
-                tempAboveLatchHrs    : $('#tempAboveLatchHrs').val(),
-
-                tempChangeEnabled     : $('#tempChangeEnabled').prop('checked'),
-                tempChangeVal         : parseFloat($('#tempChangeVal').val()),
-                tempChangeSoundEnabled: $('#tempChangeSoundEnabled').prop('checked'),
-                tempChangeSound       : $('#tempChangeSound').val(),
-                tempChangeNotify      : $('#tempChangeNotify').prop('checked'),
-                tempChangeEmail       : $('#tempChangeEmail').prop('checked'),
-                tempChangeLatches     : $('#tempChangeLatches').prop('checked'),
-                tempChangeLatchHrs    : $('#tempChangeLatchHrs').val(),
-
-                pressBelowEnabled     : $('#pressBelowEnabled').prop('checked'),
-                pressBelowVal         : parseFloat($('#pressBelowVal').val()),
-                pressBelowSoundEnabled: $('#pressBelowSoundEnabled').prop('checked'),
-                pressBelowSound       : $('#pressBelowSound').val(),
-                pressBelowNotify      : $('#pressBelowNotify').prop('checked'),
-                pressBelowEmail       : $('#pressBelowEmail').prop('checked'),
-                pressBelowLatches     : $('#pressBelowLatches').prop('checked'),
-                pressBelowLatchHrs    : $('#pressBelowLatchHrs').val(),
-
-                pressAboveEnabled     : $('#pressAboveEnabled').prop('checked'),
-                pressAboveVal         : parseFloat($('#pressAboveVal').val()),
-                pressAboveSoundEnabled: $('#pressAboveSoundEnabled').prop('checked'),
-                pressAboveSound       : $('#pressAboveSound').val(),
-                pressAboveNotify      : $('#pressAboveNotify').prop('checked'),
-                pressAboveEmail       : $('#pressAboveEmail').prop('checked'),
-                pressAboveLatches     : $('#pressAboveLatches').prop('checked'),
-                pressAboveLatchHrs    : $('#pressAboveLatchHrs').val(),
-
-                pressChangeEnabled     : $('#pressChangeEnabled').prop('checked'),
-                pressChangeVal         : parseFloat($('#pressChangeVal').val()),
-                pressChangeSoundEnabled: $('#pressChangeSoundEnabled').prop('checked'),
-                pressChangeSound       : $('#pressChangeSound').val(),
-                pressChangeNotify      : $('#pressChangeNotify').prop('checked'),
-                pressChangeEmail       : $('#pressChangeEmail').prop('checked'),
-                pressChangeLatches     : $('#pressChangeLatches').prop('checked'),
-                pressChangeLatchHrs    : $('#pressChangeLatchHrs').val(),
-
-                rainAboveEnabled     : $('#rainAboveEnabled').prop('checked'),
-                rainAboveVal         : parseFloat($('#rainAboveVal').val()),
-                rainAboveSoundEnabled: $('#rainAboveSoundEnabled').prop('checked'),
-                rainAboveSound       : $('#rainAboveSound').val(),
-                rainAboveNotify      : $('#rainAboveNotify').prop('checked'),
-                rainAboveEmail       : $('#rainAboveEmail').prop('checked'),
-                rainAboveLatches     : $('#rainAboveLatches').prop('checked'),
-                rainAboveLatchHrs    : $('#rainAboveLatchHrs').val(),
-
-                rainRateAboveEnabled     : $('#rainRateAboveEnabled').prop('checked'),
-                rainRateAboveVal         : parseFloat($('#rainRateAboveVal').val()),
-                rainRateAboveSoundEnabled: $('#rainRateAboveSoundEnabled').prop('checked'),
-                rainRateAboveSound       : $('#rainRateAboveSound').val(),
-                rainRateAboveNotify      : $('#rainRateAboveNotify').prop('checked'),
-                rainRateAboveEmail       : $('#rainRateAboveEmail').prop('checked'),
-                rainRateAboveLatches     : $('#rainRateAboveLatches').prop('checked'),
-                rainRateAboveLatchHrs    : $('#rainRateAboveLatchHrs').val(),
-
-                gustAboveEnabled     : $('#gustAboveEnabled').prop('checked'),
-                gustAboveVal         : parseFloat($('#gustAboveVal').val()),
-                gustAboveSoundEnabled: $('#gustAboveSoundEnabled').prop('checked'),
-                gustAboveSound       : $('#gustAboveSound').val(),
-                gustAboveNotify      : $('#gustAboveNotify').prop('checked'),
-                gustAboveEmail       : $('#gustAboveEmail').prop('checked'),
-                gustAboveLatches     : $('#gustAboveLatches').prop('checked'),
-                gustAboveLatchHrs    : $('#gustAboveLatchHrs').val(),
-
-                windAboveEnabled     : $('#windAboveEnabled').prop('checked'),
-                windAboveVal         : parseFloat($('#windAboveVal').val()),
-                windAboveSoundEnabled: $('#windAboveSoundEnabled').prop('checked'),
-                windAboveSound       : $('#windAboveSound').val(),
-                windAboveNotify      : $('#windAboveNotify').prop('checked'),
-                windAboveEmail       : $('#windAboveEmail').prop('checked'),
-                windAboveLatches     : $('#windAboveLatches').prop('checked'),
-                windAboveLatchHrs    : $('#windAboveLatchHrs').val(),
-
-                contactLostEnabled     : $('#contactLostEnabled').prop('checked'),
-                contactLostSoundEnabled: $('#contactLostSoundEnabled').prop('checked'),
-                contactLostSound       : $('#contactLostSound').val(),
-                contactLostNotify      : $('#contactLostNotify').prop('checked'),
-                contactLostEmail       : $('#contactLostEmail').prop('checked'),
-                contactLostLatches     : $('#contactLostLatches').prop('checked'),
-                contactLostLatchHrs    : $('#contactLostLatchHrs').val(),
-
-                dataStoppedEnabled     : $('#dataStoppedEnabled').prop('checked'),
-                dataStoppedSoundEnabled: $('#dataStoppedSoundEnabled').prop('checked'),
-                dataStoppedSound       : $('#dataStoppedSound').val(),
-                dataStoppedNotify      : $('#dataStoppedNotify').prop('checked'),
-                dataStoppedEmail       : $('#dataStoppedEmail').prop('checked'),
-                dataStoppedLatches     : $('#dataStoppedLatches').prop('checked'),
-                dataStoppedLatchHrs    : $('#dataStoppedLatchHrs').val(),
-
-                batteryLowEnabled     : $('#batteryLowEnabled').prop('checked'),
-                batteryLowSoundEnabled: $('#batteryLowSoundEnabled').prop('checked'),
-                batteryLowSound       : $('#batteryLowSound').val(),
-                batteryLowNotify      : $('#batteryLowNotify').prop('checked'),
-                batteryLowEmail       : $('#batteryLowEmail').prop('checked'),
-                batteryLowLatches     : $('#batteryLowLatches').prop('checked'),
-                batteryLowLatchHrs    : $('#batteryLowLatchHrs').val(),
-
-                spikeEnabled     : $('#spikeEnabled').prop('checked'),
-                spikeSoundEnabled: $('#spikeSoundEnabled').prop('checked'),
-                spikeSound       : $('#spikeSound').val(),
-                spikeNotify      : $('#spikeNotify').prop('checked'),
-                spikeEmail       : $('#spikeEmail').prop('checked'),
-                spikeLatches     : $('#spikeLatches').prop('checked'),
-                spikeLatchHrs    : $('#spikeLatchHrs').val(),
-
-                upgradeEnabled     : $('#upgradeEnabled').prop('checked'),
-                upgradeSoundEnabled: $('#upgradeSoundEnabled').prop('checked'),
-                upgradeSound       : $('#upgradeSound').val(),
-                upgradeNotify      : $('#upgradeNotify').prop('checked'),
-                upgradeEmail       : $('#upgradeEmail').prop('checked'),
-                upgradeLatches     : $('#upgradeLatches').prop('checked'),
-                upgradeLatchHrs    : $('#upgradeLatchHrs').val()
+                tempBelow: {
+                    Enabled     : $('#tempBelowEnabled').prop('checked'),
+                    Val         : parseFloat($('#tempBelowVal').val()),
+                    SoundEnabled: $('#tempBelowSoundEnabled').prop('checked'),
+                    Sound       : $('#tempBelowSound').val(),
+                    Notify      : $('#tempBelowNotify').prop('checked'),
+                    Email       : $('#tempBelowEmail').prop('checked'),
+                    Latches     : $('#tempBelowLatches').prop('checked'),
+                    LatchHrs    : $('#tempBelowLatchHrs').val()
+                },
+                tempAbove: {
+                    Enabled     : $('#tempAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#tempAboveVal').val()),
+                    SoundEnabled: $('#tempAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#tempAboveSound').val(),
+                    Notify      : $('#tempAboveNotify').prop('checked'),
+                    Email       : $('#tempAboveEmail').prop('checked'),
+                    Latches     : $('#tempAboveLatches').prop('checked'),
+                    LatchHrs    : $('#tempAboveLatchHrs').val()
+                },
+                tempChange: {
+                    Enabled     : $('#tempChangeEnabled').prop('checked'),
+                    Val         : parseFloat($('#tempChangeVal').val()),
+                    SoundEnabled: $('#tempChangeSoundEnabled').prop('checked'),
+                    Sound       : $('#tempChangeSound').val(),
+                    Notify      : $('#tempChangeNotify').prop('checked'),
+                    Email       : $('#tempChangeEmail').prop('checked'),
+                    Latches     : $('#tempChangeLatches').prop('checked'),
+                    LatchHrs    : $('#tempChangeLatchHrs').val()
+                },
+                pressBelow: {
+                    Enabled     : $('#pressBelowEnabled').prop('checked'),
+                    Val         : parseFloat($('#pressBelowVal').val()),
+                    SoundEnabled: $('#pressBelowSoundEnabled').prop('checked'),
+                    Sound       : $('#pressBelowSound').val(),
+                    Notify      : $('#pressBelowNotify').prop('checked'),
+                    Email       : $('#pressBelowEmail').prop('checked'),
+                    Latches     : $('#pressBelowLatches').prop('checked'),
+                    LatchHrs    : $('#pressBelowLatchHrs').val()
+                },
+                pressAbove: {
+                    Enabled     : $('#pressAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#pressAboveVal').val()),
+                    SoundEnabled: $('#pressAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#pressAboveSound').val(),
+                    Notify      : $('#pressAboveNotify').prop('checked'),
+                    Email       : $('#pressAboveEmail').prop('checked'),
+                    Latches     : $('#pressAboveLatches').prop('checked'),
+                    LatchHrs    : $('#pressAboveLatchHrs').val()
+                },
+                pressChange: {
+                    Enabled     : $('#pressChangeEnabled').prop('checked'),
+                    Val         : parseFloat($('#pressChangeVal').val()),
+                    SoundEnabled: $('#pressChangeSoundEnabled').prop('checked'),
+                    Sound       : $('#pressChangeSound').val(),
+                    Notify      : $('#pressChangeNotify').prop('checked'),
+                    Email       : $('#pressChangeEmail').prop('checked'),
+                    Latches     : $('#pressChangeLatches').prop('checked'),
+                    LatchHrs    : $('#pressChangeLatchHrs').val()
+                },
+                rainAbove: {
+                    Enabled     : $('#rainAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#rainAboveVal').val()),
+                    SoundEnabled: $('#rainAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#rainAboveSound').val(),
+                    Notify      : $('#rainAboveNotify').prop('checked'),
+                    Email       : $('#rainAboveEmail').prop('checked'),
+                    Latches     : $('#rainAboveLatches').prop('checked'),
+                    LatchHrs    : $('#rainAboveLatchHrs').val(),
+                },
+                rainRateAbove: {
+                    Enabled     : $('#rainRateAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#rainRateAboveVal').val()),
+                    SoundEnabled: $('#rainRateAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#rainRateAboveSound').val(),
+                    Notify      : $('#rainRateAboveNotify').prop('checked'),
+                    Email       : $('#rainRateAboveEmail').prop('checked'),
+                    Latches     : $('#rainRateAboveLatches').prop('checked'),
+                    LatchHrs    : $('#rainRateAboveLatchHrs').val()
+                },
+                gustAbove: {
+                    Enabled     : $('#gustAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#gustAboveVal').val()),
+                    SoundEnabled: $('#gustAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#gustAboveSound').val(),
+                    Notify      : $('#gustAboveNotify').prop('checked'),
+                    Email       : $('#gustAboveEmail').prop('checked'),
+                    Latches     : $('#gustAboveLatches').prop('checked'),
+                    LatchHrs    : $('#gustAboveLatchHrs').val()
+                },
+                windAbove: {
+                    Enabled     : $('#windAboveEnabled').prop('checked'),
+                    Val         : parseFloat($('#windAboveVal').val()),
+                    SoundEnabled: $('#windAboveSoundEnabled').prop('checked'),
+                    Sound       : $('#windAboveSound').val(),
+                    Notify      : $('#windAboveNotify').prop('checked'),
+                    Email       : $('#windAboveEmail').prop('checked'),
+                    Latches     : $('#windAboveLatches').prop('checked'),
+                    LatchHrs    : $('#windAboveLatchHrs').val()
+                },
+                contactLost: {
+                    Enabled     : $('#contactLostEnabled').prop('checked'),
+                    SoundEnabled: $('#contactLostSoundEnabled').prop('checked'),
+                    Sound       : $('#contactLostSound').val(),
+                    Notify      : $('#contactLostNotify').prop('checked'),
+                    Email       : $('#contactLostEmail').prop('checked'),
+                    Latches     : $('#contactLostLatches').prop('checked'),
+                    LatchHrs    : $('#contactLostLatchHrs').val()
+                },
+                dataStopped: {
+                    Enabled     : $('#dataStoppedEnabled').prop('checked'),
+                    SoundEnabled: $('#dataStoppedSoundEnabled').prop('checked'),
+                    Sound       : $('#dataStoppedSound').val(),
+                    Notify      : $('#dataStoppedNotify').prop('checked'),
+                    Email       : $('#dataStoppedEmail').prop('checked'),
+                    Latches     : $('#dataStoppedLatches').prop('checked'),
+                    LatchHrs    : $('#dataStoppedLatchHrs').val()
+                },
+                batteryLow: {
+                    Enabled     : $('#batteryLowEnabled').prop('checked'),
+                    SoundEnabled: $('#batteryLowSoundEnabled').prop('checked'),
+                    Sound       : $('#batteryLowSound').val(),
+                    Notify      : $('#batteryLowNotify').prop('checked'),
+                    Email       : $('#batteryLowEmail').prop('checked'),
+                    Latches     : $('#batteryLowLatches').prop('checked'),
+                    LatchHrs    : $('#batteryLowLatchHrs').val()
+                },
+                spike: {
+                    Enabled     : $('#spikeEnabled').prop('checked'),
+                    SoundEnabled: $('#spikeSoundEnabled').prop('checked'),
+                    Sound       : $('#spikeSound').val(),
+                    Notify      : $('#spikeNotify').prop('checked'),
+                    Email       : $('#spikeEmail').prop('checked'),
+                    Latches     : $('#spikeLatches').prop('checked'),
+                    LatchHrs    : $('#spikeLatchHrs').val(),
+                    Threshold   : $('#spikeThreshold').val(),
+                },
+                httpUpload: {
+                    Enabled     : $('#httpUploadEnabled').prop('checked'),
+                    SoundEnabled: $('#httpUploadSoundEnabled').prop('checked'),
+                    Sound       : $('#httpUploadSound').val(),
+                    Notify      : $('#httpUploadNotify').prop('checked'),
+                    Email       : $('#httpUploadEmail').prop('checked'),
+                    Latches     : $('#httpUploadLatches').prop('checked'),
+                    LatchHrs    : $('#httpUploadLatchHrs').val(),
+                    Threshold   : $('#httpUploadThreshold').val()
+                },
+                mySqlUpload: {
+                    Enabled     : $('#mySqlUploadEnabled').prop('checked'),
+                    SoundEnabled: $('#mySqlUploadSoundEnabled').prop('checked'),
+                    Sound       : $('#mySqlUploadSound').val(),
+                    Notify      : $('#mySqlUploadNotify').prop('checked'),
+                    Email       : $('#mySqlUploadEmail').prop('checked'),
+                    Latches     : $('#mySqlUploadLatches').prop('checked'),
+                    LatchHrs    : $('#mySqlUploadLatchHrs').val(),
+                    Threshold   : $('#mySqlUploadThreshold').val()
+                },
+                upgrade: {
+                    Enabled     : $('#upgradeEnabled').prop('checked'),
+                    SoundEnabled: $('#upgradeSoundEnabled').prop('checked'),
+                    Sound       : $('#upgradeSound').val(),
+                    Notify      : $('#upgradeNotify').prop('checked'),
+                    Email       : $('#upgradeEmail').prop('checked'),
+                    Latches     : $('#upgradeLatches').prop('checked'),
+                    LatchHrs    : $('#upgradeLatchHrs').val()
+                }
             },
             email: {
                 fromEmail: $('#fromEmail').val(),

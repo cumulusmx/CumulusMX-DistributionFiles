@@ -1,11 +1,11 @@
-// Last modified: 2021/05/08 17:56:26
+// Last modified: 2021/05/16 20:54:44
 
 let accessMode;
 
 $(document).ready(function() {
 
     let setDefaultWebSite = function () {
-        let form = $("#form").alpaca("get");
+        let form = $("form").alpaca("get");
         if (!form.childrenByPropertyId["websettings"].childrenByPropertyId["stdwebsite"].getValue()) {
             return;
         }
@@ -109,11 +109,50 @@ $(document).ready(function() {
 
     // Create the form
 
-    $("#form").alpaca({
+    $("form").alpaca({
         "dataSource": "../api/settings/internetdata.json",
         "optionsSource": "../api/settings/internetoptions.json",
         "schemaSource": "../api/settings/internetschema.json",
         "view": "bootstrap-edit-horizontal",
+        "options": {
+            "form": {
+                "buttons": {
+                    // don't use the Submit button because that is disabled on validation errors
+                    "validate": {
+                        "title": "Save Settings",
+                        "click": function() {
+                            this.refreshValidationState(true);
+                            if (this.isValid(true)) {
+                                let json = this.getValue();
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../api/setsettings/updateinternetconfig.json",
+                                    data: {json: JSON.stringify(json)},
+                                    dataType: "text"
+                                })
+                                .done(function () {
+                                    alert("Settings updated");
+                                })
+                                .fail(function (jqXHR, textStatus) {
+                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                });
+                            } else {
+                                let firstErr = $('form').find(".has-error:first")
+                                let path = $(firstErr).attr('data-alpaca-field-path');
+                                let msg = $(firstErr).children('.alpaca-message').text();
+                                alert("Invalid value in the form: " + path + msg);
+                                if ($(firstErr).is(":visible")) {
+                                    let entry = $(firstErr).focus();
+                                    $(window).scrollTop($(entry).position().top);
+                                }
+                            }
+                        },
+                        "styles": "alpaca-form-button-submit"
+                    }
+                }
+            }
+        },
         "postRender": function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
@@ -127,87 +166,67 @@ $(document).ready(function() {
             // Trigger changes is the accessibility mode is changed
             //accessObj.on("change", function() {onAccessChange(this)});
 
-            let ftpmodeObj = form.childrenByPropertyId["website"].childrenByPropertyId["sslftp"];
+            let ftpmodeObj = form.getControlByPath("website/sslftp");
             let ftpmode = ftpmodeObj.getValue();
-            form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
+            form.getControlByPath("website/advanced/ftpmode").setValue(ftpmode);
 
             // Trigger updates based on FTP protocol changes
             ftpmodeObj.on("change", function () {
-                let form = $("#form").alpaca("get");
+                let form = $("form").alpaca("get");
                 let ftpmode = this.getValue();
                 // Set the hidden advanced options protocol field to match
-                form.childrenByPropertyId["website"].childrenByPropertyId["advanced"].childrenByPropertyId["ftpmode"].setValue(ftpmode);
+                form.getControlByPath("website/advanced/ftpmode").setValue(ftpmode);
                 // Set the default port to match
                 let newPort = ftpmode == 0 ? 21 : (ftpmode == 1 ? 990 : 22);
-                form.childrenByPropertyId["website"].childrenByPropertyId["ftpport"].setValue(newPort);
+                form.getControlByPath("website/ftpport").setValue(newPort);
             });
 
             // Trigger updates on "Use standard web site being enabled"
-            form.childrenByPropertyId["websettings"].childrenByPropertyId["stdwebsite"].on("change", function () {
+            form.getControlByPath("websettings/stdwebsite").on("change", function () {
                 setDefaultWebSite();
             });
 
 
             // enable/disable realtime files FTP option
             updateFtpDisabledOption(
-                form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["files"].children,
-                !form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["enablerealtimeftp"].getValue()
+                form.getControlByPath("websettings/realtime/files").children,
+                !form.getControlByPath("websettings/realtime/enablerealtimeftp").getValue()
             );
 
-            form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["enablerealtimeftp"].on("change", function () {
+            form.getControlByPath("websettings/realtime/enablerealtimeftp").on("change", function () {
                 let val = !this.getValue();
-                updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["files"].children, val);
+                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, val);
             });
 
             // enable/disable interval std files FTP option
-            let autoupdate = form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["autoupdate"].getValue();
+            let autoupdate = form.getControlByPath("websettings/interval/autoupdate").getValue();
             updateFtpDisabledOption(
-                form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["stdfiles"].childrenByPropertyId["files"].children,
+                form.getControlByPath("websettings/interval/stdfiles/files").children,
                 !autoupdate
             );
 
             // enable/disable interval graph files FTP option
             updateFtpDisabledOption(
-                form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["graphfiles"].childrenByPropertyId["files"].children,
+                form.getControlByPath("websettings/interval/graphfiles/files").children,
                 !autoupdate
             );
 
-            form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["autoupdate"].on("change", function () {
+            form.getControlByPath("websettings/interval/autoupdate").on("change", function () {
                 let val = !this.getValue();
-                updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["stdfiles"].childrenByPropertyId["files"].children, val);
-                updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["interval"].childrenByPropertyId["graphfiles"].childrenByPropertyId["files"].children, val);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, val);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, val);
             });
 
-            form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["enablerealtimeftp"].on("change", function () {
+            form.getControlByPath("websettings/realtime/enablerealtimeftp").on("change", function () {
                 let val = !this.getValue();
-                updateFtpDisabledOption(form.childrenByPropertyId["websettings"].childrenByPropertyId["realtime"].childrenByPropertyId["files"].children, val);
-            });
-
-
-            $("#save-button").click(function () {
-                if (form.isValid(true)) {
-                    let json = form.getValue();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "../api/setsettings/updateinternetconfig.json",
-                        data: {json: JSON.stringify(json)},
-                        dataType: "text"
-                    })
-                    .done(function () {
-                        alert("Settings updated");
-                    })
-                    .fail(function (jqXHR, textStatus) {
-                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
-                    });
-                }
+                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, val);
             });
         }
     });
 });
 
 function addButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let span = $('span:first',this);
         if (span.length === 0)
             return;
@@ -223,7 +242,7 @@ function addButtons() {
 }
 
 function removeButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let butt = $('button:first',this);
         if (butt.length === 0)
             return;
@@ -239,7 +258,7 @@ function removeButtons() {
 }
 
 function setCollapsed() {
-    $('#form div.alpaca-container.collapse').each(function () {
+    $('form div.alpaca-container.collapse').each(function () {
         let span = $(this).siblings('legend:first').children('span:first');
         if ($(this).hasClass('in')) {
             span.attr('role', 'treeitem');

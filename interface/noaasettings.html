@@ -1,187 +1,213 @@
+<!--
+Last modified: 2021/05/16 21:05:36
+-->
 <!doctype html>
 <html lang="en">
-    <head>
-        <!--
-        Last modified: 2021/05/08 18:30:15
-        -->
-        <meta charset="utf-8">
-        <title>NOAA settings - Cumulus MX</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+<head>
+    <meta charset="utf-8">
+    <title>NOAA settings - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
 
-        <link href="css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
-        <!-- jquery -->
-        <script src="lib/jquery/jquery-latest.min.js"></script>
-        <script src="lib/jquery/jquery.tmpl.js"></script>
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- Alpaca -->
-        <script src="lib/handlebars/handlebars.min.js"></script>
-        <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
-        <script src="lib/alpaca/alpaca.min.js"></script>
+    <!-- Alpaca -->
+    <script src="lib/handlebars/handlebars.min.js"></script>
+    <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+    <script src="lib/alpaca/alpaca.min.js"></script>
 
-        <!-- Custom Files -->
-        <script src="js/noaasettings.js"></script>
+    <!-- Custom Files -->
+    <script src="js/noaasettings.js"></script>
 
-        <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/cumulus.css" rel="stylesheet">
 
-        <style type="text/css">
-            body {
-                padding-top: 60px;
-            }
-            .top-buffer { margin-top:40px; }
-            .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-            .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-            .help-block {
-                font-size: 12px;
-                padding-left: 20px;
-            }
-            .alpaca-field > legend > .collapsed::before {
-                content: '\25B8';
-                padding-left: 5px;
-            }
-            .alpaca-field > legend > span::before {
-                content: '\25BE';
-                padding-left: 5px;
-            }
-            .alpaca-container-has-items {
-                margin-left: 30px;
-            }
-            .collapse.in {
-                margin-left: 30px;
-            }
-            .hideme {
-                visibility: hidden;
-                width: 0px;
-                height: 0px;
-            }
-        </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .help-block {
+            font-size: 12px;
+            padding-left: 20px;
+        }
+        .alpaca-field > legend > .collapsed::before {
+            content: '\25B8';
+            padding-left: 5px;
+        }
+        .alpaca-field > legend > span::before {
+            content: '\25BE';
+            padding-left: 5px;
+        }
+        .alpaca-container-has-items {
+            margin-left: 30px;
+        }
+        .collapse.in {
+            margin-left: 30px;
+        }
+        .alpaca-form-buttons-container {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        .alpaca-field .alpaca-invalid {
+            color:red;
+        }
+        .alpaca-field {
+            color: #333;
+        }
+        legend {
+            color: inherit;
+        }
+        .hideme {
+            visibility: hidden;
+            width: 0px;
+            height: 0px;
+            display: flex;
+        }
+        .has-error .control-label,
+        .has-error .radio,
+        .has-error .checkbox,
+        .has-error .radio-inline,
+        .has-error .checkbox-inline,
+        .has-error.radio label,
+        .has-error.checkbox label,
+        .has-error.radio-inline label,
+        .has-error.checkbox-inline label,
+        .has-error .form-control,
+        .has-error .form-control:focus,
+        .has-error .input-group-addon {
+            color: #ff0500;
+            border-color: #ca2e2b;
+        }
+    </style>
 
-        <script>
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-                        $('#Version').text(result.Version);
-                        $('#Build').text(result.Build);
-                    }});
-            });
-        </script>
-
-    </head>
-    <body>
-        <!-- NAVIGATION MENU -->
-        <div class="navbar-nav navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Dashboard</a></li>
-                        <li><a href="now.html">Now</a></li>
-                        <li><a href="gauges.html">Gauges</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="charts.html">Recent Charts</a></li>
-                                <li><a href="chartscompare.html">Recent SelectaChart</a></li>
-                                <li><a href="chartshistoric.html">Historic Charts</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="todayyest.html">Today/Yesterday</a></li>
-                        <li><a href="records.html">Records</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="extra.html">Station Extra sensors</a></li>
-                                <li><a href="airlink.html">AirLink sensors</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="datalogs.html">Data logs</a></li>
-                                <li><a href="extradatalogs.html">Extra data logs</a></li>
-                                <li><a href="dayfileviewer.html">Dayfile</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
-                                <li><a href="noaayearreport.html">NOAA Year Report</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="programsettings.html">Program settings</a></li>
-                                <li><a href="stationsettings.html">Station settings</a></li>
-                                <li><a href="internetsettings.html">Internet settings</a></li>
-                                <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
-                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
-                                <li><a href="extrawebfiles.html">Extra web files</a></li>
-                                <li><a href="calibrationsettings.html">Calibration settings</a></li>
-                                <li class="active"><a href="noaasettings.html">NOAA settings</a></li>
-                                <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                                <li><a href="alarmsettings.html">Alarms</a></li>
-                                <li><a href="ftpnow.html">FTP Now!</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="raintodayeditor.html">Today's rain</a></li>
-                                <li><a href="diaryeditor.html">Weather Diary</a></li>
-                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
-                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
-                                <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
-                                <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
-                                <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-        <!-- END NAVIGATION MENU -->
-
+    <script>
+        $(document).ready(function () {
+            $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+        });
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
         <div class="container">
-            <h1>NOAA Reports Settings</h1>
-            <div class="row">
-                <div class="col-md-12">
-                    Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="now.html">Now</a></li>
+                    <li><a href="gauges.html">Gauges</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="charts.html">Recent Charts</a></li>
+                            <li><a href="chartscompare.html">Recent SelectaChart</a></li>
+                            <li><a href="chartshistoric.html">Historic Charts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="todayyest.html">Today/Yesterday</a></li>
+                    <li><a href="records.html">Records</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="extra.html">Station Extra sensors</a></li>
+                            <li><a href="airlink.html">AirLink sensors</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="datalogs.html">Data logs</a></li>
+                            <li><a href="extradatalogs.html">Extra data logs</a></li>
+                            <li><a href="dayfileviewer.html">Dayfile</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
+                            <li><a href="noaayearreport.html">NOAA Year Report</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="programsettings.html">Program settings</a></li>
+                            <li><a href="stationsettings.html">Station settings</a></li>
+                            <li><a href="internetsettings.html">Internet settings</a></li>
+                            <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
+                            <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
+                            <li><a href="extrawebfiles.html">Extra web files</a></li>
+                            <li><a href="calibrationsettings.html">Calibration settings</a></li>
+                            <li class="active"><a href="noaasettings.html">NOAA settings</a></li>
+                            <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                            <li><a href="alarmsettings.html">Alarms</a></li>
+                            <li><a href="ftpnow.html">FTP Now!</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="raintodayeditor.html">Today's rain</a></li>
+                            <li><a href="diaryeditor.html">Weather Diary</a></li>
+                            <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                            <li><a href="alltimerecseditor.html">All Time Records</a></li>
+                            <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
+                            <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
+                            <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="form"></div>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-default" id="save-button" style="margin:10px;">Save Settings</button>
-                </div>
+    <div class="container">
+        <h1>NOAA Reports Settings</h1>
+        <div class="row">
+            <div class="col-md-12">
+                Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
             </div>
         </div>
-        <!-- FOOTER -->
-        <div id="footerwrap">
-            <footer class="clearfix"></footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-12">
-                        <!--<p><img src="img/logo.png" alt=""></p>-->
-                        <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
-                    </div>
-                </div><!-- /row -->
-            </div><!-- /container -->
-        </div><!-- /footerwrap -->
-    </body>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form></form>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
 </html>

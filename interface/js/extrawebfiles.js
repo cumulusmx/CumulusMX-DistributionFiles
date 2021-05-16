@@ -1,7 +1,7 @@
 /*
  * examples/full/javascript/demo.js
  *
- * Last modified: 2021/02/15 22:35:29
+ * Last modified: 2021/05/16 20:55:40
  *
  * This file is part of EditableGrid.
  * http://editablegrid.net
