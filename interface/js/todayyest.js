@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:37:04
+// Last modified: 2021/05/16 20:55:48
 
 $(document).ready(function () {
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {

@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2021/04/21 22:55:34
+// Last modified: 2021/05/09 17:10:06
 
 var chart, config, options;
 var settings = {
@@ -873,7 +873,7 @@ var doSolarRad = function (idx) {
                     valueDecimals: 0
                 },
                 visible: true,
-                color: 'rgb(255,165,0)',
+                color: settings.colours[idx],
                 fillOpacity: 0.5,
                 boostThreshold: 0,
                 zIndex: 100 - idx

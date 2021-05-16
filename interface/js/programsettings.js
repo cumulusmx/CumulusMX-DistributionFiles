@@ -1,15 +1,53 @@
-// Last modified: 2021/05/08 17:45:19
+// Last modified: 2021/05/16 20:55:09
 
 let accessMode;
 
 $(document).ready(function () {
-
-    $("#form").alpaca({
+    $("form").alpaca({
         "dataSource": "./api/settings/programdata.json",
         "optionsSource": "./api/settings/programoptions.json",
         "schemaSource": "./api/settings/programschema.json",
         //"view": "bootstrap-edit",
         "ui": "bootstrap",
+        "options": {
+            "form": {
+                "buttons": {
+                    // don't use the Submit button because that is disabled on validation errors
+                    "validate": {
+                        "title": "Save Settings",
+                        "click": function() {
+                            this.refreshValidationState(true);
+                            if (this.isValid(true)) {
+                                let json = this.getValue();
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../api/setsettings/updateprogramconfig.json",
+                                    data: {json: JSON.stringify(json)},
+                                    dataType: "text"
+                                })
+                                .done(function () {
+                                    alert("Settings updated");
+                                })
+                                .fail(function (jqXHR, textStatus) {
+                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                });
+                            } else {
+                                let firstErr = $('form').find(".has-error:first")
+                                let path = $(firstErr).attr('data-alpaca-field-path');
+                                let msg = $(firstErr).children('.alpaca-message').text();
+                                alert("Invalid value in the form: " + path + msg);
+                                if ($(firstErr).is(":visible")) {
+                                    let entry = $(firstErr).focus();
+                                    $(window).scrollTop($(entry).position().top);
+                                }
+                            }
+                        },
+                        "styles": "alpaca-form-button-submit"
+                    }
+                }
+            }
+        },
         "postRender": function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
@@ -22,32 +60,13 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             accessObj.on("change", function() {onAccessChange(this)});
-
-            $("#save-button").click(function () {
-                if (form.isValid(true)) {
-                    var json = form.getValue();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "../api/setsettings/updateprogramconfig.json",
-                        data: {json: JSON.stringify(json)},
-                        dataType: "text"
-                    })
-                    .done(function () {
-                        alert("Settings updated");
-                    })
-                    .fail(function (jqXHR, textStatus) {
-                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
-                    });
-                }
-            });
         }
     });
 });
 
 
 function addButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let span = $('span:first',this);
         if (span.length === 0)
             return;
@@ -63,7 +82,7 @@ function addButtons() {
 }
 
 function removeButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let butt = $('button:first',this);
         if (butt.length === 0)
             return;
@@ -79,7 +98,7 @@ function removeButtons() {
 }
 
 function setCollapsed() {
-    $('#form div.alpaca-container.collapse').each(function () {
+    $('form div.alpaca-container.collapse').each(function () {
         let span = $(this).siblings('legend:first').children('span:first');
         if ($(this).hasClass('in')) {
             span.attr('role', 'treeitem');

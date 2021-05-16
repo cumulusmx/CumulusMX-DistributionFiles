@@ -1,4 +1,4 @@
-﻿{
+{
     "type": "object",
     "properties": {
         "accessible": {
@@ -54,6 +54,9 @@
                         "WEEK",
                         "MONTH"
                     ]
+                },
+                "limit1min": {
+                    "type": "boolean"
                 }
             }
         },
