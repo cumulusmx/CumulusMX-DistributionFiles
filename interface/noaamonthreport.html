@@ -1,205 +1,205 @@
+<!--
+Last modified: 2021/05/16 21:05:30
+-->
 <!doctype html>
 <html lang="en">
-    <head>
-        <!--
-        Last modified: 2021/05/08 23:12:50
-        -->
-        <meta charset="utf-8">
-        <title>NOAA month report - Cumulus MX</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+<head>
+    <meta charset="utf-8">
+    <title>NOAA month report - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
 
-        <link href="css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
-        <!-- jquery -->
-        <script src="lib/jquery/jquery-latest.min.js"></script>
-        <script src="lib/jquery/jquery.tmpl.js"></script>
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Bootstrap -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- datepicker -->
-        <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-        <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- datepicker -->
+    <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
-        <!-- Custom Files -->
-        <!-- <script src="js/noaareports.js"></script> -->
+    <!-- Custom Files -->
+    <!-- <script src="js/noaareports.js"></script> -->
 
-        <link href="css/cumulus.css" rel="stylesheet">
-        <style type="text/css">
-            body {
-                padding-top: 60px;
-            }
-            .top-buffer { margin-top:40px; }
-            .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-            .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-        </style>
+    <link href="css/cumulus.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+    </style>
 
-        <script>
-            //$.fn.dataTable.ext.errMode = 'none';
-            $(document).ready(function () {
-                $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
+    <script>
+        //$.fn.dataTable.ext.errMode = 'none';
+        $(document).ready(function () {
+            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                $('#Version').text(result.Version);
+                $('#Build').text(result.Build);
+            }});
 
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                var dateStr = now.getFullYear() + '-' + (now.getMonth() + 1);
+            var now = new Date();
+            // subtract 1 day
+            now.setTime(now.getTime()-(1*24*3600000));
+            var dateStr = now.getFullYear() + '-' + (now.getMonth() + 1);
 
-                $('#datepicker').datepicker({
-                    format: "yyyy-mm",
-                    viewMode: "months",
-                    minViewMode: "months"
-                }).val(dateStr);
+            $('#datepicker').datepicker({
+                format: "yyyy-mm",
+                viewMode: "months",
+                minViewMode: "months"
+            }).val(dateStr);
 
-                load();
+            load();
+        });
+
+        function load() {
+            var date = $('#datepicker').val();
+            var year = date.split('-')[0];
+            var month = date.split('-')[1];
+            $.ajax({
+                url: 'api/reports/noaamonth?year='+year+'&month='+month
+            }).done(function(data) {
+                $('#report').text(data.join('\n'));
+            }).fail(function(jqXHR, textStatus) {
+                $('#report').text('Something went wrong! (' + textStatus + ')');
             });
+        }
 
-            function load() {
-                var date = $('#datepicker').val();
-                var year = date.split('-')[0];
-                var month = date.split('-')[1];
-                $.ajax({
-                    url: 'api/reports/noaamonth?year='+year+'&month='+month
-                }).done(function(data) {
-                    $('#report').text(data.join('\n'));
-                }).fail(function(jqXHR, textStatus) {
-                    $('#report').text('Something went wrong! (' + textStatus + ')');
-                });
-            }
-
-            function generate() {
-                var date = $('#datepicker').val();
-                var year = date.split('-')[0];
-                var month = date.split('-')[1];
-                $.ajax({
-                    url: 'api/genreports/noaamonth?year='+year+'&month='+month
-                }).done(function(data) {
-                    $('#report').text(data.join('\n'));
-                    alert("Report (Re)generated");
-                }).fail(function(jqXHR, textStatus) {
-                    $('#report').text('Something went wrong! (' + textStatus + ')');
-                });
-            }
-        </script>
-    </head>
-    <body>
-        <!-- NAVIGATION MENU -->
-        <div class="navbar-nav navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Dashboard</a></li>
-                        <li><a href="now.html">Now</a></li>
-                        <li><a href="gauges.html">Gauges</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="charts.html">Recent Charts</a></li>
-                                <li><a href="chartscompare.html">Recent SelectaChart</a></li>
-                                <li><a href="chartshistoric.html">Historic Charts</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="todayyest.html">Today/Yesterday</a></li>
-                        <li><a href="records.html">Records</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="extra.html">Station Extra sensors</a></li>
-                                <li><a href="airlink.html">AirLink sensors</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="datalogs.html">Data logs</a></li>
-                                <li><a href="extradatalogs.html">Extra data logs</a></li>
-                                <li><a href="dayfileviewer.html">Dayfile</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a href="noaamonthreport.html">NOAA Month Report</a></li>
-                                <li><a href="noaayearreport.html">NOAA Year Report</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="programsettings.html">Program settings</a></li>
-                                <li><a href="stationsettings.html">Station settings</a></li>
-                                <li><a href="internetsettings.html">Internet settings</a></li>
-                                <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
-                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
-                                <li><a href="extrawebfiles.html">Extra web files</a></li>
-                                <li><a href="calibrationsettings.html">Calibration settings</a></li>
-                                <li><a href="noaasettings.html">NOAA settings</a></li>
-                                <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                                <li><a href="alarmsettings.html">Alarms</a></li>
-                                <li><a href="ftpnow.html">FTP Now!</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="raintodayeditor.html">Today's rain</a></li>
-                                <li><a href="diaryeditor.html">Weather Diary</a></li>
-                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
-                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
-                                <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
-                                <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
-                                <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-        <!-- END NAVIGATION MENU -->
-
+        function generate() {
+            var date = $('#datepicker').val();
+            var year = date.split('-')[0];
+            var month = date.split('-')[1];
+            $.ajax({
+                url: 'api/genreports/noaamonth?year='+year+'&month='+month
+            }).done(function(data) {
+                $('#report').text(data.join('\n'));
+                alert("Report (Re)generated");
+            }).fail(function(jqXHR, textStatus) {
+                $('#report').text('Something went wrong! (' + textStatus + ')');
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
         <div class="container">
-            <h1>NOAA Monthly Report</h1>
-
-            <div class="row">
-                <div>
-                    Select month:&nbsp;<input type="text" data-date-format="yyyy-mm" id="datepicker" >
-                    <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
-                    <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="now.html">Now</a></li>
+                    <li><a href="gauges.html">Gauges</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="charts.html">Recent Charts</a></li>
+                            <li><a href="chartscompare.html">Recent SelectaChart</a></li>
+                            <li><a href="chartshistoric.html">Historic Charts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="todayyest.html">Today/Yesterday</a></li>
+                    <li><a href="records.html">Records</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="extra.html">Station Extra sensors</a></li>
+                            <li><a href="airlink.html">AirLink sensors</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="datalogs.html">Data logs</a></li>
+                            <li><a href="extradatalogs.html">Extra data logs</a></li>
+                            <li><a href="dayfileviewer.html">Dayfile</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="noaamonthreport.html">NOAA Month Report</a></li>
+                            <li><a href="noaayearreport.html">NOAA Year Report</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="programsettings.html">Program settings</a></li>
+                            <li><a href="stationsettings.html">Station settings</a></li>
+                            <li><a href="internetsettings.html">Internet settings</a></li>
+                            <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
+                            <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
+                            <li><a href="extrawebfiles.html">Extra web files</a></li>
+                            <li><a href="calibrationsettings.html">Calibration settings</a></li>
+                            <li><a href="noaasettings.html">NOAA settings</a></li>
+                            <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                            <li><a href="alarmsettings.html">Alarms</a></li>
+                            <li><a href="ftpnow.html">FTP Now!</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="raintodayeditor.html">Today's rain</a></li>
+                            <li><a href="diaryeditor.html">Weather Diary</a></li>
+                            <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                            <li><a href="alltimerecseditor.html">All Time Records</a></li>
+                            <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
+                            <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
+                            <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
 
+    <div class="container">
+        <h1>NOAA Monthly Report</h1>
+
+        <div class="row">
+            <div>
+                Select month:&nbsp;<input type="text" data-date-format="yyyy-mm" id="datepicker" >
+                <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
+                <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
+            </div>
+        </div>
+
+        <div class="row">
+                <pre id="report"></pre>
+            </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
             <div class="row">
-                    <pre id="report"></pre>
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
                 </div>
-        </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
 
-        <!-- FOOTER -->
-        <div id="footerwrap">
-            <footer class="clearfix"></footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-12">
-                        <!--<p><img src="img/logo.png" alt=""></p>-->
-                        <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
-                    </div>
-                </div><!-- /row -->
-            </div><!-- /container -->
-        </div><!-- /footerwrap -->
-
-        <div id="dialog" title="Status Message">
-                <p></p>
-        </div>
-    </body>
+    <div id="dialog" title="Status Message">
+        <p></p>
+    </div>
+</body>
 </html>

@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:36:13
+// Last modified: 2021/05/16 20:53:54
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -23,8 +23,30 @@ let alarmTranslate = {
     AlarmData: 'dataStopped',
     AlarmBattery: 'batteryLow',
     AlarmSpike: 'spike',
-    AlarmUpgrade: 'upgrade'
+    AlarmUpgrade: 'upgrade',
+    AlarmHttp: 'httpUpload',
+    AlarmMySql: 'mySqlUpload'
 };
+let alarmRevTranslate = {
+    gustAbove: ['AlarmGust'],
+    pressAbove: ['AlarmHighPress'],
+    tempAbove: ['AlarmHighTemp'],
+    pressBelow: ['AlarmLowPress'],
+    tempBelow: ['AlarmLowTemp'],
+    pressChange: ['AlarmPressDn', 'AlarmPressUp'],
+    rainAbove: ['AlarmRain'],
+    rainRateAbove: ['AlarmRainRate'],
+    contactLost: ['AlarmSensor'],
+    tempChange: ['AlarmTempDn', 'AlarmTempUp'],
+    windAbove: ['AlarmWind'],
+    dataStopped: ['AlarmData'],
+    batteryLow: ['AlarmBattery'],
+    spike: ['AlarmSpike'],
+    upgrade: ['AlarmUpgrade'],
+    httpUpload: ['AlarmHttp'],
+    mySqlUpload: ['AlarmMySql']
+};
+
 let alarmState = {
     AlarmGust: false,
     AlarmHighPress: false,
@@ -42,7 +64,9 @@ let alarmState = {
     AlarmData: false,
     AlarmBattery: false,
     AlarmSpike: false,
-    AlarmUpgrade: false
+    AlarmUpgrade: false,
+    AlarmHttp: false,
+    AlarmMySql: false
 }
 let alarmDisplay = {
     AlarmGust: 'Wind gust above',
@@ -61,7 +85,9 @@ let alarmDisplay = {
     AlarmData: 'Data Stopped',
     AlarmBattery: 'Battery Low',
     AlarmSpike: 'Data spike',
-    AlarmUpgrade: 'Upgrade available'
+    AlarmUpgrade: 'Upgrade available',
+    AlarmHttp: 'HTTP upload',
+    AlarmMySql: 'MySQL upload'
 };
 let playList = [];
 
@@ -170,22 +196,22 @@ $(document).ready(function () {
                 if ($(id).length) {
                     $(id).text(data[key]);
                 }
-            } else if (alarmSettings[alarmTranslate[key] + 'Enabled']) {
+            } else if (alarmSettings[alarmTranslate[key]].Enabled) {
                 // alarm data
                 if (data[key]) {  // alarm set
                     $(id).removeClass('indicatorOff').addClass('indicatorOn');
                     if (!alarmState[key]) {
                         // make a sound?
-                        if (alarmSettings[alarmTranslate[key] + 'SoundEnabled']) {
-                            let sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key] + 'Sound']
+                        if (alarmSettings[alarmTranslate[key]].SoundEnabled) {
+                            let sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key]].Sound;
                             playList.push(new Audio(sndFile));
                         }
-                        if (alarmSettings[alarmTranslate[key] + 'Notify']) {
+                        if (alarmSettings[alarmTranslate[key]].Notify) {
                             sendNotification = true;
                             let message = '‣ ' + alarmDisplay[key];
-                            if (alarmTranslate[key] + 'Val' in alarmSettings) {
-                                message += ' ' + alarmSettings[alarmTranslate[key] + 'Val'];
-                            }
+                            //if (alarmTranslate[key] + 'Val' in alarmSettings) {
+                                message += ' ' + alarmSettings[alarmTranslate[key]].Val;
+                            //}
                             console.log('Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
@@ -384,147 +410,31 @@ $(document).ready(function () {
             let notify = false;
 
             // save the setting for later
-            alarmSettings = data;
-            // set enabled alarm indicators to the off state
-            if (data.tempBelowEnabled) {
-                $('#AlarmLowTemp').addClass('indicatorOff');
-                if (data.tempBelowSoundEnabled) {
-                    playSnd = true;
+            alarmSettings = result.data;
+
+            $.each(result.data, function(alarm, alarmObj) {
+                let id = alarmRevTranslate[alarm];
+
+                if (alarmObj.Enabled) {
+                    id.forEach(function (item) {
+                        $('#' + item).addClass('indicatorOff');
+                    });
+                    if (alarmObj.SoundEnabled) {
+                        playSnd = true;
+                    }
+                    if (alarmObj.Notify) {
+                        notify = true;
+                    }
+                } else {
+                    id.forEach(function (item) {
+                        $('#' + item).parent().hide();
+                    });
                 }
-                if (data.tempBelowNotify) {
-                    notify = true;
-                }
-            }
-            if (data.tempAboveEnabled) {
-                $('#AlarmHighTemp').addClass('indicatorOff');
-                if (data.tempAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.tempAboveNotify) {
-                    notify = true;
-                }
-             }
-            if (data.tempChangeEnabled) {
-                $('#AlarmTempUp').addClass('indicatorOff');
-                $('#AlarmTempDn').addClass('indicatorOff');
-                if (data.tempChangeSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.tempChangeNotify) {
-                    notify = true;
-                }
-            }
-            if (data.pressBelowEnabled) {
-                $('#AlarmLowPress').addClass('indicatorOff');
-                if (data.pressBelowSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.pressBelowNotify) {
-                    notify = true;
-                }
-           }
-            if (data.pressAboveEnabled) {
-                $('#AlarmHighPress').addClass('indicatorOff');
-                if (data.pressAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.pressAboveNotify) {
-                    notify = true;
-                }
-            }
-            if (data.pressChangeEnabled) {
-                $('#AlarmPressUp').addClass('indicatorOff');
-                $('#AlarmPressDn').addClass('indicatorOff');
-                if (data.pressChangeSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.pressChangeNotify) {
-                    notify = true;
-                }
-            }
-            if (data.rainAboveEnabled) {
-                $('#AlarmRain').addClass('indicatorOff');
-                if (data.rainAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.rainAboveNotify) {
-                    notify = true;
-                }
-            }
-            if (data.rainRateAboveEnabled) {
-                $('#AlarmRainRate').addClass('indicatorOff');
-                if (data.rainRateAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.rainAboveNotify) {
-                    notify = true;
-                }
-            }
-            if (data.gustAboveEnabled) {
-                $('#AlarmGust').addClass('indicatorOff');
-                if (data.gustAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.gustAboveNotify) {
-                    notify = true;
-                }
-            }
-            if (data.windAboveEnabled) {
-                $('#AlarmWind').addClass('indicatorOff');
-                if (data.windAboveSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.windAboveNotify) {
-                    notify = true;
-                }
-            }
-            if (data.contactLostEnabled) {
-                $('#AlarmSensor').addClass('indicatorOff');
-                if (data.contactLostSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.contactLostNotify) {
-                    notify = true;
-                }
-            }
-            if (data.dataStoppedEnabled) {
-                $('#AlarmData').addClass('indicatorOff');
-                if (data.dataStoppedSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.dataStoppedNotify) {
-                    notify = true;
-                }
-            }
-            if (data.batteryLowEnabled) {
-                $('#AlarmBattery').addClass('indicatorOff');
-                if (data.batteryLowSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.batteryLowNotify) {
-                    notify = true;
-                }
-            }
-            if (data.spikeEnabled) {
-                $('#AlarmSpike').addClass('indicatorOff');
-                if (data.spikeSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.spikeNotify) {
-                    notify = true;
-                }
-            }
-            if (data.upgradeEnabled) {
-                $('#AlarmUpgrade').addClass('indicatorOff');
-                if (data.upgradeSoundEnabled) {
-                    playSnd = true;
-                }
-                if (data.upgradeNotify) {
-                    notify = true;
-                }
-            }
+            });
+
             if (playSnd) {
             }
+
             if (notify) {
                 // Request notification permission
                 function handlePermission(permission) {

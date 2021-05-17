@@ -1,666 +1,651 @@
+<!--
+Last modified: 2021/05/16 21:04:25
+-->
 <!doctype html>
 <html lang="en">
-    <head>
-        <!--
-        Last modified: 2021/05/08 23:18:21
-        -->
-        <meta charset="utf-8">
-        <title>Extra sensors - Cumulus MX</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+<head>
+    <meta charset="utf-8">
+    <title>Extra sensors - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
 
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/main.css" rel="stylesheet">
-        <link href="css/font-style.css" rel="stylesheet">
-        <link href="css/table.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-style.css" rel="stylesheet">
+    <link href="css/table.css" rel="stylesheet">
 
-        <!-- jquery -->
-        <script src="lib/jquery/jquery-latest.min.js"></script>
-        <script src="lib/jquery/jquery.tmpl.js"></script>
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
 
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <script src="lib/datatables/datatables.min.js"></script>
+    <script src="lib/datatables/datatables.min.js"></script>
 
-        <script src="js/extrasensors.js"></script>
+    <script src="js/extrasensors.js"></script>
 
-        <link href="css/cumulus.css" rel="stylesheet">
-        <style>
-            .left   {text-align:left;}
-            .center {text-align:center;}
-            .right  {text-align:right;}
-        </style>
-    </head>
-    <body>
-        <!-- NAVIGATION MENU -->
-        <div class="navbar-nav navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Dashboard</a></li>
-                        <li><a href="now.html">Now</a></li>
-                        <li><a href="gauges.html">Gauges</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="charts.html">Recent Charts</a></li>
-                                <li><a href="chartscompare.html">Recent SelectaChart</a></li>
-                                <li><a href="chartshistoric.html">Historic Charts</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="todayyest.html">Today/Yesterday</a></li>
-                        <li><a href="records.html">Records</a></li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a href="extra.html">Station Extra sensors</a></li>
-                                <li><a href="airlink.html">AirLink sensors</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="datalogs.html">Data logs</a></li>
-                                <li><a href="extradatalogs.html">Extra data logs</a></li>
-                                <li><a href="dayfileviewer.html">Dayfile</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
-                                <li><a href="noaayearreport.html">NOAA Year Report</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="programsettings.html">Program settings</a></li>
-                                <li><a href="stationsettings.html">Station settings</a></li>
-                                <li><a href="internetsettings.html">Internet settings</a></li>
-                                <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
-                                <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
-                                <li><a href="extrawebfiles.html">Extra web files</a></li>
-                                <li><a href="calibrationsettings.html">Calibration settings</a></li>
-                                <li><a href="noaasettings.html">NOAA settings</a></li>
-                                <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                                <li><a href="alarmsettings.html">Alarms</a></li>
-                                <li><a href="ftpnow.html">FTP Now!</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="raintodayeditor.html">Today's rain</a></li>
-                                <li><a href="diaryeditor.html">Weather Diary</a></li>
-                                <li><a href="currentcondeditor.html">Current Conditions</a></li>
-                                <li><a href="alltimerecseditor.html">All Time Records</a></li>
-                                <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
-                                <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
-                                <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-        <!-- END NAVIGATION MENU -->
-
+    <link href="css/cumulus.css" rel="stylesheet">
+    <style>
+        .left   {text-align:left;}
+        .center {text-align:center;}
+        .right  {text-align:right;}
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
         <div class="container">
-             <div class="row top-buffer">
-                <div class="col-md-12">
-                <h1>Extra Sensors</h1>
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="now.html">Now</a></li>
+                    <li><a href="gauges.html">Gauges</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="charts.html">Recent Charts</a></li>
+                            <li><a href="chartscompare.html">Recent SelectaChart</a></li>
+                            <li><a href="chartshistoric.html">Historic Charts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="todayyest.html">Today/Yesterday</a></li>
+                    <li><a href="records.html">Records</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="extra.html">Station Extra sensors</a></li>
+                            <li><a href="airlink.html">AirLink sensors</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="datalogs.html">Data logs</a></li>
+                            <li><a href="extradatalogs.html">Extra data logs</a></li>
+                            <li><a href="dayfileviewer.html">Dayfile</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
+                            <li><a href="noaayearreport.html">NOAA Year Report</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="programsettings.html">Program settings</a></li>
+                            <li><a href="stationsettings.html">Station settings</a></li>
+                            <li><a href="internetsettings.html">Internet settings</a></li>
+                            <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
+                            <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
+                            <li><a href="extrawebfiles.html">Extra web files</a></li>
+                            <li><a href="calibrationsettings.html">Calibration settings</a></li>
+                            <li><a href="noaasettings.html">NOAA settings</a></li>
+                            <li><a href="mysqlsettings.html">MySQL settings</a></li>
+                            <li><a href="alarmsettings.html">Alarms</a></li>
+                            <li><a href="ftpnow.html">FTP Now!</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="raintodayeditor.html">Today's rain</a></li>
+                            <li><a href="diaryeditor.html">Weather Diary</a></li>
+                            <li><a href="currentcondeditor.html">Current Conditions</a></li>
+                            <li><a href="alltimerecseditor.html">All Time Records</a></li>
+                            <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
+                            <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
+                            <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
+
+    <div class="container">
             <div class="row top-buffer">
+            <div class="col-md-12">
+            <h1>Extra Sensors</h1>
+            </div>
+        </div>
+        <div class="row top-buffer">
 
-                <!-- TEMPERATURE BLOCK -->
-                <div class="col-md-4">
-
-                    <table id="TempTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Temperature</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
+            <!-- TEMPERATURE BLOCK -->
+            <div class="col-md-4">
+                <table id="TempTable" style="width:100%">
+                    <thead>
                         <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="TempSensor1">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
+                            <th>&nbsp;Temperature</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="TempSensor2">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="TempSensor3">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="TempSensor4">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="TempSensor5">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="TempSensor6">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="TempSensor7">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="TempSensor8">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;9&nbsp;</td>
-                            <td><span id="TempSensor9">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;10&nbsp;</td>
-                            <td><span id="TempSensor10">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-
-                    </table>
-                </div>
-
-                <!-- HUMIDITY BLOCK-->
-                <div class="col-md-4">
-
-                    <table id="HumTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Humidity</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="HumSensor1">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="HumSensor2">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="HumSensor3">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="HumSensor4">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="HumSensor5">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="HumSensor6">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="HumSensor7">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="HumSensor8">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;9&nbsp;</td>
-                            <td><span id="HumSensor9">--</span></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;10&nbsp;</td>
-                            <td><span id="HumSensor10">--</span></td>
-                            <td>%</td>
-                        </tr>
-
-                    </table>
-                </div>
-
-
-                <!-- DEW POINT BLOCK-->
-                <div class="col-md-4">
-                    <table id="DewTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Dew Point</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="DewSensor1">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="DewSensor2">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="DewSensor3">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="DewSensor4">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="DewSensor5">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="DewSensor6">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="DewSensor7">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="DewSensor8">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;9&nbsp;</td>
-                            <td><span id="DewSensor9">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;10&nbsp;</td>
-                            <td><span id="DewSensor10">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-
-                    </table>
-                </div>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="TempSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="TempSensor2">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="TempSensor3">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="TempSensor4">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="TempSensor5">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="TempSensor6">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="TempSensor7">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="TempSensor8">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;9&nbsp;</td>
+                        <td><span id="TempSensor9">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;10&nbsp;</td>
+                        <td><span id="TempSensor10">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                </table>
             </div>
 
-            <div class="row top-buffer">
+            <!-- HUMIDITY BLOCK-->
+            <div class="col-md-4">
+                <table id="HumTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Humidity</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="HumSensor1">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="HumSensor2">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="HumSensor3">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="HumSensor4">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="HumSensor5">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="HumSensor6">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="HumSensor7">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="HumSensor8">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;9&nbsp;</td>
+                        <td><span id="HumSensor9">--</span></td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;10&nbsp;</td>
+                        <td><span id="HumSensor10">--</span></td>
+                        <td>%</td>
+                    </tr>
 
-                <!-- SOIL TEMP BLOCK -->
-                <div class="col-md-4">
-
-                    <table id="SoilTempTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Soil Temperature</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="SoilTempSensor1">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="SoilTempSensor2">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="SoilTempSensor3">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="SoilTempSensor4">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="SoilTempSensor5">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="SoilTempSensor6">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="SoilTempSensor7">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="SoilTempSensor8">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;9&nbsp;</td>
-                            <td><span id="SoilTempSensor9">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;10&nbsp;</td>
-                            <td><span id="SoilTempSensor11">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;11&nbsp;</td>
-                            <td><span id="SoilTempSensor11">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;12&nbsp;</td>
-                            <td><span id="SoilTempSensor13">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;13&nbsp;</td>
-                            <td><span id="SoilTempSensor13">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;14&nbsp;</td>
-                            <td><span id="SoilTempSensor15">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;15&nbsp;</td>
-                            <td><span id="SoilTempSensor15">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;16&nbsp;</td>
-                            <td><span id="SoilTempSensor16">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- SOIL MOISTURE BLOCK-->
-                <div class="col-md-4">
-                    <table id="SoilMoistureTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Soil Moisture</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="SoilMoistureSensor1">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="SoilMoistureSensor2">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="SoilMoistureSensor3">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="SoilMoistureSensor4">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="SoilMoistureSensor5">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="SoilMoistureSensor6">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="SoilMoistureSensor7">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="SoilMoistureSensor8">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;9&nbsp;</td>
-                            <td><span id="SoilMoistureSensor9">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;10&nbsp;</td>
-                            <td><span id="SoilMoistureSensor10">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;11&nbsp;</td>
-                            <td><span id="SoilMoistureSensor11">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;12&nbsp;</td>
-                            <td><span id="SoilMoistureSensor12">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;13&nbsp;</td>
-                            <td><span id="SoilMoistureSensor13">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;14&nbsp;</td>
-                            <td><span id="SoilMoistureSensor14">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;15&nbsp;</td>
-                            <td><span id="SoilMoistureSensor15">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;16&nbsp;</td>
-                            <td><span id="SoilMoistureSensor16">--</span></td>
-                            <td>cb</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- AIR QUALITY BLOCK -->
-                <div class="col-md-4">
-
-                    <table id="AirQualityTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Air Quality</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <br>
-                    <table id="CO2Table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;CO<sub>2</sub> Sensor</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+                </table>
             </div>
 
-            <div class="row top-buffer">
+            <!-- DEW POINT BLOCK-->
+            <div class="col-md-4">
+                <table id="DewTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Dew Point</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="DewSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="DewSensor2">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="DewSensor3">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="DewSensor4">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="DewSensor5">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="DewSensor6">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="DewSensor7">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="DewSensor8">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;9&nbsp;</td>
+                        <td><span id="DewSensor9">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;10&nbsp;</td>
+                        <td><span id="DewSensor10">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
 
-                <!-- USER TEMPS BLOCK -->
-                <div class="col-md-4">
-
-                    <table id="UserTempTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;User Temperature</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Sensor&nbsp;1&nbsp;</td>
-                            <td><span id="UserTempSensor1">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;2&nbsp;</td>
-                            <td><span id="UserTempSensor2">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;3&nbsp;</td>
-                            <td><span id="UserTempSensor3">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;4&nbsp;</td>
-                            <td><span id="UserTempSensor4">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;5&nbsp;</td>
-                            <td><span id="UserTempSensor5">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;6&nbsp;</td>
-                            <td><span id="UserTempSensor6">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;7&nbsp;</td>
-                            <td><span id="UserTempSensor7">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sensor&nbsp;8&nbsp;</td>
-                            <td><span id="UserTempSensor8">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- LEAF TEMP/WETNESS BLOCK-->
-                <div class="col-md-4">
-                    <table id="LeafTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Leaf Temp/Wetness</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>Temp&nbsp;1&nbsp;</td>
-                            <td><span id="LeafTempSensor1">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Temp&nbsp;2&nbsp;</td>
-                            <td><span id="LeafTempSensor2">--</span></td>
-                            <td><span class="TempUnit">&deg;C</span></td>
-                        </tr>
-                        <tr>
-                            <td>Wetness&nbsp;1&nbsp;</td>
-                            <td><span id="LeafWetnessSensor1">--</span></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Wetness&nbsp;2&nbsp;</td>
-                            <td><span id="LeafWetnessSensor2">--</span></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Wetness&nbsp;3&nbsp;</td>
-                            <td><span id="LeafWetnessSensor3">--</span></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Wetness&nbsp;4&nbsp;</td>
-                            <td><span id="LeafWetnessSensor4">--</span></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- LIGHTNING BLOCK-->
-                <div class="col-md-4">
-                    <table id="LightningTable" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;Lightning</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-
+                </table>
             </div>
-
         </div>
 
+        <div class="row top-buffer">
+            <!-- SOIL TEMP BLOCK -->
+            <div class="col-md-4">
+                <table id="SoilTempTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Soil Temperature</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="SoilTempSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="SoilTempSensor2">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="SoilTempSensor3">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="SoilTempSensor4">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="SoilTempSensor5">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="SoilTempSensor6">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="SoilTempSensor7">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="SoilTempSensor8">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;9&nbsp;</td>
+                        <td><span id="SoilTempSensor9">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;10&nbsp;</td>
+                        <td><span id="SoilTempSensor11">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;11&nbsp;</td>
+                        <td><span id="SoilTempSensor11">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;12&nbsp;</td>
+                        <td><span id="SoilTempSensor13">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;13&nbsp;</td>
+                        <td><span id="SoilTempSensor13">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;14&nbsp;</td>
+                        <td><span id="SoilTempSensor15">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;15&nbsp;</td>
+                        <td><span id="SoilTempSensor15">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;16&nbsp;</td>
+                        <td><span id="SoilTempSensor16">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- SOIL MOISTURE BLOCK-->
+            <div class="col-md-4">
+                <table id="SoilMoistureTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Soil Moisture</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="SoilMoistureSensor1">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="SoilMoistureSensor2">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="SoilMoistureSensor3">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="SoilMoistureSensor4">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="SoilMoistureSensor5">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="SoilMoistureSensor6">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="SoilMoistureSensor7">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="SoilMoistureSensor8">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;9&nbsp;</td>
+                        <td><span id="SoilMoistureSensor9">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;10&nbsp;</td>
+                        <td><span id="SoilMoistureSensor10">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;11&nbsp;</td>
+                        <td><span id="SoilMoistureSensor11">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;12&nbsp;</td>
+                        <td><span id="SoilMoistureSensor12">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;13&nbsp;</td>
+                        <td><span id="SoilMoistureSensor13">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;14&nbsp;</td>
+                        <td><span id="SoilMoistureSensor14">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;15&nbsp;</td>
+                        <td><span id="SoilMoistureSensor15">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;16&nbsp;</td>
+                        <td><span id="SoilMoistureSensor16">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- AIR QUALITY BLOCK -->
+            <div class="col-md-4">
+                <table id="AirQualityTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Air Quality</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+                <br>
+                <table id="CO2Table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;CO<sub>2</sub> Sensor</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
 
-        <div id="footerwrap">
-            <footer class="clearfix"></footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-12">
-                        <!--<p><img src="img/logo.png" alt=""></p>-->
-                        <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
-                    </div>
-                </div><!-- /row -->
-            </div><!-- /container -->
-        </div><!-- /footerwrap -->
+        <div class="row top-buffer">
+            <!-- USER TEMPS BLOCK -->
+            <div class="col-md-4">
+                <table id="UserTempTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;User Temperature</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="UserTempSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;2&nbsp;</td>
+                        <td><span id="UserTempSensor2">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;3&nbsp;</td>
+                        <td><span id="UserTempSensor3">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;4&nbsp;</td>
+                        <td><span id="UserTempSensor4">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;5&nbsp;</td>
+                        <td><span id="UserTempSensor5">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;6&nbsp;</td>
+                        <td><span id="UserTempSensor6">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;7&nbsp;</td>
+                        <td><span id="UserTempSensor7">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sensor&nbsp;8&nbsp;</td>
+                        <td><span id="UserTempSensor8">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                </table>
+            </div>
 
-    </body>
+            <!-- LEAF TEMP/WETNESS BLOCK-->
+            <div class="col-md-4">
+                <table id="LeafTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Leaf Temp/Wetness</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Temp&nbsp;1&nbsp;</td>
+                        <td><span id="LeafTempSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Temp&nbsp;2&nbsp;</td>
+                        <td><span id="LeafTempSensor2">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Wetness&nbsp;1&nbsp;</td>
+                        <td><span id="LeafWetnessSensor1">--</span></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Wetness&nbsp;2&nbsp;</td>
+                        <td><span id="LeafWetnessSensor2">--</span></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Wetness&nbsp;3&nbsp;</td>
+                        <td><span id="LeafWetnessSensor3">--</span></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Wetness&nbsp;4&nbsp;</td>
+                        <td><span id="LeafWetnessSensor4">--</span></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
 
+            <!-- LIGHTNING BLOCK-->
+            <div class="col-md-4">
+                <table id="LightningTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;Lightning</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
 </html>

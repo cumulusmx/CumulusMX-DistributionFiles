@@ -1,16 +1,68 @@
-// Last modified: 2021/05/08 17:46:45
+// Last modified: 2021/05/16 20:55:23
 
 let StashedStationId;
 let accessMode;
 
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
-    $("#form").alpaca({
+    $("form").alpaca({
         "dataSource": "./api/settings/stationdata.json",
         "optionsSource": "./api/settings/stationoptions.json",
         "schemaSource": "./api/settings/stationschema.json",
         "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
+        "options": {
+            "form": {
+                "buttons": {
+                    // don't use the Submit button because that is disabled on validation errors
+                    "validate": {
+                        "title": "Save Settings",
+                        "click": function() {
+                            this.refreshValidationState(true);
+                            if (this.isValid(true)) {
+                                let form = $("form").alpaca("get");
+                                let stationIdObj = form.getControlByPath("general/stationtype");
+                                let stationId = stationIdObj.getValue();
+
+                                if (stationId == -1) {
+                                    alert("You have not selected a station type");
+                                    return;
+                                }
+                                if (stationId != StashedStationId) {
+                                    alert("You have changed the Station type, you must restart Cumulus MX");
+                                    StashedStationId = stationId;
+                                }
+
+                                let json = this.getValue();
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../api/setsettings/updatestationconfig.json",
+                                    data: {json: JSON.stringify(json)},
+                                    dataType: "text"
+                                })
+                                .done(function () {
+                                    alert("Settings updated");
+                                })
+                                .fail(function (jqXHR, textStatus) {
+                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                });
+                            } else {
+                                let firstErr = $('form').find(".has-error:first")
+                                let path = $(firstErr).attr('data-alpaca-field-path');
+                                let msg = $(firstErr).children('.alpaca-message').text();
+                                alert("Invalid value in the form: " + path + msg);
+                                if ($(firstErr).is(":visible")) {
+                                    let entry = $(firstErr).focus();
+                                    $(window).scrollTop($(entry).position().top);
+                                }
+                            }
+                        },
+                        "styles": "alpaca-form-button-submit"
+                    }
+                }
+            }
+        },
         "postRender": function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
@@ -28,7 +80,7 @@ $(document).ready(function () {
 
             // On changing the station type, propogate down to sub-sections
             stationIdObj.on("change", function () {
-                let form = $("#form").alpaca("get");
+                let form = $("form").alpaca("get");
                 let stationid = this.getValue();
                 form.childrenByPropertyId["stationid"].setValue(stationid);
                 form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
@@ -37,7 +89,7 @@ $(document).ready(function () {
 
             // On changing the Davis VP connection type, propogate down to advanced settings
             form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].on("change", function () {
-                let form = $("#form").alpaca("get");
+                let form = $("form").alpaca("get");
                 let conntype = this.getValue();
                 form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(conntype);
                 form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].refresh();
@@ -52,47 +104,12 @@ $(document).ready(function () {
             // Set the inital value of Davis advanced conntype
             let conntype = form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].getValue();
             form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(+conntype);
-
-            $("#save-button").click(function () {
-                if (form.isValid(true)) {
-                    let stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
-                    let stationId = stationIdObj.getValue();
-
-                    if (stationId == -1) {
-                        alert("You have not selected a station type");
-                        return;
-                    }
-                    if (stationId != StashedStationId) {
-                        alert("You have changed the Station type, you must restart Cumulus MX");
-                        StashedStationId = stationId;
-                    }
-
-                    let json = form.getValue();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "../api/setsettings/updatestationconfig.json",
-                        data: {json: JSON.stringify(json)},
-                        dataType: "text"
-                    })
-                    .done(function () {
-                        alert("Settings updated");
-                    })
-                    .fail(function (jqXHR, textStatus) {
-                        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
-                    });
-                } else {
-                    alert("Invalid value somewhere on the form!");
-                    this.focus();
-                    return;
-                }
-            });
         }
     });
 });
 
 function addButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let span = $('span:first',this);
         if (span.length === 0)
             return;
@@ -108,7 +125,7 @@ function addButtons() {
 }
 
 function removeButtons() {
-    $('#form legend').each(function () {
+    $('form legend').each(function () {
         let butt = $('button:first',this);
         if (butt.length === 0)
             return;
@@ -124,7 +141,7 @@ function removeButtons() {
 }
 
 function setCollapsed() {
-    $('#form div.alpaca-container.collapse').each(function () {
+    $('form div.alpaca-container.collapse').each(function () {
         let span = $(this).siblings('legend:first').children('span:first');
         if ($(this).hasClass('in')) {
             span.attr('role', 'treeitem');

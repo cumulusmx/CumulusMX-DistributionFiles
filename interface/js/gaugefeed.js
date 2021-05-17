@@ -1,4 +1,4 @@
-// Last modified: 2021/02/15 22:34:57
+// Last modified: 2021/05/16 20:54:40
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
