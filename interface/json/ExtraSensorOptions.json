@@ -165,7 +165,7 @@
                             "helper": "Disabled puts the device in \"It's raining\" mode"
                         },
                         "tipSize": {
-                            "helper": "The tip size in the units Cumulus tois configured to use for rain"
+                            "helper": "The tip size in the units Cumulus is configured to use for rain"
                         },
                         "dtrMode": {
                             "rightLabel": "Use DTR/DSR mode",

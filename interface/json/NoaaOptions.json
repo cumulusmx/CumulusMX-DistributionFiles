@@ -1,4 +1,4 @@
-{
+﻿{
     "fields": {
         "accessible": {
             "fieldClass": "hideme"
@@ -50,6 +50,10 @@
                 "dotdecimal": {
                     "rightLabel": "Use a 'dot' decimal point",
                     "helper": "Overrides your local locale setting for decimal points and always uses a dot decimal"
+                },
+                "minmaxavg": {
+                    "rightLabel": "Use (max+min)/2 mean temperatures",
+                    "helper": "The default is it use integrated mean temperatures, enabling this setting uses the traditional method based on max and min temperatures"
                 }
             }
         },
@@ -57,18 +61,37 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
-                "autoftp": {
+                "autotransfer": {
                     "rightLabel": "Auto FTP NOAA report files",
                     "helper": "Enabling this means your NOAA reports will be FTP'd to the folder below after they are created during the daily rollover"
                 },
-                "ftpdirectory": {
+                "dstfolder": {
                     "helpers": [
                         "You can specify a different folder from the default FTP folder if you wish to up the reports to a different location",
                         "Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings FTP folder",
                         "Paths entered here are relative to the FTP root folder"
                     ],
                     "dependencies": {
-                        "autoftp": true
+                        "autotransfer": true
+                    }
+                }
+            }
+        },
+        "copy": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "autotransfer": {
+                    "rightLabel": "Auto Copy NOAA report files",
+                    "helper": "Enabling this means your NOAA reports will be copied to the folder below after they are created during the daily rollover"
+                },
+                "dstfolder": {
+                    "helpers": [
+                        "You can specify a different folder from the default local copy folder if you wish to up the reports to a different location",
+                        "Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings Local Copy destination folder"
+                    ],
+                    "dependencies": {
+                        "autotransfer": true
                     }
                 }
             }
@@ -80,13 +103,13 @@
                 "heatingthreshold": {
                     "helpers": [
                         "The base temperature which is to be used to calculate heating demand as heating degree days",
-                        "Default = 65 &deg;F / 18.3 &deg;C"
+                        "Default = 65°F / 18.3°C"
                     ]
                 },
                 "coolingthreshold": {
                     "helpers": [
                         "The base temperature which is to be used to calculate chilling demand as cooling degree days",
-                        "Default = 65 &deg;F / 18.3 &deg;C"
+                        "Default = 65°F / 18.3°C"
                     ]
                 },
                 "maxtempcomp1": {

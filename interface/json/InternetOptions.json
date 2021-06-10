@@ -1,4 +1,4 @@
-{
+﻿{
     "fields": {
         "accessible": {
             "fieldClass": "hideme"
@@ -7,8 +7,30 @@
             "collapsible":true,
             "collapsed": true,
             "fields": {
+                "localcopy": {
+                    "rightLabel": "Enable file copy of standard files",
+                    "helpers": [
+                        "Rather than using FTP simply copy the standard web files to another folder.",
+                        "Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
+                        "It can be used in conjunction with FTP."
+                    ]
+                },
+                "localcopyfolder": {
+                    "helper": "Enter the folder name to which you wish to copy the standard files",
+                    "placeholder": "Destination path with trailing folder delimiter",
+                    "dependencies": {
+                        "localcopy": true
+                    }
+                },
+                "enabled": {
+                    "rightLabel": "Enable FTP connections",
+                    "helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
+                },
                 "hostname": {
-                    "helper": "Enter the host name of the remote FTP server. Leaving this blank suppresses all FTP activities."
+                    "helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "sslftp": {
                     "type": "select",
@@ -19,10 +41,16 @@
                         "2 - Use SSH for FTP (SFTP)"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "Select the protocol required by your web host"
+                    "helper": "Select the protocol required by your web host",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "ftpport": {
-                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22"
+                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "sshAuth": {
                     "type": "select",
@@ -45,16 +73,42 @@
                     }
                 },
                 "username": {
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "password": {
-                    "type": "password"
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
-                "forumurl": {
-                    "type": "url"
-                },
-                "webcamurl": {
-                    "type": "url",
-                    "helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+                "general": {
+                    "collapsible":true,
+                    "collapsed": true,
+                    "fields": {
+                        "ftprename": {
+                            "rightLabel": "FTP rename",
+                            "helpers": [
+                                "Use this if your FTP server supports it (most do)",
+                                "It minimises the time the file will be unavailable to your web server"
+                            ]
+                        },
+                        "ftpdelete": {
+                            "rightLabel": "Delete before upload",
+                            "helpers": [
+                                "Use this only if your FTP server requires it (most do not)",
+                                "It deletes the destination file before uploading the new version"
+                            ]
+                        },
+                        "utf8encode": {
+                            "rightLabel": "UTF-8 encoding",
+                            "helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
+                        }
+                    },
+                    "dependencies": {
+                        "enabled": true
+                    }
                 },
                 "advanced": {
                     "collapsible":true,
@@ -95,7 +149,8 @@
                         }
                     },
                     "dependencies": {
-                        "sslftp": [0,1]
+                        "sslftp": [0,1],
+                        "enabled": true
                     }
                 }
             }
@@ -219,18 +274,18 @@
                     "collapsed": true,
                     "fields": {
                         "enabled": {
-                            "rightLabel": "Enable Realtime",
-                            "helper": "Start the realtime timer so that realtime actions can take place"
+                            "rightLabel": "Enable Real time",
+                            "helper": "Start the real time timer so that real time actions can take place"
                         },
                         "realtimeinterval": {
-                            "helper": "Interval between realtime updates in seconds",
+                            "helper": "Interval between real time updates in seconds",
                             "dependencies": {
                                 "enabled": true
                             }
                         },
                         "enablerealtimeftp": {
-                            "rightLabel": "Enable realtime FTP",
-                            "helper": "Establish the realtime FTP connection so that FTP uploads can take place at the realtime interval",
+                            "rightLabel": "Enable real time FTP",
+                            "helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
                             "dependencies": {
                                 "enabled": true
                             }
@@ -251,30 +306,6 @@
                                 "enabled": true
                             },
                             "helpers": ["Select which standard files are to be created and uploaded every real-time interval"]
-                        }
-                    }
-                },
-                "general": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "ftprename": {
-                            "rightLabel": "FTP rename",
-                            "helpers": [
-                                "Use this if your FTP server supports it (most do)",
-                                "It minimises the time the file will be unavailable to your web serevr"
-                            ]
-                        },
-                        "ftpdelete": {
-                            "rightLabel": "Delete before upload",
-                            "helpers": [
-                                "Use this only if your FTP server requires it (most do not)",
-                                "It deletes the destination file before uploading the new version"
-                            ]
-                        },
-                        "utf8encode": {
-                            "rightLabel": "UTF-8 encoding",
-                            "helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
                         }
                     }
                 }
@@ -355,7 +386,7 @@
                     "helper": "Parameters for the above program or command"
                 },
                 "realtimeprogram": {
-                    "helper": "A program or command to be run at each realtime interval"
+                    "helper": "A program or command to be run at each real time interval"
                 },
                 "realtimeprogramparams": {
                     "helper": "Parameters for the above program or command"
@@ -394,19 +425,6 @@
                         "enabled": {
                             "rightLabel": "Enabled"
                         },
-                        "retained": {
-                            "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be available to clients",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "topic": {
-                            "helper": "Enter the topic name for these messages",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
                         "template": {
                             "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages",
                             "dependencies": {
@@ -421,21 +439,8 @@
                         "enabled": {
                             "rightLabel": "Enabled"
                         },
-                        "retained": {
-                            "rightLabel": "Message retained on server",
-                            "helper": "The broker stores the last retained message and the corresponding QoS for the topic. Enabling this means stale data may be available to clients",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
                         "time": {
                             "helper": "Enter the time in seconds between sending messages",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "topic": {
-                            "helper": "Enter the topic name for these messages",
                             "dependencies": {
                                 "enabled": true
                             }
@@ -476,12 +481,38 @@
                     "dependencies": {
                         "includemoonimage": true
                     }
+                },
+                "copyimage": {
+                    "rightLabel": "Copy Moon image file",
+                    "helper": "Select this to have the Moon image file copied to a destination of your choice",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "copydest": {
+                    "helper": "Set the folder and filename to use for your locally copied image file",
+                    "dependencies": {
+                        "copyimage": true
+                    }
                 }
             }
         },
         "proxies": {
             "collapsible":true,
             "collapsed": true
+        },
+        "misc": {
+            "collapsible":true,
+            "collapsed": true,
+            "fields": {
+                "forumurl": {
+                    "type": "url"
+                },
+                "webcamurl": {
+                    "type": "url",
+                    "helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+                }
+            }
         }
     }
 }

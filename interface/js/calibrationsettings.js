@@ -1,12 +1,12 @@
-// Last modified: 2021/05/16 20:53:32
+// Last modified: 2021/06/09 21:44:21
 
 let accessMode;
 
 $(document).ready(function() {
     $("form").alpaca({
-        "dataSource": "../api/settings/calibrationdata.json",
-        "optionsSource": "../api/settings/calibrationoptions.json",
-        "schemaSource": "../api/settings/calibrationschema.json",
+        "dataSource": "./api/settings/calibrationdata.json",
+        "optionsSource": "./json/CalibrationOptions.json",
+        "schemaSource": "./json/CalibrationSchema.json",
         "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
         "options": {

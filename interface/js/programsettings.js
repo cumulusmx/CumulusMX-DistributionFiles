@@ -1,12 +1,12 @@
-// Last modified: 2021/05/16 20:55:09
+// Last modified: 2021/06/09 21:45:36
 
 let accessMode;
 
 $(document).ready(function () {
     $("form").alpaca({
         "dataSource": "./api/settings/programdata.json",
-        "optionsSource": "./api/settings/programoptions.json",
-        "schemaSource": "./api/settings/programschema.json",
+        "optionsSource": "./json/ProgramOptions.json",
+        "schemaSource": "./json/ProgramSchema.json",
         //"view": "bootstrap-edit",
         "ui": "bootstrap",
         "options": {

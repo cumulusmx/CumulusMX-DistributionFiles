@@ -1,12 +1,12 @@
-// Last modified: 2021/05/16 20:54:55
+// Last modified: 2021/06/09 21:45:22
 
 let accessMode;
 
 $(document).ready(function () {
     $("form").alpaca({
-        "dataSource": "../api/settings/mysqldata.json",
-        "optionsSource": "../api/settings/mysqloptions.json",
-        "schemaSource": "../api/settings/mysqlschema.json",
+        "dataSource": "./api/settings/mysqldata.json",
+        "optionsSource": "./json/MySqlOptions.json",
+        "schemaSource": "./json/MySqlSchema.json",
         "ui": "bootstrap",
         "options": {
             "form": {

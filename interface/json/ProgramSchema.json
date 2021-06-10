@@ -5,7 +5,7 @@
             "type": "boolean"
         },
         "startup": {
-            "title": "Program Start-up Options",
+            "title": "Start-up Options",
             "type": "object",
             "properties": {
                 "startuphostping": {
@@ -29,8 +29,8 @@
                 }
             }
         },
-        "options": {
-            "title": "Program General Options",
+        "logging": {
+            "title": "Logging Options",
             "type": "object",
             "properties": {
                 "debuglogging": {
@@ -44,8 +44,17 @@
                 },
                 "emaillogging": {
                     "type": "boolean"
-                },
+                }
+            }
+        },
+        "options": {
+            "title": "General Options",
+            "type": "object",
+            "properties": {
                 "stopsecondinstance": {
+                    "type": "boolean"
+                },
+                "listwebtags": {
                     "type": "boolean"
                 }
             }

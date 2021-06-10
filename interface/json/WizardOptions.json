@@ -1,0 +1,450 @@
+{
+    "fields":{
+        "location": {
+            "fields": {
+                "sitename": {
+                    "type": "text",
+                    "helper": "A short name for your weather station. This will be used in headings and reports etc"
+                },
+                "description": {
+                    "type": "text",
+                    "helper": "A longer description of your weather station. This will be used to add additional information to the web pages"
+                },
+                "latitude": {
+                    "helper": "Enter your latitude as a decimal value"
+                },
+                "longitude": {
+                    "helper": "Enter your longitude as a decimal value (-ve = West, +ve = East)"
+                },
+                "altitude": {
+                    "helper": "Enter the elevation of your weather station above sea level. This is used for pressure calculations so get it as accurate as you can"
+                }
+            }
+        },
+
+        "units": {
+            "fields": {
+                "temp": {
+                    "type": "select",
+                    "removeDefaultNone": true,
+                    "sort": false,
+                    "optionLabels": [
+                        "Celsius",
+                        "Fahrenheit"
+                    ]
+                },
+                "wind": {
+                    "type": "select",
+                    "removeDefaultNone": true,
+                    "sort": false,
+                    "optionLabels": [
+                        "Metres per second (m/s)",
+                        "Miles per hour (mph)",
+                        "Kilometres per hour (km/h)",
+                        "Knots (kts)"
+                    ]
+                },
+                "pressure": {
+                    "type": "select",
+                    "removeDefaultNone": true,
+                    "sort": false,
+                    "optionLabels": [
+                        "Milli-bar (mbar)",
+                        "Hectopascal (hPa)",
+                        "Inches of mercury (inHg)"
+                    ]
+                },
+                "rain": {
+                    "type": "select",
+                    "removeDefaultNone": true,
+                    "sort": false,
+                    "optionLabels": [
+                        "Millimetres",
+                        "Inches"
+                    ]
+                }
+            }
+        },
+
+        "station": {
+            "fields": {
+                "stationtype": {
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        " Select Station",
+                        "Davis Vantage Pro",
+                        "Davis Vantage Pro2/Vue",
+                        "Oregon Scientific WMR-928",
+                        "Oregon Scientific WM-918",
+                        "EasyWeather",
+                        "Fine Offset",
+                        "LaCrosse WS2300",
+                        "Fine Offset with Solar Sensors",
+                        "Oregon Scientific WMR100",
+                        "Oregon Scientific WMR200",
+                        "Instromet",
+                        "Davis WeatherLink Live",
+                        "Ecowitt GW1000"
+                    ],
+                    "removeDefaultNone": true
+                },
+                "stationmodel": {
+                    "type": "text",
+                    "helper": "A descriptive name for your station type, this will default to the station type if blank. You can change this to whatever you like"
+                },
+
+                "davisvp2": {
+                    "fields": {
+                        "conntype": {
+                            "type": "select",
+                            "optionLabels": [
+                                "Serial",
+                                "TCP/IP"
+                            ],
+                            "removeDefaultNone": true
+                        },
+                        "comportname": {
+                            "helper": "Your station serial port (real or virtual)",
+                            "dependencies": {
+                                "conntype": 0
+                            }
+                        },
+                        "tcpsettings": {
+                            "fields": {
+                                "ipaddress": {
+                                    "type": "ipv4"
+                                },
+                                "disconperiod": {
+                                    "helper": "Period to disconnect once a minute from IP loggers to allow them to upload to WeatherLink.com. Time in seconds"
+                                }
+                            },
+                            "dependencies": {
+                                "conntype": 2
+                            }
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": [0, 1]
+                    }
+                },
+
+                "daviswll": {
+                    "fields": {
+                        "network": {
+                            "autoDiscover": {
+                                "helper": "Enable auto-discovery of your WLL devices IP address - do not enable if you have more than one device"
+                            },
+                            "ipaddress": {
+                                "type": "ipv4",
+                                "helpers": [
+                                    "Enter the IP address of your device if not using auto-discovery",
+                                    "This will be populated for you if auto-discovery is successful"
+                                ]
+                            }
+                        },
+                        "primary": {
+                            "fields": {
+                                "wind": {
+                                    "type": "select",
+                                    "sort": false,
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Select the ISS transmitter ID for your Wind sensor"
+                                },
+                                "temphum": {
+                                    "type": "select",
+                                    "sort": false,
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+                                },
+                                "rain": {
+                                    "type": "select",
+                                    "sort": false,
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Select the ISS transmitter ID for your Rain sensor"
+                                },
+                                "solar": {
+                                    "type": "select",
+                                    "sort": false,
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+                                },
+                                "uv": {
+                                    "type": "select",
+                                    "sort": false,
+                                    "removeDefaultNone": true,
+                                    "optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+                                    "helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+                                }
+                            }
+                        },
+                        "api": {
+                            "fields": {
+                                "apiKey": {
+                                    "helpers": [
+                                        "Enter your WeatherLink.com APIv2 key",
+                                        "Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
+                                    ]
+                                },
+                                "apiSecret": {
+                                    "helpers": [
+                                        "Enter your WeatherLink.com APIv2 secret",
+                                        "Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
+                                    ]
+                                },
+                                "apiStationId": {
+                                    "helpers": [
+                                        "Enter the station id used for your WLL device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
+                                        "Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": 11
+                    }
+                },
+
+                "gw1000": {
+                    "fields": {
+                        "autoDiscover": {
+                            "rightLabel": "Auto-Discovery",
+                            "helper": "Enable auto-discovery of your GW-1000 devices IP address - do not enable if you have more than one device"
+                        },
+                        "ipaddress": {
+                            "type": "ipv4",
+                            "helpers": [
+                                "Enter the IP address of your device if not using auto-discovery",
+                                "This will be populated for you if auto-discovery is successful"
+                            ]
+                        },
+                        "macaddress": {
+                            "helpers": [
+                                "Populated by Cumulus when using auto-discovery.",
+                                "Do not edit unless you change your GW-1000 device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+                            ]
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": 12
+                    }
+                },
+
+                "fineoffset": {
+                    "fields": {
+                        "syncreads": {
+                            "helper": "Attempts to synchronise console reads to avoid clashing with the console writing the data"
+                        },
+                        "readavoid": {
+                            "helpers": [
+                                "The time span around the synchronised read to avoid reading from the console.",
+                                "The default 3 seconds means do not read from  3 secs before to 3 secs after the expected write time.",
+                                 "Time in seconds"
+                                ]
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": [5, 7]
+                    }
+                },
+
+                "easyw": {
+                    "fields": {
+                        "interval": {
+                            "helpers": ["How often to read the EasyWeather data file in minutes"]
+                        },
+                        "filename": {
+                            "helpers": ["Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"]
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": 4
+                    }
+                },
+
+                "imet": {
+                    "fields": {
+                        "comportname": {
+                            "helper": "Enter the serial port name via a serial port (real or virtual)"
+                        },
+                        "baudrate": {
+                            "removeDefaultNone": true,
+                            "helper": "Serial port baud rate in bps"
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": 10
+                    }
+                },
+
+                "wmr928": {
+                    "fields": {
+                        "comportname": {
+                            "helper": "Enter the serial port name via a serial port (real or virtual)"
+                        }
+                    },
+                    "dependencies": {
+                        "stationtype": [2, 3]
+                    }
+                }
+            }
+        },
+
+        "logs": {
+            "fields": {
+                "loginterval": {
+                    "sort": false,
+                    "optionLabels": [
+                        "1 minute",
+                        "5 minutes",
+                        "10 minutes",
+                        "15 minutes",
+                        "20 minutes",
+                        "30 minutes"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "Frequency of Cumulus log entries - set your station to the same"
+                },
+                "logrollover": {
+                    "fields": {
+                        "time": {
+                            "removeDefaultNone": true
+                        },
+                        "summer10am": {
+                            "dependencies": {
+                                "time": "9am"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "internet": {
+            "fields": {
+                "localcopy": {
+                    "helpers": [
+                        "Rather than using FTP simply copy the standard web files to another folder.",
+                        "Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
+                        "It can be used in conjunction with FTP."
+                    ]
+                },
+                "localcopyfolder": {
+                    "helper": "Enter the folder name to which you wish to copy the standard files",
+                    "placeholder": "Destination path with trailing folder delimiter",
+                    "dependencies": {
+                        "localcopy": true
+                    }
+                },
+                "enabled": {
+                    "helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
+                },
+                "hostname": {
+                    "helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "sslftp": {
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "0 - FTP (plain old FTP)",
+                        "1 - Use SSL/TLS for FTP (FTPS)",
+                        "2 - Use SSH for FTP (SFTP)"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "Select the protocol required by your web host",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "ftpport": {
+                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "sshAuth": {
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "Password",
+                        "Pre-shared key",
+                        "Password or pre-shared key"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "Select the authentication method for SFTP connections",
+                    "dependencies": {
+                        "sslftp": 2
+                    }
+                },
+                "pskFile": {
+                    "helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
+                    "dependencies": {
+                        "sshAuth": ["psk","password_psk"]
+                    }
+                },
+                "username": {
+                    "dependencies": {
+                        "enabled": true
+                    }
+                },
+                "password": {
+                    "type": "password",
+                    "dependencies": {
+                        "enabled": true
+                    }
+                }
+            }
+        },
+
+        "website": {
+            "fields": {
+                "interval": {
+                    "fields": {
+                        "enabled": {
+                            "helpers": ["Enable the update interval timer so normal interval actions can take place"]
+                        },
+                        "autoupdate": {
+                            "helper": "Select this to have Cumulus upload FTP files at the normal update interval",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "ftpinterval": {
+                            "helper": "Interval between normal updates in minutes",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        }
+                    }
+                },
+                "realtime": {
+                    "fields": {
+                        "enabled": {
+                            "helper": "Start the real time timer so that any real time actions can take place"
+                        },
+                        "enablerealtimeftp": {
+                            "helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        },
+                        "realtimeinterval": {
+                            "helper": "Interval between real time updates in seconds",
+                            "dependencies": {
+                                "enabled": true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

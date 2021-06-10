@@ -1,16 +1,15 @@
 <!--
-Last modified: 2021/06/09 21:51:54
+Last modified: 2021/06/09 21:52:11
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Cumulus MX</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>3rd party settings - Cumulus MX</title>
+    <title>First Time Wizard - Cumulus MX</title>
 
-    <link href="css/font-style.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
     <!-- menu -->
@@ -31,11 +30,17 @@ Last modified: 2021/06/09 21:51:54
     <script src="lib/alpaca/alpaca.min.js"></script>
 
     <!-- Custom Files -->
-    <script src="js/thirdpartysettings.js"></script>
+    <script src="js/wizard.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
 
     <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         .help-block {
             font-size: 12px;
             padding-left: 20px;
@@ -89,9 +94,6 @@ Last modified: 2021/06/09 21:51:54
             color: #ff0500;
             border-color: #ca2e2b;
         }
-        .col-sm-offset-3 {
-            margin-left: 5%;
-        }
     </style>
 
     <script>
@@ -123,17 +125,11 @@ Last modified: 2021/06/09 21:51:54
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Third Party Upload Settings</h1>
-        <div class="row">
-            <div class="col-md-12">
-                Click on sections marked  &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
-            </div>
-        </div>
+        <h1>First Time Setup Wizard</h1>
 
         <div class="row">
             <div class="col-md-12">
                 <form></form>
-            </div>
         </div>
     </div>
     <!-- FOOTER -->

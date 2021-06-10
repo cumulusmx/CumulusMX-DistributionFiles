@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/05/07 14:14:36
+ *  Last modified: 2021/05/28 12:52:43
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
@@ -48,7 +48,7 @@ $(document).ready(function() {
             // The start and end years may be short, so no point in checking months that are out of range
             let monSt, monEnd;
             if (y == startYear || y == endYear) {
-                monSt = y == startYear ? startMon : 1;
+                monSt = y == startYear ? startMonth : 1;
                 monEnd = y == endYear ? endMonth : 12;
             } else {
                 monSt = 1;

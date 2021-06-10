@@ -2,7 +2,7 @@
  *  File:         demo_table.css
  *  CVS:          $Id$
  *  Created:      Tue May 12 06:47:22 BST 2009
- *  Last modified: 2021/05/16 20:52:32
+ *  Last modified: 2021/06/10 12:01:44
  *  Description:  CSS descriptions for DataTables demo pages
  *  Author:       Allan Jardine
  *  Language:     CSS
@@ -38,14 +38,14 @@ table thead tr {
     height: 30px;
 }
 table thead th {
-    //border-right: 1px solid #ccc;
+    /* border-right: 1px solid #ccc; */
     color: #b2c831;
     font-size: 16px;
 }
-//table thead th:last-of-type { border-right: none; }
+/* table thead th:last-of-type { border-right: none; } */
 table tbody {
     border-top: 1px solid #bbb;
-    //border-bottom: 1px solid #bbb;
+    /* border-bottom: 1px solid #bbb; */
 }
 table tr.odd { background-color: #4f4f4f; }
 table tr.even { background-color: #3f3f3f; }
@@ -800,9 +800,7 @@ div.box {
     width:200px;
     color: #787878;
     text-align: center;
-    filter: alpha(opacity:95);
-    KHTMLOpacity: 0.95;
-    MozOpacity: 0.95;
+    filter: opacity(95%);
     opacity: 0.95;
 }
 

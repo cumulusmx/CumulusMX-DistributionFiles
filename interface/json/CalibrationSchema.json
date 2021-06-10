@@ -1,4 +1,4 @@
-{
+﻿{
     "type": "object",
     "properties": {
         "accessible": {
@@ -109,7 +109,7 @@
                     "type": "number"
                 },
                 "outdoortemp": {
-                    "title": "Outdoor temperature (C)",
+                    "title": "Outdoor temperature (°C)",
                     "type": "number"
                 },
                 "humidity": {
@@ -135,15 +135,15 @@
             "title": "Limits",
             "properties": {
                 "temphigh": {
-                    "title": "Max temp (&deg;C)",
+                    "title": "Max temp (°C)",
                     "type": "number"
                 },
                 "templow": {
-                    "title": "Min temp (&deg;C)",
+                    "title": "Min temp (°C)",
                     "type": "number"
                 },
                 "dewhigh": {
-                    "title": "Max dew point (&deg;C)",
+                    "title": "Max dew point (°C)",
                     "type": "number"
                 },
                 "presshigh": {

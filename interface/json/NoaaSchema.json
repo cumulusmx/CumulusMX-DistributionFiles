@@ -1,4 +1,4 @@
-{
+﻿{
     "type": "object",
     "properties": {
         "accessible": {
@@ -36,7 +36,7 @@
         },
         "options": {
             "type": "object",
-            "title": "Report Format Options",
+            "title": "Report Options",
             "properties": {
                 "timeformat": {
                     "title": "Time format",
@@ -47,6 +47,9 @@
                 },
                 "dotdecimal": {
                     "type": "boolean"
+                },
+                "minmaxavg": {
+                    "type": "boolean"
                 }
             }
         },
@@ -54,15 +57,30 @@
             "type": "object",
             "title": "FTP Options",
             "properties": {
-                "autoftp": {
+                "autotransfer": {
                     "type": "boolean"
                 },
-                "ftpdirectory": {
-                    "title": "FTP directory"
+                "dstfolder": {
+                    "title": "FTP folder"
                 }
             },
             "dependencies": {
-                "ftpdirectory": ["autoftp"]
+                "dstfolder": ["autotransfer"]
+            }
+        },
+        "copy": {
+            "type": "object",
+            "title": "Local Copy Options",
+            "properties": {
+                "autotransfer": {
+                    "type": "boolean"
+                },
+                "dstfolder": {
+                    "title": "Local copy folder"
+                }
+            },
+            "dependencies": {
+                "dstfolder": ["autotransfer"]
             }
         },
         "thresholds": {

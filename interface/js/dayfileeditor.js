@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:54:03
+// Last modified: 2021/06/09 21:44:41
 
 $(document).ready(function() {
 
@@ -66,7 +66,8 @@ $(document).ready(function() {
     {title: "Low feels like"},
     {title: "Low feels like time"},
     {title: "High humidex"},
-    {title: "High humidex time"}
+    {title: "High humidex time"},
+    {title: "Chill hours"}
     ];
 
     var myTable = $('#dayfile').DataTable({

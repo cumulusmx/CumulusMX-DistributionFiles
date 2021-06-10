@@ -1,4 +1,4 @@
-{
+﻿{
     "type": "object",
     "properties": {
         "stationid": {
@@ -12,22 +12,7 @@
             "properties": {
                 "stationtype": {
                     "title": "Station&nbsp;type",
-                    "enum": [
-                        -1,
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11,
-                        12
-                    ],
+                    "enum": [-1,0,1,2,3,4,5,6,7,8,9,10,11,12],
                     "required": true
                 },
                 "stationmodel": {
@@ -36,14 +21,7 @@
                 },
                 "loginterval": {
                     "title": "Log&nbsp;interval",
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                    ],
+                    "enum": [0,1,2,3,4,5],
                     "required": true
                 },
                 "logrollover": {
@@ -59,7 +37,6 @@
                             "required": true
                         },
                         "summer10am": {
-                            "title": "",
                             "type": "boolean",
                             "dependencies": "time"
                         }
@@ -71,37 +48,22 @@
                     "properties": {
                         "wind": {
                             "title": "Wind",
-                            "enum": [
-                                0,
-                                1,
-                                2,
-                                3
-                            ],
+                            "enum": [0,1,2,3],
                             "required": true
                         },
                         "pressure": {
                             "title": "Pressure",
-                            "enum": [
-                                0,
-                                1,
-                                2
-                            ],
+                            "enum": [0,1,2],
                             "required": true
                         },
                         "temp": {
                             "title": "Temperature",
-                            "enum": [
-                                0,
-                                1
-                            ],
+                            "enum": [0,1],
                             "required": true
                         },
                         "rain": {
                             "title": "Rain",
-                            "enum": [
-                                0,
-                                1
-                            ],
+                            "enum": [0,1],
                             "required": true
                         },
                         "advanced": {
@@ -266,6 +228,11 @@
                     "properties": {
                         "recsbegandate": {
                             "type": "string"
+                        },
+                        "recstimeout": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 9999
                         }
                     }
                 }
@@ -281,10 +248,7 @@
                     "properties": {
                         "conntype": {
                             "title": "Type",
-                            "enum": [
-                                0,
-                                2
-                            ]
+                            "enum": [0,2]
                         },
                         "comportname": {
                             "title": "Serial port name",
@@ -689,7 +653,7 @@
                 "interval": {
                     "title": "File Read Interval",
                     "type":"number",
-                    "minimum": 0
+                    "minimum": 1
                 },
                 "filename": {
                     "title": "Filename",
@@ -745,15 +709,17 @@
                             "title": "Clock sync hour",
                             "enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
                         },
-                        "updatepointer": {
+                        "updatelogpointer": {
                             "type": "boolean"
                         },
                         "waittime": {
+                            "title": "Command wait time",
                             "type":"integer",
                             "minimum": 0,
                             "maximum": 2000
                         },
                         "readdelay": {
+                            "title": "Command delay time",
                             "type":"integer",
                             "minimum": 0,
                             "maximum": 10000
@@ -832,6 +798,28 @@
                             "type": "integer",
                             "minimum": 1,
                             "maximum": 120
+                        },
+                        "maxwind": {
+                            "title": "Maximum wind speed",
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 9999
+                        },
+                        "recordtimeout": {
+                            "title": "Record set timeout",
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 999
+                        },
+                        "snowdepthhour": {
+                            "title": "Snow depth hour",
+                            "enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+                        },
+                        "raindaythreshold": {
+                            "title": "Rain day threshold",
+                            "type": "number",
+                            "minimum": -1,
+                            "maximum": 1
                         }
                     }
                 },
@@ -929,20 +917,7 @@
                 },
                 "rainseasonstart": {
                     "title": "Start of rainfall season",
-                    "enum": [
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11,
-                        12
-                    ]
+                    "enum": [1,2,3,4,5,6,7,8,9,10,11,12]
                 }
             }
         },
@@ -994,6 +969,22 @@
                     "type": "number",
                     "minimum": 0,
                     "maximum": 70
+                }
+            }
+        },
+        "ChillHrs": {
+            "title": "Chill Hours",
+            "type": "object",
+            "properties": {
+                "threshold": {
+                    "title": "Threshold temperature",
+                    "type": "number"
+                },
+                "month": {
+                    "title": "Chill Season Starts",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
                 }
             }
         },

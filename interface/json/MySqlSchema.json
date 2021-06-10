@@ -1,4 +1,4 @@
-{
+﻿{
     "type": "object",
     "properties": {
         "accessible": {
@@ -28,13 +28,19 @@
                 }
             }
         },
-        "realtimeenabled": {
+        "updateonedit": {
+            "type": "boolean"
+        },
+        "bufferonerror": {
             "type": "boolean"
         },
         "realtime": {
             "type": "object",
             "title": "Realtime.txt upload",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "table": {
                     "title": "Table name"
                 },
@@ -58,39 +64,51 @@
                 "limit1min": {
                     "type": "boolean"
                 }
+            },
+            "dependencies": {
+                "table": ["enabled"],
+                "retentionVal": ["enabled"],
+                "retentionUnit": ["enabled"],
+                "limit1min": ["enabled"]
             }
-        },
-        "dayenabled": {
-            "type": "boolean"
         },
         "dayfile": {
             "type": "object",
             "title": "Dayfile.txt upload",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "table": {
                     "title": "Table name"
                 }
+            },
+            "dependencies": {
+                "table": ["enabled"]
             }
-        },
-        "monthenabled": {
-            "type": "boolean"
         },
         "monthly": {
             "type": "object",
             "title": "Monthly log file upload",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "table": {
                     "title": "Table name"
                 }
+            },
+            "dependencies": {
+                "table": ["enabled"]
             }
-        },
-        "custsecsenabled": {
-            "type": "boolean"
         },
         "customseconds": {
             "type": "object",
             "title": "Custom upload - seconds interval",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "command": {
                     "title": "SQL command"
                 },
@@ -98,56 +116,46 @@
                     "title": "Interval (seconds)",
                     "type": "number"
                 }
+            },
+            "dependencies": {
+                "command": ["enabled"],
+                "interval": ["enabled"]
             }
-        },
-        "custminsenabled": {
-            "type": "boolean"
         },
         "customminutes": {
             "type": "object",
             "title": "Custom upload - minutes interval",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "command": {
                     "title": "SQL command"
                 },
                 "intervalindex": {
                     "title": "Interval",
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11
-                    ]
+                    "enum": [0,1,2,3,4,5,6,7,8,9,10,11]
                 }
+            },
+            "dependencies": {
+                "command": ["enabled"],
+                "intervalindex": ["enabled"]
             }
-        },
-        "custrollenabled": {
-            "type": "boolean"
         },
         "customrollover": {
             "type": "object",
             "title": "Custom upload - at rollover",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "command": {
                     "title": "SQL command"
                 }
+            },
+            "dependencies": {
+                "command": ["enabled"]
             }
         }
-    },
-    "dependencies": {
-        "realtime": ["realtimeenabled"],
-        "dayfile": ["dayenabled"],
-        "monthly": ["monthenabled"],
-        "customseconds": ["custsecsenabled"],
-        "customminutes": ["custminsenabled"],
-        "customrollover": ["custrollenabled"]
     }
 }

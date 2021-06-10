@@ -1,6 +1,27 @@
-// Last modified: 2021/05/16 20:53:38
+// Last modified: 2021/06/07 12:42:03
 
 var chart, config;
+
+var myRanges = {
+    buttons: [{
+        count: 12,
+        type: 'hour',
+        text: '12h'
+    }, {
+        count: 24,
+        type: 'hour',
+        text: '24h'
+    }, {
+        count: 2,
+        type: 'day',
+        text: '2d'
+    }, {
+        type: 'all',
+        text: 'All'
+    }],
+    inputEnabled: false,
+    selected: 1
+};
 
 $(document).ready(function () {
     $('.btn').change(function () {
@@ -182,26 +203,7 @@ var doTemp = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -344,26 +346,7 @@ var doPress = function () {
         series: [{
                 name: 'Pressure'
             }],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -477,26 +460,7 @@ var doWindDir = function () {
                 }
             }
         ],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -592,26 +556,7 @@ var doWind = function () {
             }, {
                 name: 'Wind Gust'
         }],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -714,26 +659,7 @@ var doRain = function () {
                 yAxis: 0,
                 tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
         }],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -828,26 +754,7 @@ var doHum = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -936,26 +843,7 @@ var doSolar = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);
@@ -1442,26 +1330,7 @@ var doAirQuality = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [],
-        rangeSelector: {
-            buttons: [{
-                    count: 12,
-                    type: 'hour',
-                    text: '12h'
-                }, {
-                    count: 24,
-                    type: 'hour',
-                    text: '24h'
-                }, {
-                    count: 2,
-                    type: 'day',
-                    text: '2d'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-            inputEnabled: false,
-            selected: 1
-        }
+        rangeSelector: myRanges
     };
 
     chart = new Highcharts.StockChart(options);

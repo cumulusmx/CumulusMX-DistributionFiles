@@ -10,7 +10,7 @@
                 "enabled": {
                     "rightLabel": "Enabled",
                     "helpers": [
-                        "Twitter support is currently depreciated. It is not recommended to try using this",
+                        "Twitter support is currently deprecated. It is not recommended to try using this",
                         "This is provided for legacy users who migrated from Cumulus 1 and had used Twitter in that program"
                     ]
                 },

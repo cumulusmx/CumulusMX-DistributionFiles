@@ -1,4 +1,4 @@
-{
+﻿{
     "type": "object",
     "properties": {
         "accessible": {
@@ -8,16 +8,22 @@
             "title": "Web/FTP Site",
             "type": "object",
             "properties": {
+                "localcopy": {
+                    "type": "boolean"
+                },
+                "localcopyfolder": {
+                    "title": "Local copy destination folder path",
+                    "pattern": "^.*[\/\\\\\\\\]{1}$"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
                 "hostname": {
                     "title": "Host name"
                 },
                 "sslftp": {
                     "title": "Select the FTP Protocol to use",
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ]
+                    "enum": [0,1,2]
                 },
                 "ftpport": {
                     "title": "FTP port",
@@ -45,13 +51,20 @@
                 "password": {
                     "title": "Password"
                 },
-                "forumurl": {
-                    "title": "Forum URL",
-                    "type": "uri"
-                },
-                "webcamurl": {
-                    "title": "Webcam URL",
-                    "type": "uri"
+                "general": {
+                    "title": "General Settings",
+                    "type": "object",
+                    "properties": {
+                        "ftprename": {
+                            "type": "boolean"
+                        },
+                        "ftpdelete": {
+                            "type": "boolean"
+                        },
+                        "utf8encode": {
+                            "type": "boolean"
+                        }
+                    }
                 },
                 "advanced": {
                     "title": "Advanced Settings",
@@ -77,20 +90,28 @@
                 }
             },
             "dependencies": {
+                "localcopyfolder": ["localcopy"],
+                "hostname": ["enabled"],
+                "sslftp": ["enabled"],
+                "ftpport": ["enabled"],
                 "sshAuth": ["sslftp"],
                 "pskFile": ["sshAuth"],
-                "advanced": ["sslftp"]
+                "directory": ["enabled"],
+                "username": ["enabled"],
+                "advanced": ["sslftp"],
+                "general": ["enabled"],
+                "password": ["enabled"]
             }
         },
         "websettings": {
-            "title": "Web/FTP Settings",
+            "title": "Interval Configuration",
             "type": "object",
             "properties": {
                 "stdwebsite": {
                     "type": "boolean"
                 },
                 "interval": {
-                    "title": "Interval Settings",
+                    "title": "Normal Interval Settings",
                     "type": "object",
                     "properties": {
                         "enabled": {
@@ -124,6 +145,10 @@
                                             "ftp": {
                                                 "type": "boolean",
                                                 "title": "FTP Transfer"
+                                            },
+                                            "copy": {
+                                                "type": "boolean",
+                                                "title": "Copy"
                                             }
                                         }
                                     }
@@ -150,6 +175,10 @@
                                             "ftp": {
                                                 "type": "boolean",
                                                 "title": "FTP Transfer"
+                                            },
+                                            "copy": {
+                                                "type": "boolean",
+                                                "title": "Copy"
                                             }
                                         }
                                     }
@@ -176,6 +205,10 @@
                                             "ftp": {
                                                 "type": "boolean",
                                                 "title": "FTP Transfer"
+                                            },
+                                            "copy": {
+                                                "type": "boolean",
+                                                "title": "Copy"
                                             }
                                         }
                                     }
@@ -192,14 +225,14 @@
                     }
                 },
                 "realtime": {
-                    "title": "Realtime Settings",
+                    "title": "Real time Interval Settings",
                     "type": "object",
                     "properties": {
                         "enabled": {
                             "type": "boolean"
                         },
                         "realtimeinterval": {
-                            "title": "Realtime interval",
+                            "title": "Real time interval",
                             "type": "integer",
                             "minimum": 0
                         },
@@ -222,6 +255,10 @@
                                     "ftp": {
                                         "type": "boolean",
                                         "title": "FTP Transfer"
+                                    },
+                                    "copy": {
+                                        "type": "boolean",
+                                        "title": "Copy"
                                     }
                                 }
                             }
@@ -231,21 +268,6 @@
                         "realtimeinterval": ["enabled"],
                         "enablerealtimeftp": ["enabled"],
                         "files": ["enabled"]
-                    }
-                },
-                "general": {
-                    "title": "General Settings",
-                    "type": "object",
-                    "properties": {
-                        "ftprename": {
-                            "type": "boolean"
-                        },
-                        "ftpdelete": {
-                            "type": "boolean"
-                        },
-                        "utf8encode": {
-                            "type": "boolean"
-                        }
                     }
                 }
             }
@@ -268,13 +290,7 @@
                 },
                 "ssloption": {
                     "title": "Use SSL/TLS",
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4
-                    ]
+                    "enum": [0,1,2,3,4]
                 },
                 "authenticate": {
                     "type": "boolean"
@@ -307,10 +323,10 @@
                     "title": "Interval program parameters"
                 },
                 "realtimeprogram": {
-                    "title": "Realtime program"
+                    "title": "Real time program"
                 },
                 "realtimeprogramparams": {
-                    "title": "Realtime program parameters"
+                    "title": "Real time program parameters"
                 },
                 "dailyprogram": {
                     "title": "Daily program"
@@ -349,19 +365,11 @@
                         "enabled": {
                             "type": "boolean"
                         },
-                        "retained": {
-                            "type": "boolean"
-                        },
-                        "topic": {
-                            "title": "Topic Name"
-                        },
                         "template": {
                             "title": "Template File"
                         }
                     },
                     "dependencies": {
-                        "retained": ["enabled"],
-                        "topic": ["enabled"],
                         "template": ["enabled"]
                     }
                 },
@@ -372,25 +380,17 @@
                         "enabled": {
                             "type": "boolean"
                         },
-                        "retained": {
-                            "type": "boolean"
-                        },
                         "time": {
                             "type": "integer",
                             "minimum": 1,
                             "title": "Interval Time (secs)"
-                        },
-                        "topic": {
-                            "title": "Topic Name"
                         },
                         "template": {
                             "title": "Template File"
                         }
                     },
                     "dependencies": {
-                        "retained": ["enabled"],
                         "time": ["enabled"],
-                        "topic": ["enabled"],
                         "template": ["enabled"]
                     }
                 }
@@ -415,12 +415,20 @@
                 "ftpdest": {
                     "title": "FTP folder",
                     "type": "string"
+                },
+                "copyimage": {
+                    "type": "boolean"
+                },
+                "copydest": {
+                    "title": "Copy destination folder",
+                    "type": "string"
                 }
             },
             "dependencies": {
                 "includemoonimage": ["enabled"],
                 "size": ["enabled"],
-                "ftpdest": ["includemoonimage"]
+                "ftpdest": ["includemoonimage"],
+                "copydest": ["copyimage"]
             }
         },
         "proxies": {
@@ -448,6 +456,20 @@
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "misc": {
+            "title": "Miscellaneous",
+            "type": "object",
+            "properties": {
+                "forumurl": {
+                    "title": "Forum URL",
+                    "type": "uri"
+                },
+                "webcamurl": {
+                    "title": "Webcam URL",
+                    "type": "uri"
                 }
             }
         }

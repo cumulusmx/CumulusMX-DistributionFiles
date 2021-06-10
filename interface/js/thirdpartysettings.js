@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:55:28
+// Last modified: 2021/06/09 21:45:50
 
 let accessMode;
 
@@ -6,9 +6,9 @@ $(document).ready(function() {
     // Create the form
 
     $("form").alpaca({
-        "dataSource": "../api/settings/thirdpartydata.json",
-        "optionsSource": "../api/settings/thirdpartyoptions.json",
-        "schemaSource": "../api/settings/thirdpartyschema.json",
+        "dataSource": "./api/settings/thirdpartydata.json",
+        "optionsSource": "./json/ThirdPartyOptions.json",
+        "schemaSource": "./json/ThirdPartySchema.json",
         "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {

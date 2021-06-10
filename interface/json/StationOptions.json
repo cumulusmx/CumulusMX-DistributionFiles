@@ -1,4 +1,4 @@
-{
+﻿{
     "fields": {
         "stationid": {
             "type": "integer",
@@ -197,6 +197,13 @@
                                 "This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
                                 "You may need to alter this if for instance you import historic data in Cumulus from another source, in that case set it to the first date of your imported data."
                             ]
+                        },
+                        "recstimeout": {
+                            "label": "New record timeout (hrs)",
+                            "helpers": [
+                                "Set the time after a new record occurs that it will be automatically cleared.",
+                                "The default is 24 hours"
+                            ]
                         }
                     }
                 }
@@ -283,7 +290,7 @@
                                 "Imperial (0.01 in)"
                             ],
                             "removeDefaultNone": true,
-                            "helper": "Default is auto, the size is inferred from the units selected for the station"
+                            "helper": "Default is auto, the size is then inferred from the units selected for the station"
                         },
                         "vp1minbarupdate": {
                             "rightLabel": "Davis VP 1-minute barometer update (ForceVPBarUpdate)",
@@ -777,7 +784,7 @@
             "collapsed": true,
             "fields": {
                 "comportname": {
-                    "helper": "Only required if your station is connected via a serial port (real or virtual)"
+                    "helper": "Enter the serial port name via a serial port (real or virtual)"
                 },
                 "baudrate": {
                     "removeDefaultNone": true,
@@ -794,10 +801,10 @@
                             "helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
                         },
                         "syncclockhour": {
-                            "helper": "The hour of the day to synchronsie the station clock (Davis/Instromet only)",
+                            "helper": "The hour of the day to synchronise the station clock (Davis/Instromet only)",
                             "removeDefaultNone": true
                         },
-                        "updatepointer": {
+                        "updatelogpointer": {
                             "rightLabel": "Update logger pointer",
                             "helper": "Update the memory pointer to the last record after every 30 data reads"
                         },
@@ -825,7 +832,7 @@
             "collapsed": true,
             "fields": {
                 "comportname": {
-                    "helper": "Only required if your station is connected via a serial port (real or virtual)"
+                    "helper": "Enter the serial port name via a serial port (real or virtual)"
                 }
             },
             "dependencies": {
@@ -897,6 +904,23 @@
                         },
                         "peakgustmins": {
                             "helper": "Period of time in minutes to record the peak gust speed"
+                        },
+                        "maxwind": {
+                            "helper": "Maximum allowed wind speed in your selected units. Speeds above this will be ignored"
+                        },
+                        "recordtimeout": {
+                            "helper": "The time in hours from when a new record is set to it being reset. Default = 24"
+                        },
+                        "snowdepthhour": {
+                            "helper": "The hour of the day to start measuring snow depth values. Default = midnight (0)",
+                            "removeDefaultNone": true
+                        },
+                        "raindaythreshold": {
+                            "helpers": [
+                                "Set the amount of rainfall required for a day to be considered a 'rainy day'",
+                                "Defaults to -1, which is interpreted as 0.2 mm or 0.01 inches",
+                                "DO NOT set to zero, then every day would be counted as a rain day"
+                            ]
                         }
                     }
                 },
@@ -1019,23 +1043,23 @@
                 "starts": {
                     "helpers": [
                         "The month you want the growing season year to start",
-                        "Default: 1 = January, in Northern hemisphere / 7 = July, in Southern hemisphere"
+                        "Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
                     ]
                 },
                 "basetemp1": {
                     "helpers": [
                         "The first series base temperature which is to be used to calculate the growing degree days",
-                        "Default = 5&deg;C / 40&deg;F"
+                        "Default = 5°C / 40°F"
                     ]
                 },
                 "basetemp2": {
                     "helpers": [
                         "The second series base temperature which is to be used to calculate the growing degree days",
-                        "Default = 10 &deg;C / 50&deg;F"
+                        "Default = 10°C / 50°F"
                     ]
                 },
                 "cap30C": {
-                    "rightLabel": "Cap GDD at 30&deg;C / 86&deg;F",
+                    "rightLabel": "Cap GDD at 30°C / 86°F",
                     "helper": "Limits the maximum temperature used for the GDD to this value - most temperate crops will use this"
                 }
             }
@@ -1047,19 +1071,37 @@
                 "starts": {
                     "helpers": [
                         "The month you want the year summing to start",
-                        "Default: 1 = January, in Northern hemisphere / 7 = July, in Southern hemisphere"
+                        "Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
                     ]
                 },
                 "basetemp1": {
                     "helpers": [
                         "The first series base temperature which is subtracted from the annual temperature sum",
-                        "Default = 5&deg;C / 40&deg;F"
+                        "Default = 5°C / 40°F"
                     ]
                 },
                 "basetemp2": {
                     "helpers": [
                         "The second series base temperature which is subtracted from the annual temperature sum",
-                        "Default = 10 &deg;C / 50&deg;F"
+                        "Default = 10°C / 50°F"
+                    ]
+                }
+            }
+        },
+        "ChillHrs": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "threshold": {
+                    "helpers": [
+                        "Temperature below which Cumulus will start counting chill hours. In your native units",
+                        "Defaults: 7°C / 45°F"
+                    ]
+                },
+                "month": {
+                    "helpers": [
+                        "The month of the year to start the chill hours season",
+                        "Default: 10 (October), in Northern hemisphere / 4 (April), in Southern hemisphere"
                     ]
                 }
             }
