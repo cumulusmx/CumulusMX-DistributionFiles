@@ -1,518 +1,580 @@
 ﻿{
-    "fields": {
-        "accessible": {
-            "fieldClass": "hideme"
-        },
-        "website": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "localcopy": {
-                    "rightLabel": "Enable file copy of standard files",
-                    "helpers": [
-                        "Rather than using FTP simply copy the standard web files to another folder.",
-                        "Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
-                        "It can be used in conjunction with FTP."
-                    ]
-                },
-                "localcopyfolder": {
-                    "helper": "Enter the folder name to which you wish to copy the standard files",
-                    "placeholder": "Destination path with trailing folder delimiter",
-                    "dependencies": {
-                        "localcopy": true
-                    }
-                },
-                "enabled": {
-                    "rightLabel": "Enable FTP connections",
-                    "helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
-                },
-                "hostname": {
-                    "helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "sslftp": {
-                    "type": "select",
-                    "sort": false,
-                    "optionLabels": [
-                        "0 - FTP (plain old FTP)",
-                        "1 - Use SSL/TLS for FTP (FTPS)",
-                        "2 - Use SSH for FTP (SFTP)"
-                    ],
-                    "removeDefaultNone": true,
-                    "helper": "Select the protocol required by your web host",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "ftpport": {
-                    "helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "sshAuth": {
-                    "type": "select",
-                    "sort": false,
-                    "optionLabels": [
-                        "Password",
-                        "Pre-shared key",
-                        "Password or pre-shared key"
-                    ],
-                    "removeDefaultNone": true,
-                    "helper": "Select the authentication method for SFTP connections",
-                    "dependencies": {
-                        "sslftp": 2
-                    }
-                },
-                "pskFile": {
-                    "helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
-                    "dependencies": {
-                        "sshAuth": ["psk","password_psk"]
-                    }
-                },
-                "username": {
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "general": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "ftprename": {
-                            "rightLabel": "FTP rename",
-                            "helpers": [
-                                "Use this if your FTP server supports it (most do)",
-                                "It minimises the time the file will be unavailable to your web server"
-                            ]
-                        },
-                        "ftpdelete": {
-                            "rightLabel": "Delete before upload",
-                            "helpers": [
-                                "Use this only if your FTP server requires it (most do not)",
-                                "It deletes the destination file before uploading the new version"
-                            ]
-                        },
-                        "utf8encode": {
-                            "rightLabel": "UTF-8 encoding",
-                            "helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
-                        }
-                    },
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "advanced": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "helper": "Here be dragons! Only alter these settings if you understand what they do.",
-                    "helpersPosition": "above",
-                    "fields": {
-                        "activeftp": {
-                            "rightLabel": "Active FTP/S mode",
-                            "helpers": ["Not normally required - use with caution"],
-                            "dependencies": {
-                                "ftpmode": [0,1]
-                            }
-                        },
-                        "disableftpsepsv": {
-                            "rightLabel": "Disable EPSV mode in FTP/S",
-                            "helpers": [
-                                "Not normally required - use with caution",
-                                "Extended passive mode is a newer standard of PSV. Disabling this forces PSV mode connections"
-                            ],
-                            "dependencies": {
-                                "ftpmode": [0,1]
-                            }
-                        },
-                        "disableftpsexplicit": {
-                            "rightLabel": "Disable Explicit mode in FTPS",
-                            "helpers": [
-                                "Not normally required - use with caution",
-                                "Explicit mode is the newer standard of FTPS. Disabling this forces Implicit mode connections"
-                            ],
-                            "dependencies": {
-                                "ftpmode": 1
-                            }
-                        },
-                        "ftpmode": {
-                            "type": "integer",
-                            "fieldClass": "hideme"
-                        }
-                    },
-                    "dependencies": {
-                        "sslftp": [0,1],
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "websettings": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "stdwebsite": {
-                    "rightLabel": "I want to use the supplied default web site",
-                    "helpers": [
-                        "Enabling this will automatically enable all the required options below",
-                        "You will still need to save the configuration after setting this option",
-                        "This switch setting is not saved, it is just a switch to configure the defaults for the standard web site. It overwrites any settings you may already have set"
-                    ]
-                },
-                "interval": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable web update interval",
-                            "helpers": ["Enable the update interval timer so interval actions can take place"]
-                        },
-                        "ftpinterval": {
-                            "helper": "Interval between web updates in minutes",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "autoupdate": {
-                            "rightLabel": "Enable update interval FTP",
-                            "helper": "Select this to have Cumulus enable FTP files at the web update interval",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "stdfiles": {
-                            "collapsible":true,
-                            "collapsed": true,
-                            "fields": {
-                                "files": {
-                                    "type": "table",
-                                    "showActionsColumn": false,
-                                    "dragAndDrop": false,
-                                    "dragRows": false,
-                                    "items": {
-                                        "fields": {
-                                            "filename": {
-                                                "readonly": true
-                                            }
-                                        }
-                                    },
-                                    "helpers": [
-                                        "Select which standard files are to be created uploaded every update interval",
-                                        "Note the websiteinfo.json file is required for the default web site and is uploaded once or when the station configuration is changed",
-                                        "Note the wxnow.txt file is created every minute, regardless of your web interval"
-                                    ]
-                                }
-                            },
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "graphfiles": {
-                            "collapsible":true,
-                            "collapsed": true,
-                            "fields": {
-                                "files": {
-                                    "type": "table",
-                                    "showActionsColumn": false,
-                                    "dragAndDrop": false,
-                                    "dragRows": false,
-                                    "items": {
-                                        "fields": {
-                                            "filename": {
-                                                "readonly": true
-                                            }
-                                        }
-                                    },
-                                    "helpers": [
-                                        "Select which graph data files are to be created uploaded every update interval",
-                                        "Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
-                                    ]
-                                }
-                            },
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "graphfileseod": {
-                            "collapsible":true,
-                            "collapsed": true,
-                            "fields": {
-                                "files": {
-                                    "type": "table",
-                                    "showActionsColumn": false,
-                                    "dragAndDrop": false,
-                                    "dragRows": false,
-                                    "items": {
-                                        "fields": {
-                                            "filename": {
-                                                "readonly": true
-                                            }
-                                        }
-                                    },
-                                    "helpers": [
-                                        "Select which graph data files are to be created uploaded at the daily rollover",
-                                        "Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
-                                    ]
-                                }
-                            },
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                },
-                "realtime": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enable Real time",
-                            "helper": "Start the real time timer so that real time actions can take place"
-                        },
-                        "realtimeinterval": {
-                            "helper": "Interval between real time updates in seconds",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "enablerealtimeftp": {
-                            "rightLabel": "Enable real time FTP",
-                            "helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "files": {
-                            "type": "table",
-                            "showActionsColumn": false,
-                            "dragAndDrop": false,
-                            "dragRows": false,
-                            "items": {
-                                "fields": {
-                                    "filename": {
-                                        "readonly": true
-                                    }
-                                }
-                            },
-                            "dependencies": {
-                                "enabled": true
-                            },
-                            "helpers": ["Select which standard files are to be created and uploaded every real-time interval"]
-                        }
-                    }
-                }
-            }
-        },
-        "emailsettings": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Enabled"
-                },
-                "server": {
-                    "helper": "The hostname (and domain) or IP address of your SMTP server",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "port": {
-                    "helper": "The SMTP port used by your SMTP server",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "ssloption": {
-                    "type": "select",
-                    "sort": false,
-                    "optionLabels": [
-                        "None",
-                        "Auto",
-                        "TLS on connect",
-                        "Start TLS",
-                        "Start TLS when available"
-                    ],
-                    "removeDefaultNone": true,
-                    "helpers": [
-                        "Select the protocol required by your email server:",
-                        "None - No SSL or TLS encryption will be used",
-                        "Auto - Cumulus decides which TLS/unencrypted options to use (default). Use this option unless you have good reason not to",
-                        "TlsOnConnect - The connection should use TLS encryption immediately" ,
-                        "StartTls - Use TLS encryption immediately. If the server does not support the STARTTLS extension then the connection will fail",
-                        "StartTlsWhenAvailable - use TLS encryption immediately, but only if the server supports the STARTTLS extension"
-                    ],
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "authenticate": {
-                    "rightLabel": "Use Authentication",
-                    "helper": "Does your SMTP server require username/password authentication",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "user": {
-                    "helper": "The username to connect to your SMTP server",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "password": {
-                    "type": "password",
-                    "helper": "The password used to authenticate with your SMTP server",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                }
-            }
-        },
-        "externalprograms": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "program": {
-                    "helper": "A program or command to be run at each web update interval"
-                },
-                "programparams": {
-                    "helper": "Parameters for the above program or command"
-                },
-                "realtimeprogram": {
-                    "helper": "A program or command to be run at each real time interval"
-                },
-                "realtimeprogramparams": {
-                    "helper": "Parameters for the above program or command"
-                },
-                "dailyprogram": {
-                    "helper": "A program or command to be run at the start of each day"
-                },
-                "dailyprogramparams": {
-                    "helper": "Parameters for the above program or command"
-                }
-            }
-        },
-        "mqtt": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "server": {
-                    "helper": "Your MQTT Server network name or IP address"
-                },
-                "port": {
-                    "helper": "Your MQTT server port (default 1883)"
-                },
-                "useTls": {
-                    "rightLabel": "Use TLS",
-                    "helper": "Enable TLS support, currently special certificates are not supported"
-                },
-                "username": {
-                    "helper": "Enter your MQTT server username - if required"
-                },
-                "password": {
-                    "helper": "Enter your MQTT server password - if required"
-                },
-                "dataUpdate": {
-                    "collapsed": true,
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enabled"
-                        },
-                        "template": {
-                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                },
-                "interval": {
-                    "collapsed": true,
-                    "fields": {
-                        "enabled": {
-                            "rightLabel": "Enabled"
-                        },
-                        "time": {
-                            "helper": "Enter the time in seconds between sending messages",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        },
-                        "template": {
-                            "helper": "Specify the name of the template file in the /mqtt folder to format the content of these messages",
-                            "dependencies": {
-                                "enabled": true
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "moonimage" :{
-            "collapsible":true,
-            "collapsed":true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Generate Moon image",
-                    "helper": "Generate a Moon image file '/web/moon.png' every hour"
-                },
-               "size": {
-                    "helper": "Set the image size in pixels",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "includemoonimage": {
-                    "rightLabel": "Upload Moon image file",
-                    "helper": "Select this to have the Moon image file uploaded to your FTP server",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "ftpdest": {
-                    "helper": "Set the folder and filename to use on your FTP server - default 'images/moon.png'",
-                    "dependencies": {
-                        "includemoonimage": true
-                    }
-                },
-                "copyimage": {
-                    "rightLabel": "Copy Moon image file",
-                    "helper": "Select this to have the Moon image file copied to a destination of your choice",
-                    "dependencies": {
-                        "enabled": true
-                    }
-                },
-                "copydest": {
-                    "helper": "Set the folder and filename to use for your locally copied image file",
-                    "dependencies": {
-                        "copyimage": true
-                    }
-                }
-            }
-        },
-        "proxies": {
-            "collapsible":true,
-            "collapsed": true
-        },
-        "misc": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "forumurl": {
-                    "type": "url"
-                },
-                "webcamurl": {
-                    "type": "url",
-                    "helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
-                }
-            }
-        }
-    }
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"website": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"localcopy": {
+					"rightLabel": "Enable file copy of standard files",
+					"helpers": [
+						"Rather than using FTP simply copy the standard web files to another folder.",
+						"Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
+						"It can be used in conjunction with FTP."
+					]
+				},
+				"localcopyfolder": {
+					"label": "Local copy destination folder path:",
+					"helper": "Enter the folder name to which you wish to copy the standard files",
+					"placeholder": "Destination path with trailing folder delimiter",
+					"dependencies": {
+						"localcopy": true
+					}
+				},
+				"enabled": {
+					"rightLabel": "Enable FTP connections",
+					"helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
+				},
+				"hostname": {
+					"label": "Host name:",
+					"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"sslftp": {
+					"label": "Select the FTP Protocol to use:",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						"0 - FTP (plain old FTP)",
+						"1 - Use SSL/TLS for FTP (FTPS)",
+						"2 - Use SSH for FTP (SFTP)"
+					],
+					"removeDefaultNone": true,
+					"helper": "Select the protocol required by your web host",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"ftpport": {
+					"label": "FTP port:",
+					"helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"sshAuth": {
+					"label": "SFTP Authentication method:",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						"Password",
+						"Pre-shared key",
+						"Password or pre-shared key"
+					],
+					"removeDefaultNone": true,
+					"helper": "Select the authentication method for SFTP connections",
+					"dependencies": {
+						"sslftp": 2
+					}
+				},
+				"pskFile": {
+					"label": "Pre-shared Private Key file for SFTP:",
+					"helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
+					"dependencies": {
+						"sshAuth": ["psk","password_psk"]
+					}
+				},
+				"directory": {
+					"label": "Remote FTP Directory:"
+				},
+				"username": {
+					"label": "Username:",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"password": {
+					"label": "Password:",
+					"type": "password",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"general": {
+					"collapsible":true,
+					"collapsed": true,
+					"fields": {
+						"ftprename": {
+							"rightLabel": "Enable FTP rename",
+							"helpers": [
+								"Use this if your FTP server supports it (most do)",
+								"It minimises the time the file will be unavailable to your web server"
+							]
+						},
+						"ftpdelete": {
+							"rightLabel": "Enable delete before upload",
+							"helpers": [
+								"Use this only if your FTP server requires it (most do not)",
+								"It deletes the destination file before uploading the new version"
+							]
+						},
+						"utf8encode": {
+							"rightLabel": "Enable UTF-8 encoding",
+							"helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
+						}
+					},
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"advanced": {
+					"collapsible":true,
+					"collapsed": true,
+					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helpersPosition": "above",
+					"fields": {
+						"activeftp": {
+							"rightLabel": "Enable Active FTP(S) mode",
+							"helpers": ["Not normally required - use with caution"],
+							"dependencies": {
+								"ftpmode": [0,1]
+							}
+						},
+						"disableftpsepsv": {
+							"rightLabel": "Disable EPSV mode in FTP(S)",
+							"helpers": [
+								"Not normally required - use with caution",
+								"Extended passive mode is a newer standard of PSV. Disabling this forces PSV mode connections"
+							],
+							"dependencies": {
+								"ftpmode": [0,1]
+							}
+						},
+						"disableftpsexplicit": {
+							"rightLabel": "Disable Explicit mode in FTPS",
+							"helpers": [
+								"Not normally required - use with caution",
+								"Explicit mode is the newer standard of FTPS. Disabling this forces Implicit mode connections"
+							],
+							"dependencies": {
+								"ftpmode": 1
+							}
+						},
+						"ftpmode": {
+							"type": "integer",
+							"fieldClass": "hideme"
+						}
+					},
+					"dependencies": {
+						"sslftp": [0,1],
+						"enabled": true
+					}
+				}
+			}
+		},
+		"websettings": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"stdwebsite": {
+					"rightLabel": "I want to use the supplied default web site",
+					"helpers": [
+						"Enabling this will automatically enable all the required options below",
+						"You will still need to save the configuration after setting this option",
+						"This switch setting is not saved, it is just a switch to configure the defaults for the standard web site. It overwrites any settings you may already have set"
+					]
+				},
+				"interval": {
+					"collapsible":true,
+					"collapsed": true,
+					"fields": {
+						"enabled": {
+							"label": "Interval:",
+							"rightLabel": "Enable the web update interval",
+							"helpers": ["Enable the update interval timer so interval actions can take place"]
+						},
+						"ftpinterval": {
+							"label": "Interval time:",
+							"helper": "Interval between web updates in minutes",
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"enableintervalftp": {
+							"label": "FTP",
+							"rightLabel": "Enable update interval FTP",
+							"helper": "Select this to have Cumulus enable FTP files at the web update interval",
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"stdfiles": {
+							"collapsible":true,
+							"collapsed": true,
+							"fields": {
+								"files": {
+									"type": "table",
+									"showActionsColumn": false,
+									"dragAndDrop": false,
+									"dragRows": false,
+									"items": {
+										"fields": {
+											"filename": {
+												"readonly": true
+											}
+										}
+									},
+									"helpers": [
+										"Select which standard files are to be created uploaded every update interval",
+										"Note the websiteinfo.json file is required for the default web site and is uploaded once or when the station configuration is changed",
+										"Note the wxnow.txt file is created every minute, regardless of your web interval"
+									]
+								}
+							},
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"graphfiles": {
+							"collapsible":true,
+							"collapsed": true,
+							"fields": {
+								"files": {
+									"type": "table",
+									"showActionsColumn": false,
+									"dragAndDrop": false,
+									"dragRows": false,
+									"items": {
+										"fields": {
+											"filename": {
+												"readonly": true
+											}
+										}
+									},
+									"helpers": [
+										"Select which graph data files are to be created uploaded every update interval",
+										"Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+									]
+								}
+							},
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"graphfileseod": {
+							"collapsible":true,
+							"collapsed": true,
+							"fields": {
+								"files": {
+									"type": "table",
+									"showActionsColumn": false,
+									"dragAndDrop": false,
+									"dragRows": false,
+									"items": {
+										"fields": {
+											"filename": {
+												"readonly": true
+											}
+										}
+									},
+									"helpers": [
+										"Select which graph data files are to be created uploaded at the daily rollover",
+										"Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+									]
+								}
+							},
+							"dependencies": {
+								"enabled": true
+							}
+						}
+					}
+				},
+				"realtime": {
+					"collapsible":true,
+					"collapsed": true,
+					"fields": {
+						"enabled": {
+							"label": "Real time:",
+							"rightLabel": "Enable Real time",
+							"helper": "Start the real time timer so that real time actions can take place"
+						},
+						"realtimeinterval": {
+							"label": "Real time interval",
+							"helper": "Interval between real time updates in seconds",
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"enablerealtimeftp": {
+							"label": "FTP:",
+							"rightLabel": "Enable real time FTP",
+							"helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"files": {
+							"type": "table",
+							"showActionsColumn": false,
+							"dragAndDrop": false,
+							"dragRows": false,
+							"items": {
+								"fields": {
+									"filename": {
+										"readonly": true
+									}
+								}
+							},
+							"dependencies": {
+								"enabled": true
+							},
+							"helpers": ["Select which standard files are to be created and uploaded every real-time interval"]
+						}
+					}
+				}
+			}
+		},
+		"emailsettings": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Enabled"
+				},
+				"server": {
+					"label": "Server Name:",
+					"helper": "The hostname (and domain) or IP address of your SMTP server",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"port": {
+					"label": "Network Port:",
+					"helper": "The SMTP port used by your SMTP server",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"ssloption": {
+					"label": "Use SSL/TLS:",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						"None",
+						"Auto",
+						"TLS on connect",
+						"Start TLS",
+						"Start TLS when available"
+					],
+					"removeDefaultNone": true,
+					"helpers": [
+						"Select the protocol required by your email server:",
+						"None - No SSL or TLS encryption will be used",
+						"Auto - Cumulus decides which TLS/unencrypted options to use (default). Use this option unless you have good reason not to",
+						"TlsOnConnect - The connection should use TLS encryption immediately" ,
+						"StartTls - Use TLS encryption immediately. If the server does not support the STARTTLS extension then the connection will fail",
+						"StartTlsWhenAvailable - use TLS encryption immediately, but only if the server supports the STARTTLS extension"
+					],
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"authenticate": {
+					"label": "Authentication:",
+					"rightLabel": "Enable server authentication",
+					"helper": "Does your SMTP server require username/password authentication",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"user": {
+					"label": "Username:",
+					"helper": "The username to connect to your SMTP server",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"password": {
+					"label": "Password:",
+					"type": "password",
+					"helper": "The password used to authenticate with your SMTP server",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"externalprograms": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"program": {
+					"label": "Interval program:",
+					"helper": "A program or command to be run at each web update interval"
+				},
+				"programparams": {
+					"label": "Interval program parameters:",
+					"helper": "Parameters for the above program or command"
+				},
+				"realtimeprogram": {
+					"label": "Real time program:",
+					"helper": "A program or command to be run at each real time interval"
+				},
+				"realtimeprogramparams": {
+					"label": "Real time program parameters:",
+					"helper": "Parameters for the above program or command"
+				},
+				"dailyprogram": {
+					"label": "Daily program:",
+					"helper": "A program or command to be run at the start of each day"
+				},
+				"dailyprogramparams": {
+					"label": "Daily program parameters:",
+					"helper": "Parameters for the above program or command"
+				}
+			}
+		},
+		"mqtt": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"server": {
+					"label": "Server Name:",
+					"helper": "Your MQTT Server network name or IP address"
+				},
+				"port": {
+					"label": "Server port:",
+					"helper": "Your MQTT server port (default 1883)"
+				},
+				"useTls": {
+					"label": "TLS:",
+					"rightLabel": "Enable TLS",
+					"helper": "Enable TLS support, currently special certificates are not supported"
+				},
+				"username": {
+					"label": "Username:",
+					"helper": "Enter your MQTT server username - if required"
+				},
+				"password": {
+					"label": "Password:",
+					"helper": "Enter your MQTT server password - if required"
+				},
+				"dataUpdate": {
+					"collapsed": true,
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable message sent when the data updates"
+						},
+						"template": {
+							"label": "Template File:",
+							"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+							"dependencies": {
+								"enabled": true
+							}
+						}
+					}
+				},
+				"interval": {
+					"collapsed": true,
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable messages sent at fixed intervals"
+						},
+						"time": {
+							"label": "Interval Time (secs):",
+							"helper": "Enter the time in seconds between sending messages",
+							"dependencies": {
+								"enabled": true
+							}
+						},
+						"template": {
+							"label": "Template File:",
+							"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+							"dependencies": {
+								"enabled": true
+							}
+						}
+					}
+				}
+			}
+		},
+		"moonimage" :{
+			"collapsible":true,
+			"collapsed":true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Generate Moon image",
+					"helper": "Generate a Moon image file '/web/moon.png' every hour"
+				},
+			   "size": {
+					"label": "Image Size:",
+					"helper": "Set the image size in pixels",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"includemoonimage": {
+					"label": "FTP file:",
+					"rightLabel": "FTP Upload Moon image file",
+					"helper": "Select this to have the Moon image file uploaded to your FTP server",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"ftpdest": {
+					"label": "FTP folder:",
+					"helper": "Set the folder and filename to use on your FTP server - default 'images/moon.png'",
+					"dependencies": {
+						"includemoonimage": true
+					}
+				},
+				"copyimage": {
+					"label": "Copy file:",
+					"rightLabel": "Copy Moon image file",
+					"helper": "Select this to have the Moon image file copied to a destination of your choice",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"copydest": {
+					"label": "Copy destination folder:",
+					"helper": "Set the folder and filename to use for your locally copied image file",
+					"dependencies": {
+						"copyimage": true
+					}
+				}
+			}
+		},
+		"proxies": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"httpproxy": {
+					"fields": {
+						"proxy": {
+							"label": "Proxy server:"
+						},
+						"port": {
+							"label": "Port number:"
+						},
+						"user": {
+							"label": "Username:"
+						},
+						"password": {
+							"label": "Password:"
+						}
+					}
+				}
+			}
+		},
+		"misc": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"forumurl": {
+					"label": "Forum URL:",
+					"type": "url"
+				},
+				"webcamurl": {
+					"label": "Webcam URL:",
+					"type": "url",
+					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+				}
+			}
+		}
+	}
 }

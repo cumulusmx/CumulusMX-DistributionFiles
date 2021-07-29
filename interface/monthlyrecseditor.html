@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:51:16
+Last modified: 2021/07/12 12:03:19
 -->
 <!doctype html>
 <html lang="en">
@@ -56,6 +56,7 @@ Last modified: 2021/06/09 21:51:16
             height: 50px;
             border-radius: 5px;
         }
+        .shade {background-color: #eef4f9}
     </style>
 </head>
 <body>
@@ -130,7 +131,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane active" id="jan">
                         <table id="month-jan" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -150,7 +151,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highTempValLogfile"></td>
                                 <td id="1-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="1-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -172,7 +173,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highDewPointValLogfile"></td>
                                 <td id="1-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="1-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -194,7 +195,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highApparentTempValLogfile"></td>
                                 <td id="1-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="1-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -216,7 +217,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highFeelsLikeValLogfile"></td>
                                 <td id="1-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="1-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -238,7 +239,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highHumidexValLogfile"></td>
                                 <td id="1-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="1-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -260,7 +261,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-lowWindChillValLogfile"></td>
                                 <td id="1-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="1-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -282,7 +283,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-lowMaxTempValLogfile"></td>
                                 <td id="1-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="1-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -304,7 +305,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-lowDailyTempRangeValLogfile"></td>
                                 <td id="1-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="1-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -326,7 +327,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-lowHumidityValLogfile"></td>
                                 <td id="1-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="1-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -348,7 +349,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-lowBarometerValLogfile"></td>
                                 <td id="1-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="1-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -370,7 +371,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highWindValLogfile"></td>
                                 <td id="1-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="1-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -392,7 +393,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highRainRateValLogfile"></td>
                                 <td id="1-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="1-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -414,7 +415,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-highDailyRainValLogfile"></td>
                                 <td id="1-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="1-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -436,7 +437,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="1-longestDryPeriodValLogfile"></td>
                                 <td id="1-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="1-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -452,7 +453,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="feb">
                         <table id="month-feb" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -472,7 +473,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highTempValLogfile"></td>
                                 <td id="2-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="2-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -494,7 +495,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highDewPointValLogfile"></td>
                                 <td id="2-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="2-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -516,7 +517,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highApparentTempValLogfile"></td>
                                 <td id="2-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="2-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -538,7 +539,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highFeelsLikeValLogfile"></td>
                                 <td id="2-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="2-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -560,7 +561,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highHumidexValLogfile"></td>
                                 <td id="2-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="2-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -582,7 +583,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-lowWindChillValLogfile"></td>
                                 <td id="2-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="2-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -604,7 +605,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-lowMaxTempValLogfile"></td>
                                 <td id="2-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="2-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -626,7 +627,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-lowDailyTempRangeValLogfile"></td>
                                 <td id="2-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="2-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -648,7 +649,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-lowHumidityValLogfile"></td>
                                 <td id="2-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="2-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -670,7 +671,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-lowBarometerValLogfile"></td>
                                 <td id="2-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="2-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -692,7 +693,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highWindValLogfile"></td>
                                 <td id="2-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="2-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -714,7 +715,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highRainRateValLogfile"></td>
                                 <td id="2-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="2-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -736,7 +737,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-highDailyRainValLogfile"></td>
                                 <td id="2-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="2-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -758,7 +759,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="2-longestDryPeriodValLogfile"></td>
                                 <td id="2-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="2-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -774,7 +775,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="mar">
                         <table id="month-mar" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -794,7 +795,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highTempValLogfile"></td>
                                 <td id="3-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="3-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -816,7 +817,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highDewPointValLogfile"></td>
                                 <td id="3-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="3-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -838,7 +839,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highApparentTempValLogfile"></td>
                                 <td id="3-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="3-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -860,7 +861,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highFeelsLikeValLogfile"></td>
                                 <td id="3-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="3-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -882,7 +883,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highHumidexValLogfile"></td>
                                 <td id="3-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="3-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -904,7 +905,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-lowWindChillValLogfile"></td>
                                 <td id="3-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="3-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -926,7 +927,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-lowMaxTempValLogfile"></td>
                                 <td id="3-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="3-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -948,7 +949,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-lowDailyTempRangeValLogfile"></td>
                                 <td id="3-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="3-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -970,7 +971,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-lowHumidityValLogfile"></td>
                                 <td id="3-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="3-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -992,7 +993,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-lowBarometerValLogfile"></td>
                                 <td id="3-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="3-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -1014,7 +1015,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highWindValLogfile"></td>
                                 <td id="3-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="3-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -1036,7 +1037,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highRainRateValLogfile"></td>
                                 <td id="3-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="3-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -1058,7 +1059,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-highDailyRainValLogfile"></td>
                                 <td id="3-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="3-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -1080,7 +1081,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="3-longestDryPeriodValLogfile"></td>
                                 <td id="3-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="3-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -1096,7 +1097,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="apr">
                         <table id="month-apr" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -1116,7 +1117,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highTempValLogfile"></td>
                                 <td id="4-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="4-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -1138,7 +1139,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highDewPointValLogfile"></td>
                                 <td id="4-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="4-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -1160,7 +1161,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highApparentTempValLogfile"></td>
                                 <td id="4-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="4-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -1182,7 +1183,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highFeelsLikeValLogfile"></td>
                                 <td id="4-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="4-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -1204,7 +1205,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highHumidexValLogfile"></td>
                                 <td id="4-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="4-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -1226,7 +1227,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-lowWindChillValLogfile"></td>
                                 <td id="4-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="4-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -1248,7 +1249,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-lowMaxTempValLogfile"></td>
                                 <td id="4-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="4-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -1270,7 +1271,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-lowDailyTempRangeValLogfile"></td>
                                 <td id="4-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="4-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -1292,7 +1293,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-lowHumidityValLogfile"></td>
                                 <td id="4-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="4-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -1314,7 +1315,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-lowBarometerValLogfile"></td>
                                 <td id="4-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="4-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -1336,7 +1337,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highWindValLogfile"></td>
                                 <td id="4-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="4-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -1358,7 +1359,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highRainRateValLogfile"></td>
                                 <td id="4-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="4-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -1380,7 +1381,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-highDailyRainValLogfile"></td>
                                 <td id="4-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="4-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -1402,7 +1403,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="4-longestDryPeriodValLogfile"></td>
                                 <td id="4-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="4-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -1418,7 +1419,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="may">
                         <table id="month-may" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -1438,7 +1439,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highTempValLogfile"></td>
                                 <td id="5-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="5-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -1460,7 +1461,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highDewPointValLogfile"></td>
                                 <td id="5-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="5-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -1482,7 +1483,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highApparentTempValLogfile"></td>
                                 <td id="5-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="5-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -1504,7 +1505,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highFeelsLikeValLogfile"></td>
                                 <td id="5-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="5-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -1526,7 +1527,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highHumidexValLogfile"></td>
                                 <td id="5-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="5-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -1548,7 +1549,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-lowWindChillValLogfile"></td>
                                 <td id="5-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="5-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -1570,7 +1571,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-lowMaxTempValLogfile"></td>
                                 <td id="5-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="5-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -1592,7 +1593,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-lowDailyTempRangeValLogfile"></td>
                                 <td id="5-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="5-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -1614,7 +1615,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-lowHumidityValLogfile"></td>
                                 <td id="5-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="5-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -1636,7 +1637,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-lowBarometerValLogfile"></td>
                                 <td id="5-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="5-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -1658,7 +1659,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highWindValLogfile"></td>
                                 <td id="5-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="5-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -1680,7 +1681,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highRainRateValLogfile"></td>
                                 <td id="5-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="5-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -1702,7 +1703,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-highDailyRainValLogfile"></td>
                                 <td id="5-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="5-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -1724,7 +1725,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="5-longestDryPeriodValLogfile"></td>
                                 <td id="5-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="5-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -1740,7 +1741,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="jun">
                         <table id="month-jun" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -1760,7 +1761,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highTempValLogfile"></td>
                                 <td id="6-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="6-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -1782,7 +1783,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highDewPointValLogfile"></td>
                                 <td id="6-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="6-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -1804,7 +1805,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highApparentTempValLogfile"></td>
                                 <td id="6-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="6-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -1826,7 +1827,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highFeelsLikeValLogfile"></td>
                                 <td id="6-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="6-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -1848,7 +1849,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highHumidexValLogfile"></td>
                                 <td id="6-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="6-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -1870,7 +1871,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-lowWindChillValLogfile"></td>
                                 <td id="6-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="6-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -1892,7 +1893,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-lowMaxTempValLogfile"></td>
                                 <td id="6-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="6-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -1914,7 +1915,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-lowDailyTempRangeValLogfile"></td>
                                 <td id="6-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="6-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -1936,7 +1937,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-lowHumidityValLogfile"></td>
                                 <td id="6-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="6-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -1958,7 +1959,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-lowBarometerValLogfile"></td>
                                 <td id="6-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="6-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -1980,7 +1981,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highWindValLogfile"></td>
                                 <td id="6-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="6-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -2002,7 +2003,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highRainRateValLogfile"></td>
                                 <td id="6-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="6-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -2024,7 +2025,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-highDailyRainValLogfile"></td>
                                 <td id="6-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="6-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -2046,7 +2047,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="6-longestDryPeriodValLogfile"></td>
                                 <td id="6-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="6-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -2062,7 +2063,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="jul">
                         <table id="month-jul" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -2082,7 +2083,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highTempValLogfile"></td>
                                 <td id="7-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="7-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -2104,7 +2105,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highDewPointValLogfile"></td>
                                 <td id="7-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="7-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -2126,7 +2127,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highApparentTempValLogfile"></td>
                                 <td id="7-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="7-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -2148,7 +2149,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highFeelsLikeValLogfile"></td>
                                 <td id="7-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="7-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -2170,7 +2171,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highHumidexValLogfile"></td>
                                 <td id="7-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="7-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -2192,7 +2193,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-lowWindChillValLogfile"></td>
                                 <td id="7-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="7-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -2214,7 +2215,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-lowMaxTempValLogfile"></td>
                                 <td id="7-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="7-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -2236,7 +2237,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-lowDailyTempRangeValLogfile"></td>
                                 <td id="7-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="7-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -2258,7 +2259,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-lowHumidityValLogfile"></td>
                                 <td id="7-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="7-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -2280,7 +2281,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-lowBarometerValLogfile"></td>
                                 <td id="7-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="7-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -2302,7 +2303,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highWindValLogfile"></td>
                                 <td id="7-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="7-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -2324,7 +2325,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highRainRateValLogfile"></td>
                                 <td id="7-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="7-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -2346,7 +2347,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-highDailyRainValLogfile"></td>
                                 <td id="7-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="7-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -2368,7 +2369,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="7-longestDryPeriodValLogfile"></td>
                                 <td id="7-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="7-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -2384,7 +2385,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="aug">
                         <table id="month-aug" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -2404,7 +2405,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highTempValLogfile"></td>
                                 <td id="8-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="8-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -2426,7 +2427,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highDewPointValLogfile"></td>
                                 <td id="8-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="8-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -2448,7 +2449,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highApparentTempValLogfile"></td>
                                 <td id="8-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="8-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -2470,7 +2471,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highFeelsLikeValLogfile"></td>
                                 <td id="8-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="8-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -2492,7 +2493,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highHumidexValLogfile"></td>
                                 <td id="8-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="8-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -2514,7 +2515,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-lowWindChillValLogfile"></td>
                                 <td id="8-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="8-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -2536,7 +2537,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-lowMaxTempValLogfile"></td>
                                 <td id="8-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="8-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -2558,7 +2559,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-lowDailyTempRangeValLogfile"></td>
                                 <td id="8-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="8-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -2580,7 +2581,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-lowHumidityValLogfile"></td>
                                 <td id="8-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="8-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -2602,7 +2603,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-lowBarometerValLogfile"></td>
                                 <td id="8-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="8-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -2624,7 +2625,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highWindValLogfile"></td>
                                 <td id="8-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="8-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -2646,7 +2647,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highRainRateValLogfile"></td>
                                 <td id="8-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="8-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -2668,7 +2669,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-highDailyRainValLogfile"></td>
                                 <td id="8-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="8-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -2690,7 +2691,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="8-longestDryPeriodValLogfile"></td>
                                 <td id="8-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="8-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -2706,7 +2707,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="sep">
                         <table id="month-sep" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -2726,7 +2727,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highTempValLogfile"></td>
                                 <td id="9-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="9-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -2748,7 +2749,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highDewPointValLogfile"></td>
                                 <td id="9-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="9-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -2770,7 +2771,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highApparentTempValLogfile"></td>
                                 <td id="9-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="9-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -2792,7 +2793,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highFeelsLikeValLogfile"></td>
                                 <td id="9-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="9-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -2814,7 +2815,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highHumidexValLogfile"></td>
                                 <td id="9-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="9-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -2836,7 +2837,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-lowWindChillValLogfile"></td>
                                 <td id="9-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="9-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -2858,7 +2859,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-lowMaxTempValLogfile"></td>
                                 <td id="9-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="9-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -2880,7 +2881,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-lowDailyTempRangeValLogfile"></td>
                                 <td id="9-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="9-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -2902,7 +2903,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-lowHumidityValLogfile"></td>
                                 <td id="9-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="9-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -2924,7 +2925,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-lowBarometerValLogfile"></td>
                                 <td id="9-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="9-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -2946,7 +2947,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highWindValLogfile"></td>
                                 <td id="9-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="9-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -2968,7 +2969,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highRainRateValLogfile"></td>
                                 <td id="9-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="9-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -2990,7 +2991,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-highDailyRainValLogfile"></td>
                                 <td id="9-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="9-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -3012,7 +3013,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="9-longestDryPeriodValLogfile"></td>
                                 <td id="9-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="9-longestWetPeriodVal" data-pk="51" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new longest wet period value"></td>
@@ -3028,7 +3029,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="oct">
                         <table id="month-oct" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -3048,7 +3049,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highTempValLogfile"></td>
                                 <td id="10-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="10-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -3070,7 +3071,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highDewPointValLogfile"></td>
                                 <td id="10-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="10-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -3093,7 +3094,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highApparentTempValLogfile"></td>
                                 <td id="10-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="10-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -3115,7 +3116,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highFeelsLikeValLogfile"></td>
                                 <td id="10-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="10-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -3137,7 +3138,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highHumidexValLogfile"></td>
                                 <td id="10-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="10-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -3159,7 +3160,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-lowWindChillValLogfile"></td>
                                 <td id="10-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="10-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -3181,7 +3182,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-lowMaxTempValLogfile"></td>
                                 <td id="10-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="10-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -3203,7 +3204,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-lowDailyTempRangeValLogfile"></td>
                                 <td id="10-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="10-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -3225,7 +3226,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-lowHumidityValLogfile"></td>
                                 <td id="10-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="10-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -3247,7 +3248,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-lowBarometerValLogfile"></td>
                                 <td id="10-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="10-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -3269,7 +3270,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highWindValLogfile"></td>
                                 <td id="10-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="10-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -3291,7 +3292,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highRainRateValLogfile"></td>
                                 <td id="10-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="10-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -3313,7 +3314,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-highDailyRainValLogfile"></td>
                                 <td id="10-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="10-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -3335,7 +3336,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="10-longestDryPeriodValLogfile"></td>
                                 <td id="10-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="10-longestWetPeriodVal" data-pk="51" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new longest wet period value"></td>
@@ -3351,7 +3352,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="nov">
                         <table id="month-nov" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -3371,7 +3372,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highTempValLogfile"></td>
                                 <td id="11-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="11-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -3393,7 +3394,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highDewPointValLogfile"></td>
                                 <td id="11-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="11-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -3416,7 +3417,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highApparentTempValLogfile"></td>
                                 <td id="11-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="11-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -3438,7 +3439,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highFeelsLikeValLogfile"></td>
                                 <td id="11-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="11-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -3460,7 +3461,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highHumidexValLogfile"></td>
                                 <td id="11-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="11-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -3482,7 +3483,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-lowWindChillValLogfile"></td>
                                 <td id="11-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="11-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -3504,7 +3505,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-lowMaxTempValLogfile"></td>
                                 <td id="11-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="11-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -3526,7 +3527,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-lowDailyTempRangeValLogfile"></td>
                                 <td id="11-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="11-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -3548,7 +3549,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-lowHumidityValLogfile"></td>
                                 <td id="11-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="11-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -3570,7 +3571,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-lowBarometerValLogfile"></td>
                                 <td id="11-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="11-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -3592,7 +3593,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highWindValLogfile"></td>
                                 <td id="11-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="11-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -3614,7 +3615,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highRainRateValLogfile"></td>
                                 <td id="11-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="11-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -3636,7 +3637,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-highDailyRainValLogfile"></td>
                                 <td id="11-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="11-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -3658,7 +3659,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="11-longestDryPeriodValLogfile"></td>
                                 <td id="11-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="11-longestWetPeriodVal" data-pk="51" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new longest wet period value"></td>
@@ -3674,7 +3675,7 @@ Last modified: 2021/06/09 21:51:16
                     <div class="tab-pane" id="dec">
                         <table id="month-dec" class="display dataTable no-footer" cellspacing="0" width="100%"
                             role="grid" style="width: 100%;">
-                            <tr>
+                            <tr style="background-color: #b2c2dc;">
                                 <th>Record</th>
                                 <th>Value</th>
                                 <th>Timestamp</th>
@@ -3694,7 +3695,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highTempValLogfile"></td>
                                 <td id="12-highTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low temperature</td>
                                 <td id="12-lowTempVal" data-pk="3" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low temp value"></td>
@@ -3716,7 +3717,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highDewPointValLogfile"></td>
                                 <td id="12-highDewPointTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low dew point</td>
                                 <td id="12-lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low dew point value"></td>
@@ -3739,7 +3740,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highApparentTempValLogfile"></td>
                                 <td id="12-highApparentTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low apparent temperature</td>
                                 <td id="12-lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low apparent temp value"></td>
@@ -3761,7 +3762,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highFeelsLikeValLogfile"></td>
                                 <td id="12-highFeelsLikeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Low feels like temperature</td>
                                 <td id="12-lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new low feels like value"></td>
@@ -3783,7 +3784,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highHumidexValLogfile"></td>
                                 <td id="12-highHumidexTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High heat index</td>
                                 <td id="12-highHeatIndexVal" data-pk="15" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high heat index value"></td>
@@ -3805,7 +3806,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-lowWindChillValLogfile"></td>
                                 <td id="12-lowWindChillTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High minimum temperature</td>
                                 <td id="12-highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high minimum temp value"></td>
@@ -3827,7 +3828,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-lowMaxTempValLogfile"></td>
                                 <td id="12-lowMaxTempTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily temp range</td>
                                 <td id="12-highDailyTempRangeVal" data-pk="23" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new high daily temp range value"></td>
@@ -3849,7 +3850,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-lowDailyTempRangeValLogfile"></td>
                                 <td id="12-lowDailyTempRangeTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High humidity</td>
                                 <td id="12-highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high humidity value"></td>
@@ -3871,7 +3872,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-lowHumidityValLogfile"></td>
                                 <td id="12-lowHumidityTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High barometer</td>
                                 <td id="12-highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high pressure value"></td>
@@ -3893,7 +3894,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-lowBarometerValLogfile"></td>
                                 <td id="12-lowBarometerTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High gust speed</td>
                                 <td id="12-highGustVal" data-pk="35" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high gust value"></td>
@@ -3915,7 +3916,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highWindValLogfile"></td>
                                 <td id="12-highWindTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High daily wind run</td>
                                 <td id="12-highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high daily wind run value"></td>
@@ -3937,7 +3938,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highRainRateValLogfile"></td>
                                 <td id="12-highRainRateTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High hourly rain</td>
                                 <td id="12-highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high hourly rain value"></td>
@@ -3959,7 +3960,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-highDailyRainValLogfile"></td>
                                 <td id="12-highDailyRainTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>High monthly rain</td>
                                 <td id="12-highMonthlyRainVal" data-pk="47" data-type="text" data-url="api/edit/monthly"
                                     data-title="Enter new high monthly rain value"></td>
@@ -3981,7 +3982,7 @@ Last modified: 2021/06/09 21:51:16
                                 <td id="12-longestDryPeriodValLogfile"></td>
                                 <td id="12-longestDryPeriodTimeLogfile"></td>
                             </tr>
-                            <tr>
+                            <tr class="shade">
                                 <td>Longest wet period</td>
                                 <td id="12-longestWetPeriodVal" data-pk="51" data-type="text"
                                     data-url="api/edit/monthly" data-title="Enter new longest wet period value"></td>

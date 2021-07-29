@@ -1,141 +1,196 @@
 {
-    "type": "object",
-    "properties": {
-        "accessible": {
-            "type": "boolean"
-        },
-        "airquality": {
-            "title": "Air Quality Settings",
-            "type": "object",
-            "properties": {
-                "primaryaqsensor": {
-                    "title": "Primary Air Quality Sensor",
-                    "enum": [-1, 0, 5, 1, 2, 3, 4, 6]
-                },
-                "aqi": {
-                    "title": "Air Quality Index",
-                    "enum": [0, 1, 2, 3, 4, 5, 6, 7]
-                }
-            }
-        },
-        "airLink": {
-            "title": "Davis AirLink",
-            "type": "object",
-            "properties": {
-                "isNode": {
-                    "type": "boolean"
-                },
-                "apiKey": {
-                    "title": "WeatherLink API key"
-                },
-                "apiSecret": {
-                    "title": "WeatherLink API secret"
-                },
-                "autoUpdateIp": {
-                    "type": "boolean"
-                },
-                "indoorenabled": {
-                    "type": "boolean"
-                },
-                "indoor": {
-                    "title": "Indoor AirLink",
-                    "type": "object",
-                    "properties": {
-                        "ipAddress": {
-                            "title": "IP Address"
-                        },
-                        "hostname": {
-                            "title": "Airlink Hostname"
-                        },
-                        "stationId": {
-                            "title": "Station Id"
-                        }
-                    }
-                },
-                "outdoorenabled": {
-                    "type": "boolean"
-                },
-                "outdoor": {
-                    "title": "Outdoor AirLink",
-                    "type": "object",
-                    "properties": {
-                        "ipAddress": {
-                            "title": "IP Address"
-                        },
-                        "hostname": {
-                            "title": "Airlink Hostname"
-                        },
-                        "stationId": {
-                            "title": "Station ID"
-                        }
-                    }
-                }
-            },
-            "dependencies": {
-                "apiKey": ["isNode"],
-                "apiSecret": ["isNode"],
-                "indoor": ["indoorenabled"],
-                "outdoor": ["outdoorenabled"]
-            }
-        },
-        "blakeLarsen": {
-            "title": "Blake-Larsen Sunshine recorder",
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "rg11": {
-            "title": "Hydreon RG-11 rain device(s)",
-            "type": "object",
-            "properties": {
-                "dev1enabled": {
-                    "type": "boolean"
-                },
-                "port1": {
-                    "title": "Device 1",
-                    "type": "object",
-                    "properties": {
-                        "commPort": {
-                            "title": "Serial Port"
-                        },
-                        "tipMode": {
-                            "type": "boolean"
-                        },
-                        "tipSize": {
-                        },
-                        "dtrMode": {
-                            "type": "boolean"
-                        }
-                    }
-                },
-                "dev2enabled": {
-                    "type": "boolean"
-                },
-                "port2": {
-                    "title": "Device 2",
-                    "type": "object",
-                    "properties": {
-                        "commPort": {
-                            "title": "Serial Port"
-                        },
-                        "tipMode": {
-                            "type": "boolean"
-                        },
-                        "tipSize": {
-                        },
-                        "dtrMode": {
-                            "type": "boolean"
-                        }
-                    }
-                }
-            },
-            "dependencies": {
-                "port1": ["dev1enabled"],
-                "port2": ["dev2enabled"]
-            }
-        }
-    }
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"airquality": {
+			"title": "Air Quality Settings",
+			"type": "object",
+			"properties": {
+				"primaryaqsensor": {
+					"enum": [-1, 0, 5, 1, 2, 3, 4, 6]
+				},
+				"aqi": {
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7]
+				}
+			}
+		},
+		"airLink": {
+			"title": "Davis AirLink",
+			"type": "object",
+			"properties": {
+				"isNode": {
+					"type": "boolean"
+				},
+				"apiKey": {
+				},
+				"apiSecret": {
+				},
+				"autoUpdateIp": {
+					"type": "boolean"
+				},
+				"indoor": {
+					"title": "Indoor AirLink",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"ipAddress": {
+						},
+						"hostname": {
+						},
+						"stationId": {
+						}
+					},
+					"dependencies": {
+						"ipAddress": ["enabled"],
+						"hostname": ["enabled"],
+						"stationId": ["enabled"]
+					}
+				},
+				"outdoor": {
+					"title": "Outdoor AirLink",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"ipAddress": {
+						},
+						"hostname": {
+						},
+						"stationId": {
+						}
+					},
+					"dependencies": {
+						"ipAddress": ["enabled"],
+						"hostname": ["enabled"],
+						"stationId": ["enabled"]
+					}
+				}
+			},
+			"dependencies": {
+				"apiKey": ["isNode"],
+				"apiSecret": ["isNode"]
+			}
+		},
+		"ecowitt": {
+			"title": "Ecowitt",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"useSolar": {
+					"type": "boolean"
+				},
+				"useUv": {
+					"type": "boolean"
+				},
+				"useTempHum": {
+					"type": "boolean"
+				},
+				"useSoilTemp": {
+					"type": "boolean"
+				},
+				"useSoilMoist": {
+					"type": "boolean"
+				},
+				"useLeafWet": {
+					"type": "boolean"
+				},
+				"useAQI": {
+					"type": "boolean"
+				},
+				"useCo2": {
+					"type": "boolean"
+				},
+				"useLightning": {
+					"type": "boolean"
+				},
+				"useLeak": {
+					"type": "boolean"
+				}
+			},
+			"dependencies": {
+				"useSolar": ["enabled"],
+				"useUv": ["enabled"],
+				"useTempHum": ["enabled"],
+				"useSoilTemp": ["enabled"],
+				"useSoilMoist": ["enabled"],
+				"useLeafWet": ["enabled"],
+				"useAQI": ["enabled"],
+				"useCo2": ["enabled"],
+				"useLightning": ["enabled"],
+				"useLeak": ["enabled"]
+			}
+		},
+		"blakeLarsen": {
+			"title": "Blake-Larsen Sunshine recorder",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				}
+			}
+		},
+		"rg11": {
+			"title": "Hydreon RG-11 rain device(s)",
+			"type": "object",
+			"properties": {
+				"port1": {
+					"title": "Device 1",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"commPort": {
+						},
+						"tipMode": {
+							"type": "boolean"
+						},
+						"tipSize": {
+						},
+						"dtrMode": {
+							"type": "boolean"
+						}
+					},
+					"dependencies": {
+						"commPort": ["enabled"],
+						"tipMode": ["enabled"],
+						"tipSize": ["enabled"],
+						"dtrMode": ["enabled"]
+					}
+				},
+				"port2": {
+					"title": "Device 2",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+							"commPort": {
+						},
+						"tipMode": {
+							"type": "boolean"
+						},
+						"tipSize": {
+						},
+						"dtrMode": {
+							"type": "boolean"
+						}
+					},
+					"dependencies": {
+						"commPort": ["enabled"],
+						"tipMode": ["enabled"],
+						"tipSize": ["enabled"],
+						"dtrMode": ["enabled"]
+					}
+				}
+			}
+		}
+	}
 }

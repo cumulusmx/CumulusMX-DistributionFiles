@@ -1,12 +1,12 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/06/10 15:31:37
+ *  Last modified: 2021/07/10 13:19:42
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
  * 	----------------------------------------------------------*/
 
-let rptPath = '';  // Your path should have a trailing "/", eg. 'Reports/'
+let rptPath = 'Reports/';  // Your path should have a trailing "/", eg. 'Reports/'
 let startYear, endYear;
 let startMonth, endMonth;
 let rptAvail = {};

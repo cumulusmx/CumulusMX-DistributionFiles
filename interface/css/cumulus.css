@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2021/05/16 20:51:24
+    Last modified: 2021/07/16 15:56:02
 */
 
 body {
@@ -42,3 +42,47 @@ body {
     background-color: #080808;
 }
 /* End increase navigation menu contrast */
+
+
+/* Bootstrap/Alpaca overrides */
+.help-block {
+    font-size: 13px !important;
+    padding-left: 20px !important;
+    color: #00005099 !important;
+    font-style: italic;
+    font-weight: 600;
+}
+.glyphicon-info-sign {
+    color: #00005099 !important;
+}
+
+.alpaca-field {
+    color: #222;
+}
+
+.alpaca-field .alpaca-invalid {
+    color:red;
+}
+
+.hideme {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    display: flex;
+}
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label,
+.has-error .form-control,
+.has-error .form-control:focus,
+.has-error .input-group-addon {
+    color: #ff0500;
+    border-color: #ca2e2b;
+}
+

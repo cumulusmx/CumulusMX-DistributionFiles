@@ -1,40 +1,141 @@
 {
-    "fields": {
-        "accessible": {
-            "fieldClass": "hideme"
-        },
-        "explanation": {
-            "type": "textarea"
-        },
-        "offsets": {
-            "collapsible": true,
-            "collapsed": true,
-            "helpers" : ["Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"],
-            "helpersPosition": "above"
-        },
-        "multipliers": {
-            "collapsible": true,
-            "collapsed": true,
-            "helpers" : [
-                "Multiply the raw reading by a constant, this affects the slope of the response",
-                "The Multiplier2 affects the curve of the correction"
-            ],
-            "helpersPosition": "above"
-        },
-        "spikeremoval": {
-            "collapsible": true,
-            "collapsed": true,
-            "helpers" : ["If the change in a raw value between consecutive readings is greater than the spike value it will be ignored"],
-            "helpersPosition": "above"
-        },
-        "limits": {
-            "collapsible": true,
-            "collapsed": true,
-            "helpers" : ["If the raw value exceeds a limit value it will be ignored"],
-            "helpersPosition": "above"
-        },
-        "log": {
-            "rightLabel": "Log spike and limit violations to error log"
-        }
-    }
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"explanation": {
+			"type": "textarea"
+		},
+		"offsets": {
+			"collapsible": true,
+			"collapsed": true,
+			"helpers" : ["Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"],
+			"helpersPosition": "above",
+			"fields": {
+				"pressure": {
+					"label": "Pressure:"
+				},
+				"temperature": {
+					"label": "Outdoor temperature:"
+				},
+				"indoortemp": {
+					"label": "Indoor temperature:"
+				},
+				"humidity": {
+					"label": "Outdoor humidity:"
+				},
+				"winddir": {
+					"label": "Wind direction:"
+				},
+				"solar": {
+					"label": "Solar:"
+				},
+				"uv": {
+					"label": "UV-I:"
+				},
+				"wetbulb": {
+					"label": "Wet bulb:"
+				}
+			}
+		},
+		"multipliers": {
+			"collapsible": true,
+			"collapsed": true,
+			"helpers" : [
+				"Multiply the raw reading by a constant, this affects the slope of the response",
+				"The Multiplier2 affects the curve of the correction"
+			],
+			"helpersPosition": "above",
+			"fields": {
+				"pressure": {
+					"label": "Pressure:"
+				},
+				"windspeed": {
+					"label": "Wind speed:"
+				},
+				"windgust": {
+					"label": "Wind gust:"
+				},
+				"outdoortemp": {
+					"label": "Outdoor temperature:"
+				},
+				"outdoortemp2": {
+					"label": "Outdoor temperature ^2:"
+				},
+				"humidity": {
+					"label": "Outdoor humidity:"
+				},
+				"humidity2": {
+					"label": "Outdoor humidity ^2:"
+				},
+				"rainfall": {
+					"label": "Rainfall:"
+				},
+				"solar": {
+					"label": "Solar:"
+				},
+				"uv": {
+					"label": "UV:"
+				},
+				"wetbulb": {
+					"label": "Wet bulb:"
+				}
+			}
+		},
+		"spikeremoval": {
+			"collapsible": true,
+			"collapsed": true,
+			"helpers" : ["If the change in a raw value between consecutive readings is greater than the spike value it will be ignored"],
+			"helpersPosition": "above",
+			"fields": {
+				"windspeed": {
+					"label": "Wind speed (m/s):"
+				},
+				"windgust": {
+					"label": "Wind gust (m/s):"
+				},
+				"outdoortemp": {
+					"label": "Outdoor temperature (°C):"
+				},
+				"humidity": {
+					"label": "Outdoor humidity (%):"
+				},
+				"pressure": {
+					"label": "Pressure (mb):"
+				},
+				"maxrainrate": {
+					"label": "Max rain rate (mm/hr):"
+				},
+				"maxhourlyrain": {
+					"label": "Max hourly rain (mm):"
+				}
+			}
+		},
+		"limits": {
+			"collapsible": true,
+			"collapsed": true,
+			"helpers" : ["If the raw value exceeds a limit value it will be ignored"],
+			"helpersPosition": "above",
+			"fields": {
+				"temphigh": {
+					"label": "Max temp (°C):"
+				},
+				"templow": {
+					"label": "Min temp (°C):"
+				},
+				"dewhigh": {
+					"label": "Max dew point (°C):"
+				},
+				"presshigh": {
+					"label": "Max pressure (hPa):"
+				},
+				"presslow": {
+					"label": "Min pressure (hPa):"
+				},
+				"windhigh": {
+					"label": "Max wind gust (m/s):"
+				}
+			}
+		}
+	}
 }

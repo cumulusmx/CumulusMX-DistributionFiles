@@ -1,4 +1,4 @@
-// Last modified: 2021/06/09 21:45:45
+// Last modified: 2021/07/24 15:16:20
 
 let StashedStationId;
 let accessMode;
@@ -78,7 +78,7 @@ $(document).ready(function () {
 
             let stationIdObj = form.getControlByPath("general/stationtype");
 
-            // On changing the station type, propogate down to sub-sections
+            // On changing the station type, propagate down to sub-sections
             stationIdObj.on("change", function () {
                 let form = $("form").alpaca("get");
                 let stationid = this.getValue();
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 form.getControlByPath("general/stationmodel").setValue(this.getOptionLabels()[1 * stationid + 1]);
             });
 
-            // On changing the Davis VP connection type, propogate down to advanced settings
+            // On changing the Davis VP connection type, propagate down to advanced settings
             form.getControlByPath("davisvp2/davisconn/conntype").on("change", function () {
                 let form = $("form").alpaca("get");
                 let conntype = this.getValue();
@@ -101,7 +101,7 @@ $(document).ready(function () {
             // Keep a record of the last value
             StashedStationId = stationid;
 
-            // Set the inital value of Davis advanced conntype
+            // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
             form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
         }

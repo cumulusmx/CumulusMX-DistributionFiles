@@ -44,10 +44,17 @@
                 "emaillogging": {
                     "rightLabel": "Email logging",
                     "helper": "Enable extra SMTP logging to the smtp.log file in the MXdiags folder."
+                },
+                "spikelogging": {
+                    "rightLabel": "Spike logging",
+                    "helper": "Enable the logging of data spike and limit violations to  MX diags files."
                 }
             }
         },
         "options": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
                 "stopsecondinstance": {
                     "rightLabel": "Stop second instance",
                     "helper": "Prevent multiple instances of Cumulus running. This setting requires a restart to take effect"
@@ -56,7 +63,7 @@
                     "rightLabel": "List web tags",
                     "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
                 }
-
+            }
         }
     }
 }

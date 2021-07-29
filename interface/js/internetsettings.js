@@ -1,4 +1,4 @@
-// Last modified: 2021/06/09 21:45:13
+// Last modified: 2021/07/01 21:11:26
 
 let accessMode;
 
@@ -17,8 +17,8 @@ $(document).ready(function() {
         // Interval
         form.getControlByPath("websettings/interval/enabled").setValue(true);
         form.getControlByPath("websettings/interval/enabled").triggerUpdate();
-        form.getControlByPath("websettings/interval/autoupdate").setValue(ftpEnabled);
-        form.getControlByPath("websettings/interval/autoupdate").triggerUpdate();
+        form.getControlByPath("websettings/interval/enableintervalftp").setValue(ftpEnabled);
+        form.getControlByPath("websettings/interval/enableintervalftp").triggerUpdate();
 
         // Interval std files
         form.getControlByPath("websettings/interval/stdfiles/files").children[0].childrenByPropertyId["create"].setValue(true);
@@ -226,9 +226,9 @@ $(document).ready(function() {
             // When FTP is globally disabled, disable the option in Interval and Realtime
             form.getControlByPath("website/enabled").on("change", function () {
                 let state = !this.getValue();
-                form.getControlByPath("websettings/interval/autoupdate").options.disabled = state;
+                form.getControlByPath("websettings/interval/enableintervalftp").options.disabled = state;
                 form.getControlByPath("websettings/realtime/enablerealtimeftp").options.disabled = state;
-                form.getControlByPath("websettings/interval/autoupdate").refresh();
+                form.getControlByPath("websettings/interval/enableintervalftp").refresh();
                 form.getControlByPath("websettings/realtime/enablerealtimeftp").refresh();
 
                 updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, state);
@@ -239,9 +239,9 @@ $(document).ready(function() {
 
             // Do it on page load as well
             let ftpState = !form.getControlByPath("website/enabled").getValue();
-            form.getControlByPath("websettings/interval/autoupdate").options.disabled = ftpState;
+            form.getControlByPath("websettings/interval/enableintervalftp").options.disabled = ftpState;
             form.getControlByPath("websettings/realtime/enablerealtimeftp").options.disabled = ftpState;
-            form.getControlByPath("websettings/interval/autoupdate").refresh();
+            form.getControlByPath("websettings/interval/enableintervalftp").refresh();
             form.getControlByPath("websettings/realtime/enablerealtimeftp").refresh();
 
             updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, ftpState);
@@ -278,19 +278,19 @@ $(document).ready(function() {
             });
 
             // enable/disable interval std files FTP option
-            let autoupdate = form.getControlByPath("websettings/interval/autoupdate").getValue();
+            let enableintervalftp = form.getControlByPath("websettings/interval/enableintervalftp").getValue();
             updateFtpDisabledOption(
                 form.getControlByPath("websettings/interval/stdfiles/files").children,
-                !autoupdate
+                !enableintervalftp
             );
 
             // enable/disable interval graph files FTP option
             updateFtpDisabledOption(
                 form.getControlByPath("websettings/interval/graphfiles/files").children,
-                !autoupdate
+                !enableintervalftp
             );
 
-            form.getControlByPath("websettings/interval/autoupdate").on("change", function () {
+            form.getControlByPath("websettings/interval/enableintervalftp").on("change", function () {
                 let val = !this.getValue();
                 updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, val);
                 updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, val);

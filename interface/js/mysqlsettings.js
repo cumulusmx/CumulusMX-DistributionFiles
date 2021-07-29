@@ -1,4 +1,4 @@
-// Last modified: 2021/06/09 21:45:22
+// Last modified: 2021/07/12 10:07:21
 
 let accessMode;
 
@@ -8,6 +8,7 @@ $(document).ready(function () {
         "optionsSource": "./json/MySqlOptions.json",
         "schemaSource": "./json/MySqlSchema.json",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {
                 "buttons": {

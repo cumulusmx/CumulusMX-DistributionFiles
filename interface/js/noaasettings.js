@@ -1,4 +1,4 @@
-// Last modified: 2021/06/09 21:45:27
+// Last modified: 2021/07/12 09:42:29
 
 let accessMode;
 
@@ -9,6 +9,7 @@ $(document).ready(function() {
         "optionsSource": "./json/NoaaOptions.json",
         "schemaSource": "./json/NoaaSchema.json",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {
                 "buttons": {

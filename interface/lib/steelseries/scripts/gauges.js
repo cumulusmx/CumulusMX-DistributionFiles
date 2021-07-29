@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2021/06/02 15:18:18
+ * Last Modified: 2021/06/10 17:46:49
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -79,7 +79,7 @@ gauges = (function () {
             realTimeUrlWLCOM   : 'WLrealtimegauges.php',   // *** WLCOM Users: change to location of WLCOMtags.php file ***
             useCookies         : true,                   // Persistently store user preferences in a cookie?
             tipImages          : [],
-            dashboardMode      : false,                  // Used by Cumulus MX dashboard - SET TO FALSE OTHERWISE
+            dashboardMode      : true,                  // Used by Cumulus MX dashboard - SET TO FALSE OTHERWISE
             dewDisplayType     : 'dew'                   // Initial 'scale' to display on the 'dew point' gauge.
                                                          // 'dew' - Dewpoint
                                                          // 'app' - Apparent temperature
