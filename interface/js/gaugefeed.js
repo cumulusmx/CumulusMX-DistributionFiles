@@ -1,11 +1,11 @@
-// Last modified: 2021/05/16 20:54:40
+// Last modified: 2021/06/09 21:45:06
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-window.onload = function () {
+window.addEventListener("load", function () {
 
     function OpenWebSocket(wsport) {
 
@@ -158,4 +158,4 @@ window.onload = function () {
         // start the timer for the display updates
         setInterval(doAjaxUpdate, updateInterval * 1000);
     }
-};
+});

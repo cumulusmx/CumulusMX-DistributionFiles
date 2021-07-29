@@ -1,12 +1,12 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/05/07 14:14:36
+ *  Last modified: 2021/07/10 13:19:42
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
  * 	----------------------------------------------------------*/
 
-let rptPath = '';  // Your path should have a trailing "/", eg. 'Reports/'
+let rptPath = 'Reports/';  // Your path should have a trailing "/", eg. 'Reports/'
 let startYear, endYear;
 let startMonth, endMonth;
 let rptAvail = {};
@@ -30,10 +30,11 @@ $(document).ready(function() {
             if (startYear == endYear) {
                 rptAvail[endYear][m] = rptAvail[endYear][m] && m >= startMonth
             }
+            $('#opt-' + m).prop('hidden', !rptAvail[endYear][m]);
         }
 
-        // get the current year repotr and display it whilst we sort out the rest in background
-        getYearRpt({value: endYear});
+        // get the current year report and display it whilst we sort out the rest in background
+        getYearRpt(endYear);
 
         // add the year select dropdown values, most recent first
         for (let y = endYear; y >= startYear; y--) {
@@ -48,7 +49,7 @@ $(document).ready(function() {
             // The start and end years may be short, so no point in checking months that are out of range
             let monSt, monEnd;
             if (y == startYear || y == endYear) {
-                monSt = y == startYear ? startMon : 1;
+                monSt = y == startYear ? startMonth : 1;
                 monEnd = y == endYear ? endMonth : 12;
             } else {
                 monSt = 1;
@@ -72,26 +73,13 @@ $(document).ready(function() {
                             // if we are in the year currently being displayed...
                             if (y == $('#year').val()) {
                                 // ...disable of any months that should be available but aren't
-                                $('#mon' + m).prop('disabled', true);
+                                $('#opt-' + m).prop('hidden', true);
                             }
                         }
                     });
                 }
             }
         }
-    });
-
-    // when the selector is "clicked", then hide it with the w3-hide class so we do not have to mouseoff or touch elsewhere to hide
-    $('#monSelector').each(function() {
-        $(this).on('click touchend', function(event) {
-            if (event.type == 'click')
-                $('#monSelector').addClass('w3-hide');
-        });
-    });
-
-    // when the month button is "clicked" or mouseover, clear any hide we added when a month was previously selected
-    $('#monButton').on('click touchend mouseover', function(event) {
-        $('#monSelector').removeClass('w3-hide');
     });
 });
 
@@ -104,7 +92,13 @@ let pad2 = function (num) {
 let getMonRpt = function(month) {
     let yr  = $('#year').val();
 
-    reqRpt = rptPath + 'NOAAMO' + month + pad2(yr - 2000) + '.txt';
+    // Is annual selected? If so, show the yearly report
+    if (month === '0') {
+        getYearRpt(yr);
+        return;
+    }
+
+    reqRpt = rptPath + 'NOAAMO' + pad2(month) + pad2(yr - 2000) + '.txt';
 
     $.ajax({
         url: reqRpt,
@@ -120,7 +114,19 @@ let getMonRpt = function(month) {
 
 // Script assumes that reports use the default name format
 let getYearRpt = function(yr) {
-    let reqRpt = rptPath + 'NOAAYR' + yr.value + '.txt';
+    let reqRpt = rptPath + 'NOAAYR' + yr + '.txt';
+
+    // set the month buttons for the new year
+    for (let m = 1; m < 13; m++) {
+        $('#opt-' + m).prop('hidden', !rptAvail[yr][m]);
+    }
+
+    // Do we have a month selected? If so show the month report for the new year
+    let mon = $('#month').val();
+    if (mon != '0') {
+        getMonRpt(mon);
+        return;
+    }
 
     // get the report text
     $.ajax({
@@ -133,10 +139,4 @@ let getYearRpt = function(yr) {
             alert('Did not find the required report\n\nPlease try another date');
         }
     });
-
-    // set the month buttons for the new year
-    for (let m = 1; m < 13; m++) {
-        $('#mon' + m).prop('disabled', !rptAvail[yr.value][m]);
-    }
 };
-

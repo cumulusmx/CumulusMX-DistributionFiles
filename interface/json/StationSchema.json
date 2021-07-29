@@ -1,1150 +1,1013 @@
 {
-    "type": "object",
-    "properties": {
-        "stationid": {
-        },
-        "accessible": {
-            "type": "boolean"
-        },
-        "general": {
-            "title": "General Settings",
-            "type": "object",
-            "properties": {
-                "stationtype": {
-                    "title": "Station&nbsp;type",
-                    "enum": [
-                        -1,
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11,
-                        12,
-                        13
-                    ],
-                    "required": true
-                },
-                "stationmodel": {
-                    "title": "Station&nbsp;model",
-                    "type": "string"
-                },
-                "loginterval": {
-                    "title": "Log&nbsp;interval",
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                    ],
-                    "required": true
-                },
-                "logrollover": {
-                    "title": "Log&nbsp;Rollover",
-                    "type": "object",
-                    "properties": {
-                        "time": {
-                            "title": "Time",
-                            "enum": [
-                                "9am",
-                                "midnight"
-                            ],
-                            "required": true
-                        },
-                        "summer10am": {
-                            "title": "",
-                            "type": "boolean",
-                            "dependencies": "time"
-                        }
-                    }
-                },
-                "units": {
-                    "title": "Units",
-                    "type": "object",
-                    "properties": {
-                        "wind": {
-                            "title": "Wind",
-                            "enum": [
-                                0,
-                                1,
-                                2,
-                                3
-                            ],
-                            "required": true
-                        },
-                        "pressure": {
-                            "title": "Pressure",
-                            "enum": [
-                                0,
-                                1,
-                                2
-                            ],
-                            "required": true
-                        },
-                        "temp": {
-                            "title": "Temperature",
-                            "enum": [
-                                0,
-                                1
-                            ],
-                            "required": true
-                        },
-                        "rain": {
-                            "title": "Rain",
-                            "enum": [
-                                0,
-                                1
-                            ],
-                            "required": true
-                        },
-                        "advanced": {
-                            "title": "Advanced Options",
-                            "type": "object",
-                            "properties": {
-                                "tempdp": {
-                                    "title": "Temperature decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "pressdp": {
-                                    "title": "Pressure decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "raindp": {
-                                    "title": "Rainfall decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "winddp": {
-                                    "title": "Wind speed decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "windavgdp": {
-                                    "title": "Wind speed average decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "windrundp": {
-                                    "title": "Wind run decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "airqulaitydp": {
-                                    "title": "Air Quality decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "sunshinedp": {
-                                    "title": "Sunshine hours decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 3
-                                },
-                                "uvdp": {
-                                    "title": "UV Index decimals",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 1
-                                }
-                            }
-                        }
-                    }
-                },
-                "Location": {
-                    "title": "Location",
-                    "type": "object",
-                    "properties": {
-                        "sitename": {
-                            "title": "Name",
-                            "type": "string"
-                        },
-                        "description": {
-                            "title": "Description",
-                            "type": "string"
-                        },
-                        "altitude": {
-                            "title": "Altitude",
-                            "type": "integer"
-                        },
-                        "altitudeunit": {
-                            "title": "Altitude units",
-                            "type": "string",
-                            "enum": [
-                                "feet",
-                                "metres"
-                            ],
-                            "required": true
-                        },
-                        "Latitude": {
-                            "title": "Latitude",
-                            "type": "object",
-                            "properties": {
-                                "degrees": {
-                                    "title": "Degrees",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 90,
-                                    "required": true
-                                },
-                                "minutes": {
-                                    "title": "Minutes",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 59
-                                },
-                                "seconds": {
-                                    "title": "Seconds",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 59
-                                },
-                                "hemisphere": {
-                                    "title": "Hemisphere",
-                                    "enum": [
-                                        "North",
-                                        "South"
-                                    ],
-                                    "required": true
-                                }
-                            }
-                        },
-                        "Longitude": {
-                            "title": "Longitude",
-                            "type": "object",
-                            "properties": {
-                                "degrees": {
-                                    "title": "Degrees",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 180,
-                                    "required": true
-                                },
-                                "minutes": {
-                                    "title": "Minutes",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 59
-                                },
-                                "seconds": {
-                                    "title": "Seconds",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 59
-                                },
-                                "hemisphere": {
-                                    "title": "Hemisphere",
-                                    "type": "string",
-                                    "enum": [
-                                        "East",
-                                        "West"
-                                    ],
-                                    "required": true
-                                }
-                            }
-                        }
-                    }
-                },
-                "advanced": {
-                    "title": "Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "recsbegandate": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "davisvp2": {
-            "title": "Davis VP/VP2/Vue",
-            "type": "object",
-            "properties": {
-                "davisconn": {
-                    "title": "Davis Connection Settings",
-                    "type": "object",
-                    "properties": {
-                        "conntype": {
-                            "title": "Type",
-                            "enum": [
-                                0,
-                                2
-                            ]
-                        },
-                        "comportname": {
-                            "title": "Serial port name",
-                            "type": "string"
-                        },
-                        "tcpsettings": {
-                            "title": "TCP/IP settings",
-                            "type": "object",
-                            "properties": {
-                                "ipaddress": {
-                                    "title": "IP address"
-                                },
-                                "disconperiod": {
-                                    "title": "Disconnect period",
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 50
-                                }
-                            }
-                        }
-                    },
-                    "dependencies": {
-                        "comportname": ["conntype"],
-                        "tcpsettings": ["conntype"]
-                    }
-                },
-                "advanced": {
-                    "title": "Davis Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "conntype": {
-                        },
-                        "syncstationclock": {
-                            "type": "boolean"
-                        },
-                        "syncclockhour": {
-                            "title": "Clock sync hour",
-                            "enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-                        },
-                        "readreceptionstats": {
-                            "type": "boolean"
-                        },
-                        "setloggerinterval": {
-                            "type": "boolean"
-                        },
-                        "useloop2": {
-                            "type": "boolean"
-                        },
-                        "vp1minbarupdate": {
-                            "type": "boolean"
-                        },
-                        "raingaugetype": {
-                            "title": "Rain gauge type (VPrainGaugeType)",
-                            "enum": [-1, 0, 1]
-                        },
-                        "initwaittime": {
-                            "title": "TCP/IP Initialisation Wait Time (DavisInitWaitTime)",
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 5000
-                        },
-                        "ipresponsetime": {
-                            "title": "TCP/IP Response Delay (DavisIPResponseTime)",
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 2000
-                        },
-                        "tcpport": {
-                            "title": "TCP port",
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 65536
-                        },
-                        "baudrate": {
-                            "title": "Serial Baud Rate (DavisBaudRate)",
-                            "enum": [1200, 2400, 4800, 9600, 14400, 19200]
-                        }
-                    },
-                    "dependencies": {
-                        "initwaittime": ["conntype"],
-                        "ipresponsetime": ["conntype"],
-                        "baudrate": ["conntype"],
-                        "tcpport": ["conntype"]
-                    }
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "daviswll": {
-            "title": "Davis WeatherLink Live",
-            "type": "object",
-            "properties": {
-                "network": {
-                    "title": "Network Settings",
-                    "type": "object",
-                    "properties": {
-                        "autoDiscover": {
-                            "title": "Set a manual IP address in the TCP/IP settings section above",
-                            "type": "boolean"
-                        },
-                        "ipaddress": {
-                            "title": "IP address"
-                        }
-                    }
-                },
-                "api": {
-                    "title": "WeatherLink.com API details",
-                    "type": "object",
-                    "properties": {
-                        "apiKey": {
-                            "title": "WeatherLink APIv2 key"
-                        },
-                        "apiSecret": {
-                            "title": "WeatherLink APIv2 secret"
-                        },
-                        "apiStationId": {
-                            "title": "WLL device id on WeatherLink APIv2",
-                            "type": "integer"
-                        }
-                    }
-                },
-                "primary": {
-                    "title": "Primary Sensors",
-                    "type": "object",
-                    "properties": {
-                        "wind": {
-                            "title": "Wind sensor Transmitter ID:",
-                            "enum": [1,2,3,4,5,6,7,8]
-                        },
-                        "temphum": {
-                            "title": "Temperature/Humidity Transmitter ID:",
-                            "enum": [1,2,3,4,5,6,7,8]
-                        },
-                        "rain": {
-                            "title": "Rain sensor Transmitter ID:",
-                            "enum": [1,2,3,4,5,6,7,8]
-                        },
-                        "solar": {
-                            "title": "Solar sensor Transmitter ID:",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "uv": {
-                            "title": "UV sensor Transmitter ID:",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        }
-                    }
-                },
-                "soilLeaf": {
-                    "title": "Extra Soil/Leaf Sensors (6345)",
-                    "type": "object",
-                    "properties": {
-                        "extraSoilTemp": {
-                            "title": "Extra Soil Temperature Sensors",
-                            "type": "object",
-                            "properties": {
-                                "soilTempTx1": {
-                                    "title": "Extra Soil Temperature sensor #1 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilTempIdx1": {
-                                    "title": "Extra Soil Temperature sensor #1 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilTempTx2": {
-                                    "title": "Extra Soil Temperature sensor #2 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilTempIdx2": {
-                                    "title": "Extra Soil Temperature sensor #2 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilTempTx3": {
-                                    "title": "Extra Soil Temperature sensor #3 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilTempIdx3": {
-                                    "title": "Extra Soil Temperature sensor #3 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilTempTx4": {
-                                    "title": "Extra Soil Temperature sensor #4 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilTempIdx4": {
-                                    "title": "Extra Soil Temperature sensor #4 Index",
-                                    "enum": [1,2,3,4]
-                                }
-                            }
-                        },
-                        "extraSoilMoist": {
-                            "title": "Extra Soil Moisture Sensors",
-                            "type": "object",
-                            "properties": {
-                                "soilMoistTx1": {
-                                    "title": "Extra Soil Moisture sensor #1 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilMoistIdx1": {
-                                    "title": "Extra Soil Moisture sensor #1 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilMoistTx2": {
-                                    "title": "Extra Soil Moisture sensor #2 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilMoistIdx2": {
-                                    "title": "Extra Soil Moisture sensor #2 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilMoistTx3": {
-                                    "title": "Extra Soil Moisture sensor #3 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilMoistIdx3": {
-                                    "title": "Extra Soil Moisture sensor #3 Index",
-                                    "enum": [1,2,3,4]
-                                },
-                                "soilMoistTx4": {
-                                    "title": "Extra Soil Moisture sensor #4 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "soilMoistIdx4": {
-                                    "title": "Extra Soil Moisture sensor #4 Index",
-                                    "enum": [1,2,3,4]
-                                }
-                            }
-                        },
-                        "extraLeaf": {
-                            "title": "Extra Leaf Wetness Sensors",
-                            "type": "object",
-                            "properties": {
-                                "leafTx1": {
-                                    "title": "Extra Leaf sensor #1 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "leafIdx1": {
-                                    "title": "Extra Leaf sensor #1 Index",
-                                    "enum": [1,2]
-                                },
-                                "leafTx2": {
-                                    "title": "Extra Leaf sensor #2 Transmitter ID",
-                                    "enum": [0,1,2,3,4,5,6,7,8]
-                                },
-                                "leafIdx2": {
-                                    "title": "Extra Leaf sensor #2 Index",
-                                    "enum": [1,2]
-                                }
-                            }
-                        }
-                    }
-                },
-                "extraTemp": {
-                    "title": "Extra Temperature (Temp/Humidity) Sensors",
-                    "type": "object",
-                    "properties": {
-                        "extraTempTx1": {
-                            "title": "Extra Temperature Sensor #1 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx1": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx2": {
-                            "title": "Extra Temperature Sensor #2 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx2": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx3": {
-                            "title": "Extra Temperature Sensor #3 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx3": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx4": {
-                            "title": "Extra Temperature Sensor #4 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx4": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx5": {
-                            "title": "Extra Temperature Sensor #5 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx5": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx6": {
-                            "title": "Extra Temperature Sensor #6 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx6": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx7": {
-                            "title": "Extra Temperature Sensor #7 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx7": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        },
-                        "extraTempTx8": {
-                            "title": "Extra Temperature Sensor #8 Transmitter ID",
-                            "enum": [0,1,2,3,4,5,6,7,8]
-                        },
-                        "extraHumTx8": {
-                            "title": "Humidity sensor",
-                            "type": "boolean"
-                        }
-                    }
-                },
-                "advanced": {
-                    "title": "Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "raingaugetype": {
-                            "title": "Rain gauge type (VPrainGaugeType)",
-                            "enum": [-1, 0, 1, 2, 3]
-                        },
-                        "tcpport": {
-                            "title": "TCP port",
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 65536
-                        }
-                    }
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "gw1000": {
-            "title": "Ecowitt GW1000 Settings",
-            "type": "object",
-            "properties": {
-                "autoDiscover" : {
-                    "type": "boolean"
-                },
-                "ipaddress": {
-                    "title": "IP address"
-                },
-                "macaddress": {
-                    "title": "MAC address (read the help below!)"
-                }
-            },
-            "dependencies": ["stationid"]
-        },
+	"type": "object",
+	"properties": {
+		"stationid": {
+		},
+		"accessible": {
+			"type": "boolean"
+		},
+		"general": {
+			"title": "General Settings",
+			"type": "object",
+			"properties": {
+				"stationtype": {
+					"enum": [-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+					"required": true
+				},
+				"stationmodel": {
+					"type": "string"
+				},
+				"loginterval": {
+					"enum": [0,1,2,3,4,5],
+					"required": true
+				},
+				"logrollover": {
+					"title": "Log&nbsp;Rollover",
+					"type": "object",
+					"properties": {
+						"time": {
+							"enum": [
+								"9am",
+								"midnight"
+							],
+							"required": true
+						},
+						"summer10am": {
+							"type": "boolean",
+							"dependencies": "time"
+						}
+					}
+				},
+				"units": {
+					"title": "Units",
+					"type": "object",
+					"properties": {
+						"wind": {
+							"enum": [0,1,2,3],
+							"required": true
+						},
+						"pressure": {
+							"enum": [0,1,2],
+							"required": true
+						},
+						"temp": {
+							"title": "Temperature",
+							"enum": [0,1],
+							"required": true
+						},
+						"rain": {
+							"title": "Rain",
+							"enum": [0,1],
+							"required": true
+						},
+						"cloudbaseft": {
+							"type": "boolean"
+						},
+						"advanced": {
+							"title": "Advanced Options",
+							"type": "object",
+							"properties": {
+								"tempdp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"pressdp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"raindp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"winddp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"windavgdp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"windrundp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"airqulaitydp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"sunshinedp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 3
+								},
+								"uvdp": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 1
+								}
+							}
+						}
+					}
+				},
+				"Location": {
+					"title": "Location",
+					"type": "object",
+					"properties": {
+						"sitename": {
+							"type": "string"
+						},
+						"description": {
+							"type": "string"
+						},
+						"altitude": {
+							"title": "Altitude",
+							"type": "integer"
+						},
+						"altitudeunit": {
+							"title": "Altitude units",
+							"type": "string",
+							"enum": [
+								"feet",
+								"metres"
+							],
+							"required": true
+						},
+						"Latitude": {
+							"title": "Latitude",
+							"type": "object",
+							"properties": {
+								"degrees": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 90,
+									"required": true
+								},
+								"minutes": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 59
+								},
+								"seconds": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 59
+								},
+								"hemisphere": {
+									"enum": [
+										"North",
+										"South"
+									],
+									"required": true
+								}
+							}
+						},
+						"Longitude": {
+							"title": "Longitude",
+							"type": "object",
+							"properties": {
+								"degrees": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 180,
+									"required": true
+								},
+								"minutes": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 59
+								},
+								"seconds": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 59
+								},
+								"hemisphere": {
+									"type": "string",
+									"enum": [
+										"East",
+										"West"
+									],
+									"required": true
+								}
+							}
+						}
+					}
+				},
+				"advanced": {
+					"title": "Advanced Options",
+					"type": "object",
+					"properties": {
+						"recsbegandate": {
+							"type": "string"
+						},
+						"recstimeout": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 9999
+						}
+					}
+				}
+			}
+		},
+		"davisvp2": {
+			"title": "Davis VP/VP2/Vue",
+			"type": "object",
+			"properties": {
+				"davisconn": {
+					"title": "Davis Connection Settings",
+					"type": "object",
+					"properties": {
+						"conntype": {
+							"enum": [0,2]
+						},
+						"comportname": {
+							"type": "string"
+						},
+						"tcpsettings": {
+							"title": "TCP/IP settings",
+							"type": "object",
+							"properties": {
+								"ipaddress": {
+								},
+								"disconperiod": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 50
+								}
+							}
+						}
+					},
+					"dependencies": {
+						"comportname": ["conntype"],
+						"tcpsettings": ["conntype"]
+					}
+				},
+				"advanced": {
+					"title": "Davis Advanced Options",
+					"type": "object",
+					"properties": {
+						"conntype": {
+						},
+						"syncstationclock": {
+							"type": "boolean"
+						},
+						"syncclockhour": {
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+						},
+						"readreceptionstats": {
+							"type": "boolean"
+						},
+						"setloggerinterval": {
+							"type": "boolean"
+						},
+						"useloop2": {
+							"type": "boolean"
+						},
+						"vp1minbarupdate": {
+							"type": "boolean"
+						},
+						"raingaugetype": {
+							"enum": [-1, 0, 1]
+						},
+						"initwaittime": {
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 5000
+						},
+						"ipresponsetime": {
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 2000
+						},
+						"tcpport": {
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 65536
+						},
+						"baudrate": {
+							"enum": [1200, 2400, 4800, 9600, 14400, 19200]
+						}
+					},
+					"dependencies": {
+						"initwaittime": ["conntype"],
+						"ipresponsetime": ["conntype"],
+						"baudrate": ["conntype"],
+						"tcpport": ["conntype"]
+					}
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"daviswll": {
+			"title": "Davis WeatherLink Live",
+			"type": "object",
+			"properties": {
+				"network": {
+					"title": "Network Settings",
+					"type": "object",
+					"properties": {
+						"autoDiscover": {
+							"type": "boolean"
+						},
+						"ipaddress": {
+						}
+					}
+				},
+				"api": {
+					"title": "WeatherLink.com API details",
+					"type": "object",
+					"properties": {
+						"apiKey": {
+						},
+						"apiSecret": {
+						},
+						"apiStationId": {
+							"type": "integer"
+						}
+					}
+				},
+				"primary": {
+					"title": "Primary Sensors",
+					"type": "object",
+					"properties": {
+						"wind": {
+							"enum": [1,2,3,4,5,6,7,8]
+						},
+						"temphum": {
+							"enum": [1,2,3,4,5,6,7,8]
+						},
+						"rain": {
+							"enum": [1,2,3,4,5,6,7,8]
+						},
+						"solar": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"uv": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						}
+					}
+				},
+				"soilLeaf": {
+					"title": "Extra Soil/Leaf Sensors (6345)",
+					"type": "object",
+					"properties": {
+						"extraSoilTemp": {
+							"title": "Extra Soil Temperature Sensors",
+							"type": "object",
+							"properties": {
+								"soilTempTx1": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilTempIdx1": {
+									"enum": [1,2,3,4]
+								},
+								"soilTempTx2": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilTempIdx2": {
+									"enum": [1,2,3,4]
+								},
+								"soilTempTx3": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilTempIdx3": {
+									"enum": [1,2,3,4]
+								},
+								"soilTempTx4": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilTempIdx4": {
+									"enum": [1,2,3,4]
+								}
+							}
+						},
+						"extraSoilMoist": {
+							"title": "Extra Soil Moisture Sensors",
+							"type": "object",
+							"properties": {
+								"soilMoistTx1": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilMoistIdx1": {
+									"enum": [1,2,3,4]
+								},
+								"soilMoistTx2": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilMoistIdx2": {
+									"enum": [1,2,3,4]
+								},
+								"soilMoistTx3": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilMoistIdx3": {
+									"enum": [1,2,3,4]
+								},
+								"soilMoistTx4": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"soilMoistIdx4": {
+									"enum": [1,2,3,4]
+								}
+							}
+						},
+						"extraLeaf": {
+							"title": "Extra Leaf Wetness Sensors",
+							"type": "object",
+							"properties": {
+								"leafTx1": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"leafIdx1": {
+									"enum": [1,2]
+								},
+								"leafTx2": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"leafIdx2": {
+									"enum": [1,2]
+								}
+							}
+						}
+					}
+				},
+				"extraTemp": {
+					"title": "Extra Temperature (Temp/Humidity) Sensors",
+					"type": "object",
+					"properties": {
+						"extraTempTx1": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx1": {
+							"type": "boolean"
+						},
+						"extraTempTx2": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx2": {
+							"type": "boolean"
+						},
+						"extraTempTx3": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx3": {
+							"type": "boolean"
+						},
+						"extraTempTx4": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx4": {
+							"type": "boolean"
+						},
+						"extraTempTx5": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx5": {
+							"type": "boolean"
+						},
+						"extraTempTx6": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx6": {
+							"type": "boolean"
+						},
+						"extraTempTx7": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx7": {
+							"type": "boolean"
+						},
+						"extraTempTx8": {
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
+						"extraHumTx8": {
+							"type": "boolean"
+						}
+					}
+				},
+				"advanced": {
+					"title": "Advanced Options",
+					"type": "object",
+					"properties": {
+						"raingaugetype": {
+							"enum": [-1, 0, 1, 2, 3]
+						},
+						"tcpport": {
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 65536
+						}
+					}
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"gw1000": {
+			"title": "Ecowitt GW1000 Settings",
+			"type": "object",
+			"properties": {
+				"autoDiscover" : {
+					"type": "boolean"
+				},
+				"ipaddress": {
+				},
+				"macaddress": {
+				}
+			},
+			"dependencies": ["stationid"]
+		},
 		"weatherflow": {
 			"title": "WeatherFlow Settings",
 			"type": "object",
-            "properties": {
-                "tcpport": {
-                    "title": "TCP Port",
-                    "type": "integer",
-                    "minimum": 0
-                 },
-                "deviceid": {
-                    "title": "DeviceId",
-                    "type": "integer",
-					"minimum": 0
-                 },
-                "token": {
-                    "title": "Api Token"
-                 }
-			},
-            "dependencies": ["stationid"]
+                        "properties": {
+                            "tcpport": {
+                            "title": "TCP Port",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "deviceid": {
+                            "title": "DeviceId",
+                            "type": "integer",
+				"minimum": 0
+                        },
+                        "token": {
+                        "title": "Api Token"
+                        }
+		    },
+                    "dependencies": ["stationid"]
 		},
-        "fineoffset": {
-            "title": "Fine Offset Settings",
-            "type": "object",
-            "properties": {
-                "syncreads" : {
-                    "type": "boolean"
-                },
-                "readavoid": {
-                    "title": "Read Avoid Period",
-                    "type":"integer",
-                    "minimum": 1,
-                    "maximum": 20
-                },
-                "advanced": {
-                    "title": "Fine Offset Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "readtime": {
-                            "title": "Request/Read Delay",
-                            "type":"integer",
-                            "minimum": 10,
-                            "maximum": 500
-                        },
-                        "setlogger": {
-                            "type": "boolean"
-                        },
-                        "vid": {
-                            "title": "USB Vendor Id (VID)",
-                            "type": "integer",
-                            "minimum": -1
-                        },
-                        "pid": {
-                            "title": "USB Product Id (PID)",
-                            "type": "integer",
-                            "minimum": -1
-                        }
-                    }
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "easyw": {
-            "title": "EasyWeather File Settings",
-            "type": "object",
-            "properties": {
-                "interval": {
-                    "title": "File Read Interval",
-                    "type":"number",
-                    "minimum": 0
-                },
-                "filename": {
-                    "title": "Filename",
-                    "type":"string"
-                },
-                "minpressmb": {
-                    "title": "Minimum Pressure Value",
-                    "type":"integer",
-                    "minimum": 800,
-                    "maximum": 1300
-                },
-                "maxpressmb": {
-                    "title": "Maximum Pressure Value",
-                    "type":"integer",
-                    "minimum": 800,
-                    "maximum": 1300
-                },
-                "raintipdiff": {
-                    "title": "Rain Tip Difference",
-                    "type":"integer",
-                    "minimum": 0,
-                    "maximum": 100
-                },
-                "pressoffset": {
-                    "title": "Pressure Offset",
-                    "type":"number",
-                    "minimum": -9999,
-                    "maximum": 9999
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "imet": {
-            "title": "Instromet Settings",
-            "type": "object",
-            "properties": {
-                "comportname": {
-                    "title": "Serial port name",
-                    "type": "string"
-                },
-                "baudrate": {
-                    "title": "Serial Baud Rate (DavisBaudRate)",
-                    "enum": [19200, 115200]
-                },
-                "advanced": {
-                    "title": "Instromet Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "syncstationclock": {
-                            "type": "boolean"
-                        },
-                        "syncclockhour": {
-                            "title": "Clock sync hour",
-                            "enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-                        },
-                        "updatepointer": {
-                            "type": "boolean"
-                        },
-                        "waittime": {
-                            "type":"integer",
-                            "minimum": 0,
-                            "maximum": 2000
-                        },
-                        "readdelay": {
-                            "type":"integer",
-                            "minimum": 0,
-                            "maximum": 10000
-                        }
-                    }
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "wmr928": {
-            "title": "WM918/WMR928 Settings",
-            "type": "object",
-            "properties": {
-                "comportname": {
-                    "title": "Serial port name",
-                    "type": "string"
-                }
-            },
-            "dependencies": ["stationid"]
-        },
-        "Options": {
-            "title": "Common Options",
-            "type": "object",
-            "properties": {
-                "usezerobearing": {
-                    "type": "boolean"
-                },
-                "calcwindaverage": {
-                    "type": "boolean"
-                },
-                "usespeedforavg": {
-                    "type": "boolean"
-                },
-                "use100for98hum": {
-                    "type": "boolean"
-                },
-                "calculatedewpoint": {
-                    "type": "boolean"
-                },
-                "calculatewindchill": {
-                    "type": "boolean"
-                },
-                "cumuluspresstrendnames": {
-                    "type": "boolean"
-                },
-                "roundwindspeeds": {
-                    "type": "boolean"
-                },
-                "ignorelacrosseclock": {
-                    "type": "boolean"
-                },
-                "extrasensors": {
-                    "type": "boolean"
-                },
-                "nosensorcheck": {
-                    "type": "boolean"
-                },
-                "advanced": {
-                    "title": "Advanced Options",
-                    "type": "object",
-                    "properties": {
-                        "avgbearingmins": {
-                            "title": "Average wind bearing time",
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 120
-                        },
-                        "avgspeedmins": {
-                            "title": "Average wind speed time",
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 120
-                        },
-                        "peakgustmins": {
-                            "title": "Peak wind gust time",
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 120
-                        }
-                    }
-                },
-                "stationid": {
-                }
-            },
-            "dependencies": {
-                "ignorelacrosseclock": ["stationid"]
-            }
-        },
-        "Forecast": {
-            "title": "Forecast",
-            "type": "object",
-            "properties": {
-                "usecumulusforecast": {
-                    "type": "boolean"
-                },
-                "updatehourly": {
-                    "type": "boolean"
-                },
-                "lowpressureextreme": {
-                    "title": "Low pressure extreme",
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "highpressureextreme": {
-                    "title": "High pressure extreme",
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "pressureunit": {
-                    "title": "Pressure extreme units",
-                    "enum": [
-                        "mb/hPa",
-                        "inHg"
-                    ]
-                }
-            },
-            "dependencies": {
-                "updatehourly": ["usecumulusforecast"],
-                "lowpressureextreme": ["usecumulusforecast"],
-                "highpressureextreme": ["usecumulusforecast"],
-                "pressureunit": ["usecumulusforecast"]
-            }
-        },
-        "Solar": {
-            "title": "Solar",
-            "type": "object",
-            "properties": {
-                "solarcalc": {
-                    "title": "Solar calculation method",
-                    "enum": [0, 1]
-                },
-                "sunthreshold": {
-                    "title": "Sun Threshold (percent)",
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 100
-                },
-                "solarmin": {
-                    "title": "Solar minimum (W/m2)",
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "transfactor": {
-                    "dependencies": ["solarcalc"],
-                    "title": "RS Transmission factor",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "turbidity": {
-                    "dependencies": ["solarcalc"],
-                    "title": "Bras turbidity factor",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 5
-                }
-            },
-            "dependencies": "stationid"
-        },
-        "AnnualRainfall": {
-            "title": "Annual Rainfall",
-            "type": "object",
-            "properties": {
-                "ytdamount": {
-                    "title": "Year-to-date amount",
-                    "type": "number",
-                    "minimum": 0
-                },
-                "ytdyear": {
-                    "title": "Year to which year-to-date amount applies",
-                    "type": "integer",
-                    "maximum": 2050
-                },
-                "rainseasonstart": {
-                    "title": "Start of rainfall season",
-                    "enum": [
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11,
-                        12
-                    ]
-                }
-            }
-        },
-        "GrowingDD": {
-            "title": "Growing Degree Days",
-            "type": "object",
-            "properties": {
-                "starts": {
-                    "title": "Growing season starting month",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 12
-                },
-                "basetemp1": {
-                    "title": "Base temperature #1",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 70
-                },
-                "basetemp2": {
-                    "title": "Base temperature #2",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 70
-                },
-                "cap30C": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "TempSum": {
-            "title": "Annual Temperature Sum",
-            "type": "object",
-            "properties": {
-                "starts": {
-                    "title": "Year summation starting month",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 12
-                },
-                "basetemp1": {
-                    "title": "Base temperature #1",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 70
-                },
-                "basetemp2": {
-                    "title": "Base temperature #2",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 70
-                }
-            }
-        },
-        "Graphs": {
-            "title": "Graphs",
-            "type": "object",
-            "properties": {
-                "graphhours": {
-                    "title": "Graph hours",
-                    "type": "number",
-                    "minimum": 1
-                },
-                "graphdays": {
-                    "title": "Graph days",
-                    "type": "number",
-                    "minimum": 1
-                },
-                "datavisibility": {
-                    "title": "Data Series Visibility",
-                    "type": "object",
-                    "properties": {
-                        "temperature": {
-                            "title": "Temperature Data",
-                            "type": "object",
-                            "properties": {
-                                "graphTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphInTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphHeatIndexVis": {
-                                    "type": "boolean"
-                                },
-                                "graphDewPointVis": {
-                                    "type": "boolean"
-                                },
-                                "graphWindChillVis": {
-                                    "type": "boolean"
-                                },
-                                "graphAppTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphFeelsLikeVis": {
-                                    "type": "boolean"
-                                },
-                                "graphHumidexVis": {
-                                    "type": "boolean"
-                                },
-                                "graphDailyMaxTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphDailyAvgTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphDailyMinTempVis": {
-                                    "type": "boolean"
-                                },
-                                "graphTempSumVis0": {
-                                    "type": "boolean"
-                                },
-                                "graphTempSumVis1": {
-                                    "type": "boolean"
-                                },
-                                "graphTempSumVis2": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "humidity": {
-                            "title": "Humidity Data",
-                            "type": "object",
-                            "properties": {
-                                "graphHumVis": {
-                                    "type": "boolean"
-                                },
-                                "graphInHumVis": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "solar": {
-                            "title": "Solar Data",
-                            "type": "object",
-                            "properties": {
-                                "graphUvVis": {
-                                    "type": "boolean"
-                                },
-                                "graphSolarVis": {
-                                    "type": "boolean"
-                                },
-                                "graphSunshineVis": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "degreedays": {
-                            "title": "Degree Days",
-                            "type": "object",
-                            "properties": {
-                                "graphGrowingDegreeDaysVis1": {
-                                    "type": "boolean"
-                                },
-                                "graphGrowingDegreeDaysVis2": {
-                                    "type": "boolean"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "DisplayOptions": {
-            "title": "Display Options",
-            "type": "object",
-            "properties": {
-                "useapparent": {
-                    "type": "boolean"
-                },
-                "displaysolar": {
-                    "type": "boolean"
-                },
-                "displayuv": {
-                    "type": "boolean"
-                },
-                "windrosepoints": {
-                    "title": "Number of wind rose points",
-                    "enum": [8, 16]
-                }
-            }
-        }
-    }
+		"fineoffset": {
+			"title": "Fine Offset Settings",
+			"type": "object",
+			"properties": {
+				"syncreads" : {
+					"type": "boolean"
+				},
+				"readavoid": {
+					"type":"integer",
+					"minimum": 1,
+					"maximum": 20
+				},
+				"advanced": {
+					"title": "Fine Offset Advanced Options",
+					"type": "object",
+					"properties": {
+						"readtime": {
+							"type":"integer",
+							"minimum": 10,
+							"maximum": 500
+						},
+						"setlogger": {
+							"type": "boolean"
+						},
+						"vid": {
+							"type": "integer",
+							"minimum": -1
+						},
+						"pid": {
+							"type": "integer",
+							"minimum": -1
+						}
+					}
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"easyw": {
+			"title": "EasyWeather File Settings",
+			"type": "object",
+			"properties": {
+				"interval": {
+					"type":"number",
+					"minimum": 1
+				},
+				"filename": {
+					"type":"string"
+				},
+				"minpressmb": {
+					"type":"integer",
+					"minimum": 800,
+					"maximum": 1300
+				},
+				"maxpressmb": {
+					"type":"integer",
+					"minimum": 800,
+					"maximum": 1300
+				},
+				"raintipdiff": {
+					"type":"integer",
+					"minimum": 0,
+					"maximum": 100
+				},
+				"pressoffset": {
+					"type":"number",
+					"minimum": -9999,
+					"maximum": 9999
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"imet": {
+			"title": "Instromet Settings",
+			"type": "object",
+			"properties": {
+				"comportname": {
+					"type": "string"
+				},
+				"baudrate": {
+					"enum": [19200, 115200]
+				},
+				"advanced": {
+					"title": "Instromet Advanced Options",
+					"type": "object",
+					"properties": {
+						"syncstationclock": {
+							"type": "boolean"
+						},
+						"syncclockhour": {
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+						},
+						"updatelogpointer": {
+							"type": "boolean"
+						},
+						"waittime": {
+							"type":"integer",
+							"minimum": 0,
+							"maximum": 2000
+						},
+						"readdelay": {
+							"type":"integer",
+							"minimum": 0,
+							"maximum": 10000
+						}
+					}
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"wmr928": {
+			"title": "WM918/WMR928 Settings",
+			"type": "object",
+			"properties": {
+				"comportname": {
+					"type": "string"
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"Options": {
+			"title": "Common Options",
+			"type": "object",
+			"properties": {
+				"usezerobearing": {
+					"type": "boolean"
+				},
+				"calcwindaverage": {
+					"type": "boolean"
+				},
+				"usespeedforavg": {
+					"type": "boolean"
+				},
+				"use100for98hum": {
+					"type": "boolean"
+				},
+				"calculatedewpoint": {
+					"type": "boolean"
+				},
+				"calculatewindchill": {
+					"type": "boolean"
+				},
+				"cumuluspresstrendnames": {
+					"type": "boolean"
+				},
+				"roundwindspeeds": {
+					"type": "boolean"
+				},
+				"ignorelacrosseclock": {
+					"type": "boolean"
+				},
+				"extrasensors": {
+					"type": "boolean"
+				},
+				"nosensorcheck": {
+					"type": "boolean"
+				},
+				"advanced": {
+					"title": "Advanced Options",
+					"type": "object",
+					"properties": {
+						"avgbearingmins": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 120
+						},
+						"avgspeedmins": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 120
+						},
+						"peakgustmins": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 120
+						},
+						"maxwind": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 9999
+						},
+						"recordtimeout": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 999
+						},
+						"snowdepthhour": {
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+						},
+						"raindaythreshold": {
+							"type": "number",
+							"minimum": -1,
+							"maximum": 1
+						}
+					}
+				},
+				"stationid": {
+				}
+			},
+			"dependencies": {
+				"ignorelacrosseclock": ["stationid"]
+			}
+		},
+		"Forecast": {
+			"title": "Forecast",
+			"type": "object",
+			"properties": {
+				"usecumulusforecast": {
+					"type": "boolean"
+				},
+				"updatehourly": {
+					"type": "boolean"
+				},
+				"lowpressureextreme": {
+					"minimum": 0,
+					"type": "number"
+				},
+				"highpressureextreme": {
+					"minimum": 0,
+					"type": "number"
+				},
+				"pressureunit": {
+					"enum": [
+						"mb/hPa",
+						"inHg"
+					]
+				}
+			},
+			"dependencies": {
+				"updatehourly": ["usecumulusforecast"],
+				"lowpressureextreme": ["usecumulusforecast"],
+				"highpressureextreme": ["usecumulusforecast"],
+				"pressureunit": ["usecumulusforecast"]
+			}
+		},
+		"Solar": {
+			"title": "Solar",
+			"type": "object",
+			"properties": {
+				"solarcalc": {
+					"enum": [0, 1]
+				},
+				"sunthreshold": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 100
+				},
+				"solarmin": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"transfactor": {
+					"dependencies": ["solarcalc"],
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"turbidity": {
+					"dependencies": ["solarcalc"],
+					"type": "number",
+					"minimum": 0,
+					"maximum": 5
+				}
+			},
+			"dependencies": "stationid"
+		},
+		"AnnualRainfall": {
+			"title": "Annual Rainfall",
+			"type": "object",
+			"properties": {
+				"ytdamount": {
+					"type": "number",
+					"minimum": 0
+				},
+				"ytdyear": {
+					"type": "integer",
+					"maximum": 2050
+				},
+				"rainseasonstart": {
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
+				}
+			}
+		},
+		"GrowingDD": {
+			"title": "Growing Degree Days",
+			"type": "object",
+			"properties": {
+				"starts": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 12
+				},
+				"basetemp1": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 70
+				},
+				"basetemp2": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 70
+				},
+				"cap30C": {
+					"type": "boolean"
+				}
+			}
+		},
+		"TempSum": {
+			"title": "Annual Temperature Sum",
+			"type": "object",
+			"properties": {
+				"starts": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 12
+				},
+				"basetemp1": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 70
+				},
+				"basetemp2": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 70
+				}
+			}
+		},
+		"ChillHrs": {
+			"title": "Chill Hours",
+			"type": "object",
+			"properties": {
+				"threshold": {
+					"type": "number"
+				},
+				"month": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 12
+				}
+			}
+		},
+		"Graphs": {
+			"title": "Graphs",
+			"type": "object",
+			"properties": {
+				"graphhours": {
+					"type": "number",
+					"minimum": 1
+				},
+				"graphdays": {
+					"type": "number",
+					"minimum": 1
+				},
+				"datavisibility": {
+					"title": "Data Series Visibility",
+					"type": "object",
+					"properties": {
+						"temperature": {
+							"title": "Temperature Data",
+							"type": "object",
+							"properties": {
+								"graphTempVis": {
+									"type": "boolean"
+								},
+								"graphInTempVis": {
+									"type": "boolean"
+								},
+								"graphHeatIndexVis": {
+									"type": "boolean"
+								},
+								"graphDewPointVis": {
+									"type": "boolean"
+								},
+								"graphWindChillVis": {
+									"type": "boolean"
+								},
+								"graphAppTempVis": {
+									"type": "boolean"
+								},
+								"graphFeelsLikeVis": {
+									"type": "boolean"
+								},
+								"graphHumidexVis": {
+									"type": "boolean"
+								},
+								"graphDailyMaxTempVis": {
+									"type": "boolean"
+								},
+								"graphDailyAvgTempVis": {
+									"type": "boolean"
+								},
+								"graphDailyMinTempVis": {
+									"type": "boolean"
+								},
+								"graphTempSumVis0": {
+									"type": "boolean"
+								},
+								"graphTempSumVis1": {
+									"type": "boolean"
+								},
+								"graphTempSumVis2": {
+									"type": "boolean"
+								}
+							}
+						},
+						"humidity": {
+							"title": "Humidity Data",
+							"type": "object",
+							"properties": {
+								"graphHumVis": {
+									"type": "boolean"
+								},
+								"graphInHumVis": {
+									"type": "boolean"
+								}
+							}
+						},
+						"solar": {
+							"title": "Solar Data",
+							"type": "object",
+							"properties": {
+								"graphUvVis": {
+									"type": "boolean"
+								},
+								"graphSolarVis": {
+									"type": "boolean"
+								},
+								"graphSunshineVis": {
+									"type": "boolean"
+								}
+							}
+						},
+						"degreedays": {
+							"title": "Degree Days",
+							"type": "object",
+							"properties": {
+								"graphGrowingDegreeDaysVis1": {
+									"type": "boolean"
+								},
+								"graphGrowingDegreeDaysVis2": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"DisplayOptions": {
+			"title": "Display Options",
+			"type": "object",
+			"properties": {
+				"useapparent": {
+					"type": "boolean"
+				},
+				"displaysolar": {
+					"type": "boolean"
+				},
+				"displayuv": {
+					"type": "boolean"
+				},
+				"windrosepoints": {
+					"enum": [8, 16]
+				}
+			}
+		}
+	}
 }

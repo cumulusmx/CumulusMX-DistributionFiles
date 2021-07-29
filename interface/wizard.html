@@ -1,13 +1,14 @@
 <!--
-Last modified: 2021/07/16 16:58:00
+Last modified: 2021/07/16 15:37:34
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>NOAA settings - Cumulus MX</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
+    <title>First Time Wizard - Cumulus MX</title>
 
     <link href="css/main.css" rel="stylesheet">
 
@@ -29,7 +30,7 @@ Last modified: 2021/07/16 16:58:00
     <script src="lib/alpaca/alpaca.min.js"></script>
 
     <!-- Custom Files -->
-    <script src="js/noaasettings.js"></script>
+    <script src="js/wizard.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
 
@@ -49,15 +50,18 @@ Last modified: 2021/07/16 16:58:00
             padding-left: 5px;
         }
         .alpaca-container-has-items {
-            margin-left: 30px;
+            margin-left: 20px;
         }
         .collapse.in {
-            margin-left: 30px;
+            margin-left: 20px;
         }
         .alpaca-form-buttons-container {
             margin-bottom: 20px;
             text-align: left;
             font-size: 18px;
+        }
+        .alpaca-field {
+            color: #333;
         }
         legend {
             color: inherit;
@@ -66,10 +70,10 @@ Last modified: 2021/07/16 16:58:00
 
     <script>
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
+            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                $('#Version').text(result.Version);
+                $('#Build').text(result.Build);
+            }});
         });
     </script>
 </head>
@@ -93,17 +97,11 @@ Last modified: 2021/07/16 16:58:00
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>NOAA Reports Settings</h1>
-        <div class="row">
-            <div class="col-md-12">
-                Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
-            </div>
-        </div>
+        <h1>First Time Setup Wizard</h1>
 
         <div class="row">
             <div class="col-md-12">
                 <form></form>
-            </div>
         </div>
     </div>
     <!-- FOOTER -->

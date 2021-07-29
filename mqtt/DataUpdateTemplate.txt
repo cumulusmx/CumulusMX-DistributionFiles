@@ -1,1 +1,7 @@
-{"time":"<#timehhmmss>","windspeed":<#wlatest rc=y>,"winddir":<#bearing>}
+{"topics": [
+    {
+        "topic": "CumulusMX/DataUpdate",
+        "data": "\"time\":\"<#timehhmmss>\",\"windspeed\":<#wlatest rc=y>,\"winddir\":<#bearing>",
+        "retain": false
+    }
+]}

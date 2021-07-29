@@ -1,11 +1,11 @@
-// Last modified: 2021/05/16 20:55:03
+// Last modified: 2021/06/09 21:45:32
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-window.onload = function() {
+window.addEventListener("load", function() {
     var lastUpdateTimer, keepAliveTimer, ws;
     var cp = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 
@@ -142,4 +142,4 @@ window.onload = function() {
         // start the timer for the display updates
         setInterval(doAjaxUpdate, updateInterval * 1000);
     }
-};
+});
