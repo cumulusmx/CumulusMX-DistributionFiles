@@ -1,182 +1,244 @@
 {
-    "fields": {
-        "accessible": {
-            "fieldClass": "hideme"
-        },
-        "airquality": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "primaryaqsensor": {
-                    "optionLabels": [
-                        "No Sensor",
-                        "Davis AirLink Outdoor",
-                        "Davis AirLink Indoor",
-                        "Ecowitt Sensor 1",
-                        "Ecowitt Sensor 2",
-                        "Ecowitt Sensor 3",
-                        "Ecowitt Sensor 4",
-                        "Ecowitt CO₂ Sensor"
-                    ],
-                    "sort": false,
-                    "removeDefaultNone": true,
-                    "helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
-                },
-                "aqi": {
-                    "helper": "Select the AQI index calculation method you want to use",
-                    "optionLabels": [
-                        "USA - EPA",
-                        "UK - COMEAP",
-                        "EU - AQI",
-                        "EU - CAQI",
-                        "Canada - AQHI",
-                        "Australia - NEPM",
-                        "Netherlands - LKI",
-                        "Belgium - BelAQI"
-                    ],
-                    "sort": false,
-                    "removeDefaultNone": true
-                }
-            }
-        },
-        "airLink": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "isNode": {
-                    "rightLabel": "This AirLink has been added as a Node to my main WLL station",
-                    "helpers": [
-                        "Enable this if you added the AirLink(s) as a node to an existing WLL weatherlink.com main station.",
-                        "Disable if this if your AirLink(s) is configured as a standalone station, or has been added to a VP2/Vue or other type of station."
-                    ]
-                },
-                "apiKey": {
-                    "helpers": ["Enter this only if your AirLink(s) is not added as a node to your main WeatherLink Live station"],
-                    "dependencies": {
-                        "isNode": false
-                    }
-                },
-                "apiSecret": {
-                    "helper": "Enter this only if your AirLink is not added as a node to your mainWeatherLink Live station",
-                    "dependencies": {
-                        "isNode": false
-                    }
-                },
-                "autoUpdateIp": {
-                    "rightLabel": "Use automatic IP address discovery and updates",
-                    "helper": "NOTE: only enable this if you have a single AirLink device and it uses DHCP"
-                },
-                "indoorenabled": {
-                    "rightLabel": "Enable Indoor AirLink",
-                    "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
-                },
-                "indoor": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "ipAddress": {
-                            "type": "ipv4"
-                        },
-                        "hostname": {
-                            "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
-                        },
-                        "stationId": {
-                            "helper": "Enter the weatherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be completed automatically"
-                        }
-                    },
-                    "dependencies": {
-                        "indoorenabled": true
-                    }
-                },
-                "outdoorenabled": {
-                    "rightLabel": "Enable Outdoor AirLink",
-                    "helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com"
-                },
-                "outdoor": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "ipAddress": {
-                            "type": "ipv4"
-                        },
-                        "hostname": {
-                            "helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
-                        },
-                        "stationId": {
-                            "helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
-                        }
-                    },
-                    "dependencies": {
-                        "outdoorenabled": true
-                    }
-                }
-            }
-        },
-        "blakeLarsen": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "enabled": {
-                    "rightLabel": "Use a Blake-Larsen sunshine recorder for sunshine hours",
-                    "helper": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine - reads the SRsunshine.dat file"
-                }
-            }
-        },
-        "rg11": {
-            "collapsible":true,
-            "collapsed": true,
-            "fields": {
-                "dev1enabled": {
-                    "rightLabel": "Enable RG-11 device 1"
-                },
-                "port1": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "commPort": {
-                        },
-                        "tipMode": {
-                            "rightLabel": "Enable tipping bucket detection mode",
-                            "helper": "Disabled puts the device into \"It's raining\" mode"
-                        },
-                        "tipSize": {
-                            "helper": "The tip size in the units Cumulus is configured to use for rain"
-                        },
-                        "dtrMode": {
-                            "rightLabel": "Use DTR/DSR mode",
-                            "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
-                        }
-                    },
-                    "dependencies": {
-                        "dev1enabled": true
-                    }
-                },
-                "dev2enabled": {
-                    "rightLabel": "Enable RG-11 device 2"
-                },
-                "port2": {
-                    "collapsible":true,
-                    "collapsed": true,
-                    "fields": {
-                        "commPort": {
-                        },
-                        "tipMode": {
-                            "rightLabel": "Enable tipping bucket detection mode",
-                            "helper": "Disabled puts the device in \"It's raining\" mode"
-                        },
-                        "tipSize": {
-                            "helper": "The tip size in the units Cumulus tois configured to use for rain"
-                        },
-                        "dtrMode": {
-                            "rightLabel": "Use DTR/DSR mode",
-                            "helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
-                        }
-                    },
-                    "dependencies": {
-                        "dev2enabled": true
-                    }
-                }
-            }
-        }
-    }
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"airquality": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"primaryaqsensor": {
+					"label": "Primary Air Quality Sensor:",
+					"optionLabels": [
+						"No Sensor",
+						"Davis AirLink Outdoor",
+						"Davis AirLink Indoor",
+						"Ecowitt Sensor 1",
+						"Ecowitt Sensor 2",
+						"Ecowitt Sensor 3",
+						"Ecowitt Sensor 4",
+						"Ecowitt CO₂ Sensor"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helper": "Sets the Air Quality sensor to use for graphing and sending to third parties, leave undefined to suppress AQ graph data generation. Note: AirLink Indoor values are not sent to third parties or the default web page."
+				},
+				"aqi": {
+					"label": "Air Quality Index:",
+					"optionLabels": [
+						"USA - EPA",
+						"UK - COMEAP",
+						"EU - AQI",
+						"EU - CAQI",
+						"Canada - AQHI",
+						"Australia - NEPM",
+						"Netherlands - LKI",
+						"Belgium - BelAQI"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helper": "Select the AQI index calculation method you want to use"
+				}
+			}
+		},
+		"airLink": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"isNode": {
+					"label": "Added to station:",
+					"rightLabel": "This AirLink has been added as a Node to my main WLL station",
+					"helpers": [
+						"Enable this if you added the AirLink(s) as a node to an existing WLL weatherlink.com main station.",
+						"Disable if this if your AirLink(s) is configured as a standalone station, or has been added to a VP2/Vue or other type of station."
+					]
+				},
+				"apiKey": {
+					"label": "WeatherLink API key:",
+					"helpers": ["Enter this only if your AirLink(s) is not added as a node to your main WeatherLink Live station"],
+					"dependencies": {
+						"isNode": false
+					}
+				},
+				"apiSecret": {
+					"label": "WeatherLink API secret:",
+					"helper": "Enter this only if your AirLink is not added as a node to your mainWeatherLink Live station",
+					"dependencies": {
+						"isNode": false
+					}
+				},
+				"autoUpdateIp": {
+					"label": "Auto-Discovery:",
+					"rightLabel": "Enable automatic IP address discovery and updates",
+					"helper": "NOTE: only enable this if you have a single AirLink device and it uses DHCP"
+				},
+				"indoor": {
+					"collapsible":true,
+					"collapsed": false,
+					"helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com",
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable Indoor AirLink"
+						},
+						"ipAddress": {
+							"label": "IP Address:",
+							"type": "ipv4"
+						},
+						"hostname": {
+							"label": "Airlink Hostname:",
+							"helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
+						},
+						"stationId": {
+							"label": "Station ID:",
+							"helper": "Enter the weatherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be completed automatically"
+						}
+					}
+				},
+				"outdoor": {
+					"collapsible":true,
+					"collapsed": false,
+					"helper": "AirLinks have to be defined as indoor or outdoor devices. The CumulusMX assignment MUST match the choice made on weatherlink.com",
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable Outdoor AirLink"
+						},
+						"ipAddress": {
+							"label": "IP Address:",
+							"type": "ipv4"
+						},
+						"hostname": {
+							"label": "Airlink Hostname:",
+							"helper": "You can enter the Airlink host name if you know it (lowercase). If you only have one Airlink device you can leave this blank and it will be populated for you"
+						},
+						"stationId": {
+							"label": "Station ID:",
+							"helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
+						}
+					}
+				}
+			}
+		},
+		"ecowitt": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Use an Ecowitt station for extra sensor data",
+					"helpers": [
+						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
+						"In WS View configure the Custom Server to use - Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: \\station\\ecowittextra<br>Port: 8998<br>Interval: 20",
+						"You must restart Cumulus after enabling/disabling this feature"
+					]
+				},
+				"useSolar": {
+					"label": "Solar",
+					"rightLabel": "Use the solar data from your Ecowitt"
+				},
+				"useUv": {
+					"label": "UV",
+					"rightLabel": "Use the UV-I data from your Ecowitt"
+				},
+				"useTempHum": {
+					"label": "Extra Temp/Hum",
+					"rightLabel": "Use the extra temperature/humidity sensor data from your Ecowitt"
+				},
+				"useSoilTemp": {
+					"label": "Soil Temp",
+					"rightLabel": "Use the soil temperature sensor data from your Ecowitt"
+				},
+				"useSoilMoist": {
+					"label": "Soil Moisture",
+					"rightLabel": "Use the soil moisture sensor data from your Ecowitt"
+				},
+				"useLeafWet": {
+					"label": "Leaf Wetness",
+					"rightLabel": "Use the leaf wetness sensor data from your Ecowitt"
+				},
+				"useAQI": {
+					"label": "Air Quality",
+					"rightLabel": "Use the air quality sensor data from your Ecowitt"
+				},
+				"useCo2": {
+					"label": "Carbon Dioxide",
+					"rightLabel": "Use the CO₂ sensor data from your Ecowitt"
+				},
+				"useLightning": {
+					"label": "Lightning",
+					"rightLabel": "Use the lightning sensor data from your Ecowitt"
+				},
+				"useLeak": {
+					"label": "Leak",
+					"rightLabel": "Use the leak sensor data from your Ecowitt"
+				}
+			}
+		},
+		"blakeLarsen": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Use a Blake-Larsen sunshine recorder for sunshine hours",
+					"helper": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine - reads the SRsunshine.dat file"
+				}
+			}
+		},
+		"rg11": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"port1": {
+					"collapsible": true,
+					"collapsed": false,
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable RG-11 device 1"
+						},
+						"commPort": {
+							"label": "Serial Port:"
+						},
+						"tipMode": {
+							"label": "Detection Mode:",
+							"rightLabel": "Enable tipping bucket detection mode",
+							"helper": "Disabled puts the device into \"It's raining\" mode"
+						},
+						"tipSize": {
+							"label": "Tip Size:",
+							"helper": "The tip size in the units Cumulus is configured to use for rain"
+						},
+						"dtrMode": {
+							"label": "Connection Mode:",
+							"rightLabel": "Use DTR/DSR mode",
+							"helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
+						}
+					}
+				},
+				"port2": {
+					"collapsible":true,
+					"collapsed": false,
+					"fields": {
+						"enabled": {
+							"rightLabel": "Enable RG-11 device 2"
+						},
+						"commPort": {
+							"label": "Serial Port:"
+						},
+						"tipMode": {
+							"label": "Detection Mode:",
+							"rightLabel": "Enable tipping bucket detection mode",
+							"helper": "Disabled puts the device in \"It's raining\" mode"
+						},
+						"tipSize": {
+							"label": "Tip Size:",
+							"helper": "The tip size in the units Cumulus is configured to use for rain"
+						},
+						"dtrMode": {
+							"label": "Connection Mode:",
+							"rightLabel": "Use DTR/DSR mode",
+							"helper": "Unselected puts this device in RTS/CTS mode. If two RG-11 devices share a serial port, one must be DTR mode, the other in RTS mode"
+						}
+					}
+				}
+			}
+		}
+	}
 }

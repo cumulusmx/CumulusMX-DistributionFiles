@@ -1,167 +1,133 @@
-{
-    "type": "object",
-    "properties": {
-        "accessible": {
-            "type": "boolean"
-        },
-        "explanation": {
-            "default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset",
-            "readonly": true
-        },
-        "offsets": {
-            "type": "object",
-            "title": "Offsets",
-            "properties": {
-                "pressure": {
-                    "title": "Pressure",
-                    "type": "number"
-                },
-                "temperature": {
-                    "title": "Outdoor temperature",
-                    "type": "number"
-                },
-                "indoortemp": {
-                    "title": "Indoor temperature",
-                    "type": "number"
-                },
-                "humidity": {
-                    "title": "Outdoor humidity",
-                    "type": "integer"
-                },
-                "winddir": {
-                    "title": "Wind direction",
-                    "type": "integer"
-                },
-                "solar": {
-                    "title": "Solar",
-                    "type": "number"
-                },
-                "uv": {
-                    "title": "UV",
-                    "type": "number"
-                },
-                "wetbulb": {
-                    "title": "Wet bulb",
-                    "type": "number"
-                }
-            }
-        },
-        "multipliers": {
-            "type": "object",
-            "title": "Multipliers",
-            "properties": {
-                "pressure": {
-                    "title": "Pressure",
-                    "type": "number"
-                },
-                "windspeed": {
-                    "title": "Wind speed",
-                    "type": "number"
-                },
-                "windgust": {
-                    "title": "Wind gust",
-                    "type": "number"
-                },
-                "outdoortemp": {
-                    "title": "Outdoor temperature",
-                    "type": "number"
-                },
-                "outdoortemp2": {
-                    "title": "Outdoor temperature ^2",
-                    "type": "number"
-                },
-                "humidity": {
-                    "title": "Outdoor humidity",
-                    "type": "number"
-                },
-                "humidity2": {
-                    "title": "Outdoor humidity ^2",
-                    "type": "number"
-                },
-                "rainfall": {
-                    "title": "Rainfall",
-                    "type": "number"
-                },
-                "solar": {
-                    "title": "Solar",
-                    "type": "number"
-                },
-                "uv": {
-                    "title": "UV",
-                    "type": "number"
-                },
-                "wetbulb": {
-                    "title": "Wet bulb",
-                    "type": "number"
-                }
-            }
-        },
-        "spikeremoval": {
-            "type": "object",
-            "title": "Spike removal",
-            "properties": {
-                "windspeed": {
-                    "title": "Wind speed (m/s)",
-                    "type": "number"
-                },
-                "windgust": {
-                    "title": "Wind gust (m/s)",
-                    "type": "number"
-                },
-                "outdoortemp": {
-                    "title": "Outdoor temperature (C)",
-                    "type": "number"
-                },
-                "humidity": {
-                    "title": "Outdoor humidity (%)",
-                    "type": "number"
-                },
-                "pressure": {
-                    "title": "Pressure (mb)",
-                    "type": "number"
-                },
-                "maxrainrate": {
-                    "title": "Max rain rate (mm/hr)",
-                    "type": "number"
-                },
-                "maxhourlyrain": {
-                    "title": "Max hourly rain (mm)",
-                    "type": "number"
-                }
-            }
-        },
-        "limits": {
-            "type": "object",
-            "title": "Limits",
-            "properties": {
-                "temphigh": {
-                    "title": "Max temp (&deg;C)",
-                    "type": "number"
-                },
-                "templow": {
-                    "title": "Min temp (&deg;C)",
-                    "type": "number"
-                },
-                "dewhigh": {
-                    "title": "Max dew point (&deg;C)",
-                    "type": "number"
-                },
-                "presshigh": {
-                    "title": "Max pressure (hPa)",
-                    "type": "number"
-                },
-                "presslow": {
-                    "title": "Min pressure (hPa)",
-                    "type": "number"
-                },
-                "windhigh": {
-                    "title": "Max wind gust (m/s)",
-                    "type": "number"
-                }
-            }
-        },
-        "log": {
-            "type": "boolean"
-        }
-    }
+﻿{
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"explanation": {
+			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset",
+			"readonly": true
+		},
+		"offsets": {
+			"type": "object",
+			"title": "Offsets",
+			"properties": {
+				"pressure": {
+					"type": "number"
+				},
+				"temperature": {
+					"type": "number"
+				},
+				"indoortemp": {
+					"type": "number"
+				},
+				"humidity": {
+					"type": "integer"
+				},
+				"winddir": {
+					"type": "integer"
+				},
+				"solar": {
+					"type": "number"
+				},
+				"uv": {
+					"type": "number"
+				},
+				"wetbulb": {
+					"title": "Wet bulb",
+					"type": "number"
+				}
+			}
+		},
+		"multipliers": {
+			"type": "object",
+			"title": "Multipliers",
+			"properties": {
+				"pressure": {
+					"type": "number"
+				},
+				"windspeed": {
+					"type": "number"
+				},
+				"windgust": {
+					"type": "number"
+				},
+				"outdoortemp": {
+					"type": "number"
+				},
+				"outdoortemp2": {
+					"type": "number"
+				},
+				"humidity": {
+					"type": "number"
+				},
+				"humidity2": {
+					"type": "number"
+				},
+				"rainfall": {
+					"type": "number"
+				},
+				"solar": {
+					"type": "number"
+				},
+				"uv": {
+					"type": "number"
+				},
+				"wetbulb": {
+					"type": "number"
+				}
+			}
+		},
+		"spikeremoval": {
+			"type": "object",
+			"title": "Spike removal",
+			"properties": {
+				"windspeed": {
+					"type": "number"
+				},
+				"windgust": {
+					"type": "number"
+				},
+				"outdoortemp": {
+					"type": "number"
+				},
+				"humidity": {
+					"type": "number"
+				},
+				"pressure": {
+					"type": "number"
+				},
+				"maxrainrate": {
+					"type": "number"
+				},
+				"maxhourlyrain": {
+					"type": "number"
+				}
+			}
+		},
+		"limits": {
+			"type": "object",
+			"title": "Limits",
+			"properties": {
+				"temphigh": {
+					"type": "number"
+				},
+				"templow": {
+					"type": "number"
+				},
+				"dewhigh": {
+					"type": "number"
+				},
+				"presshigh": {
+					"type": "number"
+				},
+				"presslow": {
+					"type": "number"
+				},
+				"windhigh": {
+					"type": "number"
+				}
+			}
+		}
+	}
 }

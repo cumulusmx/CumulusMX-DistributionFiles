@@ -1,4 +1,4 @@
-// Last modified: 2021/04/24 15:03:00
+// Last modified: 2021/05/28 12:41:59
 
 var chart, config, available;
 
@@ -807,7 +807,6 @@ var doSolar = function () {
                 sunHours: null
             };
             var idxs = ['solarRad', 'uvi', 'sunHours'];
-            var cnt = 0;
 
             idxs.forEach(function(idx) {
                 if (idx in resp) {
@@ -856,12 +855,8 @@ var doSolar = function () {
                         showInNavigator: idx !== 'solarRad',
                         index: indexes[idx],
                         fillColor: fillColor[idx],
+                        zIndex: idx === 'uvi' ? 99 : null
                     }, false);
-
-                    if (idx === 'uvi') {
-                        chart.series[cnt].options.zIndex = 99;
-                    }
-                    cnt++;
                 }
             });
 

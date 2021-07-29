@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:54:31
+// Last modified: 2021/07/21 22:16:57
 
 let accessMode;
 
@@ -6,9 +6,9 @@ $(document).ready(function () {
 
     $("form").alpaca({
         "dataSource": "./api/settings/extrasensordata.json",
-        "optionsSource": "./api/settings/extrasensoroptions.json",
-        "schemaSource": "./api/settings/extrasensorschema.json",
-        //"view": "bootstrap-edit",
+        "optionsSource": "./json/ExtraSensorOptions.json",
+        "schemaSource": "./json/ExtraSensorSchema.json",
+        "view": "bootstrap-edit-horizontal",
         "ui": "bootstrap",
         "options": {
             "form": {

@@ -18,6 +18,13 @@ body {
   position: relative;
   text-align: center;
 }
+.odo {
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
 .gauge {
   padding: 5px;
   text-align: center;

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/05/16 21:04:37
+Last modified: 2021/07/16 16:26:43
 -->
 <!doctype html>
 <html lang="en">
@@ -11,6 +11,9 @@ Last modified: 2021/05/16 21:04:37
     <title>Extra sensor settings - Cumulus MX</title>
 
     <link href="css/main.css" rel="stylesheet">
+
+    <!-- menu -->
+    <script src="js/menu.js"></script>
 
     <!-- jquery -->
     <script src="lib/jquery/jquery-latest.min.js"></script>
@@ -61,35 +64,8 @@ Last modified: 2021/05/16 21:04:37
             text-align: left;
             font-size: 18px;
         }
-        .alpaca-field .alpaca-invalid {
-            color:red;
-        }
-        .alpaca-field {
-            color: #333;
-        }
         legend {
             color: inherit;
-        }
-        .hideme {
-            visibility: hidden;
-            width: 0px;
-            height: 0px;
-            display: flex;
-        }
-        .has-error .control-label,
-        .has-error .radio,
-        .has-error .checkbox,
-        .has-error .radio-inline,
-        .has-error .checkbox-inline,
-        .has-error.radio label,
-        .has-error.checkbox label,
-        .has-error.radio-inline label,
-        .has-error.checkbox-inline label,
-        .has-error .form-control,
-        .has-error .form-control:focus,
-        .has-error .input-group-addon {
-            color: #ff0500;
-            border-color: #ca2e2b;
         }
     </style>
 
@@ -114,70 +90,7 @@ Last modified: 2021/05/16 21:04:37
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="now.html">Now</a></li>
-                    <li><a href="gauges.html">Gauges</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="charts.html">Recent Charts</a></li>
-                            <li><a href="chartscompare.html">Recent SelectaChart</a></li>
-                            <li><a href="chartshistoric.html">Historic Charts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="todayyest.html">Today/Yesterday</a></li>
-                    <li><a href="records.html">Records</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="extra.html">Station Extra sensors</a></li>
-                            <li><a href="airlink.html">AirLink sensors</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="datalogs.html">Data logs</a></li>
-                            <li><a href="extradatalogs.html">Extra data logs</a></li>
-                            <li><a href="dayfileviewer.html">Dayfile</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
-                            <li><a href="noaayearreport.html">NOAA Year Report</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="programsettings.html">Program settings</a></li>
-                            <li><a href="stationsettings.html">Station settings</a></li>
-                            <li><a href="internetsettings.html">Internet settings</a></li>
-                            <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
-                            <li class="active"><a href="extrasensorsettings.html">Extra sensor settings</a></li>
-                            <li><a href="extrawebfiles.html">Extra web files</a></li>
-                            <li><a href="calibrationsettings.html">Calibration settings</a></li>
-                            <li><a href="noaasettings.html">NOAA settings</a></li>
-                            <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                            <li><a href="alarmsettings.html">Alarms</a></li>
-                            <li><a href="ftpnow.html">FTP Now!</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="raintodayeditor.html">Today's rain</a></li>
-                            <li><a href="diaryeditor.html">Weather Diary</a></li>
-                            <li><a href="currentcondeditor.html">Current Conditions</a></li>
-                            <li><a href="alltimerecseditor.html">All Time Records</a></li>
-                            <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
-                            <li><a href="thismonthrecseditor.html">This Month's Records</a></li>
-                            <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
-                        </ul>
-                    </li>
+                <ul id="Main_Menu" class="nav navbar-nav">
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

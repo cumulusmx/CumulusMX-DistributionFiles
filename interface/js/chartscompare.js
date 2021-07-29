@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2021/05/09 17:10:06
+// Last modified: 2021/06/07 12:42:00
 
 var chart, config, options;
 var settings = {
@@ -10,6 +10,27 @@ var settings = {
 var freezing;
 var txtSelect = 'Select Series';
 var txtClear = 'Clear Series';
+
+var myRanges = {
+    buttons: [{
+        count: 12,
+        type: 'hour',
+        text: '12h'
+    }, {
+        count: 24,
+        type: 'hour',
+        text: '24h'
+    }, {
+        count: 2,
+        type: 'day',
+        text: '2d'
+    }, {
+        type: 'all',
+        text: 'All'
+    }],
+    inputEnabled: false,
+    selected: 1
+};
 
 var compassP = function (deg) {
     var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
@@ -127,26 +148,7 @@ $(document).ready(function () {
                         xDateFormat: '%A, %b %e, %H:%M'
                     },
                     series: [],
-                    rangeSelector: {
-                        buttons: [{
-                                count: 12,
-                                type: 'hour',
-                                text: '12h'
-                            }, {
-                                count: 24,
-                                type: 'hour',
-                                text: '24h'
-                            }, {
-                                count: 2,
-                                type: 'day',
-                                text: '2d'
-                            }, {
-                                type: 'all',
-                                text: 'All'
-                            }],
-                        inputEnabled: false,
-                        selected: 1
-                    }
+                    rangeSelector: myRanges
                 };
 
                 // draw the basic chart framework

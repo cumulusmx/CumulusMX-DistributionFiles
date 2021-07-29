@@ -1,130 +1,202 @@
-{
-    "fields": {
-        "accessible": {
-            "fieldClass": "hideme"
-        },
-        "server": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-            }
-        },
-        "realtimeenabled": {
-            "rightLabel": "Realtime Enabled"
-        },
-        "realtime": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-                "table": {
-                },
-                "retentionVal": {
-                    "helpers": ["The number of \"units\" to retain in your table"]
-                },
-                "retentionUnit": {
-                    "optionLabels": [
-                        "Seconds",
-                        "Minutes",
-                        "Hours",
-                        "Days",
-                        "Weeks",
-                        "Months"
-                    ],
-                    "sort": false,
-                    "removeDefaultNone": true,
-                    "helpers": ["The the unit to use with the value above"]
-                },
-                "limit1min": {
-                    "rightLabel": "Limit real time table inserts to once a minute",
-                    "helpers": [
-                        "Setting this means that if your real time interval is less than one minute, then a new row will only be inserted once a minute",
-                        "You should not enable this option if your real time interval is greater than one minute"
-                    ]
-                }
-            },
-            "dependencies": {
-                "realtimeenabled": true
-            }
-        },
-        "dayenabled": {
-            "rightLabel": "Dayfile Enabled"
-        },
-        "dayfile": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-            },
-            "dependencies": {
-                "dayenabled": true
-            }
-        },
-        "monthenabled": {
-            "rightLabel": "Monthly Log Enabled"
-        },
-        "monthly": {
-            "collapsible": true,
-            "collapsed": true,
-            "fields": {
-            },
-            "dependencies": {
-                "monthenabled": true
-            }
-        },
-        "custsecsenabled": {
-            "rightLabel": "Custom Seconds Enabled"
-        },
-        "customseconds": {
-            "collapsible": true,
-            "collapsed": true,
-            "helper": "A custom SQL command to be executed at an interval in seconds - can include webtags",
-            "fields": {
-            },
-            "dependencies": {
-                "custsecsenabled": true
-            }
-        },
-        "custminsenabled": {
-            "rightLabel": "Custom Minutes Enabled"
-        },
-        "customminutes": {
-            "collapsible": true,
-            "collapsed": true,
-            "helper": "A custom SQL command to be executed at an interval in minutes - can include webtags",
-            "fields": {
-                "intervalindex": {
-                    "optionLabels": [
-                        "1 minute",
-                        "2 minutes",
-                        "3 minutes",
-                        "4 minutes",
-                        "5 minutes",
-                        "6 minutes",
-                        "10 minutes",
-                        "12 minutes",
-                        "15 minutes",
-                        "20 minutes",
-                        "30 minutes",
-                        "60 minutes"
-                    ],
-                    "removeDefaultNone": true
-                }
-            },
-            "dependencies": {
-                "custminsenabled": true
-            }
-        },
-        "custrollenabled": {
-            "rightLabel": "Custom Rollover Enabled"
-        },
-       "customrollover": {
-            "collapsible": true,
-            "collapsed": true,
-            "helper": "A custom SQL command to be executed just before end of day rollover - can include webtags",
-            "fields": {
-            },
-            "dependencies": {
-                "custrollenabled": true
-            }
-        }
-    }
+﻿{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"server": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"host": {
+					"label": "Host name:"
+				},
+				"port": {
+					"label": "Port number:"
+				},
+				"user": {
+					"label": "User name:"
+				},
+				"pass": {
+					"label": "Password:"
+				},
+				"database": {
+					"label": "Database name:"
+				}
+			}
+		},
+		"options": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"updateonedit": {
+					"rightLabel": "Update MySQL on Edit",
+					"helpers": ["When editing the dayfile and log file values via the dashboard, also update the corresponding MySQL values"]
+				},
+				"bufferonerror": {
+					"rightLabel": "Buffer commands on failure",
+					"helpers": [
+						"On a MySQL command failure, buffer the failed command(s) until Cumulus can reconnect to the MySQL server",
+						"The buffer of failed commands will be lost if you restart Cumulus"
+					]
+				}
+			}
+		},
+		"realtime": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Real time Enabled"
+				},
+				"table": {
+					"label": "Table name:",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"retentionVal": {
+					"label": "Data Retention value:",
+					"numericEntry": true,
+					"helpers": ["The number of \"units\" to retain in your table"],
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"retentionUnit": {
+					"label": "Data Retention unit:",
+					"optionLabels": [
+						"Seconds",
+						"Minutes",
+						"Hours",
+						"Days",
+						"Weeks",
+						"Months"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helpers": ["The the unit to use with the value above"],
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"limit1min": {
+					"label": "Limit Inserts:",
+					"rightLabel": "Limit real time table inserts to once a minute",
+					"helpers": [
+						"Setting this means that if your real time interval is less than one minute, then a new row will only be inserted once a minute",
+						"You should not enable this option if your real time interval is greater than one minute"
+					],
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"dayfile": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Dayfile Enabled"
+				},
+				"table": {
+					"label": "Table name:",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"monthly": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Monthly Log Enabled"
+				},
+				"table": {
+					"label": "Table name:",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"customseconds": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "A custom SQL command to be executed at an interval in seconds - can include webtags",
+			"fields": {
+				"enabled": {
+					"rightLabel": "Custom Seconds Enabled"
+				},
+				"command": {
+					"label": "SQL command:",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"interval": {
+					"label": "Interval (seconds):",
+					"numericEntry": true,
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"customminutes": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "A custom SQL command to be executed at an interval in minutes - can include webtags",
+			"fields": {
+				"enabled": {
+					"rightLabel": "Custom Minutes Enabled"
+				},
+				"command": {
+					"label": "SQL command:",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"intervalindex": {
+					"label": "Interval:",
+					"optionLabels": [
+						"1 minute",
+						"2 minutes",
+						"3 minutes",
+						"4 minutes",
+						"5 minutes",
+						"6 minutes",
+						"10 minutes",
+						"12 minutes",
+						"15 minutes",
+						"20 minutes",
+						"30 minutes",
+						"60 minutes"
+					],
+					"removeDefaultNone": true,
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"customrollover": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "A custom SQL command to be executed just before end of day rollover - can include webtags",
+			"fields": {
+				"enabled": {
+					"rightLabel": "Custom Rollover Enabled"
+				},
+				"command": {
+					"label": "SQL command:",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		}
+	}
 }

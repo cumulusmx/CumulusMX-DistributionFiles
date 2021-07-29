@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/05/16 21:06:20
+Last modified: 2021/07/12 12:04:46
 -->
 <!doctype html>
 <html lang="en">
@@ -10,6 +10,8 @@ Last modified: 2021/05/16 21:06:20
     <meta name="description" content="">
     <link href="css/font-style.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <!-- menu -->
+    <script src="js/menu.js"></script>
     <!-- jquery -->
     <script src="lib/jquery/jquery-latest.min.js"></script>
     <script src="lib/jquery/jquery.tmpl.js"></script>
@@ -46,6 +48,7 @@ Last modified: 2021/05/16 21:06:20
         height: 50px;
         border-radius: 5px;
     }
+    .shade {background-color: #eef4f9}
     </style>
 </head>
 <body>
@@ -60,70 +63,7 @@ Last modified: 2021/05/16 21:06:20
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="now.html">Now</a></li>
-                    <li><a href="gauges.html">Gauges</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="charts.html">Recent Charts</a></li>
-                            <li><a href="chartscompare.html">Recent SelectaChart</a></li>
-                            <li><a href="chartshistoric.html">Historic Charts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="todayyest.html">Today/Yesterday</a></li>
-                    <li><a href="records.html">Records</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extra sensors<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="extra.html">Station Extra sensors</a></li>
-                            <li><a href="airlink.html">AirLink sensors</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data logs<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="datalogs.html">Data logs</a></li>
-                            <li><a href="extradatalogs.html">Extra data logs</a></li>
-                            <li><a href="dayfileviewer.html">Dayfile</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="noaamonthreport.html">NOAA Month Report</a></li>
-                            <li><a href="noaayearreport.html">NOAA Year Report</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="programsettings.html">Program settings</a></li>
-                            <li><a href="stationsettings.html">Station settings</a></li>
-                            <li><a href="internetsettings.html">Internet settings</a></li>
-                            <li><a href="thirdpartysettings.html">Third party upload settings</a></li>
-                            <li><a href="extrasensorsettings.html">Extra sensor settings</a></li>
-                            <li><a href="extrawebfiles.html">Extra web files</a></li>
-                            <li><a href="calibrationsettings.html">Calibration settings</a></li>
-                            <li><a href="noaasettings.html">NOAA settings</a></li>
-                            <li><a href="mysqlsettings.html">MySQL settings</a></li>
-                            <li><a href="alarmsettings.html">Alarms</a></li>
-                            <li><a href="ftpnow.html">FTP Now!</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="raintodayeditor.html">Today's rain</a></li>
-                            <li><a href="diaryeditor.html">Weather Diary</a></li>
-                            <li><a href="currentcondeditor.html">Current Conditions</a></li>
-                            <li><a href="alltimerecseditor.html">All Time Records</a></li>
-                            <li><a href="monthlyrecseditor.html">Monthly Records</a></li>
-                            <li class="active"><a href="thismonthrecseditor.html">This Month's Records</a></li>
-                            <li><a href="thisyearrecseditor.html">This Year's Records</a></li>
-                        </ul>
-                    </li>
+                <ul id="Main_Menu" class="nav navbar-nav">
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -135,7 +75,7 @@ Last modified: 2021/05/16 21:06:20
         <div class="row">
             <div class="col-md-12">
                 <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
-                    <tr>
+                    <tr style="background-color: #b2c2dc;">
                         <th>Record</th>
                         <th>Value</th>
                         <th>Timestamp</th>
@@ -153,7 +93,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highTempValLogfile"></td>
                         <td id="highTempTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Low temperature</td>
                         <td id="lowTempVal" data-pk="3" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low temp value"></td>
                         <td id="lowTempTime" data-pk="4" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low temp date/time"></td>
@@ -171,7 +111,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highDewPointValLogfile"></td>
                         <td id="highDewPointTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Low dew point</td>
                         <td id="lowDewPointVal" data-pk="7" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low dew point value"></td>
                         <td id="lowDewPointTime" data-pk="8" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low dew point date/time"></td>
@@ -189,7 +129,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highApparentTempValLogfile"></td>
                         <td id="highApparentTempTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Low apparent temperature</td>
                         <td id="lowApparentTempVal" data-pk="9" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low apparent temp value"></td>
                         <td id="lowApparentTempTime" data-pk="10" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low apparent temp date/time"></td>
@@ -207,7 +147,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highFeelsLikeValLogfile"></td>
                         <td id="highFeelsLikeTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Low feels like</td>
                         <td id="lowFeelsLikeVal" data-pk="9" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low feels like value"></td>
                         <td id="lowFeelsLikeTime" data-pk="10" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low feels like date/time"></td>
@@ -225,7 +165,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highHumidexValLogfile"></td>
                         <td id="highHumidexTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Low wind chill</td>
                         <td id="lowWindChillVal" data-pk="15" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low wind chill value"></td>
                         <td id="lowWindChillTime" data-pk="16" data-type="text" data-url="api/edit/thismonth" data-title="Enter new low wind chill date/time"></td>
@@ -243,7 +183,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highHeatIndexValLogfile"></td>
                         <td id="highHeatIndexTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High minimum temperature</td>
                         <td id="highMinTempVal" data-pk="19" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high minimum temp value"></td>
                         <td id="highMinTempTime" data-pk="20" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high minimum date/time"></td>
@@ -261,7 +201,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="lowMaxTempValLogfile"></td>
                         <td id="lowMaxTempTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High daily temp range</td>
                         <td id="highDailyTempRangeVal" data-pk="23" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high daily temp range value"></td>
                         <td id="highDailyTempRangeTime" data-pk="24" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high daily temp range date"></td>
@@ -279,7 +219,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="lowDailyTempRangeValLogfile"></td>
                         <td id="lowDailyTempRangeTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High humidity</td>
                         <td id="highHumidityVal" data-pk="27" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high humidity value"></td>
                         <td id="highHumidityTime" data-pk="28" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high humidity date/time"></td>
@@ -297,7 +237,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="lowHumidityValLogfile"></td>
                         <td id="lowHumidityTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High barometer</td>
                         <td id="highBarometerVal" data-pk="31" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high pressure value"></td>
                         <td id="highBarometerTime" data-pk="32" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high pressure date/time"></td>
@@ -315,7 +255,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="lowBarometerValLogfile"></td>
                         <td id="lowBarometerTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High gust speed</td>
                         <td id="highGustVal" data-pk="35" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high gust value"></td>
                         <td id="highGustTime" data-pk="36" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high gust date/time"></td>
@@ -333,7 +273,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highWindValLogfile"></td>
                         <td id="highWindTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High daily wind run</td>
                         <td id="highWindRunVal" data-pk="39" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high daily wind run value"></td>
                         <td id="highWindRunTime" data-pk="40" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high daily wind run date"></td>
@@ -351,7 +291,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highRainRateValLogfile"></td>
                         <td id="highRainRateTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>High hourly rain</td>
                         <td id="highHourlyRainVal" data-pk="43" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high hourly rain value"></td>
                         <td id="highHourlyRainTime" data-pk="44" data-type="text" data-url="api/edit/thismonth" data-title="Enter new high hourly rain date/time"></td>
@@ -369,7 +309,7 @@ Last modified: 2021/05/16 21:06:20
                         <td id="highDailyRainValLogfile"></td>
                         <td id="highDailyRainTimeLogfile"></td>
                     </tr>
-                    <tr>
+                    <tr class="shade">
                         <td>Longest dry period</td>
                         <td id="longestDryPeriodVal" data-pk="47" data-type="text" data-url="api/edit/thismonth" data-title="Enter new longest dry period value"></td>
                         <td id="longestDryPeriodTime" data-pk="48" data-type="text" data-url="api/edit/thismonth" data-title="Enter new longest dry period end date"></td>

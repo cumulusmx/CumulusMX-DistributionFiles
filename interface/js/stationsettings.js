@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:55:23
+// Last modified: 2021/07/24 15:16:20
 
 let StashedStationId;
 let accessMode;
@@ -7,8 +7,8 @@ $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
     $("form").alpaca({
         "dataSource": "./api/settings/stationdata.json",
-        "optionsSource": "./api/settings/stationoptions.json",
-        "schemaSource": "./api/settings/stationschema.json",
+        "optionsSource": "./json/StationOptions.json",
+        "schemaSource": "./json/StationSchema.json",
         "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
         "options": {
@@ -76,34 +76,34 @@ $(document).ready(function () {
             // Trigger changes is the accessibility mode is changed
             accessObj.on("change", function() {onAccessChange(this)});
 
-            let stationIdObj = form.childrenByPropertyId["general"].childrenByPropertyId["stationtype"];
+            let stationIdObj = form.getControlByPath("general/stationtype");
 
-            // On changing the station type, propogate down to sub-sections
+            // On changing the station type, propagate down to sub-sections
             stationIdObj.on("change", function () {
                 let form = $("form").alpaca("get");
                 let stationid = this.getValue();
                 form.childrenByPropertyId["stationid"].setValue(stationid);
-                form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
-                form.childrenByPropertyId["general"].childrenByPropertyId["stationmodel"].setValue(this.getOptionLabels()[1 * stationid + 1]);
+                form.getControlByPath("Options/stationid").setValue(stationid);
+                form.getControlByPath("general/stationmodel").setValue(this.getOptionLabels()[1 * stationid + 1]);
             });
 
-            // On changing the Davis VP connection type, propogate down to advanced settings
-            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].on("change", function () {
+            // On changing the Davis VP connection type, propagate down to advanced settings
+            form.getControlByPath("davisvp2/davisconn/conntype").on("change", function () {
                 let form = $("form").alpaca("get");
                 let conntype = this.getValue();
-                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(conntype);
-                form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].refresh();
+                form.getControlByPath("davisvp2/advanced/conntype").setValue(conntype);
+                form.getControlByPath("davisvp2/advanced/conntype").refresh();
             });
 
             // Set the initial value of the sub-section  station ids
             let stationid = form.childrenByPropertyId["stationid"].getValue();
-            form.childrenByPropertyId["Options"].childrenByPropertyId["stationid"].setValue(stationid);
+            form.getControlByPath("Options/stationid").setValue(stationid);
             // Keep a record of the last value
             StashedStationId = stationid;
 
-            // Set the inital value of Davis advanced conntype
-            let conntype = form.childrenByPropertyId["davisvp2"].childrenByPropertyId["davisconn"].childrenByPropertyId["conntype"].getValue();
-            form.childrenByPropertyId["davisvp2"].childrenByPropertyId["advanced"].childrenByPropertyId["conntype"].setValue(+conntype);
+            // Set the initial value of Davis advanced conntype
+            let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
+            form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
         }
     });
 });

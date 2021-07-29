@@ -1,0 +1,377 @@
+{
+	"title": "Basic Cumulus and Station Setup",
+	"description": "Cumulus MX first time set-up wizard.",
+	"type": "object",
+	"properties":{
+		"location": {
+			"type": "object",
+			"properties": {
+				"sitename": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"latitude": {
+					"type": "string",
+					"required": true
+				},
+				"longitude": {
+					"type": "string",
+					"required": true
+				},
+				"altitude": {
+					"type": "integer",
+					"required": true
+				},
+				"altitudeunit": {
+					"title": "Altitude units",
+					"type": "string",
+					"enum": [
+						"feet",
+						"metres"
+					],
+					"required": true
+				}
+			}
+		},
+
+		"units": {
+			"type": "object",
+			"properties": {
+				"temp": {
+					"enum": [0,1],
+					"required": true
+				},
+				"wind": {
+					"enum": [0,1,2,3],
+					"required": true
+				},
+				"pressure": {
+					"enum": [0,1,2],
+					"required": true
+				},
+				"rain": {
+					"enum": [0,1],
+					"required": true
+				}
+			}
+		},
+
+		"station": {
+			"type": "object",
+			"properties": {
+				"stationtype": {
+					"enum": [-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+					"required": true
+				},
+				"stationmodel": {
+					"type": "string"
+				},
+
+				"davisvp2": {
+					"title": "Davis VP/VP2/Vue",
+					"type": "object",
+					"properties": {
+						"conntype": {
+							"enum": [0,2]
+						},
+						"comportname": {
+							"type": "string"
+						},
+						"tcpsettings": {
+							"title": "TCP/IP settings",
+							"type": "object",
+							"properties": {
+								"ipaddress": {
+								},
+								"disconperiod": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 50
+								}
+							}
+						}
+					},
+					"dependencies": {
+						"comportname": ["conntype"],
+						"tcpsettings": ["conntype"]
+					}
+				},
+
+				"daviswll": {
+					"title": "Davis WeatherLink Live",
+					"type": "object",
+					"properties": {
+						"network": {
+							"title": "Network Settings",
+							"type": "object",
+							"properties": {
+								"autoDiscover": {
+									"type": "boolean"
+								},
+								"ipaddress": {
+								}
+							}
+						},
+						"primary": {
+							"title": "Primary Sensors",
+							"type": "object",
+							"properties": {
+								"wind": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"temphum": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"rain": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"solar": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"uv": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								}
+							}
+						},
+						"api": {
+							"title": "WeatherLink.com API details",
+							"type": "object",
+							"properties": {
+								"apiKey": {
+								},
+								"apiSecret": {
+								},
+								"apiStationId": {
+									"type": "integer",
+									"minimum": -1
+								}
+							}
+						}
+					},
+					"dependencies": ["stationtype"]
+				},
+
+				"gw1000": {
+					"title": "Ecowitt GW1000 Settings",
+					"type": "object",
+					"properties": {
+						"autoDiscover" : {
+							"type": "boolean"
+						},
+						"ipaddress": {
+						},
+						"macaddress": {
+						}
+					}
+				},
+
+				"fineoffset": {
+					"title": "Fine Offset Settings",
+					"type": "object",
+					"properties": {
+						"syncreads" : {
+							"type": "boolean"
+						},
+						"readavoid": {
+							"type":"integer",
+							"minimum": 1,
+							"maximum": 20
+						}
+					}
+				},
+
+				"easyw": {
+					"title": "EasyWeather File Settings",
+					"type": "object",
+					"properties": {
+						"interval": {
+							"type":"number",
+							"minimum": 1
+						},
+						"filename": {
+							"type":"string"
+						}
+					}
+				},
+
+				"imet": {
+					"title": "Instromet Settings",
+					"type": "object",
+					"properties": {
+						"comportname": {
+							"type": "string"
+						},
+						"baudrate": {
+							"enum": [19200, 115200]
+						}
+					}
+				},
+
+				"wmr928": {
+					"title": "WM918/WMR928 Settings",
+					"type": "object",
+					"properties": {
+						"comportname": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependencies": {
+				"davisvp2": ["stationtype"],
+				"daviswll": ["stationtype"],
+				"gw1000": ["stationtype"],
+				"fineoffset": ["stationtype"],
+				"easyw": ["stationtype"],
+				"imet": ["stationtype"],
+				"wmr928": ["stationtype"]
+			}
+		},
+
+		"logs": {
+			"type": "object",
+			"properties": {
+				"loginterval": {
+					"enum": [0,1,2,3,4,5],
+					"required": true
+				},
+				"logrollover": {
+					"title": "Log Rollover",
+					"type": "object",
+					"properties": {
+						"time": {
+							"enum": [
+								"9am",
+								"midnight"
+							],
+							"required": true
+						},
+						"summer10am": {
+							"type": "boolean",
+							"dependencies": "time"
+						}
+					}
+				}
+			}
+		},
+
+		"internet": {
+			"title": "Web/FTP Hosting Site",
+			"type": "object",
+			"properties": {
+				"copy": {
+					"title": "Local Copy",
+					"type": "object",
+					"properties": {
+						"localcopy": {
+							"type": "boolean"
+						},
+						"localcopyfolder": {
+							"pattern": "^.*[\/\\\\\\\\]{1}$"
+						}
+					},
+					"dependencies": {
+						"localcopyfolder": ["localcopy"]
+					}
+				},
+				"ftp": {
+					"title": "FTP",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"hostname": {
+						},
+						"directory": {
+						},
+						"sslftp": {
+							"enum": [
+								0,
+								1,
+								2
+							]
+						},
+						"ftpport": {
+							"type": "integer",
+							"minimum": 0
+						},
+						"sshAuth": {
+							"type": "string",
+							"enum": [
+								"password",
+								"psk",
+								"password_psk"
+							]
+						},
+						"pskFile": {
+						},
+						"username": {
+						},
+						"password": {
+						}
+					},
+					"dependencies": {
+						"hostname": ["enabled"],
+						"sslftp": ["enabled"],
+						"ftpport": ["enabled"],
+						"sshAuth": ["sslftp"],
+						"pskFile": ["sshAuth"],
+						"directory": ["enabled"],
+						"username": ["enabled"],
+						"password": ["enabled"]
+					}
+				}
+			}
+		},
+
+		"website": {
+			"title": "Normal Interval Configuration",
+			"type": "object",
+			"properties": {
+				"interval": {
+					"title": "Interval Settings",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"enableintervalftp": {
+							"type": "boolean"
+						},
+						"ftpinterval": {
+							"type": "integer",
+							"minimum": 1
+						}
+					},
+					"dependencies": {
+						"enableintervalftp": ["enabled"],
+						"ftpinterval": ["enabled"]
+					}
+				},
+				"realtime": {
+					"title": "Real time Settings",
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"enablerealtimeftp": {
+							"type": "boolean"
+						},
+						"realtimeinterval": {
+							"type": "integer",
+							"minimum": 0
+						}
+					},
+					"dependencies": {
+						"realtimeinterval": ["enabled"],
+						"enablerealtimeftp": ["enabled"]
+					}
+				}
+			}
+		}
+	}
+}

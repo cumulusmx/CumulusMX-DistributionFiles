@@ -1,14 +1,15 @@
-// Last modified: 2021/05/16 20:54:59
+// Last modified: 2021/07/12 09:42:29
 
 let accessMode;
 
 $(document).ready(function() {
 
     $("form").alpaca({
-        "dataSource": "../api/settings/noaadata.json",
-        "optionsSource": "../api/settings/noaaoptions.json",
-        "schemaSource": "../api/settings/noaaschema.json",
+        "dataSource": "./api/settings/noaadata.json",
+        "optionsSource": "./json/NoaaOptions.json",
+        "schemaSource": "./json/NoaaSchema.json",
         "ui": "bootstrap",
+        "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {
                 "buttons": {
