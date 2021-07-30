@@ -1,4 +1,4 @@
-{
+﻿{
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -526,22 +526,24 @@
 		"weatherflow": {
 			"title": "WeatherFlow Settings",
 			"type": "object",
-                        "properties": {
-                            "tcpport": {
-                            "title": "TCP Port",
-                            "type": "integer",
-                            "minimum": 0
-                        },
-                        "deviceid": {
-                            "title": "DeviceId",
-                            "type": "integer",
-				"minimum": 0
-                        },
-                        "token": {
-                        "title": "Api Token"
-                        }
+				"properties": {
+					"tcpport": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"deviceid": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"token": {
+				},
+				"dayshistory": {
+					"type": "integer",
+					"minimum": 0,
+					"default" : 0
+				}
 		    },
-                    "dependencies": ["stationid"]
+            "dependencies": ["stationid"]
 		},
 		"fineoffset": {
 			"title": "Fine Offset Settings",

@@ -1,4 +1,4 @@
-{
+﻿{
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -31,9 +31,9 @@
 						"Instromet",
 						"Davis WeatherLink Live",
 						"Ecowitt GW1000",
-                                                "WeatherFlow Tempest",
 						"HTTP (Wunderground)",
-						"HTTP (Ecowitt)"
+						"HTTP (Ecowitt)",
+						"WeatherFlow Tempest"
 					],
 					"removeDefaultNone": true
 				},
@@ -840,16 +840,21 @@
 			}
 		},
         "weatherflow": {
+			"collapsible": true,
             "collapsed": true,
             "fields": {
             "deviceid": {
-	        "label" : "Device Id"
+	        "label" : "Device Id",
                 "rightlabel": "Tempest Device Id",
-                "helper": "Get this from the weatherflow temp"
-                }
+                "helper": "Get this from the weatherflow app"
+                },
+			"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
+			"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
+			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
+
             },
             "dependencies": {
-                "stationid": 13
+                "stationid": 15
                 }
         },
 		"fineoffset": {
