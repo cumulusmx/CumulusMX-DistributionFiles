@@ -295,7 +295,7 @@
 			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
             },
             "dependencies": {
-                "stationtype": 15
+                "stationtype": 16
                 }
         },
 
