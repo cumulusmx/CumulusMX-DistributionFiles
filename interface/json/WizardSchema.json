@@ -62,7 +62,7 @@
 			"type": "object",
 			"properties": {
 				"stationtype": {
-					"enum": [-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+					"enum": [-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
 					"required": true
 				},
 				"stationmodel": {
@@ -217,7 +217,23 @@
 							"type": "string"
 						}
 					}
+				},
+
+				"http-wunder": {
+					"title": "HTTP Upload (Wunderground) Settings",
+					"type": "object"
+				},
+
+				"http-ecowitt": {
+					"title": "HTTP Upload (Ecowitt) Settings",
+					"type": "object"
+				},
+
+				"http-ambient": {
+					"title": "HTTP Upload (Ambient) Settings",
+					"type": "object"
 				}
+
 			},
 			"dependencies": {
 				"davisvp2": ["stationtype"],
@@ -226,7 +242,10 @@
 				"fineoffset": ["stationtype"],
 				"easyw": ["stationtype"],
 				"imet": ["stationtype"],
-				"wmr928": ["stationtype"]
+				"wmr928": ["stationtype"],
+				"http-wunder": ["stationtype"],
+				"http-ecowitt": ["stationtype"],
+				"http-ambient": ["stationtype"]
 			}
 		},
 

@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:53:17
+// Last modified: 2021/08/01 22:30:14
 
 $(document).ready(function() {
     $.ajax({
@@ -142,7 +142,8 @@ function updateAlarms() {
                     Notify      : $('#contactLostNotify').prop('checked'),
                     Email       : $('#contactLostEmail').prop('checked'),
                     Latches     : $('#contactLostLatches').prop('checked'),
-                    LatchHrs    : $('#contactLostLatchHrs').val()
+                    LatchHrs    : $('#contactLostLatchHrs').val(),
+                    Threshold   : $('#contactLostThreshold').val()
                 },
                 dataStopped: {
                     Enabled     : $('#dataStoppedEnabled').prop('checked'),
@@ -151,7 +152,8 @@ function updateAlarms() {
                     Notify      : $('#dataStoppedNotify').prop('checked'),
                     Email       : $('#dataStoppedEmail').prop('checked'),
                     Latches     : $('#dataStoppedLatches').prop('checked'),
-                    LatchHrs    : $('#dataStoppedLatchHrs').val()
+                    LatchHrs    : $('#dataStoppedLatchHrs').val(),
+                    Threshold   : $('#dataStoppedThreshold').val()
                 },
                 batteryLow: {
                     Enabled     : $('#batteryLowEnabled').prop('checked'),
@@ -160,7 +162,8 @@ function updateAlarms() {
                     Notify      : $('#batteryLowNotify').prop('checked'),
                     Email       : $('#batteryLowEmail').prop('checked'),
                     Latches     : $('#batteryLowLatches').prop('checked'),
-                    LatchHrs    : $('#batteryLowLatchHrs').val()
+                    LatchHrs    : $('#batteryLowLatchHrs').val(),
+                    Threshold   : $('#batteryLowThreshold').val()
                 },
                 spike: {
                     Enabled     : $('#spikeEnabled').prop('checked'),

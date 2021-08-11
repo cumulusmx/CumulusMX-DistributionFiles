@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2021/02/23 09:55:43
+ * Last Modified: 2021/08/02 15:42:36
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -685,7 +685,7 @@ gauges = (function () {
                             digitalFont      : config.digitalFont,
                             value            : count
                         });
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.clockTick', tick);
                 }
 
@@ -768,7 +768,7 @@ gauges = (function () {
                         $('#lab_hum2').remove();
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1011,7 +1011,7 @@ gauges = (function () {
                         $('#canvas_dew').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1240,7 +1240,7 @@ gauges = (function () {
                         $('#canvas_rain').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1354,7 +1354,7 @@ gauges = (function () {
                         $('#canvas_rrate').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1470,7 +1470,7 @@ gauges = (function () {
                         $('#canvas_hum').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1615,7 +1615,7 @@ gauges = (function () {
                         $('#canvas_baro').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1778,7 +1778,7 @@ gauges = (function () {
                         $('#canvas_wind').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -1898,7 +1898,7 @@ gauges = (function () {
                         $('#canvas_dir').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -2199,7 +2199,7 @@ gauges = (function () {
                             decimals: 1
                         });
                     }
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -2423,7 +2423,7 @@ gauges = (function () {
                         $('#canvas_uv').css(gaugeShadow(params.size));
                     }
 
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -2543,7 +2543,7 @@ gauges = (function () {
                     if (config.showGaugeShadow) {
                         $('#canvas_solar').css(gaugeShadow(params.size));
                     }
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {
@@ -2670,7 +2670,7 @@ gauges = (function () {
                     if (config.showGaugeShadow) {
                         $('#canvas_cloud').css(gaugeShadow(params.size));
                     }
-                    // subcribe to data updates
+                    // subscribe to data updates
                     $.subscribe('gauges.dataUpdated', update);
                     $.subscribe('gauges.graphUpdate', updateGraph);
                 } else {

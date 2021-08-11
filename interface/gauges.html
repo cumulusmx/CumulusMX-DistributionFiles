@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:51:02
+Last modified: 2021/08/04 09:52:09
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +32,14 @@ Last modified: 2021/06/09 21:51:02
     <script src="js/gaugefeed.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+
+    <style>
+        select {
+            color: white;
+            background-color: rgb(83, 83, 83);
+            font-size: 12px;
+        }
+    </style>
 
     <script>
         $(document).ready(function () {
@@ -84,13 +92,14 @@ Last modified: 2021/06/09 21:51:02
                         <div id="tip_1">
                             <canvas id="canvas_dew" width="221" height="221"></canvas>
                         </div>
-                        <input id="rad_dew1" type="radio" name="rad_dew" value="dew" onclick="gauges.doDew(this);"><label id="lab_dew1" for="rad_dew1">Dew Point</label>
-                        <input id="rad_dew2" type="radio" name="rad_dew" value="app" onclick="gauges.doDew(this);" checked ><label id="lab_dew2" for="rad_dew2">Apparent</label>
-                        <br>
-                        <input id="rad_dew3" type="radio" name="rad_dew" value="wnd" onclick="gauges.doDew(this);"><label id="lab_dew3" for="rad_dew3">Wind Chill</label>
-                        <input id="rad_dew4" type="radio" name="rad_dew" value="hea" onclick="gauges.doDew(this);"><label id="lab_dew4" for="rad_dew4">Heat Index</label>
-                        <br>
-                        <input id="rad_dew5" type="radio" name="rad_dew" value="hum" onclick="gauges.doDew(this);"><label id="lab_dew5" for="rad_dew5">Humidex</label>
+                        <select id="rad_dew" onchange="gauges.doDew(this);">
+                            <option id="lab_dew1" value="dew" selected="selected">Dew Point</option>
+                            <option id="lab_dew6" value="feel">Feels Like</option>
+                            <option id="lab_dew2" value="app">Apparent</option>
+                            <option id="lab_dew3" value="wnd">Wind Chill</option>
+                            <option id="lab_dew4" value="hea">Heat Index</option>
+                            <option id="lab_dew5" value="hum">Humidex</option>
+                        </select>
                     </div>
                 </div>
             </div>

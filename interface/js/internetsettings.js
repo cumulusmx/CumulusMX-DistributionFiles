@@ -1,10 +1,10 @@
-// Last modified: 2021/07/01 21:11:26
+// Last modified: 2021/08/07 22:22:10
 
 let accessMode;
 
 $(document).ready(function() {
 
-    let setDefaultWebSite = function () {
+    let setDefaultWebSite = function (defaultSet) {
         let form = $("form").alpaca("get");
         if (!form.getControlByPath("websettings/stdwebsite").getValue()) {
             return;
@@ -90,13 +90,17 @@ $(document).ready(function() {
         form.getControlByPath("moonimage/size").setValue(100);
         form.getControlByPath("moonimage/includemoonimage").setValue(ftpEnabled);
         form.getControlByPath("moonimage/includemoonimage").triggerUpdate();
-        form.getControlByPath("moonimage/ftpdest").setValue("images/moon.png");
-        form.getControlByPath("moonimage/ftpdest").triggerUpdate();
+        if (defaultSet) {
+            form.getControlByPath("moonimage/ftpdest").setValue("images/moon.png");
+            form.getControlByPath("moonimage/ftpdest").triggerUpdate();
+        }
         form.getControlByPath("moonimage/copyimage").setValue(copyEnabled);
         form.getControlByPath("moonimage/copyimage").triggerUpdate();
-        let copyDest = form.getControlByPath("website/localcopyfolder").getValue();
-        form.getControlByPath("moonimage/copydest").setValue(copyDest + "images/moon.png");
-        form.getControlByPath("moonimage/copydest").triggerUpdate();
+        if (defaultSet) {
+            let copyDest = form.getControlByPath("website/localcopyfolder").getValue();
+            form.getControlByPath("moonimage/copydest").setValue(copyDest + "images/moon.png");
+            form.getControlByPath("moonimage/copydest").triggerUpdate();
+        }
     };
 
     // Helper Functions
@@ -220,7 +224,7 @@ $(document).ready(function() {
 
             // Trigger updates on "Use standard web site being enabled"
             form.getControlByPath("websettings/stdwebsite").on("change", function () {
-                setDefaultWebSite();
+                setDefaultWebSite(this.getValue());
             });
 
             // When FTP is globally disabled, disable the option in Interval and Realtime
@@ -300,6 +304,13 @@ $(document).ready(function() {
             form.getControlByPath("websettings/realtime/enablerealtimeftp").on("change", function () {
                 let val = !this.getValue();
                 updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, val);
+            });
+
+            // Set Aria attributes on table checkboxes
+            $('table input:checkbox').each(function () {
+                let text = $(this).closest('.form-group').find('label').html();
+                let file = $(this).closest('tr').find('input').val();
+                $(this).attr('aria-label', text + ' file ' + file);
             });
         }
     });

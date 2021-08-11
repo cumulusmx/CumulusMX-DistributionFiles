@@ -4,136 +4,207 @@
 			"fieldClass": "hideme"
 		},
 		"explanation": {
-			"type": "textarea"
+			"type": "textarea",
+			"rows": 8,
+			"validate": false
 		},
-		"offsets": {
+		"pressure": {
 			"collapsible": true,
 			"collapsed": true,
-			"helpers" : ["Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"],
-			"helpersPosition": "above",
 			"fields": {
-				"pressure": {
-					"label": "Pressure:"
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
-				"temperature": {
-					"label": "Outdoor temperature:"
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
-				"indoortemp": {
-					"label": "Indoor temperature:"
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				},
-				"humidity": {
-					"label": "Outdoor humidity:"
+				"limitmin": {
+					"label": "Min. limit (hPa):",
+					"helper" : "If the raw value is less this limit value it will be ignored"
 				},
-				"winddir": {
-					"label": "Wind direction:"
-				},
-				"solar": {
-					"label": "Solar:"
-				},
-				"uv": {
-					"label": "UV-I:"
-				},
-				"wetbulb": {
-					"label": "Wet bulb:"
+				"limitmax": {
+					"label": "Max. limit (hPa):",
+					"helper" : "If the raw value is greater than this limit value it will be ignored"
 				}
 			}
 		},
-		"multipliers": {
+		"temp": {
 			"collapsible": true,
 			"collapsed": true,
-			"helpers" : [
-				"Multiply the raw reading by a constant, this affects the slope of the response",
-				"The Multiplier2 affects the curve of the correction"
-			],
-			"helpersPosition": "above",
 			"fields": {
-				"pressure": {
-					"label": "Pressure:"
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
-				"windspeed": {
-					"label": "Wind speed:"
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
-				"windgust": {
-					"label": "Wind gust:"
+				"multiplier2": {
+					"label": "Multiplier ^2:",
+					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
-				"outdoortemp": {
-					"label": "Outdoor temperature:"
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				},
-				"outdoortemp2": {
-					"label": "Outdoor temperature ^2:"
+				"limitmin": {
+					"label": "Min. limit (°C):",
+					"helper" : "If the raw value is less this limit value it will be ignored"
 				},
-				"humidity": {
-					"label": "Outdoor humidity:"
-				},
-				"humidity2": {
-					"label": "Outdoor humidity ^2:"
-				},
-				"rainfall": {
-					"label": "Rainfall:"
-				},
-				"solar": {
-					"label": "Solar:"
-				},
-				"uv": {
-					"label": "UV:"
-				},
-				"wetbulb": {
-					"label": "Wet bulb:"
+				"limitmax": {
+					"label": "Max. limit (°C):",
+					"helper" : "If the raw value is greater than this limit value it will be ignored"
 				}
 			}
 		},
-		"spikeremoval": {
+		"tempin": {
 			"collapsible": true,
 			"collapsed": true,
-			"helpers" : ["If the change in a raw value between consecutive readings is greater than the spike value it will be ignored"],
-			"helpersPosition": "above",
 			"fields": {
-				"windspeed": {
-					"label": "Wind speed (m/s):"
-				},
-				"windgust": {
-					"label": "Wind gust (m/s):"
-				},
-				"outdoortemp": {
-					"label": "Outdoor temperature (°C):"
-				},
-				"humidity": {
-					"label": "Outdoor humidity (%):"
-				},
-				"pressure": {
-					"label": "Pressure (mb):"
-				},
-				"maxrainrate": {
-					"label": "Max rain rate (mm/hr):"
-				},
-				"maxhourlyrain": {
-					"label": "Max hourly rain (mm):"
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				}
 			}
 		},
-		"limits": {
+		"hum": {
 			"collapsible": true,
 			"collapsed": true,
-			"helpers" : ["If the raw value exceeds a limit value it will be ignored"],
-			"helpersPosition": "above",
 			"fields": {
-				"temphigh": {
-					"label": "Max temp (°C):"
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
-				"templow": {
-					"label": "Min temp (°C):"
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
-				"dewhigh": {
-					"label": "Max dew point (°C):"
+				"multiplier2": {
+					"label": "Multiplier ^2:",
+					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
-				"presshigh": {
-					"label": "Max pressure (hPa):"
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				}
+			}
+		},
+		"windspd": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
-				"presslow": {
-					"label": "Min pressure (hPa):"
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				}
+			}
+		},
+		"gust": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
-				"windhigh": {
-					"label": "Max wind gust (m/s):"
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				},
+				"limitmax": {
+					"label": "Max. limit (m/s):",
+					"helper" : "If the raw value is greater than this limit value it will be ignored"
+				}
+			}
+		},
+		"winddir": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				}
+			}
+		},
+		"rain": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+				},
+				"spikerate": {
+					"label": "Rain rate spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				},
+				"spikehour": {
+					"label": "Rain per hour spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				}
+			}
+		},
+		"solar": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+				}
+			}
+		},
+		"uv": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+				}
+			}
+		},
+		"dewpt": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"limitmax": {
+					"label": "Max. limit (°C):",
+					"helper" : "If the dew point value is greater than this limit the value it will be ignored"
+				}
+			}
+		},
+		"wetbulb": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				}
 			}
 		}
