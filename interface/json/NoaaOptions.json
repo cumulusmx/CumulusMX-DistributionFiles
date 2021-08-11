@@ -100,7 +100,8 @@
 					"label": "Local copy folder:",
 					"helpers": [
 						"You can specify a different folder from the default local copy folder if you wish to up the reports to a different location",
-						"Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings Local Copy destination folder"
+						"Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings Local Copy destination folder",
+						"Note any path entered here should be a full absolute path to the destination folder"
 					],
 					"dependencies": {
 						"autotransfer": true

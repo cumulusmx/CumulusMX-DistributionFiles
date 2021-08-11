@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:49:51
+Last modified: 2021/08/01 22:28:44
 -->
 <!doctype html>
 <html lang="en">
@@ -236,7 +236,7 @@ Last modified: 2021/06/09 21:49:51
                         <td><input type="checkbox" id="contactLostEmail" aria-label="Enable sensor contact lost emails"></td>
                         <td><input type="checkbox" id="contactLostLatches" aria-label="Enable sensor contact lost latching"></td>
                         <td><input id="contactLostLatchHrs" type="number" min="1" max="999" step="1" aria-label="Sensor contact lost latching hours"></td>
-                        <td></td>
+                        <td><input id="contactLostThreshold" type="number" min="1" max="99" step="1" aria-label="Sensor contact lost trip threshold"></td>
                     </tr>
                     <tr class="shade">
                         <td><input type="checkbox" id="dataStoppedEnabled" aria-label="Enable data stopped alarm"></td>
@@ -249,7 +249,7 @@ Last modified: 2021/06/09 21:49:51
                         <td><input type="checkbox" id="dataStoppedEmail" aria-label="Enable data stopped emails"></td>
                         <td><input type="checkbox" id="dataStoppedLatches" aria-label="Enable data stopped latching"></td>
                         <td><input id="dataStoppedLatchHrs" type="number" min="1" max="999" step="1" aria-label="Data stopped latching hours"></td>
-                        <td></td>
+                        <td><input id="dataStoppedThreshold" type="number" min="1" max="99" step="1" aria-label="Data stopped trip threshold"></td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" id="batteryLowEnabled" aria-label="Enable battery low alarm"></td>
@@ -262,7 +262,7 @@ Last modified: 2021/06/09 21:49:51
                         <td><input type="checkbox" id="batteryLowEmail" aria-label="Enable battery low emails"></td>
                         <td><input type="checkbox" id="batteryLowLatches" aria-label="Enable battery low latching"></td>
                         <td><input id="batteryLowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Battery low latching hours"></td>
-                        <td></td>
+                        <td><input id="batteryLowThreshold" type="number" min="1" max="99" step="1" aria-label="Battery low trip threshold"></td>
                     </tr>
                     <tr class="shade">
                         <td><input type="checkbox" id="spikeEnabled" aria-label="Enable data spike alarm"></td>

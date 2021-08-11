@@ -32,7 +32,8 @@
 						"Davis WeatherLink Live",
 						"Ecowitt GW1000",
 						"HTTP (Wunderground)",
-						"HTTP (Ecowitt)"
+						"HTTP (Ecowitt)",
+						"HTTP (Ambient)"
 					],
 					"removeDefaultNone": true
 				},
@@ -527,7 +528,7 @@
 									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
 									"helper": "Optional: Select the transmitter ID for your extra temperature sensor #2"
 								},
-								"soilTtempIdx2": {
+								"soilTempIdx2": {
 									"label": "Sensor #2 channel:",
 									"type": "select",
 									"removeDefaultNone": true,
@@ -990,6 +991,40 @@
 			},
 			"dependencies": {
 				"stationid": [2, 3]
+			}
+		},
+		"http-wunder": {
+			"collapsible": true,
+			"collapsed": false,
+			"helpers": [
+				"Configure your station to send data to Cumulus using the Wunderground protocol",
+				"Note: If possible use the Ecowitt protocol rather than this",
+				"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
+			],
+			"dependencies": {
+				"stationid": 13
+			}
+		},
+		"http-ecowitt": {
+			"collapsible": true,
+			"collapsed": false,
+			"helpers": [
+				"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus using the Ecowitt protocol",
+				"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
+			],
+			"dependencies": {
+				"stationid": 14
+			}
+		},
+		"http-ambient": {
+			"collapsible": true,
+			"collapsed": false,
+			"helpers": [
+				"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
+				"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> nterval: 20"
+			],
+			"dependencies": {
+				"stationid": 15
 			}
 		},
 		"Options": {

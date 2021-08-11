@@ -76,55 +76,83 @@
 				"apiSecret": ["isNode"]
 			}
 		},
-		"ecowitt": {
-			"title": "Ecowitt",
+		"httpSensors":{
+			"title": "Use a HTTP Station for extra sensors",
 			"type": "object",
 			"properties": {
-				"enabled": {
-					"type": "boolean"
+				"extraStation": {
+					"enum": [-1, 0, 1]
 				},
-				"useSolar": {
-					"type": "boolean"
+				"ecowitt": {
+					"title": "Ecowitt",
+					"type": "object",
+					"properties": {
+						"useSolar": {
+							"type": "boolean"
+						},
+						"useUv": {
+							"type": "boolean"
+						},
+						"useTempHum": {
+							"type": "boolean"
+						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
+						"useSoilMoist": {
+							"type": "boolean"
+						},
+						"useLeafWet": {
+							"type": "boolean"
+						},
+						"useAQI": {
+							"type": "boolean"
+						},
+						"useCo2": {
+							"type": "boolean"
+						},
+						"useLightning": {
+							"type": "boolean"
+						},
+						"useLeak": {
+							"type": "boolean"
+						}
+					}
 				},
-				"useUv": {
-					"type": "boolean"
-				},
-				"useTempHum": {
-					"type": "boolean"
-				},
-				"useSoilTemp": {
-					"type": "boolean"
-				},
-				"useSoilMoist": {
-					"type": "boolean"
-				},
-				"useLeafWet": {
-					"type": "boolean"
-				},
-				"useAQI": {
-					"type": "boolean"
-				},
-				"useCo2": {
-					"type": "boolean"
-				},
-				"useLightning": {
-					"type": "boolean"
-				},
-				"useLeak": {
-					"type": "boolean"
+				"ambient": {
+					"title": "Ambient",
+					"type": "object",
+					"properties": {
+						"useSolar": {
+							"type": "boolean"
+						},
+						"useUv": {
+							"type": "boolean"
+						},
+						"useTempHum": {
+							"type": "boolean"
+						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
+						"useSoilMoist": {
+							"type": "boolean"
+						},
+						"useAQI": {
+							"type": "boolean"
+						},
+						"useLightning": {
+							"type": "boolean"
+						},
+						"useLeak": {
+							"type": "boolean"
+						}
+					}
 				}
 			},
 			"dependencies": {
-				"useSolar": ["enabled"],
-				"useUv": ["enabled"],
-				"useTempHum": ["enabled"],
-				"useSoilTemp": ["enabled"],
-				"useSoilMoist": ["enabled"],
-				"useLeafWet": ["enabled"],
-				"useAQI": ["enabled"],
-				"useCo2": ["enabled"],
-				"useLightning": ["enabled"],
-				"useLeak": ["enabled"]
+				"ecowitt": ["extraStation"],
+				"ambient": ["extraStation"]
 			}
 		},
 		"blakeLarsen": {

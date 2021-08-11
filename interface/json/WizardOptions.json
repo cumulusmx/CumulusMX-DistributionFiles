@@ -103,7 +103,8 @@
 						"Davis WeatherLink Live",
 						"Ecowitt GW1000 (and clones)",
 						"HTTP Upload (Wunderground)",
-						"HTTP Upload (Ecowitt)"
+						"HTTP Upload (Ecowitt)",
+						"HTTP Upload (Ambient)"
 					],
 					"removeDefaultNone": true,
 					"focus": true,
@@ -346,6 +347,40 @@
 					},
 					"dependencies": {
 						"stationtype": [2, 3]
+					}
+				},
+				"http-wunder": {
+					"collapsible": true,
+					"collapsed": false,
+					"helpers": [
+						"Configure your station to send data to Cumulus using the Wunderground protocol",
+						"Note: If possible use the Ecowitt protocol rather than this",
+						"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
+					],
+					"dependencies": {
+						"stationtype": 13
+					}
+				},
+				"http-ecowitt": {
+					"collapsible": true,
+					"collapsed": false,
+					"helpers": [
+						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus using the Ecowitt protocol",
+						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
+					],
+					"dependencies": {
+						"stationtype": 14
+					}
+				},
+				"http-ambient": {
+					"collapsible": true,
+					"collapsed": false,
+					"helpers": [
+						"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
+						"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br>Interval: 20"
+					],
+					"dependencies": {
+						"stationtype": 15
 					}
 				}
 			}

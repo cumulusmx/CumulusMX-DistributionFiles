@@ -1,6 +1,6 @@
 /*
  * THIS VERSION CUSTOMISED FOR CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2021/02/25 09:13:57
+ * Last Modified: 2021/08/02 15:51:34
  *
  * A language file for the starter SteelSeries gauges page for Cumulus
  *
@@ -1416,7 +1416,7 @@ LANG.NO = {
 //======================================================================================================================
 // Norwegian NB Lang
 //======================================================================================================================
-    LANG.NB = {
+LANG.NB = {
     canvasnosupport:
             "Ingen HTML5 Canvas-støtte i nettleseren din ... Beklager ...<br>Prøv å oppgradere nettleseren til en nyere versjon - nesten alle nettlesere støtter Canvas nå, selv IE9!<br><br>Omdirigerer deg til den 'gamle' målersiden ...",
 //
@@ -2889,7 +2889,7 @@ LANG.PL = {
                    "Umiarkowane ryzyko szkód wynikających z nieosłoniętego nasłonecznienia",
                    "Wysokie ryzyko szkód spowodowanych nieosłoniętą ekspozycją na słońce",
                    "Bardzo wysokie ryzyko szkód spowodowanych nieosłoniętą ekspozycją na słońce",
-            	   "Ekstremalne ryzyko szkód spowodowanych nieosłoniętym nasłonecznieniem"],
+                   "Ekstremalne ryzyko szkód spowodowanych nieosłoniętym nasłonecznieniem"],
     uv_details: ["Nadal jest noc lub jest bardzo pochmurny dzień.",
                  "Noś okulary przeciwsłoneczne w jasne dni, użyj ochrony przeciwsłonecznej, jeśli śnieg jest na ziemi,<br>" +
                  "który odbija promieniowanie UV, lub jeśli masz szczególnie jasną skórę.",
