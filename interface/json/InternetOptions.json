@@ -173,7 +173,9 @@
 				"stdwebsite": {
 					"rightLabel": "I want to use the supplied default web site",
 					"helpers": [
+						"WARNING: Ticking this WILL overwrite any existing settings you may have saved, if you set this, please double check all your settings below",
 						"Enabling this will automatically enable all the required options below",
+						"Disabling this WILL automatically DISABLE all the required options below",
 						"You will still need to save the configuration after setting this option",
 						"This switch setting is not saved, it is just a switch to configure the defaults for the standard web site. It overwrites any settings you may already have set"
 					]
@@ -214,7 +216,8 @@
 									"items": {
 										"fields": {
 											"filename": {
-												"readonly": true
+												"readonly": true,
+												"size": 8
 											}
 										}
 									},
@@ -525,14 +528,17 @@
 				"copyimage": {
 					"label": "Copy file:",
 					"rightLabel": "Copy Moon image file",
-					"helper": "Select this to have the Moon image file copied to a destination of your choice",
+					"helpers": "Select this to have the Moon image file copied to a destination of your choice",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"copydest": {
 					"label": "Copy destination folder:",
-					"helper": "Set the folder and filename to use for your locally copied image file",
+					"helpers": [
+						"Set the folder and filename to use for your locally copied image file",
+						"Note the path entered here should be a full absolute path to the destination folder"
+					],
 					"dependencies": {
 						"copyimage": true
 					}

@@ -118,57 +118,123 @@
 				}
 			}
 		},
-		"ecowitt": {
+		"httpSensors":{
 			"collapsible":true,
 			"collapsed": true,
 			"fields": {
-				"enabled": {
-					"rightLabel": "Use an Ecowitt station for extra sensor data",
+				"extraStation": {
+					"type": "select",
+					"label": "Select HTTP Station:",
+					"optionLabels": [
+						"None",
+						"HTTP Ecowitt",
+						"HTTP Ambient"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helper": "Sets the HTTP Station type to use for for sending additional sensor information to Cumulus."
+				},
+				"ecowitt": {
+					"collapsible": true,
+					"collapsed": true,
 					"helpers": [
 						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
-						"In WS View configure the Custom Server to use - Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: \\station\\ecowittextra<br>Port: 8998<br>Interval: 20",
+						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
 						"You must restart Cumulus after enabling/disabling this feature"
-					]
+					],
+					"helperPosition": "above",
+					"fields": {
+						"useSolar": {
+							"label": "Solar",
+							"rightLabel": "Use the solar data from your Ecowitt"
+						},
+						"useUv": {
+							"label": "UV",
+							"rightLabel": "Use the UV-I data from your Ecowitt"
+						},
+						"useTempHum": {
+							"label": "Extra Temp/Hum",
+							"rightLabel": "Use the extra temperature/humidity sensor data from your Ecowitt"
+						},
+						"useSoilTemp": {
+							"label": "Soil Temp",
+							"rightLabel": "Use the soil temperature sensor data from your Ecowitt"
+						},
+						"useSoilMoist": {
+							"label": "Soil Moisture",
+							"rightLabel": "Use the soil moisture sensor data from your Ecowitt"
+						},
+						"useLeafWet": {
+							"label": "Leaf Wetness",
+							"rightLabel": "Use the leaf wetness sensor data from your Ecowitt"
+						},
+						"useAQI": {
+							"label": "Air Quality",
+							"rightLabel": "Use the air quality sensor data from your Ecowitt"
+						},
+						"useCo2": {
+							"label": "Carbon Dioxide",
+							"rightLabel": "Use the CO₂ sensor data from your Ecowitt"
+						},
+						"useLightning": {
+							"label": "Lightning",
+							"rightLabel": "Use the lightning sensor data from your Ecowitt"
+						},
+						"useLeak": {
+							"label": "Leak",
+							"rightLabel": "Use the leak sensor data from your Ecowitt"
+						}
+					},
+					"dependencies": {
+						"extraStation": 0
+					}
 				},
-				"useSolar": {
-					"label": "Solar",
-					"rightLabel": "Use the solar data from your Ecowitt"
-				},
-				"useUv": {
-					"label": "UV",
-					"rightLabel": "Use the UV-I data from your Ecowitt"
-				},
-				"useTempHum": {
-					"label": "Extra Temp/Hum",
-					"rightLabel": "Use the extra temperature/humidity sensor data from your Ecowitt"
-				},
-				"useSoilTemp": {
-					"label": "Soil Temp",
-					"rightLabel": "Use the soil temperature sensor data from your Ecowitt"
-				},
-				"useSoilMoist": {
-					"label": "Soil Moisture",
-					"rightLabel": "Use the soil moisture sensor data from your Ecowitt"
-				},
-				"useLeafWet": {
-					"label": "Leaf Wetness",
-					"rightLabel": "Use the leaf wetness sensor data from your Ecowitt"
-				},
-				"useAQI": {
-					"label": "Air Quality",
-					"rightLabel": "Use the air quality sensor data from your Ecowitt"
-				},
-				"useCo2": {
-					"label": "Carbon Dioxide",
-					"rightLabel": "Use the CO₂ sensor data from your Ecowitt"
-				},
-				"useLightning": {
-					"label": "Lightning",
-					"rightLabel": "Use the lightning sensor data from your Ecowitt"
-				},
-				"useLeak": {
-					"label": "Leak",
-					"rightLabel": "Use the leak sensor data from your Ecowitt"
+				"ambient": {
+					"collapsible": true,
+					"collapsed": true,
+					"helpers": [
+						"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
+						"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambientextra?<br>Port: 8998<br>Interval: 20",
+						"You must restart Cumulus after enabling/disabling this feature"
+					],
+					"helperPosition": "above",
+					"fields": {
+						"useSolar": {
+							"label": "Solar",
+							"rightLabel": "Use the solar data from your Ambient"
+						},
+						"useUv": {
+							"label": "UV",
+							"rightLabel": "Use the UV-I data from your Ambient"
+						},
+						"useTempHum": {
+							"label": "Extra Temp/Hum",
+							"rightLabel": "Use the extra temperature/humidity sensor data from your Ambient"
+						},
+						"useSoilTemp": {
+							"label": "Soil Temp",
+							"rightLabel": "Use the soil temperature sensor data from your Ambient"
+						},
+						"useSoilMoist": {
+							"label": "Soil Moisture",
+							"rightLabel": "Use the soil moisture sensor data from your Ambient"
+						},
+						"useAQI": {
+							"label": "Air Quality",
+							"rightLabel": "Use the air quality sensor data from your Ambient"
+						},
+						"useLightning": {
+							"label": "Lightning",
+							"rightLabel": "Use the lightning sensor data from your Ambient"
+						},
+						"useLeak": {
+							"label": "Leak",
+							"rightLabel": "Use the leak sensor data from your Ambient"
+						}
+					},
+					"dependencies": {
+						"extraStation": 1
+					}
 				}
 			}
 		},
