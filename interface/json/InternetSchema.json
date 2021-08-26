@@ -255,7 +255,6 @@
 					},
 					"dependencies": {
 						"realtimeinterval": ["enabled"],
-						"enablerealtimeftp": ["enabled"],
 						"files": ["enabled"]
 					}
 				}
