@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/05/04 09:12:08
+ *  Last modified: 2021/08/16 12:02:37
  * 	Basic scripts for all new at-xxxx.html template pages.
  *  Incorporating changes suggested by beteljuice
  * 	Requires jQuery
@@ -188,7 +188,7 @@ let getPageData = function (resolve, reject) {
 
 		// Update all spans having data-cmxdata with data values
 		$('[data-cmxdata]').each(function () {
-			this.innerText = cmx_data[this.dataset.cmxdata];
+			this.innerHTML = cmx_data[this.dataset.cmxdata];
 		});
 
 		if (cmx_data.currcond != '') {

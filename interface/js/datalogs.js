@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:53:59
+// Last modified: 2021/08/18 14:38:24
 
 var myTable;
 var currMonth;
@@ -112,12 +112,33 @@ $(document).ready(function () {
             }
         },
         onEditRow: function(datatable, rowdata, success, error) {
+            var selector = datatable.modal_selector;
+            $(selector + ' .modal-body .alert').remove();
+
             $.ajax({
                 url: "api/edit/datalogs",
                 type: 'POST',
                 data: formatResponse("Edit", rowdata),
                 success: success,
-                error: error
+                error: function(response, status, more) {
+                    // Output the error message
+                    var selector = datatable.modal_selector;
+                    $(selector + ' .modal-body .alert').remove();
+                    var message = '<div class="alert alert-danger" role="alert">' +
+                    '<strong>' + datatable.language.error.label + '</strong> ';
+                    for (var key in response.responseJSON.errors) {
+                        message += response.responseJSON.errors[key][0];
+                    }
+                    message +='</div>';
+                    $(selector + ' .modal-body').append(message);
+
+                    // error 501 means MySQL failed but file update was OK
+                    if (response.status == 501) {
+                        // We have updated the dayfile data, so update the form
+                        datatable.s.dt.row(response.responseJSON.data[0]).data(response.responseJSON.data);
+                        datatable.s.dt.draw('page');
+                    }
+                }
             });
         },
         onDeleteRow: function(datatable, rowdata, success, error) {

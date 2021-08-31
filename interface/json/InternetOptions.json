@@ -1,4 +1,4 @@
-﻿{
+{
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -199,10 +199,7 @@
 						"enableintervalftp": {
 							"label": "FTP",
 							"rightLabel": "Enable update interval FTP",
-							"helper": "Select this to have Cumulus enable FTP files at the web update interval",
-							"dependencies": {
-								"enabled": true
-							}
+							"helper": "Select this to have Cumulus enable FTP files at the web update interval"
 						},
 						"stdfiles": {
 							"collapsible":true,
@@ -305,10 +302,7 @@
 						"enablerealtimeftp": {
 							"label": "FTP:",
 							"rightLabel": "Enable real time FTP",
-							"helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
-							"dependencies": {
-								"enabled": true
-							}
+							"helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval"
 						},
 						"files": {
 							"type": "table",

@@ -18,7 +18,7 @@
  *
  *
  */
-(function (factory) {
+ (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD
         define(['jquery', 'datatables.net'], function ($) {
@@ -117,6 +117,16 @@
                 if (dt.settings()[0].oInit.onEditRow)
                     that.onEditRow = dt.settings()[0].oInit.onEditRow;
 
+                that.closeModalOnSuccess = dt.settings()[0].oInit.closeModalOnSuccess;
+                if (that.closeModalOnSuccess === undefined) {
+                    that.closeModalOnSuccess = true;
+                }
+
+                that.encodeFiles = dt.settings()[0].oInit.encodeFiles;
+                if (that.encodeFiles === undefined) {
+                    that.encodeFiles = true;
+                }
+
                 this._setup();
 
                 dt.on('destroy.altEditor', function () {
@@ -140,9 +150,10 @@
                 var that = this;
                 var dt = this.s.dt;
                 this.random_id = ("" + Math.random()).replace(".", "");
-                var modal_id = `altEditor-modal-${this.random_id}`;
+                var modal_id = 'altEditor-modal-' + this.random_id;
                 this.modal_selector = '#' + modal_id;
-                this.language = DataTable.settings.values().next().value.oLanguage.altEditor || {};
+                this.language = dt.settings()[0].oLanguage.altEditor || {};
+
                 this.language.modalClose = this.language.modalClose || 'Close';
                 this.language.edit = this.language.edit || {};
                 this.language.edit = { title: this.language.edit.title || 'Edit record',
@@ -163,12 +174,13 @@
                                         required: this.language.error.required || 'Field is required',
                                         unique: this.language.error.unique || 'Duplicated field'
                                       };
-                var modal = '<div class="modal fade" id="' + modal_id + '" tabindex="-1" role="dialog">' +
+
+                var modal = '<div class="modal fade altEditor-modal reveal" id="' + modal_id + '" tabindex="-1" role="dialog" data-reveal>' +
                     '<div class="modal-dialog">' +
                     '<div class="modal-content">' +
                     '<div class="modal-header">' +
                     '<h4 style="padding-top: 1rem;padding-left: 1rem;" class="modal-title"></h4>' +
-                    '<button style="margin: initial;" type="button" class="close" data-dismiss="modal" aria-label="' + this.language.modalClose + '">' +
+                    '<button style="margin: initial;" type="button" class="close close-button" data-dismiss="modal" data-close aria-label="' + this.language.modalClose + '">' +
                     '<span aria-hidden="true">&times;</span></button>' +
                     '</div>' +
                     '<div class="modal-body">' +
@@ -187,7 +199,7 @@
                     dt.button('edit:name').action(function (e, dt, node, config) {
                         that._openEditModal();
 
-                        $(`#altEditor-edit-form-${that.random_id}`)
+                        $('#altEditor-edit-form-' + that.random_id)
                         .off('submit')
                         .on('submit', function (e) {
                             e.preventDefault();
@@ -202,7 +214,7 @@
                     dt.button('delete:name').action(function (e, dt, node, config) {
                         that._openDeleteModal();
 
-                        $(`#altEditor-delete-form-${that.random_id}`)
+                        $('#altEditor-delete-form-' + that.random_id)
                         .off('submit')
                         .on('submit', function (e) {
                             e.preventDefault();
@@ -217,7 +229,7 @@
                     dt.button('add:name').action(function (e, dt, node, config) {
                         that._openAddModal();
 
-                        $(`#altEditor-add-form-${that.random_id}`)
+                        $('#altEditor-add-form-' + that.random_id)
                         .off('submit')
                         .on('submit', function (e) {
                             e.preventDefault();
@@ -291,14 +303,34 @@
                 var selector = this.modal_selector;
 
                 for (var j in columnDefs) {
-                    var arrIndex = "['" + columnDefs[j].name.toString().split(".").join("']['") + "']";
-                    var selectedValue = eval("adata.data()[0]" + arrIndex);
-                    var jquerySelector = "#" + columnDefs[j].name.toString().replace(/\./g, "\\.");
-                    $(selector).find(jquerySelector).val(this._quoteattr(selectedValue));
-                    $(selector).find(jquerySelector).trigger("change"); // required by select2
+                    if (columnDefs[j].name != null) {
+                        var arrIndex = columnDefs[j].name.toString().split(".");
+                        var selectedValue = adata.data()[0];
+                        for (var index = 0; index < arrIndex.length; index++) {
+                            if (selectedValue) selectedValue = selectedValue[arrIndex[index]];
+                        }
+                        var jquerySelector = "#" + columnDefs[j].name.toString().replace(/\./g, "\\.");
+                        $(selector).find(jquerySelector).val(selectedValue!=null?selectedValue.toString().trim():null);    //Values in dropdowns were getting extra spaces, need to trim if not null // this._quoteattr or not? see #121
+                        $(selector).find(jquerySelector).trigger("change"); // required by select2
+                         //added checkbox
+                        if (columnDefs[j].type.indexOf("checkbox") >= 0) {
+                            if (this._quoteattr(selectedValue) === "true" || this._quoteattr(selectedValue) == "1") { //MS SQL Databases use bits for booleans. 1 is equivlent to true, 0 is false
+                                $(selector).find(jquerySelector).prop("checked", this._quoteattr(selectedValue)); // required by checkbox
+                            }
+                        }
+                        //added date
+                        if (columnDefs[j].type.indexOf("date") >= 0) {
+                            if (columnDefs[j].dateFormat !== "") {
+                                var mDate = moment(this._quoteattr(selectedValue));
+                                if (mDate && mDate.isValid()) {
+                                    $(selector).find(jquerySelector).val(mDate.format(columnDefs[j].dateFormat));
+                                }
+                            }
+                        }
+                    }
                 }
 
-                $(selector + ' input[0]').focus();
+                $(selector + ' input[0]').trigger('focus');
                 $(selector).trigger("alteditor:some_dialog_opened").trigger("alteditor:edit_dialog_opened");
             },
 
@@ -316,23 +348,56 @@
                     selected: true
                 });
 
+                // Original row data
+                var orginalRowDataArray = adata.data()[0];
+
                 // Getting the inputs from the edit-modal
-                $(`form[name="altEditor-edit-form-${this.random_id}"] *`).filter(':input').each(function (i) {
+                $('form[name="altEditor-edit-form-' + this.random_id + '"] *').filter(':input[type!="file"]').filter(':enabled').each(function (i) { //Do not include disabled fields.
                     rowDataArray[$(this).attr('id')] = $(this).val();
                 });
 
-		//Getting the textArea from the modal
-                $(`form[name="altEditor-add-form-${this.random_id}"] *`).filter('textarea').each(function (i) {
+                //Getting the textArea from the modal
+                $('form[name="altEditor-edit-form-' + this.random_id + '"] *').filter('textarea').each(function (i) {
                     rowDataArray[$(this).attr('id')] = $(this).val();
+                });
+
+                //Getting Files from the modal
+                var numFilesQueued = 0;
+                $('form[name="altEditor-edit-form-' + this.random_id + '"] *').filter(':input[type="file"]').each(function (i) {
+                    if ($(this).prop('files')[0]) {
+                        if (that.encodeFiles) {
+                            ++numFilesQueued;
+                            that.getBase64($(this).prop('files')[0], function (filecontent) {
+                                rowDataArray[$(this).attr('id')] = filecontent;
+                                --numFilesQueued;
+                            });
+                        } else {
+                            rowDataArray[$(this).attr('id')] = $(this).prop('files')[0];
+                        }
+                    }
+                });
+
+                // Getting the checkbox from the modal
+                $('form[name="altEditor-edit-form-' + this.random_id + '"] *').filter(':input[type="checkbox"]').each(function (i) {
+                    rowDataArray[$(this).attr('id')] = this.checked;
                 });
 
                 console.log(rowDataArray); //DEBUG
 
-                that.onEditRow(that,
-                    rowDataArray,
-                    function(data,b,c,d,e){ that._editRowCallback(data,b,c,d,e); },
-                    function(data){ that._errorCallback(data);
-                });
+                var checkFilesQueued = function() {
+                    if (numFilesQueued == 0) {
+                         that.onEditRow(that,
+                                rowDataArray,
+                                function(data,b,c,d,e){ that._editRowCallback(data,b,c,d,e); },
+                                function(data){ that._errorCallback(data);},
+                                orginalRowDataArray);
+                    } else {
+                        console.log("Waiting for file base64-decoding...");
+                        setTimeout(checkFilesQueued, 1000);
+                    }
+                };
+
+                checkFilesQueued();
             },
 
             /**
@@ -348,7 +413,7 @@
                     selected: true
                 });
                 var columnDefs = this.completeColumnDefs();
-                const formName = 'altEditor-delete-form-' + this.random_id;
+                var formName = 'altEditor-delete-form-' + this.random_id;
 
                 // TODO
                 // we should use createDialog()
@@ -359,10 +424,54 @@
                 var data = "";
 
                 for (var j in columnDefs) {
+                    if (columnDefs[j].name == null) continue;
                     if (columnDefs[j].type.indexOf("hidden") >= 0) {
                         data += "<input type='hidden' id='" + columnDefs[j].title + "' value='" + adata.data()[0][columnDefs[j].name] + "'></input>";
                     }
-                    else {
+                    else if (columnDefs[j].type.indexOf("file") < 0) {
+                        var arrIndex = columnDefs[j].name.toString().split(".");
+                        var fvalue = adata.data()[0];  //fvalue is the value that will appear to user
+                        for (var index = 0; index < arrIndex.length; index++) {
+                            if (fvalue) fvalue = fvalue[arrIndex[index]];
+                        }
+
+                        // fix dateFormat
+                        if (columnDefs[j].type.indexOf("date") >= 0) {
+                            if (columnDefs[j].dateFormat !== "") {
+                                var mDate = moment(adata.data()[0][columnDefs[j].name]);
+                                if (mDate && mDate.isValid()) {
+                                    fvalue = mDate.format(columnDefs[j].dateFormat);
+                                }
+                            }
+                        }
+
+                        // fix select
+                        if (columnDefs[j].type.indexOf("select") >= 0) {
+                            var options = columnDefs[j].options;
+
+                            var mapper = function(x) {
+                                if (options.length === undefined) {
+                                    // options is a map
+                                    return x in options ? options[x] : null;
+                                } else {
+                                    // options is an array
+                                    return x;
+                                }
+                            }
+
+                            if (fvalue instanceof Array) {
+                                // multiselect
+                                var mapped = fvalue.map(mapper)
+                                    .filter(function (x) {
+                                        return x != null;
+                                    });
+                                fvalue = mapped.join(', ');
+                            } else {
+                                // usual select
+                                fvalue = mapper(fvalue);
+                            }
+                        }
+
                         data += "<div style='margin-left: initial;margin-right: initial;' class='form-group row'><label for='"
                             + that._quoteattr(columnDefs[j].name)
                             + "'>"
@@ -374,30 +483,30 @@
                             + "' placeholder='"
                             + that._quoteattr(columnDefs[j].title)
                             + "' style='overflow:hidden'  class='form-control' value='"
-                            + that._quoteattr(adata.data()[0][columnDefs[j].name]) + "' >"
-                            + adata.data()[0][columnDefs[j].name]
+                            + that._quoteattr(fvalue) + "' >"
+                            + fvalue
                             + "</input></div>";
                     }
                 }
 
                 var selector = this.modal_selector;
-                $(selector).on('show.bs.modal', function () {
-                    var btns = '<button type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">' + that.language.modalClose + '</button>' +
-                        '<button type="submit"  data-content="remove" class="btn btn-danger" id="deleteRowBtn">' + that.language.delete.button + '</button>';
+                var fill = function () {
+                    var btns = '<button type="button" data-content="remove" class="btn btn-default button secondary" data-close data-dismiss="modal">' + that.language.modalClose + '</button>' +
+                        '<button type="submit"  data-content="remove" class="btn btn-danger button" id="deleteRowBtn">' + that.language.delete.button + '</button>';
                     $(selector).find('.modal-title').html(that.language.delete.title);
                     $(selector).find('.modal-body').html(data);
                     $(selector).find('.modal-footer').html(btns);
-                    const modalContent = $(selector).find('.modal-content');
+                    var modalContent = $(selector).find('.modal-content');
                     if (modalContent.parent().is('form')) {
                         modalContent.parent().attr('name', formName);
                         modalContent.parent().attr('id', formName);
                     } else {
                         modalContent.wrap("<form name='" + formName + "' id='" + formName + "' role='form'></form>");
                     }
-                });
+                };
 
-                $(selector).modal('show');
-                $(selector + ' input[0]').focus();
+                this.internalOpenDialog(selector, fill);
+                $(selector + ' input[0]').trigger('focus');
                 $(selector).trigger("alteditor:some_dialog_opened").trigger("alteditor:delete_dialog_opened");
             },
 
@@ -441,7 +550,7 @@
                     this.language.modalClose, 'addRowBtn', 'altEditor-add-form');
 
                 var selector = this.modal_selector;
-                $(selector + ' input[0]').focus();
+                $(selector + ' input[0]').trigger('focus');
                 $(selector).trigger("alteditor:some_dialog_opened").trigger("alteditor:add_dialog_opened");
             },
 
@@ -455,9 +564,10 @@
                     var obj = dt.context[0].aoColumns[i];
                     columnDefs[i] = {
                         title: obj.sTitle,
+                        placeholder: (obj.placeholder ? obj.placeholder : obj.title), //added placeholder
                         name: (obj.data ? obj.data : obj.mData),
                         type: (obj.type ? obj.type : 'text'),
-			rows: (obj.rows ? obj.rows : '5'),
+                        rows: (obj.rows ? obj.rows : '5'),
                         cols: (obj.cols ? obj.cols : '30'),
                         options: (obj.options ? obj.options : []),
                         readonly: (obj.readonly ? obj.readonly : false),
@@ -474,7 +584,15 @@
                         select2: (obj.select2 ? obj.select2 : false),
                         datepicker: (obj.datepicker ? obj.datepicker : false),
                         datetimepicker: (obj.datetimepicker ? obj.datetimepicker : false),
-                        editorOnChange: (obj.editorOnChange ? obj.editorOnChange : null)
+                        editorOnChange: (obj.editorOnChange ? obj.editorOnChange : null),
+                        style: (obj.style ? obj.style : ''),
+                        dateFormat: (obj.dateFormat ? obj.dateFormat : ''),
+                        optionsSortByLabel: (obj.optionsSortByLabel ? obj.optionsSortByLabel : false),
+                        inline: (obj.inline ? obj.inline : false ), // Added for inline columns
+						step: (obj.step ? obj.step : null), //number fields
+						min: (obj.min ? obj.min : null), //number fields
+						max: (obj.max ? obj.max : null), //number fields
+						value: (obj.value ? obj.value : '') //allow a default value
                     }
                 }
                 return columnDefs;
@@ -486,20 +604,31 @@
             */
             createDialog: function(columnDefs, title, buttonCaption, closeCaption, buttonClass, formName) {
                 formName = [formName, this.random_id].join('-');
-                var data = "";
+                var data = "", count=0;
                 for (var j in columnDefs) {
-
                     //handle hidden fields
                     if (columnDefs[j].type.indexOf("hidden") >= 0) {
                         data += "<input type='hidden' id='" + columnDefs[j].name + "' ></input>";
                     }
                     else {
                         // handle fields that are visible to the user
-                        data += "<div style='margin-left: initial;margin-right: initial;' class='form-group row' id='alteditor-row-" + this._quoteattr(columnDefs[j].name) +"'>";
-                        data += "<div class='col-sm-3 col-md-3 col-lg-3 text-right' style='padding-top:4px;'>";
-                        data += "<label for='" + columnDefs[j].name + "'>" + columnDefs[j].title + ":</label></div>";
-                        data += "<div class='col-sm-8 col-md-8 col-lg-8'>";
-
+                        if(columnDefs[j].inline){ //to add upto 4 inline columns
+                            if(count==0) {
+                                count++;
+                                data += "<div style='margin-left: initial;margin-right: initial;' class='form-group row' id='alteditor-row-" + this._quoteattr(columnDefs[j].name) + "'>";
+                                data += "<div class='col-sm-3 col-md-3 col-lg-3 text-right' style='padding-top:4px;'>";
+                                data += "<label for='" + columnDefs[j].name + "'>" + columnDefs[j].title + ":</label></div>";
+                                data += "<div class='col-sm-2 col-md-2 col-lg-2'>";
+                            }
+                            else
+                                data += "<div class='col-sm-2 col-md-2 col-lg-2'>";
+                        }
+                        else{
+                            data += "<div style='margin-left: initial;margin-right: initial;' class='form-group row' id='alteditor-row-" + this._quoteattr(columnDefs[j].name) +"'>";
+                            data += "<div class='col-sm-3 col-md-3 col-lg-3 text-right' style='padding-top:4px;'>";
+                            data += "<label for='" + columnDefs[j].name + "'>" + columnDefs[j].title + ":</label></div>";
+                            data += "<div class='col-sm-8 col-md-8 col-lg-8'>";
+                        }
                         // Adding readonly-fields
                         if (columnDefs[j].type.indexOf("readonly") >= 0) {
                             // type=readonly is deprecated, kept for backward compatibility
@@ -508,7 +637,7 @@
                                 + "' name='"
                                 + this._quoteattr(columnDefs[j].title)
                                 + "' placeholder='"
-                                + this._quoteattr(columnDefs[j].title)
+                                + this._quoteattr(columnDefs[j].placeholder ? columnDefs[j].placeholder : columnDefs[j].title)
                                 + "' style='overflow:hidden'  class='form-control  form-control-sm' value=''>";
                         }
                         // Adding select-fields
@@ -530,32 +659,28 @@
                             }
                             data += "<select class='form-control" + (columnDefs[j].select2 ? ' select2' : '')
                                 + "' id='" + this._quoteattr(columnDefs[j].name)
-                                + "' name='" + this._quoteattr(columnDefs[j].title) + "' "
-                                + (columnDefs[j].multiple ? ' multiple ' : '')
+                                + "' name='" + this._quoteattr(columnDefs[j].title)
+                                + "' placeholder='" + this._quoteattr(columnDefs[j].placeholder ? columnDefs[j].placeholder : columnDefs[j].title)
+                                + "' data-special='" + this._quoteattr(columnDefs[j].special)
+                                + "' data-errorMsg='" + this._quoteattr(columnDefs[j].msg)
+                                + "' data-uniqueMsg='" + this._quoteattr(columnDefs[j].uniqueMsg)
+                                + "' data-unique='" + columnDefs[j].unique
+                                + "' "
                                 + (columnDefs[j].readonly ? ' readonly ' : '')
                                 + (columnDefs[j].disabled ? ' disabled ' : '')
                                 + (columnDefs[j].required ? ' required ' : '')
+                                + (columnDefs[j].multiple ? ' multiple ' : '')
                                 + ">" + options
                                 + "</select>";
                         }
-			//Adding Text Area
+                        //Adding Text Area
                         else if (columnDefs[j].type.indexOf("textarea") >= 0)
                         {
-                            data += "<textarea id='" + this._quoteattr(columnDefs[j].name)
-				+ "' name='" + this._quoteattr(columnDefs[j].title)
-				+ "'rows='" + this._quoteattr(columnDefs[j].rows)
-				+ "' cols='"+ this._quoteattr(columnDefs[j].cols)
-				+ "'>"
-				+ "</textarea>";
-                        }
-                        // Adding text-inputs and errorlabels, but also new HTML5 typees (email, color, ...)
-                        else {
-                            data += "<input type='" + this._quoteattr(columnDefs[j].type)
-                                + "' id='" + this._quoteattr(columnDefs[j].name)
-                                + "' pattern='" + this._quoteattr(columnDefs[j].pattern)
-                                + "' title='" + this._quoteattr(columnDefs[j].hoverMsg)
+                            data += "<textarea class='form-control' id='" + this._quoteattr(columnDefs[j].name)
                                 + "' name='" + this._quoteattr(columnDefs[j].title)
-                                + "' placeholder='" + this._quoteattr(columnDefs[j].title)
+                                + "' rows='" + this._quoteattr(columnDefs[j].rows)
+                                + "' cols='"+ this._quoteattr(columnDefs[j].cols)
+                                + "' placeholder='" + this._quoteattr(columnDefs[j].placeholder ? columnDefs[j].placeholder : columnDefs[j].title)
                                 + "' data-special='" + this._quoteattr(columnDefs[j].special)
                                 + "' data-errorMsg='" + this._quoteattr(columnDefs[j].msg)
                                 + "' data-uniqueMsg='" + this._quoteattr(columnDefs[j].uniqueMsg)
@@ -565,33 +690,62 @@
                                 + (columnDefs[j].disabled ? ' disabled ' : '')
                                 + (columnDefs[j].required ? ' required ' : '')
                                 + (columnDefs[j].maxLength == false ? "" : " maxlength='" + columnDefs[j].maxLength + "'")
-                                + " style='overflow:hidden'  class='form-control  form-control-sm' value=''>";
+                                + " style='" + this._quoteattr(columnDefs[j].style) + "'>"
+                                + "</textarea>";
+                        }
+                        // Adding text-inputs and error labels, but also new HTML5 types (email, color, ...)
+                        else {
+                            data += "<input class='form-control' type='" + this._quoteattr(columnDefs[j].type)
+                                + "' id='" + this._quoteattr(columnDefs[j].name)
+                                + "' pattern='" + this._quoteattr(columnDefs[j].pattern)
+                                + "' title='" + this._quoteattr(columnDefs[j].hoverMsg)
+                                + "' name='" + this._quoteattr(columnDefs[j].title)
+								+ "' step='" + this._quoteattr(columnDefs[j].step)
+								+ "' min='" + this._quoteattr(columnDefs[j].min)
+								+ "' max='" + this._quoteattr(columnDefs[j].max)
+								+ "' value='" + this._quoteattr(columnDefs[j].value)
+                                + "' placeholder='" + this._quoteattr(columnDefs[j].placeholder ? columnDefs[j].placeholder : columnDefs[j].title)
+                                + "' data-special='" + this._quoteattr(columnDefs[j].special)
+                                + "' data-errorMsg='" + this._quoteattr(columnDefs[j].msg)
+                                + "' data-uniqueMsg='" + this._quoteattr(columnDefs[j].uniqueMsg)
+                                + "' data-unique='" + columnDefs[j].unique
+                                + "' "
+                                + (columnDefs[j].readonly ? ' readonly ' : '')
+                                + (columnDefs[j].disabled ? ' disabled ' : '')
+                                + (columnDefs[j].required ? ' required ' : '')
+                                + (columnDefs[j].maxLength == false ? "" : " maxlength='" + columnDefs[j].maxLength + "'")
+                                + " style='overflow:hidden;" + this._quoteattr(columnDefs[j].style)
+                                + "' class='form-control  form-control-sm' value=''>";
                         }
                         data += "<label id='" + this._quoteattr(columnDefs[j].name) + "label"
                                 + "' class='errorLabel'></label>";
-                        data += "</div><div style='clear:both;'></div></div>";
+                        if(!columnDefs[j].inline || (+j+1 < columnDefs.length && !columnDefs[+j+1].inline)) {
+                            data += "</div><div style='clear:both;'></div></div>";
+                        }
+                        else
+                            data += "</div>";
                     }
                 }
                 // data += "</form>";
 
                 var selector = this.modal_selector;
-                $(selector).on('show.bs.modal', function () {
-                    var btns = '<button type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">'+closeCaption+'</button>' +
-                        '<button type="submit" form="' + formName + '" data-content="remove" class="btn btn-primary" id="'+buttonClass+'">'+buttonCaption+'</button>';
+                var fill = function () {
+                    var btns = '<button type="button" data-content="remove" class="btn btn-default button secondary" data-dismiss="modal" data-close>'+closeCaption+'</button>' +
+                        '<button type="submit" form="' + formName + '" data-content="remove" class="btn btn-primary button" id="'+buttonClass+'">'+buttonCaption+'</button>';
                     $(selector).find('.modal-title').html(title);
                     $(selector).find('.modal-body').html(data);
                     $(selector).find('.modal-footer').html(btns);
-                    const modalContent = $(selector).find('.modal-content');
+                    var modalContent = $(selector).find('.modal-content');
                     if (modalContent.parent().is('form')) {
                         modalContent.parent().attr('name', formName);
                         modalContent.parent().attr('id', formName);
                     } else {
                         modalContent.wrap("<form name='" + formName + "' id='" + formName + "' role='form'></form>");
                     }
-                });
+                };
 
-                $(selector).modal('show');
-                $(selector + ' input[0]').focus();
+                this.internalOpenDialog(selector, fill);
+                $(selector + ' input[0]').trigger('focus');
 
                 var that = this;
 
@@ -609,10 +763,22 @@
                     }
                     // custom onchange triggers
                     if (columnDefs[j].editorOnChange) {
-                        var f = columnDefs[j].editorOnChange; // FIXME what if more than 1 editorOnChange ?
-                        $(selector).find("#" + columnDefs[j].name).on('change', function(elm) {
+                        // $.escapeSelector requires jQuery 3.x
+                        $(selector).find("#" + $.escapeSelector(columnDefs[j].name)).attr('alt-editor-id', this._quoteattr(j));
+                        $(selector).find("#" + $.escapeSelector(columnDefs[j].name)).on('change', function(elm) {
+                            var f = columnDefs[$(this).attr('alt-editor-id')].editorOnChange;
                             f(elm, that);
                         });
+                    }
+                    //added select sort
+                    if (columnDefs[j].type.indexOf("select") >= 0) {
+                        if (columnDefs[j].optionsSortByLabel) {
+                            var jquerySelector = "#" + columnDefs[j].name.toString().replace(/\./g, "\\.");
+                            var opts_list = $(selector).find(jquerySelector).find('option');
+                            opts_list.sort(function (a, b) { return $(a).text() > $(b).text() ? 1 : -1; });
+                            $(selector).find(jquerySelector).html('').append(opts_list);
+                            $(selector).find(jquerySelector).val($(jquerySelector + " option:first").val());
+                        }
                     }
                 }
             },
@@ -627,22 +793,52 @@
                 var rowDataArray = {};
 
                 // Getting the inputs from the modal
-                $(`form[name="altEditor-add-form-${this.random_id}"] *`).filter(':input').each(function (i) {
+                $('form[name="altEditor-add-form-' + this.random_id + '"] *').filter(':input[type!="file"]').filter(':enabled').each(function (i) { //Dont send disabled fields
                     rowDataArray[$(this).attr('id')] = $(this).val();
                 });
 
-		//Getting the textArea from the modal
-                $(`form[name="altEditor-add-form-${this.random_id}"] *`).filter('textarea').each(function (i) {
+                //Getting the textArea from the modal
+                $('form[name="altEditor-add-form-' + this.random_id + '"] *').filter('textarea').each(function (i) {
                     rowDataArray[$(this).attr('id')] = $(this).val();
                 });
 
-//console.log(rowDataArray); //DEBUG
-
-                that.onAddRow(that,
-                    rowDataArray,
-                    function(data){ that._addRowCallback(data); },
-                    function(data){ that._errorCallback(data);
+                //Getting Files from the modal
+                var numFilesQueued = 0;
+                $('form[name="altEditor-add-form-' + this.random_id + '"] *').filter(':input[type="file"]').each(function (i) {
+                    if ($(this).prop('files')[0]) {
+                        if (that.encodeFiles) {
+                            ++numFilesQueued;
+                            that.getBase64($(this).prop('files')[0], function (filecontent) {
+                                rowDataArray[$(this).attr('id')] = filecontent;
+                                --numFilesQueued;
+                            });
+                        } else {
+                            rowDataArray[$(this).attr('id')] = $(this).prop('files')[0];
+                        }
+                    }
                 });
+
+                // Getting the checkbox from the modal
+                $('form[name="altEditor-add-form-' + this.random_id + '"] *').filter(':input[type="checkbox"]').each(function (i) {
+                    rowDataArray[$(this).attr('id')] = this.checked;
+                });
+
+                console.log(rowDataArray); //DEBUG
+
+                var checkFilesQueued = function() {
+                    if (numFilesQueued == 0) {
+                        that.onAddRow(that,
+                            rowDataArray,
+                            function(data){ that._addRowCallback(data); },
+                            function(data){ that._errorCallback(data);
+                        });
+                    } else {
+                        console.log("Waiting for file base64-decoding...");
+                        setTimeout(checkFilesQueued, 1000);
+                    }
+                };
+
+                checkFilesQueued();
 
             },
 
@@ -653,15 +849,19 @@
                     var selector = this.modal_selector;
                     $(selector + ' .modal-body .alert').remove();
 
-                    var message = '<div class="alert alert-success" role="alert">' +
-                        '<strong>' + this.language.success + '</strong>' +
-                        '</div>';
-                    $(selector + ' .modal-body').append(message);
+                    if (this.closeModalOnSuccess) {
+                        this.internalCloseDialog(selector);
+                    } else {
+                        var message = '<div class="alert alert-success" role="alert">' +
+                            '<strong>' + this.language.success + '</strong>' +
+                            '</div>';
+                        $(selector + ' .modal-body').append(message);
+                    }
 
                     this.s.dt.row({
                         selected : true
                     }).remove();
-                    this.s.dt.draw();
+                    this.s.dt.draw('page');
 
                     // Disabling submit button
                     $("div"+selector).find("button#addRowBtn").prop('disabled', true);
@@ -680,10 +880,14 @@
                     var selector = this.modal_selector;
                     $(selector + ' .modal-body .alert').remove();
 
-                    var message = '<div class="alert alert-success" role="alert">' +
-                        '<strong>' + this.language.success + '</strong>' +
-                        '</div>';
-                    $(selector + ' .modal-body').append(message);
+                    if (this.closeModalOnSuccess) {
+                        this.internalCloseDialog(selector);
+                    } else {
+                        var message = '<div class="alert alert-success" role="alert">' +
+                            '<strong>' + this.language.success + '</strong>' +
+                            '</div>';
+                        $(selector + ' .modal-body').append(message);
+                    }
 
                     this.s.dt.row.add(data).draw(false);
 
@@ -704,10 +908,14 @@
                     var selector = this.modal_selector;
                     $(selector + ' .modal-body .alert').remove();
 
-                    var message = '<div class="alert alert-success" role="alert">' +
-                        '<strong>' + this.language.success + '</strong>' +
-                        '</div>';
-                    $(selector + ' .modal-body').append(message);
+                    if (this.closeModalOnSuccess) {
+                        this.internalCloseDialog(selector);
+                    } else {
+                        var message = '<div class="alert alert-success" role="alert">' +
+                            '<strong>' + this.language.success + '</strong>' +
+                            '</div>';
+                        $(selector + ' .modal-body').append(message);
+                    }
 
                     this.s.dt.row({
                         selected : true
@@ -766,6 +974,50 @@
             },
 
             /**
+             * Open a dialog using available framework
+             */
+            internalOpenDialog(selector, onopen) {
+                var $sel = $(selector);
+                if ($sel.modal) {
+                    // Bootstrap
+                    $sel.on('show.bs.modal', onopen);
+                    $sel.modal('show');
+
+                } else if ($sel.foundation){
+                    // Foundation
+                    $sel.on('open.zf.reveal', onopen);
+                    $sel.on('closed.zf.reveal', function() { $('.reveal-overlay').hide(); });
+                    var popup = new Foundation.Reveal($sel);
+                    popup.open();
+
+                } else {
+                    console.error('You must load Bootstrap or Foundation in order to open modal dialogs');
+                    return;
+                }
+            },
+
+            /**
+             * Close a dialog using available framework
+             */
+            internalCloseDialog(selector) {
+                var $sel = $(selector);
+                if ($sel.modal) {
+                    // Bootstrap
+                    $sel.modal('hide');
+
+                } else if ($sel.foundation){
+                    // Foundation
+                    var popup = new Foundation.Reveal($sel);
+                    popup.close();
+                    $('.reveal-overlay').hide();
+
+                } else {
+                    console.error('You must load Bootstrap or Foundation in order to open modal dialogs');
+                    return;
+                }
+            },
+
+            /**
              * Dinamically reload options in SELECT menu
             */
             reloadOptions: function($select, options) {
@@ -789,6 +1041,23 @@
             },
 
             /**
+             * Convert file to Base 64 form
+             * @see https://stackoverflow.com/questions/36280818
+             */
+            getBase64: function(file, onSuccess, onError) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                        console.log(reader.result);
+                        if (onSuccess) onSuccess(reader.result);
+                };
+                reader.onerror = function (error) {
+                        console.log('Error: ', error);
+                        if (onError) onError(error);
+                };
+            },
+
+            /**
              * Sanitizes input for use in HTML
              * @param s
              * @param preserveCR
@@ -802,7 +1071,7 @@
                 if (Array.isArray(s)) {
                     // for MULTIPLE SELECT
                     var newArray = [];
-		    var x;
+                    var x;
                     for (x in s) newArray.push(s[x]);
                     return newArray;
                 }

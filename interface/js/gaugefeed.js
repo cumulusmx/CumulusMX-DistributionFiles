@@ -1,4 +1,4 @@
-// Last modified: 2021/07/31 15:33:46
+// Last modified: 2021/08/16 12:00:18
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
@@ -62,7 +62,7 @@ window.addEventListener("load", function () {
             apptemp: inp.AppTemp.toString(),
             apptempTL: inp.LowAppTempToday.toString(),
             apptempTH: inp.HighAppTempToday.toString(),
-            feelsLike: inp.FeelsLike.toString(),
+            feelslike: inp.FeelsLike.toString(),
             feelslikeTL: inp.LowFeelsLikeToday.toString(),
             feelslikeTH: inp.HighFeelsLikeToday.toString(),
             wchill: inp.WindChill.toString(),

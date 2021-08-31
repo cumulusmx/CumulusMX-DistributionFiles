@@ -542,8 +542,8 @@
 					"minimum": 0,
 					"default" : 0
 				}
-		    },
-            "dependencies": ["stationid"]
+			},
+			"dependencies": ["stationid"]
 		},
 		"fineoffset": {
 			"title": "Fine Offset Settings",

@@ -19,7 +19,7 @@ LANG.EN = {
                      'Try upgrading your browser to a more recent version - nearly all browsers support Canvas now, even IE9!<br><br>' +
                      'Redirecting you to an \'old\' gauges page...',
     //
-    led_title         : 'Remote sensor status unkonwn',
+    led_title         : 'Remote sensor status unknown',
     led_title_ok      : 'Remote sensor OK',
     led_title_lost    : 'Remote sensor contact lost!',
     led_title_unknown : 'Remote sensor status unknown!',
