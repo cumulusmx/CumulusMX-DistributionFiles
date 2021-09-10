@@ -29,6 +29,7 @@
 "daylightlength":"<#daylightlength>",
 "daylength":"<#daylength>",
 "moonphase":"<#moonphase>",
+"MoonPercentAbs":"<#MoonPercentAbs>",
 "longlocation":"<#longlocation>",
 "stationtype":"<#stationtypeJsEnc>",
 "interval":"<#interval>",

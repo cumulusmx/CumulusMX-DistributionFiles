@@ -105,6 +105,9 @@
 						"useLeafWet": {
 							"type": "boolean"
 						},
+						"useUserTemp": {
+							"type": "boolean"
+						},
 						"useAQI": {
 							"type": "boolean"
 						},
