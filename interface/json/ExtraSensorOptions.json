@@ -168,6 +168,10 @@
 							"label": "Leaf Wetness",
 							"rightLabel": "Use the leaf wetness sensor data from your Ecowitt"
 						},
+						"useUserTemp": {
+							"label": "User Temperature",
+							"rightLabel": "Use the WN34S/WN34L soil/water sensor data from your Ecowitt"
+						},
 						"useAQI": {
 							"label": "Air Quality",
 							"rightLabel": "Use the air quality sensor data from your Ecowitt"
