@@ -701,6 +701,9 @@
 				"calculatewindchill": {
 					"type": "boolean"
 				},
+				"calculateet": {
+					"type": "boolean"
+				},
 				"cumuluspresstrendnames": {
 					"type": "boolean"
 				},
