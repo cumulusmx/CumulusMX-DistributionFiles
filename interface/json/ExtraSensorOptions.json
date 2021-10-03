@@ -69,8 +69,11 @@
 				},
 				"autoUpdateIp": {
 					"label": "Auto-Discovery:",
-					"rightLabel": "Enable automatic IP address discovery and updates",
-					"helper": "NOTE: only enable this if you have a single AirLink device and it uses DHCP"
+					"rightLabel": "Enable Auto-Discovery and updates",
+					"helpers": [
+						"If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
+						"If you use fixed IP addresses then you can enter them manually and leave this option disabled."
+					]
 				},
 				"indoor": {
 					"collapsible":true,

@@ -390,7 +390,7 @@
 								"conntype": 2
 							}
 						},
-					   "baudrate": {
+						"baudrate": {
 							"label": "Serial Baud Rate (DavisBaudRate):",
 							"removeDefaultNone": true,
 							"helper": "Serial port speed in bps",
@@ -840,24 +840,24 @@
 				"stationid": 12
 			}
 		},
-        "weatherflow": {
+		"weatherflow": {
 			"collapsible": true,
-            "collapsed": true,
-            "fields": {
-            "deviceid": {
-	        "label" : "Device Id",
-                "rightlabel": "Tempest Device Id",
-                "helper": "Get this from the weatherflow app"
-                },
+			"collapsed": true,
+			"fields": {
+			"deviceid": {
+			"label" : "Device Id",
+				"rightlabel": "Tempest Device Id",
+				"helper": "Get this from the weatherflow app"
+				},
 			"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
 			"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
 			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
 
-            },
-            "dependencies": {
-                "stationid": 16
-                }
-        },
+			},
+			"dependencies": {
+				"stationid": 16
+				}
+		},
 		"fineoffset": {
 			"collapsible": true,
 			"collapsed": true,
@@ -1087,6 +1087,15 @@
 					"helpers": [
 						"Use the Cumulus calculated value instead of the value supplied station",
 						"If your station does not supply a wind chill value, then you must enable this option"
+					]
+				},
+				"calculateet": {
+					"label": "Evapotranspiration:",
+					"rightLabel": "Calculate evapotranspiration",
+					"helpers": [
+						"Use a cumulus calculated value for evapostranspiration if your station does not provide this value",
+						"Note this calculation REQUIRES a solar radiation sensor to estimate any sensible values",
+						"DO NOT enable this feature if your station already supplies a value for ET - eg. Davis VP2/WLL with solar"
 					]
 				},
 				"cumuluspresstrendnames": {
