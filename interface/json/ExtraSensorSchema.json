@@ -96,9 +96,6 @@
 						"useTempHum": {
 							"type": "boolean"
 						},
-						"useSoilTemp": {
-							"type": "boolean"
-						},
 						"useSoilMoist": {
 							"type": "boolean"
 						},
@@ -133,9 +130,6 @@
 							"type": "boolean"
 						},
 						"useTempHum": {
-							"type": "boolean"
-						},
-						"useSoilTemp": {
 							"type": "boolean"
 						},
 						"useSoilMoist": {

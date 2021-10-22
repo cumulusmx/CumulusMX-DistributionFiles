@@ -159,10 +159,6 @@
 							"label": "Extra Temp/Hum",
 							"rightLabel": "Use the extra temperature/humidity sensor data from your Ecowitt"
 						},
-						"useSoilTemp": {
-							"label": "Soil Temp",
-							"rightLabel": "Use the soil temperature sensor data from your Ecowitt"
-						},
 						"useSoilMoist": {
 							"label": "Soil Moisture",
 							"rightLabel": "Use the soil moisture sensor data from your Ecowitt"
@@ -217,10 +213,6 @@
 						"useTempHum": {
 							"label": "Extra Temp/Hum",
 							"rightLabel": "Use the extra temperature/humidity sensor data from your Ambient"
-						},
-						"useSoilTemp": {
-							"label": "Soil Temp",
-							"rightLabel": "Use the soil temperature sensor data from your Ambient"
 						},
 						"useSoilMoist": {
 							"label": "Soil Moisture",

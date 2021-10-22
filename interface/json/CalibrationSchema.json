@@ -5,7 +5,7 @@
 			"type": "boolean"
 		},
 		"explanation": {
-			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\n\nThe general case is the familar formula: newVal = ax² + bx + c\nWhere a = multiplier2, b = multiplier, c = offset",
+			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\n\nThe general case is the familiar formula: newVal = ax² + bx + c\nWhere a = multiplier2, b = multiplier, c = offset",
 			"readonly": true
 		},
 		"pressure": {
@@ -116,7 +116,7 @@
 				"limitmax": {
 					"type": "number",
 					"minimum": 0,
-					"maximum": 50
+					"maximum": 90
 				}
 			}
 		},

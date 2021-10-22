@@ -283,21 +283,21 @@
 					}
 				},
 
-        "weatherflow": {
-            "fields": {
-            "deviceid": {
-	        "label" : "Device Id",
-                "rightlabel": "Tempest Device Id",
-                "helper": "Get this from the weatherflow app"
-                },
+		"weatherflow": {
+			"fields": {
+			"deviceid": {
+			"label" : "Device Id",
+				"rightlabel": "Tempest Device Id",
+				"helper": "Get this from the weatherflow app"
+				},
 			"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
 			"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
 			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
-            },
-            "dependencies": {
-                "stationtype": 16
-                }
-        },
+			},
+			"dependencies": {
+				"stationtype": 16
+				}
+		},
 
 				"fineoffset": {
 					"fields": {
