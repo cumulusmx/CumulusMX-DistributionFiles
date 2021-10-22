@@ -418,7 +418,7 @@
 							"rightLabel": "Enable Auto-Discovery",
 							"helpers": [
 								"Enable auto-discovery of your WLL devices IP address",
-								"If you have more than one WLL, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MXdiags file. You must then enter the IP address you want to use in the field below."
+								"If you have more than one WLL, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MX diags file. You must then enter the IP address you want to use in the field below."
 							]
 						},
 						"ipaddress": {
@@ -447,7 +447,7 @@
 							"label": "WLL device id on WeatherLink:",
 							"helpers": [
 								"Enter the station id used for your WLL device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
-								"If more than one station is registered to your account, then all the station ids will be listed in the console and the MXdiags file. You will then have to enter the required id manually in this field"
+								"If more than one station is registered to your account, then all the station ids will be listed in the console and the MX diags file. You will then have to enter the required id manually in this field"
 							]
 						}
 					}
@@ -1093,7 +1093,7 @@
 					"label": "Evapotranspiration:",
 					"rightLabel": "Calculate evapotranspiration",
 					"helpers": [
-						"Use a cumulus calculated value for evapostranspiration if your station does not provide this value",
+						"Use a cumulus calculated value for evapotranspiration if your station does not provide this value",
 						"Note this calculation REQUIRES a solar radiation sensor to estimate any sensible values",
 						"DO NOT enable this feature if your station already supplies a value for ET - eg. Davis VP2/WLL with solar"
 					]

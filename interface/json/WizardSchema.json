@@ -188,7 +188,7 @@
 							"default" : 0
 						}
 					},
-                    "dependencies": ["stationtype"]
+					"dependencies": ["stationtype"]
 				},
 
 				"fineoffset": {

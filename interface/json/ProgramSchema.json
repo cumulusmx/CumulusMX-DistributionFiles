@@ -61,6 +61,15 @@
                     "type": "boolean"
                 }
             }
+        },
+        "culture": {
+            "title": "Culture Over-rides",
+            "type": "object",
+            "properties": {
+                "removespacefromdateseparator": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }

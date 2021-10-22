@@ -47,7 +47,7 @@
                 },
                 "spikelogging": {
                     "rightLabel": "Spike logging",
-                    "helper": "Enable the logging of data spike and limit violations to  MX diags files."
+                    "helper": "Enable the logging of data spike and limit violations to MX diags files."
                 }
             }
         },
@@ -62,6 +62,19 @@
                 "listwebtags": {
                     "rightLabel": "List web tags",
                     "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
+                }
+            }
+        },
+        "culture": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "removespacefromdateseparator": {
+                    "rightLabel": "Remove space character from date separators (if present)",
+                    "helpers": [
+                        "CAUTION: Changing this may have unintended consequences",
+                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'"
+                    ]
                 }
             }
         }
