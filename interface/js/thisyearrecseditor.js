@@ -1,4 +1,4 @@
-// Last modified: 2021/10/14 14:40:04
+// Last modified: 2021/12/02 11:57:40
 
 $(document).ready(function() {
 
@@ -12,12 +12,6 @@ $(document).ready(function() {
     }});
 
     $.ajax({url: "api/edit/thisyearrecordsdayfile.json", dataType:"json", success: function (result) {
-        $.each(result, function(key, value) {
-            $('#' + key).text(value);
-        });
-    }});
-
-    $.ajax({url: "api/edit/thisyearrecordslogfile.json", dataType:"json", success: function (result) {
         $.each(result, function(key, value) {
             $('#' + key).text(value);
         });
@@ -90,3 +84,12 @@ $(document).ready(function() {
         $('.loading-overlay-image-container').hide();
     });
 });
+function getMonthlyLogs() {
+    $('.loading-overlay').show();
+    $('.loading-overlay-image-container').show();
+    $.ajax({url: "api/edit/thisyearrecordslogfile.json", dataType:"json", success: function (result) {
+        $.each(result, function(key, value) {
+            $('#' + key).text(value);
+        });
+    }});
+}
