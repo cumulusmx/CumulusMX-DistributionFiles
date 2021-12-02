@@ -1,4 +1,4 @@
-// Last modified: 2021/08/18 14:39:27
+// Last modified: 2021/11/26 15:30:34
 
 var myTable;
 var currMonth;
@@ -11,17 +11,31 @@ $(document).ready(function () {
     $.fn.dataTable.ext.errMode = 'none';
 
     var now = new Date();
-    // subtract 1 day
-    now.setTime(now.getTime()-(1*24*3600000));
-    var mon = now.getMonth() + 1;
-    mon = mon < 10 ? '0' + mon : mon;
-    var dateStr = mon + '-' + now.getFullYear();
 
-    $('#datepicker').datepicker({
-        format: "mm-yyyy",
-        viewMode: "months",
-        minViewMode: "months"
-    }).val(dateStr);
+    var fromDate = $('#dateFrom').datepicker({
+            format: "dd-mm-yyyy",
+        }).val(formatUserDateStr(now))
+        .on('change', function() {
+            var date = fromDate.datepicker('getDate');
+            if (toDate.datepicker('getDate') < date) {
+                toDate.datepicker('setDate', date);
+            }
+            toDate.datepicker('option', { min: date });
+        });
+
+    var toDate = $('#dateTo').datepicker({
+            format: "dd-mm-yyyy",
+        }).val(formatUserDateStr(now))
+        .on('change', function() {
+            var date = fromDate.datepicker('getDate');
+            if (toDate.datepicker('getDate') < date) {
+                toDate.datepicker('setDate', date);
+            }
+            toDate.datepicker('option', { min: date });
+        });
+
+    fromDate.datepicker('setDate', now);
+    toDate.datepicker('setDate', now);
 
     var columnDefs = [
         {
@@ -132,19 +146,20 @@ $(document).ready(function () {
         pagingType: "input",
         processing: true,
         serverSide: true,
-        searching: false,
+        searching: true,
+        searchDelay: 750,
         ordering: false,
         pageLength: 10,
         lengthMenu: [10,20,50,100],
         ajax: {
-            url: "api/data/extralogfile",
+            url: "api/data/extralogfile?from="+formatDateStr(now)+"&to="+formatDateStr(now),
             data: function (data) {
                 delete data.columns;
             }
         },
-        deferLoading: 10,
+        deferLoading: 0,
         columns: columnDefs,
-        dom: '<"top"Bfrtip<"clear">>rt<"bottom"frtip<"clear">>',
+        dom: '<"top"Bfip<"clear">>rt<"bottom"fip<"clear">>',
         select: 'single',
         responsive: false,
         altEditor: true,     // Enable altEditor
@@ -213,18 +228,33 @@ $(document).ready(function () {
     });
 
     function formatResponse(action, rowdata) {
-        response = '{"action":"' + action + '","line":' + rowdata[0] + ',"month":"' + currMonth + '","extra":"true","data": [';
+        response = '{"action":"' + action + '","line":' + rowdata[0] + ',"date":"' + rowdata[1] + '","extra":"true","data": [';
         for (var key in rowdata) {
             if (!isNaN(key) && key > 0) {
                 response += '"' + rowdata[key] + '",';
             }
         }
+        // remove trailing comma
+        response = response.slice(0, -1);
         response += ']}';
         return response;
     }
 });
 
 function load() {
-    currMonth = $("#datepicker").val();
-    myTable.api().ajax.url('api/data/extralogfile'+'?month='+currMonth).load();
+    var startDate = $("#dateFrom").datepicker('getDate');
+    var endDate = $("#dateTo").datepicker('getDate');
+    myTable.api().ajax.url('api/data/extralogfile'+'?from='+formatDateStr(startDate)+'&to='+formatDateStr(endDate)).load();
+}
+
+function formatDateStr(inDate) {
+    return '' + inDate.getFullYear() + '-' + (inDate.getMonth() + 1) + '-' + (inDate.getDate());
+}
+
+function formatUserDateStr(inDate) {
+    return  addLeadingZeros(inDate.getDate()) + '-' + addLeadingZeros(inDate.getMonth() + 1) + '-' + inDate.getFullYear();
+}
+
+function addLeadingZeros(n) {
+    return n <= 9 ? '0' + n : n;
 }
