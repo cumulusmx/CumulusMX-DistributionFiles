@@ -1240,15 +1240,29 @@
 					"label": "Solar minimum (W/m2):",
 					"helper": "The minimum solar reading for the sun to be considered to be shining (default = 30W/m²)"
 				},
-				"transfactor": {
-					"label": "RS Transmission factor:",
+				"transfactorJul": {
+					"label": "RS Transmission factor (July):",
 					"helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70=smoggy - 0.91=clear, default 0.80)",
 					"dependencies": {
 						"solarcalc": 0
 					}
 				},
-				"turbidity": {
-					"label": "Bras turbidity factor:",
+				"transfactorDec": {
+					"label": "RS Transmission factor (December):",
+					"helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70=smoggy - 0.91=clear, default 0.80)",
+					"dependencies": {
+						"solarcalc": 0
+					}
+				},
+				"turbidityJul": {
+					"label": "Bras turbidity factor (July):",
+					"helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)",
+					"dependencies": {
+						"solarcalc": 1
+					}
+				},
+				"turbidityDec": {
+					"label": "Bras turbidity factor (December):",
 					"helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)",
 					"dependencies": {
 						"solarcalc": 1
