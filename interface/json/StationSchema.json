@@ -813,13 +813,25 @@
 					"type": "integer",
 					"minimum": 0
 				},
-				"transfactor": {
+				"transfactorJul": {
 					"dependencies": ["solarcalc"],
 					"type": "number",
 					"minimum": 0,
 					"maximum": 1
 				},
-				"turbidity": {
+				"transfactorDec": {
+					"dependencies": ["solarcalc"],
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"turbidityJul": {
+					"dependencies": ["solarcalc"],
+					"type": "number",
+					"minimum": 0,
+					"maximum": 5
+				},
+				"turbidityDec": {
 					"dependencies": ["solarcalc"],
 					"type": "number",
 					"minimum": 0,

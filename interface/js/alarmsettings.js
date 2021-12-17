@@ -1,4 +1,4 @@
-// Last modified: 2021/08/01 22:30:14
+// Last modified: 2021/12/07 14:57:53
 
 $(document).ready(function() {
     $.ajax({
@@ -7,10 +7,10 @@ $(document).ready(function() {
         success: function (result) {
             $.each(result.data, function(alarm, data) {
                 $.each(data, function(prop, value) {
-                    if (prop !=='Enabled' && prop !== 'Latches' && prop !== 'Notify' && prop !== 'Email') {
-                        $('#' + alarm + prop).val(value);
-                    } else {
+                    if (prop =='Enabled' || prop == 'Latches' || prop == 'Notify' || prop == 'Email' || prop == 'SoundEnabled') {
                         $('#' + alarm + prop).prop('checked', value);
+                    } else {
+                        $('#' + alarm + prop).val(value);
                     }
                 });
             });

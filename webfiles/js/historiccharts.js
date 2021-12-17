@@ -1,4 +1,4 @@
-// Last modified: 2021/05/28 12:41:59
+// Last modified: 2021/12/06 12:01:48
 
 var chart, config, available;
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
                 $('#btnDegDay').remove();
             }
             if (result.TempSum === undefined || result.TempSum.Count == 0) {
-                $('#btnTempSum').parent().remove();
+                $('#btnTempSum').remove();
             }
         }
     });
