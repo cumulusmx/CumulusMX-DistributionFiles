@@ -837,8 +837,7 @@
 					"minimum": 0,
 					"maximum": 5
 				}
-			},
-			"dependencies": "stationid"
+			}
 		},
 		"AnnualRainfall": {
 			"title": "Annual Rainfall",

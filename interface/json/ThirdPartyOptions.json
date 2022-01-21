@@ -272,6 +272,22 @@
 						"enabled": true
 					}
 				},
+				"includesoiltemp": {
+					"label": "Soil Temp:",
+					"rightLabel": "Include soil temperature",
+					"helper": "Include the soil temperature from sensor 1 in the update",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"soiltempsensor": {
+					"label": "Soil temperature sensor number:",
+					"helper": "Soil temperature sensor number",
+					"dependencies": {
+						"enabled": true,
+						"includesoiltemp": true
+					}
+				},
 				"catchup": {
 					"label": "Catch up:",
 					"rightLabel": "Enable catch up",

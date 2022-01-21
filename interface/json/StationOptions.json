@@ -1219,7 +1219,7 @@
 		"Solar": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "Settings used for determining hours of sunshine",
+			"helper": "Settings used for determining hours of sunshine - if you have a solar sensor",
 			"helpersPosition": "above",
 			"fields": {
 				"solarcalc": {
@@ -1268,9 +1268,6 @@
 						"solarcalc": 1
 					}
 				}
-			},
-			"dependencies": {
-				"stationid": [0,1,4,7,10,11,12]
 			}
 		},
 		"AnnualRainfall": {

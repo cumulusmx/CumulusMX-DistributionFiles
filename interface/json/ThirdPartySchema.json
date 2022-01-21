@@ -167,6 +167,14 @@
 				"includesolar": {
 					"type": "boolean"
 				},
+				"includesoiltemp": {
+					"type": "boolean"
+				},
+				"soiltempsensor": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 16
+				},
 				"catchup": {
 					"type": "boolean"
 				}
@@ -177,6 +185,8 @@
 				"interval": ["enabled"],
 				"includeuv": ["enabled"],
 				"includesolar": ["enabled"],
+				"includesoiltemp": ["enabled"],
+				"soiltempsensor": ["enabled"],
 				"catchup": ["enabled"]
 			}
 		},
