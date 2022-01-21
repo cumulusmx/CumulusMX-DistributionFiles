@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:54:26
+// Last modified: 2022/01/03 16:33:14
 
 $(document).ready(function () {
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             {"className": "left", "targets": [0,2]},
             {"className": "right", "targets": [1]}
         ],
-        "ajax": '../api/extra/leaf4.json'
+        "ajax": '../api/extra/leaf8.json'
     });
 
     var airqualTable = $('#AirQualityTable').DataTable({
@@ -132,7 +132,7 @@ $(document).ready(function () {
         dewTable.ajax.url('../api/extra/dew.json').load();
         soiltempTable.ajax.url('../api/extra/soiltemp.json').load();
         soilmoistureTable.ajax.url('../api/extra/soilmoisture.json').load();
-        leafTable.ajax.url('../api/extra/leaf4.json').load();
+        leafTable.ajax.url('../api/extra/leaf8.json').load();
         airqualTable.ajax.url('../api/extra/airqual.json').load();
         co2Table.ajax.url('../api/extra/co2sensor.json').load();
         lightningTable.ajax.url('../api/extra/lightning.json').load();

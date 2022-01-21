@@ -1,4 +1,4 @@
-// Last modified: 2021/10/14 14:38:24
+// Last modified: 2022/01/03 16:07:06
 
 $(document).ready(function() {
 
@@ -13,7 +13,7 @@ $(document).ready(function() {
         readonly: true
     },
     {
-        title: "Date (dd/mm/yyyy)",
+        title: "Date (dd/mm/yy)",
         readonly: true
     },
     {title: "Max gust"},
