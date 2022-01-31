@@ -510,7 +510,7 @@
 			"dependencies": ["stationid"]
 		},
 		"gw1000": {
-			"title": "Ecowitt GW1000 Settings",
+			"title": "Ecowitt Gateway GWxxxx  Settings",
 			"type": "object",
 			"properties": {
 				"autoDiscover" : {
@@ -519,6 +519,7 @@
 				"ipaddress": {
 				},
 				"macaddress": {
+					"pattern": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$"
 				}
 			},
 			"dependencies": ["stationid"]
@@ -677,6 +678,20 @@
 		"http-ambient": {
 			"title": "HTTP (Ambient) Settings",
 			"type": "object",
+			"dependencies": ["stationid"]
+		},
+		"ecowittapi": {
+			"title": "Ecowitt Data Access API",
+			"type": "object",
+			"properties": {
+				"applicationkey": {
+				},
+				"userkey": {
+				},
+				"mac": {
+					"pattern": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$"
+				}
+			},
 			"dependencies": ["stationid"]
 		},
 		"Options": {

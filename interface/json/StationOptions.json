@@ -816,7 +816,7 @@
 					"label": "Auto-Discovery:",
 					"rightLabel": "Enable Auto-Discovery",
 					"helpers": [
-						"Enable auto-discovery of your GW1000 devices IP address",
+						"Enable auto-discovery of your GWxxxx devices IP address",
 						"If you have more than one Ecowitt device, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MXdiags file. You must then enter the IP address you want to use in the field below."
 					]
 				},
@@ -831,8 +831,8 @@
 				"macaddress": {
 					"label": "MAC address (read the help below!):",
 					"helpers": [
-						"Populated by Cumulus when using auto-discovery.",
-						"Do not edit unless you change your GW1000 device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+						"Populated by Cumulus when using auto-discovery. The format is  XX:XX:XX:XX:XX:XX",
+						"Do not edit unless you change your GWxxxx device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
 					]
 				}
 			},
@@ -1044,6 +1044,32 @@
 			],
 			"dependencies": {
 				"stationid": 15
+			}
+		},
+		"ecowittapi": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "EXPERIMENTAL: For now this historic data catch-up feature is not finalised, it may break at a future date and the may not restore all your data values.",
+			"helpersPosition": "above",
+			"fields": {
+				"applicationkey": {
+					"label": "API Application Key:",
+					"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
+				},
+				"userkey": {
+					"label": "API User Key:",
+					"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
+				},
+				"mac": {
+					"label": "Station MAC address",
+					"helpers": [
+						"Enter the MAC address of your station/gateway. The format is  XX:XX:XX:XX:XX:XX",
+						"You can find this on your device in the Ecowitt WS View or WS View Plus app"
+					]
+				}
+			},
+			"dependencies": {
+				"stationid": [12,14]
 			}
 		},
 		"Options": {
