@@ -8,15 +8,6 @@
             "title": "Start-up Options",
             "type": "object",
             "properties": {
-                "startuphostping": {
-                    "title": "Host to PING on program start-up",
-                    "type": "string"
-                },
-                "startuppingescape": {
-                    "title": "PING escape time (mins)",
-                    "type": "integer",
-                    "minimum": 1
-                },
                 "startupdelay": {
                     "title": "Start-up Delay (secs)",
                     "type": "integer",
@@ -26,6 +17,15 @@
                     "title": "Max system uptime to apply the start-up delay",
                     "type": "integer",
                     "minimum": 0
+                },
+                "startuphostping": {
+                    "title": "Host to PING on program start-up",
+                    "type": "string"
+                },
+                "startuppingescape": {
+                    "title": "PING escape time (mins)",
+                    "type": "integer",
+                    "minimum": 1
                 }
             }
         },

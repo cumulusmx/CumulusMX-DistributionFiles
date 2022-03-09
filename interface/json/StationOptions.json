@@ -30,7 +30,7 @@
 						"Oregon Scientific WMR200",
 						"Instromet",
 						"Davis WeatherLink Live",
-						"Ecowitt GW1000",
+						"Ecowitt Local API",
 						"HTTP (Wunderground)",
 						"HTTP (Ecowitt)",
 						"HTTP (Ambient)",
@@ -816,7 +816,7 @@
 					"label": "Auto-Discovery:",
 					"rightLabel": "Enable Auto-Discovery",
 					"helpers": [
-						"Enable auto-discovery of your GWxxxx devices IP address",
+						"Enable auto-discovery of your Ecowitt devices IP address",
 						"If you have more than one Ecowitt device, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MXdiags file. You must then enter the IP address you want to use in the field below."
 					]
 				},

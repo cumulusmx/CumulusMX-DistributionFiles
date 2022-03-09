@@ -101,7 +101,7 @@
 						"Oregon Scientific WMR200",
 						"Instromet",
 						"Davis WeatherLink Live",
-						"Ecowitt GW1000 (and clones)",
+						"Ecowitt Local API",
 						"HTTP Upload (Wunderground)",
 						"HTTP Upload (Ecowitt)",
 						"HTTP Upload (Ambient)",
@@ -260,7 +260,7 @@
 						"autoDiscover": {
 							"label": "Auto-Discovery",
 							"rightLabel": "Enable Auto-Discovery",
-							"helper": "Enable auto-discovery of your GW-1000 devices IP address - do not enable if you have more than one device"
+							"helper": "Enable auto-discovery of your Ecowitt devices IP address - do not enable if you have more than one device"
 						},
 						"ipaddress": {
 							"label": "IP address",
@@ -274,7 +274,7 @@
 							"label": "MAC address (read the help below!)",
 							"helpers": [
 								"Populated by Cumulus when using auto-discovery.",
-								"Do not edit unless you change your GW-1000 device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+								"Do not edit unless you change your Ecowitt device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
 							]
 						}
 					},
