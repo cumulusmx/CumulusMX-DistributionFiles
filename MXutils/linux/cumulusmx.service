@@ -1,6 +1,7 @@
 [Unit]
 Description=CumulusMX service
 Documentation=https://cumuluswiki.org/a/Main_Page
+Wants=network-online.target
 After=network-online.target
 
 [Service]

@@ -154,7 +154,7 @@
 				},
 
 				"gw1000": {
-					"title": "Ecowitt GW1000 Settings",
+					"title": "Ecowitt Local API Settings",
 					"type": "object",
 					"properties": {
 						"autoDiscover" : {

@@ -510,7 +510,7 @@
 			"dependencies": ["stationid"]
 		},
 		"gw1000": {
-			"title": "Ecowitt Gateway GWxxxx  Settings",
+			"title": "Ecowitt Local API Settings",
 			"type": "object",
 			"properties": {
 				"autoDiscover" : {

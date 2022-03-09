@@ -8,17 +8,17 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
+                "startupdelay": {
+                    "helper": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds"
+                },
+                "startupdelaymaxuptime" : {
+                    "helper": "The maximum system uptime to apply the delay. If the system uptime is greater than this value then the delay will not be applied. Set to zero to disable (delay will always be applied). Time in seconds"
+                },
                 "startuphostping": {
                     "helper": "Add a hostname or IP to address to ping at start-up. Cumulus waits until the ping is successful before trying to read from your station. Leave blank to disable"
                 },
                 "startuppingescape": {
                     "helper": "Specify a time after which if no ping response is received carry on starting Cumulus MX anyway. Ignored if the host ping field is blank. Time in minutes"
-                },
-                "startupdelay": {
-                    "helper": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will start after the ping is successful. Time in seconds"
-                },
-                "startupdelaymaxuptime" : {
-                    "helper": "The maximum system uptime to apply the delay. If the system uptime is greater than this value then the delay will not be applied. Set to zero to disable (delay will always be applied). Time in seconds"
                 }
             }
         },
