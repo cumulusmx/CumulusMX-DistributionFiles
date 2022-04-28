@@ -670,9 +670,66 @@
 			"type": "object",
 			"dependencies": ["stationid"]
 		},
-		"http-ecowitt": {
+		"ecowitt": {
 			"title": "HTTP (Ecowitt) Settings",
 			"type": "object",
+			"properties": {
+				"setcustom": {
+					"type": "boolean"
+				},
+				"dummy": {
+					"dependencies": ["setcustom"]
+				},
+				"gwaddr": {
+					"dependencies": ["setcustom"]
+				},
+				"localaddr": {
+					"dependencies": ["setcustom"]
+				},
+				"interval": {
+					"type": "integer",
+					"minimum": 5,
+					"maximum": 600,
+					"dependencies": ["setcustom"]
+				}
+			},
+			"dependencies": ["stationid"]
+		},
+		"ecowittmaps" :{
+			"title": "Ecowitt Sensor Mappings",
+			"type": "object",
+			"properties": {
+				"primaryTHsensor": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"primaryRainSensor": {
+					"enum": [0,	1]
+				},
+				"wn34chan1": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan2": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan3": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan4": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan5": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan6": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan7": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				},
+				"wn34chan8": {
+					"enum": [0,1,2,3,4,5,6,7,8]
+				}
+			},
 			"dependencies": ["stationid"]
 		},
 		"http-ambient": {
@@ -828,7 +885,7 @@
 					"type": "integer",
 					"minimum": 0
 				},
-				"transfactorJul": {
+				"transfactorJun": {
 					"dependencies": ["solarcalc"],
 					"type": "number",
 					"minimum": 0,
@@ -840,7 +897,7 @@
 					"minimum": 0,
 					"maximum": 1
 				},
-				"turbidityJul": {
+				"turbidityJun": {
 					"dependencies": ["solarcalc"],
 					"type": "number",
 					"minimum": 0,

@@ -116,6 +116,57 @@
 						},
 						"useLeak": {
 							"type": "boolean"
+						},
+						"setcustom": {
+							"type": "boolean"
+						},
+						"dummy": {
+							"dependencies": ["setcustom"]
+						},
+						"gwaddr": {
+							"dependencies": ["setcustom"]
+						},
+						"localaddr": {
+							"dependencies": ["setcustom"]
+						},
+						"interval": {
+							"type": "integer",
+							"minimum": 5,
+							"maximum": 600,
+							"dependencies": ["setcustom"]
+						},
+						"mappings": {
+							"title": "Sensor mappings",
+							"type": "object",
+							"properties": {
+								"primaryTHsensor": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan1": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan2": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan3": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan4": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan5": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan6": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan7": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"wn34chan8": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								}
+							}
 						}
 					}
 				},
