@@ -142,7 +142,6 @@
 					"collapsed": true,
 					"helpers": [
 						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
-						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
 						"You must restart Cumulus after enabling/disabling this feature"
 					],
 					"helperPosition": "above",
@@ -186,6 +185,136 @@
 						"useLeak": {
 							"label": "Leak",
 							"rightLabel": "Use the leak sensor data from your Ecowitt"
+						},
+						"setcustom": {
+							"label": "Enable Gateway Config:",
+							"rightLabel": "Allow Cumulus to configure your Ecowitt gateway for you",
+							"helper": "Enabling this feature automatically configures your gateway to send data to Cumulus MX"
+						},
+						"dummy": {
+							"fieldClass": "displayonly",
+							"helpers": [
+								"Configure your Ecowitt station, or Gateway  device to send data to Cumulus using the Ecowitt protocol",
+								"Manual Configuration: In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20"
+							],
+							"dependencies": {
+								"setcustom": false
+							}
+						},
+						"gwaddr": {
+							"label": "Ecowitt Gateway devices IP address:",
+							"helper": "You must enter the IP address of your gateway or station so that Cumulus can configure it",
+							"dependencies": {
+								"setcustom": true
+							}
+						},
+						"localaddr": {
+							"label": "Local Cumulus address:",
+							"helper": "You must enter the IP address of this Cumulus instance to which the Ecowitt gateway will send the data",
+							"dependencies": {
+								"setcustom": true
+							}
+						},
+						"interval": {
+							"label": "Update interval (seconds):",
+							"helpers": [
+								"How often the Ecowitt gateway will send data to Cumulus (5-600)",
+								"Note: If you specify a time lower than 16 seconds, you will no longer be able to save the Web Server settings in the Ecowitt App. You will have to change the interval in the app back to 16 seconds in order to save other changes. Restarting Cumulus will restore the time you have set here."
+							],
+							"dependencies": {
+								"setcustom": true
+							}
+						},
+						"mappings": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"primaryTHsensor": {
+									"label": "Primary Temp/Humidity sensor:",
+									"type": "select",
+									"sort": false,
+									"optionLabels": [
+										"Default",
+										"Extra TH chan 1",
+										"Extra TH chan 2",
+										"Extra TH chan 3",
+										"Extra TH chan 4",
+										"Extra TH chan 5",
+										"Extra TH chan 6",
+										"Extra TH chan 7",
+										"Extra TH chan 8"
+									],
+									"removeDefaultNone": true,
+									"helpers": [
+										"You can over-ride the default outdoor temperature and humidity sensor by specifying a WH31 T/H sensor channel",
+										"This over-ride only works if your primary station is an Ecowitt as well as your extra sensors"
+									]
+								},
+								"wn34chan1": {
+									"label": "WN34 chan 1:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 1","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan2": {
+									"label": "WN34 chan 2:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 2","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan3": {
+									"label": "WN34 chan 3:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 3","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan4": {
+									"label": "WN34 chan 4:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 4","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan5": {
+									"label": "WN34 chan 5:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 5","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan6": {
+									"label": "WN34 chan 6:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 6","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan7": {
+									"label": "WN34 chan 7:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 7","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								},
+								"wn34chan8": {
+									"label": "WN34 chan 8:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["User 8","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
+									"helper": "Select the mapping for your WN34 sensor"
+								}
+							}
 						}
 					},
 					"dependencies": {
