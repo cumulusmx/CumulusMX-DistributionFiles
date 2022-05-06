@@ -913,7 +913,7 @@
 						},
 						"pid": {
 							"label": "USB Product Id (PID):",
-							"helper": ["Specify an non-standard PID. Use -1 to use the normal setting"
+							"helper": "Specify an non-standard PID. Use -1 to use the normal setting"
 						}
 					}
 				}
