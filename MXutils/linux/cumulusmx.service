@@ -9,7 +9,7 @@ User=root
 Group=root
 ExecStart=/usr/bin/mono-service -d:/home/install/CumulusMX CumulusMX.exe -service
 Type=forking
-ExecStopPost=/bin/rm /tmp/CumulusMX.exe.lock
+ExecStopPost=/bin/rm -f /tmp/CumulusMX.exe.lock
 
 [Install]
 WantedBy=multi-user.target
