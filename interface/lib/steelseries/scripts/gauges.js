@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2021/06/10 17:46:49
+ * Last Modified: 2022/05/06 11:36:44
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -957,7 +957,7 @@ gauges = (function () {
                 // Has the end user selected a preferred 'scale' before
                 tmp = getCookie('dewGauge');
                 cache.selected = tmp !== null ? tmp : config.dewDisplayType;
-                setRadioCheck('rad_dew', cache.selected);
+                setSelectCheck('rad_dew', cache.selected);
                 switch (cache.selected) {
                 case 'dew':
                     cache.title = strings.dew_title;
@@ -3574,6 +3574,12 @@ gauges = (function () {
         //
         setRadioCheck = function (obj, val) {
             $('input:radio[name="' + obj + '"]').filter('[value="' + val + '"]').prop('checked', true);
+        },
+        //
+        // setSelectCheck() sets the desired value of the HTML dropdown select
+        //
+        setSelectCheck = function (obj, val) {
+            $('#' + obj).val(val);
         },
 
         //
