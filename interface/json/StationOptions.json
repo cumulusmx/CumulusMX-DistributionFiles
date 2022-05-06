@@ -20,21 +20,21 @@
 						" Select Station",
 						"Davis Vantage Pro",
 						"Davis Vantage Pro2/Vue",
-						"Oregon Scientific WMR-928",
-						"Oregon Scientific WM-918",
-						"EasyWeather",
-						"Fine Offset",
-						"LaCrosse WS2300",
-						"Fine Offset with Solar Sensors",
-						"Oregon Scientific WMR100",
-						"Oregon Scientific WMR200",
-						"Instromet",
 						"Davis WeatherLink Live",
 						"Ecowitt Local API",
-						"HTTP (Wunderground)",
 						"HTTP (Ecowitt)",
+						"HTTP (Wunderground)",
 						"HTTP (Ambient)",
-						"WeatherFlow Tempest"
+						"WeatherFlow Tempest",
+						"Fine Offset",
+						"Fine Offset with Solar Sensors",
+						"EasyWeather",
+						"Instromet",
+						"LaCrosse WS2300",
+						"Oregon Scientific WMR100",
+						"Oregon Scientific WMR200",
+						"Oregon Scientific WM-918",
+						"Oregon Scientific WMR-928"
 					],
 					"removeDefaultNone": true
 				},
@@ -799,7 +799,7 @@
 						},
 						"tcpport": {
 							"label": "TCP port:",
-							"helpers": ["The UDP multicast port used by the WLL, this will normally be discovered from the WLL"]
+							"helper": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL"
 						}
 					}
 				}
@@ -844,19 +844,30 @@
 			"collapsible": true,
 			"collapsed": true,
 			"fields": {
-			"deviceid": {
-			"label" : "Device Id",
-				"rightlabel": "Tempest Device Id",
-				"helper": "Get this from the weatherflow app"
+				"deviceid": {
+					"label" : "Device Id",
+					"rightlabel": "Tempest Device Id",
+					"helper": "Get this from the weatherflow app"
 				},
-			"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
-			"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
-			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
-
+				"tcpport": {
+					"label": "TCP/IP Port",
+					"helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."
+				},
+				"token": {
+					"label": "Security Token",
+					"helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"
+				},
+				"dayshistory":{
+					"label": "History Days Import",
+					"helpers": [
+						"Number of days to import from the WeatherFlow website.",
+						"A large amount of historical data may take a while to import."
+					]
+				}
 			},
 			"dependencies": {
 				"stationid": 16
-				}
+			}
 		},
 		"fineoffset": {
 			"collapsible": true,
@@ -873,7 +884,7 @@
 						"The time span around the synchronised read to avoid reading from the console.",
 						"The default 3 seconds means do not read from 3 secs before to 3 secs after the expected write time.",
 						 "Time in seconds"
-						]
+					]
 				},
 				"advanced": {
 					"collapsible": true,
@@ -898,11 +909,11 @@
 						},
 						"vid": {
 							"label": "USB Vendor Id (VID):",
-							"helpers": ["Specify an non-standard VID. Use -1 to use the normal setting"]
+							"helper": "Specify an non-standard VID. Use -1 to use the normal setting"
 						},
 						"pid": {
 							"label": "USB Product Id (PID):",
-							"helpers": ["Specify an non-standard PID. Use -1 to use the normal setting"]
+							"helper": ["Specify an non-standard PID. Use -1 to use the normal setting"
 						}
 					}
 				}
@@ -917,27 +928,27 @@
 			"fields": {
 				"interval": {
 					"label": "File Read Interval:",
-					"helpers": ["How often to read the EasyWeather data file in minutes. Default = 1 minute"]
+					"helper": "How often to read the EasyWeather data file in minutes. Default = 1 minute"
 				},
 				"filename": {
 					"label": "Filename:",
-					"helpers": ["Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"]
+					"helper": "Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"
 				},
 				"minpressmb": {
 					"label": "Minimum Pressure Value:",
-					"helpers": ["Pressure value below which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 900"]
+					"helper": "Pressure value below which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 900"
 				},
 				"maxpressmb": {
 					"label": "Maximum Pressure Value:",
-					"helpers": ["Pressure value above which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 1200"]
+					"helper": "Pressure value above which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 1200"
 				},
 				"raintipdiff": {
 					"label": "Rain Tip Difference:",
-					"helpers": ["Number of rain bucket tips between data reads above which Cumulus will ignore the increase. Default = 30"]
+					"helper": "Number of rain bucket tips between data reads above which Cumulus will ignore the increase. Default = 30"
 				},
 				"pressoffset": {
 					"label": "Pressure Offset:",
-					"helpers": ["Offset value to apply to the pressure value in EasyWeather data file"]
+					"helper": "Offset value to apply to the pressure value in EasyWeather data file"
 				}
 			},
 			"dependencies": {
