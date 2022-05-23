@@ -18,6 +18,7 @@
 					"sort": false,
 					"optionLabels": [
 						" Select Station",
+						"PWS Simulator",
 						"Davis Vantage Pro",
 						"Davis Vantage Pro2/Vue",
 						"Davis WeatherLink Live",
@@ -1039,6 +1040,7 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpersPosition": "above",
+			"helper": "If you can, it is recommended that you use the Local API station type rather than this HTTP protocol",
 			"fields": {
 				"setcustom": {
 					"label": "Enable Gateway Config:",
@@ -1072,7 +1074,7 @@
 				"interval": {
 					"label": "Update interval (seconds):",
 					"helpers": [
-						"How often the Ecowitt gateway will send data to Cumulus (5-600)",
+						"How often the Ecowitt gateway will send data to Cumulus (4-600)",
 						"Note: If you specify a time lower than 16 seconds, you will no longer be able to save the Web Server settings in the Ecowitt App. You will have to change the interval in the app back to 16 seconds in order to save other changes. Restarting Cumulus will restore the time you have set here."
 					],
 					"dependencies": {
@@ -1239,11 +1241,6 @@
 						"If your station does not supply an average wind speed, then you must enable this option"
 					]
 				},
-				"usespeedforavg": {
-					"label": "Speed for average calc:",
-					"rightLabel": "Use wind speed for average calculation",
-					"helper": "Use station 'speed' in calculation instead of 'latest' as latter may be a gust figure"
-				},
 				"use100for98hum": {
 					"label": "Max humidity:",
 					"rightLabel": "Use 100% for 98% humidity",
@@ -1310,6 +1307,11 @@
 					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
 					"helpersPosition": "above",
 					"fields": {
+						"usespeedforavg": {
+							"label": "Speed for average calc:",
+							"rightLabel": "Use wind speed for average calculation",
+							"helper": "Use station 'speed' in calculation instead of 'latest' as latter may be a gust figure"
+						},
 						"avgbearingmins": {
 							"label": "Average wind bearing time:",
 							"helper": "Period of time in minutes to average out wind bearings"

@@ -11,7 +11,7 @@
 			"type": "object",
 			"properties": {
 				"stationtype": {
-					"enum": [-1,0,1,11,12,14,15,16,5,7,4,10,6,8,9,3,2],
+					"enum": [-1,17,0,1,11,12,14,15,16,5,7,4,10,6,8,9,3,2],
 					"required": true
 				},
 				"stationmodel": {
@@ -688,7 +688,7 @@
 				},
 				"interval": {
 					"type": "integer",
-					"minimum": 5,
+					"minimum": 4,
 					"maximum": 600,
 					"dependencies": ["setcustom"]
 				}
@@ -761,9 +761,6 @@
 				"calcwindaverage": {
 					"type": "boolean"
 				},
-				"usespeedforavg": {
-					"type": "boolean"
-				},
 				"use100for98hum": {
 					"type": "boolean"
 				},
@@ -795,6 +792,9 @@
 					"title": "Advanced Options",
 					"type": "object",
 					"properties": {
+						"usespeedforavg": {
+							"type": "boolean"
+						},
 						"avgbearingmins": {
 							"type": "integer",
 							"minimum": 1,
