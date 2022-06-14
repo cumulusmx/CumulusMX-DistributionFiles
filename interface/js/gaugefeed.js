@@ -1,4 +1,4 @@
-// Last modified: 2021/08/16 12:00:18
+// Last modified: 2022/06/05 14:38:46
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
@@ -38,7 +38,7 @@ window.addEventListener("load", function () {
     }
 
     function updateDisplay(data) {
-        wrData = data.WindRoseData.split(',');
+        var wrData = data.WindRoseData.split(',');
 
         // convert array to numbers
         for (var i = 0; i < wrData.length; i++) {

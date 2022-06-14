@@ -1,14 +1,14 @@
-/*	----------------------------------------------------------
- * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
- *  Last modified: 2021/08/16 12:02:37
- * 	Basic scripts for all new at-xxxx.html template pages.
- *  Incorporating changes suggested by beteljuice
- * 	Requires jQuery
- * 	----------------------------------------------------------*/
+/* ----------------------------------------------------------
+ * setpagedata.js		v:0.1.1		d:Mar 2021		a:Neil  Thomas
+ * Last modified: 2022/06/04 17:23:23
+ * Basic scripts for all new at-xxxx.html template pages.
+ * Incorporating changes suggested by beteljuice
+ * Requires jQuery
+ * ----------------------------------------------------------*/
 
-//	Global variables
-//	Changing these affects every page in the ai-interface
-//	All numbers are pixels.
+// Global variables
+// Changing these affects every page in the ai-interface
+// All numbers are pixels.
 
 let fixedHeader = false;	//	Use only true or false
 let fixedFooter = true;	//	Use only true or false
@@ -156,7 +156,7 @@ let getPageData = function (resolve, reject) {
 		// Set some header stuff
 		$(document).prop('title', cmx_data.location + ' weather');
 		$('meta[name=description]').attr('content', cmx_data.location + ' weather data');
-		$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data.location + ' weather data');
+		$('meta[name=keywords]').attr('content', $('meta[name=keywords]').attr('content') + ', ' + cmx_data.location);
 
 		// do the menus
 		if (initialLoad) {
