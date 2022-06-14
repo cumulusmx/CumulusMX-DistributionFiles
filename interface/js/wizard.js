@@ -1,4 +1,4 @@
-// Last modified: 2021/07/24 15:34:07
+// Last modified: 2022/06/07 22:07:16
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -187,6 +187,8 @@ $(document).ready(function () {
             }
         },
         "postRender": function (form) {
+            let stationIdObj = form.getControlByPath("station/stationtype");
+
             let webEnabled = form.getControlByPath("internet/ftp/enabled");
             let webState = webEnabled.getValue();
             let copyEnabled = form.getControlByPath("internet/copy/localcopy");
@@ -253,6 +255,13 @@ $(document).ready(function () {
                 passwdFld.options.hidden = authVal == "psk";
                 usernameFld.refresh();
                 passwdFld.refresh();
+            });
+
+            // On changing the station type, propagate down to sub-sections
+            stationIdObj.on("change", function () {
+                let form = $("form").alpaca("get");
+                let stationid = this.getValue();
+                form.getControlByPath("station/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
             });
 
             // On changing the web uploads enabled, disable/enable the other FTP options

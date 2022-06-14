@@ -1,35 +1,89 @@
-// Last modified: 2021/10/14 14:41:01
+// Last modified: 2022/06/14 09:47:48
+
+var updateUrl = 'api/edit/thismonth';
+var editFieldName;
+var editFieldValue;
 
 $(document).ready(function() {
+
+    // initialise the popups
+    $('#recUpdater').popup();
+    $('#updaterError').popup();
+    $.fn.popup.defaults.pagecontainer = '#page'
 
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();
 
-    $.ajax({url: "api/edit/thismonthrecords.json", dataType:"json", success: function (result) {
-        $.each(result, function(key, value) {
-            $('#' + key).text(value);
-        });
-    }});
+    $.ajax({
+        url: "api/edit/thismonthrecords.json",
+        dataType:"json",
+        success: function (result) {
+            // set the value and add some accessibility
+            $.each(result, function(key, value) {
+                $('#' + key)
+                    .text(value)
+                    .attr('aria-haspopup', true)
+                    .addClass('pointer');
+            });
+        }
+    });
 
-    $.ajax({url: "api/edit/thismonthrecordsdayfile.json", dataType:"json", success: function (result) {
-        $.each(result, function(key, value) {
-            $('#' + key).text(value);
-        });
-    }});
+    $.ajax({
+        url: "api/edit/thismonthrecordsdayfile.json",
+        dataType:"json",
+        success: function (result) {
+            $.each(result, function(key, value) {
+                $('#' + key).text(value);
 
-    $.ajax({url: "api/edit/thismonthrecordslogfile.json", dataType:"json", success: function (result) {
-        $.each(result, function(key, value) {
-            $('#' + key).text(value);
-        });
-    }});
+                if (value != '-' && value != '') {
+                    $('#' + key)
+                        .attr({
+                            'onclick': 'update(this)',
+                            'aria-haspopup': true
+                        })
+                        .addClass('pointer');
+                }
+            });
+        }
+    });
 
-    $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
+    $.ajax({
+        url: "api/edit/thismonthrecordslogfile.json",
+        dataType:"json",
+        success: function (result) {
+            $.each(result, function(key, value) {
+                $('#' + key).text(value);
+
+                if (value != '-' && value != '') {
+                    $('#' + key)
+                        .attr({
+                            'onclick': 'update(this)',
+                            'aria-haspopup': true
+                        })
+                        .addClass('pointer');
+                }
+            });
+        }
+    });
+
+    $.ajax({
+        url: "api/settings/version.json",
+        dataType: "json",
+        success: function (result) {
+            $('#Version').text(result.Version);
+            $('#Build').text(result.Build);
+        }
+    });
 
     $(document).ajaxStop(function() {
-        $.fn.editable.defaults.mode = 'inline';
+        //$.fn.editable.defaults.mode = 'inline';
+        $.fn.editable.defaults.url= updateUrl;
+        $.fn.editable.defaults.clear = false;
+        $.fn.editable.defaults.send = 'always';
+        $.fn.editable.defaults.type = 'text';
+        // add some accessibility to the default buttons
+        $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i></button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i></button>';
+
         $('#highTempVal').editable();
         $('#highTempTime').editable({format:"dd/mm/yyyy hh:ii"});
         $('#lowTempVal').editable();
@@ -90,3 +144,44 @@ $(document).ready(function() {
         $('.loading-overlay-image-container').hide();
     });
 });
+
+function update(field) {
+    var type = field.id.includes('Time') ? 2 : 1;
+    editFieldValue = field.innerText;
+
+    if (editFieldValue == '') {
+        $('#errorContent').text('This field is blank, cannot set the record to this!');
+        $('#updaterError').popup('show');
+        return;
+    }
+    editFieldName = $('#' + field.id).siblings()[type].childNodes[0].id;
+    var oldVal = $('#' + field.id).siblings()[type].childNodes[0].innerText;
+    var name = $('#' + field.id).siblings()[0].innerText;
+
+    if (editFieldValue == oldVal) {
+        $('#errorContent').text('The record is already set to this value!');
+        $('#updaterError').popup('show');
+        return;
+    }
+    $('#editName').text(name);
+    $('#editType').text((type == 1 ? 'value' : 'timestamp'));
+    $('#editOldVal').text(oldVal);
+    $('#editNewVal').text(editFieldValue);
+    $('#recUpdater').popup('show');
+
+}
+
+function updateRec() {
+    $.ajax({
+        url: updateUrl,
+        type: 'POST',
+        data: encodeURIComponent('name=' + editFieldName + '&value=' + editFieldValue),
+        success: function (result) {
+
+        },
+        complete: function () {
+            $('#recUpdater').popup('hide');
+        }
+    });
+    $('#' + editFieldName).editable('setValue', editFieldValue, false);
+}
