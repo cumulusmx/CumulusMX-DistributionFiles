@@ -250,13 +250,6 @@
 								"This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
 								"You may need to alter this if for instance you import historic data in Cumulus from another source, in that case set it to the first date of your imported data."
 							]
-						},
-						"recstimeout": {
-							"label": "New record timeout (hrs)",
-							"helpers": [
-								"Set the time to elapse after which new records will be cleared automatically.",
-								"The default is 24 hours"
-							]
 						}
 					}
 				}
@@ -1330,7 +1323,10 @@
 						},
 						"recordtimeout": {
 							"label": "Record set timeout:",
-							"helper": "The time in hours from when a new record is set to it being reset. Default = 24 hours"
+							"helpers": [
+								"Set the time to elapse after which new records will be cleared automatically.",
+								"The default is 24 hours"
+							]
 						},
 						"snowdepthhour": {
 							"label": "Snow depth hour:",

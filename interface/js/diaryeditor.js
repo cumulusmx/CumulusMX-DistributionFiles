@@ -1,4 +1,4 @@
-// Last modified: 2022/06/12 09:53:55
+// Last modified: 2022/06/23 17:02:06
 
 var activeDates;
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
         firstDay: 1,
         changeMonth: true,
         changeYear: true,
-        showButtonPanel: true,
+        yearRange: '-30:+0',
         onUpdateDatepicker: function (inst) {
             labelDays();
         },

@@ -114,7 +114,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -130,7 +130,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +

@@ -3,48 +3,6 @@
 		"accessible": {
 			"fieldClass": "hideme"
 		},
-		"twitter": {
-			"collapsible":true,
-			"collapsed": true,
-			"helpers": [
-				"Twitter support is currently deprecated. It is not recommended to use this",
-				"This is provided for legacy users who migrated from Cumulus 1 and had used Twitter in that program"
-			],
-			"helpersPosition": "above",
-			"fields": {
-				"enabled": {
-					"rightLabel": "Enabled"
-				},
-				"user": {
-					"label": "Username:",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"password": {
-					"label": "Password:",
-					"type": "password",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"sendlocation": {
-					"label": "Location:",
-					"rightLabel": "Send station location",
-					"helper": "Send your location with each update",
-					"dependencies": {
-						"enabled": true
-					}
-				}
-			}
-		},
 		"wunderground": {
 			"collapsible":true,
 			"collapsed": true,

@@ -72,7 +72,7 @@
                 "removespacefromdateseparator": {
                     "rightLabel": "Remove space character from date separators (if present)",
                     "helpers": [
-                        "CAUTION: Changing this may have unintended consequences",
+                        "CAUTION: Changing this may render your existing data files unreadable by Cumulus MX",
                         "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'"
                     ]
                 }
