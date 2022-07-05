@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:51:31
+Last modified: 2022/06/23 22:20:37
 -->
 <!doctype html>
 <html lang="en">
@@ -23,10 +23,6 @@ Last modified: 2021/06/09 21:51:31
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- datepicker -->
-    <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-    <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
     <!-- Custom Files -->
     <!-- <script src="js/noaareports.js"></script> -->
 
@@ -44,32 +40,46 @@ Last modified: 2021/06/09 21:51:31
     <script>
         //$.fn.dataTable.ext.errMode = 'none';
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+            $.ajax({
+                url: "api/settings/version.json",
+                dataType:"json"
+            })
+            .done(function (result) {
                 $('#Version').text(result.Version);
                 $('#Build').text(result.Build);
-            }});
+            });
 
-            var now = new Date();
-            // subtract 1 day
-            now.setTime(now.getTime()-(1*24*3600000));
-            var dateStr = now.getFullYear();
+            $.ajax({
+                url: "/api/tags/process.json?recordsbegandate",
+                dataType: "json"
+            })
+            .done(function (result) {
+                var now = new Date();
+                // subtract 1 day
+                now.setTime(now.getTime()-(1*24*3600000));
+                var yr = now.getFullYear();
+                var start = result.recordsbegandate.split(" ")[2];
 
-            $('#datepicker').datepicker({
-                format: "yyyy",
-                viewMode: "years",
-                minViewMode: "years"
-            }).val(dateStr);
+                for (var i = yr; i >= start; i--) {
+                    $('#datepicker').append($('<option>', {
+                        value: i,
+                        text: i
+                    }));
+                }
 
-            load();
+                load();
+            });
         });
 
         function load() {
             var year = $('#datepicker').val();
             $.ajax({
                 url: 'api/reports/noaayear?year='+year
-            }).done(function(data) {
-                $('#report').text(data.join('\n'));
-            }).fail(function(jqXHR, textStatus) {
+            })
+            .done(function(data) {
+                $('#report').text(data);
+            })
+            .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + textStatus + ')');
             });
         }
@@ -78,10 +88,12 @@ Last modified: 2021/06/09 21:51:31
             var year = $('#datepicker').val();
             $.ajax({
                 url: 'api/genreports/noaayear?year='+year
-            }).done(function(data) {
-                $('#report').text(data.join('\n'));
+            })
+            .done(function(data) {
+                $('#report').text(data);
                 alert("Report (Re)generated");
-            }).fail(function(jqXHR, textStatus) {
+            })
+            .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + textStatus + ')');
             });
         }
@@ -110,7 +122,7 @@ Last modified: 2021/06/09 21:51:31
         <h1>NOAA Yearly Report</h1>
         <div class="row">
             <div>
-                Select year:&nbsp;<input type="text" data-date-format="yyyy" id="datepicker" >
+                Select year:&nbsp;<select id="datepicker"></select>
                 <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
                 <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
             </div>

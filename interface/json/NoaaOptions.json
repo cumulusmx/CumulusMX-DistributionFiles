@@ -78,9 +78,9 @@
 				"dstfolder": {
 					"label": "FTP folder:",
 					"helpers": [
-						"You can specify the destination FTP folder for your reports",
-						"Leaving this blank will mean the reports are placed in the root FTP folder",
-						"Paths entered here are relative to the root FTP root folder - For the default web site enter \"<your_FTP_root>/Reports\""
+						"You can specify a different folder from the default FTP folder if you wish to upload the reports to a different location",
+						"Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings FTP folder",
+						"Paths entered here are relative to the FTP root folder"
 					],
 					"dependencies": {
 						"autotransfer": true

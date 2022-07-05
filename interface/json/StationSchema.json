@@ -206,11 +206,6 @@
 					"properties": {
 						"recsbegandate": {
 							"type": "string"
-						},
-						"recstimeout": {
-							"type": "integer",
-							"minimum": 1,
-							"maximum": 9999
 						}
 					}
 				}

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/14 09:53:25
+Last modified: 2022/06/28 11:06:30
 -->
 <!doctype html>
 <html lang="en">
@@ -108,19 +108,27 @@ Last modified: 2022/06/14 09:53:25
 
     <div id="container" class="container">
         <h1>This Year's Records Editor</h1>
-        <div id="recUpdater">
+        <div id="recUpdater" role="dialog">
             <div class="editorContent">
                 <div style="text-align: center;">Change <span id="editName"></span> record <span id="editType"></span> from <b><span id="editOldVal"></span></b> to <b><span id="editNewVal"></span></b>?</div>
                 <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
             </div>
         </div>
-        <div id="updaterError">
+        <div id="updaterError" role="alertdialog">
             <div class="editorContent">
-                <div id="errorContent" >Error</div>
+                <div id="errorContent" style="margin-bottom:10px">Error</div>
                 <div><button type="button" class="updaterError_close">Close</button></div>
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>
+                    <span id="logFilesWarn">This could be a lengthy process on a slow machine towards the end of the year!</span>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom-buffer" style="margin-top:10px">
             <div class="col-md-12">
                 <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
                     <thead>
@@ -391,16 +399,6 @@ Last modified: 2022/06/14 09:53:25
                 </table>
             </div>
         </div>
-        <div class="row top-buffer bottom-buffer">
-            <div class="col-sm-12 col-lg-12">
-                <div class="form-group">
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()">Fetch Monthly Log Data</button>
-                        <br>This could be a lengthy process on a slow machine towards the end of the year!
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- FOOTER -->
     <div id="footerwrap" style="margin-top: 20px;">
@@ -416,7 +414,7 @@ Last modified: 2022/06/14 09:53:25
     </div><!-- /footerwrap -->
     <div class="loading-overlay"></div>
     <div class="loading-overlay-image-container">
-        <img src="img/loading.gif" class="loading-overlay-img" />
+        <img src="img/loading.gif" alt="Loading Data" class="loading-overlay-img" />
     </div>
 </body>
 

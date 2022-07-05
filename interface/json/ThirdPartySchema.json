@@ -4,31 +4,6 @@
 		"accessible": {
 			"type": "boolean"
 		},
-		"twitter": {
-			"title": "Twitter",
-			"type": "object",
-			"properties": {
-				"enabled": {
-					"type": "boolean"
-				},
-				"user": {
-				},
-				"password": {
-				},
-				"interval": {
-					"type": "integer"
-				},
-				"sendlocation": {
-					"type": "boolean"
-				}
-			},
-			"dependencies": {
-				"user": ["enabled"],
-				"password": ["enabled"],
-				"interval": ["enabled"],
-				"sendlocation": ["enabled"]
-			}
-		},
 		"wunderground": {
 			"title": "Weather Underground",
 			"type": "object",

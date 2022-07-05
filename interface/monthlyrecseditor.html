@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/14 09:41:43
+Last modified: 2022/06/28 11:04:53
 -->
 <!doctype html>
 <html lang="en">
@@ -115,61 +115,75 @@ Last modified: 2022/06/14 09:41:43
     <div class="row top-buffer">
       <div class="col-md-12">
         <h1>Monthly Records Editor</h1>
-        <div id="recUpdater">
+        <div id="recUpdater" role="dialog">
           <div class="editorContent">
               <div style="text-align: center;">Change <span id="editName"></span> record <span id="editType"></span> from <b><span id="editOldVal"></span></b> to <b><span id="editNewVal"></span></b>?</div>
               <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
           </div>
       </div>
-      <div id="updaterError">
+      <div id="updaterError" role="alertdialog">
           <div class="editorContent">
-              <div id="errorContent" >Error</div>
+              <div id="errorContent" style="margin-bottom:10px">Error</div>
               <div><button type="button" class="updaterError_close">Close</button></div>
           </div>
       </div>
     </div>
     </div>
-    <!-- CONTENT -->
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#jan" data-toggle="tab"> Jan. </a>
-      </li>
-      <li class="">
-        <a href="#feb" data-toggle="tab"> Feb. </a>
-      </li>
-      <li class="">
-        <a href="#mar" data-toggle="tab"> Mar. </a>
-      </li>
-      <li class="">
-        <a href="#apr" data-toggle="tab"> Apr. </a>
-      </li>
-      <li class="">
-        <a href="#may" data-toggle="tab"> May </a>
-      </li>
-      <li class="">
-        <a href="#jun" data-toggle="tab"> June </a>
-      </li>
-      <li class="">
-        <a href="#jul" data-toggle="tab"> July </a>
-      </li>
-      <li class="">
-        <a href="#aug" data-toggle="tab"> Aug. </a>
-      </li>
-      <li class="">
-        <a href="#sep" data-toggle="tab"> Sept </a>
-      </li>
-      <li class="">
-        <a href="#oct" data-toggle="tab"> Oct. </a>
-      </li>
-      <li class="">
-        <a href="#nov" data-toggle="tab"> Nov. </a>
-      </li>
-      <li class="">
-        <a href="#dec" data-toggle="tab"> Dec. </a>
-      </li>
-    </ul>
 
     <div class="row">
+      <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>
+            <span id="logFilesWarn">Caution, this could be a lengthy process if you have lots of data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="row" style="margin-top:10px">
+      <div class="col-sm-12 col-lg-12">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#jan" data-toggle="tab"> Jan. </a>
+          </li>
+          <li class="">
+            <a href="#feb" data-toggle="tab"> Feb. </a>
+          </li>
+          <li class="">
+            <a href="#mar" data-toggle="tab"> Mar. </a>
+          </li>
+          <li class="">
+            <a href="#apr" data-toggle="tab"> Apr. </a>
+          </li>
+          <li class="">
+            <a href="#may" data-toggle="tab"> May </a>
+          </li>
+          <li class="">
+            <a href="#jun" data-toggle="tab"> June </a>
+          </li>
+          <li class="">
+            <a href="#jul" data-toggle="tab"> July </a>
+          </li>
+          <li class="">
+            <a href="#aug" data-toggle="tab"> Aug. </a>
+          </li>
+          <li class="">
+            <a href="#sep" data-toggle="tab"> Sept </a>
+          </li>
+          <li class="">
+            <a href="#oct" data-toggle="tab"> Oct. </a>
+          </li>
+          <li class="">
+            <a href="#nov" data-toggle="tab"> Nov. </a>
+          </li>
+          <li class="">
+            <a href="#dec" data-toggle="tab"> Dec. </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row bottom-buffer">
       <div class="col-sm-12 col-lg-12">
         <div class="tab-content">
           <div class="tab-pane active" id="jan">
@@ -3403,17 +3417,6 @@ Last modified: 2022/06/14 09:41:43
             </table>
           </div>
         </div>
-        <div class="row top-buffer bottom-buffer">
-          <div class="col-sm-12 col-lg-12">
-            <div class="form-group">
-              <div class="col-xs-offset-2 col-xs-10">
-                <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()">Fetch Monthly
-                  Log Data</button>
-                <br>Caution, this could be a lengthy process if you have lots of data
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <!--/div12 -->
     </div><!-- /row -->
@@ -3434,7 +3437,7 @@ Last modified: 2022/06/14 09:41:43
   </div><!-- /footerwrap -->
   <div class="loading-overlay"></div>
   <div class="loading-overlay-image-container">
-    <img src="img/loading.gif" class="loading-overlay-img" />
+    <img src="img/loading.gif" alt="Loading Data" class="loading-overlay-img" />
   </div>
 </body>
 

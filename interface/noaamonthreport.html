@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:51:23
+Last modified: 2022/06/24 21:33:35
 -->
 <!doctype html>
 <html lang="en">
@@ -24,8 +24,10 @@ Last modified: 2021/06/09 21:51:23
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- datepicker -->
-    <script src="lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-    <link href="lib/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+    <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
     <!-- Custom Files -->
     <!-- <script src="js/noaareports.js"></script> -->
@@ -38,53 +40,111 @@ Last modified: 2021/06/09 21:51:23
         .top-buffer { margin-top:40px; }
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .ui-datepicker-calendar {display: none;}
     </style>
 
     <script>
-        //$.fn.dataTable.ext.errMode = 'none';
+        var thisYear;
+        var thisMonth;
+        var startYear;
+        var startMonth;
+
+
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+            $.ajax({
+                url: 'api/settings/version.json',
+                dataType: 'json'
+            })
+            .done(function (result) {
                 $('#Version').text(result.Version);
                 $('#Build').text(result.Build);
-            }});
+            });
+
+            $.ajax({
+                url: '/api/tags/process.txt',
+                dataType: 'json',
+                type: 'POST',
+                data: '{"month": <#recordsbegandate format="%M">, "year": <#recordsbegandate format="yyyy">}'
+            })
+            .done(function (result) {
+                var now = new Date();
+                // subtract 1 day
+                now.setTime(now.getTime()-(1*24*3600000));
+                thisYear = now.getFullYear();
+                thisMonth = now.getMonth() + 1;
+                startMonth =  result.month;
+                startYear = result.year;
+
+                for (var i = thisYear; i >= startYear; i--) {
+                    $('#selYear').append($('<option>', {
+                        value: i,
+                        text: i
+                    }));
+                }
+
+                changeYear();
+
+                load();
+            });
+
+            $('#selYear').on('change', function () {
+                changeYear();
+            });
+
+        });
+
+        function changeYear() {
+            var year = $('#selYear').val();
+            var firstMonth = 1;
+            var lastMonth = 12;
+            if (year == thisYear) {
+                lastMonth = thisMonth;
+            }
+            if (year == startYear) {
+                firstMonth = startMonth;
+            }
 
             var now = new Date();
             // subtract 1 day
             now.setTime(now.getTime()-(1*24*3600000));
-            var dateStr = now.getFullYear() + '-' + (now.getMonth() + 1);
 
-            $('#datepicker').datepicker({
-                format: "yyyy-mm",
-                viewMode: "months",
-                minViewMode: "months"
-            }).val(dateStr);
+            $('#selMonth').empty();
 
-            load();
-        });
+            for (var i = firstMonth; i <= lastMonth; i++) {
+                now.setMonth(i - 1);
+                $('#selMonth').append($('<option>', {
+                    value: i,
+                    text: now.toLocaleString('default', {month: "long"}),
+                    selected: year == thisYear && i === thisMonth
+                }));
+            }
+        }
 
         function load() {
-            var date = $('#datepicker').val();
-            var year = date.split('-')[0];
-            var month = date.split('-')[1];
+            var year = $('#selYear').val();
+            var month = $('#selMonth').val();
             $.ajax({
-                url: 'api/reports/noaamonth?year='+year+'&month='+month
-            }).done(function(data) {
-                $('#report').text(data.join('\n'));
-            }).fail(function(jqXHR, textStatus) {
+                url: 'api/reports/noaamonth?year='+year+'&month='+month,
+            })
+            .done(function(data) {
+                $('#report').text(data);
+            })
+            .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + textStatus + ')');
             });
         }
 
         function generate() {
-            var date = $('#datepicker').val();
-            var year = date.split('-')[0];
-            var month = date.split('-')[1];
+            var year = $('#selYear').val();
+            var month = $('#selMonth').val();
             $.ajax({
                 url: 'api/genreports/noaamonth?year='+year+'&month='+month
-            }).done(function(data) {
-                $('#report').text(data.join('\n'));
+            })
+            .done(function(data) {
+                $('#report').text(data);
                 alert("Report (Re)generated");
-            }).fail(function(jqXHR, textStatus) {
+            })
+            .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + textStatus + ')');
             });
         }
@@ -114,7 +174,7 @@ Last modified: 2021/06/09 21:51:23
 
         <div class="row">
             <div>
-                Select month:&nbsp;<input type="text" data-date-format="yyyy-mm" id="datepicker" >
+                Select year:&nbsp;<select id="selYear" aria-label="select year"></select> month:&nbsp;<select id="selMonth" aria-label="select month"></select>
                 <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
                 <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
             </div>

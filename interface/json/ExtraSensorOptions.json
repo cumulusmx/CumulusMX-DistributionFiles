@@ -142,6 +142,7 @@
 					"collapsed": true,
 					"helpers": [
 						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
+						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
 						"You must restart Cumulus after enabling/disabling this feature"
 					],
 					"helperPosition": "above",

@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:53:54
+// Last modified: 2022/06/24 18:01:55
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -196,7 +196,7 @@ $(document).ready(function () {
                 if ($(id).length) {
                     $(id).text(data[key]);
                 }
-            } else if (alarmSettings[alarmTranslate[key]].Enabled) {
+            } else if (alarmSettings != null && alarmSettings[alarmTranslate[key]].Enabled) {
                 // alarm data
                 if (data[key]) {  // alarm set
                     $(id).removeClass('indicatorOff').addClass('indicatorOn');

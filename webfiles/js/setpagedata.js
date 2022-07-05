@@ -1,14 +1,14 @@
-/* ----------------------------------------------------------
- * setpagedata.js		v:0.1.1		d:Mar 2021		a:Neil  Thomas
- * Last modified: 2022/06/04 17:23:23
- * Basic scripts for all new at-xxxx.html template pages.
- * Incorporating changes suggested by beteljuice
- * Requires jQuery
- * ----------------------------------------------------------*/
+/*	----------------------------------------------------------
+ * 	setpagedata.js		v:0.1.0		d:Mar 2021		a:Neil  Thomas
+ *  Last modified: 2022/07/02 17:55:10
+ * 	Basic scripts for all new at-xxxx.html template pages.
+ *  Incorporating changes suggested by beteljuice
+ * 	Requires jQuery
+ * 	----------------------------------------------------------*/
 
-// Global variables
-// Changing these affects every page in the ai-interface
-// All numbers are pixels.
+//	Global variables
+//	Changing these affects every page in the ai-interface
+//	All numbers are pixels.
 
 let fixedHeader = false;	//	Use only true or false
 let fixedFooter = true;	//	Use only true or false
@@ -27,9 +27,6 @@ window.onresize = function() {
 	borderpatrol();
 };
 
-$(document).ready(function() {
-	setupPage();
-});
 
 let borderpatrol = function() {
 	var contentMargin = $("#Header").outerHeight( true );
@@ -54,8 +51,8 @@ let createMainMenu = function(src, submenu) {
 		if (itm.menu !== 'n') {	// wanted in main menu
 			if (itm.submenu) { // drop down
 				menu += '<div class="w3-dropdown-hover">\n';
-				menu += '\t<button class="w3-btn w3-theme-hvr at-slim w3-hide-medium w3-hide-small">' + itm.title + '&#8230;</button>\n';
-				menu += '\t<div class="w3-dropdown-content w3-bar-block w3-theme">\n';
+				menu += '\t<button id="' +  itm.title.replace(/ /g,"_") + '" type="button" class="w3-btn w3-theme-hvr at-slim w3-hide-medium w3-hide-small" onclick="dropDown(this)" aria-expanded="false">' + itm.title + '&#8230;</button>\n';
+				menu += '\t<div id="sub_' +  itm.title.replace(/ /g,"_") + '" class="w3-dropdown-content w3-bar-block w3-theme">\n';
 				// add the sub-menu items
 				createMainMenu(itm.items, true);
 				menu += '\t\n</div></div>\n';
@@ -139,13 +136,28 @@ let toggleMenu = function(menuid) {
 	$('#'+menuid).toggleClass('w3-show');
 };
 
+let dropDown = function(panel) {
+	var btn = $('#' + panel.id);
+	var sub = $('#sub_' + panel.id);
+	if (sub.hasClass('w3-show')) {
+		sub.removeClass('w3-show');
+		btn.attr('aria-expanded', false);
+	} else {
+		// Close other dropdowns first
+		$('.w3-dropdown-content').removeClass('w3-show');
+		sub.addClass('w3-show');
+		btn.attr('aria-expanded', true);
+	}
+};
+
+
 let getPageData = function (resolve, reject) {
 	$.getJSON('websitedata.json?_=' + Date.now(), function (json) {
 		console.log('Data success');
 		// auto update every 60 seconds, only the index and today pages
 		// Some sites may have index.htm as the default page, and thus not have a page name
 		let pageName = window.location.href.split('/').pop().split('.')[0];
-		if (pageName == 'index' || pageName == 'today' || pageName == '') {
+		if (pageName == 'index' || pageName == 'today' || pageName == 'todayYest' || pageName == '') {
 			setTimeout(function () {
 				getPageData(null, null);
 			}, 60 * 1000);
@@ -217,6 +229,9 @@ let getPageData = function (resolve, reject) {
 
 
 // Get the main page data
-let dataLoadedPromise = new Promise((resolve, reject) => {
-	getPageData(resolve, reject);
+let dataLoadedPromise = new Promise((myResolve, myReject) => {
+	$(document).ready(function() {
+		setupPage();
+		getPageData(myResolve, myReject);
+	});
 });

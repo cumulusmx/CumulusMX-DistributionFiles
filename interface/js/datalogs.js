@@ -1,4 +1,4 @@
-// Last modified: 2021/12/09 11:06:15
+// Last modified: 2022/06/16 16:05:16
 
 var myTable;
 var currMonth;
@@ -14,10 +14,12 @@ $(document).ready(function () {
     now.setHours(0,0,0,0);
 
     var fromDate = $('#dateFrom').datepicker({
-            format: "dd-mm-yyyy",
-            endDate: now,
-            autoclose: true,
-        }).val(formatUserDateStr(now))
+            dateFormat: 'dd-mm-yy',
+            maxDate: '0d',
+            firstDay: 1,
+            changeMonth: true,
+            changeYear: true,
+         }).val(formatUserDateStr(now))
         .on('change', function() {
             var date = fromDate.datepicker('getDate');
             if (toDate.datepicker('getDate') < date) {
@@ -27,9 +29,11 @@ $(document).ready(function () {
         });
 
     var toDate = $('#dateTo').datepicker({
-            format: "dd-mm-yyyy",
-//            endDate: now,
-            autoclose: true,
+            dateFormat: "dd-mm-yy",
+            maxDate: '0d',
+            firstDay: 1,
+            changeMonth: true,
+            changeYear: true,
         }).val(formatUserDateStr(now))
         .on('change', function() {
             var date = fromDate.datepicker('getDate');
