@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/08/01 22:28:44
+Last modified: 2022/07/12 16:28:20
 -->
 <!doctype html>
 <html lang="en">
@@ -31,15 +31,21 @@ Last modified: 2021/08/01 22:28:44
         });
     </script>
     <style>
-        td,th {padding: 1px 5px 1px 1px; text-align: center}
-        .valInput {width: 90%; min-width: 50px}
-        .alarmName {min-width: 170px}
-        .shade {background-color: #eef4f9}
-        table {width: 100%;
-            border-bottom: #c5c5c5;
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-        }
+    .valInput {width: 90%; min-width: 50px}
+    .alarmName {min-width: 170px}
+    table {width: 100%;
+        border-bottom: #c5c5c5;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+    }
+    tr:nth-child(even) {
+        background-color: #eef4f9
+    }
+    th {
+        color: #333 !important;
+        cursor: default !important;
+    }
+    td,th {padding: 1px 5px 1px 1px; text-align: center}
     </style>
 </head>
 <body>
@@ -108,7 +114,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="tempBelowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Temperature below latching hours"></td>
                         <td></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="tempAboveEnabled" aria-label="Enable temperature above alarm"></td>
                         <td aria-hidden>Temperature rises above:</td>
                         <td><input class="valInput" id="tempAboveVal" type="number" min="-50" max="50" step="0.1" aria-label="Temperature rises above value"></td>
@@ -134,7 +140,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="tempChangeLatchHrs" type="number" min="1" max="999" step="1" aria-label="Temperature change latching hours"></td>
                         <td></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="pressBelowEnabled" aria-label="Enable pressure below alarm"></td>
                         <td aria-hidden>Pressure falls below:</td>
                         <td><input class="valInput" id="pressBelowVal" type="number" min="20" max="1050" aria-label="Pressure falls below value"></td>
@@ -160,7 +166,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="pressAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Pressure above latching hours"></td>
                         <td></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="pressChangeEnabled" aria-label="Enable pressure change alarm"></td>
                         <td aria-hidden>Pressure changes by:</td>
                         <td><input class="valInput" id="pressChangeVal" type="number" min="0" max="20" step="0.1" aria-label="Pressure changes more than value"></td>
@@ -186,7 +192,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="rainAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Rainfall latching hours"></td>
                         <td></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="rainRateAboveEnabled" aria-label="Enable rain rate alarm"></td>
                         <td aria-hidden>Rainfall rate rises above:</td>
                         <td><input class="valInput" id="rainRateAboveVal" type="number" min="0" max="200" step="0.1" aria-label="Rain rate today more than value"></td>
@@ -197,6 +203,19 @@ Last modified: 2021/08/01 22:28:44
                         <td><input type="checkbox" id="rainRateAboveEmail" aria-label="Enable rain rate emails"></td>
                         <td><input type="checkbox" id="rainRateAboveLatches" aria-label="Enable rain rate latching"></td>
                         <td><input id="rainRateAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Rain rate latching hours"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="isRainingEnabled" aria-label="Enable is raining alarm"></td>
+                        <td>Is Raining</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="checkbox" id="isRainingSoundEnabled" aria-label="Enable is raining sound"></td>
+                        <td><input id="isRainingSound" aria-label="Is raining sound filename"></td>
+                        <td><input type="checkbox" id="isRainingNotify" aria-label="Enable is raining notifications"></td>
+                        <td><input type="checkbox" id="isRainingEmail" aria-label="Enable is raining emails"></td>
+                        <td><input type="checkbox" id="isRainingLatches" aria-label="Enable is raining latching"></td>
+                        <td><input id="isRainingLatchHrs" type="number" min="1" max="999" step="1" aria-label="Is raining latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -212,7 +231,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="gustAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Wind gust latching hours"></td>
                         <td></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="windAboveEnabled" aria-label="Enable wind average alarm"></td>
                         <td aria-hidden>Average wind more than:</td>
                         <td><input class="valInput"  id="windAboveVal" type="number" min="0" max="100" step="0.1" aria-label="Wind average more than value"></td>
@@ -238,7 +257,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="contactLostLatchHrs" type="number" min="1" max="999" step="1" aria-label="Sensor contact lost latching hours"></td>
                         <td><input id="contactLostThreshold" type="number" min="1" max="99" step="1" aria-label="Sensor contact lost trip threshold"></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="dataStoppedEnabled" aria-label="Enable data stopped alarm"></td>
                         <td aria-hidden>Data connection is lost</td>
                         <td></td>
@@ -264,7 +283,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="batteryLowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Battery low latching hours"></td>
                         <td><input id="batteryLowThreshold" type="number" min="1" max="99" step="1" aria-label="Battery low trip threshold"></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="spikeEnabled" aria-label="Enable data spike alarm"></td>
                         <td aria-hidden>Data spike is detected</td>
                         <td></td>
@@ -290,7 +309,7 @@ Last modified: 2021/08/01 22:28:44
                         <td><input id="httpUploadLatchHrs" type="number" min="1" max="999" step="1" aria-label="HTTP uploads latching hours"></td>
                         <td><input id="httpUploadThreshold" type="number" min="1" max="99" step="1" aria-label="HTTP uploads trip threshold"></td>
                     </tr>
-                    <tr class="shade">
+                    <tr>
                         <td><input type="checkbox" id="mySqlUploadEnabled" aria-label="Enable MySQL uploads alarm"></td>
                         <td aria-hidden>MySQL upload errors</td>
                         <td></td>
