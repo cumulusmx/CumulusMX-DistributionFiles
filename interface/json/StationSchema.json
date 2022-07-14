@@ -822,6 +822,9 @@
 							"type": "number",
 							"minimum": -1,
 							"maximum": 1
+						},
+						"userainforisraining": {
+							"type": "boolean"
 						}
 					}
 				},

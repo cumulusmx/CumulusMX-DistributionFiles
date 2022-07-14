@@ -1,4 +1,4 @@
-// Last modified: 2022/06/24 18:01:55
+// Last modified: 2022/07/12 16:47:22
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -16,6 +16,7 @@ let alarmTranslate = {
     AlarmPressUp: 'pressChange',
     AlarmRain: 'rainAbove',
     AlarmRainRate: 'rainRateAbove',
+    AlarmIsRaining: 'isRaining',
     AlarmSensor: 'contactLost',
     AlarmTempDn: 'tempChange',
     AlarmTempUp: 'tempChange',
@@ -36,6 +37,7 @@ let alarmRevTranslate = {
     pressChange: ['AlarmPressDn', 'AlarmPressUp'],
     rainAbove: ['AlarmRain'],
     rainRateAbove: ['AlarmRainRate'],
+    isRaining: ['AlarmIsRaining'],
     contactLost: ['AlarmSensor'],
     tempChange: ['AlarmTempDn', 'AlarmTempUp'],
     windAbove: ['AlarmWind'],
@@ -57,6 +59,7 @@ let alarmState = {
     AlarmPressUp: false,
     AlarmRain: false,
     AlarmRainRate: false,
+    AlarmIsRaining: false,
     AlarmSensor: false,
     AlarmTempDn: false,
     AlarmTempUp: false,
@@ -78,6 +81,7 @@ let alarmDisplay = {
     AlarmPressUp: 'Pressure increase >',
     AlarmRain: 'Rain above',
     AlarmRainRate: 'Rain Rate above',
+    AlarmIsRaining: 'Raining now',
     AlarmSensor: 'Sensor contact lost',
     AlarmTempDn: 'Temperature decrease >',
     AlarmTempUp: 'Temperature increase >',

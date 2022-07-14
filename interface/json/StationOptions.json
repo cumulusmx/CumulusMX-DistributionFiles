@@ -1340,6 +1340,14 @@
 								"Defaults value is -1, which is interpreted as 0.2 mm or 0.01 inches for *most* stations",
 								"DO NOT set to zero, then every day would be counted as a rain day"
 							]
+						},
+						"userainforisraining": {
+							"label": "Is Raining trigger:",
+							"rightLabel": "Use station rainfall for 'Is Raining' trigger",
+							"helpers": [
+								"Normally the 'Is Raining' value is triggered by a dedicated device, enabling this option means it will also be triggered by a rainfall rate > 0, or by a bucket tip",
+								"Note: This trigger may only be transient, the next station read may not have another bucket tip and 'Is Raining' will be cleared. Use the Is Raining alarm to latch the alarm value for a while"
+							]
 						}
 					}
 				},

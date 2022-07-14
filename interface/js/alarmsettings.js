@@ -1,4 +1,4 @@
-// Last modified: 2021/12/07 14:57:53
+// Last modified: 2022/07/12 16:31:17
 
 $(document).ready(function() {
     $.ajax({
@@ -114,6 +114,15 @@ function updateAlarms() {
                     Email       : $('#rainRateAboveEmail').prop('checked'),
                     Latches     : $('#rainRateAboveLatches').prop('checked'),
                     LatchHrs    : $('#rainRateAboveLatchHrs').val()
+                },
+                isRaining: {
+                    Enabled     : $('#isRainingEnabled').prop('checked'),
+                    SoundEnabled: $('#isRainingSoundEnabled').prop('checked'),
+                    Sound       : $('#isRainingSound').val(),
+                    Notify      : $('#isRainingNotify').prop('checked'),
+                    Email       : $('#isRainingEmail').prop('checked'),
+                    Latches     : $('#isRainingLatches').prop('checked'),
+                    LatchHrs    : $('#isRainingLatchHrs').val()
                 },
                 gustAbove: {
                     Enabled     : $('#gustAboveEnabled').prop('checked'),
