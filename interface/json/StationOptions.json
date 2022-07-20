@@ -1294,6 +1294,18 @@
 					"rightLabel": "No sensor check",
 					"helper": "Make Cumulus MX run even if you do not have the minimum sensors required (temp, press, wind)"
 				},
+				"leafwetisrainingidx": {
+					"label": "Leafwetness IsRaining sensor:",
+					"helper": "Select a leafwetness sensor to be used as a 'Is Raining' sensor. The default value of -1 disables this feature",
+					"removeDefaultNone": true
+				},
+				"leafwetisrainingthrsh": {
+					"label": "Leafwetness IsRaining trigger:",
+					"helper": "Set the leafwetness value in the units used by your station to trigger 'Is Raining'",
+					"dependencies": {
+						"leafwetisrainingidx": [1,2,3,4,5,6,7,8]
+					}
+				},
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,

@@ -783,6 +783,13 @@
 				"nosensorcheck": {
 					"type": "boolean"
 				},
+				"leafwetisrainingidx": {
+					"enum": [-1,1,2,3,4,5,6,7,8]
+				},
+				"leafwetisrainingthrsh": {
+					"minimum": 0,
+					"type": "number"
+				},
 				"advanced": {
 					"title": "Advanced Options",
 					"type": "object",
@@ -832,7 +839,8 @@
 				}
 			},
 			"dependencies": {
-				"ignorelacrosseclock": ["stationid"]
+				"ignorelacrosseclock": ["stationid"],
+				"leafwetisrainingthrsh": ["leafwetisrainingidx"]
 			}
 		},
 		"Forecast": {
