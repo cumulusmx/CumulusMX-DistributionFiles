@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/07/12 16:28:20
+Last modified: 2022/07/20 19:16:49
 -->
 <!doctype html>
 <html lang="en">
@@ -93,6 +93,8 @@ Last modified: 2022/07/12 16:28:20
                             <th colspan="2">Value</th>
                             <th>Play<br>sound</th>
                             <th>Set sound file</th>
+                            <th>Action</th>
+                            <th>Action Params</th>
                             <th>Notify</th>
                             <th>Email</th>
                             <th>Latches</th>
@@ -108,10 +110,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="tempUnits"></td>
                         <td><input type="checkbox" id="tempBelowSoundEnabled" aria-label="Enable temperature below sound"></td>
                         <td><input id="tempBelowSound" aria-label="Temperature below sound filename"></td>
+                        <td><input id="tempBelowAction" aria-label="Temperature below action"></td>
+                        <td><input id="tempBelowActionParams" aria-label="Temperature below action parameters"></td>
                         <td><input type="checkbox" id="tempBelowNotify" aria-label="Enable temperature below notifications"></td>
                         <td><input type="checkbox" id="tempBelowEmail" aria-label="Enable temperature below emails"></td>
                         <td><input type="checkbox" id="tempBelowLatches" aria-label="Enable temperature below latching"></td>
-                        <td><input id="tempBelowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Temperature below latching hours"></td>
+                        <td><input id="tempBelowLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Temperature below latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -120,11 +124,13 @@ Last modified: 2022/07/12 16:28:20
                         <td><input class="valInput" id="tempAboveVal" type="number" min="-50" max="50" step="0.1" aria-label="Temperature rises above value"></td>
                         <td class="tempUnits"></td>
                         <td><input type="checkbox" id="tempAboveSoundEnabled" aria-label="Enable temperature above sound"></td>
-                        <td><input id="tempAboveSound" aria-label="Temperature below sound filename"></td>
+                        <td><input id="tempAboveSound" aria-label="Temperature above sound filename"></td>
+                        <td><input id="tempAboveAction" aria-label="Temperature above action"></td>
+                        <td><input id="tempAboveActionParams" aria-label="Temperature above action parameters"></td>
                         <td><input type="checkbox" id="tempAboveNotify" aria-label="Enable temperature above notifications"></td>
                         <td><input type="checkbox" id="tempAboveEmail" aria-label="Enable temperature above emails"></td>
                         <td><input type="checkbox" id="tempAboveLatches" aria-label="Enable temperature above latching"></td>
-                        <td><input id="tempAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Temperature above latching hours"></td>
+                        <td><input id="tempAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Temperature above latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -134,10 +140,12 @@ Last modified: 2022/07/12 16:28:20
                         <td><span class="tempUnits"></span>/hr</td>
                         <td><input type="checkbox" id="tempChangeSoundEnabled" aria-label="Enable temperature change sound"></td>
                         <td><input id="tempChangeSound" aria-label="Temperature change sound filename"></td>
+                        <td><input id="tempChangeAction" aria-label="Temperature change action"></td>
+                        <td><input id="tempChangeActionParams" aria-label="Temperature change action parameters"></td>
                         <td><input type="checkbox" id="tempChangeNotify" aria-label="Enable temperature change notifications"></td>
                         <td><input type="checkbox" id="tempChangeEmail" aria-label="Enable temperature change emails"></td>
                         <td><input type="checkbox" id="tempChangeLatches" aria-label="Enable temperature change latching"></td>
-                        <td><input id="tempChangeLatchHrs" type="number" min="1" max="999" step="1" aria-label="Temperature change latching hours"></td>
+                        <td><input id="tempChangeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Temperature change latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -147,10 +155,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="pressUnits"></td>
                         <td><input type="checkbox" id="pressBelowSoundEnabled" aria-label="Enable pressure below sound"></td>
                         <td><input id="pressBelowSound" aria-label="Pressure below sound filename"></td>
+                        <td><input id="pressBelowAction" aria-label="Pressure below action"></td>
+                        <td><input id="pressBelowActionParams" aria-label="Pressure below action parameters"></td>
                         <td><input type="checkbox" id="pressBelowNotify" aria-label="Enable pressure below notifications"></td>
                         <td><input type="checkbox" id="pressBelowEmail" aria-label="Enable pressure below emails"></td>
                         <td><input type="checkbox" id="pressBelowLatches" aria-label="Enable pressure below latching"></td>
-                        <td><input id="pressBelowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Pressure below latching hours"></td>
+                        <td><input id="pressBelowLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure below latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -160,10 +170,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="pressUnits"></td>
                         <td><input type="checkbox" id="pressAboveSoundEnabled" aria-label="Enable pressure above sound"></td>
                         <td><input id="pressAboveSound" aria-label="Pressure above sound filename"></td>
+                        <td><input id="pressAboveAction" aria-label="Pressure above action"></td>
+                        <td><input id="pressAboveActionParams" aria-label="Pressure above action parameters"></td>
                         <td><input type="checkbox" id="pressAboveNotify" aria-label="Enable pressure above notifications"></td>
                         <td><input type="checkbox" id="pressAboveEmail" aria-label="Enable pressure above emails"></td>
                         <td><input type="checkbox" id="pressAboveLatches" aria-label="Enable pressure above latching"></td>
-                        <td><input id="pressAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Pressure above latching hours"></td>
+                        <td><input id="pressAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure above latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -173,10 +185,12 @@ Last modified: 2022/07/12 16:28:20
                         <td><span class="pressUnits"></span>/hr</td>
                         <td><input type="checkbox" id="pressChangeSoundEnabled" aria-label="Enable pressure change sound"></td>
                         <td><input id="pressChangeSound" aria-label="Pressure change sound filename"></td>
+                        <td><input id="pressChangeAction" aria-label="Pressure change action"></td>
+                        <td><input id="pressChangeActionParams" aria-label="Pressure change action parameters"></td>
                         <td><input type="checkbox" id="pressChangeNotify" aria-label="Enable pressure change notifications"></td>
                         <td><input type="checkbox" id="pressChangeEmail" aria-label="Enable pressure change emails"></td>
                         <td><input type="checkbox" id="pressChangeLatches" aria-label="Enable pressure change latching"></td>
-                        <td><input id="pressChangeLatchHrs" type="number" min="1" max="999" step="1" aria-label="Pressure change latching hours"></td>
+                        <td><input id="pressChangeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure change latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -186,10 +200,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="rainUnits"></td>
                         <td><input type="checkbox" id="rainAboveSoundEnabled" aria-label="Enable rainfall sound"></td>
                         <td><input id="rainAboveSound" aria-label="Rainfall sound filename"></td>
+                        <td><input id="rainAboveAction" aria-label="Rainfall action"></td>
+                        <td><input id="rainAboveActionParams" aria-label="Rainfall action parameters"></td>
                         <td><input type="checkbox" id="rainAboveNotify" aria-label="Enable rainfall notifications"></td>
                         <td><input type="checkbox" id="rainAboveEmail" aria-label="Enable rainfall emails"></td>
                         <td><input type="checkbox" id="rainAboveLatches" aria-label="Enable rainfall latching"></td>
-                        <td><input id="rainAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Rainfall latching hours"></td>
+                        <td><input id="rainAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Rainfall latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -199,10 +215,12 @@ Last modified: 2022/07/12 16:28:20
                         <td><span class="rainUnits"></span>/hr</td>
                         <td><input type="checkbox" id="rainRateAboveSoundEnabled" aria-label="Enable rain rate sound"></td>
                         <td><input id="rainRateAboveSound" aria-label="Rain rate sound filename"></td>
+                        <td><input id="rainRateAboveAction" aria-label="Rain rate action"></td>
+                        <td><input id="rainRateAboveActionParams" aria-label="Rain rate action parameters"></td>
                         <td><input type="checkbox" id="rainRateAboveNotify" aria-label="Enable rain rate notifications"></td>
                         <td><input type="checkbox" id="rainRateAboveEmail" aria-label="Enable rain rate emails"></td>
                         <td><input type="checkbox" id="rainRateAboveLatches" aria-label="Enable rain rate latching"></td>
-                        <td><input id="rainRateAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Rain rate latching hours"></td>
+                        <td><input id="rainRateAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Rain rate latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -212,10 +230,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="isRainingSoundEnabled" aria-label="Enable is raining sound"></td>
                         <td><input id="isRainingSound" aria-label="Is raining sound filename"></td>
+                        <td><input id="isRainingAction" aria-label="Is raining action"></td>
+                        <td><input id="isRainingActionParams" aria-label="Is raining action parameters"></td>
                         <td><input type="checkbox" id="isRainingNotify" aria-label="Enable is raining notifications"></td>
                         <td><input type="checkbox" id="isRainingEmail" aria-label="Enable is raining emails"></td>
                         <td><input type="checkbox" id="isRainingLatches" aria-label="Enable is raining latching"></td>
-                        <td><input id="isRainingLatchHrs" type="number" min="1" max="999" step="1" aria-label="Is raining latching hours"></td>
+                        <td><input id="isRainingLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Is raining latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -225,10 +245,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="windUnits"></td>
                         <td><input type="checkbox" id="gustAboveSoundEnabled" aria-label="Enable wind gust sound"></td>
                         <td><input id="gustAboveSound" aria-label="Wind gust sound filename"></td>
+                        <td><input id="gustAboveAction" aria-label="Wind gust action"></td>
+                        <td><input id="gustAboveActionParams" aria-label="Wind gust action parameters"></td>
                         <td><input type="checkbox" id="gustAboveNotify" aria-label="Enable wind gust notifications"></td>
                         <td><input type="checkbox" id="gustAboveEmail" aria-label="Enable wind gust emails"></td>
                         <td><input type="checkbox" id="gustAboveLatches" aria-label="Enable wind gust latching"></td>
-                        <td><input id="gustAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Wind gust latching hours"></td>
+                        <td><input id="gustAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Wind gust latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -238,10 +260,12 @@ Last modified: 2022/07/12 16:28:20
                         <td class="windUnits"></td>
                         <td><input type="checkbox" id="windAboveSoundEnabled" aria-label="Enable wind average sound"></td>
                         <td><input id="windAboveSound" aria-label="Wind average sound filename"></td>
+                        <td><input id="windAboveAction" aria-label="Wind average action"></td>
+                        <td><input id="windAboveActionParams" aria-label="Wind average action parameters"></td>
                         <td><input type="checkbox" id="windAboveNotify" aria-label="Enable wind average notifications"></td>
                         <td><input type="checkbox" id="windAboveEmail" aria-label="Enable wind average emails"></td>
                         <td><input type="checkbox" id="windAboveLatches" aria-label="Enable wind average latching"></td>
-                        <td><input id="windAboveLatchHrs" type="number" min="1" max="999" step="1" aria-label="Wind average latching hours"></td>
+                        <td><input id="windAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Wind average latching hours"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -251,10 +275,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="contactLostSoundEnabled" aria-label="Enable sensor contact lost sound"></td>
                         <td><input id="contactLostSound" aria-label="Sensor contact lost sound filename"></td>
+                        <td><input id="contactLostAction" aria-label="Sensor contact lost action"></td>
+                        <td><input id="contactLostActionParams" aria-label="Sensor contact lost action parameters"></td>
                         <td><input type="checkbox" id="contactLostNotify" aria-label="Enable sensor contact lost notifications"></td>
                         <td><input type="checkbox" id="contactLostEmail" aria-label="Enable sensor contact lost emails"></td>
                         <td><input type="checkbox" id="contactLostLatches" aria-label="Enable sensor contact lost latching"></td>
-                        <td><input id="contactLostLatchHrs" type="number" min="1" max="999" step="1" aria-label="Sensor contact lost latching hours"></td>
+                        <td><input id="contactLostLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Sensor contact lost latching hours"></td>
                         <td><input id="contactLostThreshold" type="number" min="1" max="99" step="1" aria-label="Sensor contact lost trip threshold"></td>
                     </tr>
                     <tr>
@@ -264,10 +290,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="dataStoppedSoundEnabled" aria-label="Enable data stopped sound"></td>
                         <td><input id="dataStoppedSound" aria-label="Data stopped sound filename"></td>
+                        <td><input id="dataStoppedAction" aria-label="Data stopped action"></td>
+                        <td><input id="dataStoppedActionParams" aria-label="Data stopped action parameters"></td>
                         <td><input type="checkbox" id="dataStoppedNotify" aria-label="Enable data stopped notifications"></td>
                         <td><input type="checkbox" id="dataStoppedEmail" aria-label="Enable data stopped emails"></td>
                         <td><input type="checkbox" id="dataStoppedLatches" aria-label="Enable data stopped latching"></td>
-                        <td><input id="dataStoppedLatchHrs" type="number" min="1" max="999" step="1" aria-label="Data stopped latching hours"></td>
+                        <td><input id="dataStoppedLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Data stopped latching hours"></td>
                         <td><input id="dataStoppedThreshold" type="number" min="1" max="99" step="1" aria-label="Data stopped trip threshold"></td>
                     </tr>
                     <tr>
@@ -277,10 +305,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="batteryLowSoundEnabled" aria-label="Enable battery low sound"></td>
                         <td><input id="batteryLowSound" aria-label="Battery low sound filename"></td>
+                        <td><input id="batteryLowAction" aria-label="Battery low action"></td>
+                        <td><input id="batteryLowActionParams" aria-label="Battery low action parameters"></td>
                         <td><input type="checkbox" id="batteryLowNotify" aria-label="Enable battery low notifications"></td>
                         <td><input type="checkbox" id="batteryLowEmail" aria-label="Enable battery low emails"></td>
                         <td><input type="checkbox" id="batteryLowLatches" aria-label="Enable battery low latching"></td>
-                        <td><input id="batteryLowLatchHrs" type="number" min="1" max="999" step="1" aria-label="Battery low latching hours"></td>
+                        <td><input id="batteryLowLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Battery low latching hours"></td>
                         <td><input id="batteryLowThreshold" type="number" min="1" max="99" step="1" aria-label="Battery low trip threshold"></td>
                     </tr>
                     <tr>
@@ -290,10 +320,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="spikeSoundEnabled" aria-label="Enable data spike sound"></td>
                         <td><input id="spikeSound" aria-label="Data spike sound filename"></td>
+                        <td><input id="spikeAction" aria-label="Data spike action"></td>
+                        <td><input id="spikeActionParams" aria-label="Data spike action parameters"></td>
                         <td><input type="checkbox" id="spikeNotify" aria-label="Enable data spike notifications"></td>
                         <td><input type="checkbox" id="spikeEmail" aria-label="Enable data spike emails"></td>
                         <td><input type="checkbox" id="spikeLatches" aria-label="Enable data spike latching"></td>
-                        <td><input id="spikeLatchHrs" type="number" min="1" max="999" step="1" aria-label="Data spike latching hours"></td>
+                        <td><input id="spikeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Data spike latching hours"></td>
                         <td><input id="spikeThreshold" type="number" min="1" max="99" step="1" aria-label="Data spike trip threshold"></td>
                     </tr>
                     <tr>
@@ -303,10 +335,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="httpUploadSoundEnabled" aria-label="Enable http uploads sound"></td>
                         <td><input id="httpUploadSound" aria-label="HTTP uploads sound filename"></td>
+                        <td><input id="httpUploadAction" aria-label="HTTP uploads action"></td>
+                        <td><input id="httpUploadActionParams" aria-label="HTTP uploads action parameters"></td>
                         <td><input type="checkbox" id="httpUploadNotify" aria-label="Enable http uploads notifications"></td>
                         <td><input type="checkbox" id="httpUploadEmail" aria-label="Enable http uploads emails"></td>
                         <td><input type="checkbox" id="httpUploadLatches" aria-label="Enable http uploads latching"></td>
-                        <td><input id="httpUploadLatchHrs" type="number" min="1" max="999" step="1" aria-label="HTTP uploads latching hours"></td>
+                        <td><input id="httpUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="HTTP uploads latching hours"></td>
                         <td><input id="httpUploadThreshold" type="number" min="1" max="99" step="1" aria-label="HTTP uploads trip threshold"></td>
                     </tr>
                     <tr>
@@ -316,10 +350,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="mySqlUploadSoundEnabled" aria-label="Enable MySQL uploads sound"></td>
                         <td><input id="mySqlUploadSound" aria-label="MySQL uploads sound filename"></td>
+                        <td><input id="mySqlUploadAction" aria-label="MySQL uploads action"></td>
+                        <td><input id="mySqlUploadActionParams" aria-label="MySQL uploads action parameters"></td>
                         <td><input type="checkbox" id="mySqlUploadNotify" aria-label="Enable MySQL uploads notifications"></td>
                         <td><input type="checkbox" id="mySqlUploadEmail" aria-label="Enable MySQL uploads emails"></td>
                         <td><input type="checkbox" id="mySqlUploadLatches" aria-label="Enable MySQL uploads latching"></td>
-                        <td><input id="mySqlUploadLatchHrs" type="number" min="1" max="999" step="1" aria-label="MySQL uploads latching hours"></td>
+                        <td><input id="mySqlUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="MySQL uploads latching hours"></td>
                         <td><input id="mySqlUploadThreshold" type="number" min="1" max="99" step="1" aria-label="MySQL uploads trip threshold"></td>
                     </tr>
                     <tr>
@@ -329,10 +365,12 @@ Last modified: 2022/07/12 16:28:20
                         <td></td>
                         <td><input type="checkbox" id="upgradeSoundEnabled" aria-label="Enable Cumulus upgrade sound"></td>
                         <td><input id="upgradeSound" aria-label="Cumulus upgrade sound filename"></td>
+                        <td><input id="upgradeAction" aria-label="Cumulus upgrade action"></td>
+                        <td><input id="upgradeActionParams" aria-label="Cumulus upgrade action parameters"></td>
                         <td><input type="checkbox" id="upgradeNotify" aria-label="Enable Cumulus upgrade notifications"></td>
                         <td><input type="checkbox" id="upgradeEmail" aria-label="Enable Cumulus upgrade emails"></td>
                         <td><input type="checkbox" id="upgradeLatches" aria-label="Enable Cumulus upgrade latching"></td>
-                        <td><input id="upgradeLatchHrs" type="number" min="1" max="999" step="1" aria-label="Cumulus upgrade latching hours"></td>
+                        <td><input id="upgradeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Cumulus upgrade latching hours"></td>
                         <td>&nbsp;</td>
                     </tr>
                     </tbody>

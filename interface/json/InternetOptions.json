@@ -51,7 +51,10 @@
 				},
 				"ftpport": {
 					"label": "FTP port:",
-					"helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
+					"helpers": [
+						"Enter the FTP port to use. Common defaults are: FTP=21, FTPS=21(990*), SFTP=22",
+						"* Port 990 is used when the older Implicit FTPS is configured"
+					],
 					"dependencies": {
 						"enabled": true
 					}
@@ -127,9 +130,12 @@
 					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
 					"helpersPosition": "above",
 					"fields": {
-						"activeftp": {
-							"rightLabel": "Enable Active FTP(S) mode",
-							"helpers": ["Not normally required - use with caution"],
+						"autodetect": {
+							"rightLabel": "Enable Automatic Connection",
+							"helpers": [
+								"Enabling this means the FTP client attempts to discover a working configuration for your server",
+								"Note that using this setting may slow down the connection process a little"
+							],
 							"dependencies": {
 								"ftpmode": [0,1]
 							}
@@ -141,7 +147,8 @@
 								"Extended passive mode is a newer standard of PSV. Disabling this forces PSV mode connections"
 							],
 							"dependencies": {
-								"ftpmode": [0,1]
+								"ftpmode": [0,1],
+								"autodetect": false
 							}
 						},
 						"disableftpsexplicit": {
@@ -149,6 +156,24 @@
 							"helpers": [
 								"Not normally required - use with caution",
 								"Explicit mode is the newer standard of FTPS. Disabling this forces Implicit mode connections"
+							],
+							"dependencies": {
+								"ftpmode": 1,
+								"autodetect": false
+							}
+						},
+						"activeftp": {
+							"rightLabel": "Enable Active FTP(S) mode",
+							"helpers": ["Not normally required - use with caution"],
+							"dependencies": {
+								"ftpmode": [0,1]
+							}
+						},
+						"ignorecerts": {
+							"rightLabel": "Ignore certificate errors",
+							"helpers": [
+								"Not normally required - use with caution",
+								"Typically only used if you are connecting to your own internal FTP server and it does not have a public certificate"
 							],
 							"dependencies": {
 								"ftpmode": 1

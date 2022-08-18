@@ -18,12 +18,12 @@
 				"latitude": {
 					"label": "Latitude",
 					"placeholder": "e.g. 53.2314",
-					"helper": "Enter your latitude as a decimal value (+ve = North, -ve = South)."
+					"helper": "Enter your latitude as a decimal degrees value (+ve = North, -ve = South)."
 				},
 				"longitude": {
 					"label": "Longitude",
 					"placeholder": "e.g. -2.5643",
-					"helper": "Enter your longitude as a decimal value (+ve = East, -ve = West)."
+					"helper": "Enter your longitude as a decimal degrees value (+ve = East, -ve = West)."
 				},
 				"altitude": {
 					"label": "Altitude",
@@ -372,7 +372,7 @@
 					"collapsed": false,
 					"helpers": [
 						"Configure your station to send data to Cumulus using the Wunderground protocol",
-						"Note: If possible use the Ecowitt protocol rather than this",
+						"Note: If possible use the Ecowitt protocol rather than this one",
 						"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
 					],
 					"dependencies": {
@@ -383,7 +383,7 @@
 					"collapsible": true,
 					"collapsed": false,
 					"helpers": [
-						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus using the Ecowitt protocol",
+						"Configure your Ecowitt station, or GW-XX00 device to send data to Cumulus using the Ecowitt protocol",
 						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
 					],
 					"dependencies": {

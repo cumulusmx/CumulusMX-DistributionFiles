@@ -1,10 +1,11 @@
-// Last modified: 2021/03/19 09:17:51
+// Last modified: 2022/07/27 15:35:57
 
 $(document).ready(function() {
 	dataLoadedPromise.then(function() {
 		var yesterday = new Date()
 		yesterday.setDate(yesterday.getDate() - 1)
 		changeData(yesterday.getMonth());
+		$('#btnMon' + yesterday.getMonth()).attr('aria-pressed', true);
 	});
 });
 
@@ -48,6 +49,8 @@ function changeData(month) {
 	document.getElementById('RainRateHT').innerHTML = cmx_data.monthlyrecs.rainrateT[month];
 	document.getElementById('HourlyRainH').innerHTML = cmx_data.monthlyrecs.hourlyrain[month];
 	document.getElementById('HourlyRainHT').innerHTML = cmx_data.monthlyrecs.hourlyrainT[month];
+	document.getElementById('Rain24HourH').innerHTML = cmx_data.monthlyrecs.rain24h[month];
+	document.getElementById('Rain24HourHT').innerHTML = cmx_data.monthlyrecs.rain24hT[month];
 	document.getElementById('DailyRainH').innerHTML = cmx_data.monthlyrecs.dailyrain[month];
 	document.getElementById('DailyRainHT').innerHTML = cmx_data.monthlyrecs.dailyrainT[month];
 	document.getElementById('MonthlyRainH').innerHTML = cmx_data.monthlyrecs.monthlyrain[month];
@@ -66,4 +69,6 @@ function changeData(month) {
 	document.getElementById('PressLT').innerHTML = cmx_data.monthlyrecs.lowpressT[month];
 	document.getElementById('PressH').innerHTML = cmx_data.monthlyrecs.highpress[month];
 	document.getElementById('PressHT').innerHTML = cmx_data.monthlyrecs.highpressT[month];
+	$('#btnArray').children('button').attr("aria-pressed", false);
+	$('#btnMon' + month).attr('aria-pressed', true);
 }

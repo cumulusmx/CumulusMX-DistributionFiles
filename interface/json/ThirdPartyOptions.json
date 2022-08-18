@@ -568,13 +568,15 @@
 				"customseconds": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "A custom HTTP URL to be invoked at an interval in seconds - can include webtags",
+					"helper": "Custom HTTP URLs to be invoked at an interval in seconds, max of 10 entries - can include webtags",
 					"fields": {
 						"enabled": {
 							"rightLabel": "Enabled"
 						},
 						"url": {
-							"label": "HTTP URL:",
+							"label": "HTTP URLs:",
+							"collapsible": true,
+							"collapsed": false,
 							"dependencies": {
 								"enabled": true
 							}
@@ -590,13 +592,15 @@
 				"customminutes": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "A custom HTTP URL to be invoked at an interval in minutes - can include webtags",
+					"helper": "Custom HTTP URLs to be invoked at an interval in minutes, max of 10 entries - can include webtags",
 					"fields": {
 						"enabled": {
 							"rightLabel": "Enabled"
 						},
 						"url": {
-							"label": "HTTP URL:",
+							"label": "HTTP URLs:",
+							"collapsible": true,
+							"collapsed": false,
 							"dependencies": {
 								"enabled": true
 							}
@@ -627,13 +631,15 @@
 				"customrollover": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "A custom HTTP URL to be invoked just before end of day rollover - can include webtags",
+					"helper": "Custom HTTP URLs to be invoked just before end of day rollover, max of 10 entries - can include webtags",
 					"fields": {
 						"enabled": {
 							"rightLabel": "Enabled"
 						},
 						"url": {
-							"label": "HTTP URL:",
+							"label": "HTTP URLs:",
+							"collapsible": true,
+							"collapsed": false,
 							"dependencies": {
 								"enabled": true
 							}

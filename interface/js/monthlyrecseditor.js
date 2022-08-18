@@ -1,4 +1,4 @@
-// Last modified: 2022/06/14 09:44:42
+// Last modified: 2022/07/27 17:54:07
 
 var updateUrl = 'api/edit/monthly';
 var editFieldName;
@@ -14,9 +14,15 @@ $(document).ready(function() {
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();
 
+    // add listeners to the <li> tabs to set attributes
+    $('.nav-tabs').children('li').click(function() {
+        $('.nav-tabs').children('li').attr('aria-selected', false);
+        $(this).attr('aria-selected', true);
+    });
+
     $.ajax({
-        url: "api/edit/monthlyrecords.json",
-        dataType:"json",
+        url: 'api/edit/monthlyrecords.json',
+        dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 // set the value and add some accessibility
@@ -30,8 +36,8 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "api/edit/monthlyrecordsdayfile.json",
-        dataType:"json",
+        url: 'api/edit/monthlyrecordsdayfile.json',
+        dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 $('#' + key).text(value);
@@ -49,7 +55,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "api/settings/version.json",
+        url: 'api/settings/version.json',
         dataType: "json",
         success: function (result) {
             $('#Version').text(result.Version);
@@ -59,70 +65,72 @@ $(document).ready(function() {
 
     $(document).ajaxStop(function() {
         //$.fn.editable.defaults.mode = 'inline';
-        $.fn.editable.defaults.url= updateUrl;
+        $.fn.editable.defaults.url = updateUrl;
         $.fn.editable.defaults.clear = false;
         $.fn.editable.defaults.send = 'always';
         $.fn.editable.defaults.type = 'text';
+        $.fn.editable.defaults.emptytext = '-';
+        $.fn.editable.defaults.step = 'any';
         // add some accessibility to the default buttons
         $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i></button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i></button>';
 
         for (var m = 1; m <= 12; m++) {
             $('#' + m + '-highTempVal').editable();
-            $('#' + m + '-highTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highTempTime').editable();
             $('#' + m + '-lowTempVal').editable();
-            $('#' + m + '-lowTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowTempTime').editable();
             $('#' + m + '-highDewPointVal').editable();
-            $('#' + m + '-highDewPointTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highDewPointTime').editable();
             $('#' + m + '-lowDewPointVal').editable();
-            $('#' + m + '-lowDewPointTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowDewPointTime').editable();
             $('#' + m + '-highApparentTempVal').editable();
-            $('#' + m + '-highApparentTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highApparentTempTime').editable();
             $('#' + m + '-lowApparentTempVal').editable();
-            $('#' + m + '-lowApparentTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowApparentTempTime').editable();
             $('#' + m + '-highFeelsLikeVal').editable();
-            $('#' + m + '-highFeelsLikeTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highFeelsLikeTime').editable();
             $('#' + m + '-lowFeelsLikeVal').editable();
-            $('#' + m + '-lowFeelsLikeTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowFeelsLikeTime').editable();
             $('#' + m + '-highHumidexVal').editable();
-            $('#' + m + '-highHumidexTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highHumidexTime').editable();
             $('#' + m + '-highHeatIndexVal').editable();
-            $('#' + m + '-highHeatIndexTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highHeatIndexTime').editable();
             $('#' + m + '-lowWindChillVal').editable();
-            $('#' + m + '-lowWindChillTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowWindChillTime').editable();
             $('#' + m + '-highMinTempVal').editable();
-            $('#' + m + '-highMinTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highMinTempTime').editable();
             $('#' + m + '-lowMaxTempVal').editable();
-            $('#' + m + '-lowMaxTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowMaxTempTime').editable();
             $('#' + m + '-highDailyTempRangeVal').editable();
-            $('#' + m + '-highDailyTempRangeTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-highDailyTempRangeTime').editable();
             $('#' + m + '-lowDailyTempRangeVal').editable();
-            $('#' + m + '-lowDailyTempRangeTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-lowDailyTempRangeTime').editable();
             $('#' + m + '-highHumidityVal').editable();
-            $('#' + m + '-highHumidityTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highHumidityTime').editable();
             $('#' + m + '-lowHumidityVal').editable();
-            $('#' + m + '-lowHumidityTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowHumidityTime').editable();
             $('#' + m + '-highBarometerVal').editable();
-            $('#' + m + '-highBarometerTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highBarometerTime').editable();
             $('#' + m + '-lowBarometerVal').editable();
-            $('#' + m + '-lowBarometerTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-lowBarometerTime').editable();
             $('#' + m + '-highGustVal').editable();
-            $('#' + m + '-highGustTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highGustTime').editable();
             $('#' + m + '-highWindVal').editable();
-            $('#' + m + '-highWindTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highWindTime').editable();
             $('#' + m + '-highWindRunVal').editable();
-            $('#' + m + '-highWindRunTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-highWindRunTime').editable();
             $('#' + m + '-highRainRateVal').editable();
-            $('#' + m + '-highRainRateTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highRainRateTime').editable();
             $('#' + m + '-highHourlyRainVal').editable();
-            $('#' + m + '-highHourlyRainTime').editable({format:"dd/mm/yyyy hh:ii"});
+            $('#' + m + '-highHourlyRainTime').editable();
             $('#' + m + '-highDailyRainVal').editable();
-            $('#' + m + '-highDailyRainTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-highDailyRainTime').editable();
             $('#' + m + '-highMonthlyRainVal').editable();
-            $('#' + m + '-highMonthlyRainTime').editable({format:"yyyy/mm"});
+            $('#' + m + '-highMonthlyRainTime').editable();
             $('#' + m + '-longestDryPeriodVal').editable();
-            $('#' + m + '-longestDryPeriodTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-longestDryPeriodTime').editable();
             $('#' + m + '-longestWetPeriodVal').editable();
-            $('#' + m + '-longestWetPeriodTime').editable({format:"dd/mm/yyyy"});
+            $('#' + m + '-longestWetPeriodTime').editable();
 
             $('.loading-overlay').hide();
             $('.loading-overlay-image-container').hide();

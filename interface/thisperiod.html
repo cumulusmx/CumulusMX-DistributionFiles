@@ -1,0 +1,314 @@
+<!--
+Last modified: 2022/07/26 21:22:59
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>This Period - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DATA TABLE CSS -->
+    <link href="css/table.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- menu -->
+    <script src="js/menu.js"></script>
+
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
+
+    <link href="css/cumulus.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- datepicker -->
+    <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+    <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
+
+    <!-- Custom Files -->
+    <script src="js/thisperiod.js"></script>
+    <style>
+        .left   {text-align:left;}
+        .center {text-align:center;}
+        .right  {text-align:right;}
+        tr:nth-child(odd) {
+            background-color: #4f4f4f;
+        }
+        tr:nth-child(even) {
+            background-color: #3f3f3f;
+        }
+        td:nth-child(even) {
+            text-align: right;
+        }
+        input {
+            color: black;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav">
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
+
+    <div id="container" class="container">
+        <div class="row top-buffer">
+            <div class="col-md-12">
+            <h1>This Period Highs and Lows</h1>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;">
+            Start Date:&nbsp;<input type="text" data-date-format="mm-dd-yyyy" id="dateFrom">
+            End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo">
+            <button type="button" class="btn btn-default" onclick="load()">Load</button>
+
+        </div>
+        <!-- CONTENT -->
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <br>
+                <table id="temperature" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Temperature</th>
+                            <th style="width: 25%; text-align: right"></th>
+                            <th style="width: 25%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High temperature</td>
+                            <td><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low temperature</td>
+                            <td><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High dew point</td>
+                            <td><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highDewPointTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low dew point</td>
+                            <td><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowDewPointTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High apparent temp</td>
+                            <td><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highApparentTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low apparent temp</td>
+                            <td><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowApparentTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High feels like</td>
+                            <td><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highFeelsLikeTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low feels like</td>
+                            <td><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowFeelsLikeTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High Humidex</td>
+                            <td><span id="highHumidexValDayfile"></span>&nbsp;&nbsp;</td>
+                            <td id="highHumidexTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low wind chill</td>
+                            <td><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowWindChillTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High heat index</td>
+                            <td><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highHeatIndexTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Highest minimum temp</td>
+                            <td><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highMinTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Lowest maximum temp</td>
+                            <td><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowMaxTempTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High daily temp range</td>
+                            <td><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="highDailyTempRangeTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low daily temp range</td>
+                            <td><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></td>
+                            <td id="lowDailyTempRangeTimeDayfile"></td>
+                        </tr>
+                </table>
+                <br>
+                <table id="humidity" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Humidity</th>
+                            <th style="width: 25%"></th>
+                            <th style="width: 25%; text-align: right"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High humidity</td>
+                            <td><span id="highHumidityValDayfile"></span> %</td>
+                            <td id="highHumidityTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low humidity</td>
+                            <td><span id="lowHumidityValDayfile"></span> %</td>
+                            <td id="lowHumidityTimeDayfile"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table id="pressure" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Pressure</th>
+                            <th style="width: 25%; text-align: right"></th>
+                            <th style="width: 25%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High pressure</td>
+                            <td><span id="highBarometerValDayfile"></span> <span class="unit-press"></span></td>
+                            <td id="highBarometerTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Low pressure</td>
+                            <td><span id="lowBarometerValDayfile"></span> <span class="unit-press"></span></td>
+                            <td id="lowBarometerTimeDayfile"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table id="wind" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Wind</th>
+                            <th style="width: 25%; text-align: right"></th>
+                            <th style="width: 25%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High gust speed</td>
+                            <td><span id="highGustValDayfile"></span> <span class="unit-wind"></span></td>
+                            <td id="highGustTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High wind speed</td>
+                            <td><span id="highWindValDayfile"></span> <span class="unit-wind"></span></td>
+                            <td id="highWindTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High daily wind run</td>
+                            <td><span id="highWindRunValDayfile"></span> <span class="unit-windrun"></span></td>
+                            <td id="highWindRunTimeDayfile"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table id="rain" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Rainfall</th>
+                            <th style="width: 25%; text-align: right"></th>
+                            <th style="width: 25%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High rain rate</td>
+                            <td><span id="highRainRateValDayfile"></span> <span class="unit-rain"></span>/hr</td>
+                            <td id="highRainRateTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High hourly rain</td>
+                            <td><span id="highHourlyRainValDayfile"></span> <span class="unit-rain"></span></td>
+                            <td id="highHourlyRainTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High daily rain</td>
+                            <td><span id="highDailyRainValDayfile"></span> <span class="unit-rain"></span></td>
+                            <td id="highDailyRainTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>High 24 hour rain</td>
+                            <td><span id="highRain24hValDayfile"></span> <span class="unit-rain"></span></td>
+                            <td id="highRain24hTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Highest monthly rainfall</td>
+                            <td><span id="highMonthlyRainValDayfile"></span> <span class="unit-rain"></span></td>
+                            <td id="highMonthlyRainTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Longest dry period*</td>
+                            <td><span id="longestDryPeriodValDayfile"></span> days</td>
+                            <td id="longestDryPeriodTimeDayfile"></td>
+                        </tr>
+                        <tr>
+                            <td>Longest wet period*</td>
+                            <td><span id="longestWetPeriodValDayfile"></span> days</td>
+                            <td id="longestWetPeriodTimeDayfile"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                * - Note the longest dry/wet periods exclude days outside your date range so may not be accurate
+            </div><!--/span12 -->
+        </div><!-- /row -->
+
+
+    </div>
+    <!-- FOOTER -->
+    <div id="footerwrap" style="margin-top: 20px;">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
+</html>

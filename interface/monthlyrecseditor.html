@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/28 11:04:53
+Last modified: 2022/07/24 19:00:29
 -->
 <!doctype html>
 <html lang="en">
@@ -142,42 +142,42 @@ Last modified: 2022/06/28 11:04:53
     <!-- CONTENT -->
     <div class="row" style="margin-top:10px">
       <div class="col-sm-12 col-lg-12">
-        <ul class="nav nav-tabs">
-          <li class="active">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active" role="tab" aria-selected="true">
             <a href="#jan" data-toggle="tab"> Jan. </a>
           </li>
-          <li class="">
+          <li class="" role="tab" aria-selected="false">
             <a href="#feb" data-toggle="tab"> Feb. </a>
           </li>
-          <li class="">
-            <a href="#mar" data-toggle="tab"> Mar. </a>
+          <li class="" role="tab">
+            <a href="#mar" data-toggle="tab" aria-selected="false"> Mar. </a>
           </li>
-          <li class="">
-            <a href="#apr" data-toggle="tab"> Apr. </a>
+          <li class="" role="tab">
+            <a href="#apr" data-toggle="tab" aria-selected="false"> Apr. </a>
           </li>
-          <li class="">
-            <a href="#may" data-toggle="tab"> May </a>
+          <li class="" role="tab">
+            <a href="#may" data-toggle="tab" aria-selected="false"> May </a>
           </li>
-          <li class="">
-            <a href="#jun" data-toggle="tab"> June </a>
+          <li class="" role="tab">
+            <a href="#jun" data-toggle="tab" aria-selected="false"> June </a>
           </li>
-          <li class="">
-            <a href="#jul" data-toggle="tab"> July </a>
+          <li class="" role="tab">
+            <a href="#jul" data-toggle="tab" aria-selected="false"> July </a>
           </li>
-          <li class="">
-            <a href="#aug" data-toggle="tab"> Aug. </a>
+          <li class="" role="tab">
+            <a href="#aug" data-toggle="tab" aria-selected="false"> Aug. </a>
           </li>
-          <li class="">
-            <a href="#sep" data-toggle="tab"> Sept </a>
+          <li class="" role="tab">
+            <a href="#sep" data-toggle="tab" aria-selected="false"> Sept </a>
           </li>
-          <li class="">
-            <a href="#oct" data-toggle="tab"> Oct. </a>
+          <li class="" role="tab">
+            <a href="#oct" data-toggle="tab" aria-selected="false"> Oct. </a>
           </li>
-          <li class="">
-            <a href="#nov" data-toggle="tab"> Nov. </a>
+          <li class="" role="tab">
+            <a href="#nov" data-toggle="tab" aria-selected="false"> Nov. </a>
           </li>
-          <li class="">
-            <a href="#dec" data-toggle="tab"> Dec. </a>
+          <li class="" role="tab">
+            <a href="#dec" data-toggle="tab" aria-selected="false"> Dec. </a>
           </li>
         </ul>
       </div>
@@ -424,6 +424,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="1-highDailyRainTimeDayfile"></td>
                   <td id="1-highDailyRainValLogfile"></td>
                   <td id="1-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="1-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="1-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="1-highRain24hValDayfile"></td>
+                  <td id="1-highRain24hTimeDayfile"></td>
+                  <td id="1-highRain24hValLogfile"></td>
+                  <td id="1-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>
@@ -695,6 +704,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="2-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="2-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="2-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="2-highRain24hValDayfile"></td>
+                  <td id="2-highRain24hTimeDayfile"></td>
+                  <td id="2-highRain24hValLogfile"></td>
+                  <td id="2-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="2-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="2-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -962,6 +980,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="3-highDailyRainTimeDayfile"></td>
                   <td id="3-highDailyRainValLogfile"></td>
                   <td id="3-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="3-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="3-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="3-highRain24hValDayfile"></td>
+                  <td id="3-highRain24hTimeDayfile"></td>
+                  <td id="3-highRain24hValLogfile"></td>
+                  <td id="3-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>
@@ -1235,6 +1262,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="4-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="4-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="4-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="4-highRain24hValDayfile"></td>
+                  <td id="4-highRain24hTimeDayfile"></td>
+                  <td id="4-highRain24hValLogfile"></td>
+                  <td id="4-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="4-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="4-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -1502,6 +1538,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="5-highDailyRainTimeDayfile"></td>
                   <td id="5-highDailyRainValLogfile"></td>
                   <td id="5-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="5-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="5-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="5-highRain24hValDayfile"></td>
+                  <td id="5-highRain24hTimeDayfile"></td>
+                  <td id="5-highRain24hValLogfile"></td>
+                  <td id="5-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>
@@ -1773,6 +1818,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="6-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="6-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="6-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="6-highRain24hValDayfile"></td>
+                  <td id="6-highRain24hTimeDayfile"></td>
+                  <td id="6-highRain24hValLogfile"></td>
+                  <td id="6-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="6-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="6-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -2040,6 +2094,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="7-highDailyRainTimeDayfile"></td>
                   <td id="7-highDailyRainValLogfile"></td>
                   <td id="7-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="7-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="7-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="7-highRain24hValDayfile"></td>
+                  <td id="7-highRain24hTimeDayfile"></td>
+                  <td id="7-highRain24hValLogfile"></td>
+                  <td id="7-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>
@@ -2311,6 +2374,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="8-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="8-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="8-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="8-highRain24hValDayfile"></td>
+                  <td id="8-highRain24hTimeDayfile"></td>
+                  <td id="8-highRain24hValLogfile"></td>
+                  <td id="8-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="8-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="8-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -2578,6 +2650,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="9-highDailyRainTimeDayfile"></td>
                   <td id="9-highDailyRainValLogfile"></td>
                   <td id="9-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="9-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="9-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="9-highRain24hValDayfile"></td>
+                  <td id="9-highRain24hTimeDayfile"></td>
+                  <td id="9-highRain24hValLogfile"></td>
+                  <td id="9-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>
@@ -2849,6 +2930,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="10-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="10-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="10-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="10-highRain24hValDayfile"></td>
+                  <td id="10-highRain24hTimeDayfile"></td>
+                  <td id="10-highRain24hValLogfile"></td>
+                  <td id="10-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="10-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="10-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -3118,6 +3208,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="11-highDailyRainTimeLogfile"></td>
                 </tr>
                 <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="11-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="11-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="11-highRain24hValDayfile"></td>
+                  <td id="11-highRain24hTimeDayfile"></td>
+                  <td id="11-highRain24hValLogfile"></td>
+                  <td id="11-highRain24hTimeLogfile"></td>
+                </tr>
+                <tr>
                   <td>Total monthly rain</td>
                   <td><div id="11-highMonthlyRainVal" data-title="Enter new Total monthly rain value"></div></td>
                   <td><div id="11-highMonthlyRainTime" data-title="Enter new Total monthly rain date"></div></td>
@@ -3385,6 +3484,15 @@ Last modified: 2022/06/28 11:04:53
                   <td id="12-highDailyRainTimeDayfile"></td>
                   <td id="12-highDailyRainValLogfile"></td>
                   <td id="12-highDailyRainTimeLogfile"></td>
+                </tr>
+                <tr>
+                  <td>High 24 hour rain</td>
+                  <td><div id="12-highRain24hVal" data-title="Enter new high 24 hour rain value"></div></td>
+                  <td><div id="12-highRain24hTime" data-title="Enter new high 24 hour rain date/time"></div></td>
+                  <td id="12-highRain24hValDayfile"></td>
+                  <td id="12-highRain24hTimeDayfile"></td>
+                  <td id="12-highRain24hValLogfile"></td>
+                  <td id="12-highRain24hTimeLogfile"></td>
                 </tr>
                 <tr>
                   <td>Total monthly rain</td>

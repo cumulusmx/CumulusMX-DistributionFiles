@@ -1,4 +1,4 @@
-// Last modified: 2022/06/16 16:07:04
+// Last modified: 2022/07/26 23:47:43
 
 var myTable;
 var currMonth;
@@ -45,6 +45,17 @@ $(document).ready(function () {
 
     fromDate.datepicker('setDate', now);
     toDate.datepicker('setDate', now);
+
+    $.ajax({
+        url: 'api/settings/dateformat.txt',
+        dataType: 'text',
+        success: function (result) {
+            // we want all lower case and yy for the year not yyyy
+            var format = result.toLowerCase().replace('yyyy','yy');
+            fromDate.datepicker('option', 'dateFormat', format);
+            toDate.datepicker('option', 'dateFormat', format);
+        }
+    });
 
     var columnDefs = [
         {

@@ -1,4 +1,4 @@
-// Last modified: 2021/07/12 10:07:21
+// Last modified: 2022/07/31 22:50:27
 
 let accessMode;
 
@@ -104,6 +104,50 @@ $(document).ready(function () {
             alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
         });
     });
+
+
+    $("#updatemonthly").click(function () {
+        $("#results").text("Attempting update...");
+        $.ajax({
+            type: "POST",
+            url: "../api/setsettings/updatemonthlysql.json",
+            success: function (msg) {
+                $("#results").text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $("#results").text(textStatus);
+            }
+        });
+    });
+
+    $("#updatedayfile").click(function () {
+        $("#results").text("Attempting update...");
+        $.ajax({
+            type: "POST",
+            url: "../api/setsettings/updatedayfilesql.json",
+            success: function (msg) {
+                $("#results").text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $("#results").text(textStatus);
+            }
+        });
+    });
+
+    $("#updaterealtime").click(function () {
+        $("#results").text("Attempting update...");
+        $.ajax({
+            type: "POST",
+            url: "../api/setsettings/updaterealtimesql.json"
+        })
+        .done(function (msg) {
+            $("#results").text(msg.result);
+        })
+        .fail(function (jqXHR, textStatus) {
+            alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+        });
+    });
+
 });
 
 function addButtons() {

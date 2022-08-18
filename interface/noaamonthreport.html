@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/24 21:33:35
+Last modified: 2022/08/01 09:34:14
 -->
 <!doctype html>
 <html lang="en">
@@ -90,7 +90,6 @@ Last modified: 2022/06/24 21:33:35
             $('#selYear').on('change', function () {
                 changeYear();
             });
-
         });
 
         function changeYear() {
@@ -107,7 +106,8 @@ Last modified: 2022/06/24 21:33:35
             var now = new Date();
             // subtract 1 day
             now.setTime(now.getTime()-(1*24*3600000));
-
+            // and set to first of month
+            now.setDate(1);
             $('#selMonth').empty();
 
             for (var i = firstMonth; i <= lastMonth; i++) {

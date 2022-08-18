@@ -22,6 +22,25 @@
                 }
             }
         },
+        "shutdown": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "datastoppedexit": {
+                    "rightLabel": "Exit on data stopped",
+                    "helpers": [
+                        "If a 'data stopped' event occurs because some or all of the station data is not updating, then exit Cumulus MX to prevent a flat line being logged",
+                        "Note: the data stopped event can be suppressed by the station 'No sensor check' setting"
+                    ]
+                },
+                "datastoppedmins": {
+                    "helper": "Specify the number of minutes to wait after the data stopped event for it to clear before exiting",
+                    "dependencies": {
+                        "datastoppedexit": true
+                    }
+                }
+            }
+        },
         "logging": {
             "collapsible": true,
             "collapsed": true,

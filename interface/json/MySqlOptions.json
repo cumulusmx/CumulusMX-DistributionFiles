@@ -131,7 +131,9 @@
 					"rightLabel": "Custom Seconds Enabled"
 				},
 				"command": {
-					"label": "SQL command:",
+					"label": "SQL commands:",
+					"collapsible": true,
+					"collapsed": false,
 					"dependencies": {
 						"enabled": true
 					}
@@ -154,7 +156,9 @@
 					"rightLabel": "Custom Minutes Enabled"
 				},
 				"command": {
-					"label": "SQL command:",
+					"label": "SQL commands:",
+					"collapsible": true,
+					"collapsed": false,
 					"dependencies": {
 						"enabled": true
 					}
@@ -191,7 +195,9 @@
 					"rightLabel": "Custom Rollover Enabled"
 				},
 				"command": {
-					"label": "SQL command:",
+					"label": "SQL commands:",
+					"collapsible": true,
+					"collapsed": false,
 					"dependencies": {
 						"enabled": true
 					}

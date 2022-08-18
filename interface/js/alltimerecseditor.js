@@ -1,4 +1,4 @@
-// Last modified: 2022/06/14 09:45:43
+// Last modified: 2022/07/27 17:52:41
 
 var updateUrl = 'api/edit/alltime';
 var editFieldName;
@@ -15,12 +15,10 @@ $(document).ready(function() {
     $('.loading-overlay-image-container').show();
 
     $.ajax({
-        url: "api/edit/alltimerecords.json",
-        dataType:"json",
+        url: 'api/edit/alltimerecords.json',
+        dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
-                // set the value and add some accessibility
-                //$('#' + key).text(value).attr('aria-haspopup', true).on('shown', function(e, editable) {editable.input.$input.attr("aria-label", editable.options.title)});
                 $('#' + key)
                     .text(value)
                     .attr('aria-haspopup', true)
@@ -30,12 +28,11 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "api/edit/alltimerecordsdayfile.json",
-        dataType:"json",
+        url: 'api/edit/alltimerecordsdayfile.json',
+        dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 $('#' + key).text(value);
-
                 if (value != '-' && value != '') {
                     $('#' + key)
                         .attr({
@@ -49,8 +46,8 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "api/settings/version.json",
-        dataType: "json",
+        url: 'api/settings/version.json',
+        dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
             $('#Build').text(result.Build);
@@ -61,69 +58,73 @@ $(document).ready(function() {
 
     $(document).ajaxStop(function() {
         //$.fn.editable.defaults.mode = 'inline';
-        $.fn.editable.defaults.url= updateUrl;
+        $.fn.editable.defaults.url = updateUrl;
         $.fn.editable.defaults.clear = false;
         $.fn.editable.defaults.send = 'always'; // so we do not need a primary key
+        $.fn.editable.defaults.emptytext = '-';
+        $.fn.editable.defaults.step = 'any';
         //$.fn.editable.defaults.type = 'text';
         // add some accessibility to the default buttons
         $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i></button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i></button>';
 
         $('#highTempVal').editable();
-        $('#highTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highTempTime').editable();
         $('#lowTempVal').editable();
-        $('#lowTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowTempTime').editable();
         $('#highDewPointVal').editable();
-        $('#highDewPointTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highDewPointTime').editable();
         $('#lowDewPointVal').editable();
-        $('#lowDewPointTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowDewPointTime').editable();
         $('#highApparentTempVal').editable();
-        $('#highApparentTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highApparentTempTime').editable();
         $('#lowApparentTempVal').editable();
-        $('#lowApparentTempTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowApparentTempTime').editable();
         $('#highFeelsLikeVal').editable();
-        $('#highFeelsLikeTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highFeelsLikeTime').editable();
         $('#lowFeelsLikeVal').editable();
-        $('#lowFeelsLikeTime').editable({format:"dd/mm/yyy hh:ii"});
+        $('#lowFeelsLikeTime').editable();
         $('#highHumidexVal').editable();
-        $('#highHumidexTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highHumidexTime').editable();
         $('#lowWindChillVal').editable();
-        $('#lowWindChillTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowWindChillTime').editable();
         $('#highHeatIndexVal').editable();
-        $('#highHeatIndexTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highHeatIndexTime').editable();
         $('#highMinTempVal').editable();
-        $('#highMinTempTime').editable({format:"dd/mm/yyyy"});
+        $('#highMinTempTime').editable();
         $('#lowMaxTempVal').editable();
-        $('#lowMaxTempTime').editable({format:"dd/mm/yyyy"});
+        $('#lowMaxTempTime').editable();
         $('#highDailyTempRangeVal').editable();
-        $('#highDailyTempRangeTime').editable({format:"dd/mm/yyyy"});
+        $('#highDailyTempRangeTime').editable();
         $('#lowDailyTempRangeVal').editable();
-        $('#lowDailyTempRangeTime').editable({format:"dd/mm/yyyy"});
+        $('#lowDailyTempRangeTime').editable();
         $('#highHumidityVal').editable();
-        $('#highHumidityTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highHumidityTime').editable();
         $('#lowHumidityVal').editable();
-        $('#lowHumidityTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowHumidityTime').editable();
         $('#highBarometerVal').editable();
-        $('#highBarometerTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highBarometerTime').editable();
         $('#lowBarometerVal').editable();
-        $('#lowBarometerTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#lowBarometerTime').editable();
         $('#highGustVal').editable();
-        $('#highGustTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highGustTime').editable();
         $('#highWindVal').editable();
-        $('#highWindTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highWindTime').editable();
         $('#highWindRunVal').editable();
-        $('#highWindRunTime').editable({format:"dd/mm/yyyy"});
+        $('#highWindRunTime').editable();
         $('#highRainRateVal').editable();
-        $('#highRainRateTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highRainRateTime').editable();
         $('#highHourlyRainVal').editable();
-        $('#highHourlyRainTime').editable({format:"dd/mm/yyyy hh:ii"});
+        $('#highHourlyRainTime').editable();
         $('#highDailyRainVal').editable();
-        $('#highDailyRainTime').editable({format:"dd/mm/yyyy"});
+        $('#highDailyRainTime').editable();
+        $('#higRain24hVal').editable();
+        $('#higRain24hTime').editable();
         $('#highMonthlyRainVal').editable();
-        $('#highMonthlyRainTime').editable({format:"yyyy/mm"});
+        $('#highMonthlyRainTime').editable();
         $('#longestDryPeriodVal').editable();
-        $('#longestDryPeriodTime').editable({format:"dd/mm/yyyy"});
+        $('#longestDryPeriodTime').editable();
         $('#longestWetPeriodVal').editable();
-        $('#longestWetPeriodTime').editable({format:"dd/mm/yyyy"});
+        $('#longestWetPeriodTime').editable();
 
         $('.loading-overlay').hide();
         $('.loading-overlay-image-container').hide();

@@ -1,0 +1,103 @@
+<!--
+Last modified: 2022/07/29 15:09:28
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Purge MySQL - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <link href="css/font-style.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- menu -->
+    <script src="js/menu.js"></script>
+
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="css/cumulus.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "api/settings/version.json",
+                dataType: "json",
+                success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }
+            });
+
+            $("#reload").click(function(event) {
+                $('#status').text('');
+                $.ajax({
+                    url: "api/utils/purgemysql",
+                    dataType: 'text'
+                })
+                .done(function (response) {
+                    $('#status').text(response)
+                })
+                .fail(function (jqXHR, response) {
+                    $('#status').text(response)
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav">
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
+
+    <div class="container">
+        <h1>Purge MySQL</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div><b>Purge the failed MySQL command queue</b></div>
+                <div>If you have failed MySQL commands stuck in the upload queue, this action will delete the entire failed queue.</div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">Purge MySQL</button>
+                </div>
+                <br>
+                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
+</html>

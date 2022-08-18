@@ -1033,7 +1033,7 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpersPosition": "above",
-			"helper": "If you can, it is recommended that you use the Local API station type rather than this HTTP protocol",
+			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than this HTTP protocol",
 			"fields": {
 				"setcustom": {
 					"label": "Enable Gateway Config:",
@@ -1202,7 +1202,7 @@
 					"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"userkey": {
-					"label": "API User Key:",
+					"label": "API Key:",
 					"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"mac": {

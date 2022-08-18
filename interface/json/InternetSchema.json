@@ -61,7 +61,7 @@
 					"title": "Advanced Settings",
 					"type": "object",
 					"properties": {
-						"activeftp": {
+						"autodetect": {
 							"type": "boolean"
 						},
 						"disableftpsepsv": {
@@ -70,13 +70,21 @@
 						"disableftpsexplicit": {
 							"type": "boolean"
 						},
+						"activeftp": {
+							"type": "boolean"
+						},
+						"ignorecerts": {
+							"type": "boolean"
+						},
 						"ftpmode": {
 						}
 					},
 					"dependencies": {
+						"autodetect": ["ftpmode"],
+						"disableftpsepsv": ["ftpmode", "autodetect"],
+						"disableftpsexplicit": ["ftpmode", "autodetect"],
 						"activeftp": ["ftpmode"],
-						"disableftpsepsv": ["ftpmode"],
-						"disableftpsexplicit": ["ftpmode"]
+						"ignorecerts":  ["ftpmode"]
 					}
 				}
 			},
