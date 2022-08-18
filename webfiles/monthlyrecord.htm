@@ -1,6 +1,6 @@
 <!--
 	monthlyrecord.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/04/05 17:05:15
+	Last modified: 2022/07/27 09:23:33
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -160,6 +160,11 @@
 											<td class=""><span id="HourlyRainHT"></span></td>
 										</tr>
 										<tr class="w3-theme-l3">
+											<td class="">High 24 Hour Rainfall</td>
+											<td class="w3-right-align"><span id="Rain24HourH"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
+											<td class=""><span id="Rain24HourHT"></span></td>
+										</tr>
+										<tr class="w3-theme-l3">
 											<td class="">High Daily Rainfall</td>
 											<td class="w3-right-align"><span id="DailyRainH"></span>&nbsp;<span data-cmxdata="rainunit"></span></td>
 											<td class=""><span id="DailyRainHT"></span></td>
@@ -230,19 +235,19 @@
 							<div class="w3-panel w3-container w3-theme-light">
 								<h3 class="w3-center">Welcome to <br/><span class="subText"><span data-cmxdata="longlocation"></span></span></h3>
 								<p>Select the required month below.</p>
-								<div class="w3-bar-block w3-center">
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeData(0)">January</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeData(1)">February</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(2)">March</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(3)">April</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(4)">May</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(5)">June</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(6)">July</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(7)">August</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(8)">September</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(9)">October</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(10)">November</button>
-									<button class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(11)">December</button>
+								<div id="btnArray" 	class="w3-bar-block w3-center">
+									<button id="btnMon0" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeData(0)" aria-pressed="false">January</button>
+									<button id="btnMon1" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeData(1)" aria-pressed="false">February</button>
+									<button id="btnMon2" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(2)" aria-pressed="false">March</button>
+									<button id="btnMon3" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(3)" aria-pressed="false">April</button>
+									<button id="btnMon4" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(4)" aria-pressed="false">May</button>
+									<button id="btnMon5" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(5)" aria-pressed="false">June</button>
+									<button id="btnMon6" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(6)" aria-pressed="false">July</button>
+									<button id="btnMon7" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(7)" aria-pressed="false">August</button>
+									<button id="btnMon8" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(8)" aria-pressed="false">September</button>
+									<button id="btnMon9" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(9)" aria-pressed="false">October</button>
+									<button id="btnMon10" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(10)" aria-pressed="false">November</button>
+									<button id="btnMon11" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onclick="changeData(11)" aria-pressed="false">December</button>
 								</div>
 							</div>
 						</div>

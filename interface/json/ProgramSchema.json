@@ -29,6 +29,23 @@
                 }
             }
         },
+        "shutdown": {
+            "title": "Shutdown Options",
+            "type": "object",
+            "properties": {
+                "datastoppedexit": {
+                    "type": "boolean"
+                },
+                "datastoppedmins": {
+                    "title": "Data Stopped exit delay",
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "dependencies": {
+                "datastoppedmins": ["datastoppedexit"]
+            }
+        },
         "logging": {
             "title": "Logging Options",
             "type": "object",

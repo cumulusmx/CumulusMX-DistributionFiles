@@ -1,4 +1,4 @@
-// Last modified: 2022/05/25 19:12:38
+// Last modified: 2022/07/29 10:10:24
 
 let accessMode;
 
@@ -218,7 +218,7 @@ $(document).ready(function() {
                 // Set the hidden advanced options protocol field to match
                 form.getControlByPath("website/advanced/ftpmode").setValue(ftpmode);
                 // Set the default port to match
-                let newPort = ftpmode == 0 ? 21 : (ftpmode == 1 ? 990 : 22);
+                let newPort = ftpmode == 2 ? 22 : 21;
                 form.getControlByPath("website/ftpport").setValue(newPort);
             });
 

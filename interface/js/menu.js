@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2021/06/07 23:52:48
+ Last modified: 2022/07/29 15:07:17
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -24,7 +24,10 @@ let menuSrc = [
 		{title: "Historic Charts",   menu: "b",    url: "chartshistoric.html"}
 	]},
 	{title: "Today/Yesterday",    menu: "b",    url: "todayyest.html"},
-	{title: "Records",            menu: "b",    url: "records.html"},
+	{title: "Records",         submenu: true,       items: [
+		{title: "Records",            menu: "b",    url: "records.html"},
+		{title: "This Period",        menu: "b",    url: "thisperiod.html"}
+	]},
 	{title: "Extra sensors",      submenu: true,       items: [
 		{title: "Extra sensors",        menu: "b",    url: "extra.html"},
 		{title: "AirLink sensors",      menu: "b",    url: "airlink.html"}
@@ -49,8 +52,7 @@ let menuSrc = [
 		{title: "Calibration settings", menu: "b",    url: "calibrationsettings.html"},
 		{title: "NOAA settings",        menu: "b",    url: "noaasettings.html"},
 		{title: "MySQL settings",       menu: "b",    url: "mysqlsettings.html"},
-		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"},
-		{title: "FTP/Copy Now!",        menu: "b",    url: "ftpnow.html"}
+		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"}
 	]},
 	{title: "Edit",      submenu: true,       items: [
 		{title: "Today's rain",          menu: "b",    url: "raintodayeditor.html"},
@@ -61,6 +63,11 @@ let menuSrc = [
 		{title: "This Month's Records",  menu: "b",    url: "thismonthrecseditor.html"},
 		{title: "This Year's Records",   menu: "b",    url: "thisyearrecseditor.html"}
 	]},
+	{title: "Utils",     submenu: true,      items:[
+		{title: "Reload Dayfile",       menu: "b",    url: "util_reloaddayfile.html"},
+		{title: "FTP/Copy Now!",        menu: "b",    url: "util_ftpnow.html"},
+		{title: "Purge MySQL",          menu: "b",    url: "util_purgemysql.html"}
+	]}
 ];
 
 

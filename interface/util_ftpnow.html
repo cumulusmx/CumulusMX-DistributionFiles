@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:50:58
+Last modified: 2022/07/28 20:43:08
 -->
 <!doctype html>
 <html lang="en">
@@ -28,20 +28,24 @@ Last modified: 2021/06/09 21:50:58
 
     <script>
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+            $.ajax({
+                url: "api/settings/version.json",
+                dataType: "json",
+                success: function (result) {
                     $('#Version').text(result.Version);
                     $('#Build').text(result.Build);
-                }});
+                }
+            });
 
             $("#startFtp").click(function(event) {
                 $('#status').text('');
                 $.post(
-                    "api/setsettings/ftpnow.json",
+                    "api/utils/ftpnow.json",
                     {data: "{'dailygraphs':" + $('#dailygraphs').prop('checked') + "}"},
                 ).done(function (response) {
-                    $('#status').text(response.result)
+                    $('#status').text(response);
                 }).fail(function (jqXHR, response) {
-                    $('#status').text(response)
+                    $('#status').text(response);
                 });
             });
         });
@@ -81,7 +85,7 @@ Last modified: 2021/06/09 21:50:58
                     <button type="submit" class="btn btn-primary" id="startFtp" form="ftpform">Start FTP/Copy Now</button>
                 </div>
                 <br>
-                <div><p>Status: <span id="status" style="height: 70px"></span></div>
+                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
             </div>
         </div>
     </div>

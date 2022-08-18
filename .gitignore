@@ -4,4 +4,4 @@
 *.pdb
 updates.txt
 .vscode/
-hashmd5*.txt
+hash_md5*.txt

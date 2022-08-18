@@ -106,6 +106,8 @@
 					"type": "boolean"
 				},
 				"command": {
+					"type": "array",
+					"maxItems": 10
 				},
 				"interval": {
 					"type": "integer",
@@ -125,6 +127,8 @@
 					"type": "boolean"
 				},
 				"command": {
+					"type": "array",
+					"maxItems": 10
 				},
 				"intervalindex": {
 					"enum": [0,1,2,3,4,5,6,7,8,9,10,11]
@@ -143,6 +147,8 @@
 					"type": "boolean"
 				},
 				"command": {
+					"type": "array",
+					"maxItems": 10
 				}
 			},
 			"dependencies": {
