@@ -1,4 +1,4 @@
-// Last modified: 2022/07/27 18:00:52
+// Last modified: 2022/08/23 09:34:27
 
 var updateUrl = 'api/edit/thisyear';
 var editFieldName;
@@ -117,6 +117,8 @@ $(document).ready(function() {
         $('#highHourlyRainTime').editable();
         $('#highDailyRainVal').editable();
         $('#highDailyRainTime').editable();
+        $('#highRain24hVal').editable();
+        $('#highRain24hTime').editable();
         $('#highMonthlyRainVal').editable();
         $('#highMonthlyRainTime').editable();
         $('#longestDryPeriodVal').editable();

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/07/24 19:00:29
+Last modified: 2022/08/24 09:30:04
 -->
 <!doctype html>
 <html lang="en">
@@ -115,7 +115,12 @@ Last modified: 2022/07/24 19:00:29
     <div class="row top-buffer">
       <div class="col-md-12">
         <h1>Monthly Records Editor</h1>
-        <div id="recUpdater" role="dialog">
+        <div class="row">
+          <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
+              Note: You can click on the Dayfile/Logfile Values/Timestamps to copy the value to your record fields
+          </div>
+      </div>
+      <div id="recUpdater" role="dialog">
           <div class="editorContent">
               <div style="text-align: center;">Change <span id="editName"></span> record <span id="editType"></span> from <b><span id="editOldVal"></span></b> to <b><span id="editNewVal"></span></b>?</div>
               <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
@@ -130,7 +135,7 @@ Last modified: 2022/07/24 19:00:29
     </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top:10px">
       <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
         <div class="form-group">
             <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>
