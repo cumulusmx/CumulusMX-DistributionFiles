@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/07/22 11:48:34
+Last modified: 2022/08/24 09:32:15
 -->
 <!doctype html>
 <html lang="en">
@@ -97,6 +97,11 @@ Last modified: 2022/07/22 11:48:34
 
     <div id="container" class="container">
         <h1>All Time Records Editor</h1>
+        <div class="row">
+            <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
+                Note: You can click on the Dayfile/Logfile Values/Timestamps to copy the value to your record fields
+            </div>
+        </div>
         <div id="recUpdater" role="dialog">
             <div class="editorContent">
                 <div style="text-align: center;">Change <span id="editName"></span> record <span id="editType"></span> from <b><span id="editOldVal"></span></b> to <b><span id="editNewVal"></span></b>?</div>
@@ -109,7 +114,7 @@ Last modified: 2022/07/22 11:48:34
                 <div><button type="button" class="updaterError_close">Close</button></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top:10px">
             <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>

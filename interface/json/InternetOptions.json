@@ -17,7 +17,7 @@
 				},
 				"localcopyfolder": {
 					"label": "Local copy destination folder path:",
-					"helper": "Enter the folder name to which you wish to copy the standard files",
+					"helper": "Enter the folder name to which you wish to copy the standard files, this should have a trailing '/' or '\\'",
 					"placeholder": "Destination path with trailing folder delimiter",
 					"dependencies": {
 						"localcopy": true
@@ -393,6 +393,15 @@
 					],
 					"dependencies": {
 						"enabled": true
+					}
+				},
+				"ignorecerterrors": {
+					"label": "Certificate errors:",
+					"rightLabel": "Ignore server certificate errors",
+					"helper": "Caution: Forces the email client to ignore any errors when checking the servers security certificate, this is not normally required",
+					"dependencies": {
+						"enabled": true,
+						"ssloption": [1,2,3,4]
 					}
 				},
 				"authenticate": {

@@ -285,6 +285,9 @@
 				"ssloption": {
 					"enum": [0,1,2,3,4]
 				},
+				"ignorecerterrors": {
+					"type": "boolean"
+				},
 				"authenticate": {
 					"type": "boolean"
 				},
@@ -299,7 +302,8 @@
 				"ssloption": ["enabled"],
 				"authenticate": ["enabled"],
 				"user": ["enabled"],
-				"password": ["enabled"]
+				"password": ["enabled"],
+				"ignorecerterrors": ["enabled", "ssloption"]
 			}
 
 		},

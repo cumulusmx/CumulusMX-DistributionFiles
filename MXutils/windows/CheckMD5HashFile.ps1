@@ -15,7 +15,7 @@ $Result = foreach ($Line in (Get-Content -LiteralPath $infile)) {
     $Hash, [string] $TestFileName = $Line.Split()
     $FullTestFileName = Join-Path -Path $SourceDir -ChildPath $TestFileName.Trim()
     if (Test-Path -LiteralPath $FullTestFileName) {
-        $THash = (Get-FileHash -LiteralPath $FullTestFileName -Algorithm 'MD5').Hash
+        $THash = (Get-FileHash -LiteralPath $FullTestFileName -Algorithm 'MD5').Hash.ToLower()
     } else {
         $THash = '__N/A__'
     }
