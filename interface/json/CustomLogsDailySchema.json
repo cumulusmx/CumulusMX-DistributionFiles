@@ -1,0 +1,27 @@
+{
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"daily": {
+			"type": "array",
+			"title": "Custom Logs - daily",
+			"maxItems": 10,
+			"items": {
+				"type": "object",
+				"properties": {
+					"enabled": {
+						"type": "boolean"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

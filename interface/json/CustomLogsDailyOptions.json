@@ -1,0 +1,29 @@
+{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"daily": {
+			"type": "table",
+			"label": "Custom Daily",
+			"items": {
+				"fields": {
+					"enabled": {
+						"label": "Enabled"
+					},
+					"filename": {
+						"type": "text",
+						"label": "Filename Root",
+						"cols": 20
+					},
+					"content": {
+						"type": "textarea",
+						"label": "Data Content",
+						"cols": 180
+					}
+				}
+			}
+		}
+
+	}
+}

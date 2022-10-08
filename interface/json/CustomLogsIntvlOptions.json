@@ -1,0 +1,48 @@
+{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"interval": {
+			"type": "table",
+			"label": "Custom Interval",
+			"items": {
+				"fields": {
+					"enabled": {
+						"label": "Enabled"
+					},
+					"filename": {
+						"type": "text",
+						"label": "Filename Root",
+						"cols": 20
+					},
+					"content": {
+						"type": "textarea",
+						"label": "Data Content",
+						"cols": 180
+					},
+					"intervalidx": {
+						"label": "Interval",
+						"numericEntry": true,
+						"optionLabels": [
+							"1 minute",
+							"2 minutes",
+							"3 minutes",
+							"4 minutes",
+							"5 minutes",
+							"6 minutes",
+							"10 minutes",
+							"12 minutes",
+							"15 minutes",
+							"20 minutes",
+							"30 minutes",
+							"60 minutes"
+						],
+						"removeDefaultNone": true,
+						"sort": false
+					}
+				}
+			}
+		}
+	}
+}
