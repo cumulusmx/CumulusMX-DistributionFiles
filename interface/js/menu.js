@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2022/07/29 15:07:17
+ Last modified: 2022/09/26 11:00:38
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -52,7 +52,8 @@ let menuSrc = [
 		{title: "Calibration settings", menu: "b",    url: "calibrationsettings.html"},
 		{title: "NOAA settings",        menu: "b",    url: "noaasettings.html"},
 		{title: "MySQL settings",       menu: "b",    url: "mysqlsettings.html"},
-		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"}
+		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"},
+		{title: "Custom Logs",          menu: "b",    url: "customlogs.html"}
 	]},
 	{title: "Edit",      submenu: true,       items: [
 		{title: "Today's rain",          menu: "b",    url: "raintodayeditor.html"},
