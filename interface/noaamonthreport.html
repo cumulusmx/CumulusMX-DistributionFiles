@@ -75,6 +75,11 @@ Last modified: 2022/08/01 09:34:14
                 startMonth =  result.month;
                 startYear = result.year;
 
+                var startYear = parseInt(result.year);
+                if (startYear < 2004 || startYear > thisYear) {
+                    startYear = 2004;
+                }
+
                 for (var i = thisYear; i >= startYear; i--) {
                     $('#selYear').append($('<option>', {
                         value: i,
