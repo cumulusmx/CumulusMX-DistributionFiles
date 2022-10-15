@@ -50,15 +50,20 @@ Last modified: 2022/06/23 22:20:37
             });
 
             $.ajax({
-                url: "/api/tags/process.json?recordsbegandate",
-                dataType: "json"
+                url: '/api/tags/process.txt',
+                dataType: 'json',
+                type: 'POST',
+                data: '<#recordsbegandate format="yyyy">'
             })
             .done(function (result) {
                 var now = new Date();
                 // subtract 1 day
                 now.setTime(now.getTime()-(1*24*3600000));
                 var yr = now.getFullYear();
-                var start = result.recordsbegandate.split(" ")[2];
+                var start = parseInt(result);
+                if (start < 2004 || start > yr) {
+                    start = 2004;
+                }
 
                 for (var i = yr; i >= start; i--) {
                     $('#datepicker').append($('<option>', {
