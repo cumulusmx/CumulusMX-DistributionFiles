@@ -1,4 +1,4 @@
-// Last modified: 2022/08/23 09:34:27
+// Last modified: 2022/11/05 21:53:16
 
 var updateUrl = 'api/edit/thisyear';
 var editFieldName;
@@ -62,7 +62,7 @@ $(document).ready(function() {
         $.fn.editable.defaults.clear = false;
         $.fn.editable.defaults.send = 'always';
         $.fn.editable.defaults.type = 'text';
-        $.fn.editable.defaults.emptytext ="-";
+        $.fn.editable.defaults.emptytext = "-";
         $.fn.editable.defaults.step = 'any';
         // add some accessibility to the default buttons
         $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i></button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i></button>';
