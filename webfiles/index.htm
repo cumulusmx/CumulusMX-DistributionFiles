@@ -1,6 +1,6 @@
 <!--
 	index.html		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2022/07/02 17:57:39
+	Last modified: 2022/11/20 16:28:39
 	Page: 1 main panel plus a right sidebar
 -->
 <!DOCTYPE html>
@@ -23,10 +23,19 @@
 		<!--	All Styles	-->
 		<link href="css/w3Pro.css" rel="stylesheet">	<!--	Basic w3shools responsive styles	-->
 		<link href="css/colours.css" rel="stylesheet">	<!--	Slightly enhanced w3schools colours	-->
-  		<link href="css/mx-templates.css" rel="stylesheet">	<!--	Specific styles for these templates.	-->
+		<link href="css/mx-templates.css" rel="stylesheet">	<!--	Specific styles for these templates.	-->
 
 		<!--	Scripts	-->
 		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
+		<script>
+			window.onload = () => {
+				$('#moonImg').attr('src', 'images/moon.png?' + Date.now());
+				// update the moon image every 20 minutes if the page is left open
+				setInterval(() => {
+					$('#moonImg').attr('src', 'images/moon.png?' + Date.now());
+				}, 1200000);
+			};
+		</script>
 	</head>
 	<body>
 		<div id="Header" class="w3-row w3-top w3-theme-dark w3-theme-bdr">
@@ -67,7 +76,7 @@
 												<td class=""><span data-cmxdata="sunrise"></span></td>
 												<td class="">Moon Rise:</td>
 												<td class=""><span data-cmxdata="moonrise"></span></td>
-												<td rowspan="3" style="width:75px; height: 75px; padding:0"><img src="images/moon.png" alt="Moon" width="75" height="75" class="w3-image" />Visible <span data-cmxdata="MoonPercentAbs"></span>%</td>
+												<td rowspan="3" style="width:75px; height: 75px; padding:0"><img id="moonImg" src="images/moon.png" alt="Moon" width="75" height="75" class="w3-image" />Visible <span data-cmxdata="MoonPercentAbs"></span>%</td>
 											</tr>
 											<tr>
 												<td class="">Dusk:</td>

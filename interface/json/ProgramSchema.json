@@ -26,6 +26,24 @@
                     "title": "PING escape time (mins)",
                     "type": "integer",
                     "minimum": 1
+                },
+                "startuptask": {
+                    "title": "Start-up Task",
+                    "type": "object",
+                    "properties": {
+                        "task": {
+                            "title": "Start-up task executable",
+                            "type": "string"
+                        },
+                        "taskparams": {
+                            "title": "Start-up task parameters",
+                            "type": "string"
+                        },
+                        "wait": {
+                            "title": "Start-up task waits",
+                            "type": "boolean"
+                        }
+                    }
                 }
             }
         },
@@ -40,6 +58,20 @@
                     "title": "Data Stopped exit delay",
                     "type": "integer",
                     "minimum": 0
+                },
+                "shutdowntask": {
+                    "title": "Shutdown Task",
+                    "type": "object",
+                    "properties": {
+                        "task": {
+                            "title": "Shutdown task executable",
+                            "type": "string"
+                        },
+                        "taskparams": {
+                            "title": "Shutdown task parameters",
+                            "type": "string"
+                        }
+                    }
                 }
             },
             "dependencies": {
