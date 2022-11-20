@@ -19,6 +19,25 @@
                 },
                 "startuppingescape": {
                     "helper": "Specify a time after which if no ping response is received carry on starting Cumulus MX anyway. Ignored if the host ping field is blank. Time in minutes"
+                },
+                "startuptask": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "task": {
+                            "helpers": [
+                                "Enter a task (program/scripts etc) to run before Cumulus MX starts up fully",
+                                "Note: You must enter a full path to the task, unless it is in the Cumulus MX root folder"
+                            ]
+                        },
+                        "taskparams": {
+                            "helper": "Optional parameters for the start-up task"
+                        },
+                        "wait": {
+                            "rightLabel": "Wait for task to complete",
+                            "helper": "Should Cumulus wait for the start-up task to complete (terminate) before continuing?"
+                        }
+                    }
                 }
             }
         },
@@ -37,6 +56,22 @@
                     "helper": "Specify the number of minutes to wait after the data stopped event for it to clear before exiting",
                     "dependencies": {
                         "datastoppedexit": true
+                    }
+                },
+                "shutdowntask": {
+                    "collapsible": true,
+                    "collapsed": true,
+                    "fields": {
+                        "task": {
+                            "helpers": [
+                                "Enter a task (program/scripts etc) to run when Cumulus MX is about to exit",
+                                "Note: You must enter a full path to the task, unless it is in the Cumulus MX root folder",
+                                "Note: Cumulus does not wait for this task to complete"
+                            ]
+                        },
+                        "taskparams": {
+                            "helper": "Optional parameters for the shutdown task"
+                        }
                     }
                 }
             }
