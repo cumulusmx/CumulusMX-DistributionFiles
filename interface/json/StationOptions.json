@@ -1598,7 +1598,7 @@
 					"fields": {
 						"temperature": {
 							"collapsible": true,
-							"collapsed": false,
+							"collapsed": true,
 							"fields": {
 								"graphTempVis": {
 									"rightLabel": "Outdoor Temperature"
@@ -1646,7 +1646,7 @@
 						},
 						"humidity": {
 							"collapsible": true,
-							"collapsed": false,
+							"collapsed": true,
 							"fields": {
 								"graphHumVis": {
 									"rightLabel": "Outdoor Humidity"
@@ -1658,7 +1658,7 @@
 						},
 						"solar": {
 							"collapsible": true,
-							"collapsed": false,
+							"collapsed": true,
 							"fields": {
 								"graphUvVis": {
 									"rightLabel": "UV Index"
@@ -1673,13 +1673,93 @@
 						},
 						"degreedays": {
 							"collapsible": true,
-							"collapsed": false,
+							"collapsed": true,
 							"fields": {
 								"graphGrowingDegreeDaysVis1": {
 									"rightLabel": "Growing Degree Days series #1"
 								},
 								"graphGrowingDegreeDaysVis2": {
 									"rightLabel": "Growing Degree Days series #2"
+								}
+							}
+						},
+						"extratemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"extrahum": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"soiltemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"soilmoist": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"usertemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"co2": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"co2": {
+									"rightLabel": "CO&#8322;"
+								},
+								"co2avg": {
+									"rightLabel": "CO&#8322; average"
+								},
+								"pm25": {
+									"rightLabel": "PM 2.5"
+								},
+								"pm25avg": {
+									"rightLabel": "PM2.5 average"
+								},
+								"pm10": {
+									"rightLabel": "PM10"
+								},
+								"pm10avg": {
+									"rightLabel": "PM10 average"
+								},
+								"temp": {
+									"rightLabel": "Temperature"
+								},
+								"hum": {
+									"rightLabel": "Humidity"
 								}
 							}
 						}

@@ -71,6 +71,14 @@
 				"offset": {
 					"label": "Offset:",
 					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+				},
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				}
 			}
 		},
@@ -89,6 +97,24 @@
 				"multiplier2": {
 					"label": "Multiplier ^2:",
 					"helper": "The Multiplier ^2 affects the curve of the correction"
+				},
+				"spike": {
+					"label": "Spike removal:",
+					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+				}
+			}
+		},
+		"humin": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"offset": {
+					"label": "Offset:",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
 				"spike": {
 					"label": "Spike removal:",

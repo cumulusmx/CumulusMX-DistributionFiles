@@ -13,7 +13,7 @@
 					},
 					"filename": {
 						"type": "text",
-						"label": "Filename Root",
+						"label": "Filename",
 						"cols": 20
 					},
 					"content": {

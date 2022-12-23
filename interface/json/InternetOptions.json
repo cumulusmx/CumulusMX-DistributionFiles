@@ -439,7 +439,7 @@
 				},
 				"programparams": {
 					"label": "Interval program parameters:",
-					"helper": "Parameters for the above program or command"
+					"helper": "Parameters for the above program or command, this can contain web tags"
 				},
 				"realtimeprogram": {
 					"label": "Real time program:",
@@ -447,7 +447,7 @@
 				},
 				"realtimeprogramparams": {
 					"label": "Real time program parameters:",
-					"helper": "Parameters for the above program or command"
+					"helper": "Parameters for the above program or command, this can contain web tags"
 				},
 				"dailyprogram": {
 					"label": "Daily program:",
@@ -455,7 +455,7 @@
 				},
 				"dailyprogramparams": {
 					"label": "Daily program parameters:",
-					"helper": "Parameters for the above program or command"
+					"helper": "Parameters for the above program or command, this can contain web tags"
 				}
 			}
 		},
