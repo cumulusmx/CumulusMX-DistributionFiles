@@ -1095,6 +1095,96 @@
 									"type": "boolean"
 								}
 							}
+						},
+						"extratemp" : {
+							"title": "Extra Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"extrahum" : {
+							"title": "Extra Humidities",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"soiltemp" : {
+							"title": "Soil Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"soilmoist" : {
+							"title": "Soil Moistures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"usertemp" : {
+							"title": "User Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"co2" : {
+							"title": "CO&#8322; Sensor",
+							"type": "object",
+							"properties": {
+								"co2": {
+									"type": "boolean"
+								},
+								"co2avg": {
+									"type": "boolean"
+								},
+								"pm25": {
+									"type": "boolean"
+								},
+								"pm25avg": {
+									"type": "boolean"
+								},
+								"pm10": {
+									"type": "boolean"
+								},
+								"pm10avg": {
+									"type": "boolean"
+								},
+								"temp": {
+									"type": "boolean"
+								},
+								"hum": {
+									"type": "boolean"
+								}
+							}
 						}
 					}
 				}

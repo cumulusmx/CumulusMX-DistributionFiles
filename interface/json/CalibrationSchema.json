@@ -70,6 +70,12 @@
 			"properties": {
 				"offset": {
 					"type": "number"
+				},
+				"multiplier": {
+					"type": "number"
+				},
+				"spike": {
+					"type": "number"
 				}
 			}
 		},
@@ -84,6 +90,21 @@
 					"type": "number"
 				},
 				"multiplier2": {
+					"type": "number"
+				},
+				"spike": {
+					"type": "number"
+				}
+			}
+		},
+		"humin": {
+			"type": "object",
+			"title": "Indoor Humidity",
+			"properties": {
+				"offset": {
+					"type": "integer"
+				},
+				"multiplier": {
 					"type": "number"
 				},
 				"spike": {

@@ -1,4 +1,4 @@
-// Last modified: 2022/07/25 09:06:27
+// Last modified: 2022/11/23 11:36:19
 
 $(document).ready(function() {
 
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     var columnDefs = [
     {
-        title: 'Line No.',
+        title: 'Line #',
         readonly: true
     },
     {
@@ -92,7 +92,7 @@ $(document).ready(function() {
         },
         columns: columnDefs,
         dom: '<"top"Bfip<"clear">>t<"bottom"fip<"clear">>',
-        select: 'single',
+        select: 'os',
         responsive: false,
         altEditor: true,     // Enable altEditor
         buttons: [
@@ -128,7 +128,7 @@ $(document).ready(function() {
             $.ajax({
                 url: 'api/edit/dayfile',
                 type: 'POST',
-                data: formatResponse('Edit', rowdata),
+                data: formatRequestSingle('Edit', rowdata),
                 success: success,
                 error: function(response, status, more) {
                     // Output the error message
@@ -152,26 +152,69 @@ $(document).ready(function() {
             });
         },
         onDeleteRow: function(datatable, rowdata, success, error) {
+            var selector = datatable.modal_selector;
+            $(selector + ' .modal-body .alert').remove();
+
             $.ajax({
                 url: 'api/edit/dayfile',
                 type: 'POST',
-                data: formatResponse('Delete', rowdata),
+                data: formatRequestMulti('Delete', rowdata),
                 success: success,
-                error: error
+                error: function(response, status, more) {
+                    // Output the error message
+                    var selector = datatable.modal_selector;
+                    $(selector + ' .modal-body .alert').remove();
+                    var message = '<div class="alert alert-danger" role="alert">' +
+                    '<strong>' + datatable.language.error.label + '</strong> ';
+                    respJson = JSON.parse(response.responseText);
+                    for (var key in respJson.errors) {
+                        message += respJson.errors[key][0];
+                    }
+                    message +='</div>';
+                    $(selector + ' .modal-body').append(message);
+
+                    // error 501 means MySQL failed but file update was OK
+                    if (response.status == 501) {
+                        // We have updated the dayfile data, so update the form
+                        datatable.s.dt.reload();
+                    }
+                }
             });
         }
     });
 
-    function formatResponse(action, rowdata) {
-        response = '{"action":"' + action + '","line":' + rowdata[0] + ',"data": [';
-        for (var key in rowdata) {
+    function formatRequestSingle(action, rowdata) {
+        var data = '[[';
+        // don't include the first element = line number
+        for (key in rowdata) {
             if (!isNaN(key) && key > 0) {
-                response += '"' + rowdata[key] + '",';
+                data += '"' + rowdata[key] + '",';
             }
         }
         // remove trailing comma
-        response = response.slice(0, -1);
-        response += ']}';
+        data = data.slice(0, -1);
+        data += ']]';
+
+        response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"data":' + data + '}';
+        return response;
+    }
+
+    function formatRequestMulti(action, rowdata) {
+        var lines = '[';
+        data = '[';
+        for (var i = 0; i < rowdata[0].length; i++) {
+            lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
+
+            // don't include the first element = line number
+            data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+        }
+        // remove trailing commas
+        lines = lines.slice(0, -1);
+        data = data.slice(0, -1);
+        lines += ']';
+        data += ']';
+
+        response = '{"action":"' + action + '","lines":' + lines + ',"data": ' + data + '}';
         return response;
     }
 });

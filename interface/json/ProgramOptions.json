@@ -70,7 +70,7 @@
                             ]
                         },
                         "taskparams": {
-                            "helper": "Optional parameters for the shutdown task"
+                            "helper": "Optional parameters for the shutdown task, this can string can contain web tags"
                         }
                     }
                 }

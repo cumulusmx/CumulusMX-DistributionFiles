@@ -1,4 +1,4 @@
-// Last modified: 2022/05/04 12:17:07
+// Last modified: 2022/11/29 15:58:34
 
 let StashedStationId;
 let accessMode;
@@ -104,6 +104,13 @@ $(document).ready(function () {
             // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
             form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
+
+            // messy, but cannot find another way of setting the rightLabels of array checkboxes
+            setSensorLabels(form, "Graphs/datavisibility/extratemp/sensors");
+            setSensorLabels(form, "Graphs/datavisibility/extrahum/sensors");
+            setSensorLabels(form, "Graphs/datavisibility/soiltemp/sensors");
+            setSensorLabels(form, "Graphs/datavisibility/soilmoist/sensors");
+            setSensorLabels(form, "Graphs/datavisibility/usertemp/sensors");
         }
     });
 });
@@ -152,6 +159,16 @@ function setCollapsed() {
             span.addClass('collapsed')
         }
     });
+}
+
+function setSensorLabels(form, path) {
+    let i = 1;
+    form.getControlByPath(path)
+        .children
+        .forEach(sensor => {
+            sensor.options.rightLabel = 'Sensor ' + i++;
+            sensor.refresh()
+        });
 }
 
 function getCSSRule(search) {
