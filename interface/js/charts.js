@@ -1,4 +1,4 @@
-// Last modified: 2022/12/01 11:18:07
+// Last modified: 2023/01/11 11:47:06
 
 var chart, config, doSelect;
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
                 $('#mySelect option[value="humidity"]').remove();
             }
             if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#mySelect option[value="humidity"]').remove();
+                $('#mySelect option[value="solar"]').remove();
             }
             if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
                 $('#mySelect option[value="sunhours"]').remove();
@@ -55,6 +55,9 @@ $(document).ready(function () {
             }
             if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
                 $('#mySelect option[value="extrahum"]').remove();
+            }
+            if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
+                $('#mySelect option[value="extradew"]').remove();
             }
             if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
                 $('#mySelect option[value="soiltemp"]').remove();
@@ -111,6 +114,9 @@ $(document).ready(function () {
                 break;
             case 'extrahum':
                 doExtraHum();
+                break;
+            case 'extradew':
+                doExtraDew();
                 break;
             case 'soiltemp':
                 doSoilTemp();
@@ -1590,6 +1596,116 @@ var doExtraHum = function () {
 
     $.ajax({
         url: 'api/graphdata/extrahum.json',
+        dataType: 'json',
+        success: function (resp) {
+             Object.entries(resp).forEach(([key, value]) => {
+                chart.addSeries({
+                    name: key,
+                    data: value
+                })
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doExtraDew = function () {
+    var freezing = config.temp.units === 'C' ? 0 : 32;
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Extra Dew Point'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Dew Point (°' + config.temp.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                },
+                plotLines: [{
+                        // freezing line
+                        value: freezing,
+                        color: 'rgb(0, 0, 180)',
+                        width: 1,
+                        zIndex: 2
+                    }]
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' °' + config.temp.units,
+            valueDecimals: config.temp.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRanges
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'api/graphdata/extradew.json',
         dataType: 'json',
         success: function (resp) {
              Object.entries(resp).forEach(([key, value]) => {

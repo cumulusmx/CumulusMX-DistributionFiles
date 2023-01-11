@@ -794,6 +794,13 @@
 						"tcpport": {
 							"label": "TCP port:",
 							"helper": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL"
+						},
+						"datastopped": {
+							"rightLabel": "Trigger DataStopped on Broadcast stop",
+							"helpers": [
+								"By default if WLL broadcasts stop being received a DataStopped condition and alarm will be triggered",
+								"Disabling this option means a DataStopped condition will only be triggered if both broadcasts AND current data API responses stop being received"
+							]
 						}
 					}
 				}
@@ -1694,6 +1701,16 @@
 							}
 						},
 						"extrahum": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false
+								}
+							}
+						},
+						"extradew": {
 							"collapsible": true,
 							"collapsed": true,
 							"fields": {

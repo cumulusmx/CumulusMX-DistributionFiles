@@ -108,6 +108,7 @@ $(document).ready(function () {
             // messy, but cannot find another way of setting the rightLabels of array checkboxes
             setSensorLabels(form, "Graphs/datavisibility/extratemp/sensors");
             setSensorLabels(form, "Graphs/datavisibility/extrahum/sensors");
+            setSensorLabels(form, "Graphs/datavisibility/extradew/sensors");
             setSensorLabels(form, "Graphs/datavisibility/soiltemp/sensors");
             setSensorLabels(form, "Graphs/datavisibility/soilmoist/sensors");
             setSensorLabels(form, "Graphs/datavisibility/usertemp/sensors");
