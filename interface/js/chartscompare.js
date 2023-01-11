@@ -1,7 +1,7 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2021/06/07 12:42:00
+// Last modified: 2023/01/10 21:20:36
 
-var chart, config, options;
+var chart, avail, config, options;
 var settings = {
     series: [],
     colours: []
@@ -47,6 +47,7 @@ $(document).ready(function () {
     $.ajax({url: 'api/graphdata/availabledata.json', success: function (result1) {
         $.ajax({url: 'api/graphdata/selectachart.json', success: function (result2) {
             $.ajax({url: "api/graphdata/graphconfig.json", success: function (result3) {
+                avail = result1;
                 settings = result2;
                 config = result3;
 
@@ -69,7 +70,11 @@ $(document).ready(function () {
                         result1[k].forEach(function (val) {
                             var option = $('<option />');
                             option.html(val);
-                            option.val(val);
+                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp'].indexOf(k) === -1) {
+                                option.val(val);
+                            } else {
+                                option.val(k + '-' + val);
+                            }
                             optgrp.append(option);
                         });
                         $('#data0').append(optgrp.clone());
@@ -186,7 +191,7 @@ var procDataSelect = function (sel) {
     var val = sel.value;
 
     // Has this series already been selected?
-    if (val != '0' &&  settings.series.indexOf(val) != -1) {
+    if (val != '0' &&  settings.series.indexOf(sel.value) != -1) {
         $('#' + id).val(txtSelect);
         return;
     }
@@ -212,6 +217,28 @@ var procDataSelect = function (sel) {
 };
 
 var updateChart = function (val, num, id) {
+    // test for the extra sensor series first
+    if (val.startsWith('ExtraTemp-')) {
+        doExtraTemp(num, val);
+        return;
+    } else if (val.startsWith('ExtraHum-')) {
+        doExtraHum(num, val);
+        return;
+    } else if (val.startsWith('ExtraDewPoint-')) {
+        doExtraDew(num, val);
+        return;
+    } else if (val.startsWith('UserTemp-')) {
+        doUserTemp(num, val);
+        return;
+    } else if (val.startsWith('SoilMoist-')) {
+        doSoilMoist(num, val);
+        return;
+    } else if (val.startsWith('SoilTemp-')) {
+        doSoilTemp(num, val);
+        return;
+    }
+
+    // no? then do the "standard" data
     switch (val) {
         case '0':
             // clear this series
@@ -333,7 +360,7 @@ var clearSeries = function (val) {
     var seriesIdx = -1;
     var i = 0;
     chart.series.forEach(function (ser) {
-        if (ser.options.name == val && ser.yAxis.options.id != 'navigator-y-axis') {
+        if (ser.options.id == val && ser.yAxis.options.id != 'navigator-y-axis') {
             seriesIdx = i;
         }
         i++;
@@ -456,6 +483,27 @@ var addHumidityAxis = function (idx) {
         allowDecimals: false
     }, false, false);
 };
+
+var addSoilMoistAxis = function (idx) {
+    // first check if we already have a soil moisture axis
+    if (checkAxisExists('SoilMoist'))
+        return;
+
+    // nope no existing axis, add one
+    chart.addAxis({
+        title: {text: 'Soil Moisture (' +  config.soilmoisture.units + ')'},
+        opposite: idx < settings.series.length / 2 ? false : true,
+        id: 'SoilMoist',
+        showEmpty: false,
+        labels: {
+            align: idx < settings.series.length / 2 ? 'right' : 'left'
+        },
+        min: 0,
+        max: 100,
+        allowDecimals: false
+    }, false, false);
+};
+
 
 var addSolarAxis = function (idx) {
     // first check if we already have a solar axis
@@ -613,6 +661,7 @@ var doTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.temp,
+                id: "Temperature",
                 name: "Temperature",
                 yAxis: "Temperature",
                 type: "line",
@@ -641,6 +690,7 @@ var doInTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.intemp,
+                id: 'Indoor Temp',
                 name: 'Indoor Temp',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -669,6 +719,7 @@ var doHeatIndex = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.heatindex,
+                id: 'Heat Index',
                 name: 'Heat Index',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -697,6 +748,7 @@ var doDewPoint = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.dew,
+                id: 'Dew Point',
                 name: 'Dew Point',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -725,6 +777,7 @@ var doWindChill = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wchill,
+                id: 'Wind Chill',
                 name: 'Wind Chill',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -753,6 +806,7 @@ var doAppTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.apptemp,
+                id: 'Apparent Temp',
                 name: 'Apparent Temp',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -781,6 +835,7 @@ var doFeelsLike = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.feelslike,
+                id: 'Feels Like',
                 name: 'Feels Like',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -810,6 +865,7 @@ var doHumidity = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.hum,
+                id: 'Humidity',
                 name: 'Humidity',
                 yAxis: 'Humidity',
                 type: 'line',
@@ -838,6 +894,7 @@ var doInHumidity = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.inhum,
+                id: 'Indoor Hum',
                 name: 'Indoor Hum',
                 yAxis: 'Humidity',
                 type: 'line',
@@ -867,6 +924,7 @@ var doSolarRad = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.SolarRad,
+                id: 'Solar Rad',
                 name: 'Solar Rad',
                 yAxis: 'Solar',
                 type: 'area',
@@ -897,6 +955,7 @@ var doUV = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.UV,
+                id: 'UV Index',
                 name: 'UV Index',
                 yAxis: 'UV',
                 type: 'line',
@@ -926,6 +985,7 @@ var doPress = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.press,
+                id: 'Pressure',
                 name: 'Pressure',
                 yAxis: 'Pressure',
                 type: 'line',
@@ -955,6 +1015,7 @@ var doWindSpeed = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wspeed,
+                id: 'Wind Speed',
                 name: 'Wind Speed',
                 yAxis: 'Wind',
                 type: 'line',
@@ -983,6 +1044,7 @@ var doWindGust = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wgust,
+                id: 'Wind Gust',
                 name: 'Wind Gust',
                 yAxis: 'Wind',
                 type: 'line',
@@ -1011,6 +1073,7 @@ var doWindDir = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.avgbearing,
+                id: 'Wind Bearing',
                 name: 'Wind Bearing',
                 yAxis: 'Bearing',
                 type: 'scatter',
@@ -1052,6 +1115,7 @@ var doRainfall = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.rfall,
+                id: 'Rainfall',
                 name: 'Rainfall',
                 yAxis: 'Rain',
                 type: 'area',
@@ -1082,6 +1146,7 @@ var doRainRate = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.rrate,
+                id: 'Rainfall Rate',
                 name: 'Rainfall Rate',
                 yAxis: 'RainRate',
                 type: 'line',
@@ -1111,6 +1176,7 @@ var doPm2p5 = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.pm2p5,
+                id: 'PM 2.5',
                 name: 'PM 2.5',
                 yAxis: 'pm',
                 type: 'line',
@@ -1139,12 +1205,204 @@ var doPm10 = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.pm10,
+                id: 'PM 10',
                 name: 'PM 10',
                 yAxis: 'pm',
                 type: 'line',
                 tooltip: {
                     valueSuffix: ' µg/m³',
                     valueDecimals: 1,
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doExtraTemp = function (idx, val) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/extratemp.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "Temperature",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doUserTemp = function (idx, val) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/usertemp.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "Temperature",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doExtraHum = function (idx, val) {
+    chart.showLoading();
+
+    addHumidityAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/extrahum.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: 'Humidity',
+                type: 'line',
+                tooltip: {
+                    valueSuffix: ' %',
+                    valueDecimals: config.hum.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doExtraDew = function (idx, val) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/extradew.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "Temperature",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doSoilTemp = function (idx, val) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/soiltemp.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "Temperature",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doSoilMoist = function (idx, val) {
+    chart.showLoading();
+
+    addSoilMoistAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/soilmoist.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "SoilMoist",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' ' + config.soilmoisture.units
                 },
                 visible: true,
                 color: settings.colours[idx],

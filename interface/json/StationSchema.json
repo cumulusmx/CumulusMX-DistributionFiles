@@ -498,6 +498,9 @@
 							"type": "integer",
 							"minimum": 0,
 							"maximum": 65536
+						},
+						"datastopped": {
+							"type": "boolean"
 						}
 					}
 				}
@@ -1110,6 +1113,18 @@
 						},
 						"extrahum" : {
 							"title": "Extra Humidities",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"extradew" : {
+							"title": "Extra Dew Points",
 							"type": "object",
 							"properties": {
 								"sensors": {
