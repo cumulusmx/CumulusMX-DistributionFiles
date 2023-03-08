@@ -1,129 +1,66 @@
-// Last modified: 2022/01/03 16:33:14
+// Last modified: 2023/01/20 11:27:41
+
+// set defaults
+$.extend( $.fn.dataTable.defaults, {
+    searching: false,
+    ordering:  false,
+    paging: false,
+    info: false,
+    language: {
+        "emptyTable": "No sensors enabled.<br>Enable in: Settings|Display&nbsp;Options|Graphs|Data&nbps;Visibility"
+    },
+    columnDefs: [
+        {className: "left", targets: [0,2]},
+        {className: "right", targets: [1]}
+    ]
+} );
 
 $(document).ready(function () {
+    var emptyTable = "No sensors enabled. Enable in: Settings|Display&nbsp;Options|Graphs|Data Visibility";
+
     $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
     var tempTable = $('#TempTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/temp.json'
+        ajax: '../api/extra/temp.json'
     });
 
     var humTable = $('#HumTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/hum.json'
+        ajax: '../api/extra/hum.json'
     });
 
     var dewTable = $('#DewTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/dew.json'
+        ajax: '../api/extra/dew.json'
     });
 
     var soiltempTable = $('#SoilTempTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/soiltemp.json'
+        ajax: '../api/extra/soiltemp.json'
     });
 
     var soilmoistureTable = $('#SoilMoistureTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/soilmoisture.json'
+        ajax: '../api/extra/soilmoisture.json'
     });
 
     var leafTable = $('#LeafTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/leaf8.json'
+        ajax: '../api/extra/leaf8.json'
     });
 
     var airqualTable = $('#AirQualityTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/airqual.json'
+        ajax: '../api/extra/airqual.json'
     });
 
     var co2Table = $('#CO2Table').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/co2sensor.json'
+        ajax: '../api/extra/co2sensor.json'
     });
 
     var lightningTable = $('#LightningTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/lightning.json'
+        ajax: '../api/extra/lightning.json'
     });
 
     var userTempTable = $('#UserTempTable').DataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
-        ],
-        "ajax": '../api/extra/usertemp.json'
+        ajax: '../api/extra/usertemp.json'
     });
 
     setInterval(function () {

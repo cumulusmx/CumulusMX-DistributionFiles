@@ -38,6 +38,7 @@
 							"type": "boolean"
 						},
 						"ipAddress": {
+							"format": "ip-address"
 						},
 						"hostname": {
 						},
@@ -58,6 +59,7 @@
 							"type": "boolean"
 						},
 						"ipAddress": {
+							"format": "ip-address"
 						},
 						"hostname": {
 						},

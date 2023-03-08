@@ -1,15 +1,15 @@
 <!--
-Last modified: 2023/02/02 17:18:29
+Last modified: 2023/01/20 23:18:22
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Upload now - Cumulus MX</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
+    <title>Display - Cumulus MX</title>
 
-    <link href="css/font-style.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
     <!-- menu -->
@@ -23,31 +23,57 @@ Last modified: 2023/02/02 17:18:29
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap-colorpicker.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap-colorpicker.js"></script>
+
+
+    <!-- Alpaca -->
+    <script src="lib/handlebars/handlebars.min.js"></script>
+    <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+    <script src="lib/alpaca/alpaca.min.js"></script>
+
+    <!-- Custom Files -->
+    <script src="js/display.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
 
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .alpaca-field > legend > .collapsed::before {
+            content: '\25B8';
+            padding-left: 0.5%;
+        }
+        .alpaca-field > legend > span::before {
+            content: '\25BE';
+            padding-left: 0.5%;
+        }
+        .alpaca-container-has-items {
+            margin-left: 1%;
+        }
+        .collapse.in {
+            margin-left: 1%;
+        }
+        .alpaca-form-buttons-container {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        legend {
+            color: inherit;
+        }
+    </style>
+
     <script>
         $(document).ready(function () {
-            $.ajax({
-                url: "api/settings/version.json",
-                dataType: "json",
-                success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }
-            });
-
-            $("#startFtp").click(function(event) {
-                $('#status').text('');
-                $.post(
-                    "api/utils/ftpnow.json",
-                    {data: "{'dailygraphs':" + $('#dailygraphs').prop('checked') + "}"},
-                ).done(function (response) {
-                    $('#status').text(response);
-                }).fail(function (jqXHR, response) {
-                    $('#status').text(response);
-                });
-            });
+            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+                $('#Version').text(result.Version);
+                $('#Build').text(result.Build);
+            }});
         });
     </script>
 </head>
@@ -71,22 +97,16 @@ Last modified: 2023/02/02 17:18:29
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Upload Now</h1>
+        <h1>Display Options</h1>
         <div class="row">
             <div class="col-md-12">
-                <div><b>Manually initiate the upload/local copy process.</b></div>
-                <div>Note: The actual upload/copy process will be started, but it will be run as a background process. You will have to check your log files and/or server/destination folder to check whether it worked correctly or not.</div>
-                <br>
-                <div>
-                    <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label>
-                </div>
-                <br>
-                <div>
-                    <button type="submit" class="btn btn-primary" id="startFtp" form="ftpform">Start Upload/Copy Now</button>
-                </div>
-                <br>
-                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+                Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form></form>
         </div>
     </div>
     <!-- FOOTER -->

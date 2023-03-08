@@ -1,15 +1,14 @@
-// Last modified: 2023/02/12 21:22:34
+// Last modified: 2023/01/20 15:46:04
 
 let accessMode;
 
-$(document).ready(function() {
-
+$(document).ready(function () {
     $("form").alpaca({
-        "dataSource": "./api/settings/noaadata.json",
-        "optionsSource": "./json/NoaaOptions.json",
-        "schemaSource": "./json/NoaaSchema.json",
-        "ui": "bootstrap",
+        "dataSource": "./api/settings/displayoptions.json",
+        "optionsSource": "./json/DisplayOptions.json",
+        "schemaSource": "./json/DisplaySchema.json",
         "view": "bootstrap-edit-horizontal",
+        "ui": "bootstrap",
         "options": {
             "form": {
                 "buttons": {
@@ -23,7 +22,7 @@ $(document).ready(function() {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/setsettings/updatenoaaconfig.json",
+                                    url: "../api/setsettings/updatedisplay.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })
@@ -50,7 +49,7 @@ $(document).ready(function() {
             }
         },
         "postRender": function (form) {
-            // Change in accessibility is enabled
+            // Change if accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
@@ -59,47 +58,26 @@ $(document).ready(function() {
                 setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
             }
 
-            // Trigger changes is the accessibility mode is changed
-            //accessObj.on("change", function() {onAccessChange(this)});
+            // messy, but cannot find another way of setting the rightLabels of array checkboxes
+            setSensorLabels(form, "DataVisibility/extratemp/sensors");
+            setSensorLabels(form, "DataVisibility/extrahum/sensors");
+            setSensorLabels(form, "DataVisibility/extradew/sensors");
+            setSensorLabels(form, "DataVisibility/soiltemp/sensors");
+            setSensorLabels(form, "DataVisibility/soilmoist/sensors");
+            setSensorLabels(form, "DataVisibility/leafwet/sensors");
+            setSensorLabels(form, "DataVisibility/usertemp/sensors");
+            setSensorLabels(form, "DataVisibility/aq/sensors");
 
-            if (form.getControlByPath("options/noaacoolheat").getValue() == true) {
-                let mean = form.getControlByPath("options/minmaxavg");
-                mean.options.disabled = true;
-                mean.refresh();
-
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
-                heat.options.disabled = true;
-                heat.refresh();
-
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
-                cool.options.disabled = true;
-                cool.refresh();
-            }
-
-
-            form.getControlByPath("options/noaacoolheat")
-            .on("change", function () {
-                let val = this.getValue();
-                let mean = form.getControlByPath("options/minmaxavg");
-
-                if (val === true) {
-                    mean.setValue(true);
-                }
-
-                mean.options.disabled = val;
-                mean.refresh();
-
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
-                heat.options.disabled = val;
-                heat.refresh();
-
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
-                cool.options.disabled = val;
-                cool.refresh();
-            });
+            setSensorLabels(form, "Graphs/colour/extratemp/sensors");
+            setSensorLabels(form, "Graphs/colour/extrahum/sensors");
+            setSensorLabels(form, "Graphs/colour/extradew/sensors");
+            setSensorLabels(form, "Graphs/colour/soiltemp/sensors");
+            setSensorLabels(form, "Graphs/colour/soilmoist/sensors");
+            setSensorLabels(form, "Graphs/colour/usertemp/sensors");
         }
     });
 });
+
 
 function addButtons() {
     $('form legend').each(function () {
@@ -107,7 +85,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -123,7 +101,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
@@ -179,3 +157,14 @@ function onAccessChange(that, val) {
         removeButtons();
     }
 }
+
+function setSensorLabels(form, path) {
+    let i = 1;
+    form.getControlByPath(path)
+        .children
+        .forEach(sensor => {
+            sensor.options.label = 'Sensor ' + i++;
+            sensor.refresh()
+        });
+}
+

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/10/03 09:22:03
+Last modified: 2023/02/04 15:48:20
 -->
 <!doctype html>
 <html lang="en">
@@ -94,12 +94,20 @@ Last modified: 2022/10/03 09:22:03
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <b>Filename Root:</b> This string is used to create the full log filename. It will be prepended with the date, and suffixed with .txt<br>For example, you enter "MyLog", the interval log filename will be MyLog-yyyyMM.txt, the daily log would just be Mylog.txt
+                    <b>Filename Root:</b> This string is used to create the full log filename. It will be appended with the date, and suffixed with .txt<br>
+                    For example, you enter "MyLog", the interval log filename will be MyLog-yyyyMM.txt, the daily log would just be MyLog.txt
                 </p>
                 <p>
-                    <b>Data Content:</b> This string is used to create the data in the log file, you use webtags to specify the data. It is <b>important</b> to use the same data separator as CMX uses for the other data files.<br>
-                    For example you could use the string: <span style="font-family:'Courier New'"><#temp>,<#hum>,<#SoilTemp1></span>.<br>
-                    You can also use modifiers in the webtags for further control of the output like this: <span style="font-family:'Courier New'"><#temp rc=y>,<#hum>,<#SoilTemp1 dp=2 rc=y></span>
+                    <b>Data Content:</b> This string is used to create the data in the log file, you use webtags to specify the data.<br>
+                    Your data string will be automtically prefixed with the date or date-time in the log file.
+                </p>
+                <p>
+                    For example you could use the string: <span style="font-family:'Courier New'">&lt;#temp&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1&gt;</span><br>
+                    You can also use modifiers in the webtags for further control of the output like this: <span style="font-family:'Courier New'">&lt;#temp rc=y&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1 dp=2 rc=y&gt;</span>
+                </p>
+                <p style="font-size:16px;font-style: italic;">
+                    <b>Note:</b> It is <b>important</b> to use the same field separator as CMX uses for the other data files.<br>
+                    Your field separator is:- <b>"<span data-csv></span>"</b>
                 </p>
             </div>
         </div>

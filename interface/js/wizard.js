@@ -131,7 +131,7 @@ $(document).ready(function () {
                                     } else {
                                         callback({
                                             "status": false,
-                                            "message": "Please enter a value between -90 and +90 degrees"
+                                            "message": "Please enter a value between -90.0 and +90.0 degrees"
                                         });
                                     }
                                 }
@@ -156,7 +156,7 @@ $(document).ready(function () {
                                     } else {
                                         callback({
                                             "status": false,
-                                            "message": "Please enter a value between -180 and +180 degrees"
+                                            "message": "Please enter a value between -180.0 and +180.0 degrees"
                                         });
                                     }
                                 }
@@ -179,6 +179,29 @@ $(document).ready(function () {
                                     callback({
                                         "status": true
                                     });
+                                }
+                            }
+                        }
+                    }
+                },
+                "internet": {
+                    "fields": {
+                        "copy": {
+                            "fields": {
+                                "localcopyfolder": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (!/^.*[\/\\\\\\\\]{1}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "The path must end with a path delimiter [\\ or /]"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
                                 }
                             }
                         }

@@ -1,4 +1,15 @@
 {
+	"definitions": {
+		"wundextratemp": {
+			"optionLabels": ["—","Sensor 1","Sensor 2","Sensor 3","Sensor 4","Sensor 5","Sensor 6","Sensor 7","Sensor 8","Sensor 9","Sensor 10"],
+			"removeDefaultNone": true,
+			"helper": "Select the MX extra sensor number to map to the Wunderground sensor",
+			"sort": false,
+			"dependencies": {
+				"enabled": true
+			}
+		}
+	},
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -17,9 +28,12 @@
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "Station Key:",
 					"type": "password",
-					"helper": "This used to be your password, but changed to the Station Key (case sensitive)",
+					"helpers": [
+						"This used to be your password, but changed to the Station Key (case sensitive)",
+						"NOTE: This is NOT the long API Key"
+					],
 					"dependencies": {
 						"enabled": true
 					}
@@ -77,6 +91,22 @@
 					"dependencies": {
 						"enabled": true
 					}
+				},
+				"extratemp1": {
+					"label": "Extra Temperature #1",
+					"$ref": "#/definitions/wundextratemp"
+				},
+				"extratemp2": {
+					"label": "Extra Temperature #2",
+					"$ref": "#/definitions/wundextratemp"
+				},
+				"extratemp3": {
+					"label": "Extra Temperature #3",
+					"$ref": "#/definitions/wundextratemp"
+				},
+				"extratemp4": {
+					"label": "Extra Temperature #4",
+					"$ref": "#/definitions/wundextratemp"
 				},
 				"catchup": {
 					"label": "Catch up:",
@@ -622,6 +652,7 @@
 								"60 minutes"
 							],
 							"removeDefaultNone": true,
+							"sort": false,
 							"dependencies": {
 								"enabled": true
 							}

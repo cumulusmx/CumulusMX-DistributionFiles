@@ -1,4 +1,4 @@
-// Last modified: 2022/07/29 10:10:24
+// Last modified: 2023/02/13 17:29:12
 
 let accessMode;
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
         form.getControlByPath("websettings/interval/enableintervalftp").triggerUpdate();
 
         // Interval std files
-        form.getControlByPath("websettings/interval/stdfiles/files").children[0].childrenByPropertyId["create"].setValue(true);
+        form.getControlByPath("websettings/interval/stdfiles/files").children[0].childrenByPropertyId["create"].setValue(false);
         form.getControlByPath("websettings/interval/stdfiles/files").children[0].childrenByPropertyId["ftp"].setValue(ftpEnabled);
         form.getControlByPath("websettings/interval/stdfiles/files").children[0].childrenByPropertyId["copy"].setValue(copyEnabled);
 
@@ -32,7 +32,7 @@ $(document).ready(function() {
         );
         updateCreateOption(
             form.getControlByPath("websettings/interval/graphfiles/files").children,
-            true
+            false
         );
         updateFtpOption(
             form.getControlByPath("websettings/interval/graphfiles/files").children,
@@ -50,7 +50,7 @@ $(document).ready(function() {
         );
         updateCreateOption(
             form.getControlByPath("websettings/interval/graphfileseod/files").children,
-            true
+            false
         );
         updateFtpOption(
             form.getControlByPath("websettings/interval/graphfileseod/files").children,
@@ -79,10 +79,12 @@ $(document).ready(function() {
             form.getControlByPath("websettings/realtime/files").children,
             copyEnabled
         );
+
         updateCreateOption(
             form.getControlByPath("websettings/realtime/files").children,
-            copyEnabled
+            false
         );
+
 
         //Moon Image
         form.getControlByPath("moonimage/enabled").setValue(true);
@@ -192,6 +194,42 @@ $(document).ready(function() {
                         "styles": "alpaca-form-button-submit"
                     }
                 }
+            },
+            "fields": {
+                "website": {
+                    "fields": {
+                        "localcopyfolder": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^.*[\/\\\\\\\\]{1}$/.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "The path must end with a path delimiter [\\ or /]"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
+                        },
+                        "phpurl": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^(http(s?)\:\/\/)/i.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "The url must start with http:// or https://"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
+                        }
+                    }
+                }
             }
         },
         "postRender": function (form) {
@@ -207,19 +245,42 @@ $(document).ready(function() {
             // Trigger changes is the accessibility mode is changed
             //accessObj.on("change", function() {onAccessChange(this)});
 
+            // Set PHP key/secret fields to "reveal" when they have focus
+            $('#phpsecret')
+                .focusout(function() {
+                    $(this).attr('type', 'password');
+                })
+                .focusin(function() {
+                    $(this).attr('type', 'text');
+                });
+
+
             let ftpmodeObj = form.getControlByPath("website/sslftp");
             let ftpmode = ftpmodeObj.getValue();
+            form.getControlByPath("website/general/ftpmode").setValue(ftpmode);
             form.getControlByPath("website/advanced/ftpmode").setValue(ftpmode);
 
             // Trigger updates based on FTP protocol changes
             ftpmodeObj.on("change", function () {
                 let form = $("form").alpaca("get");
                 let ftpmode = this.getValue();
-                // Set the hidden advanced options protocol field to match
+                // Set the hidden general/advanced options protocol field to match
+                form.getControlByPath("website/general/ftpmode").setValue(ftpmode);
                 form.getControlByPath("website/advanced/ftpmode").setValue(ftpmode);
                 // Set the default port to match
                 let newPort = ftpmode == 2 ? 22 : 21;
                 form.getControlByPath("website/ftpport").setValue(newPort);
+                // advanced options
+                /*
+                let enable = ftpmode < 2 ? true : false;
+                if (enable) {
+                    form.getControlByPath("website/general/ftprename").field.show();
+                    form.getControlByPath("website/general/ftpdelete").field.show();
+                } else {
+                    form.getControlByPath("website/general/ftprename").field.hide();
+                    form.getControlByPath("website/general/ftpdelete").field.hide();
+                }
+                */
             });
 
             // Trigger updates on "Use standard web site being enabled"
@@ -229,121 +290,124 @@ $(document).ready(function() {
 
             // When FTP is globally disabled, disable the option in Interval and Realtime
             form.getControlByPath("website/enabled").on("change", function () {
-                let state = !this.getValue();
-                let intState = !form.getControlByPath("websettings/interval/enabled").getValue() || state;
-                let rtState = !form.getControlByPath("websettings/realtime/enabled").getValue() || state;
+                let state = this.getValue();
+                let intState = form.getControlByPath("websettings/interval/enabled").getValue() && state;
+                let rtState = form.getControlByPath("websettings/realtime/enabled").getValue() && state;
 
-                if (intState) {
-                    form.getControlByPath("websettings/interval/enableintervalftp").field.hide();
+                form.getControlByPath("websettings/interval/enableintervalftp").options.disabled = !state;
+                form.getControlByPath("websettings/interval/enableintervalftp").refresh();
+                if (form.getControlByPath("websettings/interval/enabled").getValue()) {
+                    form.getControlByPath("websettings/interval/enableintervalftp").show();
                 } else {
-                    form.getControlByPath("websettings/interval/enableintervalftp").field.show();
+                    form.getControlByPath("websettings/interval/enableintervalftp").hide();
                 }
 
-                if (rtState) {
-                    form.getControlByPath("websettings/realtime/enablerealtimeftp").field.hide();
+                form.getControlByPath("websettings/realtime/enablerealtimeftp").options.disabled = !state;
+                form.getControlByPath("websettings/realtime/enablerealtimeftp").refresh();
+                if (form.getControlByPath("websettings/realtime/enabled").getValue()) {
+                    form.getControlByPath("websettings/realtime/enablerealtimeftp").show();
                 } else {
-                    form.getControlByPath("websettings/realtime/enablerealtimeftp").field.show();
+                    form.getControlByPath("websettings/realtime/enablerealtimeftp").hide();
                 }
 
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, intState);
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, intState);
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, intState);
-                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, rtState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !intState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !intState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !intState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, !rtState);
             });
 
             // Do it on page load as well
-            let ftpState = !form.getControlByPath("website/enabled").getValue();
-            let intState = !form.getControlByPath("websettings/interval/enabled").getValue() || ftpState;
-            let rtState = !form.getControlByPath("websettings/realtime/enabled").getValue() || ftpState;
+            let ftpState = form.getControlByPath("website/enabled").getValue();
+            let intState = form.getControlByPath("websettings/interval/enabled").getValue() && ftpState;
+            let rtState = form.getControlByPath("websettings/realtime/enabled").getValue() && ftpState;
 
-            if (intState) {
-                form.getControlByPath("websettings/interval/enableintervalftp").field.hide();
+            form.getControlByPath("websettings/interval/enableintervalftp").options.disabled = !ftpState;
+            form.getControlByPath("websettings/interval/enableintervalftp").refresh();
+            if (form.getControlByPath("websettings/interval/enabled").getValue()) {
+                form.getControlByPath("websettings/interval/enableintervalftp").show();
             } else {
-                form.getControlByPath("websettings/interval/enableintervalftp").field.show();
+                form.getControlByPath("websettings/interval/enableintervalftp").hide();
             }
 
-            if (intState) {
-                form.getControlByPath("websettings/realtime/enablerealtimeftp").field.hide();
-            } else {
-                form.getControlByPath("websettings/realtime/enablerealtimeftp").field.show();
-            }
+            updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !intState);
+            updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !intState);
+            updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !intState);
+            updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, !rtState);
 
-            updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, intState);
-            updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, intState);
-            updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, intState);
-            updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, rtState);
+
 
             // When Local Copy is globally disabled, disable the option in Interval and Realtime
             form.getControlByPath("website/localcopy").on("change", function () {
-                let lcState = !this.getValue();
-                updateCopyDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, lcState);
-                updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, lcState);
-                updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, lcState);
-                updateCopyDisabledOption(form.getControlByPath("websettings/realtime/files").children, lcState);
+                let lcState = this.getValue();
+                updateCopyDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !lcState);
+                updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !lcState);
+                updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !lcState);
+                updateCopyDisabledOption(form.getControlByPath("websettings/realtime/files").children, !lcState);
             });
 
             // Do it on page load as well
-            let lcState = !form.getControlByPath("website/localcopy").getValue();
-            updateCopyDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, lcState);
-            updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, lcState);
-            updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, lcState);
-            updateCopyDisabledOption(form.getControlByPath("websettings/realtime/files").children, lcState);
+            let lcState = form.getControlByPath("website/localcopy").getValue();
+            updateCopyDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !lcState);
+            updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !lcState);
+            updateCopyDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !lcState);
+            updateCopyDisabledOption(form.getControlByPath("websettings/realtime/files").children, !lcState);
 
-            // When the interval is enabled/disabled, set the interval FTP option
-            form.getControlByPath("websettings/interval/enabled").on("change", function () {
-                let state = !this.getValue();
-                let ftpState = !form.getControlByPath("website/enabled").getValue() || state;
-                if (ftpState) {
-                    form.getControlByPath("websettings/interval/enableintervalftp").field.hide();
-                } else {
-                    form.getControlByPath("websettings/interval/enableintervalftp").field.show();
-                }
-            });
+
+
 
             // When the realtime is enabled/disabled, set the realtime FTP option
             form.getControlByPath("websettings/realtime/enabled").on("change", function () {
-                let state = !this.getValue();
-                let ftpState = !form.getControlByPath("website/enabled").getValue() || state;
-                if (ftpState) {
-                    form.getControlByPath("websettings/realtime/enablerealtimeftp").field.hide();
+                let state = this.getValue();
+                let ftpState = form.getControlByPath("website/enabled").getValue() && state;
+
+                form.getControlByPath("websettings/realtime/enablerealtimeftp").options.disabled = !ftpState;
+                form.getControlByPath("websettings/realtime/enablerealtimeftp").refresh();
+                if (state) {
+                    form.getControlByPath("websettings/realtime/enablerealtimeftp").show();
                 } else {
-                    form.getControlByPath("websettings/realtime/enablerealtimeftp").field.show();
+                    form.getControlByPath("websettings/realtime/enablerealtimeftp").hide();
                 }
+
+                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, !ftpState);
             });
 
-            // enable/disable realtime files FTP option
-            let rtFilesState = !form.getControlByPath("websettings/realtime/enablerealtimeftp").getValue() || ftpState;
-            updateFtpDisabledOption(
-                form.getControlByPath("websettings/realtime/files").children,
-                rtFilesState
-            );
-
+            //When the realtime ftp is enabled/disabled
             form.getControlByPath("websettings/realtime/enablerealtimeftp").on("change", function () {
-                let ftpState = !form.getControlByPath("website/enabled").getValue();
-                let val = !this.getValue() || ftpState;
-                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, val);
+                let ftpState = form.getControlByPath("website/enabled").getValue();
+                let val = this.getValue() && ftpState;
+                updateFtpDisabledOption(form.getControlByPath("websettings/realtime/files").children, !val);
             });
 
-            // enable/disable interval std files FTP option
-            let intFilesState = !form.getControlByPath("websettings/interval/enableintervalftp").getValue() || ftpState;
-            updateFtpDisabledOption(
-                form.getControlByPath("websettings/interval/stdfiles/files").children,
-                intFilesState
-            );
 
-            // enable/disable interval graph files FTP option
-            updateFtpDisabledOption(
-                form.getControlByPath("websettings/interval/graphfiles/files").children,
-                intFilesState
-            );
 
+            // When the interval enabled/disabled
+            form.getControlByPath("websettings/interval/enabled").on("change", function () {
+                let state = this.getValue();
+                let ftpState = form.getControlByPath("website/enabled").getValue() && state;
+
+                form.getControlByPath("websettings/interval/enableintervalftp").options.disabled = !ftpState;
+                form.getControlByPath("websettings/interval/enableintervalftp").refresh();
+                if (state) {
+                    form.getControlByPath("websettings/interval/enableintervalftp").show();
+                } else {
+                    form.getControlByPath("websettings/interval/enableintervalftp").hide();
+                }
+
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !ftpState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !ftpState);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !ftpState);
+            });
+
+            // When the interval FTP is enabled/disbaled
             form.getControlByPath("websettings/interval/enableintervalftp").on("change", function () {
-                let ftpState = !form.getControlByPath("website/enabled").getValue();
-                let val = !this.getValue() || ftpState;
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, val);
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, val);
-                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, val);
+                let ftpState = form.getControlByPath("website/enabled").getValue();
+                let val = this.getValue() && ftpState;
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/stdfiles/files").children, !val);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfiles/files").children, !val);
+                updateFtpDisabledOption(form.getControlByPath("websettings/interval/graphfileseod/files").children, !val);
             });
+
+
 
             // Set Aria attributes on table checkboxes
             $('table input:checkbox').each(function () {

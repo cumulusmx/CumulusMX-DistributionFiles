@@ -5,22 +5,23 @@
 			"type": "boolean"
 		},
 		"website": {
-			"title": "Web/FTP Site",
+			"title": "Web/Upload Site",
 			"type": "object",
 			"properties": {
 				"localcopy": {
 					"type": "boolean"
 				},
 				"localcopyfolder": {
-					"pattern": "^.*[\/\\\\\\\\]{1}$"
 				},
 				"enabled": {
 					"type": "boolean"
 				},
+				"sslftp": {
+					"enum": [0,1,2,3]
+				},
 				"hostname": {
 				},
-				"sslftp": {
-					"enum": [0,1,2]
+				"phpurl": {
 				},
 				"ftpport": {
 					"type": "integer",
@@ -42,6 +43,8 @@
 				},
 				"password": {
 				},
+				"phpsecret": {
+				},
 				"general": {
 					"title": "General Settings",
 					"type": "object",
@@ -54,7 +57,13 @@
 						},
 						"utf8encode": {
 							"type": "boolean"
+						},
+						"ftpmode": {
 						}
+					},
+					"dependencies": {
+						"ftprename": ["ftpmode"],
+						"ftpdelete": ["ftpmode"]
 					}
 				},
 				"advanced": {
@@ -76,6 +85,9 @@
 						"ignorecerts": {
 							"type": "boolean"
 						},
+						"phpignorecerts": {
+							"type": "boolean"
+						},
 						"ftpmode": {
 						}
 					},
@@ -84,22 +96,25 @@
 						"disableftpsepsv": ["ftpmode", "autodetect"],
 						"disableftpsexplicit": ["ftpmode", "autodetect"],
 						"activeftp": ["ftpmode"],
-						"ignorecerts":  ["ftpmode"]
+						"ignorecerts":  ["ftpmode"],
+						"phpignorecerts": ["ftpmode"]
 					}
 				}
 			},
 			"dependencies": {
 				"localcopyfolder": ["localcopy"],
-				"hostname": ["enabled"],
+				"hostname": ["enabled", "sslftp"],
+				"phpurl": ["enabled", "sslftp"],
+				"phpsecret": ["enabled", "sslftp"],
 				"sslftp": ["enabled"],
-				"ftpport": ["enabled"],
+				"ftpport": ["enabled", "sslftp"],
 				"sshAuth": ["sslftp"],
 				"pskFile": ["sshAuth"],
-				"directory": ["enabled"],
-				"username": ["enabled"],
+				"directory": ["enabled", "sslftp"],
+				"username": ["enabled", "sslftp"],
+				"password": ["enabled", "sslftp"],
 				"advanced": ["sslftp"],
-				"general": ["enabled"],
-				"password": ["enabled"]
+				"general": ["enabled"]
 			}
 		},
 		"websettings": {
@@ -138,11 +153,11 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Generate"
+												"title": "Create Local"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "FTP Transfer"
+												"title": "Upload"
 											},
 											"copy": {
 												"type": "boolean",
@@ -168,11 +183,11 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Generate"
+												"title": "Create Local"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "FTP Transfer"
+												"title": "Upload"
 											},
 											"copy": {
 												"type": "boolean",
@@ -198,11 +213,11 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Generate"
+												"title": "Create Local"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "FTP Transfer"
+												"title": "Upload"
 											},
 											"copy": {
 												"type": "boolean",
@@ -217,6 +232,7 @@
 					"dependencies": {
 						"autoupdate": ["enabled"],
 						"ftpinterval": ["enabled"],
+						"enableintervalftp": ["enabled"],
 						"stdfiles": ["enabled"],
 						"graphfiles": ["enabled"],
 						"graphfileseod": ["enabled"]
@@ -247,11 +263,11 @@
 									},
 									"create": {
 										"type": "boolean",
-										"title": "Generate"
+										"title": "Create Local"
 									},
 									"ftp": {
 										"type": "boolean",
-										"title": "FTP Transfer"
+										"title": "Upload"
 									},
 									"copy": {
 										"type": "boolean",
@@ -263,6 +279,7 @@
 					},
 					"dependencies": {
 						"realtimeinterval": ["enabled"],
+						"enablerealtimeftp": ["enabled"],
 						"files": ["enabled"]
 					}
 				}

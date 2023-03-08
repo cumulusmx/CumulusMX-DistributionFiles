@@ -230,6 +230,7 @@
 							"type": "object",
 							"properties": {
 								"ipaddress": {
+									"format": "ip-address"
 								},
 								"disconperiod": {
 									"type": "integer",
@@ -312,6 +313,7 @@
 							"type": "boolean"
 						},
 						"ipaddress": {
+							"format": "ip-address"
 						}
 					}
 				},
@@ -515,9 +517,9 @@
 					"type": "boolean"
 				},
 				"ipaddress": {
+					"format": "ip-address"
 				},
 				"macaddress": {
-					"pattern": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$"
 				}
 			},
 			"dependencies": ["stationid"]
@@ -744,7 +746,6 @@
 				"userkey": {
 				},
 				"mac": {
-					"pattern": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$"
 				}
 			},
 			"dependencies": ["stationid"]
@@ -785,6 +786,9 @@
 				},
 				"nosensorcheck": {
 					"type": "boolean"
+				},
+				"userainforisraining": {
+					"enum": [0,1,2]
 				},
 				"leafwetisrainingidx": {
 					"enum": [-1,1,2,3,4,5,6,7,8]
@@ -832,9 +836,6 @@
 							"type": "number",
 							"minimum": -1,
 							"maximum": 1
-						},
-						"userainforisraining": {
-							"type": "boolean"
 						}
 					}
 				},
@@ -993,233 +994,6 @@
 					"type": "integer",
 					"minimum": 1,
 					"maximum": 12
-				}
-			}
-		},
-		"Graphs": {
-			"title": "Graphs",
-			"type": "object",
-			"properties": {
-				"graphhours": {
-					"type": "number",
-					"minimum": 1
-				},
-				"graphdays": {
-					"type": "number",
-					"minimum": 1
-				},
-				"datavisibility": {
-					"title": "Data Series Visibility",
-					"type": "object",
-					"properties": {
-						"temperature": {
-							"title": "Temperature Data",
-							"type": "object",
-							"properties": {
-								"graphTempVis": {
-									"type": "boolean"
-								},
-								"graphInTempVis": {
-									"type": "boolean"
-								},
-								"graphHeatIndexVis": {
-									"type": "boolean"
-								},
-								"graphDewPointVis": {
-									"type": "boolean"
-								},
-								"graphWindChillVis": {
-									"type": "boolean"
-								},
-								"graphAppTempVis": {
-									"type": "boolean"
-								},
-								"graphFeelsLikeVis": {
-									"type": "boolean"
-								},
-								"graphHumidexVis": {
-									"type": "boolean"
-								},
-								"graphDailyMaxTempVis": {
-									"type": "boolean"
-								},
-								"graphDailyAvgTempVis": {
-									"type": "boolean"
-								},
-								"graphDailyMinTempVis": {
-									"type": "boolean"
-								},
-								"graphTempSumVis0": {
-									"type": "boolean"
-								},
-								"graphTempSumVis1": {
-									"type": "boolean"
-								},
-								"graphTempSumVis2": {
-									"type": "boolean"
-								}
-							}
-						},
-						"humidity": {
-							"title": "Humidity Data",
-							"type": "object",
-							"properties": {
-								"graphHumVis": {
-									"type": "boolean"
-								},
-								"graphInHumVis": {
-									"type": "boolean"
-								}
-							}
-						},
-						"solar": {
-							"title": "Solar Data",
-							"type": "object",
-							"properties": {
-								"graphUvVis": {
-									"type": "boolean"
-								},
-								"graphSolarVis": {
-									"type": "boolean"
-								},
-								"graphSunshineVis": {
-									"type": "boolean"
-								}
-							}
-						},
-						"degreedays": {
-							"title": "Degree Days",
-							"type": "object",
-							"properties": {
-								"graphGrowingDegreeDaysVis1": {
-									"type": "boolean"
-								},
-								"graphGrowingDegreeDaysVis2": {
-									"type": "boolean"
-								}
-							}
-						},
-						"extratemp" : {
-							"title": "Extra Temperatures",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"extrahum" : {
-							"title": "Extra Humidities",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"extradew" : {
-							"title": "Extra Dew Points",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"soiltemp" : {
-							"title": "Soil Temperatures",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"soilmoist" : {
-							"title": "Soil Moistures",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"usertemp" : {
-							"title": "User Temperatures",
-							"type": "object",
-							"properties": {
-								"sensors": {
-									"type": "array",
-									"items": {
-										"type": "boolean"
-									}
-								}
-							}
-						},
-						"co2" : {
-							"title": "CO&#8322; Sensor",
-							"type": "object",
-							"properties": {
-								"co2": {
-									"type": "boolean"
-								},
-								"co2avg": {
-									"type": "boolean"
-								},
-								"pm25": {
-									"type": "boolean"
-								},
-								"pm25avg": {
-									"type": "boolean"
-								},
-								"pm10": {
-									"type": "boolean"
-								},
-								"pm10avg": {
-									"type": "boolean"
-								},
-								"temp": {
-									"type": "boolean"
-								},
-								"hum": {
-									"type": "boolean"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"DisplayOptions": {
-			"title": "Display Options",
-			"type": "object",
-			"properties": {
-				"useapparent": {
-					"type": "boolean"
-				},
-				"displaysolar": {
-					"type": "boolean"
-				},
-				"displayuv": {
-					"type": "boolean"
-				},
-				"windrosepoints": {
-					"enum": [8, 16]
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-// Last modified: 2021/05/27 14:53:47
+// Last modified: 2023/02/28 17:59:41
 
 var chart, config;
 
@@ -24,27 +24,53 @@ var myRangeBtns = {
 };
 
 $(document).ready(function () {
+    $('#mySelect').change(function () {
+        changeGraph($('#mySelect').val());
+    });
+
+
     $.ajax({
         url: "availabledata.json",
         dataType: "json",
         success: function (result) {
             if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('#btnTemp').remove();
+                $('#mySelect option[value="temp"]').remove();
             }
             if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-                $('#btnDailyTemp').remove();
+                $('#mySelect option[value="dailytemp"]').remove();
             }
             if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('#btnHum').remove();
+                $('#mySelect option[value="humidity"]').remove();
             }
             if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#btnSolar').remove();
+                $('#mySelect option[value="solar"]').remove();
             }
             if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-                $('#btnSunHours').remove();
+                $('#mySelect option[value="sunhours"]').remove();
             }
             if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-                $('#btnAirQuality').remove();
+                $('#mySelect option[value="airquality"]').remove();
+            }
+            if (result.ExtraTemp == undefined || result.ExtraTemp.Count == 0) {
+                $('#mySelect option[value="extratemp"]').remove();
+            }
+            if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
+                $('#mySelect option[value="extrahum"]').remove();
+            }
+            if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
+                $('#mySelect option[value="extradew"]').remove();
+            }
+            if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
+                $('#mySelect option[value="soiltemp"]').remove();
+            }
+            if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
+                $('#mySelect option[value="soilmoist"]').remove();
+            }
+            if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
+                $('#mySelect option[value="usertemp"]').remove();
+            }
+            if (result.CO2 == undefined || result.CO2.Count == 0) {
+                $('#mySelect option[value="co2"]').remove();
             }
         }
     });
@@ -54,9 +80,30 @@ $(document).ready(function () {
         dataType: "json",
         success: function (result) {
             config = result;
-            changeGraph(parent.location.hash.replace('#', ''));
+            var value = parent.location.hash.replace('#', '');
+            if (value == '')
+                value = 'temp';
+
+            changeGraph(value);
+            // set the correct option
+            $('#mySelect option[value="' + value + '"]').attr('selected', true);
         }
     });
+
+    var jqxhr = $.getJSON("graphconfig.json", function() {
+        config = result;
+        var value = parent.location.hash.replace('#', '');
+        if (value == '')
+            value = 'temp';
+
+        changeGraph(value);
+        // set the correct option
+        $('#mySelect option[value="' + value + '"]').attr('selected', true);
+    })
+        .fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ", " + error;
+            console.log( "Request Failed: " + err )
+        });
 });
 
 
@@ -94,6 +141,27 @@ function changeGraph(graph) {
             break;
         case 'airquality':
             doAirQuality();
+            break;
+        case 'extratemp':
+            doExtraTemp();
+            break;
+        case 'extrahum':
+            doExtraHum();
+            break;
+        case 'extradew':
+            doExtraDew();
+            break;
+        case 'soiltemp':
+            doSoilTemp();
+            break;
+        case 'soilmoist':
+            doSoilMoist();
+            break;
+        case 'usertemp':
+            doUserTemp();
+            break;
+        case 'co2':
+            doCO2();
             break;
         default:
             doTemp();
@@ -251,6 +319,7 @@ var doTemp = function () {
                         name: titles[idx],
                         id: 'series-' + idx,
                         data: resp[idx],
+                        color: config.series[idx].colour,
                         yAxis: yaxis,
                         tooltip: {valueSuffix: valueSuffix}
                     }, false);
@@ -352,8 +421,9 @@ var doPress = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-            name: 'Pressure'
-        }],
+            name: 'Pressure',
+            color: config.series.press.colour
+    }],
         rangeSelector: myRangeBtns
     };
 
@@ -388,6 +458,22 @@ var doWindDir = function () {
         },
         credits: {
             enabled: true
+        },
+        navigator: {
+            series: {
+                // pseudo scatter
+                type: 'line',
+                dataGrouping: {
+                    groupPixelWidth: 1,
+                    anchor: 1
+                },
+                lineWidth: 0,
+                marker   : {
+                    // enable the marker to simulate a scatter
+                    enabled: true,
+                    radius : 1
+                }
+            }
         },
         xAxis: {
             type: 'datetime',
@@ -440,7 +526,7 @@ var doWindDir = function () {
         plotOptions: {
             scatter: {
                 cursor: 'pointer',
-                enableMouseTracking: false,
+                enableMouseTracking: true,
                 boostThreshold: 200,
                 marker: {
                     states: {
@@ -448,9 +534,6 @@ var doWindDir = function () {
                             enabled: false
                         },
                         select: {
-                            enabled: false
-                        },
-                        normal: {
                             enabled: false
                         }
                     }
@@ -462,22 +545,36 @@ var doWindDir = function () {
             }
         },
         tooltip: {
-            enabled: false
+            enabled: true,
+            split: true,
+            useHTML: true
         },
         series: [{
             name: 'Bearing',
             type: 'scatter',
+            color: config.series.bearing.colour,
             marker: {
                 symbol: 'circle',
                 radius: 2
-            }
+            },
+            enableMouseTracking: false,
+            showInNavigator: false
         }, {
             name: 'Avg Bearing',
             type: 'scatter',
-            color: 'red',
+            color: config.series.avgbearing.colour,
             marker: {
                 symbol: 'circle',
                 radius: 2
+            },
+            showInNavigator: true,
+            tooltip: {
+                headerFormat: '',
+                xDateFormat: '%A, %b %e %H:%M ',
+                pointFormatter() {
+                    return '<span style="color:' + this.color + '">\u25CF</span> ' +
+                        this.series.name + ': <b>' + (this.y == 0 ? 'calm' : this.y + '°') + '</b><br/>';
+                }
             }
         }],
         rangeSelector: myRangeBtns
@@ -585,9 +682,11 @@ var doWind = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-            name: 'Wind Speed'
+            name: 'Wind Speed',
+            color: config.series.wspeed.colour
         }, {
-            name: 'Wind Gust'
+            name: 'Wind Gust',
+            color: config.series.wgust.colour
         }],
         rangeSelector: myRangeBtns
     };
@@ -696,12 +795,14 @@ var doRain = function () {
         series: [{
                 name: 'Daily rain',
                 type: 'area',
+                color: config.series.rfall.colour,
                 yAxis: 1,
                 tooltip: {valueSuffix: ' ' + config.rain.units},
                 fillOpacity: 0.3
             }, {
                 name: 'Rain rate',
                 type: 'line',
+                color: config.series.rrate.colour,
                 yAxis: 0,
                 tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
         }],
@@ -833,6 +934,7 @@ var doHum = function () {
                  if (idx in resp) {
                      chart.addSeries({
                          name: titles[idx],
+                         color: config.series[idx].colour,
                          data: resp[idx]
                      }, false);
 
@@ -989,7 +1091,7 @@ var doSolar = function () {
                         yAxis: idx === 'UV' ? 'uv' : 'solar',
                         tooltip: tooltips[idx],
                         data: resp[idx],
-                        color: colours[idx],
+                        color: config.series[idx.toLowerCase()].colour,
                         fillOpacity: idx === 'CurrentSolarMax' ? 0.2 : 0.5,
                         zIndex: 100 - cnt
                     }, false);
@@ -1089,7 +1191,7 @@ var doSunHours = function () {
         series: [{
             name: 'Sunshine Hours',
             type: 'column',
-            color: 'rgb(255,165,0)',
+            color: config.series.sunshine.colour,
             yAxis: 0,
             valueDecimals: 1,
             tooltip: {
@@ -1197,7 +1299,7 @@ var doDailyRain = function () {
         series: [{
             name: 'Daily Rainfall',
             type: 'column',
-            color: 'blue',
+            color: config.series.rfall.colour,
             yAxis: 0,
             valueDecimals: config.rain.decimals,
             tooltip: {
@@ -1337,11 +1439,6 @@ var doDailyTemp = function () {
                 'mintemp': 'Min Temp',
                 'maxtemp': 'Max Temp'
             };
-            var colours = {
-                'avgtemp': 'green',
-                'mintemp': 'blue',
-                'maxtemp': 'red'
-            };
             var idxs = ['avgtemp', 'mintemp', 'maxtemp'];
 
             idxs.forEach(function (idx) {
@@ -1349,7 +1446,7 @@ var doDailyTemp = function () {
                     chart.addSeries({
                         name: titles[idx],
                         data: resp[idx],
-                        color: colours[idx]
+                        color: config.series[idx].colour
                     }, false);
                 }
             });
@@ -1451,16 +1548,821 @@ var doAirQuality = function () {
                 'pm10' : 'PM 10'
              }
              var idxs = ['pm2p5', 'pm10'];
-             var cnt = 0;
              idxs.forEach(function(idx) {
                  if (idx in resp) {
                      chart.addSeries({
                          name: titles[idx],
+                         color: config.series[idx].colour,
                          data: resp[idx]
-                     }, false);
-
-                     cnt++;
+                    }, false);
                  }
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doExtraTemp = function () {
+    var freezing = config.temp.units === 'C' ? 0 : 32;
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Extra Temperature'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                },
+                plotLines: [{
+                        // freezing line
+                        value: freezing,
+                        color: 'rgb(0, 0, 180)',
+                        width: 1,
+                        zIndex: 2
+                    }]
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' °' + config.temp.units,
+            valueDecimals: config.temp.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'extratempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.extratemp.name[id],
+                    color: config.series.extratemp.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doExtraHum = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Extra Humidity'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Humidity (%)'},
+                opposite: false,
+                min: 0,
+                max: 100,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                min: 0,
+                max: 100,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' %',
+            valueDecimals: config.hum.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'extrahumdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.extrahum.name[id],
+                    color: config.series.extrahum.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doExtraDew = function () {
+    var freezing = config.temp.units === 'C' ? 0 : 32;
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Extra Dew Point'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Dew Point (°' + config.temp.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                },
+                plotLines: [{
+                        // freezing line
+                        value: freezing,
+                        color: 'rgb(0, 0, 180)',
+                        width: 1,
+                        zIndex: 2
+                    }]
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' °' + config.temp.units,
+            valueDecimals: config.temp.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'extradewdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.extradew.name[id],
+                    color: config.series.extradew.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doSoilTemp = function () {
+    var freezing = config.temp.units === 'C' ? 0 : 32;
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Soil Temperature'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                },
+                plotLines: [{
+                        // freezing line
+                        value: freezing,
+                        color: 'rgb(0, 0, 180)',
+                        width: 1,
+                        zIndex: 2
+                    }]
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' °' + config.temp.units,
+            valueDecimals: config.temp.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'soiltempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.soiltemp.name[id],
+                    color: config.series.soiltemp.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doSoilMoist = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Soil Moisture'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Moisture (' + config.soilmoisture.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' ' + config.soilmoisture.units,
+            valueDecimals: 0,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'soilmoistdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.soilmoist.name[id],
+                    color: config.series.soilmoist.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doUserTemp = function () {
+    var freezing = config.temp.units === 'C' ? 0 : 32;
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'User Temperature'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                },
+                plotLines: [{
+                        // freezing line
+                        value: freezing,
+                        color: 'rgb(0, 0, 180)',
+                        width: 1,
+                        zIndex: 2
+                    }]
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    formatter: function () {
+                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
+                    }
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' °' + config.temp.units,
+            valueDecimals: config.temp.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'usertempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
+                chart.addSeries({
+                    name: config.series.usertemp.name[id],
+                    color: config.series.usertemp.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doCO2 = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'CO&#8322; Sensor'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                id: 'co2',
+                title: {text: 'CO&#8322; (ppm)'},
+                opposite: false,
+                min: 0,
+                minRange: 10,
+                alignTicks: true,
+                showEmpty: false,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: true,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRangeBtns
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'co2sensordata.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var yaxis = 0;
+                var tooltip;
+                // id - remove all spaces and lowercase
+                var id = key.toLowerCase().split(' ').join('');
+
+                if (key == 'CO2' || key == 'CO2 Average') {
+                    yaxis = 'co2';
+                    tooltip = {valueSuffix: ' ppm'};
+                } else if (key.startsWith('PM')) {
+                    yaxis = 'pm';
+                    tooltip = {valueSuffix: ' &#181;g/m&#179;'};
+
+
+                    if (!chart.get('pm')) {
+                        chart.addAxis({
+                            // left
+                            id: 'pm',
+                            title: {text: 'PM (&#181;g/m&#179;)'},
+                            opposite: false,
+                            min: 0,
+                            minRange: 10,
+                            alignTicks: true,
+                            showEmpty: false,
+                            labels: {
+                                align: 'right',
+                                x: -5
+                            }
+                        });
+                    }
+                } else if (key == 'Temperature') {
+                    yaxis = 'temp';
+                    tooltip = {valueSuffix: ' °' + config.temp.units};
+                    chart.addAxis({
+                        // right
+                        id: 'temp',
+                        title: {text: 'Temperature (°' + config.temp.units + ')'},
+                        //gridLineWidth: 0,
+                        opposite: true,
+                        alignTicks: true,
+                        showEmpty: false,
+                        labels: {
+                            align: 'left',
+                            x: 5
+                        }
+                    });
+                } else if (key == 'Humidity') {
+                    yaxis = 'hum';
+                    tooltip = {valueSuffix: ' %'};
+                    chart.addAxis({
+                        // right
+                        id: 'hum',
+                        title: {text: 'Humidity (%)'},
+                        min: 0,
+                        //gridLineWidth: 0,
+                        opposite: true,
+                        alignTicks: true,
+                        showEmpty: false,
+                        labels: {
+                            align: 'left',
+                            x: 5
+                        }
+                    });
+                }
+
+                chart.addSeries({
+                    name: config.series.co2[id].name,
+                    color: config.series.co2[id].colour,
+                    data: value,
+                    yAxis: yaxis,
+                    tooltip: tooltip
+                });
+
              });
 
             chart.hideLoading();
