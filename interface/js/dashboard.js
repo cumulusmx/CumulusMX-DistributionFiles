@@ -271,7 +271,9 @@ $(document).ready(function () {
 
         let time = [hours, minutes, seconds].join(':');
 
-        $('#lastupdatetime').text(time);
+        //$('#lastupdatetime').text(time);
+        $('#lastupdatetime').text(lastupdatetime.toLocaleTimeString());
+
     }
 
     let pad = function (x) {

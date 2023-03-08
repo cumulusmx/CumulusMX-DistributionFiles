@@ -108,6 +108,9 @@
                 },
                 "listwebtags": {
                     "type": "boolean"
+                },
+                "use24hrtime": {
+                    "type": "boolean"
                 }
             }
         },

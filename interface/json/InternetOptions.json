@@ -11,7 +11,7 @@
 					"rightLabel": "Enable file copy of standard files",
 					"helpers": [
 						"Rather than using FTP simply copy the standard web files to another folder.",
-						"Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
+						"Typically this would be used when 'self hosting', when FTP/PHP upload would not be appropriate/efficient.",
 						"It can be used in conjunction with FTP."
 					]
 				},
@@ -24,29 +24,41 @@
 					}
 				},
 				"enabled": {
-					"rightLabel": "Enable FTP connections",
-					"helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
-				},
-				"hostname": {
-					"label": "Host name:",
-					"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
-					"dependencies": {
-						"enabled": true
-					}
+					"rightLabel": "Enable Upload connections",
+					"helpers": ["Enable web site uploads via FTP, FTPS, SFTP, or PHP"]
 				},
 				"sslftp": {
-					"label": "Select the FTP Protocol to use:",
+					"label": "Select the Upload Protocol to use:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
 						"0 - FTP (plain old FTP)",
 						"1 - Use SSL/TLS for FTP (FTPS)",
-						"2 - Use SSH for FTP (SFTP)"
+						"2 - Use SSH for FTP (SFTP)",
+						"3 - Use PHP upload"
 					],
 					"removeDefaultNone": true,
 					"helper": "Select the protocol required by your web host",
 					"dependencies": {
 						"enabled": true
+					}
+				},
+				"hostname": {
+					"label": "Host name:",
+					"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+					"dependencies": {
+						"enabled": true,
+						"sslftp": [0,1,2]
+					}
+				},
+				"phpurl": {
+					"label": "Upload URL:",
+					"type": "text",
+					"placeholder": "https://mysite.com/upload.php",
+					"helper": "Enter the URL of the upload script on your server",
+					"dependencies": {
+						"enabled": true,
+						"sslftp": 3
 					}
 				},
 				"ftpport": {
@@ -56,7 +68,8 @@
 						"* Port 990 is used when the older Implicit FTPS is configured"
 					],
 					"dependencies": {
-						"enabled": true
+						"enabled": true,
+						"sslftp": [0,1,2]
 					}
 				},
 				"sshAuth": {
@@ -82,19 +95,40 @@
 					}
 				},
 				"directory": {
-					"label": "Remote FTP Directory:"
+					"label": "Remote FTP Directory:",
+					"dependencies": {
+						"enabled": true,
+						"sslftp": [0,1,2]
+					}
 				},
 				"username": {
 					"label": "Username:",
 					"dependencies": {
-						"enabled": true
+						"enabled": true,
+						"sslftp": [0,1,2]
 					}
 				},
 				"password": {
 					"label": "Password:",
 					"type": "password",
 					"dependencies": {
-						"enabled": true
+						"enabled": true,
+						"sslftp": [0,1,2],
+						"sshAuth": ["password","password_psk"]
+					}
+				},
+				"phpsecret": {
+					"label": "PHP Upload Secret:",
+					"type": "password",
+					"helpers": [
+						"Enter a complex string used to generate PHP upload signatures.",
+						"Cumulus will generate a unique string for you.",
+						"You will need to enter this string into the webfiles/upload.php file before uploading it to your web site"
+					],
+					"id": "phpsecret",
+					"dependencies": {
+						"enabled": true,
+						"sslftp": 3
 					}
 				},
 				"general": {
@@ -106,18 +140,28 @@
 							"helpers": [
 								"Use this if your FTP server supports it (most do)",
 								"It minimises the time the file will be unavailable to your web server"
-							]
+							],
+							"dependencies": {
+								"ftpmode": [0,1,2]
+							}
 						},
 						"ftpdelete": {
 							"rightLabel": "Enable delete before upload",
 							"helpers": [
 								"Use this only if your FTP server requires it (most do not)",
 								"It deletes the destination file before uploading the new version"
-							]
+							],
+							"dependencies": {
+								"ftpmode": [0,1,2]
+							}
 						},
 						"utf8encode": {
 							"rightLabel": "Enable UTF-8 encoding",
 							"helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
+						},
+						"ftpmode": {
+							"type": "integer",
+							"fieldClass": "hideme"
 						}
 					},
 					"dependencies": {
@@ -170,7 +214,7 @@
 							}
 						},
 						"ignorecerts": {
-							"rightLabel": "Ignore certificate errors",
+							"rightLabel": "Ignore FTPS certificate errors",
 							"helpers": [
 								"Not normally required - use with caution",
 								"Typically only used if you are connecting to your own internal FTP server and it does not have a public certificate"
@@ -179,13 +223,23 @@
 								"ftpmode": 1
 							}
 						},
+						"phpignorecerts": {
+							"rightLabel": "Ignore PHP certificate errors",
+							"helpers": [
+								"Not normally required - use with caution",
+								"Typically only used if you are connecting to your own internal web server and it does not have a public certificate"
+							],
+							"dependencies": {
+								"ftpmode": 3
+							}
+						},
 						"ftpmode": {
 							"type": "integer",
 							"fieldClass": "hideme"
 						}
 					},
 					"dependencies": {
-						"sslftp": [0,1],
+						"sslftp": [0,1,3],
 						"enabled": true
 					}
 				}
@@ -222,9 +276,12 @@
 							}
 						},
 						"enableintervalftp": {
-							"label": "FTP",
-							"rightLabel": "Enable update interval FTP",
-							"helper": "Select this to have Cumulus enable FTP files at the web update interval"
+							"label": "Upload",
+							"rightLabel": "Enable update interval uploads",
+							"helper": "Select this to have Cumulus enable uploading files at the web update interval",
+							"dependencies": {
+								"enabled": true
+							}
 						},
 						"stdfiles": {
 							"collapsible":true,
@@ -244,9 +301,10 @@
 										}
 									},
 									"helpers": [
-										"Select which standard files are to be created uploaded every update interval",
-										"Note the websiteinfo.json file is required for the default web site and is uploaded once or when the station configuration is changed",
-										"Note the wxnow.txt file is created every minute, regardless of your web interval"
+										"Select which standard files are to be created locally/uploaded/copied every update interval",
+										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: The websitedata.json file is required for the default web site and is uploaded once or when the station configuration is changed",
+										"Note: The wxnow.txt file is created every minute, regardless of your web interval"
 									]
 								}
 							},
@@ -271,8 +329,9 @@
 										}
 									},
 									"helpers": [
-										"Select which graph data files are to be created uploaded every update interval",
-										"Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+										"Select which graph data files are to be created locally/uploaded/copied every update interval",
+										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
 									]
 								}
 							},
@@ -297,8 +356,9 @@
 										}
 									},
 									"helpers": [
-										"Select which graph data files are to be created uploaded at the daily rollover",
-										"Note the availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+										"Select which graph data files are to be created locally/uploaded/copied at the daily rollover",
+										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
 									]
 								}
 							},
@@ -325,9 +385,12 @@
 							}
 						},
 						"enablerealtimeftp": {
-							"label": "FTP:",
-							"rightLabel": "Enable real time FTP",
-							"helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval"
+							"label": "Upload:",
+							"rightLabel": "Enable real time Uploads",
+							"helper": "FTP: Establishes the real time FTP connection so that FTP uploads can take place at the real time interval",
+							"dependencies": {
+								"enabled": true
+							}
 						},
 						"files": {
 							"type": "table",
@@ -344,7 +407,10 @@
 							"dependencies": {
 								"enabled": true
 							},
-							"helpers": ["Select which standard files are to be created and uploaded every real-time interval"]
+							"helpers": [
+								"Select which standard files are to be created locally/uploaded/copied every real-time interval",
+								"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it"
+							]
 						}
 					}
 				}
@@ -539,16 +605,16 @@
 					}
 				},
 				"includemoonimage": {
-					"label": "FTP file:",
-					"rightLabel": "FTP Upload Moon image file",
-					"helper": "Select this to have the Moon image file uploaded to your FTP server",
+					"label": "Upload file:",
+					"rightLabel": "Upload Moon image file",
+					"helper": "Select this to have the Moon image file uploaded to your web server",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"ftpdest": {
-					"label": "FTP folder:",
-					"helper": "Set the folder and filename to use on your FTP server - default 'images/moon.png'",
+					"label": "Upload folder:",
+					"helper": "Set the folder and filename to use on your web server - default 'images/moon.png'",
 					"dependencies": {
 						"includemoonimage": true
 					}

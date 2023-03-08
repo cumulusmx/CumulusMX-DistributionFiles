@@ -84,6 +84,7 @@
 							"type": "object",
 							"properties": {
 								"ipaddress": {
+									"format": "ip-address"
 								},
 								"disconperiod": {
 									"type": "integer",
@@ -111,6 +112,7 @@
 									"type": "boolean"
 								},
 								"ipaddress": {
+									"format": "ip-address"
 								}
 							}
 						},
@@ -161,6 +163,7 @@
 							"type": "boolean"
 						},
 						"ipaddress": {
+							"format": "ip-address"
 						},
 						"macaddress": {
 						}
@@ -301,7 +304,7 @@
 		},
 
 		"internet": {
-			"title": "Web/FTP Hosting Site",
+			"title": "Web Hosting Site",
 			"type": "object",
 			"properties": {
 				"copy": {
@@ -312,7 +315,6 @@
 							"type": "boolean"
 						},
 						"localcopyfolder": {
-							"pattern": "^.*[\/\\\\\\\\]{1}$"
 						}
 					},
 					"dependencies": {
@@ -320,7 +322,7 @@
 					}
 				},
 				"ftp": {
-					"title": "FTP",
+					"title": "Upload",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -328,14 +330,10 @@
 						},
 						"hostname": {
 						},
-						"directory": {
+						"phpurl": {
 						},
 						"sslftp": {
-							"enum": [
-								0,
-								1,
-								2
-							]
+							"enum": [0,1,2,3]
 						},
 						"ftpport": {
 							"type": "integer",
@@ -351,20 +349,26 @@
 						},
 						"pskFile": {
 						},
+						"directory": {
+						},
 						"username": {
 						},
 						"password": {
+						},
+						"phpsecret": {
 						}
 					},
 					"dependencies": {
-						"hostname": ["enabled"],
+						"hostname": ["enabled", "sslftp"],
 						"sslftp": ["enabled"],
-						"ftpport": ["enabled"],
+						"ftpport": ["enabled", "sslftp"],
 						"sshAuth": ["sslftp"],
 						"pskFile": ["sshAuth"],
-						"directory": ["enabled"],
-						"username": ["enabled"],
-						"password": ["enabled"]
+						"directory": ["enabled", "sslftp"],
+						"username": ["enabled", "sslftp"],
+						"password": ["enabled", "sslftp"],
+						"phpurl": ["enabled", "sslftp"],
+						"phpsecret": ["enabled", "sslftp"]
 					}
 				}
 			}

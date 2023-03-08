@@ -1,6 +1,6 @@
 <!--
 	selectachart.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/06/07 11:32:10
+	Last modified: 2023/02/10 14:48:11
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -75,7 +75,9 @@
 			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	First Row	-->
 				<div class="w3-col s12">	<!--	Column of first row	-->
 					<div class="w3-panel w3-card w3-theme-white">
-						<div id="chartcontainer"></div>
+						<figure>
+							<div id="chartcontainer"></div>
+						</figure>
 					</div>
 				</div>
 			</div>	<!--	End of first column of first row	-->
@@ -124,10 +126,12 @@
 				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
-		<script src="https://code.highcharts.com/stock/9.1.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/9.1.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/9.1.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/9.1.0/themes/grid.js"></script>
+		<script src="https://code.highcharts.com/stock/10.3.3/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/10.3.3/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/accessibility.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/themes/grid.js"></script>
 		<script src="js/selectachart.js"></script>
 	</body>
 </html>

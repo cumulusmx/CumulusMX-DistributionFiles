@@ -61,6 +61,46 @@ $(document).ready(function () {
                         "styles": "alpaca-form-button-submit"
                     }
                 }
+            },
+            "fields": {
+                "gw1000": {
+                    "fields": {
+                        "macaddress": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "That is not a valid MAC address!"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
+                        }
+                    }
+                },
+                "ecowittapi": {
+                    "fields":{
+                        "mac": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "That is not a valid MAC address!"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
+                        }
+                    }
+                }
             }
         },
         "postRender": function (form) {
@@ -104,14 +144,6 @@ $(document).ready(function () {
             // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
             form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
-
-            // messy, but cannot find another way of setting the rightLabels of array checkboxes
-            setSensorLabels(form, "Graphs/datavisibility/extratemp/sensors");
-            setSensorLabels(form, "Graphs/datavisibility/extrahum/sensors");
-            setSensorLabels(form, "Graphs/datavisibility/extradew/sensors");
-            setSensorLabels(form, "Graphs/datavisibility/soiltemp/sensors");
-            setSensorLabels(form, "Graphs/datavisibility/soilmoist/sensors");
-            setSensorLabels(form, "Graphs/datavisibility/usertemp/sensors");
         }
     });
 });
@@ -160,16 +192,6 @@ function setCollapsed() {
             span.addClass('collapsed')
         }
     });
-}
-
-function setSensorLabels(form, path) {
-    let i = 1;
-    form.getControlByPath(path)
-        .children
-        .forEach(sensor => {
-            sensor.options.rightLabel = 'Sensor ' + i++;
-            sensor.refresh()
-        });
 }
 
 function getCSSRule(search) {

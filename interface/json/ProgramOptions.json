@@ -92,7 +92,7 @@
                     "rightLabel": "FTP logging",
                     "helpers": [
                         "Log FTP activity to ftplog.txt and to MX diags for diagnostic purposes",
-                        "Note: SFTP only logs to the MX diags file"
+                        "Note: SFTP only logs to the MX diags file and PHP upload logging is included in debug/data logging"
                     ]
                 },
                 "emaillogging": {
@@ -116,6 +116,10 @@
                 "listwebtags": {
                     "rightLabel": "List web tags",
                     "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
+                },
+                "use24hrtime": {
+                    "rightLabel": "Use 24hr time",
+                    "helper": "Default enabled shows 24 hour times on the dashboard, disabling shows 12 hour times with AM/PM"
                 }
             }
         },

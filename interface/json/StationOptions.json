@@ -1301,14 +1301,36 @@
 					"rightLabel": "No sensor check",
 					"helper": "Make Cumulus MX run even if you do not have the minimum sensors required (temp, press, wind)"
 				},
+				"userainforisraining": {
+					"label": "Is Raining trigger:",
+					"rightLabel": "What triggers the 'Is Raining' logic",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						"RG11 sensor",
+						"Primary rain sensor",
+						"Haptic rain sensor"
+					],
+					"removeDefaultNone": true,
+					"helpers": [
+						"Normally the 'Is Raining' value is triggered by a dedicated device - currently RG11",
+						"Primary rainfall sensor: It will also be triggered by a rainfall rate > 0, or by a bucket tip",
+						"Haptic sensor: If you have a haptic rain sensor (currently only the Ecowitt WS90 supported), then if you have a tipping bucket as your sensor, the haptic sensor can be used to trigger Is Raining",
+						"If you ONLY have a haptic sensor, then you should set this option to 'Primary rain sensor'",
+						"Note: This trigger may only be transient, the next station read may not have another bucket tip and 'Is Raining' will be cleared. Use the Is Raining alarm to latch the alarm value for a while"
+					]
+				},
 				"leafwetisrainingidx": {
-					"label": "Leafwetness IsRaining sensor:",
-					"helper": "Select a leafwetness sensor to be used as a 'Is Raining' sensor. The default value of -1 disables this feature",
+					"label": "Leaf wetness IsRaining sensor:",
+					"helpers": [
+						"Select a leaf wetness sensor to be used as a 'Is Raining' sensor. The default value of -1 disables this feature",
+						"Note: This can be used in addition to the Is raining trigger above"
+					],
 					"removeDefaultNone": true
 				},
 				"leafwetisrainingthrsh": {
-					"label": "Leafwetness IsRaining trigger:",
-					"helper": "Set the leafwetness value in the units used by your station to trigger 'Is Raining'",
+					"label": "Leaf wetness IsRaining trigger:",
+					"helper": "Set the leaf wetness value in the units used by your station to trigger 'Is Raining'",
 					"dependencies": {
 						"leafwetisrainingidx": [1,2,3,4,5,6,7,8]
 					}
@@ -1358,14 +1380,6 @@
 								"Set the amount of rainfall required for a day to be considered a 'rainy day'",
 								"Defaults value is -1, which is interpreted as 0.2 mm or 0.01 inches for *most* stations",
 								"DO NOT set to zero, then every day would be counted as a rain day"
-							]
-						},
-						"userainforisraining": {
-							"label": "Is Raining trigger:",
-							"rightLabel": "Use station rainfall for 'Is Raining' trigger",
-							"helpers": [
-								"Normally the 'Is Raining' value is triggered by a dedicated device, enabling this option means it will also be triggered by a rainfall rate > 0, or by a bucket tip",
-								"Note: This trigger may only be transient, the next station read may not have another bucket tip and 'Is Raining' will be cleared. Use the Is Raining alarm to latch the alarm value for a while"
 							]
 						}
 					}
@@ -1581,243 +1595,6 @@
 					"helpers": [
 						"The month of the year to start the chill hours season",
 						"Default: 10 (October), in Northern hemisphere / 4 (April), in Southern hemisphere"
-					]
-				}
-			}
-		},
-		"Graphs": {
-			"collapsible": true,
-			"collapsed": true,
-			"fields": {
-				"graphhours": {
-					"label": "Graph hours:",
-					"helper": "The number of hours shown on the minute-by-minute graphs"
-				},
-				"graphdays": {
-					"label": "Graph days:",
-					"helper": "The number of days shown on the daily graphs"
-				},
-				"datavisibility": {
-					"collapsible": true,
-					"collapsed": true,
-					"helper": "Show or hide data series on the dashboard and web site",
-					"helpersPosition": "above",
-					"fields": {
-						"temperature": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"graphTempVis": {
-									"rightLabel": "Outdoor Temperature"
-								},
-								"graphInTempVis": {
-									"rightLabel": "Indoor Temperature"
-								},
-								"graphHeatIndexVis": {
-									"rightLabel": "Heat Index"
-								},
-								"graphDewPointVis": {
-									"rightLabel": "Dew Point"
-								},
-								"graphWindChillVis": {
-									"rightLabel": "Wind Chill"
-								},
-								"graphAppTempVis": {
-									"rightLabel": "Apparent Temperature"
-								},
-								"graphFeelsLikeVis": {
-									"rightLabel": "Feels Like"
-								},
-								"graphHumidexVis": {
-									"rightLabel": "Humidex"
-								},
-								"graphDailyMaxTempVis": {
-									"rightLabel": "Daily Maximum Temperature"
-								},
-								"graphDailyAvgTempVis": {
-									"rightLabel": "Daily Average Temperature"
-								},
-								"graphDailyMinTempVis": {
-									"rightLabel": "Daily Minimum Temperature"
-								},
-								"graphTempSumVis0": {
-									"rightLabel": "Annual Temperature Sum 0"
-								},
-								"graphTempSumVis1": {
-									"rightLabel": "Annual Temperature Sum #1"
-								},
-								"graphTempSumVis2": {
-									"rightLabel": "Annual Temperature Sum #2"
-								}
-							}
-						},
-						"humidity": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"graphHumVis": {
-									"rightLabel": "Outdoor Humidity"
-								},
-								"graphInHumVis": {
-									"rightLabel": "Indoor Humidity"
-								}
-							}
-						},
-						"solar": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"graphUvVis": {
-									"rightLabel": "UV Index"
-								},
-								"graphSolarVis": {
-									"rightLabel": "Solar Irradiation"
-								},
-								"graphSunshineVis": {
-									"rightLabel": "Sunshine Hours"
-								}
-							}
-						},
-						"degreedays": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"graphGrowingDegreeDaysVis1": {
-									"rightLabel": "Growing Degree Days series #1"
-								},
-								"graphGrowingDegreeDaysVis2": {
-									"rightLabel": "Growing Degree Days series #2"
-								}
-							}
-						},
-						"extratemp": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"extrahum": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"extradew": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"soiltemp": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"soilmoist": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"usertemp": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"sensors": {
-									"type": "array",
-									"toolbarSticky": false
-								}
-							}
-						},
-						"co2": {
-							"collapsible": true,
-							"collapsed": true,
-							"fields": {
-								"co2": {
-									"rightLabel": "CO&#8322;"
-								},
-								"co2avg": {
-									"rightLabel": "CO&#8322; average"
-								},
-								"pm25": {
-									"rightLabel": "PM 2.5"
-								},
-								"pm25avg": {
-									"rightLabel": "PM2.5 average"
-								},
-								"pm10": {
-									"rightLabel": "PM10"
-								},
-								"pm10avg": {
-									"rightLabel": "PM10 average"
-								},
-								"temp": {
-									"rightLabel": "Temperature"
-								},
-								"hum": {
-									"rightLabel": "Humidity"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"DisplayOptions": {
-			"collapsible": true,
-			"collapsed": true,
-			"fields": {
-				"useapparent": {
-					"label": "Apparent/Feels Like:",
-					"rightLabel": "Use Apparent Temperature",
-					"helpers": [
-						"Enabling this option will display Apparent temperature on the default web site",
-						"Disabling this option will display Feels Like temperature on the default web site"
-					]
-				},
-				"displaysolar": {
-					"label": "Solar:",
-					"rightLabel": "Display Solar data",
-					"helpers": ["Enabling this option will display solar data on the default web site"]
-				},
-				"displayuv": {
-					"label": "UV-I:",
-					"rightLabel": "Display UV-I data",
-					"helpers": ["Enabling this option will display UV-I data on the default web site"]
-				},
-				"windrosepoints": {
-					"label": "Number of wind rose points:",
-					"type": "select",
-					"removeDefaultNone": true,
-					"sort": false,
-					"optionLabels": [
-						"8 points",
-						"16 points"
-					],
-					"helpers": [
-						"The number of cardinal points to display on the Wind Rose",
-						"Set this to 8 for Fine Offset stations"
 					]
 				}
 			}

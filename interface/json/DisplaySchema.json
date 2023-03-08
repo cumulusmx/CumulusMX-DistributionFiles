@@ -1,0 +1,583 @@
+{
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"DisplayOptions": {
+			"title": "General Options",
+			"type": "object",
+			"properties": {
+				"useapparent": {
+					"type": "boolean"
+				},
+				"displaysolar": {
+					"type": "boolean"
+				},
+				"displayuv": {
+					"type": "boolean"
+				},
+				"windrosepoints": {
+					"enum": [8, 16]
+				}
+			}
+		},
+		"Graphs": {
+			"title": "Charts",
+			"type": "object",
+			"properties": {
+				"graphhours": {
+					"type": "number",
+					"minimum": 1
+				},
+				"graphdays": {
+					"type": "number",
+					"minimum": 1
+				},
+				"colour": {
+					"title": "Data Series Colours",
+					"type": "object",
+					"properties": {
+						"temperature": {
+							"title": "Temperatures",
+							"type": "object",
+							"properties": {
+								"Temp": {
+									"type": "string"
+								},
+								"InTemp": {
+									"type": "string"
+								},
+								"HeatIndex": {
+									"type": "string"
+								},
+								"DewPoint": {
+									"type": "string"
+								},
+								"WindChill": {
+									"type": "string"
+								},
+								"AppTemp": {
+									"type": "string"
+								},
+								"FeelsLike": {
+									"type": "string"
+								},
+								"Humidex": {
+									"type": "string"
+								}
+							}
+						},
+						"humidity": {
+							"title": "Humidity",
+							"type": "object",
+							"properties": {
+								"Hum": {
+									"type": "string"
+								},
+								"InHum": {
+									"type": "string"
+								}
+							}
+						},
+						"press": {
+							"title": "Pressure",
+							"type": "object",
+							"properties": {
+								"Press": {
+									"type": "string"
+								}
+							}
+						},
+						"wind": {
+							"title": "Wind Speed",
+							"type": "object",
+							"properties": {
+								"WindGust": {
+									"type": "string"
+								},
+								"WindAvg": {
+									"type": "string"
+								},
+								"WindRun": {
+									"type": "string"
+								}
+							}
+						},
+						"bearing": {
+							"title": "Wind Bearing",
+							"type": "object",
+							"properties": {
+								"Bearing": {
+									"type": "string"
+								},
+								"BearingAvg": {
+									"type": "string"
+								}
+							}
+						},
+						"rain": {
+							"title": "Rainfall",
+							"type": "object",
+							"properties": {
+								"Rain": {
+									"type": "string"
+								},
+								"RainRate": {
+									"type": "string"
+								}
+							}
+						},
+						"solar": {
+							"title": "Solar Data",
+							"type": "object",
+							"properties": {
+								"UV": {
+									"type": "string"
+								},
+								"Solar": {
+									"type": "string"
+								},
+								"CurrentSolarMax": {
+									"type": "string"
+								},
+								"Sunshine": {
+									"type": "string"
+								}
+							}
+						},
+						"dailytemp": {
+							"title": "Daily Temperatures",
+							"type": "object",
+							"properties": {
+								"MaxTemp": {
+									"type": "string"
+								},
+								"AvgTemp": {
+									"type": "string"
+								},
+								"MinTemp": {
+									"type": "string"
+								},
+								"MaxHeatIndex": {
+									"type": "string"
+								},
+								"MaxDewPoint": {
+									"type": "string"
+								},
+								"MinDewPoint": {
+									"type": "string"
+								},
+								"MaxFeelsLike": {
+									"type": "string"
+								},
+								"MinFeelsLike": {
+									"type": "string"
+								},
+								"MaxAppTemp": {
+									"type": "string"
+								},
+								"MinAppTemp": {
+									"type": "string"
+								},
+								"MaxHumidex": {
+									"type": "string"
+								}
+							}
+
+						},
+						"dailypress": {
+							"title": "Daily Pressure",
+							"type": "object",
+							"properties": {
+								"Max": {
+									"type": "string"
+								},
+								"Min": {
+									"type": "string"
+								}
+							}
+						},
+						"dailyhum": {
+							"title": "Daily Humidity",
+							"type": "object",
+							"properties": {
+								"Max": {
+									"type": "string"
+								},
+								"Min": {
+									"type": "string"
+								}
+							}
+						},
+						"aq": {
+							"title": "Air Quality",
+							"type": "object",
+							"properties": {
+								"Pm2p5": {
+									"type": "string"
+								},
+								"Pm10": {
+									"type": "string"
+								}
+							}
+						},
+						"extratemp" : {
+							"title": "Extra Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"extrahum" : {
+							"title": "Extra Humidity's",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"extradew" : {
+							"title": "Extra Dew Points",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"soiltemp" : {
+							"title": "Soil Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"soilmoist" : {
+							"title": "Soil Moistures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"usertemp" : {
+							"title": "User Temperatures",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"co2" : {
+							"title": "CO&#8322; Sensor",
+							"type": "object",
+							"properties": {
+								"co2": {
+									"type": "string"
+								},
+								"co2avg": {
+									"type": "string"
+								},
+								"pm25": {
+									"type": "string"
+								},
+								"pm25avg": {
+									"type": "string"
+								},
+								"pm10": {
+									"type": "string"
+								},
+								"pm10avg": {
+									"type": "string"
+								},
+								"temp": {
+									"type": "string"
+								},
+								"hum": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"DataVisibility": {
+			"title": "Data Visibility",
+			"type": "object",
+			"properties": {
+				"temperature": {
+					"title": "Temperature Data",
+					"type": "object",
+					"properties": {
+						"Temp": {
+							"enum": [0,1,2]
+						},
+						"InTemp": {
+							"enum": [0,1,2]
+						},
+						"HeatIndex": {
+							"enum": [0,1,2]
+						},
+						"DewPoint": {
+							"enum": [0,1,2]
+						},
+						"WindChill": {
+							"enum": [0,1,2]
+						},
+						"AppTemp": {
+							"enum": [0,1,2]
+						},
+						"FeelsLike": {
+							"enum": [0,1,2]
+						},
+						"Humidex": {
+							"enum": [0,1,2]
+						},
+						"MaxTemp": {
+							"enum": [0,1,2]
+						},
+						"AvgTemp": {
+							"enum": [0,1,2]
+						},
+						"MinTemp": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"humidity": {
+					"title": "Humidity Data",
+					"type": "object",
+					"properties": {
+						"Hum": {
+							"enum": [0,1,2]
+						},
+						"InHum": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"solar": {
+					"title": "Solar Data",
+					"type": "object",
+					"properties": {
+						"UV": {
+							"enum": [0,1,2]
+						},
+						"Solar": {
+							"enum": [0,1,2]
+						},
+						"Sunshine": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"degreedays": {
+					"title": "Degree Days",
+					"type": "object",
+					"properties": {
+						"GrowingDegreeDays1": {
+							"enum": [0,1,2]
+						},
+						"GrowingDegreeDays2": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"tempsum": {
+					"title": "Temperature Sum",
+					"type": "object",
+					"properties": {
+						"TempSum0": {
+							"enum": [0,1,2]
+						},
+						"TempSum1": {
+							"enum": [0,1,2]
+						},
+						"TempSum2": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"extratemp" : {
+					"title": "Extra Temperatures",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"extrahum" : {
+					"title": "Extra Humidities",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"extradew" : {
+					"title": "Extra Dew Points",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"soiltemp" : {
+					"title": "Soil Temperatures",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"soilmoist" : {
+					"title": "Soil Moistures",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"leafwet" : {
+					"title": "Leaf Wetness",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"usertemp" : {
+					"title": "User Temperatures",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"aq" : {
+					"title": "Air Quality Sensor",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"title": "Sensor",
+								"type": "object",
+								"properties": {
+									"pm": {
+										"type": "number",
+										"enum": [0,1,2]
+									},
+									"pmavg": {
+										"type": "number",
+										"enum": [0,1,2]
+									},
+									"temp": {
+										"type": "number",
+										"enum": [0,1,2]
+									},
+									"hum": {
+										"type": "number",
+										"enum": [0,1,2]
+									}
+								}
+							}
+						}
+					}
+				},
+				"co2" : {
+					"title": "CO&#8322; Sensor",
+					"type": "object",
+					"properties": {
+						"co2": {
+							"enum": [0,1,2]
+						},
+						"co2avg": {
+							"enum": [0,1,2]
+						},
+						"pm25": {
+							"enum": [0,1,2]
+						},
+						"pm25avg": {
+							"enum": [0,1,2]
+						},
+						"pm10": {
+							"enum": [0,1,2]
+						},
+						"pm10avg": {
+							"enum": [0,1,2]
+						},
+						"temp": {
+							"enum": [0,1,2]
+						},
+						"hum": {
+							"enum": [0,1,2]
+						}
+					}
+				}
+			}
+		}
+	}
+}

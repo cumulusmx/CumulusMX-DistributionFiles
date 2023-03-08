@@ -44,12 +44,15 @@
 				},
 				"minmaxavg": {
 					"type": "boolean"
+				},
+				"noaacoolheat": {
+					"type": "boolean"
 				}
 			}
 		},
 		"ftp": {
 			"type": "object",
-			"title": "FTP Options",
+			"title": "Upload Options",
 			"properties": {
 				"autotransfer": {
 					"type": "boolean"

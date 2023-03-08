@@ -1,6 +1,6 @@
 <!--
 	trends.htm		v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2021/06/07 11:34:39
+	Last modified: 2023/02/10 14:47:49
 	Page: 1 main panel plus a sidebar
 	NOTE: Once uploaded this page does not need to be uploaded again unless edited.
 -->
@@ -71,7 +71,9 @@
 			<div class="w3-row-padding w3-theme-light graphs-width">	<!--	First Row	-->
 				<div class="w3-col s12">	<!--	First column of first row	-->
 					<div class="w3-panel w3-card w3-theme-white">
-						<div id="chartcontainer"></div>
+						<figure>
+							<div id="chartcontainer"></div>
+						</figure>
 					</div>
 				</div>	<!--	End of first column of first row	-->
 			</div>
@@ -79,17 +81,26 @@
 				<div class="w3-col s12">
 					<div class="w3-cardX w3-panelX w3-center">
 						<div class="w3-bar w3-center">
-							<button id="btnTemp"       class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('temp');">Temperature</button>
-							<button id="btnDailyTemp"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('dailytemp');">Daily temperature</button>
-							<button id="btnPress"      class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('press');">Pressure</button>
-							<button id="btnWindSpd"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('wind');">Wind speed</button>
-							<button id="btnWindDir"    class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('windDir');">Wind direction</button>
-							<button id="btnHum"        class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('humidity');">Humidity</button>
-							<button id="btnRain"       class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('rain');">Rainfall</button>
-							<button id="btnDailyRain"  class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('dailyrain');">Daily Rainfall</button>
-							<button id="btnSolar"      class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('solar');">Solar</button>
-							<button id="btnSunHours"   class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('sunhours');">Sun Hours</button>
-							<button id="btnAirQuality" class="w3-bar-item w3-btn w3-theme-l2 w3-theme-hvr at-slim mx-button" onClick="changeGraph('airquality');">Air Quality</button>
+							<select id="mySelect" aria-label="select data type for graph" class="w3-bar-item w3-select w3-theme-l2  at-slim">
+								<option value="temp" selected>Temperature</option>
+								<option value="dailytemp">Daily Temperature</option>
+								<option value="press">Pressure</option>
+								<option value="wind">Wind Speed</option>
+								<option value="windDir">Wind Direction</option>
+								<option value="humidity">Humidity</option>
+								<option value="rain">Rainfall</option>
+								<option value="dailyrain">Daily Rain</option>
+								<option value="solar">Solar</option>
+								<option value="sunhours">Sunshine Hours</option>
+								<option value="airquality">Air Quality</option>
+								<option value="extratemp">Extra Temperature</option>
+								<option value="extrahum">Extra Humidity</option>
+								<option value="extradew">Extra Dew Point</option>
+								<option value="soiltemp">Soil Temperature</option>
+								<option value="soilmoist">Soil Moisture</option>
+								<option value="usertemp">User Temperature</option>
+								<option value="co2">CO&#8322; Sensor</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -102,10 +113,12 @@
 				<span class="w3-right">Powered by <span class="w3-theme-txt">Cumulus MX</span> v:<span data-cmxdata="version"></span>, b:<span data-cmxdata="build"></span></span></em></p>
 			</div>
 		</div>
-		<script src="https://code.highcharts.com/stock/9.1.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/9.1.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/9.1.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/9.1.0/themes/grid.js"></script>
+		<script src="https://code.highcharts.com/stock/10.3.3/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/10.3.3/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/accessibility.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/themes/grid.js"></script>
 		<script src="js/cumuluscharts.js"></script>	<!--	Script needed to run charts	-->
 	</body>
 </html>

@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2022/09/26 11:00:38
+ Last modified: 2023/02/12 16:14:20
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -53,7 +53,9 @@ let menuSrc = [
 		{title: "NOAA settings",        menu: "b",    url: "noaasettings.html"},
 		{title: "MySQL settings",       menu: "b",    url: "mysqlsettings.html"},
 		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"},
-		{title: "Custom Logs",          menu: "b",    url: "customlogs.html"}
+		{title: "Custom logs",          menu: "b",    url: "customlogs.html"},
+		{title: "Display options",      menu: "b",    url: "display.html"},
+		{title: "Locale strings",       menu: "b",    url: "locale.html"}
 	]},
 	{title: "Edit",      submenu: true,       items: [
 		{title: "Today's rain",          menu: "b",    url: "raintodayeditor.html"},
@@ -66,7 +68,7 @@ let menuSrc = [
 	]},
 	{title: "Utils",     submenu: true,      items:[
 		{title: "Reload Dayfile",       menu: "b",    url: "util_reloaddayfile.html"},
-		{title: "FTP/Copy Now!",        menu: "b",    url: "util_ftpnow.html"},
+		{title: "Upload/Copy Now!",        menu: "b",    url: "util_ftpnow.html"},
 		{title: "Purge MySQL",          menu: "b",    url: "util_purgemysql.html"}
 	]}
 ];
@@ -106,7 +108,19 @@ let createMainMenu = function(src, submenu) {
 	$('#Main_Menu').html(menu);
 };
 
-window.addEventListener("load", function() {
+let resizeMenu = function() {
+	// get the menu height - if it isn't collapsed
+	if ($('#Main_Menu').is(':visible')) {
+		$('body').children('.container').css('margin-top', $('#Main_Menu').height() - 50);
+	} else {
+		$('body').children('.container').css('margin-top', '');
+	}
+};
+
+window.addEventListener('load', function() {
 	createMainMenu(menuSrc, false);
+	resizeMenu();
 });
+
+window.addEventListener('resize', resizeMenu);
 

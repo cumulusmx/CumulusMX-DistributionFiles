@@ -37,6 +37,18 @@
 				"includeaq": {
 					"type":"boolean"
 				},
+				"extratemp1": {
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				},
+				"extratemp2": {
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				},
+				"extratemp3": {
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				},
+				"extratemp4": {
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				},
 				"catchup": {
 					"type": "boolean"
 				}
@@ -51,6 +63,10 @@
 				"includesolar": ["enabled"],
 				"sendavgwind": ["enabled"],
 				"includeaq": ["enabled"],
+				"extratemp1": ["enabled"],
+				"extratemp2": ["enabled"],
+				"extratemp3": ["enabled"],
+				"extratemp4": ["enabled"],
 				"catchup": ["enabled"]
 			}
 		},

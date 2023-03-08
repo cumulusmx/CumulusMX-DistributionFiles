@@ -1,4 +1,4 @@
-// Last modified: 2023/01/11 11:47:06
+// Last modified: 2023/02/28 15:51:07
 
 var chart, config, doSelect;
 
@@ -296,6 +296,7 @@ var doTemp = function () {
                         name: titles[idx],
                         id: 'series-' + idx,
                         data: resp[idx],
+                        color: config.series[idx].colour,
                         yAxis: yaxis,
                         tooltip: {valueSuffix: valueSuffix}
                     }, false);
@@ -384,7 +385,8 @@ var doPress = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Pressure'
+                name: 'Pressure',
+                color: config.series.press.colour
             }],
         rangeSelector: myRanges
     };
@@ -420,6 +422,22 @@ var doWindDir = function () {
             useGPUTranslations: false,
             usePreAllocated: true
         },
+        navigator: {
+            series: {
+                // pseudo scatter
+                type: 'line',
+                dataGrouping: {
+                    groupPixelWidth: 1,
+                    anchor: 1
+                },
+                lineWidth: 0,
+                marker   : {
+                    // enable the marker to simulate a scatter
+                    enabled: true,
+                    radius : 1
+                }
+            }
+        },
         xAxis: {
             type: 'datetime',
             ordinal: false,
@@ -440,7 +458,7 @@ var doWindDir = function () {
                 labels: {
                     align: 'right',
                     x: -5,
-                    formatter: function () {
+                    formatter() {
                         return compassP(this.value);
                     }
                 }
@@ -456,7 +474,7 @@ var doWindDir = function () {
                 labels: {
                     align: 'left',
                     x: 5,
-                    formatter: function () {
+                    formatter() {
                         return compassP(this.value);
                     }
                 }
@@ -466,37 +484,49 @@ var doWindDir = function () {
             scatter: {
                 animationLimit: 1,
                 cursor: 'pointer',
-                enableMouseTracking: false,
+                enableMouseTracking: true,
                 boostThreshold: 200,
                 marker: {
                     states: {
                         hover: {enabled: false},
-                        select: {enabled: false},
-                        normal: {enabled: false}
+                        select: {enabled: false}
                     }
                 },
                 shadow: false,
-                label: {enabled: false}
+                //label: {enabled: false}
             }
-
         },
         tooltip: {
-            enabled: false
+            enabled: true,
+            split: true,
+            useHTML: true
         },
         series: [{
                 name: 'Bearing',
                 type: 'scatter',
+                color: config.series.bearing.colour,
                 marker: {
                     symbol: 'circle',
                     radius: 2
-                }
+                },
+                enableMouseTracking: false,
+                showInNavigator: false
             }, {
                 name: 'Avg Bearing',
                 type: 'scatter',
-                color: 'red',
+                color: config.series.avgbearing.colour,
                 marker: {
                     symbol: 'circle',
                     radius: 2
+                },
+                showInNavigator: true,
+                tooltip: {
+                    headerFormat: '',
+                    xDateFormat: '%A, %b %e %H:%M ',
+                    pointFormatter() {
+                        return '<span style="color:' + this.color + '">\u25CF</span> ' +
+                            this.series.name + ': <b>' + (this.y == 0 ? 'calm' : this.y + '°') + '</b><br/>';
+                    }
                 }
             }
         ],
@@ -592,9 +622,11 @@ var doWind = function () {
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
-                name: 'Wind Speed'
+                name: 'Wind Speed',
+                color: config.series.wspeed.colour
             }, {
-                name: 'Wind Gust'
+                name: 'Wind Gust',
+                color: config.series.wgust.colour
         }],
         rangeSelector: myRanges
     };
@@ -607,6 +639,7 @@ var doWind = function () {
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
+
             chart.series[0].setData(resp.wspeed);
             chart.series[1].setData(resp.wgust);
         }
@@ -690,12 +723,14 @@ var doRain = function () {
         series: [{
                 name: 'Daily rain',
                 type: 'area',
+                color: config.series.rfall.colour,
                 yAxis: 1,
                 tooltip: {valueSuffix: ' ' + config.rain.units},
                 fillOpacity: 0.3
             }, {
                 name: 'Rain rate',
                 type: 'line',
+                color: config.series.rrate.colour,
                 yAxis: 0,
                 tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
         }],
@@ -814,6 +849,7 @@ var doHum = function () {
                  if (idx in resp) {
                      chart.addSeries({
                          name: titles[idx],
+                         color: config.series[idx].colour,
                          data: resp[idx]
                      }, false);
 
@@ -903,11 +939,6 @@ var doSolar = function () {
                 CurrentSolarMax: 'area',
                 UV: 'line'
             };
-            var colours = {
-                SolarRad: 'rgb(255,165,0)',
-                CurrentSolarMax: 'rgb(128,128,128)',
-                UV: 'rgb(0,0,255)'
-            };
             var tooltips = {
                 SolarRad: {
                     valueSuffix: ' W/m\u00B2',
@@ -960,7 +991,7 @@ var doSolar = function () {
                         yAxis: idx === 'UV' ? 'uv' : 'solar',
                         tooltip: tooltips[idx],
                         data: resp[idx],
-                        color: colours[idx],
+                        color: config.series[idx.toLowerCase()].colour,
                         fillOpacity: idx === 'CurrentSolarMax' ? 0.2 : 0.5,
                         zIndex: 100 - cnt
                     }, false);
@@ -1050,7 +1081,7 @@ var doSunHours = function () {
         series: [{
                 name: 'Sunshine Hours',
                 type: 'column',
-                color: 'rgb(255,165,0)',
+                color: config.series.sunshine.colour,
                 yAxis: 0,
                 valueDecimals: 1,
                 tooltip: {valueSuffix: ' Hrs'}
@@ -1146,7 +1177,7 @@ var doDailyRain = function () {
         series: [{
                 name: 'Daily Rainfall',
                 type: 'column',
-                color: 'blue',
+                color: config.series.rfall.colour,
                 yAxis: 0,
                 valueDecimals: config.rain.decimals,
                 tooltip: {valueSuffix: ' ' + config.rain.units}
@@ -1271,11 +1302,6 @@ var doDailyTemp = function () {
                 'mintemp': 'Min Temp',
                 'maxtemp': 'Max Temp'
             };
-            var colours = {
-                'avgtemp': 'green',
-                'mintemp': 'blue',
-                'maxtemp': 'red'
-            };
             var idxs = ['avgtemp', 'mintemp', 'maxtemp'];
 
             idxs.forEach(function (idx) {
@@ -1283,7 +1309,7 @@ var doDailyTemp = function () {
                     chart.addSeries({
                         name: titles[idx],
                         data: resp[idx],
-                        color: colours[idx]
+                        color: config.series[idx].colour
                     }, false);
                 }
             });
@@ -1389,6 +1415,7 @@ var doAirQuality = function () {
                  if (idx in resp) {
                      chart.addSeries({
                          name: titles[idx],
+                         color: config.series[idx].colour,
                          data: resp[idx]
                      }, false);
                  }
@@ -1497,11 +1524,13 @@ var doExtraTemp = function () {
         url: 'api/graphdata/extratemp.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.extratemp.name[id],
+                    color: config.series.extratemp.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -1598,11 +1627,13 @@ var doExtraHum = function () {
         url: 'api/graphdata/extrahum.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.extrahum.name[id],
+                    color: config.series.extrahum.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -1708,11 +1739,13 @@ var doExtraDew = function () {
         url: 'api/graphdata/extradew.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.extradew.name[id],
+                    color: config.series.extradew.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -1818,11 +1851,13 @@ var doSoilTemp = function () {
         url: 'api/graphdata/soiltemp.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.soiltemp.name[id],
+                    color: config.series.soiltemp.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -1914,11 +1949,13 @@ var doSoilMoist = function () {
         url: 'api/graphdata/soilmoist.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.soilmoist.name[id],
+                    color: config.series.soilmoist.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -2024,11 +2061,13 @@ var doUserTemp = function () {
         url: 'api/graphdata/usertemp.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = key.split(" ")[1] - 1;
                 chart.addSeries({
-                    name: key,
+                    name: config.series.usertemp.name[id],
+                    color: config.series.usertemp.colour[id],
                     data: value
-                })
+                });
              });
 
             chart.hideLoading();
@@ -2114,15 +2153,19 @@ var doCO2 = function () {
         url: 'api/graphdata/co2sensor.json',
         dataType: 'json',
         success: function (resp) {
-             Object.entries(resp).forEach(([key, value]) => {
+            Object.entries(resp).forEach(([key, value]) => {
                 var yaxis = 0;
                 var tooltip;
+                // id - remove all spaces and lowercase
+                var id = key.toLowerCase().split(' ').join('');
+
                 if (key == 'CO2' || key == 'CO2 Average') {
                     yaxis = 'co2';
                     tooltip = {valueSuffix: ' ppm'};
                 } else if (key.startsWith('PM')) {
                     yaxis = 'pm';
                     tooltip = {valueSuffix: ' &#181;g/m&#179;'};
+
 
                     if (!chart.get('pm')) {
                         chart.addAxis({
@@ -2176,7 +2219,8 @@ var doCO2 = function () {
                 }
 
                 chart.addSeries({
-                    name: key,
+                    name: config.series.co2[id].name,
+                    color: config.series.co2[id].colour,
                     data: value,
                     yAxis: yaxis,
                     tooltip: tooltip

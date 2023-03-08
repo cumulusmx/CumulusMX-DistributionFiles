@@ -1,0 +1,681 @@
+{
+	"definitions": {
+		"colorpicker": {
+			"type": "colorpicker",
+			"component": true
+		},
+		"visibility": {
+			"type": "select",
+			"sort": false,
+			"optionLabels": ["Hidden","Visible","Dashboard Only"],
+			"removeDefaultNone": true
+		},
+		"sensors": {
+			"type": "array",
+			"toolbarSticky": false,
+			"items": {
+				"$ref": "#/definitions/visibility"
+			}
+		}
+	},
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"DisplayOptions": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"useapparent": {
+					"label": "Apparent/Feels Like:",
+					"rightLabel": "Use Apparent Temperature",
+					"helpers": [
+						"Enabling this option will display Apparent temperature on the default web site",
+						"Disabling this option will display Feels Like temperature on the default web site"
+					]
+				},
+				"displaysolar": {
+					"label": "Solar:",
+					"rightLabel": "Display Solar data",
+					"helpers": ["Enabling this option will display solar data on the default web site"]
+				},
+				"displayuv": {
+					"label": "UV-I:",
+					"rightLabel": "Display UV-I data",
+					"helpers": ["Enabling this option will display UV-I data on the default web site"]
+				},
+				"windrosepoints": {
+					"label": "Number of wind rose points:",
+					"type": "select",
+					"removeDefaultNone": true,
+					"sort": false,
+					"optionLabels": [
+						"8 points",
+						"16 points"
+					],
+					"helpers": [
+						"The number of cardinal points to display on the Wind Rose",
+						"Set this to 8 for Fine Offset stations"
+					]
+				}
+			}
+		},
+		"Graphs": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"graphhours": {
+					"label": "Chart hours:",
+					"helper": "The number of hours shown on the minute-by-minute charts"
+				},
+				"graphdays": {
+					"label": "Chart days:",
+					"helper": "The number of days shown on the daily charts"
+				},
+				"colour": {
+					"collapsible": true,
+					"collapsed": true,
+					"helpers": [
+						"Select the data series colours on the dashboard and web site charts",
+						"You can also enter any of 140 standard HTML colour names and they will be translated to hex values",
+						"See the colours here: https://www.w3schools.com/colors/colors_names.asp"
+					],
+					"helpersPosition": "above",
+					"fields": {
+						"temperature": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Temp": {
+									"label": "Outdoor Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"InTemp": {
+									"label": "Indoor Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"HeatIndex": {
+									"label": "Heat Index",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"DewPoint": {
+									"label": "Dew Point",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"WindChill": {
+									"label": "Wind Chill",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"AppTemp": {
+									"label": "Apparent Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"FeelsLike": {
+									"label": "Feels Like",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Humidex": {
+									"label": "Humidex",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"humidity": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Hum": {
+									"label": "Outdoor Humidity",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"InHum": {
+									"label": "Indoor Humidity",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"press": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Press": {
+									"label": "Pressure",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"wind": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"WindGust": {
+									"label": "Wind Speed Gust",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"WindAvg": {
+									"label": "Wind Speed Average",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"WindRun": {
+									"label": "Wind Run",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"bearing": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Bearing": {
+									"label": "Wind Bearing",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"BearingAvg": {
+									"label": "Wind Average Bearing",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"rain": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Rain": {
+									"label": "Rainfall",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"RainRate": {
+									"label": "Rainfall Rate",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"solar": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"UV": {
+									"label": "UV Index",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Solar": {
+									"label": "Solar Irradiation",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"CurrentSolarMax": {
+									"label": "Solar Theoretical",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Sunshine": {
+									"label": "Sunshine Hours",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"dailytemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"MaxTemp": {
+									"label": "Maximum Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"AvgTemp": {
+									"label": "Average Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MinTemp": {
+									"label": "Minimum Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MaxHeatIndex": {
+									"label": "Maximum Heat Index",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MaxDewPoint": {
+									"label": "Maximum Dew Point",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MinDewPoint": {
+									"label": "Minimum Dew Point",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MaxFeelsLike": {
+									"label": "Maximum Feels Like",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MinFeelsLike": {
+									"label": "Minimum Feels like",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MaxAppTemp": {
+									"label": "Maximum Apparent Temp",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MinAppTemp": {
+									"label": "Minimum Apparent Temp",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"MaxHumidex": {
+									"label": "Maximum Humidex",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"dailypress": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Max": {
+									"label": "High Pressure",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Min": {
+									"label": "Low Pressure",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"dailyhum": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Max": {
+									"label": "Max Humidity",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Min": {
+									"label": "Min Humidity",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"aq": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Pm2p5": {
+									"label": "PM 2.5",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Pm10": {
+									"label": "PM 10",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"extratemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"extrahum": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"extradew": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"soiltemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"soilmoist": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"usertemp": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"co2": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"co2": {
+									"label": "CO&#8322;",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"co2avg": {
+									"label": "CO&#8322; average",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"pm25": {
+									"label": "PM 2.5",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"pm25avg": {
+									"label": "PM2.5 average",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"pm10": {
+									"label": "PM10",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"pm10avg": {
+									"label": "PM10 average",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"temp": {
+									"label": "Temperature",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"hum": {
+									"label": "Humidity",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"DataVisibility": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "Show or hide data series on the dashboard and web site charts and data pages",
+			"helpersPosition": "above",
+			"fields": {
+				"temperature": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"Temp": {
+							"label": "Outdoor Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"InTemp": {
+							"label": "Indoor Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"HeatIndex": {
+							"label": "Heat Index",
+							"$ref": "#/definitions/visibility"
+						},
+						"DewPoint": {
+							"label": "Dew Point",
+							"$ref": "#/definitions/visibility"
+						},
+						"WindChill": {
+							"label": "Wind Chill",
+							"$ref": "#/definitions/visibility"
+						},
+						"AppTemp": {
+							"label": "Apparent Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"FeelsLike": {
+							"label": "Feels Like",
+							"$ref": "#/definitions/visibility"
+						},
+						"Humidex": {
+							"label": "Humidex",
+							"$ref": "#/definitions/visibility"
+						},
+						"MaxTemp": {
+							"label": "Daily Maximum Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"AvgTemp": {
+							"label": "Daily Average Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"MinTemp": {
+							"label": "Daily Minimum Temperature",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"humidity": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"Hum": {
+							"label": "Outdoor Humidity",
+							"$ref": "#/definitions/visibility"
+						},
+						"InHum": {
+							"label": "Indoor Humidity",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"solar": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"UV": {
+							"label": "UV Index",
+							"$ref": "#/definitions/visibility"
+						},
+						"Solar": {
+							"label": "Solar Irradiation",
+							"$ref": "#/definitions/visibility"
+						},
+						"Sunshine": {
+							"label": "Sunshine Hours",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"degreedays": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"GrowingDegreeDays1": {
+							"label": "Growing Degree Days series #1",
+							"$ref": "#/definitions/visibility"
+						},
+						"GrowingDegreeDays2": {
+							"label": "Growing Degree Days series #2",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"tempsum": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"TempSum0": {
+							"label": "Annual Temperature Sum #0",
+							"$ref": "#/definitions/visibility"
+						},
+						"TempSum1": {
+							"label": "Annual Temperature Sum #1",
+							"$ref": "#/definitions/visibility"
+						},
+						"TempSum2": {
+							"label": "Annual Temperature Sum #2",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"extratemp": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"extrahum": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"extradew": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"soiltemp": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"soilmoist": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"leafwet": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"usertemp": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"aq": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"type": "array",
+							"toolbarSticky": false,
+							"items": {
+								"fields": {
+									"pm": {
+										"label": "PM",
+										"$ref": "#/definitions/visibility"
+									},
+									"pmavg": {
+										"label": "PM Avg",
+										"$ref": "#/definitions/visibility"
+									},
+									"temp": {
+										"label": "Temperature",
+										"$ref": "#/definitions/visibility"
+									},
+									"hum": {
+										"label": "Humidity",
+										"$ref": "#/definitions/visibility"
+									}
+								}
+							}
+						}
+					}
+				},
+				"co2": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"co2": {
+							"label": "CO&#8322;",
+							"$ref": "#/definitions/visibility"
+						},
+						"co2avg": {
+							"label": "CO&#8322; average",
+							"$ref": "#/definitions/visibility"
+						},
+						"pm25": {
+							"label": "PM 2.5",
+							"$ref": "#/definitions/visibility"
+						},
+						"pm25avg": {
+							"label": "PM2.5 average",
+							"$ref": "#/definitions/visibility"
+						},
+						"pm10": {
+							"label": "PM10",
+							"$ref": "#/definitions/visibility"
+						},
+						"pm10avg": {
+							"label": "PM10 average",
+							"$ref": "#/definitions/visibility"
+						},
+						"temp": {
+							"label": "Temperature",
+							"$ref": "#/definitions/visibility"
+						},
+						"hum": {
+							"label": "Humidity",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				}
+			}
+		}
+	}
+}

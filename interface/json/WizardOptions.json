@@ -284,21 +284,21 @@
 					}
 				},
 
-		"weatherflow": {
-			"fields": {
-			"deviceid": {
-			"label" : "Device Id",
-				"rightlabel": "Tempest Device Id",
-				"helper": "Get this from the weatherflow app"
+				"weatherflow": {
+					"fields": {
+					"deviceid": {
+					"label" : "Device Id",
+						"rightlabel": "Tempest Device Id",
+						"helper": "Get this from the weatherflow app"
+						},
+					"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
+					"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
+					"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
+					},
+					"dependencies": {
+						"stationtype": 16
+						}
 				},
-			"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
-			"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
-			"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
-			},
-			"dependencies": {
-				"stationtype": 16
-				}
-		},
 
 				"fineoffset": {
 					"fields": {
@@ -446,9 +446,9 @@
 							"label": "Local Copy",
 							"rightLabel": "Enable local file copy of standard files",
 							"helpers": [
-								"Rather than using FTP simply copy the standard web files to another folder.",
+								"Rather than using uploads, simply copy the standard web files to another folder.",
 								"Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
-								"It can be used in conjunction with FTP."
+								"It can be used in conjunction with uploading."
 							]
 						},
 						"localcopyfolder": {
@@ -467,19 +467,9 @@
 				"ftp": {
 					"fields": {
 						"enabled": {
-							"label": "FTP",
-							"rightLabel": "Enable FTP connections",
-							"helpers": ["Enable web site uploads via FTP, FTPS, or SFTP"]
-						},
-						"hostname": {
-							"label": "Host name",
-							"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
-							"dependencies": {
-								"enabled": true
-							}
-						},
-						"directory": {
-							"label": "Remote FTP Directory"
+							"label": "Upload",
+							"rightLabel": "Enable upload connections",
+							"helpers": ["Enable web site uploads via FTP, FTPS, SFTP, or PHP"]
 						},
 						"sslftp": {
 							"label": "Select the FTP Protocol to use",
@@ -488,7 +478,8 @@
 							"optionLabels": [
 								"0 - FTP (plain old FTP)",
 								"1 - Use SSL/TLS for FTP (FTPS)",
-								"2 - Use SSH for FTP (SFTP)"
+								"2 - Use SSH for FTP (SFTP)",
+								"3 - Use PHP upload"
 							],
 							"removeDefaultNone": true,
 							"helper": "Select the protocol required by your web host",
@@ -496,11 +487,30 @@
 								"enabled": true
 							}
 						},
+						"hostname": {
+							"label": "Host name",
+							"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+							"dependencies": {
+								"enabled": true,
+								"sslftp": [0,1,2]
+							}
+						},
+						"phpurl": {
+							"label": "Upload URL:",
+							"type": "text",
+							"placeholder": "https://mysite.com/upload.php",
+							"helper": "Enter the URL of the upload script on your server",
+							"dependencies": {
+								"enabled": true,
+								"sslftp": 3
+							}
+						},
 						"ftpport": {
 							"label": "FTP port",
 							"helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
 							"dependencies": {
-								"enabled": true
+								"enabled": true,
+								"sslftp": [0,1,2]
 							}
 						},
 						"sshAuth": {
@@ -525,17 +535,37 @@
 								"sshAuth": ["psk","password_psk"]
 							}
 						},
+						"directory": {
+							"label": "Remote FTP Directory",
+							"sslftp": [0,1,2]
+						},
 						"username": {
 							"label": "Username",
 							"dependencies": {
-								"enabled": true
+								"enabled": true,
+								"sslftp": [0,1,2]
 							}
 						},
 						"password": {
 							"label": "Password",
 							"type": "password",
 							"dependencies": {
-								"enabled": true
+								"enabled": true,
+								"sslftp": [0,1,2]
+							}
+						},
+						"phpsecret": {
+							"label": "PHP Upload Secret:",
+							"type": "password",
+							"helpers": [
+								"Enter a complex string used to generate PHP upload signatures.",
+								"Cumulus will generate a unique string for you.",
+								"You will need to enter this string into the webfiles/upload.php file before uploading it to your web site"
+							],
+							"id": "phpsecret",
+							"dependencies": {
+								"enabled": true,
+								"sslftp": 3
 							}
 						}
 					}
@@ -553,9 +583,9 @@
 							"helpers": ["Enable the update interval timer so normal interval actions can take place"]
 						},
 						"enableintervalftp": {
-							"label": "FTP",
-							"rightLabel": "Enable normal interval FTP",
-							"helper": "Select this to have Cumulus upload FTP files at the normal update interval",
+							"label": "Upload",
+							"rightLabel": "Enable normal interval uploads",
+							"helper": "Select this to have Cumulus uploading files at the normal update interval",
 							"dependencies": {
 								"enabled": true
 							}
@@ -577,9 +607,12 @@
 							"helper": "Start the real time timer so that any real time actions can take place"
 						},
 						"enablerealtimeftp": {
-							"label": "FTP",
-							"rightLabel": "Enable real time interval FTP",
-							"helper": "Establish the real time FTP connection so that FTP uploads can take place at the real time interval",
+							"label": "Upload",
+							"rightLabel": "Enable real time interval uploads",
+							"helpers": [
+								"FTP: Establishes the real time FTP connection so that FTP uploads can take place at the real time interval",
+								"PHP: Uploads are made individually"
+							],
 							"dependencies": {
 								"enabled": true
 							}

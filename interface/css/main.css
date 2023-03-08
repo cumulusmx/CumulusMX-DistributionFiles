@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2021/05/16 20:52:04
+ * Last modified: 2023/02/04 18:02:21
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -97,13 +97,13 @@ h5 {
 
 /*--- Dash Unit / Used in Dashboard page ---*/
 .dash-unit {
-    margin-bottom: 30px;
-    padding-bottom:10px;
+    margin-bottom: 20px;
+    padding-bottom: 7px;
     border: 1px solid #383737;
-    background-image:url('../img/sep-half.png');
+    /*background-image: url('../img/sep-half.png');*/
     background-color: #3d3d3d;
     color:white;
-    height:290px;
+    height: 288px;
 }
 
 .dash-unit:hover {
@@ -176,7 +176,7 @@ h5 {
     line-height: 16px;
     color: inherit;
     margin: 0 0 10px;
-    padding:5px;
+    padding: 0px;
 }
 
 .dash-unit h4 {
@@ -200,13 +200,13 @@ h5 {
 
 /**********Half-Unit / Used in index.html**********/
 .half-unit {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding-bottom: 4px;
     border: 1px solid #383737;
     background-image:url('../img/sep-half.png');
     background-color: #3d3d3d;
     color:white;
-    height:130px;
+    height:100px;
 }
 
 .half-unit:hover {
@@ -268,7 +268,7 @@ h5 {
 /**********Styling Elements**********/
 .cont {
     text-align:center;
-    margin-top:30px;
+    margin-top:25px;
 }
 
 .cont .low {

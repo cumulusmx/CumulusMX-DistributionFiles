@@ -1,15 +1,14 @@
-// Last modified: 2023/02/12 21:22:34
+// Last modified: 2023/01/03 12:05:29
 
 let accessMode;
 
-$(document).ready(function() {
-
+$(document).ready(function () {
     $("form").alpaca({
-        "dataSource": "./api/settings/noaadata.json",
-        "optionsSource": "./json/NoaaOptions.json",
-        "schemaSource": "./json/NoaaSchema.json",
-        "ui": "bootstrap",
+        "dataSource": "./api/settings/langdata.json",
+        "optionsSource": "./json/LanguageOptions.json",
+        "schemaSource": "./json/LanguageSchema.json",
         "view": "bootstrap-edit-horizontal",
+        "ui": "bootstrap",
         "options": {
             "form": {
                 "buttons": {
@@ -23,7 +22,7 @@ $(document).ready(function() {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/setsettings/updatenoaaconfig.json",
+                                    url: "../api/setsettings/updatelanguage.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })
@@ -50,7 +49,7 @@ $(document).ready(function() {
             }
         },
         "postRender": function (form) {
-            // Change in accessibility is enabled
+            // Change if accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
@@ -59,47 +58,20 @@ $(document).ready(function() {
                 setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
             }
 
-            // Trigger changes is the accessibility mode is changed
-            //accessObj.on("change", function() {onAccessChange(this)});
-
-            if (form.getControlByPath("options/noaacoolheat").getValue() == true) {
-                let mean = form.getControlByPath("options/minmaxavg");
-                mean.options.disabled = true;
-                mean.refresh();
-
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
-                heat.options.disabled = true;
-                heat.refresh();
-
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
-                cool.options.disabled = true;
-                cool.refresh();
-            }
-
-
-            form.getControlByPath("options/noaacoolheat")
-            .on("change", function () {
-                let val = this.getValue();
-                let mean = form.getControlByPath("options/minmaxavg");
-
-                if (val === true) {
-                    mean.setValue(true);
-                }
-
-                mean.options.disabled = val;
-                mean.refresh();
-
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
-                heat.options.disabled = val;
-                heat.refresh();
-
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
-                cool.options.disabled = val;
-                cool.refresh();
-            });
+            setCompassLabels(form);
+            setSensorLabels(form, 'extraTemp')
+            setSensorLabels(form, 'extraHum')
+            setSensorLabels(form, 'extraDP')
+            setSensorLabels(form, 'userTemp')
+            setSensorLabels(form, 'soilTemp')
+            setSensorLabels(form, 'soilMoist')
+            setSensorLabels(form, 'leafWet')
+            setSensorLabels(form, 'airQuality/sensor')
+            setAvgSensorLabels(form, 'airQuality/sensorAvg')
         }
     });
 });
+
 
 function addButtons() {
     $('form legend').each(function () {
@@ -107,7 +79,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -123,7 +95,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
@@ -179,3 +151,36 @@ function onAccessChange(that, val) {
         removeButtons();
     }
 }
+
+function setCompassLabels(form) {
+    let i = 0;
+    let pnts = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+
+    form.getControlByPath("compass")
+        .children
+        .forEach(sensor => {
+            sensor.options.label = pnts[i++];
+            sensor.refresh()
+        });
+}
+
+function setSensorLabels(form, path) {
+    let i = 1;
+    form.getControlByPath(path)
+        .children
+        .forEach(sensor => {
+            sensor.options.label = 'Sensor ' + i++;
+            sensor.refresh()
+        });
+}
+
+function setAvgSensorLabels(form, path) {
+    let i = 1;
+    form.getControlByPath(path)
+        .children
+        .forEach(sensor => {
+            sensor.options.label = 'Sensor Avg ' + i++;
+            sensor.refresh()
+        });
+}
+

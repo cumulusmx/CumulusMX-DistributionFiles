@@ -1,0 +1,397 @@
+{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"forecast": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"notavailable": {
+					"label": "Not Available",
+					"type": "text",
+					"helper": "Text to display whenever a forecast is not available"
+				},
+				"exceptional": {
+					"label": "Exceptional",
+					"type": "text",
+					"helper": "Text to display whenever forecast data exceeds the configured limits"
+				},
+				"forecast": {
+					"label": "Forecast Messages",
+					"type": "array",
+					"toolbarSticky": false
+				}
+			}
+		},
+		"davisForecast": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"forecast1": {
+					"collapsible": true,
+					"collapsed": true,
+					"label": "Forecast 1",
+					"type": "array",
+					"toolbarSticky": false
+				},
+				"forecast2": {
+					"collapsible": true,
+					"collapsed": true,
+					"label": "Forecast 2",
+					"type": "array",
+					"toolbarSticky": false
+				},
+				"forecast3": {
+					"collapsible": true,
+					"collapsed": true,
+					"label": "Forecast 3",
+					"type": "array",
+					"toolbarSticky": false
+				}
+			}
+		},
+		"moonPhase": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"Newmoon": {
+					"label": "New Moon",
+					"type": "text"
+				},
+				"WaxingCrescent": {
+					"label": "Waxing Crescent",
+					"type": "text"
+				},
+				"FirstQuarter": {
+					"label": "First Quarter",
+					"type": "text"
+				},
+				"WaxingGibbous": {
+					"label": "Waxing Gibbous",
+					"type": "text"
+				},
+				"Fullmoon": {
+					"label": "Full Moon",
+					"type": "text"
+				},
+				"WaningGibbous": {
+					"label": "Waning Gibbous",
+					"type": "text"
+				},
+				"LastQuarter": {
+					"label": "Last Quarter",
+					"type": "text"
+				},
+				"WaningCrescent": {
+					"label": "Waning Crescent",
+					"type": "text"
+				}
+			}
+		},
+		"beaufort": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"f0": {
+					"label": "F0",
+					"type": "text"
+				},
+				"f1": {
+					"label": "F1",
+					"type": "text"
+				},
+				"f2": {
+					"label": "F2",
+					"type": "text"
+				},
+				"f3": {
+					"label": "F3",
+					"type": "text"
+				},
+				"f4": {
+					"label": "F4",
+					"type": "text"
+				},
+				"f5": {
+					"label": "F5",
+					"type": "text"
+				},
+				"f6": {
+					"label": "F6",
+					"type": "text"
+				},
+				"f7": {
+					"label": "F7",
+					"type": "text"
+				},
+				"f8": {
+					"label": "F8",
+					"type": "text"
+				},
+				"f9": {
+					"label": "F9",
+					"type": "text"
+				},
+				"f10": {
+					"label": "F10",
+					"type": "text"
+				},
+				"f11": {
+					"label": "F11",
+					"type": "text"
+				},
+				"f12": {
+					"label": "F12",
+					"type": "text"
+				}
+			}
+		},
+		"trends": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"Risingveryrapidly": {
+					"label": "Rising very rapidly",
+					"type": "text"
+				},
+				"Risingquickly": {
+					"label": "Rising quickly",
+					"type": "text"
+				},
+				"Rising": {
+					"label": "Rising",
+					"type": "text"
+				},
+				"Risingslowly": {
+					"label": "Rising slowly",
+					"type": "text"
+				},
+				"Steady": {
+					"label": "Steady",
+					"type": "text"
+				},
+				"Fallingslowly": {
+					"label": "Falling slowly",
+					"type": "text"
+				},
+				"Falling": {
+					"label": "Falling",
+					"type": "text"
+				},
+				"Fallingquickly": {
+					"label": "Falling quickly",
+					"type": "text"
+				},
+				"Fallingveryrapidly": {
+					"label": "Falling very rapidly",
+					"type": "text"
+				}
+			}
+		},
+		"compass": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"extraTemp": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"extraHum": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"extraDP": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"userTemp": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"soilTemp": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"soilMoist": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"leafWet": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"airQuality": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"sensor": {
+					"collapsible": true,
+					"collapsed": true,
+					"type": "array",
+					"toolbarSticky": false
+				},
+				"sensorAvg": {
+					"collapsible": true,
+					"collapsed": true,
+					"type": "array",
+					"toolbarSticky": false
+				}
+			}
+		},
+		"co2": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"Current": {
+					"label": "Current Value",
+					"type": "text"
+				},
+				"Hr24": {
+					"label": "24 hr Value",
+					"type": "text"
+				},
+				"Pm2p5": {
+					"label": "PM 2.5 Value",
+					"type": "text"
+				},
+				"Pm2p5_24hr": {
+					"label": "PM 2.5 24 hr Value",
+					"type": "text"
+				},
+				"Pm10": {
+					"label": "PM 10 Value",
+					"type": "text"
+				},
+				"Pm10_24hr": {
+					"label": "PM 10 24 hr Value",
+					"type": "text"
+				}
+			}
+		},
+		"solar": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"lessdaylight": {
+					"label": "Less Daylight",
+					"type": "text",
+					"helper": "Use variables {0} = minutes, {1} = seconds"
+				},
+				"moredaylight": {
+					"label": "More Daylight",
+					"type": "text",
+					"helper": "Use variables {0} = minutes, {1} = seconds"
+				}
+			}
+		},
+		"alarms": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"subject": {
+					"label": "Email Subject",
+					"type": "text",
+					"helper": "The email subject used for all alarms"
+				},
+				"preamble": {
+					"label": "Email Body Preamble",
+					"type": "text",
+					"helper": "The email introductory text used for all alarms"
+				},
+				"windGustAbove": {
+					"label": "Wind Gust Above",
+					"type": "text"
+				},
+				"windAbove": {
+					"label": "Wind Above",
+					"type": "text"
+				},
+				"pressureAbove": {
+					"label": "Pressure Above",
+					"type": "text"
+				},
+				"pressBelow": {
+					"label": "Pressure Below",
+					"type": "text"
+				},
+				"pressUp": {
+					"label": "Pressure Increase",
+					"type": "text"
+				},
+				"pressDown": {
+					"label": "Pressure Decrease",
+					"type": "text"
+				},
+				"tempAbove": {
+					"label": "Temperature Above",
+					"type": "text"
+				},
+				"tempBelow": {
+					"label": "Temperature Below",
+					"type": "text"
+				},
+				"tempUp": {
+					"label": "Temperature Increase",
+					"type": "text"
+				},
+				"tempDown": {
+					"label": "Temperature Decrease",
+					"type": "text"
+				},
+				"rainAbove": {
+					"label": "Rainfall Above",
+					"type": "text"
+				},
+				"rainRateAbove": {
+					"label": "Rain rate Above",
+					"type": "text"
+				},
+				"sensorLost": {
+					"label": "Sensor Contact Lost",
+					"type": "text"
+				},
+				"dataStopped": {
+					"label": "Data Stopped",
+					"type": "text"
+				},
+				"batteryLow": {
+					"label": "Low Battery",
+					"type": "text"
+				},
+				"dataSpike": {
+					"label": "Data Spike",
+					"type": "text"
+				},
+				"upgrade": {
+					"label": "Cumulus Upgrade",
+					"type": "text"
+				},
+				"httpStopped": {
+					"label": "HTTP Uploads",
+					"type": "text"
+				},
+				"mySqlStopped": {
+					"label": "MySQL Uploads",
+					"type": "text"
+				}
+			}
+		}
+	}
+}
