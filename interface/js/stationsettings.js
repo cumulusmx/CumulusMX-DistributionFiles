@@ -1,4 +1,4 @@
-// Last modified: 2022/11/29 15:58:34
+// Last modified: 2023/03/12 09:01:15
 
 let StashedStationId;
 let accessMode;
@@ -68,7 +68,7 @@ $(document).ready(function () {
                         "macaddress": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                if (value && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid MAC address!"

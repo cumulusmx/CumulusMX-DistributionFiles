@@ -1,4 +1,4 @@
-// Last modified: 2023/02/28 15:51:07
+// Last modified: 2023/03/09 15:00:36
 
 var chart, config, doSelect;
 
@@ -1525,9 +1525,9 @@ var doExtraTemp = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.extratemp.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.extratemp.name[id],
+                    name: key,
                     color: config.series.extratemp.colour[id],
                     data: value
                 });
@@ -1628,9 +1628,9 @@ var doExtraHum = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.extrahum.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.extrahum.name[id],
+                    name: key,
                     color: config.series.extrahum.colour[id],
                     data: value
                 });
@@ -1740,9 +1740,9 @@ var doExtraDew = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.extradew.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.extradew.name[id],
+                    name: key,
                     color: config.series.extradew.colour[id],
                     data: value
                 });
@@ -1852,9 +1852,9 @@ var doSoilTemp = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.soiltemp.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.soiltemp.name[id],
+                    name: key,
                     color: config.series.soiltemp.colour[id],
                     data: value
                 });
@@ -1950,9 +1950,9 @@ var doSoilMoist = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.soilmoist.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.soilmoist.name[id],
+                    name: key,
                     color: config.series.soilmoist.colour[id],
                     data: value
                 });
@@ -2062,9 +2062,9 @@ var doUserTemp = function () {
         dataType: 'json',
         success: function (resp) {
             Object.entries(resp).forEach(([key, value]) => {
-                var id = key.split(" ")[1] - 1;
+                var id = config.series.usertemp.name.findIndex(val => val == key);
                 chart.addSeries({
-                    name: config.series.usertemp.name[id],
+                    name: key,
                     color: config.series.usertemp.colour[id],
                     data: value
                 });

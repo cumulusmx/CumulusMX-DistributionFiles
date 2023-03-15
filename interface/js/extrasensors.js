@@ -1,4 +1,4 @@
-// Last modified: 2023/01/20 11:27:41
+// Last modified: 2023/03/09 10:35:27
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -7,7 +7,7 @@ $.extend( $.fn.dataTable.defaults, {
     paging: false,
     info: false,
     language: {
-        "emptyTable": "No sensors enabled.<br>Enable in: Settings|Display&nbsp;Options|Graphs|Data&nbps;Visibility"
+        "emptyTable": "No sensors enabled"
     },
     columnDefs: [
         {className: "left", targets: [0,2]},
