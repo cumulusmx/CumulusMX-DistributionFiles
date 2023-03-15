@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:50:53
+Last modified: 2023/03/13 16:50:09
 -->
 <!doctype html>
 <html lang="en">
@@ -24,7 +24,7 @@ Last modified: 2021/06/09 21:50:53
 
     <script src="lib/editablegrid/editablegrid.js"></script>
     <link rel="stylesheet" href="lib/editablegrid/editablegrid.css" type="text/css" media="screen">
-    <!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_renderers.js" ></script>
+<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_renderers.js" ></script>
 <!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_editors.js" ></script>
 <!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_validators.js" ></script>
 <!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_utils.js" ></script>
@@ -57,7 +57,7 @@ Last modified: 2021/06/09 21:50:53
                 $('#Version').text(result.Version);
                 $('#Build').text(result.Build);
             }});
-    };
+        };
     </script>
 </head>
 <body>
@@ -72,8 +72,7 @@ Last modified: 2021/06/09 21:50:53
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul id="Main_Menu" class="nav navbar-nav">
-                </ul>
+                <ul id="Main_Menu" class="nav navbar-nav"></ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
@@ -82,7 +81,10 @@ Last modified: 2021/06/09 21:50:53
     <div class="container">
         <div class="row top-buffer">
             <div class="col-md-12">
-            <h1>Extra Web Files</h1>
+                <h1>Extra Web Files</h1>
+                Note that you can use replacable values in both the source and target file fields for Cumulus files that change their name periodically. The allowed values are:<br>
+                &lt;currentlogfile&gt; &lt;currentextralogfile&gt; &lt;airlinklogfile&gt; &lt;noaayearfile&gt; &lt;noaamonthfile&gt; &lt;custinterval[1-10]&gt;<br>
+                The tagged value will be replaced by the current logs file name.
             </div>
         </div>
         <div class="row top-buffer">

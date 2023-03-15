@@ -1,4 +1,4 @@
-// Last modified: 2022/07/12 16:47:22
+// Last modified: 2023/03/14 20:05:04
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -263,17 +263,8 @@ $(document).ready(function () {
 
         gauges.processData(convertJson(data));
 
-
         let lastupdatetime = new Date();
-        let hours = pad(lastupdatetime.getHours());
-        let minutes = pad(lastupdatetime.getMinutes());
-        let seconds = pad(lastupdatetime.getSeconds());
-
-        let time = [hours, minutes, seconds].join(':');
-
-        //$('#lastupdatetime').text(time);
-        $('#lastupdatetime').text(lastupdatetime.toLocaleTimeString());
-
+        $('#lastupdatetime').text(lastupdatetime.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: ($('#LastDataRead').text().indexOf(' ') > -1)}));
     }
 
     let pad = function (x) {
@@ -282,15 +273,7 @@ $(document).ready(function () {
 
     let ticktock = function () {
         let d = new Date();
-
-        let h = pad(d.getHours());
-        let m = pad(d.getMinutes());
-        let s = pad(d.getSeconds());
-
-        let current_time = [h, m, s].join(':');
-
-        $('.digiclock').text(current_time);
-
+        $('.digiclock').text(d.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: ($('#LastDataRead').text().indexOf(' ') > -1)}));
     };
 
     // Convert from MX format to realtimeGauges.txt format

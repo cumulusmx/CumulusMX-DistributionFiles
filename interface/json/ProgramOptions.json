@@ -116,10 +116,6 @@
                 "listwebtags": {
                     "rightLabel": "List web tags",
                     "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
-                },
-                "use24hrtime": {
-                    "rightLabel": "Use 24hr time",
-                    "helper": "Default enabled shows 24 hour times on the dashboard, disabling shows 12 hour times with AM/PM"
                 }
             }
         },
@@ -133,6 +129,18 @@
                         "CAUTION: Changing this may render your existing data files unreadable by Cumulus MX",
                         "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'"
                     ]
+                },
+                "timeFormat": {
+                    "label": "Dashboard time format",
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "Locale default",
+                        "Force 12 hour",
+                        "Force 24 hour"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "The default shows times on the dashboard in the locale format, or you can force 24 hour or 12 hour times with AM/PM"
                 }
             }
         }

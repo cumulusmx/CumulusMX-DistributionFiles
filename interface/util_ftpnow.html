@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/02/02 17:18:29
+Last modified: 2023/03/14 16:06:12
 -->
 <!doctype html>
 <html lang="en">
@@ -41,7 +41,9 @@ Last modified: 2023/02/02 17:18:29
                 $('#status').text('');
                 $.post(
                     "api/utils/ftpnow.json",
-                    {data: "{'dailygraphs':" + $('#dailygraphs').prop('checked') + "}"},
+                    '{"dailygraphs":' + $('#dailygraphs').prop('checked') +
+                        ',"noaa":' + $('#noaa').prop('checked') +
+                        ',"graphs:' + $('#graphs').prop('checked') + '}',
                 ).done(function (response) {
                     $('#status').text(response);
                 }).fail(function (jqXHR, response) {
@@ -78,7 +80,9 @@ Last modified: 2023/02/02 17:18:29
                 <div>Note: The actual upload/copy process will be started, but it will be run as a background process. You will have to check your log files and/or server/destination folder to check whether it worked correctly or not.</div>
                 <br>
                 <div>
-                    <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label>
+                    <input type="checkbox" id="graphs"> <label for="graphs">Re-upload full copies of the graph data files rather than incremental</label><br>
+                    <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label><br>
+                    <input type="checkbox" id="noaa"> <label for="noaa">Include transfer of latest NOAA report files</label>
                 </div>
                 <br>
                 <div>
