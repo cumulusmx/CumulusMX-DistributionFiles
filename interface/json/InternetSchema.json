@@ -88,6 +88,11 @@
 						"phpignorecerts": {
 							"type": "boolean"
 						},
+						"maxuploads": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 50
+						},
 						"ftpmode": {
 						}
 					},
@@ -97,7 +102,8 @@
 						"disableftpsexplicit": ["ftpmode", "autodetect"],
 						"activeftp": ["ftpmode"],
 						"ignorecerts":  ["ftpmode"],
-						"phpignorecerts": ["ftpmode"]
+						"phpignorecerts": ["ftpmode"],
+						"maxuploads": ["ftpmode"]
 					}
 				}
 			},

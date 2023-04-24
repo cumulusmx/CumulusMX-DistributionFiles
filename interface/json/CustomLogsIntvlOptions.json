@@ -5,7 +5,6 @@
 		},
 		"interval": {
 			"type": "table",
-			"label": "Custom Interval",
 			"items": {
 				"fields": {
 					"enabled": {

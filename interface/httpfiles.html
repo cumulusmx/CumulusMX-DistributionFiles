@@ -1,14 +1,13 @@
 <!--
-Last modified: 2023/04/11 16:43:11
+Last modified: 2023/04/11 17:02:48
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTTP File settings - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>Station settings - Cumulus MX</title>
 
     <link href="css/main.css" rel="stylesheet">
 
@@ -35,7 +34,7 @@ Last modified: 2023/04/11 16:43:11
     <script src="lib/alpaca/alpaca.min.js"></script>
 
     <!-- Custom Files -->
-    <script src="js/stationsettings.js"></script>
+    <script src="js/httpfiles.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
 
@@ -57,9 +56,6 @@ Last modified: 2023/04/11 16:43:11
         .alpaca-container-has-items {
             margin-left: 1%;
         }
-        .collapse.in {
-            margin-left: 1%;
-        }
         .alpaca-form-buttons-container {
             margin-bottom: 20px;
             text-align: left;
@@ -68,17 +64,38 @@ Last modified: 2023/04/11 16:43:11
         legend {
             color: inherit;
         }
-        .displayonly input {
-            display: none;
+        .alpaca-field {
+            min-width: 20px !important
+        }
+        .table-striped > tbody > tr > td:first-child {
+            min-width: 10px
+        }
+        .table-striped > tbody > tr > td:nth-child(2) {
+            min-width: 250px
+        }
+        .table-striped > tbody > tr > td:nth-child(3) {
+            min-width: 180px
+        }
+        .table-striped > tbody > tr > td:nth-child(4) {
+            min-width: 100px
+        }
+        .table-striped > tbody > tr > td:nth-child(5) {
+            min-width: 20px
+        }
+        .table-striped > tbody > tr > td:nth-child(5) {
+            min-width: 50px
+        }
+        .table-responsive {
+            overflow-x: unset;
         }
     </style>
 
     <script>
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
-                $('#Version').text(result.Version);
-                $('#Build').text(result.Build);
-            }});
+            $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
         });
     </script>
 </head>
@@ -102,16 +119,41 @@ Last modified: 2023/04/11 16:43:11
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Station Settings</h1>
+        <h1>HTTP File Settings</h1>
+
         <div class="row">
             <div class="col-md-12">
-                Click on sections marked &#9656; to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.
+                <h2>HTTP Files</h2>
+                <form id="filesForm"></form>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
-                <form></form>
+                <p>
+                    <b>URL:</b> This the url used to access your source file
+                </p>
+                <p>
+                    <b>Destination Filename:</b> This the path and file name where you want your downloaded file to be saved.<br>
+                    This is either a path on your web server, or a local path where Cumulus is running - the Upload Enabled option controls which.
+                </p>
+                <p>
+                    <b>Download Interval:</b> This a multiple of your web interval, or at the End of Day rollover<br>
+                    For example, if your web interval is 5 minutes and you select "x12", then the download will occcur once an hour.
+                </p>
+                <p>
+                    <b>Upload Enabled:</b> This controls if the file is just downloaded to the local file system, or it is then uploaded to your web site.
+                </p>
+                <p>
+                    <b>Timed Downloads:</b> If this is disabled, then the file will be downloaded at the set interval, starting whenever Cumulus is started.<br>
+                    If you enable this option, then the downloads will start at First Download and repeat each interval
+                </p>
+                <p>
+                    <b>First Download:</b> If timed uploads are enabled, then the first download of the day will occur at this time and repeat at each interval until the end of the day
+                </p>
+            </div>
         </div>
+
     </div>
     <!-- FOOTER -->
     <div id="footerwrap">

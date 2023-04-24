@@ -205,7 +205,8 @@
 					"type": "object",
 					"properties": {
 						"recsbegandate": {
-							"type": "string"
+							"type": "string",
+							"format": "date"
 						}
 					}
 				}
@@ -691,6 +692,19 @@
 					"minimum": 4,
 					"maximum": 600,
 					"dependencies": ["setcustom"]
+				},
+				"forward": {
+					"type": "array",
+					"title": "Forwarding URLs",
+					"maxItems": 10,
+					"items": {
+						"type": "object",
+						"properties": {
+							"url": {
+								"type": "string"
+							}
+						}
+					}
 				}
 			},
 			"dependencies": ["stationid"]

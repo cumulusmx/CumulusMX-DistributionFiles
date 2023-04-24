@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2023/03/09 11:00:34
+// Last modified: 2023/03/16 10:54:59
 
 var chart, avail, config, options;
 var settings = {
@@ -70,7 +70,7 @@ $(document).ready(function () {
                         result1[k].forEach(function (val) {
                             var option = $('<option />');
                             option.html(val);
-                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp'].indexOf(k) === -1) {
+                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
                                 option.val(val);
                             } else {
                                 option.val(k + '-' + val);
@@ -190,9 +190,9 @@ var procDataSelect = function (sel) {
     var num = +id.slice(-1);
     var val = sel.value;
 
-    // Has this series already been selected?
+    // Has this series already been selected? If so set the dropdown back to its previous value, then abort
     if (val != '0' &&  settings.series.indexOf(sel.value) != -1) {
-        $('#' + id).val(txtSelect);
+        $('#' + id).val(settings.series[num]).prop('selected', true);
         return;
     }
 
@@ -235,6 +235,9 @@ var updateChart = function (val, num, id) {
         return;
     } else if (val.startsWith('SoilTemp-')) {
         doSoilTemp(num, val);
+        return;
+    } else if (val.startsWith('LeafWetness-')) {
+        doLeafWet(num, val);
         return;
     }
 
@@ -404,7 +407,6 @@ var clearSeries = function (val) {
     }
 }
 
-
 var checkAxisExists = function (name) {
     var exists = false;
     chart.yAxis.forEach(function (axis) {
@@ -413,7 +415,6 @@ var checkAxisExists = function (name) {
     });
     return exists;
 };
-
 
 var addTemperatureAxis = function (idx) {
     // first check if we already have a temperature axis
@@ -503,7 +504,6 @@ var addSoilMoistAxis = function (idx) {
         allowDecimals: false
     }, false, false);
 };
-
 
 var addSolarAxis = function (idx) {
     // first check if we already have a solar axis
@@ -647,6 +647,25 @@ var addAQAxis = function (idx) {
     }, false, false);
 };
 
+var addLeafWetAxis = function (idx) {
+    // first check if we already have a humidity axis
+    if (checkAxisExists('LeafWetness'))
+        return;
+
+    // nope no existing axis, add one
+    chart.addAxis({
+        title: {text: 'Leaf wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+        opposite: idx < settings.series.length / 2 ? false : true,
+        id: 'LeafWetness',
+        showEmpty: false,
+        labels: {
+            align: idx < settings.series.length / 2 ? 'right' : 'left'
+        },
+        min: 0,
+        allowDecimals: false
+    }, false, false);
+};
+
 
 var doTemp = function (idx) {
     chart.showLoading();
@@ -661,10 +680,10 @@ var doTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.temp,
-                id: "Temperature",
-                name: "Temperature",
-                yAxis: "Temperature",
-                type: "line",
+                id: 'Temperature',
+                name: 'Temperature',
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -1403,6 +1422,37 @@ var doSoilMoist = function (idx, val) {
                 type: "line",
                 tooltip: {
                     valueSuffix: ' ' + config.soilmoisture.units
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doLeafWet = function (idx, val) {
+    chart.showLoading();
+
+    addLeafWetAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'api/graphdata/leafwetness.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "LeafWetness",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' ' + config.leafwet.units
                 },
                 visible: true,
                 color: settings.colours[idx],

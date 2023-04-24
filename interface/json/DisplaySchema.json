@@ -282,6 +282,18 @@
 								}
 							}
 						},
+						"leafwet": {
+							"title": "Leaf Wetness",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
 						"usertemp" : {
 							"title": "User Temperatures",
 							"type": "object",

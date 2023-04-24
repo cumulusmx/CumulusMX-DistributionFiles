@@ -154,6 +154,50 @@
 			"dependencies": {
 				"command": ["enabled"]
 			}
+		},
+		"customtimed": {
+			"type": "object",
+			"title": "Custom upload - Timed",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"entries": {
+					"type": "array",
+					"maxItems": 10,
+					"items": {
+						"type": "object",
+						"properties": {
+							"command": {
+								"title": "SQL commands",
+								"type": "string",
+								"required": true
+							},
+							"starttimestr": {
+								"title": "Time to run",
+								"type": "string",
+								"format": "time",
+								"required": true
+							},
+							"repeat": {
+								"title": "Repeat at intervals",
+								"type": "boolean"
+							},
+							"interval": {
+								"title": "Repeat Interval",
+								"type": "number",
+								"enum": [1,2,5,10,15,20,30,60,120,180,240,360,480,720]
+							}
+						},
+						"dependencies": {
+							"interval": ["repeat"]
+						}
+					}
+				}
+			},
+			"dependencies": {
+				"entries": ["enabled"]
+			}
 		}
 	}
 }

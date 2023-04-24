@@ -245,8 +245,10 @@
 					"fields": {
 						"recsbegandate": {
 							"label": "Records Began Date",
+							"type": "date",
+							"dateFormat": "YYYY-MM-DD",
 							"helpers": [
-								"IMPORTANT: You MUST keep the same date format when editing this field.",
+								"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
 								"This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
 								"You may need to alter this if for instance you import historic data in Cumulus from another source, in that case set it to the first date of your imported data."
 							]
@@ -1080,6 +1082,20 @@
 					"dependencies": {
 						"setcustom": true
 					}
+				},
+				"forward": {
+					"type": "table",
+					"label": "Forwarding Destinations",
+					"collapsible": true,
+					"collapsed": true,
+					"items": {
+						"fields": {
+							"url": {
+								"label": "Destination URL"
+							}
+						}
+					},
+					"helper": "Add the URLs of the destinations you wish to forward the Ecowitt HTTP data"
 				}
 			},
 			"dependencies": {
@@ -1322,8 +1338,9 @@
 				},
 				"leafwetisrainingidx": {
 					"label": "Leaf wetness IsRaining sensor:",
+					"optionLabels": ["Disabled",1,2,3,4,5,6,7,8],
 					"helpers": [
-						"Select a leaf wetness sensor to be used as a 'Is Raining' sensor. The default value of -1 disables this feature",
+						"Select a leaf wetness sensor to be used as a 'Is Raining' sensor",
 						"Note: This can be used in addition to the Is raining trigger above"
 					],
 					"removeDefaultNone": true

@@ -1,0 +1,43 @@
+{
+    "type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"files": {
+			"type": "array",
+			"maxItems": 10,
+			"items": {
+				"type": "object",
+				"properties": {
+					"Enabled": {
+						"type": "boolean"
+					},
+					"Url": {
+						"type": "string",
+						"required": true
+					},
+					"Remote": {
+						"type": "string",
+						"required": true
+					},
+					"Interval": {
+						"type": "number",
+						"enum": [1,2,5,10,15,20,30,60,120,180,240,360,480,720,1440],
+						"required": true
+					},
+					"Upload": {
+						"type": "boolean"
+					},
+					"Timed": {
+						"type": "boolean"
+					},
+					"StartTimeStr": {
+						"type": "string",
+						"format": "time"
+					}
+				}
+			}
+		}
+	}
+}
