@@ -369,6 +369,19 @@
 								}
 							}
 						},
+						"leafwet": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
 						"usertemp": {
 							"collapsible": true,
 							"collapsed": true,

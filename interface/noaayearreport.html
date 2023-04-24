@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/23 22:20:37
+Last modified: 2023/03/17 14:55:44
 -->
 <!doctype html>
 <html lang="en">
@@ -126,10 +126,11 @@ Last modified: 2022/06/23 22:20:37
     <div class="container">
         <h1>NOAA Yearly Report</h1>
         <div class="row">
-            <div>
+            <div style="margin-bottom:10px">
                 Select year:&nbsp;<select id="datepicker"></select>
                 <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
-                <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button>
+                <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button><br>
+                Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 {
 	"definitions": {
 		"wundextratemp": {
-			"optionLabels": ["—","Sensor 1","Sensor 2","Sensor 3","Sensor 4","Sensor 5","Sensor 6","Sensor 7","Sensor 8","Sensor 9","Sensor 10"],
+			"optionLabels": ["Disabled","Sensor 1","Sensor 2","Sensor 3","Sensor 4","Sensor 5","Sensor 6","Sensor 7","Sensor 8","Sensor 9","Sensor 10"],
 			"removeDefaultNone": true,
 			"helper": "Select the MX extra sensor number to map to the Wunderground sensor",
 			"sort": false,

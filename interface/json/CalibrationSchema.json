@@ -1,16 +1,6 @@
 {
-	"type": "object",
-	"properties": {
-		"accessible": {
-			"type": "boolean"
-		},
-		"explanation": {
-			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor temperature and humidity a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\n\nThe general case is the familiar formula: newVal = ax² + bx + c\nWhere a = multiplier2, b = multiplier, c = offset",
-			"readonly": true
-		},
-		"pressure": {
-			"type": "object",
-			"title": "Pressure",
+	"definitions": {
+		"OMS": {
 			"properties": {
 				"offset": {
 					"type": "number"
@@ -18,16 +8,56 @@
 				"multiplier": {
 					"type": "number"
 				},
+				"multiplier2": {
+					"type": "number"
+				},
+				"spike": {
+					"type": "number"
+				}
+			}
+		},
+		"limits": {
+			"properties": {
+				"offset": {
+					"type": "number"
+				},
+				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
+					"type": "number"
+				},
 				"spike": {
 					"type": "number"
 				},
 				"limitmin": {
-					"type": "number",
+					"type": "number"
+				},
+				"limitmax": {
+					"type": "number"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"explanation": {
+			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor some values a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\n\nThe general case is the familiar formula: newVal = ax² + bx + c\nWhere a = multiplier2, b = multiplier, c = offset",
+			"readonly": true
+		},
+		"pressure": {
+			"type": "object",
+			"title": "Pressure",
+			"$ref": "#/definitions/limits",
+			"properties": {
+				"limitmin": {
 					"minimum" : 500,
 					"maximum": 1300
 				},
 				"limitmax": {
-					"type": "number",
 					"minimum" : 500,
 					"maximum": 1300
 				}
@@ -36,30 +66,14 @@
 		"temp": {
 			"type": "object",
 			"title": "Outdoor Temperature",
+			"$ref": "#/definitions/limits",
 			"properties": {
-				"offset": {
-					"type": "number"
-				},
-				"multiplier": {
-					"type": "number"
-				},
-				"multiplier2": {
-					"type": "number"
-				},
-				"spike": {
-					"type": "number"
-				},
 				"limitmin": {
-					"type": "number"
-				},
-				"limitmax": {
-					"type": "number",
 					"minimum": -60,
 					"maximum": 60
 				},
-				"dewmax":{
-					"type": "number",
-					"minimum": -80,
+				"limitmax": {
+					"minimum": -60,
 					"maximum": 60
 				}
 			}
@@ -67,56 +81,36 @@
 		"tempin": {
 			"type": "object",
 			"title": "Indoor Temperature",
+			"$ref": "#/definitions/limits",
 			"properties": {
-				"offset": {
-					"type": "number"
+				"limitmin": {
+					"minimum": -60,
+					"maximum": 60
 				},
-				"multiplier": {
-					"type": "number"
-				},
-				"spike": {
-					"type": "number"
+				"limitmax": {
+					"minimum": -60,
+					"maximum": 60
 				}
 			}
 		},
 		"hum": {
 			"type": "object",
 			"title": "Outdoor Humidity",
-			"properties": {
-				"offset": {
-					"type": "integer"
-				},
-				"multiplier": {
-					"type": "number"
-				},
-				"multiplier2": {
-					"type": "number"
-				},
-				"spike": {
-					"type": "number"
-				}
-			}
+			"$ref": "#/definitions/OMS"
 		},
 		"humin": {
 			"type": "object",
 			"title": "Indoor Humidity",
-			"properties": {
-				"offset": {
-					"type": "integer"
-				},
-				"multiplier": {
-					"type": "number"
-				},
-				"spike": {
-					"type": "number"
-				}
-			}
+			"$ref": "#/definitions/OMS"
 		},
 		"windspd": {
 			"type": "object",
 			"title": "Wind Speed",
 			"properties": {
 				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
 					"type": "number"
 				},
 				"spike": {
@@ -129,6 +123,9 @@
 			"title": "Wind Gust",
 			"properties": {
 				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
 					"type": "number"
 				},
 				"spike": {
@@ -176,6 +173,9 @@
 				},
 				"multiplier": {
 					"type": "number"
+				},
+				"multiplier2": {
+					"type": "number"
 				}
 			}
 		},
@@ -187,6 +187,9 @@
 					"type": "number"
 				},
 				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
 					"type": "number"
 				}
 			}
@@ -208,6 +211,9 @@
 					"type": "number"
 				},
 				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
 					"type": "number"
 				}
 			}

@@ -177,7 +177,7 @@
 				"includeuv": ["enabled"],
 				"includesolar": ["enabled"],
 				"includesoiltemp": ["enabled"],
-				"soiltempsensor": ["enabled"],
+				"soiltempsensor": ["enabled","includesoiltemp"],
 				"catchup": ["enabled"]
 			}
 		},

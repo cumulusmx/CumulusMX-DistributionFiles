@@ -1,4 +1,4 @@
-// Last modified: 2023/03/09 15:00:36
+// Last modified: 2023/03/16 09:59:41
 
 var chart, config, doSelect;
 
@@ -65,6 +65,9 @@ $(document).ready(function () {
             if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
                 $('#mySelect option[value="soilmoist"]').remove();
             }
+            if (result.LeafWetness == undefined || result.LeafWetness.Count == 0) {
+                $('#mySelect option[value="leafwet"]').remove();
+            }
             if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
                 $('#mySelect option[value="usertemp"]').remove();
             }
@@ -123,6 +126,9 @@ $(document).ready(function () {
                 break;
             case 'soilmoist':
                 doSoilMoist();
+                break;
+            case 'leafwet':
+                doLeafWet();
                 break;
             case 'usertemp':
                 doUserTemp();
@@ -1954,6 +1960,106 @@ var doSoilMoist = function () {
                 chart.addSeries({
                     name: key,
                     color: config.series.soilmoist.colour[id],
+                    data: value
+                });
+             });
+
+            chart.hideLoading();
+            chart.redraw();
+        }
+    });
+};
+
+var doLeafWet = function () {
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false
+        },
+        title: {text: 'Leaf Wetness'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Leaf Wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+                opposite: false,
+                min: 0,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }, {
+                // right
+                gridLineWidth: 0,
+                opposite: true,
+                min: 0,
+                linkedTo: 0,
+                labels: {
+                    align: 'left',
+                    x: 5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueSuffix: ' ' + config.leafwet.units,
+            valueDecimals: config.leafwet.decimals,
+            xDateFormat: "%A, %b %e, %H:%M"
+        },
+        series: [],
+        rangeSelector: myRanges
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: 'api/graphdata/leafwetness.json',
+        dataType: 'json',
+        success: function (resp) {
+            Object.entries(resp).forEach(([key, value]) => {
+                var id = config.series.leafwet.name.findIndex(val => val == key);
+                chart.addSeries({
+                    name: key,
+                    color: config.series.leafwet.colour[id],
                     data: value
                 });
              });

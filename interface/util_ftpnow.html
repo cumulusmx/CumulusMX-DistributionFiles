@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/03/14 16:06:12
+Last modified: 2023/03/15 15:59:06
 -->
 <!doctype html>
 <html lang="en">
@@ -43,7 +43,7 @@ Last modified: 2023/03/14 16:06:12
                     "api/utils/ftpnow.json",
                     '{"dailygraphs":' + $('#dailygraphs').prop('checked') +
                         ',"noaa":' + $('#noaa').prop('checked') +
-                        ',"graphs:' + $('#graphs').prop('checked') + '}',
+                        ',"graphs":' + $('#graphs').prop('checked') + '}',
                 ).done(function (response) {
                     $('#status').text(response);
                 }).fail(function (jqXHR, response) {

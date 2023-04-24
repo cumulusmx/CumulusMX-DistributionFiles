@@ -5,7 +5,6 @@
 		},
 		"daily": {
 			"type": "table",
-			"label": "Custom Daily",
 			"items": {
 				"fields": {
 					"enabled": {

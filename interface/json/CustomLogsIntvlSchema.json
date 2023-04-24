@@ -6,7 +6,6 @@
 		},
 		"interval": {
 			"type": "array",
-			"title": "Custom Logs - Intervals",
 			"maxItems": 10,
 			"items": {
 				"type": "object",

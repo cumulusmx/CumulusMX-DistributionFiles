@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2023/03/09 11:01:43
+// Last modified: 2023/03/16 11:00:22
 
 var chart, config, options;
 var settings;
@@ -39,7 +39,7 @@ $(document).ready(function () {
                     result1[k].forEach(function (val) {
                         var option = $('<option />');
                         option.html(val);
-                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp'].indexOf(k) === -1) {
+                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
                                 option.val(val);
                             } else {
                                 option.val(k + '-' + val);
@@ -202,11 +202,8 @@ var procDataSelect = function (sel) {
     var val = sel.value;
 
     // Has this series already been selected? If so set the dropdown back to its previous value, then abort
-    if (val != '0' &&  settings.series.indexOf(val) != -1) {
-        if (settings.series[num] == "0")
-            $('#' + id).val(txtSelect);
-        else
-            $('#' + id).val(settings.series[num]);
+    if (val != '0' &&  settings.series.indexOf(sel.value) != -1) {
+        $('#' + id).val(settings.series[num]).prop('selected', true);
         return;
     }
 
@@ -248,6 +245,9 @@ var updateChart = function (val, num, id) {
         return;
     } else if (val.startsWith('SoilTemp-')) {
         doSoilTemp(num, val);
+        return;
+    } else if (val.startsWith('LeafWetness-')) {
+        doLeafWet(num, val);
         return;
     }
 
@@ -362,7 +362,7 @@ var clearSeries = function (val) {
     var seriesIdx = -1;
     var i = 0;
     chart.series.forEach(function (ser) {
-        if (ser.options.name == val && ser.yAxis.options.id != 'navigator-y-axis') {
+        if (ser.options.id == val && ser.yAxis.options.id != 'navigator-y-axis') {
             seriesIdx = i;
         }
         i++;
@@ -648,6 +648,25 @@ var addAQAxis = function (idx) {
     }, false, false);
 };
 
+var addLeafWetAxis = function (idx) {
+    // first check if we already have a humidity axis
+    if (checkAxisExists('LeafWet'))
+        return;
+
+    // nope no existing axis, add one
+    chart.addAxis({
+        title: {text: 'Leaf wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+        opposite: idx < settings.series.length / 2 ? false : true,
+        id: 'LeafWetness',
+        showEmpty: false,
+        labels: {
+            align: idx < settings.series.length / 2 ? 'right' : 'left'
+        },
+        min: 0,
+        allowDecimals: false
+    }, false, false);
+};
+
 
 var doTemp = function (idx) {
     chart.showLoading();
@@ -662,9 +681,10 @@ var doTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.temp,
-                name: "Temperature",
-                yAxis: "Temperature",
-                type: "line",
+                id: 'Temperature',
+                name: 'Temperature',
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -690,6 +710,7 @@ var doInTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.intemp,
+                id: 'Indoor Temp',
                 name: 'Indoor Temp',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -718,6 +739,7 @@ var doHeatIndex = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.heatindex,
+                id: 'Heat Index',
                 name: 'Heat Index',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -746,6 +768,7 @@ var doDewPoint = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.dew,
+                id: 'Dew Point',
                 name: 'Dew Point',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -774,6 +797,7 @@ var doWindChill = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wchill,
+                id: 'Wind Chill',
                 name: 'Wind Chill',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -802,6 +826,7 @@ var doAppTemp = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.apptemp,
+                id: 'Apparent Temp',
                 name: 'Apparent Temp',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -830,6 +855,7 @@ var doFeelsLike = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.feelslike,
+                id: 'Feels Like',
                 name: 'Feels Like',
                 yAxis: 'Temperature',
                 type: 'line',
@@ -859,6 +885,7 @@ var doHumidity = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.hum,
+                id: 'Humidity',
                 name: 'Humidity',
                 yAxis: 'Humidity',
                 type: 'line',
@@ -887,6 +914,7 @@ var doInHumidity = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.inhum,
+                id: 'Indoor Hum',
                 name: 'Indoor Hum',
                 yAxis: 'Humidity',
                 type: 'line',
@@ -916,6 +944,7 @@ var doSolarRad = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.SolarRad,
+                id: 'Solar Rad',
                 name: 'Solar Rad',
                 yAxis: 'Solar',
                 type: 'area',
@@ -946,6 +975,7 @@ var doUV = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.UV,
+                id: 'UV Index',
                 name: 'UV Index',
                 yAxis: 'UV',
                 type: 'line',
@@ -975,6 +1005,7 @@ var doPress = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.press,
+                id: 'Pressure',
                 name: 'Pressure',
                 yAxis: 'Pressure',
                 type: 'line',
@@ -1004,6 +1035,7 @@ var doWindSpeed = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wspeed,
+                id: 'Wind Speed',
                 name: 'Wind Speed',
                 yAxis: 'Wind',
                 type: 'line',
@@ -1032,6 +1064,7 @@ var doWindGust = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.wgust,
+                id: 'Wind Gust',
                 name: 'Wind Gust',
                 yAxis: 'Wind',
                 type: 'line',
@@ -1060,6 +1093,7 @@ var doWindDir = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.avgbearing,
+                id: 'Wind Bearing',
                 name: 'Wind Bearing',
                 yAxis: 'Bearing',
                 type: 'scatter',
@@ -1101,6 +1135,7 @@ var doRainfall = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.rfall,
+                id: 'Rainfall',
                 name: 'Rainfall',
                 yAxis: 'Rain',
                 type: 'area',
@@ -1131,6 +1166,7 @@ var doRainRate = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.rrate,
+                id: 'Rainfall Rate',
                 name: 'Rainfall Rate',
                 yAxis: 'RainRate',
                 type: 'line',
@@ -1160,6 +1196,7 @@ var doPm2p5 = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.pm2p5,
+                id: 'PM 2.5',
                 name: 'PM 2.5',
                 yAxis: 'pm',
                 type: 'line',
@@ -1188,6 +1225,7 @@ var doPm10 = function (idx) {
             chart.addSeries({
                 index: idx,
                 data: resp.pm10,
+                id: 'PM 10',
                 name: 'PM 10',
                 yAxis: 'pm',
                 type: 'line',
@@ -1386,6 +1424,37 @@ var doSoilMoist = function (idx, val) {
                 type: "line",
                 tooltip: {
                     valueSuffix: ' ' + config.soilmoisture.units
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
+
+var doLeafWet = function (idx, val) {
+    chart.showLoading();
+
+    addLeafWetAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: 'leafwetdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: "LeafWetness",
+                type: "line",
+                tooltip: {
+                    valueSuffix: ' ' + config.leafwet.units
                 },
                 visible: true,
                 color: settings.colours[idx],

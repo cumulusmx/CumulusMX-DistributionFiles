@@ -1,0 +1,48 @@
+{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"files": {
+			"type": "table",
+			"items": {
+				"fields": {
+					"Enabled": {
+						"label": "Enabled"
+					},
+					"Url": {
+						"type": "url",
+						"label": "URL",
+						"cols": 40,
+						"placeholder": "https://some.site.com/someimage.png"
+					},
+					"Remote": {
+						"type": "text",
+						"label": "Destination Filename",
+						"cols": 40,
+						"placeholder": "web/someimage.png"
+					},
+					"Interval": {
+						"type": "select",
+						"label": "Download Interval",
+						"optionLabels": ["1 min","2 mins","5 mins","10 mins","15 mins","20 mins","30 mins","1 hr","2 hrs","3 hrs","4 hrs","6 hrs","8 hrs","12 hrs","24 hrs"],
+						"sort": false,
+						"removeDefaultNone": true
+					},
+					"Upload": {
+						"label": "Upload Enabled"
+					},
+					"Timed": {
+						"label": "Timed Downloads"
+					},
+					"StartTimeStr": {
+						"type": "time",
+						"label": "Time of first download of the day",
+						"dateFormat": "HH:mm",
+						"placeholder": "00:00"
+					}
+				}
+			}
+		}
+	}
+}

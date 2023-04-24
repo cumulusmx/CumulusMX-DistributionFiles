@@ -6,7 +6,6 @@
 		},
 		"daily": {
 			"type": "array",
-			"title": "Custom Logs - daily",
 			"maxItems": 10,
 			"items": {
 				"type": "object",

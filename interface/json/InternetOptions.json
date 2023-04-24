@@ -224,10 +224,22 @@
 							}
 						},
 						"phpignorecerts": {
+							"label": "Certificates",
 							"rightLabel": "Ignore PHP certificate errors",
 							"helpers": [
 								"Not normally required - use with caution",
 								"Typically only used if you are connecting to your own internal web server and it does not have a public certificate"
+							],
+							"dependencies": {
+								"ftpmode": 3
+							}
+						},
+						"maxuploads": {
+							"label": "Concurrent Uploads",
+							"helpers": [
+								"Set the maximum number of concurrent PHP uploads allowed to your web server",
+								"Changing this setting requires a restart of CMX to take effect",
+								"Defaults: Windows=4, Mono=1"
 							],
 							"dependencies": {
 								"ftpmode": 3

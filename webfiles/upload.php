@@ -1,5 +1,5 @@
 <?php
-// Last modified: 2023/02/16 17:26:53
+// Last modified: 2023/03/23 11:10:44
 
 /*
 ******** PHP Upload script for Cumulus MX ********
@@ -27,11 +27,10 @@ $debug = false;
 // *** DO NOT CHANGE ANYTHING BELOW HERE ***
 // *****************************************
 
+ob_start();
 
 if ($secret === 'change_this_to_the_value_in_CMX') {
-    echo 'You must change the default secret';
-    http_response_code(500);
-    exit;
+    exitCode(500, 'You must change the default secret');
 }
 
 if ($debug) {
@@ -57,9 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <?php
     exit;
 } elseif ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    echo 'Error: Must use POST method';
-    http_response_code(500);
-    exit;
+    exitCode(500, 'Error: Must use POST method');
 }
 
 // ---------------------------------------------------------------
@@ -71,26 +68,21 @@ $receivedTime = $_SERVER['REQUEST_TIME'];
 if (isset($_SERVER['HTTP_TS'])) {
     $requestTime = $_SERVER['HTTP_TS'];
 } else {
-    echo 'Error: No timestamp';
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: No timestamp');
 }
 
 if (abs($receivedTime - $requestTime) > 10) {
-    echo "Error: TimeStamp is out of date\n";
-    echo "Data TS   = $requestTime\n";
-    echo "Server TS = $receivedTime\n";
-    http_response_code(422);
-    exit;
+    $msg = "Error: TimeStamp is out of date\n" .
+        "Data TS   = $requestTime\n" .
+        "Server TS = $receivedTime\n";
+    exitCode(422, $msg);
 }
 
 // The signature to test
 if (isset($_SERVER['HTTP_SIGNATURE'])) {
     $signatureSent = $_SERVER['HTTP_SIGNATURE'];
 } else {
-    echo 'Error: No signature';
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: No signature');
 }
 
 if (isset($_SERVER['HTTP_FILE'])) {
@@ -103,45 +95,33 @@ if (isset($_SERVER['HTTP_FILE'])) {
         $cwd = getcwd();
 
         if (substr($name_fullpath, 0, strlen($cwd)) !== $cwd) {
-            echo "Error: Attempting to escape local folder structure\n";
-            http_response_code(500);
-            exit;
+            exitCode(500, 'Error: Attempting to escape local folder structure');
         }
     }
 
     // if the file exists, check the file is writable
     if (file_exists($name)) {
         if (!is_writable($name)) {
-            echo "Error: Target file $name is not writable by this user " . `whoami`;
-            http_response_code(500);
-            exit;
+            exitCode(500, "Error: Target file $name is not writable by this user " . `whoami`);
         }
     } else {
         if (!touch($name)) {
-            echo "Error: Cannot create the target file $name with this user " . `whoami`;
-            http_response_code(500);
-            exit;
+            exitCode(500, "Error: Cannot create the target file $name with this user " . `whoami`);
         }
     }
 } else {
-    echo 'Error: No filename';
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: No filename');
 }
 
 // Now what are we doing with the file?
 if (isset($_SERVER["HTTP_ACTION"])) {
     $action = $_SERVER['HTTP_ACTION'];
 } else {
-    echo 'Error: No action';
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: No action');
 }
 
 if ($action !== 'replace' && $action !== 'append') {
-    echo "Error: Invalid header ACTION = $action\n";
-    http_response_code(422);
-    exit;
+    exitCode(422, "Error: Invalid header ACTION = $action");
 }
 
 // If appending - get the earlist timestamp - JS timestamps overflow PHP int!
@@ -149,18 +129,19 @@ if ($action === 'append') {
     if (isset($_SERVER['HTTP_OLDEST'])) {
         $oldestTs = (float)$_SERVER['HTTP_OLDEST'];
     } else {
-        echo 'Error: No oldest timestamp';
-        http_response_code(422);
-        exit;
+        exitCode(422, 'Error: No oldest timestamp');
     }
 }
 
+$utf8 = $_SERVER['HTTP_UTF8'];
+if ($utf8 != '0' && $utf8 != '1') {
+    // default to UTF-8 as before if not supplied
+    $utf8 = '1';
+}
 
 $binary = $_SERVER['HTTP_BINARY'];
 if ($binary != '0' && $binary != '1') {
-    echo "Error: Invalid header BINARY = $binary\n";
-    http_response_code(422);
-    exit;
+    exitCode(422, "Error: Invalid header BINARY = $binary");
 }
 
 if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
@@ -170,9 +151,7 @@ if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
 }
 
 if (strlen($data) == 0) {
-    echo 'Error: No data sent';
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: No data sent');
 }
 
 if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
@@ -189,20 +168,22 @@ if ($debug) {
     //echo "Data = $data\n";
 }
 
-
 // ---------------------------------------------------------------
 // Check the signature sent matches what we calculate
 // ---------------------------------------------------------------
 $ourSignature = CalculateSignature($secret, $requestTime . $name . $data);
 if ($signatureSent != $ourSignature) {
-    echo "Error: Invalid signature\n";
-    echo "Data Sig   = $signatureSent\n";
-    echo "Server Sig = $ourSignature\n";
-    echo "Server sig data = " . $requestTime . $name . substr($data, 0, 50);
-    http_response_code(422);
-    exit;
+    $msg = "Error: Invalid signature\n" .
+        "Data Sig   = $signatureSent\n" .
+        "Server Sig = $ourSignature\n" .
+        "Server sig data = " . $requestTime . $name . substr($data, 0, 50);
+    exitCode(422, $msg);
 }
 
+// change encoding if required
+if ($utf8 == '0') {
+    $data = mb_convert_encoding($data, "ISO-8859-1", "UTF-8");
+}
 
 // ---------------------------------------------------------------
 // Finally, do the processing
@@ -215,14 +196,12 @@ if ($action === 'replace') {
         $data =  base64_decode($data);
     }
     WriteFile($name, $data, $binary == '1');
-    exit;
+    exitCode(200);
 } else if ($action === 'append') {
     // first check we have some data to append!
     $dataObj = json_decode($data, false);
     if (is_null($dataObj)) {
-        echo "No valid JSON data in the received data\n";
-        http_response_code(500);
-        exit;
+        exitCode(500, 'No valid JSON data in the received data');
     }
 
     // next check we have an existing file to append
@@ -231,14 +210,12 @@ if ($action === 'replace') {
     if (!file_exists($name) || filesize($name) === 0) {
         echo "No existing file to append data - $name\n";
         WriteFile($name, $data);
-        exit;
+        exitCode(200);
     }
 
     // open the target file for reading
     if (!$outFile = fopen($name, 'r')) {
-        echo "Failed to open file $name";
-        http_response_code(500);
-        exit;
+        exitCode(500, "Failed to open file $name");
     }
 
     $fileObj = json_decode(fgets($outFile), false);
@@ -249,7 +226,7 @@ if ($action === 'replace') {
         echo "No valid JSON data in - $name\n";
         echo "Writing data as a new file\n";
         WriteFile($name, $data);
-        exit;
+        exitCode(200);
     }
 
     if ($debug) {
@@ -303,11 +280,12 @@ if ($action === 'replace') {
     WriteFile($name, json_encode($fileObj));
 
 } else {
-    echo 'Error: Invalid action'. $action;
-    http_response_code(422);
-    exit;
+    exitCode(422, 'Error: Invalid action'. $action);
 }
 
+exitCode(200);
+
+///////// end of script //////////
 
 // ---------------------------------------------------------------
 // Helpers
@@ -344,8 +322,7 @@ function WriteFile($filename, $content, $binary=false) {
 set_exception_handler(function($ex) {
     echo "\nException occurred!\n\n";
     echo print_r($ex);
-    http_response_code(500);
-    exit;
+    exitCode(500);
 });
 
 
@@ -373,4 +350,15 @@ function resolvePath($path) {
         $match .= DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $append);
     }
     return $match;
+}
+
+function exitCode($code, $msg=null) {
+    if (null !== $msg)
+        echo $msg;
+    http_response_code($code);
+    //header('Connection: close');
+    header('Content-Length: '.ob_get_length());
+    ob_end_flush(); // Strange behaviour, will not work
+    flush(); // Unless both are called !
+    exit;
 }
