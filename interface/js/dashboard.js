@@ -1,4 +1,4 @@
-// Last modified: 2023/04/19 10:34:45
+// Last modified: 2023/07/22 18:00:21
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -7,6 +7,7 @@ let updateInterval = 3;   // update interval in seconds, if Ajax updating is use
 
 let alarmSettings;
 let alarmTranslate = {
+    AlarmNewRec: 'newRecord',
     AlarmGust: 'gustAbove',
     AlarmHighPress: 'pressAbove',
     AlarmHighTemp: 'tempAbove',
@@ -26,9 +27,11 @@ let alarmTranslate = {
     AlarmSpike: 'spike',
     AlarmUpgrade: 'upgrade',
     AlarmHttp: 'httpUpload',
-    AlarmMySql: 'mySqlUpload'
+    AlarmMySql: 'mySqlUpload',
+    AlarmFtp: 'ftpUpload'
 };
 let alarmRevTranslate = {
+    newRecord: ['AlarmNewRec'],
     gustAbove: ['AlarmGust'],
     pressAbove: ['AlarmHighPress'],
     tempAbove: ['AlarmHighTemp'],
@@ -46,10 +49,12 @@ let alarmRevTranslate = {
     spike: ['AlarmSpike'],
     upgrade: ['AlarmUpgrade'],
     httpUpload: ['AlarmHttp'],
-    mySqlUpload: ['AlarmMySql']
+    mySqlUpload: ['AlarmMySql'],
+    ftpUpload: ['AlarmFtp']
 };
 
 let alarmState = {
+    AlarmNewRec: false,
     AlarmGust: false,
     AlarmHighPress: false,
     AlarmHighTemp: false,
@@ -69,9 +74,11 @@ let alarmState = {
     AlarmSpike: false,
     AlarmUpgrade: false,
     AlarmHttp: false,
-    AlarmMySql: false
+    AlarmMySql: false,
+    AlarmFtp: false
 }
 let alarmDisplay = {
+    AlarmNewRecord: 'New record',
     AlarmGust: 'Wind gust above',
     AlarmHighPress: 'Pressure above',
     AlarmHighTemp: 'Temperature above',
@@ -91,7 +98,8 @@ let alarmDisplay = {
     AlarmSpike: 'Data spike',
     AlarmUpgrade: 'Upgrade available',
     AlarmHttp: 'HTTP upload',
-    AlarmMySql: 'MySQL upload'
+    AlarmMySql: 'MySQL upload',
+    AlarmFtp: 'Web upload'
 };
 let playList = [];
 
@@ -168,6 +176,25 @@ $(document).ready(function () {
         let data = JSON.parse(evt.data);
 
         updateDisplay(data);
+    }
+
+    function formatTime() {
+        let d = new Date();
+        let ampm = $('#LastDataRead').text().indexOf(' ') > -1
+        let hr = d.getHours();
+        let hrs = '';
+        if (ampm) {
+            if (hr > 12) hr -= 12;
+            if (hr === 0) hr = 12;
+            hrs = '' + hr;
+        } else {
+            hrs = ('' + hr).padStart(2, '0');
+        }
+        let tim = hrs + ':' + ('' + d.getMinutes()).padStart(2, '0') + ':' + ('' + d.getSeconds()).padStart(2, '0')
+        if (ampm) {
+            tim += d.getHours() < 12 ? ' AM' : ' PM';
+        }
+        return tim;
     }
 
     function updateDisplay(data) {
@@ -264,7 +291,7 @@ $(document).ready(function () {
         gauges.processData(convertJson(data));
 
         let lastupdatetime = new Date();
-        $('#lastupdatetime').text(lastupdatetime.toLocaleTimeString('en-UK', {hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: ($('#LastDataRead').text().indexOf(' ') > -1)}));
+        $('#lastupdatetime').text(formatTime());
     }
 
     let pad = function (x) {
@@ -273,7 +300,7 @@ $(document).ready(function () {
 
     let ticktock = function () {
         let d = new Date();
-        $('.digiclock').text(d.toLocaleTimeString('en-UK', {hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: ($('#LastDataRead').text().indexOf(' ') > -1)}));
+        $('.digiclock').text(formatTime());
     };
 
     // Convert from MX format to realtimeGauges.txt format
@@ -457,6 +484,15 @@ $(document).ready(function () {
                     }
                 }
             }
+        }
+    });
+
+    // Get the station name - only do this on page load
+    $.ajax({
+        url: 'api/tags/process.json?locationJsEnc',
+        dataType: 'json',
+        success: function (result) {
+            $('#StationName').html(result.locationJsEnc);
         }
     });
 

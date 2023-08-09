@@ -1,4 +1,4 @@
-// Last modified: 2022/07/20 17:20:28
+// Last modified: 2023/07/22 17:54:10
 
 $(document).ready(function() {
     $.ajax({
@@ -21,6 +21,9 @@ $(document).ready(function() {
             $('#destEmail').val(result.email.destEmail)
             if (result.email.useHtml) {
                 $('#useHtml').prop('checked', true);
+            }
+            if (result.email.useBcc) {
+                $('#useBcc').prop('checked', true);
             }
         }
     });
@@ -166,6 +169,18 @@ function updateAlarms() {
                     Latches     : $('#windAboveLatches').prop('checked'),
                     LatchHrs    : $('#windAboveLatchHrs').val()
                 },
+                newRecord: {
+                    Enabled     : $('#newRecordEnabled').prop('checked'),
+                    SoundEnabled: $('#newRecordSoundEnabled').prop('checked'),
+                    Sound       : $('#newRecordSound').val(),
+                    Action      : $('#newRecordAction').val(),
+                    ActionParams: $('#newRecordActionParams').val(),
+                    Notify      : $('#newRecordNotify').prop('checked'),
+                    Email       : $('#newRecordEmail').prop('checked'),
+                    Latches     : $('#newRecordLatches').prop('checked'),
+                    LatchHrs    : $('#newRecordLatchHrs').val(),
+                    Threshold   : $('#newRecordThreshold').val()
+                },
                 contactLost: {
                     Enabled     : $('#contactLostEnabled').prop('checked'),
                     SoundEnabled: $('#contactLostSoundEnabled').prop('checked'),
@@ -214,6 +229,18 @@ function updateAlarms() {
                     LatchHrs    : $('#spikeLatchHrs').val(),
                     Threshold   : $('#spikeThreshold').val(),
                 },
+                ftpUpload: {
+                    Enabled     : $('#ftpUploadEnabled').prop('checked'),
+                    SoundEnabled: $('#ftpUploadSoundEnabled').prop('checked'),
+                    Sound       : $('#ftpUploadSound').val(),
+                    Action      : $('#ftpUploadAction').val(),
+                    ActionParams: $('#ftpUploadActionParams').val(),
+                    Notify      : $('#ftpUploadNotify').prop('checked'),
+                    Email       : $('#ftpUploadEmail').prop('checked'),
+                    Latches     : $('#ftpUploadLatches').prop('checked'),
+                    LatchHrs    : $('#ftpUploadLatchHrs').val(),
+                    Threshold   : $('#ftpUploadThreshold').val()
+                },
                 httpUpload: {
                     Enabled     : $('#httpUploadEnabled').prop('checked'),
                     SoundEnabled: $('#httpUploadSoundEnabled').prop('checked'),
@@ -253,7 +280,8 @@ function updateAlarms() {
             email: {
                 fromEmail: $('#fromEmail').val(),
                 destEmail: $('#destEmail').val(),
-                useHtml  : $('#useHtml').prop('checked')
+                useHtml  : $('#useHtml').prop('checked'),
+                useBcc   : $('#useBcc').prop('checked')
             }
         })
     }).done(function () {
@@ -272,7 +300,8 @@ function testEmail() {
         data: JSON.stringify({
             fromEmail: $('#fromEmail').val(),
             destEmail: $('#destEmail').val(),
-            useHtml  : $('#useHtml').prop('checked')
+            useHtml  : $('#useHtml').prop('checked'),
+            useBcc   : $('#useBcc').prop('checked')
         })
     }).done(function (result) {
         alert("Test email sent");

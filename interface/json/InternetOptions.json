@@ -318,6 +318,10 @@
 										"Note: The websitedata.json file is required for the default web site and is uploaded once or when the station configuration is changed",
 										"Note: The wxnow.txt file is created every minute, regardless of your web interval"
 									]
+								},
+								"wxnowcomment": {
+									"label": "wxnow.txt Comment:",
+									"helper": "Text to append to the wxnow.txt file. This can contain web tags"
 								}
 							},
 							"dependencies": {
