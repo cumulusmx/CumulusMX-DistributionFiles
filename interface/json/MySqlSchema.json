@@ -198,6 +198,19 @@
 			"dependencies": {
 				"entries": ["enabled"]
 			}
+		},
+		"customstart": {
+			"type": "object",
+			"title": "Custom upload - Start-up",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"command": {
+					"type": "array",
+					"maxItems": 10
+				}
+			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2023/01/03 16:23:59
+    Last modified: 2023/05/10 15:15:50
 */
 
 body {
@@ -91,3 +91,19 @@ body {
     border-color: #ca2e2b;
 }
 
+.highcharts-data-table > table {
+    background-color:white;
+}
+.highcharts-data-table > table > caption {
+    background-color:white;
+    color: #000;
+    font-weight: bold;
+}
+.highcharts-data-table th, .highcharts-data-table td {
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: right;
+}
+.highcharts-data-table th {
+    background-color: rgb(214, 214, 214)
+}

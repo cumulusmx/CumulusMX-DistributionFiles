@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/04/24 10:31:47
+Last modified: 2023/07/22 17:56:30
 -->
 <!doctype html>
 <html lang="en">
@@ -269,6 +269,21 @@ Last modified: 2023/04/24 10:31:47
                         <td></td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox" id="newRecordEnabled" aria-label="Enable all-time record alarm"></td>
+                        <td aria-hidden>New all-time record</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="checkbox" id="newRecordSoundEnabled" aria-label="Enable new record lost sound"></td>
+                        <td><input id="newRecordSound" aria-label="New record sound filename"></td>
+                        <td><input id="newRecordAction" aria-label="New record action"></td>
+                        <td><input id="newRecordActionParams" aria-label="New record action parameters"></td>
+                        <td><input type="checkbox" id="newRecordNotify" aria-label="Enable new record notifications"></td>
+                        <td><input type="checkbox" id="newRecordEmail" aria-label="Enable new record emails"></td>
+                        <td><input type="checkbox" id="newRecordLatches" aria-label="Enable new record latching"></td>
+                        <td><input id="newRecordLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="New record latching hours"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <td><input type="checkbox" id="contactLostEnabled" aria-label="Enable sensor contact lost alarm"></td>
                         <td aria-hidden>Sensor contact lost</td>
                         <td></td>
@@ -329,6 +344,21 @@ Last modified: 2023/04/24 10:31:47
                         <td><input id="spikeThreshold" type="number" min="1" max="99" step="1" aria-label="Data spike trip threshold"></td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox" id="ftpUploadEnabled" aria-label="Enable web uploads alarm"></td>
+                        <td aria-hidden>Web upload errors</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="checkbox" id="ftpUploadSoundEnabled" aria-label="Enable web uploads sound"></td>
+                        <td><input id="ftpUploadSound" aria-label="Web uploads sound filename"></td>
+                        <td><input id="ftpUploadAction" aria-label="Web uploads action"></td>
+                        <td><input id="ftpUploadActionParams" aria-label="Web uploads action parameters"></td>
+                        <td><input type="checkbox" id="ftpUploadNotify" aria-label="Enable web uploads notifications"></td>
+                        <td><input type="checkbox" id="ftpUploadEmail" aria-label="Enable web uploads emails"></td>
+                        <td><input type="checkbox" id="ftpUploadLatches" aria-label="Enable web uploads latching"></td>
+                        <td><input id="ftpUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Web uploads latching hours"></td>
+                        <td><input id="ftpUploadThreshold" type="number" min="1" max="99" step="1" aria-label="Web uploads trip threshold"></td>
+                    </tr>
+                    <tr>
                         <td><input type="checkbox" id="httpUploadEnabled" aria-label="Enable third party uploads alarm"></td>
                         <td aria-hidden>Third party upload errors</td>
                         <td></td>
@@ -382,6 +412,10 @@ Last modified: 2023/04/24 10:31:47
                     <span aria-hidden>To email address(es):</span>
                     <input id="destEmail" style="min-width: 200px; width: 50%" aria-label="To email address or addresses. Separate multiple email addresses with a semicolon"><br>
                     <span aria-hidden>Separate multiple email addresses with a semicolon ";". Eg: joe@somewhere.com; jane@here.net</span>
+                </div>
+                <div style="margin-top: 10px">
+                    <label><input type="checkbox" id="useBcc"> Put destination emails in the BCC list rather than To list</label><br>
+                    By default the destination email addresses are put in the To list and will be visible to every recepient, use this option to add them to the BCC list instaed
                 </div>
                 <div style="margin-top: 10px">
                     <label><input type="checkbox" id="useHtml"> Email uses HTML text formatting</label><br>

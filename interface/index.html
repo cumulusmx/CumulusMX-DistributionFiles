@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/04/24 10:28:19
+Last modified: 2023/07/22 17:53:03
 -->
 <!doctype html>
 <html lang="en">
@@ -61,8 +61,9 @@ Last modified: 2023/04/24 10:28:19
         <div class="row top-buffer">
             <div class="col-sm-12 col-lg-12">
                 <div class="half-unit">
-                    <div class="cont">
+                    <div style="text-align: center; margin-top: 10px;">
                         <input id="bt" type="button" class="btn-sml btn-default" value="Play Alarm Sounds" style="display: none;">
+                        <p><span id="StationName" style="font-size: 20px;">&nbsp;</span></p>
                         <p><span>Sunrise</span>&nbsp;<span id="Sunrise" class="low"></span>  Sunset&nbsp;<span id="Sunset" class="high"></span>  Moonrise&nbsp;<span id="Moonrise" class="low"></span>  Moonset&nbsp;<span id="Moonset" class="high"></span></p>
                         <p><span id="Forecast"></span></p>
                     </div>
@@ -276,6 +277,7 @@ Last modified: 2023/04/24 10:28:19
                 <div class="half-unit" style="height:auto">
                     <div class="cont">
                         <p>
+                        <div style="display:inline-block"><span class="indicator" id="AlarmNewRec"></span>&nbsp;New&nbsp;record</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmLowTemp"></span>&nbsp;Low&nbsp;temperature</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmHighTemp"></span>&nbsp;High&nbsp;temperature</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmTempUp"></span>&nbsp;Temp&nbsp;rising</div>
@@ -293,6 +295,7 @@ Last modified: 2023/04/24 10:28:19
                         <div style="display:inline-block"><span class="indicator" id="AlarmSensor"></span>&nbsp;Sensor&nbsp;contact</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmBattery"></span>&nbsp;Battery&nbsp;low</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmSpike"></span>&nbsp;Data&nbsp;spike</div>
+                        <div style="display:inline-block"><span class="indicator" id="AlarmFtp"></span>&nbsp;Web&nbsp;upload</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmHttp"></span>&nbsp;3rd&nbsp;party&nbsp;upload</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmMySql"></span>&nbsp;MySQL&nbsp;upload</div>
                         <div style="display:inline-block"><span class="indicator" id="AlarmUpgrade"></span>&nbsp;Upgrade&nbsp;available</div>

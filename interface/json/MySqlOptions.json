@@ -245,6 +245,24 @@
 					}
 				}
 			}
+		},
+		"customstart": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "A custom SQL command to be executed when Cumulus starts up",
+			"fields": {
+				"enabled": {
+					"rightLabel": "Custom Start-up Enabled"
+				},
+				"command": {
+					"label": "SQL commands:",
+					"collapsible": true,
+					"collapsed": false,
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
 		}
 	}
 }

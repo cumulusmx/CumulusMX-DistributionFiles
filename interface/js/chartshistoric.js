@@ -1,4 +1,4 @@
-// Last modified: 2023/01/18 16:48:19
+// Last modified: 2023/05/23 09:54:51
 
 var chart, config, available;
 
@@ -90,6 +90,7 @@ $(document).ready(function () {
 
 
 var doTemp = function () {
+    $('#chartdescription').text('Line chart showing daily temperature values. Shown are the maximum, minimum, and average temperatures for each day along with many possible derived temperatuer values. The site owner may choose to not display all these values');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -270,6 +271,7 @@ var doTemp = function () {
 };
 
 var doPress = function () {
+    $('#chartdescription').text('Line chart showing daily high and low atmospheric pressure values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -478,6 +480,7 @@ var compassP = function (deg) {
 // };
 
 var doWind = function () {
+    $('#chartdescription').text('Line chart showing daily high gust, high average wind speed, and daily wind run values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -594,6 +597,7 @@ var doWind = function () {
 };
 
 var doRain = function () {
+    $('#chartdescription').text('Bar chart showing daily rainfall values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -703,6 +707,7 @@ var doRain = function () {
 };
 
 var doHum = function () {
+    $('#chartdescription').text('Line chart showing daily high and low relative humidity values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -819,6 +824,7 @@ var doHum = function () {
 };
 
 var doSolar = function () {
+    $('#chartdescription').text('Combination line and bar chart showing daily high solar irradiation and sunshine hours.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1002,6 +1008,7 @@ var doSolar = function () {
 };
 
 var doDegDays = function () {
+    $('#chartdescription').text('Line chart showing daily increments to growing degree days. These values increase over the growing year, the year normally starts in January for the northern hemisphere, and July in the southern. Two ranges are defined for each year: range one incrementing when the temperature is above 5°C or 40°F, and range two incrementing when the temperature is above 10°C or 50°F. Though the station owner can override these values and define their own.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1124,6 +1131,7 @@ var doDegDays = function () {
 };
 
 var doTempSum = function () {
+    $('#chartdescription').text('Line chart showing daily increments to the annual temperature sum. These values increase over the year, the year normally starts in January for the northern hemisphere, and July in the southern. Three ranges are defined for each year: The ranges being measured relative to the base temperatures of; 0°C/32°F, 5°C/40°F, and 10°C/50°F respectively. Though the station owner can override these values and define their own.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',

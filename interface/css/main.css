@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2023/02/04 18:02:21
+ * Last modified: 2023/05/04 11:07:49
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -206,7 +206,7 @@ h5 {
     background-image:url('../img/sep-half.png');
     background-color: #3d3d3d;
     color:white;
-    height:100px;
+    height:120px;
 }
 
 .half-unit:hover {

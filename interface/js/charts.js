@@ -1,4 +1,4 @@
-// Last modified: 2023/03/16 09:59:41
+// Last modified: 2023/05/22 20:17:02
 
 var chart, config, doSelect;
 
@@ -164,6 +164,7 @@ $(document).ready(function () {
 
 var doTemp = function () {
     var freezing = config.temp.units === 'C' ? 0 : 32;
+    $('#chartdescription').text('Line chart showing recent temperature and various derived temperature values at a one minute resolution.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -319,6 +320,7 @@ var doTemp = function () {
 };
 
 var doPress = function () {
+    $('#chartdescription').text('Line chart showing recent pressure values at a one minute resolution.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -416,6 +418,7 @@ var compassP = function (deg) {
 };
 
 var doWindDir = function () {
+    $('#chartdescription').text('Scatter chart showing recent wind bearing spot and average values at a one minute resolution.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -480,7 +483,7 @@ var doWindDir = function () {
                 labels: {
                     align: 'left',
                     x: 5,
-                    formatter() {
+                    formatter: function () {
                         return compassP(this.value);
                     }
                 }
@@ -554,6 +557,7 @@ var doWindDir = function () {
 };
 
 var doWind = function () {
+    $('#chartdescription').text('Line chart showing recent average wind speed and gust values at a one minute resolution.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -653,6 +657,7 @@ var doWind = function () {
 };
 
 var doRain = function () {
+    $('#chartdescription').text('Line chart showing the cumulative daily rainfall and rainfall rate at a one minute resolution');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -758,6 +763,7 @@ var doRain = function () {
 };
 
 var doHum = function () {
+    $('#chartdescription').text('Line chart showing outdoor (and optionally indoor) relative humidity at a one minute resolution.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -870,6 +876,7 @@ var doHum = function () {
 };
 
 var doSolar = function () {
+    $('#chartdescription').text('Line chart showing recent solar irradiation and UV index values at a one minute resolution. This station may not have both sensors. For comparision the chart also shows the calculated theoretical solar value.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1013,6 +1020,7 @@ var doSolar = function () {
 };
 
 var doSunHours = function () {
+    $('#chartdescription').text('Bar chart showing recent daily sunshine hours values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1108,6 +1116,7 @@ var doSunHours = function () {
 };
 
 var doDailyRain = function () {
+    $('#chartdescription').text('Bar chart showing recent daily rainfall values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1204,6 +1213,7 @@ var doDailyRain = function () {
 };
 
 var doDailyTemp = function () {
+    $('#chartdescription').text('Line chart showing recent daily temperature values. Shown are the maximum, minimum, and average temperatures for each day. The site owner may choose to not display all these values');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1327,6 +1337,7 @@ var doDailyTemp = function () {
 };
 
 var doAirQuality = function () {
+    $('#chartdescription').text('Line chart showing recent air bourne particulate matter concentrations at a one minute resolution. Air quality is typically measured using two particulate sizes of 2.5 microns and 10 microns.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1434,6 +1445,7 @@ var doAirQuality = function () {
 };
 
 var doExtraTemp = function () {
+    $('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1546,6 +1558,7 @@ var doExtraTemp = function () {
 };
 
 var doExtraHum = function () {
+    $('#chartdescription').text('Line chart showing recent additional humidity sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1649,6 +1662,7 @@ var doExtraHum = function () {
 };
 
 var doExtraDew = function () {
+    $('#chartdescription').text('Line chart showing recent additional dew point sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1761,6 +1775,7 @@ var doExtraDew = function () {
 };
 
 var doSoilTemp = function () {
+    $('#chartdescription').text('Line chart showing recent soil tempertaure sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1873,6 +1888,7 @@ var doSoilTemp = function () {
 };
 
 var doSoilMoist = function () {
+    $('#chartdescription').text('Line chart showing recent soil moisture sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1971,6 +1987,7 @@ var doSoilMoist = function () {
 };
 
 var doLeafWet = function () {
+    $('#chartdescription').text('Line chart showing recent leaf wetness sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -2071,6 +2088,7 @@ var doLeafWet = function () {
 };
 
 var doUserTemp = function () {
+    $('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -2183,6 +2201,7 @@ var doUserTemp = function () {
 };
 
 var doCO2 = function () {
+    $('#chartdescription').text('Line chart showing recent carbon dioxide sensor values at a one minute resolution. Typically these sensors only provide meaningful data indoors. This sensor may also show particulate matter, temperature and humidity values.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',

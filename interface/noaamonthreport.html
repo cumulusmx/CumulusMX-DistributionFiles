@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/03/17 14:55:55
+Last modified: 2023/05/09 14:29:12
 -->
 <!doctype html>
 <html lang="en">
@@ -76,9 +76,6 @@ Last modified: 2023/03/17 14:55:55
                 startYear = result.year;
 
                 var startYear = parseInt(result.year);
-                if (startYear < 2004 || startYear > thisYear) {
-                    startYear = 2004;
-                }
 
                 for (var i = thisYear; i >= startYear; i--) {
                     $('#selYear').append($('<option>', {
