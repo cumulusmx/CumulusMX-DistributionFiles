@@ -1,4 +1,4 @@
-// Last modified: 2023/07/22 18:00:21
+// Last modified: 2023/10/13 22:04:10
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -399,7 +399,7 @@ $(document).ready(function () {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/settings/wsport.json',
+            url: 'api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);
@@ -418,17 +418,16 @@ $(document).ready(function () {
 
     // Get the alarm settings - only do this on page load
     $.ajax({
-        url: 'api/settings/alarms.json',
+        url: 'api/info/alarms.json',
         dataType: 'json',
         success: function (result) {
-            let data = result.data;
             let playSnd = false;
             let notify = false;
 
             // save the setting for later
-            alarmSettings = result.data;
+            alarmSettings = result;
 
-            $.each(result.data, function(alarm, alarmObj) {
+            $.each(result, function(alarm, alarmObj) {
                 let id = alarmRevTranslate[alarm];
 
                 if (alarmObj.Enabled) {

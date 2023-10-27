@@ -1,4 +1,4 @@
-// Last modified: 2022/06/05 14:38:46
+// Last modified: 2023/10/13 21:35:05
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
@@ -148,7 +148,7 @@ window.addEventListener("load", function () {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/settings/wsport.json',
+            url: 'api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);

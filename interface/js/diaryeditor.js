@@ -1,10 +1,10 @@
-// Last modified: 2022/06/23 17:02:06
+// Last modified: 2023/10/13 21:32:11
 
 var activeDates;
 
 $(document).ready(function () {
     $.ajax({
-        url: 'api/settings/version.json',
+        url: 'api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);

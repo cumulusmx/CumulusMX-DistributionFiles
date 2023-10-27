@@ -1,4 +1,4 @@
-// Last modified: 2023/03/12 09:01:15
+// Last modified: 2023/10/08 17:17:52
 
 let StashedStationId;
 let accessMode;
@@ -98,6 +98,36 @@ $(document).ready(function () {
                                     "status": true
                                 });
                             }
+                        },
+                        "applicationkey": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^[A-F0-9]{30,35}$/.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "That is not a valid Application Key!"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
+                        },
+                        "userkey": {
+                            "validator": function(callback) {
+                                let value = this.getValue();
+                                if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                    callback({
+                                        "status": false,
+                                        "message": "That is not a valid API Key!"
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    "status": true
+                                });
+                            }
                         }
                     }
                 }
@@ -124,7 +154,11 @@ $(document).ready(function () {
                 let stationid = this.getValue();
                 form.childrenByPropertyId["stationid"].setValue(stationid);
                 form.getControlByPath("Options/stationid").setValue(stationid);
+                form.getControlByPath("daviswll/stationid").setValue(stationid);
+                form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
                 form.getControlByPath("general/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
+                // set the settings name for WLL/Davis cloud
+                setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
             });
 
             // On changing the Davis VP connection type, propagate down to advanced settings
@@ -138,9 +172,15 @@ $(document).ready(function () {
             // Set the initial value of the sub-section  station ids
             let stationid = form.childrenByPropertyId["stationid"].getValue();
             form.getControlByPath("Options/stationid").setValue(stationid);
+            form.getControlByPath("daviswll/stationid").setValue(stationid);
+            form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
+
+
             // Keep a record of the last value
             StashedStationId = stationid;
 
+            // Set the initial title of Davis WLL/Cloud
+            setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
             // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
             form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
@@ -224,5 +264,18 @@ function onAccessChange(that, val) {
         expandable.style.removeProperty('display');
         expanded.style.removeProperty('display');
         removeButtons();
+    }
+}
+
+function setDavisStationTitle(that, val) {
+    if (val == 11) { // WLL
+        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Live";
+        //that.refresh();
+    } else if (val == 19) { // Davis cloud WLL
+        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Cloud (WLL/WLC)";
+        //that.refresh();
+    } else if (val == 20) { // Davis cloud VP2
+        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Cloud (VP2)";
+        //that.refresh();
     }
 }

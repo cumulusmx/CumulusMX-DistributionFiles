@@ -1,5 +1,5 @@
 <!--
-Last modified: 2021/06/09 21:51:42
+Last modified: 2023/10/14 18:15:38
 -->
 <!doctype html>
 <html lang="en">
@@ -31,7 +31,7 @@ Last modified: 2021/06/09 21:51:42
 
     <script>
         $(document).ready(function () {
-            $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+            $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
                     $('#Version').text(result.Version);
                     $('#Build').text(result.Build);
                 }});

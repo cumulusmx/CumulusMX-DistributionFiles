@@ -1,4 +1,5 @@
 {
+    "version": "Last Modified: 2023/10/18 10:33:32",
     "fields": {
         "accessible": {
             "rightLabel": "Enable accessibility features",
@@ -102,6 +103,17 @@
                 "spikelogging": {
                     "rightLabel": "Spike logging",
                     "helper": "Enable the logging of data spike and limit violations to MX diags files."
+                },
+                "errorlistlevel": {
+                    "label": "Dashboard latest errors logging level",
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "Warning",
+                        "Error"
+                    ],
+                    "removeDefaultNone": true,
+                    "helper": "The default of Error only shows more serious issues, set to Warning to get more verbose logging"
                 }
             }
         },
@@ -141,6 +153,29 @@
                     ],
                     "removeDefaultNone": true,
                     "helper": "The default shows times on the dashboard in the locale format, or you can force 24 hour or 12 hour times with AM/PM"
+                }
+            }
+        },
+        "security": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "securesettings": {
+                    "rightLabel": "Secure the settings",
+                    "helper": "Enables the requirement for a username/password to edit the settings"
+                },
+                "username": {
+                    "label": "Username:",
+                    "dependencies": {
+                        "securesettings": true
+                    }
+                },
+                "password":{
+                    "label": "Password:",
+                    "type": "password",
+                    "dependencies": {
+                        "securesettings": true
+                    }
                 }
             }
         }

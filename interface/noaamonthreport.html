@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/05/09 14:29:12
+Last modified: 2023/10/13 21:42:28
 -->
 <!doctype html>
 <html lang="en">
@@ -52,7 +52,7 @@ Last modified: 2023/05/09 14:29:12
 
         $(document).ready(function () {
             $.ajax({
-                url: 'api/settings/version.json',
+                url: 'api/info/version.json',
                 dataType: 'json'
             })
             .done(function (result) {
@@ -150,6 +150,18 @@ Last modified: 2023/05/09 14:29:12
                 $('#report').text('Something went wrong! (' + textStatus + ')');
             });
         }
+
+        function generateAll() {
+            $.ajax({
+                url: 'api/genreports/all'
+            })
+            .done(function(data) {
+                $('#report').text(data);
+            })
+            .fail(function(jqXHR, textStatus) {
+                $('#report').text('Something went wrong! (' + textStatus + ')');
+            });
+        }
     </script>
 </head>
 <body>
@@ -178,7 +190,8 @@ Last modified: 2023/05/09 14:29:12
             <div style="margin-bottom:10px">
                 Select year:&nbsp;<select id="selYear" aria-label="select year"></select> month:&nbsp;<select id="selMonth" aria-label="select month"></select>
                 <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
-                <button type="button" class="btn" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate Report</button><br>
+                <button type="button" class="btn btn-warning" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate this Report</button>
+                <button type="button" class="btn btn-info" id="generateAll-button" onclick="generateAll()" style="margin:10px;">Regenerate all missing Reports</button><br>
                 Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly
             </div>
         </div>

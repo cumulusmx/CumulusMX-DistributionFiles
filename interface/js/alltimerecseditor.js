@@ -1,4 +1,4 @@
-// Last modified: 2022/08/23 09:31:15
+// Last modified: 2023/10/13 21:31:46
 
 var updateUrl = 'api/edit/alltime';
 var editFieldName;
@@ -46,7 +46,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/settings/version.json',
+        url: 'api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);

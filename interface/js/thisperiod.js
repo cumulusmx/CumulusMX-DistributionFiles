@@ -1,4 +1,4 @@
-// Last modified: 2022/07/26 23:48:42
+// Last modified: 2023/10/13 21:40:46
 
 //const userLocale =
 //  navigator.languages && navigator.languages.length
@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/settings/version.json',
+        url: 'api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
@@ -66,7 +66,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/settings/dateformat.txt',
+        url: 'api/info/dateformat.txt',
         dataType: 'text',
         success: function (result) {
             // we want all lower case and yy for the year not yyyy

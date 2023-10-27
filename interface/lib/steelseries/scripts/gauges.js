@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2022/05/06 11:36:44
+ * Last Modified: 2023/09/28 10:43:19
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -94,9 +94,9 @@ gauges = (function () {
             minMaxArea            : 'rgba(212,132,134,0.3)', // area sector for today's max/min. (red, green, blue, transparency)
             windAvgArea           : 'rgba(132,212,134,0.3)',
             windVariationSector   : 'rgba(120,200,120,0.7)', // only used when rose data is shown on direction gauge
-            frameDesign           : steelseries.FrameDesign.TILTED_GRAY,
-            background            : steelseries.BackgroundColor.BEIGE,
-            foreground            : steelseries.ForegroundType.TYPE1,
+            frameDesign           : steelseries.FrameDesign.BLACK_METAL,
+            background            : steelseries.BackgroundColor.LIGHT_GRAY,
+            foreground            : steelseries.ForegroundType.TYPE3,
             pointer               : steelseries.PointerType.TYPE8,
             pointerColour         : steelseries.ColorDef.RED,
             dirAvgPointer         : steelseries.PointerType.TYPE8,

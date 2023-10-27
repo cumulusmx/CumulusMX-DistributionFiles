@@ -1,5 +1,5 @@
 <?php
-// Last modified: 2023/03/23 11:10:44
+// Last modified: 2023/08/23 16:00:01
 
 /*
 ******** PHP Upload script for Cumulus MX ********
@@ -42,21 +42,23 @@ if ($debug) {
 }
 
 // first check for GET/POST
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_SERVER["HTTP_DATA"])) {
     // used for testing the compression response
 ?>
 <html>
     <body>
         Welcome to upload.php<br>
 <?php
-    echo str_repeat("xx xx", 1000), "<br>"
+    echo str_repeat("xx xx", 1000), "<br>\n"
 ?>
     </body>
 </html>
 <?php
     exit;
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_SERVER["HTTP_DATA"])) {
+    // We have data in the GET header
 } elseif ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    exitCode(500, 'Error: Must use POST method');
+    exitCode(500, 'Error: Must use GET or POST method');
 }
 
 // ---------------------------------------------------------------
@@ -144,23 +146,34 @@ if ($binary != '0' && $binary != '1') {
     exitCode(422, "Error: Invalid header BINARY = $binary");
 }
 
-if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
-    $data = $_SERVER['HTTP_RAW_POST_DATA'];
-} else {
-    $data = file_get_contents('php://input');
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $data = $_SERVER["HTTP_DATA"];
+    if ($binary == "0")
+    {
+        // Text GET data is also encoded, decode before signature check
+        $data = base64_decode($data);
+    }
 }
+else
+{
+    if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
+        $data = $_SERVER['HTTP_RAW_POST_DATA'];
+    } else {
+        $data = file_get_contents('php://input');
+    }
 
-if (strlen($data) == 0) {
-    exitCode(422, 'Error: No data sent');
-}
+    if (strlen($data) == 0) {
+        exitCode(422, 'Error: No data sent');
+    }
 
-if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
-    if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
-        echo "Unzipping data\n";
-        $data = gzdecode($data);
-    } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'deflate') {
-        echo "Inflating data\n";
-        $data = gzinflate($data);
+    if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
+        if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
+            echo "Unzipping data\n";
+            $data = gzdecode($data);
+        } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'deflate') {
+            echo "Inflating data\n";
+            $data = gzinflate($data);
+        }
     }
 }
 

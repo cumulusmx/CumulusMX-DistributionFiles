@@ -1,4 +1,5 @@
 {
+    "version": "Last Modified: 2023/10/18 10:37:12",
     "type": "object",
     "properties": {
         "accessible": {
@@ -96,6 +97,9 @@
                 },
                 "spikelogging": {
                     "type": "boolean"
+                },
+                "errorlistlevel": {
+                    "enum": [1, 2]
                 }
             }
         },
@@ -121,6 +125,25 @@
                 "timeFormat": {
                     "enum": ["t", "h:mm tt", "HH:mm"]
                 }
+            }
+        },
+        "security": {
+            "title": "Security Settings",
+            "type": "object",
+            "properties": {
+                "securesettings": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "minLength": 4
+                },
+                "password": {
+                    "minLength": 6
+                }
+            },
+            "dependencies": {
+                "username": ["securesettings"],
+                "password": ["securesettings"]
             }
         }
     }

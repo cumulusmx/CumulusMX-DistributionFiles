@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/21 16:40:35",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -127,20 +128,22 @@
 			"fields": {
 				"extraStation": {
 					"type": "select",
-					"label": "Select HTTP Station:",
+					"label": "Select Extra Station:",
 					"optionLabels": [
 						"None",
 						"HTTP Ecowitt",
-						"HTTP Ambient"
+						"HTTP Ambient",
+						"Ecowitt Cloud"
 					],
 					"sort": false,
 					"removeDefaultNone": true,
-					"helper": "Sets the HTTP Station type to use for for sending additional sensor information to Cumulus."
+					"helper": "Sets the Station type to use for for sending additional sensor information to Cumulus."
 				},
 				"ecowitt": {
 					"collapsible": true,
 					"collapsed": true,
 					"helpers": [
+						"You can use either a locally attched Ecowitt station (via the HTTP protocol), or use the data from a station sending to the Ecowitt Cloud service",
 						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
 						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
 						"You must restart Cumulus after enabling/disabling this feature"
@@ -316,10 +319,38 @@
 									"helper": "Select the mapping for your WN34 sensor"
 								}
 							}
+						},
+						"forwarders": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"usemain": {
+									"label": "Main Station",
+									"rightLabel": "Use Ecowitt HTTP main station forwarders",
+									"helper": "Use the same forwarders configured for your Ecowitt HTTP main station"
+								},
+								"forward": {
+									"type": "table",
+									"label": "Forwarding Destinations",
+									"collapsible": true,
+									"collapsed": false,
+									"items": {
+										"fields": {
+											"url": {
+												"label": "Destination URL"
+											}
+										}
+									},
+									"helper": "Add the URLs of the destinations you wish to forward the Ecowitt HTTP data",
+									"dependencies": {
+										"usemain": false
+									}
+								}
+							}
 						}
 					},
 					"dependencies": {
-						"extraStation": 0
+						"extraStation": [0, 2]
 					}
 				},
 				"ambient": {

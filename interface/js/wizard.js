@@ -1,4 +1,4 @@
-// Last modified: 2022/06/07 22:07:16
+// Last modified: 2023/10/08 17:25:32
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -181,6 +181,74 @@ $(document).ready(function () {
                                     });
                                 }
                             }
+                        },
+                        "gw1000": {
+                            "fields": {
+                                "macaddress": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (value && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid MAC address!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                }
+                            }
+                        },
+                        "ecowittapi": {
+                            "fields":{
+                                "mac": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid MAC address!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                },
+                                "applicationkey": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (!/^[A-F0-9]{30,35}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid Application Key!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                },
+                                "userkey": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid API Key!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -285,7 +353,15 @@ $(document).ready(function () {
                 let form = $("form").alpaca("get");
                 let stationid = this.getValue();
                 form.getControlByPath("station/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
+                form.getControlByPath("station/daviswll/stationtype").setValue(stationid);
+                // set the settings name for WLL/Davis cloud
+                setDavisStationTitle(form.getControlByPath("station/daviswll"), stationid);
             });
+
+            // Set the initial title of Davis WLL/Cloud
+            var stationid = stationIdObj.getValue();
+            form.getControlByPath("station/daviswll/stationtype").setValue(stationid);
+            setDavisStationTitle(form.getControlByPath("station/daviswll"), stationIdObj.getValue());
 
             // On changing the web uploads enabled, disable/enable the other FTP options
             webEnabled.on("change", function () {
@@ -331,3 +407,16 @@ $(document).ready(function () {
         }
     });
 });
+
+function setDavisStationTitle(that, val) {
+    if (val == 11) { // WLL
+        that.field[0].firstElementChild.innerText = " Davis WeatherLink Live";
+        //that.refresh();
+    } else if (val == 19) { // Davis cloud WLL
+        that.field[0].firstElementChild.innerText = " Davis WeatherLink Cloud (WLL/WLC)";
+        //that.refresh();
+    } else if (val == 20) { // Davis cloud VP2
+        that.field[0].firstElementChild.innerText = " Davis WeatherLink Cloud (VP2)";
+        //that.refresh();
+    }
+}

@@ -1,4 +1,4 @@
-// Last modified: 2022/07/27 17:55:41
+// Last modified: 2023/10/13 21:33:16
 
 var updateUrl = 'api/edit/thismonth';
 var editFieldName;
@@ -67,7 +67,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/settings/version.json',
+        url: 'api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
