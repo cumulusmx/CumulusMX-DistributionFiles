@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2023/03/16 11:00:22
+// Last modified: 2023/08/30 17:23:18
 
 var chart, config, options;
 var settings;
@@ -501,7 +501,7 @@ var addSoilMoistAxis = function (idx) {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
         },
         min: 0,
-        max: 100,
+        max: config.soilmoisture.units === '%' ? 100 : 200, // Davis 0-200 cb, Ecowitt 0-100%
         allowDecimals: false
     }, false, false);
 };

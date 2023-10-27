@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2023/04/11 16:59:22
+ Last modified: 2023/10/05 10:35:40
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -19,9 +19,10 @@ let menuSrc = [
 	{title: "Now",          menu: "b",    url: "now.html"},
 	{title: "Gauges",       menu: "b",    url: "gauges.html"},
 	{title: "Charts",       menu: "b",    submenu: true,    items: [
-		{title: "Recent Charts",     menu: "b",    url: "charts.html"},
-		{title: "Select-a-chart",    menu: "b",    url: "chartscompare.html"},
-		{title: "Historic Charts",   menu: "b",    url: "chartshistoric.html"}
+		{title: "Recent Charts",         menu: "b",    url: "charts.html"},
+		{title: "Recent Select-a-Chart", menu: "b",    url: "chartscompare.html"},
+		{title: "Select-a-Period",       menu: "b",    url: "chartsperiod.html"},
+		{title: "Daily Charts",          menu: "b",    url: "chartshistoric.html"}
 	]},
 	{title: "Today/Yesterday",    menu: "b",    url: "todayyest.html"},
 	{title: "Records",         submenu: true,       items: [
@@ -69,8 +70,9 @@ let menuSrc = [
 	]},
 	{title: "Utils",     submenu: true,      items:[
 		{title: "Reload Dayfile",       menu: "b",    url: "util_reloaddayfile.html"},
-		{title: "Upload/Copy Now!",        menu: "b",    url: "util_ftpnow.html"},
-		{title: "Purge MySQL",          menu: "b",    url: "util_purgemysql.html"}
+		{title: "Upload/Copy Now!",     menu: "b",    url: "util_ftpnow.html"},
+		{title: "Purge MySQL",          menu: "b",    url: "util_purgemysql.html"},
+		{title: "Latest Errors",        menu: "b",    url: "util_errorlog.html"}
 	]}
 ];
 

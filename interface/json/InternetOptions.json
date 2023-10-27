@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/18 10:32:55",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -403,7 +404,7 @@
 						"enablerealtimeftp": {
 							"label": "Upload:",
 							"rightLabel": "Enable real time Uploads",
-							"helper": "FTP: Establishes the real time FTP connection so that FTP uploads can take place at the real time interval",
+							"helper": "FTP: Establishes the real time connection so that uploads can take place at the real time interval",
 							"dependencies": {
 								"enabled": true
 							}

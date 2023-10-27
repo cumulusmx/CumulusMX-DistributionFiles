@@ -1,4 +1,5 @@
 {
+	"version": "Last modified: 2023/10/18 10:26:19",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -363,6 +364,10 @@
 					"label": "Rain rate Above",
 					"type": "text"
 				},
+				"newRecord": {
+					"label": "New All-time record",
+					"type": "text"
+				},
 				"sensorLost": {
 					"label": "Sensor Contact Lost",
 					"type": "text"
@@ -381,6 +386,10 @@
 				},
 				"upgrade": {
 					"label": "Cumulus Upgrade",
+					"type": "text"
+				},
+				"ftpStopped": {
+					"label": "Web Uploads",
 					"type": "text"
 				},
 				"httpStopped": {

@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/19 17:04:38",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -6,7 +7,7 @@
 		},
 		"accessible": {
 			"rightLabel": "Enable accessibility features",
-			"helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting."
+			"helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the settings."
 		},
 		"general": {
 			"collapsible": true,
@@ -22,7 +23,10 @@
 						"Davis Vantage Pro",
 						"Davis Vantage Pro2/Vue",
 						"Davis WeatherLink Live",
+						"Davis WeatherLink Cloud (WLL/WLC)",
+						"Davis WeatherLink Cloud (VP2)",
 						"Ecowitt Local API",
+						"Ecowitt Cloud",
 						"HTTP (Ecowitt)",
 						"HTTP (Wunderground)",
 						"HTTP (Ambient)",
@@ -425,6 +429,9 @@
 								"If Auto-Discovery fails, or you have more than one WLL device, then you can enter the IP address manually."
 							]
 						}
+					},
+					"dependencies": {
+						"stationid": 11
 					}
 				},
 				"api": {
@@ -440,9 +447,9 @@
 							"helper": "Enter your WeatherLink.com APIv2 secret"
 						},
 						"apiStationId": {
-							"label": "WLL device id on WeatherLink:",
+							"label": "Your device id on WeatherLink:",
 							"helpers": [
-								"Enter the station id used for your WLL device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
+								"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
 								"If more than one station is registered to your account, then all the station ids will be listed in the console and the MX diags file. You will then have to enter the required id manually in this field"
 							]
 						}
@@ -492,6 +499,9 @@
 							"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
 							"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
 						}
+					},
+					"dependencies": {
+						"stationid": [11,19]
 					}
 				},
 				"soilLeaf": {
@@ -666,6 +676,9 @@
 								}
 							}
 						}
+					},
+					"dependencies": {
+						"stationid": [11,19]
 					}
 				},
 				"extraTemp": {
@@ -768,6 +781,9 @@
 							"rightLabel": "Has a humidity sensor?",
 							"helper": "Is sensor #1 a combined temperature/humidity sensor?"
 						}
+					},
+					"dependencies": {
+						"stationid": [11,19]
 					}
 				},
 				"advanced": {
@@ -795,20 +811,34 @@
 						},
 						"tcpport": {
 							"label": "TCP port:",
-							"helper": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL"
+							"helper": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL",
+							"dependencies": {
+								"stationid": 11
+							}
 						},
 						"datastopped": {
 							"rightLabel": "Trigger DataStopped on Broadcast stop",
 							"helpers": [
 								"By default if WLL broadcasts stop being received a DataStopped condition and alarm will be triggered",
 								"Disabling this option means a DataStopped condition will only be triggered if both broadcasts AND current data API responses stop being received"
-							]
+							],
+							"dependencies": {
+								"stationid": 11
+							}
+						},
+						"stationid": {
+							"type": "integer",
+							"fieldClass": "hideme"
 						}
 					}
+				},
+				"stationid": {
+					"type": "integer",
+					"fieldClass": "hideme"
 				}
 			},
 			"dependencies": {
-				"stationid": 11
+				"stationid": [11,19,20]
 			}
 		},
 		"gw1000": {
@@ -1042,7 +1072,7 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpersPosition": "above",
-			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than this HTTP protocol",
+			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than the HTTP protocol",
 			"fields": {
 				"setcustom": {
 					"label": "Enable Gateway Config:",
@@ -1201,7 +1231,7 @@
 				}
 			},
 			"dependencies": {
-				"stationid": [12,14]
+				"stationid": [12,14,18]
 			}
 		},
 		"http-ambient": {
@@ -1221,7 +1251,7 @@
 			"helpersPosition": "above",
 			"fields": {
 				"applicationkey": {
-					"label": "API Application Key:",
+					"label": "Application Key:",
 					"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"userkey": {
@@ -1237,7 +1267,7 @@
 				}
 			},
 			"dependencies": {
-				"stationid": [12,14]
+				"stationid": [12,14,18]
 			}
 		},
 		"Options": {
@@ -1256,6 +1286,11 @@
 						"Use the Cumulus calculated value instead of the value supplied station",
 						"If your station does not supply an average wind speed, then you must enable this option"
 					]
+				},
+				"roundwindspeeds": {
+					"label": "Speed rounding:",
+					"rightLabel": "Round wind speeds",
+					"helper": "Round wind speeds to the nearest whole number"
 				},
 				"use100for98hum": {
 					"label": "Max humidity:",
@@ -1291,11 +1326,6 @@
 					"label": "Pressure names:",
 					"rightLabel": "Cumulus pressure trend names",
 					"helper": "Use Cumulus names for pressure trends instead of the stations"
-				},
-				"roundwindspeeds": {
-					"label": "Speed rounding:",
-					"rightLabel": "Round wind speeds",
-					"helper": "Round wind speeds to the nearest whole number"
 				},
 				"ignorelacrosseclock": {
 					"label": "LaCrosse clock:",

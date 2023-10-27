@@ -1,4 +1,4 @@
-// Last modified: 2023/05/23 09:54:51
+// Last modified: 2023/10/13 21:31:02
 
 var chart, config, available;
 
@@ -71,7 +71,7 @@ $(document).ready(function () {
     });
 
 
-    $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});

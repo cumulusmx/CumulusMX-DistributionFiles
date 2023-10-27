@@ -1,4 +1,4 @@
-// Last modified: 2023/03/09 10:35:27
+// Last modified: 2023/10/13 21:32:34
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -18,7 +18,7 @@ $.extend( $.fn.dataTable.defaults, {
 $(document).ready(function () {
     var emptyTable = "No sensors enabled. Enable in: Settings|Display&nbsp;Options|Graphs|Data Visibility";
 
-    $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+    $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});

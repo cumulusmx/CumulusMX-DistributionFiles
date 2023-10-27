@@ -1,11 +1,11 @@
 <!--
-Last modified: 2023/10/14 18:16:19
+Last modified: 2023/10/19 10:51:42
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Reload Dayfile - Cumulus MX</title>
+    <title>Latest Errors - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -26,6 +26,17 @@ Last modified: 2023/10/14 18:16:19
 
     <link href="css/cumulus.css" rel="stylesheet">
 
+    <style>
+        .logcontent {
+            margin: 20px 0 20px;
+            font-family: monospace;
+        }
+        .myButton {
+            width: 150px;
+            margin: 10px auto;
+        }
+    </style>
+
     <script>
         $(document).ready(function () {
             $.ajax({
@@ -37,20 +48,36 @@ Last modified: 2023/10/14 18:16:19
                 }
             });
 
-            $("#reload").click(function(event) {
-                $('#status').text('');
+            loadlog();
+
+            setInterval(loadlog, 20000);
+
+            function loadlog() {
                 $.ajax({
-                    url: "api/utils/reloaddayfile",
-                    dataType: 'text'
-                })
-                .done(function (response) {
-                    $('#status').text(response)
-                })
-                .fail(function (jqXHR, response) {
-                    $('#status').text(response)
+                    url: "api/data/errorlog.json",
+                    dataType: "json",
+                    success: function (result) {
+                        $('#logcontent').empty();
+                        result.forEach(element => {
+                            $('#logcontent').append(element + "\n");
+                        });
+                    }
                 });
-            });
+            }
         });
+
+        function selectText() {
+            if (document.selection) {
+                var range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById("logcontent"));
+                range.select();
+            } else if (window.getSelection) {
+                var range = document.createRange();
+                range.selectNode(document.getElementById("logcontent"));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+            }
+        }
     </script>
 </head>
 <body>
@@ -71,19 +98,17 @@ Last modified: 2023/10/14 18:16:19
         </div>
     </div>
     <!-- END NAVIGATION MENU -->
-
     <div class="container">
-        <h1>Reload Dayfile</h1>
-        <div class="row">
+        <h1>Latest Errors</h1>
+        <div id="xyz" class="row">
             <div class="col-md-12">
-                <div><b>Force a reload of the Dayfile back into CMX memory</b></div>
-                <div>You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart it to perform the reload.</div>
-                <br>
-                <div>
-                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">Reload Dayfile</button>
+                <div>Displays the latest errors recorded by Cumulus. The log content auto refreshes every 20 seconds.</div>
+                <div class="myButton">
+                    <button type="button" class="btn btn-primary" onclick="selectText()" aria-label="Select log text for copy">Select Log Text</button>
                 </div>
-                <br>
-                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+            </div>
+            <div class="col-md-12">
+                <pre id="logcontent" class="logcontent">Loading...</pre>
             </div>
         </div>
     </div>

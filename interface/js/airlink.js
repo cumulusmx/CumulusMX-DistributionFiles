@@ -1,7 +1,7 @@
-// Last modified: 2021/05/16 20:53:09
+// Last modified: 2023/10/13 21:29:57
 
 $(document).ready(function () {
-    $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+    $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});

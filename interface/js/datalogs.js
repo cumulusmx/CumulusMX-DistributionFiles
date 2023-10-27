@@ -1,9 +1,9 @@
-// Last modified: 2023/04/03 16:14:00
+// Last modified: 2023/10/13 21:40:25
 
 var myTable;
 var currMonth;
 $(document).ready(function () {
-    $.ajax({url: 'api/settings/version.json', dataType:'json', success: function (result) {
+    $.ajax({url: 'api/info/version.json', dataType:'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
 
     $.ajax({
-        url: 'api/settings/dateformat.txt',
+        url: 'api/info/dateformat.txt',
         dataType: 'text',
         success: function (result) {
             // we want all lower case and yy for the year not yyyy

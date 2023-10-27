@@ -1,4 +1,4 @@
-// Last modified: 2021/05/16 20:55:18
+// Last modified: 2023/10/13 21:33:07
 
 $(document).ready(function () {
     var tempTable=$('#temperature').dataTable({
@@ -66,7 +66,7 @@ $(document).ready(function () {
         "ajax": '../api/records/alltime/rain.json'
     });
 
-    $.ajax({url: "api/settings/version.json", dataType:"json", success: function (result) {
+    $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});

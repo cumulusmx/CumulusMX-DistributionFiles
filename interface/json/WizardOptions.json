@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/18 10:33:09",
 	"fields":{
 		"location": {
 			"fields": {
@@ -93,7 +94,10 @@
 						"Davis Vantage Pro",
 						"Davis Vantage Pro2/Vue",
 						"Davis WeatherLink Live",
+						"Davis WeatherLink Cloud (WLL/WLC)",
+						"Davis WeatherLink Cloud (VP2)",
 						"Ecowitt Local API",
+						"Ecowitt Cloud",
 						"HTTP (Ecowitt)",
 						"HTTP (Wunderground)",
 						"HTTP (Ambient)",
@@ -175,6 +179,9 @@
 										"This will be populated for you if auto-discovery is successful"
 									]
 								}
+							},
+							"dependencies": {
+								"stationtype": 11
 							}
 						},
 						"primary": {
@@ -220,6 +227,9 @@
 									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
 								}
+							},
+							"dependencies": {
+								"stationtype": [11,19]
 							}
 						},
 						"api": {
@@ -241,18 +251,22 @@
 									]
 								},
 								"apiStationId": {
-									"label": "WLL device id on WeatherLink",
+									"label": "Your device id on WeatherLink",
 									"placeholder": "e.g. 89281",
 									"helpers": [
-										"Enter the station id used for your WLL device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
+										"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
 										"Leave this at default -1 if you do not have a WeatherLink.com Pro/Pro+ subscription"
 									]
 								}
 							}
+						},
+						"stationtype": {
+							"type": "integer",
+							"fieldClass": "hideme"
 						}
 					},
 					"dependencies": {
-						"stationtype": 11
+						"stationtype": [11,19,20]
 					}
 				},
 
@@ -367,6 +381,7 @@
 						"stationtype": [2, 3]
 					}
 				},
+
 				"http-wunder": {
 					"collapsible": true,
 					"collapsed": false,
@@ -399,6 +414,31 @@
 					],
 					"dependencies": {
 						"stationtype": 15
+					}
+				},
+				"ecowittapi": {
+					"collapsible": true,
+					"collapsed": false,
+					"helpersPosition": "above",
+					"fields": {
+						"applicationkey": {
+							"label": "Application Key:",
+							"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
+						},
+						"userkey": {
+							"label": "API Key:",
+							"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
+						},
+						"mac": {
+							"label": "Station MAC address",
+							"helpers": [
+								"Enter the MAC address of your station/gateway. The format is  XX:XX:XX:XX:XX:XX",
+								"You can find this on your device in the Ecowitt WS View or WS View Plus app"
+							]
+						}
+					},
+					"dependencies": {
+						"stationtype": [12,14,18]
 					}
 				}
 			}

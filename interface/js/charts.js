@@ -1,4 +1,4 @@
-// Last modified: 2023/05/22 20:17:02
+// Last modified: 2023/10/13 21:30:16
 
 var chart, config, doSelect;
 
@@ -144,7 +144,7 @@ $(document).ready(function () {
         parent.location.hash = sel;
     };
 
-    $.ajax({url: "api/settings/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});

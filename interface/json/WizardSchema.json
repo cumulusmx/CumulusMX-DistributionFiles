@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/18 10:33:44",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -62,7 +63,7 @@
 			"type": "object",
 			"properties": {
 				"stationtype": {
-					"enum": [-1,17,0,1,11,12,14,13,15,16,5,7,4,10,6,8,9,3,2],
+					"enum": [-1,17,0,1,11,19,20,12,18,14,13,15,16,5,7,4,10,6,8,9,3,2],
 					"required": true
 				},
 				"stationmodel": {
@@ -101,7 +102,7 @@
 				},
 
 				"daviswll": {
-					"title": "Davis WeatherLink Live",
+					"title": "Davis WeatherLink Live/WeatherLink Cloud",
 					"type": "object",
 					"properties": {
 						"network": {
@@ -114,7 +115,8 @@
 								"ipaddress": {
 									"format": "ip-address"
 								}
-							}
+							},
+							"dependencies": ["stationtype"]
 						},
 						"primary": {
 							"title": "Primary Sensors",
@@ -135,7 +137,8 @@
 								"uv": {
 									"enum": [0,1,2,3,4,5,6,7,8]
 								}
-							}
+							},
+							"dependencies": ["stationtype"]
 						},
 						"api": {
 							"title": "WeatherLink.com API details",
@@ -150,9 +153,10 @@
 									"minimum": -1
 								}
 							}
+						},
+						"stationtype": {
 						}
-					},
-					"dependencies": ["stationtype"]
+					}
 				},
 
 				"gw1000": {
@@ -190,8 +194,7 @@
 							"minimum": 0,
 							"default" : 0
 						}
-					},
-					"dependencies": ["stationtype"]
+					}
 				},
 
 				"fineoffset": {
@@ -259,6 +262,19 @@
 				"http-ambient": {
 					"title": "HTTP Upload (Ambient) Settings",
 					"type": "object"
+				},
+
+				"ecowittapi": {
+					"title": "Ecowitt Cloud Access API",
+					"type": "object",
+					"properties": {
+						"applicationkey": {
+						},
+						"userkey": {
+						},
+						"mac": {
+						}
+					}
 				}
 
 			},
@@ -266,13 +282,15 @@
 				"davisvp2": ["stationtype"],
 				"daviswll": ["stationtype"],
 				"gw1000": ["stationtype"],
+				"weatherflow": ["stationtype"],
 				"fineoffset": ["stationtype"],
 				"easyw": ["stationtype"],
 				"imet": ["stationtype"],
 				"wmr928": ["stationtype"],
 				"http-wunder": ["stationtype"],
 				"http-ecowitt": ["stationtype"],
-				"http-ambient": ["stationtype"]
+				"http-ambient": ["stationtype"],
+				"ecowittapi": ["stationtype"]
 			}
 		},
 

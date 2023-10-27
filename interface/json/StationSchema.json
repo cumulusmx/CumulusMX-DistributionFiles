@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2023/10/19 17:04:06",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -11,7 +12,7 @@
 			"type": "object",
 			"properties": {
 				"stationtype": {
-					"enum": [-1,17,0,1,11,12,14,13,15,16,5,7,4,10,6,8,9,3,2],
+					"enum": [-1,17,0,1,11,19,20,12,18,14,13,15,16,5,7,4,10,6,8,9,3,2],
 					"required": true
 				},
 				"stationmodel": {
@@ -303,7 +304,7 @@
 			"dependencies": ["stationid"]
 		},
 		"daviswll": {
-			"title": "Davis WeatherLink Live",
+			"title": "Davis WeatherLink Live/WeatherLink Cloud",
 			"type": "object",
 			"properties": {
 				"network": {
@@ -316,7 +317,8 @@
 						"ipaddress": {
 							"format": "ip-address"
 						}
-					}
+					},
+					"dependencies": ["stationid"]
 				},
 				"api": {
 					"title": "WeatherLink.com API details",
@@ -350,7 +352,8 @@
 						"uv": {
 							"enum": [0,1,2,3,4,5,6,7,8]
 						}
-					}
+					},
+					"dependencies": ["stationid"]
 				},
 				"soilLeaf": {
 					"title": "Extra Soil/Leaf Sensors (6345)",
@@ -434,7 +437,8 @@
 								}
 							}
 						}
-					}
+					},
+					"dependencies": ["stationid"]
 				},
 				"extraTemp": {
 					"title": "Extra Temperature (Temp/Humidity) Sensors",
@@ -488,7 +492,8 @@
 						"extraHumTx8": {
 							"type": "boolean"
 						}
-					}
+					},
+					"dependencies": ["stationid"]
 				},
 				"advanced": {
 					"title": "Advanced Options",
@@ -504,8 +509,16 @@
 						},
 						"datastopped": {
 							"type": "boolean"
+						},
+						"stationid": {
 						}
+					},
+					"dependencies": {
+						"tcpport": ["stationid"],
+						"datastopped": ["stationid"]
 					}
+				},
+				"stationid": {
 				}
 			},
 			"dependencies": ["stationid"]
@@ -752,7 +765,7 @@
 			"dependencies": ["stationid"]
 		},
 		"ecowittapi": {
-			"title": "Ecowitt Data Access API",
+			"title": "Ecowitt Cloud Access API",
 			"type": "object",
 			"properties": {
 				"applicationkey": {
@@ -774,6 +787,9 @@
 				"calcwindaverage": {
 					"type": "boolean"
 				},
+				"roundwindspeeds": {
+					"type": "boolean"
+				},
 				"use100for98hum": {
 					"type": "boolean"
 				},
@@ -787,9 +803,6 @@
 					"type": "boolean"
 				},
 				"cumuluspresstrendnames": {
-					"type": "boolean"
-				},
-				"roundwindspeeds": {
 					"type": "boolean"
 				},
 				"ignorelacrosseclock": {

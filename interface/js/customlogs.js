@@ -1,4 +1,4 @@
-// Last modified: 2023/02/04 15:37:06
+// Last modified: 2023/10/13 21:44:35
 
 let accessMode;
 let csvChar;
@@ -6,7 +6,7 @@ let csvChar;
 
 $(document).ready(function () {
     $.ajax({
-        url: '../api/settings/csvseparator.txt',
+        url: '../api/info/csvseparator.txt',
         success: function(result){
             $('[data-csv]').html(result);
             csvChar = result;
