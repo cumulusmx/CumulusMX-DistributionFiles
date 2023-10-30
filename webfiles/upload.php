@@ -1,5 +1,5 @@
 <?php
-// Last modified: 2023/08/23 16:00:01
+// Last modified: 2023/08/30 09:43:01
 
 /*
 ******** PHP Upload script for Cumulus MX ********
@@ -34,9 +34,10 @@ if ($secret === 'change_this_to_the_value_in_CMX') {
 }
 
 if ($debug) {
-    $headers =  getallheaders();
-    foreach($headers as $key=>$val){
-    echo "$key: $val\n";
+    foreach ($_SERVER as $name => $value) {
+        if (substr($name, 0, 5) == 'HTTP_') {
+            echo str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5))))), ": ", $value
+        }
     }
     echo 'CWD = '.getcwd()."\n";
 }
