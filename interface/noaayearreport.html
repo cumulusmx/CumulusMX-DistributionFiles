@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/13 21:43:10
+Last modified: 2023/10/30 15:25:53
 -->
 <!doctype html>
 <html lang="en">
@@ -82,7 +82,7 @@ Last modified: 2023/10/13 21:43:10
                 $('#report').text(data);
             })
             .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + textStatus + ')');
+                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
             });
         }
 
@@ -96,7 +96,7 @@ Last modified: 2023/10/13 21:43:10
                 alert("Report (Re)generated");
             })
             .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + textStatus + ')');
+                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
             });
         }
 
@@ -108,7 +108,7 @@ Last modified: 2023/10/13 21:43:10
                 $('#report').text(data);
             })
             .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + textStatus + ')');
+                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
             });
         }
     </script>

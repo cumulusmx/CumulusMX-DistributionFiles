@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/21 16:40:35",
+	"version": "Last Modified: 2023/11/01 15:53:50",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -139,17 +139,39 @@
 					"removeDefaultNone": true,
 					"helper": "Sets the Station type to use for for sending additional sensor information to Cumulus."
 				},
+				"ecowittapi": {
+					"collapsible": true,
+					"collapsed": true,
+					"helpersPosition": "above",
+					"fields": {
+						"applicationkey": {
+							"label": "Application Key:",
+							"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
+						},
+						"userkey": {
+							"label": "API Key:",
+							"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
+						},
+						"mac": {
+							"label": "Station MAC address",
+							"helpers": [
+								"Enter the MAC address of your station/gateway. The format is  XX:XX:XX:XX:XX:XX",
+								"You can find this on your device in the Ecowitt WS View or WS View Plus app"
+							]
+						}
+					},
+					"dependencies": {
+						"extraStation": 2
+					}
+				},
 				"ecowitt": {
 					"collapsible": true,
 					"collapsed": true,
-					"helpers": [
-						"You can use either a locally attched Ecowitt station (via the HTTP protocol), or use the data from a station sending to the Ecowitt Cloud service",
-						"Configure your Ecowitt station, or GW-1000 device to send data to Cumulus and the extra sensor data will be used in addition to your primary stations data",
-						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
-						"You must restart Cumulus after enabling/disabling this feature"
-					],
-					"helperPosition": "above",
 					"fields": {
+						"stationid": {
+							"type": "integer",
+							"fieldClass": "hideme"
+						},
 						"useSolar": {
 							"label": "Solar",
 							"rightLabel": "Use the solar data from your Ecowitt"
@@ -190,19 +212,30 @@
 							"label": "Leak",
 							"rightLabel": "Use the leak sensor data from your Ecowitt"
 						},
+						"useCamera": {
+							"label": "Camera",
+							"rightLabel": "Use the web cam URL for your Ecowitt camera",
+							"dependencies": {
+								"stationid": 2
+							}
+						},
 						"setcustom": {
 							"label": "Enable Gateway Config:",
 							"rightLabel": "Allow Cumulus to configure your Ecowitt gateway for you",
-							"helper": "Enabling this feature automatically configures your gateway to send data to Cumulus MX"
+							"helper": "Enable this feature to automatically configure your Ecowitt station, or GW-1000 device to send data to Cumulus",
+							"dependencies": {
+								"stationid": 0
+							}
 						},
 						"dummy": {
 							"fieldClass": "displayonly",
 							"helpers": [
-								"Configure your Ecowitt station, or Gateway  device to send data to Cumulus using the Ecowitt protocol",
-								"Manual Configuration: In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20"
+								"Automatically configures your Ecowitt device, to manually configure it you should do the following...<br>In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
+								"You must restart Cumulus after enabling/disabling this feature"
 							],
 							"dependencies": {
-								"setcustom": false
+								"stationid": 0,
+								"setcustom": true
 							}
 						},
 						"gwaddr": {
@@ -346,11 +379,14 @@
 										"usemain": false
 									}
 								}
+							},
+							"dependencies": {
+								"stationid": 0
 							}
 						}
 					},
 					"dependencies": {
-						"extraStation": [0, 2]
+						"extraStation": [0,2]
 					}
 				},
 				"ambient": {

@@ -1,4 +1,4 @@
-// Last modified: 2023/10/08 17:17:52
+// Last modified: 2023/11/04 17:07:14
 
 let StashedStationId;
 let accessMode;
@@ -68,13 +68,15 @@ $(document).ready(function () {
                         "macaddress": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (value && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                // check for MAC address format
+                                if (value != "" && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid MAC address!"
                                     });
                                     return;
                                 }
+                                // all OK
                                 callback({
                                     "status": true
                                 });
@@ -87,6 +89,21 @@ $(document).ready(function () {
                         "mac": {
                             "validator": function(callback) {
                                 let value = this.getValue();
+                                // check for IMEI format - 15 or 16 digits
+                                if (Number.isInteger(+value)) {
+                                    if (value.length == 15 || value.length == 16) {
+                                        callback({
+                                            "status": true
+                                        });
+                                    } else {
+                                        callback({
+                                            "status": false,
+                                            "message": "That is not a valid IMEI!"
+                                        });
+                                    }
+                                    return;
+                                }
+                                // check for MAC address format
                                 if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
                                         "status": false,
@@ -94,6 +111,7 @@ $(document).ready(function () {
                                     });
                                     return;
                                 }
+                                // all OK
                                 callback({
                                     "status": true
                                 });
@@ -102,7 +120,7 @@ $(document).ready(function () {
                         "applicationkey": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (!/^[A-F0-9]{30,35}$/.test(value)) {
+                                if (value != "" && !/^[A-F0-9]{30,35}$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid Application Key!"
@@ -117,7 +135,7 @@ $(document).ready(function () {
                         "userkey": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                if (value != "" && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid API Key!"

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/19 17:04:38",
+	"version": "Last Modified: 2023/11/04 10:48:49",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1259,9 +1259,11 @@
 					"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"mac": {
-					"label": "Station MAC address",
+					"label": "Station MAC/IMEI address",
 					"helpers": [
-						"Enter the MAC address of your station/gateway. The format is  XX:XX:XX:XX:XX:XX",
+						"Enter the MAC/IMEI address of your station/gateway.",
+						"MAC format is  XX:XX:XX:XX:XX:XX",
+						"IMEI format is 15 or 16 digits",
 						"You can find this on your device in the Ecowitt WS View or WS View Plus app"
 					]
 				}

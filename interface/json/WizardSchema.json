@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/18 10:33:44",
+	"version": "Last Modified: 2023/11/04 09:24:28",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -102,7 +102,7 @@
 				},
 
 				"daviswll": {
-					"title": "Davis WeatherLink Live/WeatherLink Cloud",
+					"title": "Davis WeatherLink Live",
 					"type": "object",
 					"properties": {
 						"network": {
@@ -115,9 +115,50 @@
 								"ipaddress": {
 									"format": "ip-address"
 								}
-							},
-							"dependencies": ["stationtype"]
+							}
 						},
+						"primary": {
+							"title": "Primary Sensors",
+							"type": "object",
+							"properties": {
+								"wind": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"temphum": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"rain": {
+									"enum": [1,2,3,4,5,6,7,8]
+								},
+								"solar": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"uv": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								}
+							}
+						},
+						"api": {
+							"title": "WeatherLink.com API details",
+							"type": "object",
+							"properties": {
+								"apiKey": {
+								},
+								"apiSecret": {
+								},
+								"apiStationId": {
+									"type": "integer",
+									"minimum": -1
+								}
+							}
+						}
+					}
+				},
+
+				"daviscloud": {
+					"title": "Davis WeatherLink Cloud",
+					"type": "object",
+					"properties": {
 						"primary": {
 							"title": "Primary Sensors",
 							"type": "object",
@@ -158,6 +199,7 @@
 						}
 					}
 				},
+
 
 				"gw1000": {
 					"title": "Ecowitt Local API Settings",
@@ -281,6 +323,7 @@
 			"dependencies": {
 				"davisvp2": ["stationtype"],
 				"daviswll": ["stationtype"],
+				"daviscloud": ["stationtype"],
 				"gw1000": ["stationtype"],
 				"weatherflow": ["stationtype"],
 				"fineoffset": ["stationtype"],

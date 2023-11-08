@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/21 16:20:33",
+	"version": "Last Modified: 2023/11/01 15:49:55",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -86,10 +86,25 @@
 				"extraStation": {
 					"enum": [-1, 0, 1, 2]
 				},
+				"ecowittapi": {
+					"title": "Ecowitt Cloud Access API",
+					"type": "object",
+					"properties": {
+						"applicationkey": {
+						},
+						"userkey": {
+						},
+						"mac": {
+						}
+					},
+					"dependencies": ["stationid"]
+				},
 				"ecowitt": {
 					"title": "Ecowitt",
 					"type": "object",
 					"properties": {
+						"stationid": {
+						},
 						"useSolar": {
 							"type": "boolean"
 						},
@@ -120,11 +135,16 @@
 						"useLeak": {
 							"type": "boolean"
 						},
+						"useCamera": {
+							"type": "boolean",
+							"dependencies": ["stationid"]
+						},
 						"setcustom": {
-							"type": "boolean"
+							"type": "boolean",
+							"dependencies": ["stationid"]
 						},
 						"dummy": {
-							"dependencies": ["setcustom"]
+							"dependencies": ["stationid","setcustom"]
 						},
 						"gwaddr": {
 							"dependencies": ["setcustom"]
@@ -193,7 +213,8 @@
 									},
 									"dependencies": ["usemain"]
 								}
-							}
+							},
+							"dependencies": ["stationid"]
 						}
 					}
 				},
@@ -227,6 +248,7 @@
 			},
 			"dependencies": {
 				"ecowitt": ["extraStation"],
+				"ecowittapi": ["extraStation"],
 				"ambient": ["extraStation"]
 			}
 		},

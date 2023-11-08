@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/18 10:32:55",
+	"version": "Last Modified: 2023/11/08 15:48:48",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -230,6 +230,17 @@
 							"helpers": [
 								"Not normally required - use with caution",
 								"Typically only used if you are connecting to your own internal web server and it does not have a public certificate"
+							],
+							"dependencies": {
+								"ftpmode": 3
+							}
+						},
+						"phpuseget": {
+							"label": "GET uploads",
+							"rightLabel": "Use GET for PHP small file uploads",
+							"helpers": [
+								"Some web servers do not seem to work well with GET uploads, if you experience issues with the small uploads (realtime.txt etc) then this option can be disabled",
+								"Disabling this option will make small uploads slightly slower"
 							],
 							"dependencies": {
 								"ftpmode": 3

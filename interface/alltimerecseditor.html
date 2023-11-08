@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/08/24 09:32:15
+Last modified: 2023/11/08 12:08:33
 -->
 <!doctype html>
 <html lang="en">
@@ -102,23 +102,11 @@ Last modified: 2022/08/24 09:32:15
                 Note: You can click on the Dayfile/Logfile Values/Timestamps to copy the value to your record fields
             </div>
         </div>
-        <div id="recUpdater" role="dialog">
-            <div class="editorContent">
-                <div style="text-align: center;">Change <span id="editName"></span> record <span id="editType"></span> from <b><span id="editOldVal"></span></b> to <b><span id="editNewVal"></span></b>?</div>
-                <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
-            </div>
-        </div>
-        <div id="updaterError" role="alertdialog">
-            <div class="editorContent">
-                <div id="errorContent" style="margin-bottom:10px">Error</div>
-                <div><button type="button" class="updaterError_close">Close</button></div>
-            </div>
-        </div>
         <div class="row" style="margin-top:10px">
             <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>
-                    <span id="logFilesWarn">Caution, this could be a lengthy process if you have lots of data</span>
+                    <span id="logFilesWarn">Caution, if you have lots of data this could be a lengthy process</span>
                 </div>
             </div>
         </div>
@@ -418,6 +406,24 @@ Last modified: 2022/08/24 09:32:15
     <div class="loading-overlay"></div>
     <div class="loading-overlay-image-container">
         <img src="img/loading.gif" alt="Loading Data" class="loading-overlay-img"/>
+    </div>
+
+    <div id="recUpdater" role="dialog" style="visibility: hidden; position: fixed;">
+        <div class="editorContent">
+            <div style="text-align: center;">
+                Change <span id="editName"></span> record <span id="editType"></span> from:<br>
+                <b><span id="editOldVal" style="font-family: monospace;"></span></b> &nbsp;&nbsp; <b><span id="editOldTime" style="font-family: monospace;"></span></b><br>
+                to<br>
+                <b><span id="editNewVal" style="font-family: monospace;"></span></b> &nbsp;&nbsp; <b><span id="editNewTime" style="font-family: monospace;"></span></b>
+            </div>
+            <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
+        </div>
+    </div>
+    <div id="updaterError" role="alertdialog" style="visibility: hidden; position: fixed;">
+        <div class="editorContent">
+            <div id="errorContent" style="margin-bottom:10px">Error</div>
+            <div><button type="button" class="updaterError_close">Close</button></div>
+        </div>
     </div>
 </body>
 </html>

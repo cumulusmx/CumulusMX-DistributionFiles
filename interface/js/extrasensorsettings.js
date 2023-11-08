@@ -1,4 +1,4 @@
-// Last modified: 2021/07/21 22:16:57
+// Last modified: 2023/11/01 15:36:15
 
 let accessMode;
 
@@ -47,6 +47,61 @@ $(document).ready(function () {
                         "styles": "alpaca-form-button-submit"
                     }
                 }
+            },
+            "fields": {
+                "httpSensors": {
+                    "fields": {
+                        "ecowittapi": {
+                            "fields":{
+                                "mac": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (value != "" && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid MAC address!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                },
+                                "applicationkey": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (value != "" && !/^[A-F0-9]{30,35}$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid Application Key!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                },
+                                "userkey": {
+                                    "validator": function(callback) {
+                                        let value = this.getValue();
+                                        if (value != "" && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid API Key!"
+                                            });
+                                            return;
+                                        }
+                                        callback({
+                                            "status": true
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "postRender": function (form) {
@@ -61,6 +116,20 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             //accessObj.on("change", function() {onAccessChange(this)});
+
+            // Get the extra sensor station type
+            let stationIdObj = form.getControlByPath("httpSensors/extraStation");
+
+            // Set the inital value in the ecowitt subsection
+            form.getControlByPath("httpSensors/ecowitt/stationid").setValue(stationIdObj.getValue());
+
+            // On changing the station type, propagate down to sub-sections
+            stationIdObj.on("change", function () {
+                let form = $("form").alpaca("get");
+                let stationid = this.getValue();
+                form.getControlByPath("httpSensors/ecowitt/stationid").setValue(stationid);
+            });
+
         }
     });
 });

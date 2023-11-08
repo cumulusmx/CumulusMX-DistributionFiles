@@ -1,5 +1,5 @@
 <?php
-// Last modified: 2023/08/23 16:00:01
+// Last modified: 2023/10/30 11:02:36
 
 /*
 ******** PHP Upload script for Cumulus MX ********
@@ -19,7 +19,7 @@ $secret = 'change_this_to_the_value_in_CMX';
 // Setting this to false allows the script to attempt to write anywhere in your filesystem that it has permission
 $limitPath = true;
 
-// logs additional information to the reponses sent back to CMX, do not enable unless asked
+// logs additional information to the responses sent back to CMX, do not enable unless asked
 $debug = false;
 
 
@@ -34,9 +34,8 @@ if ($secret === 'change_this_to_the_value_in_CMX') {
 }
 
 if ($debug) {
-    $headers =  getallheaders();
-    foreach($headers as $key=>$val){
-    echo "$key: $val\n";
+    foreach ($_SERVER as $name => $value) {
+        echo $name, ': ', $value, "\n";
     }
     echo 'CWD = '.getcwd()."\n";
 }
