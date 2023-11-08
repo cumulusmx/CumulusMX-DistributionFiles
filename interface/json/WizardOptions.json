@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/18 10:33:09",
+	"version": "Last Modified: 2023/11/04 10:33:50",
 	"fields":{
 		"location": {
 			"fields": {
@@ -179,9 +179,6 @@
 										"This will be populated for you if auto-discovery is successful"
 									]
 								}
-							},
-							"dependencies": {
-								"stationtype": 11
 							}
 						},
 						"primary": {
@@ -227,9 +224,6 @@
 									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
 								}
-							},
-							"dependencies": {
-								"stationtype": [11,19]
 							}
 						},
 						"api": {
@@ -242,6 +236,7 @@
 										"Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
 									]
 								},
+
 								"apiSecret": {
 									"label": "WeatherLink APIv2 secret",
 									"placeholder": "e.g. d4f1mony2a38jfy5f7nzg6ys24tptjrk",
@@ -266,7 +261,87 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": [11,19,20]
+						"stationtype": 11
+					}
+				},
+
+				"daviscloud": {
+					"fields": {
+						"primary": {
+							"helpers": ["You can configure extra sensors in the main Station Settings page after completing this wizard"],
+							"fields": {
+								"wind": {
+									"label": "Wind sensor Transmitter ID:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"helper": "Select the ISS transmitter ID for your Wind sensor"
+								},
+								"temphum": {
+									"label": "Temperature/Humidity Transmitter ID:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+								},
+								"rain": {
+									"label": "Rain sensor Transmitter ID:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"helper": "Select the ISS transmitter ID for your Rain sensor"
+								},
+								"solar": {
+									"label": "Solar sensor Transmitter ID:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+								},
+								"uv": {
+									"label": "UV sensor Transmitter ID:",
+									"type": "select",
+									"sort": false,
+									"removeDefaultNone": true,
+									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+								}
+							},
+							"dependencies": {
+								"stationtype": 19
+							}
+						},
+						"api": {
+							"fields": {
+								"apiKey": {
+									"label": "WeatherLink APIv2 key",
+									"placeholder": "e.g. m7olk3u2ajylt6rjucsap48bmhbvudki",
+									"helper": "Enter your WeatherLink.com APIv2 key"
+								},
+
+								"apiSecret": {
+									"label": "WeatherLink APIv2 secret",
+									"placeholder": "e.g. d4f1mony2a38jfy5f7nzg6ys24tptjrk",
+									"helper": "Enter your WeatherLink.com APIv2 secret"
+								},
+								"apiStationId": {
+									"label": "Your device id on WeatherLink",
+									"placeholder": "e.g. 89281",
+									"helper": "Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you"
+								}
+							}
+						},
+						"stationtype": {
+							"type": "integer",
+							"fieldClass": "hideme"
+						}
+					},
+					"dependencies": {
+						"stationtype": [19,20]
 					}
 				},
 
@@ -430,9 +505,11 @@
 							"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
 						},
 						"mac": {
-							"label": "Station MAC address",
+							"label": "Station MAC/IMEI address",
 							"helpers": [
-								"Enter the MAC address of your station/gateway. The format is  XX:XX:XX:XX:XX:XX",
+								"Enter the MAC/IMEI address of your station/gateway.",
+								"MAC format is  XX:XX:XX:XX:XX:XX",
+								"IMEI format is 15 or 16 digits",
 								"You can find this on your device in the Ecowitt WS View or WS View Plus app"
 							]
 						}

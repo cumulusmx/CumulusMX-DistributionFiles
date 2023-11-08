@@ -1,4 +1,8 @@
-// Last modified: 2023/10/13 21:32:55
+// Last modified: 2023/10/30 15:16:30
+
+$.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
+    console.log(message);
+};
 
 $(document).ready(function() {
 

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/14 18:13:33
+Last modified: 2023/10/30 15:10:39
 -->
 <!doctype html>
 <html lang="en">
@@ -55,7 +55,7 @@ Last modified: 2023/10/14 18:13:33
                 //$('#inputCurrCond').val(resp.data);
                 $('#inputCurrCond')[0].value = resp.data;
             }).fail(function(jqXHR, textStatus) {
-                alert('Something went wrong loading the text! (' + textStatus + ')');
+                alert('Something went wrong loading the text! (' + jqXHR.responseJSON.Description + ')');
             });
         }
 

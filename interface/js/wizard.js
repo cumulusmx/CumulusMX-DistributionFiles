@@ -1,4 +1,4 @@
-// Last modified: 2023/10/08 17:25:32
+// Last modified: 2023/11/04 10:47:04
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -206,6 +206,21 @@ $(document).ready(function () {
                                 "mac": {
                                     "validator": function(callback) {
                                         let value = this.getValue();
+                                        // check for IMEI format - 15 or 16 digits
+                                        if (Number.isInteger(+value)) {
+                                            if (value.length == 15 || value.length == 16) {
+                                                callback({
+                                                    "status": true
+                                                });
+                                            } else {
+                                                callback({
+                                                    "status": false,
+                                                    "message": "That is not a valid IMEI!"
+                                                });
+                                            }
+                                            return;
+                                        }
+                                        // check for MAC address format
                                         if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                             callback({
                                                 "status": false,
@@ -353,15 +368,12 @@ $(document).ready(function () {
                 let form = $("form").alpaca("get");
                 let stationid = this.getValue();
                 form.getControlByPath("station/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
-                form.getControlByPath("station/daviswll/stationtype").setValue(stationid);
-                // set the settings name for WLL/Davis cloud
-                setDavisStationTitle(form.getControlByPath("station/daviswll"), stationid);
+                form.getControlByPath("station/daviscloud/stationtype").setValue(stationid);
             });
 
-            // Set the initial title of Davis WLL/Cloud
+            // Set the initial stationid for Davis Cloud
             var stationid = stationIdObj.getValue();
-            form.getControlByPath("station/daviswll/stationtype").setValue(stationid);
-            setDavisStationTitle(form.getControlByPath("station/daviswll"), stationIdObj.getValue());
+            form.getControlByPath("station/daviscloud/stationtype").setValue(stationid);
 
             // On changing the web uploads enabled, disable/enable the other FTP options
             webEnabled.on("change", function () {
