@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/11/04 10:48:49",
+	"version": "Last Modified: 2023/11/09 11:41:59",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1149,10 +1149,14 @@
 						"Extra TH chan 5",
 						"Extra TH chan 6",
 						"Extra TH chan 7",
-						"Extra TH chan 8"
+						"Extra TH chan 8",
+						"Indoor TH sensor"
 					],
 					"removeDefaultNone": true,
-					"helper": "You can over-ride the default outdoor temperature and humidity sensor by specifying a WH31 T/H sensor channel"
+					"helpers": [
+						"You can over-ride the default outdoor temperature and humidity sensor by specifying a WH31 T/H sensor channel",
+						"It is also possible to use the indoor sensor values - mainly for WS6006 which does not allow extra TH sensors"
+					]
 				},
 				"primaryRainSensor": {
 					"label": "Select Rain Sensor:",
