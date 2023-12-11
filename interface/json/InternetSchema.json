@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/10/31 15:09:05",
+	"version": "Last Modified: 2023/12/10 22:28:24",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -354,59 +354,6 @@
 				"dailyprogram": {
 				},
 				"dailyprogramparams": {
-				}
-			}
-		},
-		"mqtt": {
-			"title": "MQTT",
-			"type": "object",
-			"properties": {
-				"server": {
-				},
-				"port": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 65536
-				},
-				"useTls": {
-					"type": "boolean"
-				},
-				"username": {
-				},
-				"password": {
-				},
-				"dataUpdate": {
-					"title": "Send message on data update",
-					"type": "object",
-					"properties": {
-						"enabled": {
-							"type": "boolean"
-						},
-						"template": {
-						}
-					},
-					"dependencies": {
-						"template": ["enabled"]
-					}
-				},
-				"interval": {
-					"title": "Send messages at fixed intervals",
-					"type": "object",
-					"properties": {
-						"enabled": {
-							"type": "boolean"
-						},
-						"time": {
-							"type": "integer",
-							"minimum": 1
-						},
-						"template": {
-						}
-					},
-					"dependencies": {
-						"time": ["enabled"],
-						"template": ["enabled"]
-					}
 				}
 			}
 		},

@@ -1,4 +1,4 @@
-// Last modified: 2023/11/04 17:07:14
+// Last modified: 2023/12/03 22:51:46
 
 let StashedStationId;
 let accessMode;
@@ -88,28 +88,32 @@ $(document).ready(function () {
                     "fields":{
                         "mac": {
                             "validator": function(callback) {
-                                let value = this.getValue();
-                                // check for IMEI format - 15 or 16 digits
-                                if (Number.isInteger(+value)) {
-                                    if (value.length == 15 || value.length == 16) {
-                                        callback({
-                                            "status": true
-                                        });
-                                    } else {
+                                let value = this.getValue().trim();
+
+                                if (value != "")
+                                {
+                                    // check for IMEI format - 15 or 16 digits
+                                    if (Number.isInteger(value)) {
+                                        if (value.length == 15 || value.length == 16) {
+                                            callback({
+                                                "status": true
+                                            });
+                                        } else {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid IMEI!"
+                                            });
+                                        }
+                                        return;
+                                    }
+                                    // check for MAC address format
+                                    if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                         callback({
                                             "status": false,
-                                            "message": "That is not a valid IMEI!"
+                                            "message": "That is not a valid MAC address!"
                                         });
+                                        return;
                                     }
-                                    return;
-                                }
-                                // check for MAC address format
-                                if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
-                                    callback({
-                                        "status": false,
-                                        "message": "That is not a valid MAC address!"
-                                    });
-                                    return;
                                 }
                                 // all OK
                                 callback({

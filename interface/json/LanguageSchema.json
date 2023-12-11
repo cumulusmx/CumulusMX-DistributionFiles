@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2023/10/18 10:26:58",
+	"version": "Last modified: 2023/11/29 16:47:12",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -277,68 +277,164 @@
 				"preamble": {
 					"type": "string"
 				},
-				"windGustAbove": {
-					"type": "string"
+				"names": {
+					"title": "Names",
+					"type": "object",
+					"properties": {
+						"windGustAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"windAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"pressureAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"pressBelow": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"pressUp": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"pressDown": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"tempAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"tempBelow": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"tempUp": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"tempDown": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"rainAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"rainRateAbove": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"newRecord": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"sensorLost": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"dataStopped": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"batteryLow": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"dataSpike": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"upgrade": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"ftpStopped": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"httpStopped": {
+							"type": "string",
+							"maxLength": 20
+						},
+						"mySqlStopped": {
+							"type": "string",
+							"maxLength": 20
+						}
+					}
 				},
-				"windAbove": {
-					"type": "string"
-				},
-				"pressureAbove": {
-					"type": "string"
-				},
-				"pressBelow": {
-					"type": "string"
-				},
-				"pressUp": {
-					"type": "string"
-				},
-				"pressDown": {
-					"type": "string"
-				},
-				"tempAbove": {
-					"type": "string"
-				},
-				"tempBelow": {
-					"type": "string"
-				},
-				"tempUp": {
-					"type": "string"
-				},
-				"tempDown": {
-					"type": "string"
-				},
-				"rainAbove": {
-					"type": "string"
-				},
-				"rainRateAbove": {
-					"type": "string"
-				},
-				"newRecord": {
-					"type": "string"
-				},
-				"sensorLost": {
-					"type": "string"
-				},
-				"dataStopped": {
-					"type": "string"
-				},
-				"batteryLow": {
-					"type": "string"
-				},
-				"dataSpike": {
-					"type": "string"
-				},
-				"upgrade": {
-					"type": "string"
-				},
-				"ftpStopped": {
-					"type": "string"
-				},
-				"httpStopped": {
-					"type": "string"
-				},
-				"mySqlStopped": {
-					"type": "string"
+				"email": {
+					"title": "Email Messages",
+					"type": "object",
+					"properties": {
+						"windGustAbove": {
+							"type": "string"
+						},
+						"windAbove": {
+							"type": "string"
+						},
+						"pressureAbove": {
+							"type": "string"
+						},
+						"pressBelow": {
+							"type": "string"
+						},
+						"pressUp": {
+							"type": "string"
+						},
+						"pressDown": {
+							"type": "string"
+						},
+						"tempAbove": {
+							"type": "string"
+						},
+						"tempBelow": {
+							"type": "string"
+						},
+						"tempUp": {
+							"type": "string"
+						},
+						"tempDown": {
+							"type": "string"
+						},
+						"rainAbove": {
+							"type": "string"
+						},
+						"rainRateAbove": {
+							"type": "string"
+						},
+						"newRecord": {
+							"type": "string"
+						},
+						"sensorLost": {
+							"type": "string"
+						},
+						"dataStopped": {
+							"type": "string"
+						},
+						"batteryLow": {
+							"type": "string"
+						},
+						"dataSpike": {
+							"type": "string"
+						},
+						"upgrade": {
+							"type": "string"
+						},
+						"ftpStopped": {
+							"type": "string"
+						},
+						"httpStopped": {
+							"type": "string"
+						},
+						"mySqlStopped": {
+							"type": "string"
+						}
+					}
 				}
 			}
 		}

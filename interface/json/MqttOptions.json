@@ -1,0 +1,59 @@
+{
+	"version": "Last Modified: 2023/12/10 22:33:58",
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"server": {
+			"label": "Server Name:",
+			"helper": "Your MQTT Server network name or IP address"
+		},
+		"port": {
+			"label": "Server port:",
+			"helper": "Your MQTT server port (default 1883)"
+		},
+		"useTls": {
+			"label": "TLS:",
+			"rightLabel": "Enable TLS",
+			"helper": "Enable TLS support, currently special certificates are not supported"
+		},
+		"username": {
+			"label": "Username:",
+			"helper": "Enter your MQTT server username - if required"
+		},
+		"password": {
+			"label": "Password:",
+			"helper": "Enter your MQTT server password - if required"
+		},
+		"dataUpdate": {
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Enable message sent when the data updates"
+				},
+				"template": {
+					"label": "Template File:",
+					"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
+		"interval": {
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Enable messages sent at fixed intervals"
+				},
+				"template": {
+					"label": "Template File:",
+					"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		}
+	}
+}

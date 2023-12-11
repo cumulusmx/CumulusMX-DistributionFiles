@@ -1,13 +1,14 @@
 <!--
-Last modified: 2023/12/03 11:09:54
+Last modified: 2023/12/10 22:43:20
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Reload Dayfile - Cumulus MX</title>
+    <title>MQTT settings - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
+    <title>Cumulus MX</title>
 
     <link href="css/font-style.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -24,34 +25,44 @@ Last modified: 2023/12/03 11:09:54
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- Alpaca -->
+    <script src="lib/handlebars/handlebars.min.js"></script>
+    <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+    <script src="lib/alpaca/alpaca.min.js"></script>
+
+    <!-- Custom Files -->
+    <script src="js/mqttsettings.js"></script>
+
     <link href="css/cumulus.css" rel="stylesheet">
 
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: "api/info/version.json",
-                dataType: "json",
-                success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }
-            });
-
-            $("#reload").click(function(event) {
-                $('#status').text('');
-                $.ajax({
-                    url: "api/utils/reloaddayfile",
-                    dataType: 'text'
-                })
-                .done(function (response) {
-                    $('#status').html(response)
-                })
-                .fail(function (jqXHR, response) {
-                    $('#status').html(response)
-                });
-            });
-        });
-    </script>
+    <style type="text/css">
+        .help-block {
+            font-size: 12px;
+            padding-left: 1%;
+        }
+        .alpaca-field > legend > .collapsed::before {
+            content: '\25B8';
+            padding-left: 0.5%;
+        }
+        .alpaca-field > legend > span::before {
+            content: '\25BE';
+            padding-left: 0.5%;
+        }
+        .alpaca-container-has-items {
+            margin-left: 1%;
+        }
+        .collapse.in {
+            margin-left: 1%;
+        }
+        .alpaca-form-buttons-container {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        legend {
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -73,17 +84,17 @@ Last modified: 2023/12/03 11:09:54
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Reload Dayfile</h1>
+        <h1>MQTT Settings</h1>
         <div class="row">
             <div class="col-md-12">
-                <div><b>Force a reload of the Dayfile back into CMX memory</b></div>
-                <div>You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart it to perform the reload.</div>
-                <br>
-                <div>
-                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">Reload Dayfile</button>
-                </div>
-                <br>
-                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+                Click the 'Save Settings' button to save the settings.<br>
+                Note: Saving the settings, even without changing anything will cause Cumulus to re-read your template files.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form></form>
             </div>
         </div>
     </div>

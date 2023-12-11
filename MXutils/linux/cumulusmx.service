@@ -7,7 +7,7 @@ After=network-online.target
 [Service]
 User=root
 Group=root
-ExecStart=/usr/bin/mono-service -d:/home/install/CumulusMX CumulusMX.exe -service
+ExecStart=/usr/bin/mono-service -d:/opt/CumulusMX CumulusMX.exe -service
 Type=forking
 ExecStopPost=/bin/rm -f /tmp/CumulusMX.exe.lock
 

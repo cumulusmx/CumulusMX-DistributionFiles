@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/11/01 15:53:50",
+	"version": "Last Modified: 2023/12/05 23:51:37",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -167,6 +167,10 @@
 				"ecowitt": {
 					"collapsible": true,
 					"collapsed": true,
+					"helpers": [
+						"To manually configure your station to send extra sensor data do the following...<br>In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: &lt;CMX IP Address&gt;<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20"
+					],
+					"helperPosition": "above",
 					"fields": {
 						"stationid": {
 							"type": "integer",
@@ -222,7 +226,7 @@
 						"setcustom": {
 							"label": "Enable Gateway Config:",
 							"rightLabel": "Allow Cumulus to configure your Ecowitt gateway for you",
-							"helper": "Enable this feature to automatically configure your Ecowitt station, or GW-1000 device to send data to Cumulus",
+							"helper": "Enable this feature to automatically configure your Ecowitt station, or GW-1000 device to send extra sensor data to Cumulus",
 							"dependencies": {
 								"stationid": 0
 							}
@@ -230,7 +234,6 @@
 						"dummy": {
 							"fieldClass": "displayonly",
 							"helpers": [
-								"Automatically configures your Ecowitt device, to manually configure it you should do the following...<br>In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowittextra<br>Port: 8998<br>Interval: 20",
 								"You must restart Cumulus after enabling/disabling this feature"
 							],
 							"dependencies": {

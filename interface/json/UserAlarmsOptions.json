@@ -1,0 +1,78 @@
+{
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"alarms": {
+			"type": "table",
+			"items": {
+				"fields": {
+					"Enabled": {
+						"label": "Enabled"
+					},
+					"Name": {
+						"type": "text",
+						"label": "Alarm Name",
+						"placeholder": "My alarm",
+						"maxLength": 20
+					},
+					"WebTag": {
+						"type": "text",
+						"label": "Web tag",
+						"placeholder": "<#ExtraTemp2 rc=y>"
+					},
+					"Type": {
+						"type": "select",
+						"label": "Type",
+						"optionLabels": ["Above", "Below"],
+						"sort": false,
+						"removeDefaultNone": true
+					},
+					"Value": {
+						"type": "number",
+						"label": "Value",
+						"placeholder": "5.5"
+					},
+					"Email": {
+						"label": "Email"
+					},
+					"EmailMsg": {
+						"label": "Email message",
+						"placeholder": "Greenhouse temp is low = {0}"
+					},
+					"Latch": {
+						"label": "Latch"
+					},
+					"LatchHours": {
+						"type": "number",
+						"label": "Latch Hours"
+					},
+					"Action": {
+						"label": "Action",
+						"placeholder": "./myscript.sh"
+					},
+					"ActionParams": {
+						"label": "Action params",
+						"placeholder": "-s param1 -t <#ExtraTemp2>"
+					}
+				}
+			},
+			"actionbar": {
+				"label": "Form actions",
+				"actions": [{
+					"action": "add",
+					"enabled": true
+				}, {
+					"action": "remove",
+					"enabled": true
+				}, {
+					"action": "up",
+					"enabled": false
+				}, {
+					"action": "down",
+					"enabled": false
+				}]
+			}
+		}
+	}
+}

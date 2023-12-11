@@ -3,7 +3,7 @@
 		"calib": {
 			"fields": {
 				"offset": {
-					"label": "Offset:",
+					"label": "Offset",
 					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
 				"multiplier": {
@@ -15,7 +15,7 @@
 					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
 				"spike": {
-					"label": "Spike removal:",
+					"label": "Spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				}
 			}
@@ -23,7 +23,7 @@
 		"limits": {
 			"fields": {
 				"offset": {
-					"label": "Offset:",
+					"label": "Offset",
 					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
 				"multiplier": {
@@ -35,13 +35,15 @@
 					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
 				"spike": {
-					"label": "Spike removal:",
+					"label": "Spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				},
 				"limitmin": {
+					"label": "Min. limit",
 					"helper" : "If the raw value is less this limit value it will be ignored"
 				},
 				"limitmax": {
+					"label": "Max. limit",
 					"helper" : "If the raw value is greater than this limit value it will be ignored"
 				}
 			}
@@ -59,41 +61,17 @@
 		"pressure": {
 			"collapsible": true,
 			"collapsed": true,
-			"$ref": "#/definitions/limits",
-			"fields": {
-				"limitmin": {
-					"label": "Min. limit (hPa):"
-				},
-				"limitmax": {
-					"label": "Max. limit (hPa):"
-				}
-			}
+			"$ref": "#/definitions/limits"
 		},
 		"temp": {
 			"collapsible": true,
 			"collapsed": true,
-			"$ref": "#/definitions/limits",
-			"fields": {
-				"limitmin": {
-					"label": "Min. limit (°C):"
-				},
-				"limitmax": {
-					"label": "Max. limit (°C):"
-				}
-			}
+			"$ref": "#/definitions/limits"
 		},
 		"tempin": {
 			"collapsible": true,
 			"collapsed": true,
-			"$ref": "#/definitions/limits",
-			"fields": {
-				"limitmin": {
-					"label": "Min. limit (°C):"
-				},
-				"limitmax": {
-					"label": "Max. limit (°C):"
-				}
-			}
+			"$ref": "#/definitions/calib"
 		},
 		"hum": {
 			"collapsible": true,
@@ -118,7 +96,7 @@
 					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
 				"spike": {
-					"label": "Spike removal:",
+					"label": "Spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				}
 			}
@@ -136,11 +114,11 @@
 					"helper": "The Multiplier ^2 affects the curve of the correction"
 				},
 				"spike": {
-					"label": "Spike removal:",
+					"label": "Spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				},
 				"limitmax": {
-					"label": "Max. limit (m/s):",
+					"label": "Max. limit",
 					"helper" : "If the raw value is greater than this limit value it will be ignored"
 				}
 			}
@@ -164,11 +142,11 @@
 					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
 				},
 				"spikerate": {
-					"label": "Rain rate spike removal:",
+					"label": "Rain rate spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				},
 				"spikehour": {
-					"label": "Rain per hour spike removal:",
+					"label": "Rain per hour spike removal",
 					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
 				}
 			}
@@ -178,7 +156,7 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset:",
+					"label": "Offset (W/m²):",
 					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
 				"multiplier": {
@@ -214,7 +192,7 @@
 			"collapsed": true,
 			"fields": {
 				"limitmax": {
-					"label": "Max. limit (°C):",
+					"label": "Max. limit",
 					"helper" : "If the dew point value is greater than this limit the value it will be ignored"
 				}
 			}
@@ -224,7 +202,7 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset:",
+					"label": "Offset",
 					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
 				},
 				"multiplier": {

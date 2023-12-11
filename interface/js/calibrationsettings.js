@@ -1,65 +1,106 @@
-// Last modified: 2021/06/09 21:44:21
+// Last modified: 2023/12/05 00:11:52
 
 let accessMode;
 
 $(document).ready(function() {
-    $("form").alpaca({
-        "dataSource": "./api/settings/calibrationdata.json",
-        "optionsSource": "./json/CalibrationOptions.json",
-        "schemaSource": "./json/CalibrationSchema.json",
-        "ui": "bootstrap",
-        "view": "bootstrap-edit-horizontal",
-        "options": {
-            "form": {
-                "buttons": {
-                    // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
-                            this.refreshValidationState(true);
-                            if (this.isValid(true)) {
-                                let json = this.getValue();
+    $.ajax({
+        url: "api/info/units.json",
+        dataType: "json",
+        success: function (result) {
+            let units = result;
 
-                                $.ajax({
-                                    type: "POST",
-                                    url: "../api/setsettings/updatecalibrationconfig.json",
-                                    data: {json: JSON.stringify(json)},
-                                    dataType: "text"
-                                })
-                                .done(function () {
-                                    alert("Settings updated");
-                                })
-                                .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
-                                });
-                            } else {
-                                let firstErr = $('form').find(".has-error:first")
-                                let path = $(firstErr).attr('data-alpaca-field-path');
-                                let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
-                                    let entry = $(firstErr).focus();
-                                    $(window).scrollTop($(entry).position().top);
-                                }
+            $("form").alpaca({
+                "dataSource": "./api/settings/calibrationdata.json",
+                "optionsSource": "./json/CalibrationOptions.json",
+                "schemaSource": "./json/CalibrationSchema.json",
+                "ui": "bootstrap",
+                "view": "bootstrap-edit-horizontal",
+                "options": {
+                    "form": {
+                        "buttons": {
+                            // don't use the Submit button because that is disabled on validation errors
+                            "validate": {
+                                "title": "Save Settings",
+                                "click": function() {
+                                    this.refreshValidationState(true);
+                                    if (this.isValid(true)) {
+                                        let json = this.getValue();
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "../api/setsettings/updatecalibrationconfig.json",
+                                            data: {json: JSON.stringify(json)},
+                                            dataType: "text"
+                                        })
+                                        .done(function () {
+                                            alert("Settings updated");
+                                        })
+                                        .fail(function (jqXHR, textStatus) {
+                                            alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                        });
+                                    } else {
+                                        let firstErr = $('form').find(".has-error:first")
+                                        let path = $(firstErr).attr('data-alpaca-field-path');
+                                        let msg = $(firstErr).children('.alpaca-message').text();
+                                        alert("Invalid value in the form: " + path + msg);
+                                        if ($(firstErr).is(":visible")) {
+                                            let entry = $(firstErr).focus();
+                                            $(window).scrollTop($(entry).position().top);
+                                        }
+                                    }
+                                },
+                                "styles": "alpaca-form-button-submit"
                             }
-                        },
-                        "styles": "alpaca-form-button-submit"
+                        }
                     }
+                },
+                "postRender": function (form) {
+                    // Change in accessibility is enabled
+                    let accessObj = form.childrenByPropertyId["accessible"];
+                    onAccessChange(null, accessObj.getValue());
+                    accessMode = accessObj.getValue();
+
+                    // Trigger changes is the accessibility mode is changed
+                    //accessObj.on("change", function() {onAccessChange(this)});
+
+                    if (!accessMode) {
+                        setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
+                    }
+
+                    // add units to the labels
+                    setlabel(form.getControlByPath('pressure/limitmin'), units.press);
+                    setlabel(form.getControlByPath('pressure/limitmax'), units.press);
+                    setlabel(form.getControlByPath('pressure/offset'), units.press);
+                    setlabel(form.getControlByPath('pressure/spike'), units.press);
+
+                    let tempStr = '°' + units.temp;
+                    setlabel(form.getControlByPath('temp/limitmin'), tempStr);
+                    setlabel(form.getControlByPath('temp/limitmax'), tempStr);
+                    setlabel(form.getControlByPath('temp/offset'), tempStr);
+                    setlabel(form.getControlByPath('temp/spike'), tempStr);
+
+                    setlabel(form.getControlByPath('tempin/offset'), tempStr);
+                    setlabel(form.getControlByPath('tempin/spike'), tempStr);
+
+                    setlabel(form.getControlByPath('hum/offset'), '%');
+                    setlabel(form.getControlByPath('hum/spike'), '%');
+
+                    setlabel(form.getControlByPath('humin/offset'), '%');
+                    setlabel(form.getControlByPath('humin/spike'), '%');
+
+                    setlabel(form.getControlByPath('windspd/spike'), units.wind);
+
+                    setlabel(form.getControlByPath('gust/spike'), units.wind);
+                    setlabel(form.getControlByPath('gust/limitmax'), units.wind);
+
+                    setlabel(form.getControlByPath('rain/spikerate'), units.rain + '/h');
+                    setlabel(form.getControlByPath('rain/spikehour'), units.rain);
+
+                    setlabel(form.getControlByPath('dewpt/limitmax'), tempStr);
+
+                    setlabel(form.getControlByPath('wetbulb/offset'), tempStr);
                 }
-            }
-        },
-        "postRender": function (form) {
-            // Change in accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
-            onAccessChange(null, accessObj.getValue());
-            accessMode = accessObj.getValue();
-
-            if (!accessMode) {
-                setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
-            }
-
-            // Trigger changes is the accessibility mode is changed
-            //accessObj.on("change", function() {onAccessChange(this)});
+            });
         }
     });
 });
@@ -141,4 +182,11 @@ function onAccessChange(that, val) {
         expanded.style.removeProperty('display');
         removeButtons();
     }
+}
+
+function setlabel(that, val) {
+    let label = that.options.label;
+    label += " (" + val + "):";
+    that.options.label = label;
+    that.refresh();
 }

@@ -1,0 +1,54 @@
+{
+    "type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"alarms": {
+			"type": "array",
+			"maxItems": 10,
+			"items": {
+				"type": "object",
+				"properties": {
+					"Enabled": {
+						"type": "boolean"
+					},
+					"Name": {
+						"type": "string",
+						"maxLength": 20,
+						"required": true
+					},
+					"WebTag": {
+						"type": "string",
+						"required": true
+					},
+					"Type": {
+						"type": "string",
+						"enum": ["Above", "Below"],
+						"required": true
+					},
+					"Value": {
+						"required": true
+					},
+					"Email": {
+						"type": "boolean"
+					},
+					"EmailMsg": {
+						"type": "string"
+					},
+					"Latch": {
+						"type": "boolean"
+					},
+					"LatchHours": {
+					},
+					"Action": {
+						"type": "string"
+					},
+					"ActionParams": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

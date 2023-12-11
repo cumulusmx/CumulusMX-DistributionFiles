@@ -1,5 +1,5 @@
 <?php
-// Last modified: 2023/10/30 11:02:36
+// Last modified: 2023/12/09 20:06:07
 
 /*
 ******** PHP Upload script for Cumulus MX ********
@@ -72,7 +72,7 @@ if (isset($_SERVER['HTTP_TS'])) {
     exitCode(422, 'Error: No timestamp');
 }
 
-if (abs($receivedTime - $requestTime) > 10) {
+if (abs($receivedTime - $requestTime) > 20) {
     $msg = "Error: TimeStamp is out of date\n" .
         "Data TS   = $requestTime\n" .
         "Server TS = $receivedTime\n";
