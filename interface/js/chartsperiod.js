@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2023/10/13 21:40:15
+// Last modified: 2023/11/22 20:24:05
 
 var chart, avail, config, options;
 var cache = {};
@@ -30,9 +30,9 @@ var myRanges = {
         text: 'All',
         title: 'View all'
     }],
-    inputEnabled: false,
-    selected: 4,
-    allButtonsEnabled: true
+    inputEnabled: true,
+    selected: 3,
+    allButtonsEnabled: false
 };
 
 var compassP = function (deg) {
@@ -156,7 +156,10 @@ $(document).ready(function () {
                     chart: {
                         renderTo: 'chartcontainer',
                         type: 'line',
-                        alignTicks: true
+                        alignTicks: true,
+                        style: {
+                            fontSize: '16px'
+                        }
                     },
                     title: {text: 'All Data Select-a-Chart'},
                     credits: {enabled: true},
@@ -1097,7 +1100,7 @@ var doInHumidity = function (idx) {
     function addSeries() {
         chart.addSeries({
             index: idx,
-            data: cache.hum.hum,
+            data: cache.hum.inhum,
             id: 'Indoor Hum',
             name: 'Indoor Hum',
             yAxis: 'Humidity',

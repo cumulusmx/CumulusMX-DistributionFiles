@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/19 10:51:42
+Last modified: 2023/11/27 22:23:35
 -->
 <!doctype html>
 <html lang="en">
@@ -32,8 +32,11 @@ Last modified: 2023/10/19 10:51:42
             font-family: monospace;
         }
         .myButton {
-            width: 150px;
+            width: 255px;
             margin: 10px auto;
+        }
+        .myButton button {
+            width: 125px;
         }
     </style>
 
@@ -78,6 +81,28 @@ Last modified: 2023/10/19 10:51:42
                 window.getSelection().addRange(range);
             }
         }
+
+        function clearLog() {
+            $.ajax({
+                url: "api/data/errorlog.json",
+                dataType: "json",
+                success: function (result) {
+                    $.ajax({
+                        url: "api/utils/clearerrorlog.json",
+                        type: "POST",
+                        data: JSON.stringify([]),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#logcontent').empty();
+                            result.forEach(element => {
+                                $('#logcontent').append(element + "\n");
+                            });
+                        }
+                    });
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -104,7 +129,8 @@ Last modified: 2023/10/19 10:51:42
             <div class="col-md-12">
                 <div>Displays the latest errors recorded by Cumulus. The log content auto refreshes every 20 seconds.</div>
                 <div class="myButton">
-                    <button type="button" class="btn btn-primary" onclick="selectText()" aria-label="Select log text for copy">Select Log Text</button>
+                    <button type="button" class="btn btn-info" onclick="selectText()" aria-label="Select log text for copy">Select Log Text</button>
+                    <button type="button" class="btn btn-warning" onclick="clearLog()" aria-label="Clear the log entries">Clear the Log</button>
                 </div>
             </div>
             <div class="col-md-12">

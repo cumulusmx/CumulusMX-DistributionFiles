@@ -1,0 +1,52 @@
+{
+	"version": "Last Modified: 2023/12/10 22:34:22",
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"server": {
+		},
+		"port": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 65536
+		},
+		"useTls": {
+			"type": "boolean"
+		},
+		"username": {
+		},
+		"password": {
+		},
+		"dataUpdate": {
+			"title": "Send message on data update",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"template": {
+				}
+			},
+			"dependencies": {
+				"template": ["enabled"]
+			}
+		},
+		"interval": {
+			"title": "Send messages at fixed intervals",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"template": {
+				}
+			},
+			"dependencies": {
+				"time": ["enabled"],
+				"template": ["enabled"]
+			}
+		}
+	}
+}

@@ -1,0 +1,191 @@
+<!--
+Last modified: 2023/11/29 14:39:30
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Alarm settings - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- menu -->
+    <script src="js/menu.js"></script>
+
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Alpaca -->
+    <script src="lib/handlebars/handlebars.min.js"></script>
+    <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+    <script src="lib/alpaca/alpaca.min.js"></script>
+
+    <!-- Custom Files -->
+    <script src="js/useralarms.js"></script>
+
+    <link href="css/cumulus.css" rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .alpaca-field > legend > .collapsed::before {
+            content: '\25B8';
+            padding-left: 0.5%;
+        }
+        .alpaca-field > legend > span::before {
+            content: '\25BE';
+            padding-left: 0.5%;
+        }
+        .alpaca-container-has-items {
+            margin-left: 1%;
+        }
+        .alpaca-form-buttons-container {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        legend {
+            color: inherit;
+        }
+        .alpaca-field-table table tr td .alpaca-field, .alpaca-field-table table tr td .alpaca-field .form-control, table.dt-rowReorder-float tr td .alpaca-field, table.dt-rowReorder-float tr td .alpaca-field .form-control {
+            min-width: 20px;
+        }
+        .form-control {
+            padding: 6px 6px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(1) {
+            width: 50px !important;
+            min-width: 50px !important
+        }
+        .table-striped > thead > tr > th:nth-of-type(2) {
+            width: 150px !important;
+            min-width: 150px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(3) {
+            min-width: 90px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(4) {
+            min-width: 90px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(5) {
+            min-width: 50px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(6) {
+            min-width: 55px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(7) {
+            min-width: 150px !important;
+        }
+        .table-striped > thead > tr > th:nth-of-type(8) {
+            min-width: 50px !important;
+        }
+        .table-responsive {
+            overflow-x: unset;
+        }
+        .alpaca-form-buttons-container {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+        });
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav">
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
+
+    <div class="container">
+        <h1>User Alarm Settings</h1>
+    </div>
+
+    <div style="margin-left: 5%; margin-right: 5%;">
+        <h2>User Alarms</h2>
+        <form id="alarmsForm"></form>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <b>Name:</b> A descriptive name for the alarm, this will appear in emails and the diagnostic log.<br>
+                    - The name shoud be unique and short.<br>
+                </p>
+                <p>
+                    <b>Web Tag:</b> Enter a <b><i>single</i></b> valid numeric or boolean web tag to be tested.<br>
+                    - If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
+                    - You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
+                </p>
+                <p>
+                    <b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.
+                </p>
+                <p>
+                    <b>Value:</b> The alarm threshold value to be tested against the web tag value.
+                </p>
+                <p>
+                    <b>Email:</b> Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.
+                </p>
+                <p>
+                    <b>Email Msg:</b> Text to send in the email, you can use the parameter {0} to represent the current web tag value.
+                <p>
+                    <b>Latch:</b> Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.
+                </p>
+                <p>
+                    <b>Latch Hours:</b> The number of hours the alarm is latched for.
+                </p>
+                <p>
+                    <b>Action:</b> If non-blank, a program or script that is executed when the alarm is triggered.
+                </p>
+                <p>
+                    <b>Action Params:</b> Parameters to be passed to the action program or script, the parameters can contain web tags.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <!-- FOOTER -->
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
+</html>

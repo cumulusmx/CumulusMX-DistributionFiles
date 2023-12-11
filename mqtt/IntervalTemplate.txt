@@ -1,7 +1,10 @@
-{"topics":[
-    {
-        "topic": "CumulusMX/Interval",
-        "data": "{\"time\":\"<#timehhmmss>\",\"temp\":<#temp rc=y>,\"humidity\":<#hum>,\"wgust\":<#wgust rc=y>}",
-        "retain": false
-    }
-]}
+{
+    "topics": [
+        {
+            "topic": "CumulusMX/Interval",
+            "data": "{\"time\":\"<#timehhmmss>\",\"temp\":<#temp rc=y>,\"humidity\":<#hum>,\"wgust\":<#wgust rc=y>}",
+            "retain": false,
+            "interval": 60
+        }
+    ]
+}

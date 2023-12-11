@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2023/05/04 11:07:49
+ * Last modified: 2023/11/29 16:32:49
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -57,7 +57,7 @@ h5 {
 .indicator {
     border: 1px solid #383737;
     border-radius: 10px;
-    margin: 0px;
+    margin-left: 10px;
     margin-bottom: -4px;
     height: 20px;
     width: 20px;

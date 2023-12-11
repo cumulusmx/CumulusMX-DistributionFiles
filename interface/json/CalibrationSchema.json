@@ -51,47 +51,17 @@
 		"pressure": {
 			"type": "object",
 			"title": "Pressure",
-			"$ref": "#/definitions/limits",
-			"properties": {
-				"limitmin": {
-					"minimum" : 500,
-					"maximum": 1300
-				},
-				"limitmax": {
-					"minimum" : 500,
-					"maximum": 1300
-				}
-			}
+			"$ref": "#/definitions/limits"
 		},
 		"temp": {
 			"type": "object",
 			"title": "Outdoor Temperature",
-			"$ref": "#/definitions/limits",
-			"properties": {
-				"limitmin": {
-					"minimum": -60,
-					"maximum": 60
-				},
-				"limitmax": {
-					"minimum": -60,
-					"maximum": 60
-				}
-			}
+			"$ref": "#/definitions/limits"
 		},
 		"tempin": {
 			"type": "object",
 			"title": "Indoor Temperature",
-			"$ref": "#/definitions/limits",
-			"properties": {
-				"limitmin": {
-					"minimum": -60,
-					"maximum": 60
-				},
-				"limitmax": {
-					"minimum": -60,
-					"maximum": 60
-				}
-			}
+			"$ref": "#/definitions/OMS"
 		},
 		"hum": {
 			"type": "object",
@@ -133,8 +103,7 @@
 				},
 				"limitmax": {
 					"type": "number",
-					"minimum": 0,
-					"maximum": 90
+					"minimum": 0
 				}
 			}
 		},

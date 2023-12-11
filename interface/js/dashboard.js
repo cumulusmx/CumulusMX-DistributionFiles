@@ -1,106 +1,14 @@
-// Last modified: 2023/10/13 22:04:10
+// Last modified: 2023/12/03 15:29:32
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-let alarmSettings;
-let alarmTranslate = {
-    AlarmNewRec: 'newRecord',
-    AlarmGust: 'gustAbove',
-    AlarmHighPress: 'pressAbove',
-    AlarmHighTemp: 'tempAbove',
-    AlarmLowPress: 'pressBelow',
-    AlarmLowTemp: 'tempBelow',
-    AlarmPressDn: 'pressChange',
-    AlarmPressUp: 'pressChange',
-    AlarmRain: 'rainAbove',
-    AlarmRainRate: 'rainRateAbove',
-    AlarmIsRaining: 'isRaining',
-    AlarmSensor: 'contactLost',
-    AlarmTempDn: 'tempChange',
-    AlarmTempUp: 'tempChange',
-    AlarmWind: 'windAbove',
-    AlarmData: 'dataStopped',
-    AlarmBattery: 'batteryLow',
-    AlarmSpike: 'spike',
-    AlarmUpgrade: 'upgrade',
-    AlarmHttp: 'httpUpload',
-    AlarmMySql: 'mySqlUpload',
-    AlarmFtp: 'ftpUpload'
-};
-let alarmRevTranslate = {
-    newRecord: ['AlarmNewRec'],
-    gustAbove: ['AlarmGust'],
-    pressAbove: ['AlarmHighPress'],
-    tempAbove: ['AlarmHighTemp'],
-    pressBelow: ['AlarmLowPress'],
-    tempBelow: ['AlarmLowTemp'],
-    pressChange: ['AlarmPressDn', 'AlarmPressUp'],
-    rainAbove: ['AlarmRain'],
-    rainRateAbove: ['AlarmRainRate'],
-    isRaining: ['AlarmIsRaining'],
-    contactLost: ['AlarmSensor'],
-    tempChange: ['AlarmTempDn', 'AlarmTempUp'],
-    windAbove: ['AlarmWind'],
-    dataStopped: ['AlarmData'],
-    batteryLow: ['AlarmBattery'],
-    spike: ['AlarmSpike'],
-    upgrade: ['AlarmUpgrade'],
-    httpUpload: ['AlarmHttp'],
-    mySqlUpload: ['AlarmMySql'],
-    ftpUpload: ['AlarmFtp']
-};
+let alarmSettings = {};
 
-let alarmState = {
-    AlarmNewRec: false,
-    AlarmGust: false,
-    AlarmHighPress: false,
-    AlarmHighTemp: false,
-    AlarmLowPress: false,
-    AlarmLowTemp: false,
-    AlarmPressDn: false,
-    AlarmPressUp: false,
-    AlarmRain: false,
-    AlarmRainRate: false,
-    AlarmIsRaining: false,
-    AlarmSensor: false,
-    AlarmTempDn: false,
-    AlarmTempUp: false,
-    AlarmWind: false,
-    AlarmData: false,
-    AlarmBattery: false,
-    AlarmSpike: false,
-    AlarmUpgrade: false,
-    AlarmHttp: false,
-    AlarmMySql: false,
-    AlarmFtp: false
-}
-let alarmDisplay = {
-    AlarmNewRecord: 'New record',
-    AlarmGust: 'Wind gust above',
-    AlarmHighPress: 'Pressure above',
-    AlarmHighTemp: 'Temperature above',
-    AlarmLowPress: 'Pressure below',
-    AlarmLowTemp: 'Temperature below',
-    AlarmPressDn: 'Pressure decrease >',
-    AlarmPressUp: 'Pressure increase >',
-    AlarmRain: 'Rain above',
-    AlarmRainRate: 'Rain Rate above',
-    AlarmIsRaining: 'Raining now',
-    AlarmSensor: 'Sensor contact lost',
-    AlarmTempDn: 'Temperature decrease >',
-    AlarmTempUp: 'Temperature increase >',
-    AlarmWind: 'Average wind speed above',
-    AlarmData: 'Data Stopped',
-    AlarmBattery: 'Battery Low',
-    AlarmSpike: 'Data spike',
-    AlarmUpgrade: 'Upgrade available',
-    AlarmHttp: 'HTTP upload',
-    AlarmMySql: 'MySQL upload',
-    AlarmFtp: 'Web upload'
-};
+let alarmState = {};
+
 let playList = [];
 
 $(document).ready(function () {
@@ -130,13 +38,30 @@ $(document).ready(function () {
     }
 
     function createNotification(text) {
-        // Create and show the notification
+        // Create and show the notification, or alert if notifications are not supported by the browser
+
         let img = '/img/logo30.png';
         let title = 'Cumulus MX Alarm';
         if ((text.match(/\n/g)).length > 1) {
             title += 's';
         }
-        let notification = new Notification(title, { body: text, icon: img });
+
+        if (!("Notification" in window)) {
+            // Check if the browser supports notifications
+            alert(text);
+        } else if (Notification.permission === "granted") {
+            // Check whether notification permissions have already been granted;
+            // if so, create a notification
+            let notification = new Notification(title, { body: text, icon: img });
+        } else if (Notification.permission !== "denied") {
+            // We need to ask the user for permission
+            Notification.requestPermission().then((permission) => {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    let notification = new Notification(title, { body: text, icon: img });
+                }
+            });
+        }
     }
 
     function OpenWebSocket(wsport) {
@@ -204,11 +129,8 @@ $(document).ready(function () {
 
         $('#LastUpdateIcon').attr('src', 'img/up.png');
 
-        let dataStopped = data.DataStopped;
-        // Add an alarm value for dataStopped
-        data.AlarmData = data.DataStopped;
 
-        if (dataStopped) {
+        if (data.DataStopped) {
             $('#DataStoppedIcon').attr('src', 'img/down.png');
         } else {
             $('#DataStoppedIcon').attr('src', 'img/up.png');
@@ -223,37 +145,44 @@ $(document).ready(function () {
         // the element with the same id to the value
         Object.keys(data).forEach(function (key) {
             let id = '#' + key;
-            if (key.indexOf('Alarm') == -1) {
-                if ($(id).length) {
-                    $(id).text(data[key]);
-                }
-            } else if (alarmSettings != null && alarmSettings[alarmTranslate[key]].Enabled) {
-                // alarm data
-                if (data[key]) {  // alarm set
-                    $(id).removeClass('indicatorOff').addClass('indicatorOn');
-                    if (!alarmState[key]) {
+            if (key == 'Alarms') {
+                data[key].forEach(function (alarm) {
+                    let id = '#' + alarm.id;
+
+                    // set the indicator state
+                    if (alarm.triggered && alarmState[alarm.id] == false) {
+                        alarmState[alarm.id] = true;
+
+                        // set the indicator
+                        $(id).removeClass('indicatorOff').addClass('indicatorOn');
+
                         // make a sound?
-                        if (alarmSettings[alarmTranslate[key]].SoundEnabled) {
-                            let sndFile = 'sounds/'+ alarmSettings[alarmTranslate[key]].Sound;
+                        if (alarmSettings[alarm.id].SoundEnabled) {
+                            let sndFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
                             playList.push(new Audio(sndFile));
                         }
-                        if (alarmSettings[alarmTranslate[key]].Notify) {
+
+                        // notify?
+                        if (alarmSettings[alarm.id].Notify) {
                             sendNotification = true;
-                            let message = '‣ ' + alarmDisplay[key];
-                            //if (alarmTranslate[key] + 'Val' in alarmSettings) {
-                                message += ' ' + alarmSettings[alarmTranslate[key]].Val;
-                            //}
+                            let message = '‣ ' + alarmSettings[alarm.id].Name;
+
                             console.log('Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
-                        if (id == '#AlarmUpgrade') {
-                            $(id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+
+                        // upgrade?
+                        if (alarm.Id == 'AlarmUpgrade') {
+                            $('#' + alarm.Id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
                         }
-                        alarmState[key] = true;
+                   } else if (!alarm.triggered && alarmState[alarm.id] == true) {
+                        alarmState[key] = false;
+                        $(id).removeClass('indicatorOn').addClass('indicatorOff');
                     }
-                } else {
-                    $(id).removeClass('indicatorOn').addClass('indicatorOff');
-                    alarmState[key] = false;
+                });
+            } else {
+                if ($(id).length) {
+                    $(id).text(data[key]);
                 }
             }
         });
@@ -424,26 +353,19 @@ $(document).ready(function () {
             let playSnd = false;
             let notify = false;
 
-            // save the setting for later
-            alarmSettings = result;
 
-            $.each(result, function(alarm, alarmObj) {
-                let id = alarmRevTranslate[alarm];
+            result.forEach(function (alarm) {
+                // save the setting for later
+                alarmSettings[alarm.Id] = alarm;
+                alarmState[alarm.Id] = false;
 
-                if (alarmObj.Enabled) {
-                    id.forEach(function (item) {
-                        $('#' + item).addClass('indicatorOff');
-                    });
-                    if (alarmObj.SoundEnabled) {
-                        playSnd = true;
-                    }
-                    if (alarmObj.Notify) {
-                        notify = true;
-                    }
-                } else {
-                    id.forEach(function (item) {
-                        $('#' + item).parent().hide();
-                    });
+                $('#alarms').append('<div style="display:inline-block"><span class="indicator indicatorOff" id="' + alarm.Id + '"></span>&nbsp;' + alarm.Name.replace(' ', '&nbsp;') + '</div>');
+
+                if (alarm.SoundEnabled) {
+                    playSnd = true;
+                }
+                if (alarm.Notify) {
+                    notify = true;
                 }
             });
 

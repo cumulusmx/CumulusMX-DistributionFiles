@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2023/10/18 10:26:19",
+	"version": "Last modified: 2023/11/29 16:49:17",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -316,89 +316,185 @@
 					"type": "text",
 					"helper": "The email introductory text used for all alarms"
 				},
-				"windGustAbove": {
-					"label": "Wind Gust Above",
-					"type": "text"
+				"names":{
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"windGustAbove": {
+							"label": "Wind Gust Above",
+							"type": "text"
+						},
+						"windAbove": {
+							"label": "Wind Above",
+							"type": "text"
+						},
+						"pressureAbove": {
+							"label": "Pressure Above",
+							"type": "text"
+						},
+						"pressBelow": {
+							"label": "Pressure Below",
+							"type": "text"
+						},
+						"pressUp": {
+							"label": "Pressure Increase",
+							"type": "text"
+						},
+						"pressDown": {
+							"label": "Pressure Decrease",
+							"type": "text"
+						},
+						"tempAbove": {
+							"label": "Temperature Above",
+							"type": "text"
+						},
+						"tempBelow": {
+							"label": "Temperature Below",
+							"type": "text"
+						},
+						"tempUp": {
+							"label": "Temperature Increase",
+							"type": "text"
+						},
+						"tempDown": {
+							"label": "Temperature Decrease",
+							"type": "text"
+						},
+						"rainAbove": {
+							"label": "Rainfall Above",
+							"type": "text"
+						},
+						"rainRateAbove": {
+							"label": "Rain rate Above",
+							"type": "text"
+						},
+						"newRecord": {
+							"label": "New All-time record",
+							"type": "text"
+						},
+						"sensorLost": {
+							"label": "Sensor Contact Lost",
+							"type": "text"
+						},
+						"dataStopped": {
+							"label": "Data Stopped",
+							"type": "text"
+						},
+						"batteryLow": {
+							"label": "Low Battery",
+							"type": "text"
+						},
+						"dataSpike": {
+							"label": "Data Spike",
+							"type": "text"
+						},
+						"upgrade": {
+							"label": "Cumulus Upgrade",
+							"type": "text"
+						},
+						"ftpStopped": {
+							"label": "Web Uploads",
+							"type": "text"
+						},
+						"httpStopped": {
+							"label": "HTTP Uploads",
+							"type": "text"
+						},
+						"mySqlStopped": {
+							"label": "MySQL Uploads",
+							"type": "text"
+						}
+					}
 				},
-				"windAbove": {
-					"label": "Wind Above",
-					"type": "text"
-				},
-				"pressureAbove": {
-					"label": "Pressure Above",
-					"type": "text"
-				},
-				"pressBelow": {
-					"label": "Pressure Below",
-					"type": "text"
-				},
-				"pressUp": {
-					"label": "Pressure Increase",
-					"type": "text"
-				},
-				"pressDown": {
-					"label": "Pressure Decrease",
-					"type": "text"
-				},
-				"tempAbove": {
-					"label": "Temperature Above",
-					"type": "text"
-				},
-				"tempBelow": {
-					"label": "Temperature Below",
-					"type": "text"
-				},
-				"tempUp": {
-					"label": "Temperature Increase",
-					"type": "text"
-				},
-				"tempDown": {
-					"label": "Temperature Decrease",
-					"type": "text"
-				},
-				"rainAbove": {
-					"label": "Rainfall Above",
-					"type": "text"
-				},
-				"rainRateAbove": {
-					"label": "Rain rate Above",
-					"type": "text"
-				},
-				"newRecord": {
-					"label": "New All-time record",
-					"type": "text"
-				},
-				"sensorLost": {
-					"label": "Sensor Contact Lost",
-					"type": "text"
-				},
-				"dataStopped": {
-					"label": "Data Stopped",
-					"type": "text"
-				},
-				"batteryLow": {
-					"label": "Low Battery",
-					"type": "text"
-				},
-				"dataSpike": {
-					"label": "Data Spike",
-					"type": "text"
-				},
-				"upgrade": {
-					"label": "Cumulus Upgrade",
-					"type": "text"
-				},
-				"ftpStopped": {
-					"label": "Web Uploads",
-					"type": "text"
-				},
-				"httpStopped": {
-					"label": "HTTP Uploads",
-					"type": "text"
-				},
-				"mySqlStopped": {
-					"label": "MySQL Uploads",
-					"type": "text"
+				"email": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"windGustAbove": {
+							"label": "Wind Gust Above",
+							"type": "text"
+						},
+						"windAbove": {
+							"label": "Wind Above",
+							"type": "text"
+						},
+						"pressureAbove": {
+							"label": "Pressure Above",
+							"type": "text"
+						},
+						"pressBelow": {
+							"label": "Pressure Below",
+							"type": "text"
+						},
+						"pressUp": {
+							"label": "Pressure Increase",
+							"type": "text"
+						},
+						"pressDown": {
+							"label": "Pressure Decrease",
+							"type": "text"
+						},
+						"tempAbove": {
+							"label": "Temperature Above",
+							"type": "text"
+						},
+						"tempBelow": {
+							"label": "Temperature Below",
+							"type": "text"
+						},
+						"tempUp": {
+							"label": "Temperature Increase",
+							"type": "text"
+						},
+						"tempDown": {
+							"label": "Temperature Decrease",
+							"type": "text"
+						},
+						"rainAbove": {
+							"label": "Rainfall Above",
+							"type": "text"
+						},
+						"rainRateAbove": {
+							"label": "Rain rate Above",
+							"type": "text"
+						},
+						"newRecord": {
+							"label": "New All-time record",
+							"type": "text"
+						},
+						"sensorLost": {
+							"label": "Sensor Contact Lost",
+							"type": "text"
+						},
+						"dataStopped": {
+							"label": "Data Stopped",
+							"type": "text"
+						},
+						"batteryLow": {
+							"label": "Low Battery",
+							"type": "text"
+						},
+						"dataSpike": {
+							"label": "Data Spike",
+							"type": "text"
+						},
+						"upgrade": {
+							"label": "Cumulus Upgrade",
+							"type": "text"
+						},
+						"ftpStopped": {
+							"label": "Web Uploads",
+							"type": "text"
+						},
+						"httpStopped": {
+							"label": "HTTP Uploads",
+							"type": "text"
+						},
+						"mySqlStopped": {
+							"label": "MySQL Uploads",
+							"type": "text"
+						}
+					}
 				}
 			}
 		}

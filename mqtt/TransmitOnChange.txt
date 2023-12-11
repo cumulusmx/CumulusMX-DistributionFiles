@@ -1,6 +1,0 @@
-{
-    "topic": "CumulusMX/TempUpdate",
-    "data": "\"time\":\"<#timehhmmss>\",\"temp\":<#temp rc=y>",
-    "retain": false,
-    "doNotTriggerOnTags": "timehhmmss"
-}

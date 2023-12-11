@@ -1,7 +1,16 @@
-{"topics": [
-    {
-        "topic": "CumulusMX/DataUpdate",
-        "data": "\"time\":\"<#timehhmmss>\",\"windspeed\":<#wlatest rc=y>,\"winddir\":<#bearing>",
-        "retain": false
-    }
-]}
+{
+    "topics": [
+        {
+            "topic": "CumulusMX/OnUpdate",
+            "data": "\"time\":\"<#timehhmmss>\",\"windspeed\":<#wlatest rc=y>,\"winddir\":<#bearing>",
+            "retain": false
+        },
+        {
+            "topic": "CumulusMX/OnUpdateChanged",
+            "data": "\"time\":\"<#timehhmmss>\",\"windspeed\":<#wlatest rc=y>,\"winddir\":<#bearing>",
+            "retain": false,
+            "doNotTriggerOnTags": "timehhmmss"
+        },
+
+    ]
+}
