@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Calibration Settings
+	File:	extrasensorsettings.html	v2.0.2
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	04/10/2023 15:14
+	Last Check:	04/10/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Calibration Settings</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!-- Bootstrap -->
+		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" >
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Alpaca -->
+		<script src="/lib/handlebars/handlebars.min.js"></script>
+		<link href="/lib/alpaca/alpaca.min.css" rel="stylesheet" >
+		<script src="/lib/alpaca/alpaca.min.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/calibrationsettings.js"></script>
+		
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+		.top-buffer { margin-top:40px; }
+        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
+        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .alpaca-field > legend > .collapsed::before {
+            content: '\25B8';
+            padding-left: 0.5%;
+        }
+        .alpaca-field > legend > span::before {
+            content: '\25BE';
+            padding-left: 0.5%;
+        }
+        .alpaca-container-has-items {
+            margin-left: 1%;
+        }
+        .collapse.in {
+            margin-left: 1%;
+        }
+        .alpaca-form-buttons-container {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        .hideme { display: none }
+        legend {
+            color: inherit;
+        }
+        .alpaca-form-buttons-container > button {
+			background: var(--theme);
+			color: var(--add5);
+			border-radius: 2em;
+			border:none;
+			padding: 0.2em 3em;
+		}
+		</style>
+	</head>
+	<body class="ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+			<div class="siteWidth ow-titleBar" style=" margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+					<h5 class="w3-align-right" style="">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<div class="ow-titleBar" style="margin-bottom: 2vh;">
+					<h1>Calibration Settings</h1>
+					<p>Correct any anomalies in your sensors</p>
+				</div>
+
+				<div class="ow-one-col ow-theme-add4 ow-card">
+					<p style="margin: 1vh 0">Click on sections marked <span style="font-size: 140%;">&#9656;</span> to expand them. Click again to collapse the section. Click the  &apos;Save Settings&apos; button to save the settings.</p>
+					<form></form>
+				</div>
+
+			</div>
+		</div>
+
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</html>

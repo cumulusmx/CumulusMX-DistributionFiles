@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Reading Charts
+	File:	charts.html			v2.0.2
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	14/11/2023 16:18
+	Last Check:	14/11/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Reading Charts</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
+		<script src="https://code.highcharts.com/stock/10.3.3/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/10.3.3/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/accessibility.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/10.3.3/themes/grid.js"></script>
+		<script src="lib/highcharts/ow-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/charts.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+			#chartcontainer {
+				height: 60vh;
+				min-height: 450px;
+				margin: 1vh 0;
+				/*	Temp*/
+				border: 1px solid var(--theme);
+			}
+			
+		</style>
+	</head>
+	<body class="ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+			<div class="siteWidth ow-titleBar" style="margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<h5 class="w3-align-right" style="">
+					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude: <span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<!--	The menues are inserted here	-->
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<!--	Page Title Bar	-->
+				<div class="ow-titleBar" style="margin-bottom:2vh;">
+					<h1>Readings Charts</h1>
+					<p class="ow-txt-small w3-right-align">Charts based on your stations readings<br>All charts are zoomable</p>
+				</div>
+
+				<div class="ow-oneCol">
+					<div class="ow-btnBar" style="order:1;column-gap:0.25em; row-gap:0.5em; margin: 1vh 0;"><!--	Ajust gaps to suite	-->
+						<button id="temp"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph ow-theme-sub3" aria-label="Temperatures"		>Temperature</button>
+						<button id="dailytemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Daily temperature"	>Daily Temperatures</button>
+						<button id="press"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Pressure"			>Pressure</button>
+						<button id="wind"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Wind speeds"		>Wind Speeds</button>
+						<button id="windDir"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Wind direction"		>Wind Direction</button>
+						<button id="humidity"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Humidity"			>Humidity</button>
+						<button id="rain"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Rainfall"			>Rainfall</button>
+						<button id="dailyrain"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Daily rainfall"		>Daily Rain</button>
+						<button id="solar"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Solar"				>Solar</button>
+						<button id="sunhours"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Sunshine hours"		>Sunshine Hours</button>
+						<button id="airquality"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Air quality"		>Air Quality</button>
+						<button id="extratemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra temperatures"	>Extra Temp</button>
+						<button id="extrahum"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra humidity"		>Extra Humidity</button>
+						<button id="extradew"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra dew point"	>Extra Dew Point</button>
+						<button id="soiltemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Soil temperatutre"	>Soil Temperatures</button>
+						<button id="soilmoist"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Soil moisture"		>Soil Moisture</button>
+						<button id="leafwet"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Leaf Wetness"		>Leaf Wetness</button>
+						<button id="usertemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="User temperatures"	>User Temperatures</button>
+						<button id="co2"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Carbon dioxide"		>CO&#8322; Sensors</button>
+					</div>
+				
+					<div id="chartcontainer" style="order:1;"></div>
+				
+					<p class="w3-center" id="chartdescription" style="order:3;"></p>
+				</div>
+			</div>
+		</div>
+
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
