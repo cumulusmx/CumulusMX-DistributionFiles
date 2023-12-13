@@ -62,7 +62,7 @@ input[readonly] {
 	border-radius: 2em!important;
 	background: var(--add3)!important;
 	color: var(--sub5)!important;
-	padding: 0.25em 2em;!important;
+	padding: 0.25em 2em!important;
 	border:none;
 }
 
