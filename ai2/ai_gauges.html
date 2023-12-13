@@ -4,7 +4,7 @@
 	File:	ai_gauges.html			v2.0.2
 	Note:	This is a new filename for gauges.html
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	05/10/2023 14:45
+	Last Edit:	2023/12/12 23:25:45
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -58,11 +58,11 @@
 			[type=checkbox],[type=radio] { height: 1em!important; width:1em!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -70,7 +70,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -85,7 +85,7 @@
 					<p><span data-OWData="Date"></span></p>
 				</div>
 
-				<div class="ow-fourCol" style="">
+				<div class="ow-fourCol">
 					<div class="ow-theme-add4 ow-card ow-animate-fadeIn w3-center" style="order:0;">
 						<div class="ow-titleBar">
 							<h3>Temperature</h3>
@@ -93,7 +93,7 @@
 						<div id="tip_0" class="gauge">
 							<canvas id="canvas_temp" class="ow-gaugeStandard"></canvas>
 						</div>
-						<div class="ow-btnBar" style="">
+						<div class="ow-btnBar">
 							<div><input id="rad_temp1" class="w3-radio" type="radio" name="rad_temp" value="out" aria-label="Outside temperature" onclick="gauges.doTemp(this);" checked ><label id="lab_temp1" for="rad_temp1">Outside</label></div>
 							<div><input id="rad_temp2" class="w3-radio" type="radio" name="rad_temp" value="in" aria-label="Inside temperature" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label></div>
 						</div>

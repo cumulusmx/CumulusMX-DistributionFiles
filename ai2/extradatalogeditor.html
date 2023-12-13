@@ -5,7 +5,7 @@
 	Author:	D.N.C.Thomas		Sept 2023
 	Note:
 		This is a new file name
-	Last Edit:	10/10/2023 17:43
+	Last Edit:	2023/12/12 23:37:31
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -29,12 +29,12 @@
 		<!--	jQuery Local	(Use for AI)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-		
+
 		<!-- Bootstrap -->
 		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<!--<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" >-->
 		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-		
+
 		<!--	Data Tables	-->
 		<link href="/lib/datatables/datatables.min.css" rel="stylesheet">
 		<script src="/lib/datatables/datatables.min.js"></script>
@@ -76,22 +76,22 @@
 			#datalog tbody .bearing:after    { content:"°";   font-size:10px; padding-left: 2px; vertical-align:text-top;}
 			#datalog tbody .hours:after    { content:"hrs";   font-size: 8px; padding-left: 2px; vertical-align:baseline;}
 			#datalog tbody .solarUnits:after { content:"w/m\00b2";	  font-size: 8px; padding-left:2px;vertical-align:baseline;}
-			
+
 			#datalog thead th {vertical-align: bottom;}
 			#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
 			#datalog tbody tr:hover { background-color: var(--add4)!important;}
 			#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
 			#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
 			#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}
-			
+
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -99,7 +99,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -118,7 +118,7 @@
 					<p style="margin:0; padding:0;">Start Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
 					<p style="margin:0; padding:0;">End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo"></p>
 					<button type="button" class="w3-btn" onclick="load()" style="max-width: 8em;">Load</button>
-					<span class="ow-txt-small w3-right-align" style="">You can scroll the table sideways to reveal other readings.</span>
+					<span class="ow-txt-small w3-right-align">You can scroll the table sideways to reveal other readings.</span>
 				</div>
 
 				<div class="ow-oneCol ow-card ow-theme-add4" style="padding: 0.5vh 0.5vw;">

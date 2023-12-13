@@ -3,7 +3,7 @@
 	Page:	Select-a-Charts (recent)
 	File:	chartscompare.html		v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	14/11/2023 16:21
+	Last Edit:	2023/12/12 23:28:41
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -68,11 +68,11 @@
 				}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -80,7 +80,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -102,31 +102,31 @@
 						selector to change the colour for that particular data plot.  You can edit the colours in the file 'lib/highcharts/ow-theme.js'.
 					</p>
 
-					<div class="ow-titleBar" style="order:4;"><!--	Ajust gaps to suite	-->
+					<div class="ow-titleBar" style="order:4;"><!--	Adjust gaps to suite	-->
 						<div class="ow-btnBar ow-flex-center" style="column-gap: 0.5em; justify-content: flex-start;">
-							<div style="">
+							<div>
 								<select class="w3-select" name="data0" id="data0" aria-label="Choose graph" onChange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour0" id="colour0"  aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>
-							<div style="">
+							<div>
 								<select class="w3-select" name="data1" id="data1" aria-label="Choose graph"  onchange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour1" id="colour1" aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>
-							<div style="">
+							<div>
 								<select class="w3-select" name="data2" id="data2" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour2" id="colour2" aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>
 						</div>
 						<div class="ow-btnBar" style="column-gap:0.5em; justify-content: flex-end;">
-							<div style="">
+							<div>
 								<select class="w3-select" name="data3" id="data3" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour3" id="colour3" aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>
-							<div style="">
+							<div>
 								<select class="w3-select" name="data4" id="data4" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour4" id="colour4" aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>
-							<div style="">
+							<div>
 								<select class="w3-select" name="data5" id="data5" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 								<select class="w3-select" name="colour5" id="colour5" aria-label="Select its colour" onchange="updateColour(this)"></select>
 							</div>

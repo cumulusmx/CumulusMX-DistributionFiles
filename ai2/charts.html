@@ -3,7 +3,7 @@
 	Page:	Reading Charts
 	File:	charts.html			v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	14/11/2023 16:18
+	Last Edit:	2023/12/12 23:28:04
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -58,10 +58,10 @@
 				/*	Temp*/
 				border: 1px solid var(--theme);
 			}
-			
+
 		</style>
 	</head>
-	<body class="ow-theme-add5">
+	<body class="hidden ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
@@ -73,7 +73,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -89,7 +89,7 @@
 				</div>
 
 				<div class="ow-oneCol">
-					<div class="ow-btnBar" style="order:1;column-gap:0.25em; row-gap:0.5em; margin: 1vh 0;"><!--	Ajust gaps to suite	-->
+					<div class="ow-btnBar" style="order:1;column-gap:0.25em; row-gap:0.5em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
 						<button id="temp"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph ow-theme-sub3" aria-label="Temperatures"		>Temperature</button>
 						<button id="dailytemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Daily temperature"	>Daily Temperatures</button>
 						<button id="press"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Pressure"			>Pressure</button>
@@ -101,18 +101,18 @@
 						<button id="solar"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Solar"				>Solar</button>
 						<button id="sunhours"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Sunshine hours"		>Sunshine Hours</button>
 						<button id="airquality"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Air quality"		>Air Quality</button>
-						<button id="extratemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra temperatures"	>Extra Temp</button>
+						<button id="extratemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra temperature"	>Extra Temp</button>
 						<button id="extrahum"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra humidity"		>Extra Humidity</button>
 						<button id="extradew"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Extra dew point"	>Extra Dew Point</button>
-						<button id="soiltemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Soil temperatutre"	>Soil Temperatures</button>
+						<button id="soiltemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Soil temperature"	>Soil Temperatures</button>
 						<button id="soilmoist"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Soil moisture"		>Soil Moisture</button>
 						<button id="leafwet"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Leaf Wetness"		>Leaf Wetness</button>
-						<button id="usertemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="User temperatures"	>User Temperatures</button>
+						<button id="usertemp"	class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="User temperature"	>User Temperatures</button>
 						<button id="co2"		class="w3-btn ow-theme-add3 ow-theme-hvr mx-button selectGraph" aria-label="Carbon dioxide"		>CO&#8322; Sensors</button>
 					</div>
-				
+
 					<div id="chartcontainer" style="order:1;"></div>
-				
+
 					<p class="w3-center" id="chartdescription" style="order:3;"></p>
 				</div>
 			</div>

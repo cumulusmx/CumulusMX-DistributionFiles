@@ -3,8 +3,8 @@
 	Page:	Custom Alarms
 	File:	customalarms.html		v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	
-	Last Check:	
+	Last Edit:	2023/12/12 23:44:43
+	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -27,7 +27,7 @@
 		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-		
+
 		<!-- Bootstrap -->
 		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -53,61 +53,61 @@
 		<script>
 		</script>
 		<style>
-			
+
 			.ow-listItem p:nth-of-type(1) { width: 7em; flex: none; font-weight: 700;}
-						
+
 			.alpaca-field-table table tr td .alpaca-field,
-			.alpaca-field-table table tr td .alpaca-field .form-control, 
-			table.dt-rowReorder-float tr td .alpaca-field, 
+			.alpaca-field-table table tr td .alpaca-field .form-control,
+			table.dt-rowReorder-float tr td .alpaca-field,
 			table.dt-rowReorder-float tr td .alpaca-field .form-control {
 				min-width: 20px;
 			}
-        
+
 			.form-control {
 				padding: 6px 6px !important;
 			}
 			.alpaca-field-object {padding: 0!important;}
-			
+
 			th:nth-of-type(1),
 			td:nth-of-type(1) { width: 4em!important;}
 
 			th:nth-of-type(2),
 			td:nth-of-type(2) { width: 150px!important;}
-			
+
 			th:nth-of-type(3),
 			td:nth-of-type(3) { width: 90px !important;}
-			
+
 			th:nth-of-type(4),
 			td:nth-of-type(4) { min-width: 90px !important;	}
-			
+
 			th:nth-of-type(5),
 			td:nth-of-type(5) { min-width: 50px !important; }
-			
+
 			th:nth-of-type(6),
 			td:nth-of-type(6) { min-width: 55px !important; }
-			
+
 			th:nth-of-type(7),
 			td:nth-of-type(7) { min-width: 150px !important; }
-			
+
 			th:nth-of-type(8),
 			td:nth-of-type(8) { min-width: 50px !important;	}
 
 			button.btn { background-image: linear-gradient( var(--theme-sub3) ,var(--theme))!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -127,17 +127,17 @@
 							<h2>User Alarms</h2>
 						</div>
 						<form id="alarmsForm"></form>
-						
+
 					</div>
 				</div>
-				
+
 				<div class="ow-twoCol">
 					<div class="ow-container" style="order:0; border-right: 1px solid var(--theme);">
 						<div class="ow-titleBar"><h4>Notes</h4></div>
 						<div class="ow-listItem">
 							<p>Name:</p>
 							<p>A descriptive name for the alarm, this will appear in emails and the diagnostic log.<br>
-							- The name shoud be unique and short.</p>
+							- The name should be unique and short.</p>
 						</div>
 						<div class="ow-listItem">
 							<p>Web Tag:</p>

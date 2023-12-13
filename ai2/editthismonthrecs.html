@@ -4,7 +4,7 @@
 	File:	editthismonthrecs.html		v2.0.2
 	Note:	This is new filename
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:36:46
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -61,18 +61,18 @@
 			td:nth-of-type(2), td:nth-of-type(4), td:nth-of-type(6) {text-align: center;}
 			td { border: thin solid var(--add3);}
 			.dialog button,
-			.alertdialog button { max-width: 8em;} 
+			.alertdialog button { max-width: 8em;}
 			.ow-fontFix { color: var(--sub5)!important;}
 			.ow-fontFix:hover{ color: var(--sub3)!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
+	<body class="hidden ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" >
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
@@ -379,7 +379,7 @@
 				</div>
 			</div>
 		</footer>
-		
+
 		<!--	Loading Overley	-->
 		<div class="loading-overlay">
 			<div class="loading-overlay-image-container w3-center ow-card ow-theme" style="border-radius: 1em; padding: 2vh 1vw;">
@@ -394,7 +394,7 @@
 				<div class="ow-titleBar ow-theme-add4" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
 					<h4>Update record</h4>
 				</div>
-				
+
 				<div class="w3-center w3-padding">
 					<p>Change <span id="editName" style="border-bottom:2px solid var(--thmeme);"></span> record <em><span id="editType"></span></em> from</p>
 					<div class="ow-titleBar" style="justify-content: center;">

@@ -3,7 +3,7 @@
 	Page:	development
 	File:	development.html		v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:35:36
 	Last Check:	04/10/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -45,19 +45,19 @@
 
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -78,15 +78,15 @@
 							<h2>Current Data</h2>
 						</div>
 						<p id="APIData">
-							Below is a two column flex box (style: &quot;ow-twoCol&quot;) with each row forced to be equal 
-							height.&nbsp; This can be changed by adding the class <span class="ow-codeSpan">ow-flex-top</span> or 
-							<span class="ow-codeSpan">ow-flex-center</span> or <span class="ow-codeSpan">ow-flex-bottom</span>.&nbsp; 
+							Below is a two column flex box (style: &quot;ow-twoCol&quot;) with each row forced to be equal
+							height.&nbsp; This can be changed by adding the class <span class="ow-codeSpan">ow-flex-top</span> or
+							<span class="ow-codeSpan">ow-flex-center</span> or <span class="ow-codeSpan">ow-flex-bottom</span>.&nbsp;
 							Children have to be a &quot;div&quot; element.
 						</p>
 						<p id="APIPairs">You do need to add a margin to the bottom of one column panels.</p>
 					</div>
 				</div>
-				
+
 				<div class="ow-twoCol">
 					<div class="ow-card" style="order:0;">
 						<div class="ow-titleBar">
@@ -103,7 +103,7 @@
 						</p>
 					</div>
 					<div class="ow-card ow-cardGradient" style="order:0;">
-						<div class="ow-titleBar" style="">
+						<div class="ow-titleBar">
 							<h3 class="ow-theme-add5-txt">Card Gradient</h3>
 							<p class="ow-theme-add5-txt">Paragraph</p>
 							<div class="w3-btn ow-theme-hvr ow-theme-add5-txt">button</div>
@@ -122,7 +122,7 @@
 							Title bars can be used anywhere on the page.  As stated, by default content is aligned on the baseline. You can modify this by adding
 							the classes mentioned in panel 1 above.
 						</p>
-						<p>Title Bars don't wrap so if there is too much in them it will disappear off the right edge of the bar.&nbsp; This can be modified by 
+						<p>Title Bars don't wrap so if there is too much in them it will disappear off the right edge of the bar.&nbsp; This can be modified by
 						adding the style <span class="ow-codeSpan" style="color: var(--sub5);">flex-flow: row wrap</span> to the div.</p>
 					</div>
 					<div class="ow-card ow-theme-add3" style="order:0;">
@@ -152,7 +152,7 @@
 					<div class="ow-theme-add4 ow-container ow-animate-drop" style="order:0;">
 						<h4>h4 title</h4>
 						<p>Colour: ow-theme-add4</p>
-						<p>This container also uses an animation: 'ow-animate-drop' which is also used for the menues.  Animations should only be used sparingly.</p>
+						<p>This container also uses an animation: 'ow-animate-drop' which is also used for the menus.  Animations should only be used sparingly.</p>
 					</div>
 					<div class="ow-theme-add3 ow-container ow-animate-fadeIn" style="order:0;">
 						<h4>h4 title</h4>
@@ -182,7 +182,7 @@
 				</div>
 				<!--	End of three column section	-->
 				<h2>Four Column panels</h2>
-				<div class="ow-fourCol" style="">
+				<div class="ow-fourCol">
 					<div class="ow-theme-add5 ow-card">
 						<h5>h5 Title</h5>
 						<div>Basic LED: <div class="ow-led ow-LED-on"></div><div class="ow-led"></div></div>
@@ -220,7 +220,7 @@
 					</div>
 				</div>
 				<h2>Five column panels</h2>
-				<div class="ow-fiveCol" style="">
+				<div class="ow-fiveCol">
 					<div class="ow-card ow-clickable" onClick="showModal('Xmodal')">
 						<p>One</p><p>You can click this panel to show the modal popup.</p>
 					</div>
@@ -233,7 +233,7 @@
 					<div class="ow-card"><p>Six</p></div>
 				</div>
 				<h3>Six column panels</h3>
-				<div class="ow-sixCol" style="">
+				<div class="ow-sixCol">
 					<div class="ow-theme-add2 ow-card">ow-theme-add2<br>&nbsp;</div>
 					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
 					<div class="ow-theme-add2 ow-card">ow-theme-add2<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>

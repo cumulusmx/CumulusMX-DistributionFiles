@@ -5,8 +5,8 @@
 	Note:
 		This is a new filename
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
-	Last Check:	14/11/2023 
+	Last Edit:	2023/12/12 23:45:35
+	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -117,22 +117,22 @@
 			.dataTables_filter {
 				margin-top:1vh;
 			}
-			
+
 			.modal-dialog .ow-title { padding: 1vh 1vw;}
 			.modal-dialog .w3-btn { padding: 0.5vh 0.5vw!important;}
-			
+
 			#logcontent { padding: 0.5vh 0.5vw;}
 			#logcontent > div {margin: 0.5vh 0; padding: 0 0.5vw;}
 			#logcontent > div:hover {background: var(--add3);}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
@@ -159,7 +159,7 @@
 						<h4>Manually initiate the FTP / copy process</h4>
 						<p>You can use this utility to upload the default website data files.</p>
 						<p>
-							Please note:  The actual FTP process will be started, but it will be run as a background process. You wll have to check your 
+							Please note:  The actual FTP process will be started, but it will be run as a background process. You wll have to check your
 							log files and/or FTP server to check whether it worked correctly or not.
 						</p>
 						<input type="checkbox" class="w3-check" id="graphs" aria-label="Reload complete graph data"> <label for="graphs">Re-upload full copies of the graph data files</label><br>
@@ -177,7 +177,7 @@
 						</div>
 						<h4>Force a reload of the Dayfile back into CMX memory</h4>
 						<p>
-							You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart 
+							You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart
 							it to perform the reload.
 						</p>
 						<div class="ow-btnBar ow-flex-center" style="margin-top: 1vh;">
@@ -195,7 +195,7 @@
 					<div class="ow-card ow-theme-add4 ow-animate-drop" style="order:0;">
 						<h3 id="purge-anchor">Purge the MySQL Database</h3>
 						<h4>Edit / Purge the failed MySQL command queue</h4>
-						<p>If you have failed MySQL commands stuck in the upload queue, this panel allows you to either delete the entire 
+						<p>If you have failed MySQL commands stuck in the upload queue, this panel allows you to either delete the entire
 						failed queue, or edit/delete individual entries.</p>
 						<div class="oneCol" style="margin:1vh 0;" >
 							<table id="sqlcache" class="w3-table w3-hoverable ow-theme-add5" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
@@ -205,8 +205,8 @@
 							<p id="purgeStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow:2;"></p>
 						</div>
 					</div>
-					
-					
+
+
 					<div class="ow-card ow-theme-add4 ow-animate-drop" style="order:1;">
 						<div class="ow-titleBar">
 							<h4>Latest Errors</h4>
@@ -214,7 +214,7 @@
 								<button type="button" class="w3-btn" onclick="selectText();" aria-label="Copy to clipboard">Copy to clipboard</button>
 								<button type="button" class="w3-btn" onClick="clearLog();" aria-label="Clear the log">Clear the log</button>
 							</div>
-							<p>The log content auto refreshes every 20 seconds. 
+							<p>The log content auto refreshes every 20 seconds.
 							<i class="fa-solid fa-triangle-exclamation fa-2x" style="color: #B00;"></i></p>
 						</div>
 						<div  id="logcontent" class="ow-theme-add5" style="margin: 1vh 0;">

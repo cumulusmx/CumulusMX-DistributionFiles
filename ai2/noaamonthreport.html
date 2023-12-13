@@ -3,7 +3,7 @@
 	Page:	NOAA Monthly Reports
 	File:	noaamonthreport.html	v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	10/10/2023 12:43
+	Last Edit:	2023/12/12 23:40:59
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -27,7 +27,7 @@
 		<!--	jQuery Local	(Use for AI)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-			
+
 		<!-- datepicker -->
 		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
 		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
@@ -56,11 +56,11 @@
 			#generateAll-button:hover	{ background: linear-gradient( 90deg, var(--add3) 0, #2aabd2 75%)!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -68,7 +68,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -87,8 +87,8 @@
 					<span style="min-width:11em;">Select year:&nbsp;<select class="w3-select ow-theme-add3" id="selYear" aria-label="select year"></select></span>
 					<span style="min-width: 12em;">month:&nbsp;<select class="w3-select ow-theme-add3" id="selMonth" aria-label="select month"></select></span>
 					<button type="button" class="w3-btn" id="load-button" onclick="load()" style="flex-grow:0;">Load Report</button>
-					<button type="button" class="w3-btn btn-warning" id="generate-button" onclick="generate()" style="">(Re)Generate this Report</button>
-					<button type="button" class="w3-btn btn-info" id="generateAll-button" onclick="generateAll()" style="">Regenerate all missing Reports</button><br>
+					<button type="button" class="w3-btn btn-warning" id="generate-button" onclick="generate()">(Re)Generate this Report</button>
+					<button type="button" class="w3-btn btn-info" id="generateAll-button" onclick="generateAll()">Regenerate all missing Reports</button><br>
 				</div>
 
 				<p>Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly</p>

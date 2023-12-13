@@ -4,7 +4,7 @@
 	File:	editalltimerecs.html		v2.0.2
 	Note:	This is new filename
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:35:52
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -61,18 +61,18 @@
 			td:nth-of-type(2), td:nth-of-type(4), td:nth-of-type(6), td:nth-of-type(7) { text-align:center!important;}
 			td { border: thin solid var(--add3);}
 			.dialog button,
-			.alertdialog button { max-width: 8em;} 
+			.alertdialog button { max-width: 8em;}
 			.ow-fontFix { color: var(--sub5)!important;}
-			.ow-fontFix:hover{ color: var(--sub3)!important;}		
+			.ow-fontFix:hover{ color: var(--sub3)!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
@@ -93,7 +93,7 @@
 					<div class="ow-btnBar">
 						<button class="w3-btn ow-theme-add5 ow-theme-sub3-hvr" aria-label="Fetch all monthly log data" onClick="getMonthlyLogs()">Fetch Monthly Log Data</button>
 					</div>
-					
+
 				</div>
 				<div class="ow-txt-small w3-right-align">Caution: this is a lengthy process<br>if you have lots of data</div>
 
@@ -380,7 +380,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
 			<div class="siteWidth">
 				<div style="display: flex; justify-content: space-between; flex-flow: row wrap;">
@@ -393,7 +393,7 @@
 				</div>
 			</div>
 		</footer>
-		
+
 		<!--	Loading Overley	-->
 
 		<div class="loading-overlay">
@@ -409,9 +409,9 @@
 				<div class="ow-titleBar ow-theme-sub4" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
 					<h4>Update record</h4>
 				</div>
-				
+
 				<div class="w3-center w3-padding">
-					<p>Change <span id="editName" style="border-bottom:2px solid var(--theme);"></span> record <em><span id="editType"></span></em> from</p> 
+					<p>Change <span id="editName" style="border-bottom:2px solid var(--theme);"></span> record <em><span id="editType"></span></em> from</p>
 					<div class="ow-titleBar" style="justify-content: center;">
 						<p><strong><span id="editOldVal" style="font-family: monospace;"></span></strong></p>
 						<i class="fa-solid fa-left-right"></i>

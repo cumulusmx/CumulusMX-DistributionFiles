@@ -3,8 +3,8 @@
 	Page:	AI Configuration
 	File:	ai-config.html			v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	
-	Last Check:	
+	Last Edit:	2023/12/12 23:31:01
+	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -52,19 +52,19 @@
 			}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here (AI only at present)	-->
+				<!--	The menus are inserted here (AI only at present)	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -75,7 +75,7 @@
 			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
 			<div class="siteWidth">
 				<div class="ow-titleBar" style="margin-bottom:2vh;">
-					<h1>AI Configuratuion</h1>
+					<h1>AI Configuration</h1>
 					<p>Use this page to configure the Alternative Interface</p>
 				</div>
 
@@ -89,7 +89,7 @@
 						</div>
 						<div class="ow-btnBar ow-flex-center" style="row-gap: 1vh;">
 							<label for="paddingTop">Gap below banner</label><input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ow-theme-add3" aria-label="Gap below page">
-							<label for="paddingBottom">Gap above footer</label><input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ow-theme-add3" aria-label="Gap beow page">
+							<label for="paddingBottom">Gap above footer</label><input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ow-theme-add3" aria-label="Gap below page">
 							<label>Units to use</label>
 							<select id="unitSelect" class="ow-theme-add3" style="min-height: 1.8em;">
 								<option value="px" selected>Pixels</option>
@@ -111,7 +111,7 @@
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn" style="order:0;">
 						<h4>The Seagull</h4>
 						<p>
-							The seagull at the bottom right of the page can be animated in differnt ways.  By setting to 'No animation' the seagull will 
+							The seagull at the bottom right of the page can be animated in different ways.  By setting to 'No animation' the seagull will
 							just appear in its current position.
 						</p>
 						<div class="ow-titleBar ow-flex-center" style="margin-bottom: 1vh">
@@ -151,13 +151,13 @@
 							<div class="ow-theme-sub5 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub5</div>
 						</div>
 						<p>
-							The same colours are available as text only <span class="ow-codeSpan">ow-theme-xxxx-txt</span>, 
-							as border colours: <span class="ow-codeSpan">ow-theme-xxxx-bdr</span> and as hover colours: 
+							The same colours are available as text only <span class="ow-codeSpan">ow-theme-xxxx-txt</span>,
+							as border colours: <span class="ow-codeSpan">ow-theme-xxxx-bdr</span> and as hover colours:
 							<span class="ow-codeSpan">ow-theme-xxxx-hvr</span>.
 						</p>
 					</div>
-				
-					<div class="ow-card ow-theme-add4" style="" onClick="showConfig();">
+
+					<div class="ow-card ow-theme-add4" onClick="showConfig();">
 						<div class="ow-titleBar" style="margin:1vh 0;">
 							<h4>Changing themes</h4>
 						</div>
@@ -166,12 +166,12 @@
 							<button class="w3-btn ow-theme-add3 ow-theme-hvr" onClick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore default</button>
 						</div>
 						<p>
-							If you cannot store configuration details in your browser, you can still use this page 
-							to configure your AI and then copy the CMXConfig object shown below directly into the 
+							If you cannot store configuration details in your browser, you can still use this page
+							to configure your AI and then copy the CMXConfig object shown below directly into the
 							<span class="ow-codeSpan">page-manager.js</span> file.
 						</p>
 						<p>CMXConfig = <span id="CMXInfo" class=""></span></p>
-					</div>	
+					</div>
 				</div>
 
 			</div>

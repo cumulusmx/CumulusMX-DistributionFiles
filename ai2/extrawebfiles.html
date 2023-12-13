@@ -3,7 +3,7 @@
 	Page:	Extra Webs Files
 	File:	extrawebfiles.html	v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:39:13
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -51,7 +51,7 @@
 		<script src="js/page-manager.js"></script>
 		<script src="js/ai-extra.js"></script>
 		<script src="js/extrawebfiles.js"></script>
-		
+
 		<!--	Local scripts & styles	-->
 		<script>
 			window.onload = function () {
@@ -65,13 +65,13 @@
 		table input[type=text] {background: var(--add4); color: var(--sub5); }
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
@@ -93,9 +93,9 @@
 
 				<div class="ow-one-col ow-theme-add4 ow-card">
 					<p>
-						Note that you can use replacable values in both the source and target file fields 
+						Note that you can use replacable values in both the source and target file fields
 						for Cumulus files that change their name periodically. The allowed values are:
-						<span class="ow-theme-sub2-txt">&lt;currentlogfile&gt; &lt;currentextralogfile&gt; &lt;airlinklogfile&gt; 
+						<span class="ow-theme-sub2-txt">&lt;currentlogfile&gt; &lt;currentextralogfile&gt; &lt;airlinklogfile&gt;
 						&lt;noaayearfile&gt; &lt;noaamonthfile&gt; &lt;custinterval[1-10]&gt;</span>
 					</p>
 					<p>The tagged value will be replaced by the current logs file name.</p>

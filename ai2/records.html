@@ -3,8 +3,8 @@
 	Page:	Records
 	File:	records.html			v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	09/10/2023 08:58
-	Last Check:	
+	Last Edit:	2023/12/12 23:42:25
+	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -27,7 +27,7 @@
 		<!--	jQuery Local	(Use for AI)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-		
+
 		<!--	Data Tables	-->
 		<script src="/lib/datatables/datatables.min.js"></script>
 
@@ -48,14 +48,14 @@
 			.ow-btnBar > button { max-width: 10em;}/*  Stops buttons stretching across all available space */
 			td:nth-of-type(2),th:nth-of-type(2) {
 				border-right: thin solid var(--theme); /*	Adds a border between reading and date	*/
-			} 
+			}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -63,7 +63,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -103,7 +103,7 @@
 							<h3>Temperatures</h3>
 							<i class="fa-solid fa-temperature-half"></i>
 						</div>
-						<table id="temperature" class="w3-table w3-hoverable" style="">
+						<table id="temperature" class="w3-table w3-hoverable">
 							<thead>
 								<tr>
 									<th></th>
@@ -118,7 +118,7 @@
 							<h3>Rainfall</h3>
 							<i class="fa-solid fa-droplet" style="color: #0061ff;"></i>
 						</div>
-						<table id="rain" class="w3-table w3-hoverable" style="">
+						<table id="rain" class="w3-table w3-hoverable">
 							<thead>
 								<tr>
 									<th></th>
@@ -148,7 +148,7 @@
 							<h3>Humidity</h3>
 							<i class="fa-solid fa-cloud-rain" style="color: #0061ff;"></i>
 						</div>
-						<table id="humidity" class="w3-table w3-hoverable" style="">
+						<table id="humidity" class="w3-table w3-hoverable">
 							<thead>
 								<tr>
 									<th></th>

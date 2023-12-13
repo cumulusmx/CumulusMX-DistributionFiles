@@ -5,7 +5,7 @@
 	Note:
 		This is a new file name
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	09/10/2023 08:58
+	Last Edit:	2023/12/12 23:42:51
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -29,7 +29,7 @@
 		<!--	jQuery Local	(Use for AI)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-			
+
 		<!-- datepicker -->
 		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
 		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
@@ -61,11 +61,11 @@
 			}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -73,7 +73,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -107,9 +107,9 @@
 							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
 						</div>
 						<div class="w3-row ow-tableRow">
-							<p class="w3-col s4" style="">High Temperature</p>
-							<p class="w3-col s2" style=""><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-							<p class="w3-rest w3-right-align" style=""><span id="highTempTimeDayfile" class=""></span></p>
+							<p class="w3-col s4">High Temperature</p>
+							<p class="w3-col s2"><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highTempTimeDayfile" class=""></span></p>
 						</div>
 						<div class="w3-row ow-tableRow">
 							<p class="w3-col s4">Low Temperature</p>
@@ -180,7 +180,7 @@
 							<p class="w3-col s4">Low daily temp range</p>
 							<p class="w3-col s2"><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 							<p class="w3-rest w3-right-align"><span id="lowDailyTempRangeTimeDayfile"></span></p>
-						</div>						
+						</div>
 					</div>
 					<div class="ow-card ow-theme-add4" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
@@ -227,7 +227,7 @@
 							<p class="w3-col s2"><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
 							<p class="w3-rest w3-right-align" id="longestWetPeriodTimeDayfile">-</p>
 						</div>
-						
+
 					</div>
 					<div class="ow-card ow-theme-add4" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">

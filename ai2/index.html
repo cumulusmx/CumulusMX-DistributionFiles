@@ -3,7 +3,7 @@
 	Page:	Dashboard
 	File:	index.html				v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:15
+	Last Edit:	2023/12/13 11:03:49
 	Last Check: 14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -56,11 +56,11 @@
 			}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<h5 class="w3-align-right" style="">
+				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude: <span data-cmxData="Altitude">xxm</span>
@@ -68,7 +68,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 				<!--	Alarms Panel	-->
-				<div id="AlarmsPanel" class="ow-container ow-animate-drop" style="">
+				<div id="AlarmsPanel" class="ow-container ow-animate-drop">
 					<h4>Alarms</h4>
 					<div id="alarms" class="ow-sixCol" style="row-gap: 0; margin-bottom: 1vh;">
 					</div>
@@ -98,15 +98,15 @@
 				<div id="DavisPanel" class="ow-container ow-animate-drop">
 					<h4>Davis Weather Station Status</h4>
 					<div class="ow-fiveCol" style="row-gap:0; margin-bottom:1vh;">
-						<div>Packets Received: <span id="DavisPacketsReceived" style="">not known</span></div>
-						<div>Packets Missed: <span id="DavisPacketsMissed" style="">not known</span></div>
-						<div>Failure Rate: <span id="DavisSuccess" style="">not known</span></div>
-						<div>Packet streak: <span id="DavisMaxInARow" style="">not known</span></div>
-						<div>CRC Errors: <span id="DavisCRCErrors" style="">not known</span></div>
-						<div>Consol Battery: <span id="ConsolBattery" style="">not known</span></div>
-						<div>ISS Battery: <span id="DavisTXBattery0" style="">not known</span></div>
+						<div>Packets Received: <span id="DavisPacketsReceived">not known</span></div>
+						<div>Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
+						<div>Failure Rate: <span id="DavisSuccess">not known</span></div>
+						<div>Packet streak: <span id="DavisMaxInARow">not known</span></div>
+						<div>CRC Errors: <span id="DavisCRCErrors">not known</span></div>
+						<div>Consol Battery: <span id="ConsolBattery">not known</span></div>
+						<div>ISS Battery: <span id="DavisTXBattery0">not known</span></div>
 						<!--	Add extra battery data up to 7
-						<div>Transmitter 2: <span data-OWdata="ConsolBattery1" id="DavisTXBattery1" style=""></span></div>-->
+						<div>Transmitter 2: <span data-OWdata="ConsolBattery1" id="DavisTXBattery1"></span></div>-->
 					</div>
 				</div>
 				<!--	CMX Content	-->
@@ -114,7 +114,7 @@
 					<h3>Weather Overview</h3>
 					<p>Date: <span data-OWData="Date"></span></p>
 				</div>
-				<div class="ow-fourCol" style="">
+				<div class="ow-fourCol">
 					<div class="ow-card ow-theme-add4" style="order:1;">
 						<!--	Outdoor Temperature	-->
 						<div class="ow-titleBar" style="justify-content: center">
@@ -161,7 +161,7 @@
 							<h3>Local Time</h3>
 						</div>
 						<div class="w3-center">
-							<h3><span class="digiclock" style="">--:--:--</span></h3>
+							<h3><span class="digiclock">--:--:--</span></h3>
 							<h5>Last Cumulus update<br>
 							<span id="lastupdatetime" class="w3-large">xx:yy:zz</span><img id="LastUpdateIcon" src="img/green.png" class="ow-icon-small" alt="green"></h5>
 							<h5>Last station update<br>

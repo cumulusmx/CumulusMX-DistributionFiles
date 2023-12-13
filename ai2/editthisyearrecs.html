@@ -4,7 +4,7 @@
 	File:	editalltimerecs.html		v2.0.2
 	Note:	This is new filename
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	13/11/2023 14:31
+	Last Edit:	2023/12/12 23:37:09
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -66,13 +66,13 @@
 			.ow-fontFix:hover{ color: var(--sub3)!important;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
@@ -93,7 +93,7 @@
 					<div class="ow-btnBar">
 						<button class="w3-btn ow-theme-add5 ow-theme-sub3-hvr" aria-label="Fetch all monthly log data" onClick="getMonthlyLogs()">Fetch Monthly Log Data</button>
 					</div>
-					
+
 				</div>
 				<div class="ow-txt-small w3-right-align">Caution: this can be lengthy process<br>towards the end of the year</div>
 
@@ -394,8 +394,8 @@
 				</div>
 			</div>
 		</footer>
-		
-		<!--	Loaading Overley	-->
+
+		<!--	Loading Overley	-->
 		<div class="loading-overlay">
 			<div class="loading-overlay-image-container w3-center ow-card ow-theme" style="border-radius: 1em; padding: 2vh 1vw;">
 				<img src="img/CMX-Interface-Logo.png" class="w3-image ow-logo" alt="CumulusMX Logo" style="width:250px;">
@@ -409,16 +409,16 @@
 				<div class="ow-titleBar ow-theme-sub4" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
 					<h4>Update record</h4>
 				</div>
-				
+
 				<div class="w3-center w3-padding">
 					<p>Change <span id="editName" style="border-bottom:2px solid var(--theme);"></span> record <em><span id="editType"></span></em> from</p>
 					<div class="ow-titleBar" style="justify-content:center;">
-						<span id="editOldVal" style="font-family: monospace;"></span> - 
+						<span id="editOldVal" style="font-family: monospace;"></span> -
 						<span id="editOldTime" style="font-family: monospace;"></span>
 					</div>
 					<p>to</p>
 					<div class="ow-titleBar" style="justify-content:center;">
-						<span id="editNewVal" style="font-family: monospace;"></span> - 
+						<span id="editNewVal" style="font-family: monospace;"></span> -
 						<span id="editNewTime" style="font-family: monospace;"></span>
 					</div>
 					<div class="ow-btnBar" style="margin: 1vh 0;">

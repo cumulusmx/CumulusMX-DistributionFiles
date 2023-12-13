@@ -4,7 +4,7 @@
 	File:	confighttpfiles.html	v2.0.2
 	Note:	This is new filename
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:32:17
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -28,7 +28,7 @@
 		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
-		
+
 		<!--	Bootstrap Local	-->
 	    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -69,19 +69,19 @@
 		td:nth-of-type(8), th:nth-of-type(8) { max-width: 4em;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -106,7 +106,7 @@
 						</p>
 						<p>
 							<b>Download Interval:</b> This a multiple of your web interval, or at the End of Day rollover<br>
-							For example, if your web interval is 5 minutes and you select "x12", then the download will occcur once an hour.
+							For example, if your web interval is 5 minutes and you select "x12", then the download will occur once an hour.
 						</p>
 						<p>
 							<b>Upload Enabled:</b> This controls if the file is just downloaded to the local file system, or it is then uploaded to your web site.

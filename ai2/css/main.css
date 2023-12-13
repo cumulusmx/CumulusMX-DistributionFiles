@@ -6,11 +6,11 @@
  *	&				CMX Default website		v3.0.0
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *	Author:		DNC Thomas
- *	Last edit:	03/10/2023 13:06
+ *	Last edit:	2023/12/12 23:20:13
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*	Variables
- * 	Generally you chould only change values here to affect the whole site	*/
+ * 	Generally you should only change values here to affect the whole site	*/
 
 html {
 	--siteWidth: 1200;
@@ -44,6 +44,10 @@ h4 { font-size: calc( 16px + 3 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 h5 { font-size: calc( 14px + 2 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))); }
 
 h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))); }
+
+.hidden {
+	display: none;
+}
 
 .siteWidth {
 	max-width: calc( var(--siteWidth) * 1px);
@@ -140,9 +144,9 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 	margin: 0 0.5em;
 }
 
-.TempUnit, 
-.PressUnit, 
-.WindUnit, 
+.TempUnit,
+.PressUnit,
+.WindUnit,
 .RainUnit {
 	padding: 0.5em 0;
 }
@@ -151,7 +155,7 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 	cursor: pointer;
 }
 
-/*	Psudo Tables	*/
+/*	Pseudo Tables	*/
 .ow-tableRow {
 	border-bottom: thin solid var(--add5);
 }
@@ -202,7 +206,7 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 
 .ow-btnBar {
 	display: flex;
-	justify-content: space-between; 
+	justify-content: space-between;
 	flex-flow: wrap;
 	gap: var(--rowGap) var(--rowGap);
 }
@@ -312,7 +316,7 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 @media only screen and (max-width: 412px) {
 	.ow-fiveCol > div { min-width: 100%!important;}
 }
-/*	MENUES	*/
+/*	MENUS	*/
 .ow-menu {
 	font-family: 'Red Rose', Inter, serif;
 }
@@ -486,17 +490,17 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 }
 
 /*	w3Pro Over-rides	*/
-.w3-btn { 
-	padding: 5px 14px; 
+.w3-btn {
+	padding: 5px 14px;
 }
-.w3-btn:hover { 
-	box-shadow: 0 4px 8px 0 rgba(128, 128, 128, 0.2), 0 4px 8px 0 rgba(0,0,0,0.19); 
+.w3-btn:hover {
+	box-shadow: 0 4px 8px 0 rgba(128, 128, 128, 0.2), 0 4px 8px 0 rgba(0,0,0,0.19);
 }
-.w3-bar-item { 
+.w3-bar-item {
 	padding: 5px 14px!important;
 }
-.w3-dropdown-content { 
-	border-radius: 0 0 1vh 1vh; 
+.w3-dropdown-content {
+	border-radius: 0 0 1vh 1vh;
 	border-top: 5px solid var(--sub5);
 	/*min-width: 98vw!important;*/
 }
@@ -506,8 +510,8 @@ h6 { font-size: calc( 13px + 1 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))
 		min-width: 98vw!important;
 	}
 }
-.w3-dropdown-content > a { 
-	margin: 0.3vh 0.3vw 0.3vh 0; 
+.w3-dropdown-content > a {
+	margin: 0.3vh 0.3vw 0.3vh 0;
 }
 
 /*	Buttons	*/

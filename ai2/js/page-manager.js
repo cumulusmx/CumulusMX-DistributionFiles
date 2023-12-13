@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	page-manager.js		v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	17/09/2023 12:06
+ * 	Last Edit:	2023/12/13 11:06:49
  * 	Role:
  * 		Provide all utility js scripts
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -28,7 +28,7 @@ $( window).on('resize', function() {
 let toggleMobileMenu = function() {
 	$('#menuMobile').toggleClass('w3-show', 'w3-hide');
 	$('#Main_Menu_Mobile').toggleClass('w3-show', 'w3-hide');
-	
+
 }
 
 let toggleMenu = function( menu ) {
@@ -53,6 +53,8 @@ let checkTheme = function() {
 		console.log('Theme change to: ' + CMXConfig.Theme );
 		$('#theme').attr('href', 'themes/' + CMXConfig.Theme + '.css')
 	}
+
+	$('body').removeClass('hidden');
 };
 
 //checkTheme();

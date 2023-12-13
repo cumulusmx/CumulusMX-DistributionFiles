@@ -3,7 +3,7 @@
 	Page:	Alarm Settings
 	File:	alarmsettings.html		v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	04/10/2023 15:14
+	Last Edit:	2023/12/12 23:47:13
 	Last Check:	04/10/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -48,15 +48,15 @@
 			td:nth-of-type(2)	{ width: 14em; text-align:left;}
 			input[type=number] { max-width:5em; padding: 0 0 0 8px;margin:0;}
 			#alarms input[type=text] { padding: 1px 8px; max-width: 10em; }
-			
+
 			td:nth-of-type(5),
 			td:nth-of-type(8),
 			td:nth-of-type(9),
 			td:nth-of-type(10),
 			td:nth-of-type(11) { border-right: thin solid var(--theme);}
-			
+
 			input[type=checkbox]{ margin: 0 1em;}
-			
+
 /*
 			#Alarms td:nth-of-type(1),
 			#Alarms td:nth-of-type(5),
@@ -73,19 +73,19 @@
 			input { font-size: 90%;}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr" style="">
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right" style="">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span> 
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span> 
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
 				</h5>
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<!--	The menues are inserted here	-->
+				<!--	The menus are inserted here	-->
 				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
 				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
@@ -102,7 +102,7 @@
 
 				<div class="ow-oneCol" style="row-gap: 2vh;">
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn">
-				
+
 						<table id="alarms" class="w3-hoverable w3-striped" cellspacing="0" role="grid">
 							<thead>
 								<tr>
@@ -424,16 +424,16 @@
 					</tbody>
 				</table>
 					</div>
-					
+
 					<div class="ow-card ow-theme-add4 ow-animate-drop">
 						<div class="ow-titleBar" style="margin:1vh 0;">
 							<h4>Email Settings</h4>
 						</div>
 						<div class="ow-titleBar ow-flex-center">
 							<span style="flex-grow:0;" aria-hidden>From email address:</span>
-							<input id="fromEmail" style="min-width:20em;Zmax-width: 40em; flex-grow:1" aria-label="From email address">
+							<input id="fromEmail" style="min-width: 20em; max-width: 40em; flex-grow:1" aria-label="From email address">
 							<span style="flex-grow:0;" aria-hidden>To email address(es):</span>
-							<input id="destEmail" style="min-width:20em;Zmax-width: 40em; flex-grow:1;"  aria-label="To email address or addresses. Separate multiple email addresses with a semicolon">
+							<input id="destEmail" style="min-width: 20em; max-width: 40em; flex-grow:1;"  aria-label="To email address or addresses. Separate multiple email addresses with a semicolon">
 						</div>
 						 <span aria-hidden>Separate multiple email addresses with a semicolon ";". Eg: joe@somewhere.com; jane@here.net</span>
 						 <div class="ow-titleBar ow-flex-top" style="margin: 1vh 0; ">
