@@ -24,9 +24,9 @@ If you want to have different shapes then this can be done by using some decisio
 
 Current Readings
 ~~~~~~~~~~~~~~~~
-As well as Font Awsome icons, Outdoor Temperature and Pressure show an indicatior for rising, falling or static; Rainfall Rate also shows an indicator for the severity of the rate: one, two or three raindrops.  If it is not raining the image is a raindrop with a green cross.
+As well as Font Awesome icons, Outdoor Temperature and Pressure show an indicator for rising, falling or static; Rainfall Rate also shows an indicator for the severity of the rate: one, two or three raindrops.  If it is not raining the image is a raindrop with a green cross.
 
-Also included on this page is a green icon if the readings are still being recieved.
+Also included on this page is a green icon if the readings are still being received.
 
 Gauges
 ~~~~~~
@@ -34,7 +34,7 @@ The gauges page includes the forcast scroller used on the default public website
 
 Charts
 ~~~~~~
-You can change the placement of the buttons, the chart and the information text simply by adding a style 'order:x' to lines 92, 114 and 116.  Replace 'x' with a number and the separate elemenets will appear in numeric order.  This has already been done on the Select-a-Chart & Select-a-Period page.  You can use the same principle for all the buttons: just add an order number style.  You can also just add a max-width style to the buttons to limit the size they grow to if you want.
+You can change the placement of the buttons, the chart and the information text simply by adding a style 'order:x' to lines 92, 114 and 116.  Replace 'x' with a number and the separate elements will appear in numeric order.  This has already been done on the Select-a-Chart & Select-a-Period page.  You can use the same principle for all the buttons: just add an order number style.  You can also just add a max-width style to the buttons to limit the size they grow to if you want.
 
 The Historic charts page display yesterdays date as the most recent date for data to be available.
 
@@ -48,7 +48,7 @@ The first time you load the Monthly Records Editor it will load the month you fi
 
 If your station is new and you don't have records for all months, the missing months buttons will be removed.  If you don't want this, you can edit the records.js file and remove the function beginning at line 101.
 
-If you want the bottons in a differnt order, e.g., you want the 'All-time', 'This Month' & 'This Year' buttons together give them the style: 'order:-1' to put them at the start or 'order:1' to put them at the end.
+If you want the bottons in a different order, e.g., you want the 'All-time', 'This Month' & 'This Year' buttons together give them the style: 'order:-1' to put them at the start or 'order:1' to put them at the end.
 
 Extra Sensors & Airlink Sensors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,6 +78,6 @@ ow-animate-drop		- This expands down over 1 second
 ow-animate-fadeIn	- This fades the element in over 2 seconds
 The timings can be adjusted in the css file lines 347 & 358 but be aware that the drop animation is used for the menus so changes will affect them as well.  By all means add more and experiment if you want.
 
-FontAwsome
-~~~~~~~~~~
-You now have access to FontAwsome icons (free) throughout the site.  To use, visit the FontAwsome website to find the available icons.  This site enables you to copy the html code needed for the selected icon.  Just paste this wherever you want.  Please note you only have access to the FREE icons unless you purchase a license.
+Font Awesome
+~~~~~~~~~~~~
+You now have access to Font Awesome icons (free) throughout the site.  To use, visit the Font Awesome website to find the available icons.  This site enables you to copy the html code needed for the selected icon.  Just paste this wherever you want.  Please note you only have access to the FREE icons unless you purchase a license.
