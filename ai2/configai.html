@@ -3,7 +3,7 @@
 	Page:	AI Configuration
 	File:	ai-config.html			v2.0.2
 	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/12 23:31:01
+	Last Edit:	2023/12/13 17:17:42
 	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -39,8 +39,6 @@
 		<script src="js/AI_Manager.js"></script>
 
 		<!--	Local scripts & styles	-->
-		<script>
-		</script>
 		<style>
 			input[type=checkbox] { margin-top: -0.5em;}
 			input[type=number] { max-width: 8em; padding: 0 0 0 0.5em;}
@@ -103,7 +101,9 @@
 						<h4>Theme</h4>
 						<p>This version of the AI comes with 28 built-in themes.  Use the dropdown to select; this page will instantly change to show your choice.</p>
 						<div class="ow-titleBar ow-flex-center" style="margin-bottom: 1vh;">
-							<label>Chosen theme</label><span id="ThemeSelector" style="flex-grow:1;">Selector</span>
+							<label>Chosen theme</label>
+							<span id="ThemeSelector" style="flex-grow:1;"></span>
+							<select id="ThemeList" class="w3-select ow-theme-add3" style="flex-grow:1;"></select>
 						</div>
 
 						<p class="">This facility only works on browsers that support 'local storage'.  If you are using an old browser to view your Interface then please consider updating if possible.</p>

@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	AI-Manager.js		v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	
+ * 	Last Edit:	2023/12/13 17:32:27
  * 	Role:	Utility for the ai-config page:
  * 	a)	Enable the theme to be changed dynamically
  * 	b)	To select Dark mode for the theme
@@ -10,26 +10,25 @@
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 //	Configure 'thems' for drop down
-let ThemeNames = ["Arcadia",		"Arcadia-Dark", 	"Cherry Tomato",	"Cherry Tomato Dark", 
+let ThemeNames = ["Arcadia",		"Arcadia-Dark", 	"Cherry Tomato",	"Cherry Tomato Dark",
 				  "Chili Oil",		"Chili Oil Dark",	"Crocus Petal",		"Crocus Petal Dark",
 				  "Cylon Yellow",	"Cylon Yellow Dark","Emporador",	"Emporador Dark",
-				  "Grey",   		"Dark Grey",		"Lime Punch",		"Lime Punch Dark", 
+				  "Grey",   		"Dark Grey",		"Lime Punch",		"Lime Punch Dark",
 				  "Marsala",		"Marsala Dark",     "Martini Olive",	"Martini Olive Dark",
-				  "Meerkat",		"MeerKat Dark",     "Nebulas Blue",		"Nebulas Blue Dark", 
+				  "Meerkat",		"MeerKat Dark",     "Nebulas Blue",		"Nebulas Blue Dark",
 				  "Red Pear",		"Red Pear Dark",	"Russet Orange",	"Russet Orange Dark",
-				  "Spring Crocus",	"Spring Crocus Dark",	"Valiant Poppy","Violant Poppy Dark"];
+				  "Spring Crocus",	"Spring Crocus Dark",	"Valiant Poppy","Valiant Poppy Dark"];
 
 
 $( function () {
 	if( typeof( Storage ) == 'undefined' ) {
 		console.log( 'Local storage unavailable.' );
-		$('#ThemeSelector').html("Your broswer won't allow on-line theme selection!");
+		$('#ThemeSelector').html("Your browser won't allow on-line theme selection!");
 	} else {
-		if( $('#ThemeSelector').length ) {
-			setupTheme( CMXConfig.Theme );
-			setUpUnits( CMXConfig.Units );
-			setUpAnimation( CMXConfig.Seagull.Animation )
-		}
+		$('#ThemeSelector').remove();
+		setupTheme( CMXConfig.Theme );
+		setUpUnits( CMXConfig.Units );
+		setUpAnimation( CMXConfig.Seagull.Animation )
 	}
 	displayCurrent();
 //	$('input[type=radio]').bind('change', function() {
@@ -64,7 +63,7 @@ let displayCurrent = function() {
 		configPage();
 	});
 	$('#animationSpeed').prop('value', parseInt(CMXConfig.Seagull.Duration));
-	$('#animationSpeed').on('blur', function(){ 
+	$('#animationSpeed').on('blur', function(){
 		CMXConfig.Seagull.Duration = $('#animationSpeed').prop('value');
 		console.log('Animation speed: ' + CMXConfig.Seagull.Duration);
 	});
@@ -79,15 +78,15 @@ let displayCurrent = function() {
 let setupTheme = function( activeTheme ) {
 	//	Set up option lists of available themes
 	var theme, fileName;
-	var selector = '<select id="ThemeList" class="w3-select ow-theme-add3 ow-theme-hvr">\n';
-	for (theme = 0; theme < ThemeNames.length; theme++ ) { 
+	var selector = $('#ThemeList');
+
+	for (theme = 0; theme < ThemeNames.length; theme++ ) {
 		fileName = ThemeNames[theme].replaceAll(" ","-");
-		selector += '<option value="' + fileName + '" ' + ( activeTheme == fileName  ? "selected" : "" ) + '>' + ThemeNames[theme] + '</option>\n';
+		var option = '<option value="' + fileName + '" ' + ( activeTheme == fileName  ? "selected" : "" ) + '>' + ThemeNames[theme] + '</option>';
+		selector.append(option);
 	}
-	selector += "</option>\n";
-	$('#ThemeSelector').html( selector );
-	//console.log("Selector: " + selector );
-	$('#ThemeList').on('change', function() {
+
+	selector.on('change', function() {
 		CMXConfig.Theme = $('#ThemeList').prop('value');
 		checkTheme();
 	});
@@ -137,7 +136,7 @@ var setScheme = function(destination) {
 	var code = JSON.stringify( newConfig);
 	if( destination == 'store' ) {
 		localStorage.setItem( 'CMXai2.1', code );
-		
+
 	}
 	if( typeof( Storage ) !== "undefined" ) {
 		console.log('Storing');
@@ -146,10 +145,10 @@ var setScheme = function(destination) {
 
 		alert( "The current configuration is now stored for all pages" );
 		$('#CMXInfo').html(JSON.stringify(CMXConfig).replaceAll(',',', '));
-	} 
+	}
 }
 
 function showConfig() {
-	
+
 	$('#CMXInfo').html(JSON.stringify(CMXConfig).replaceAll(',',', '));
 }
