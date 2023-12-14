@@ -1,4 +1,4 @@
-// Last modified: 2021/07/21 22:16:57
+// Last modified: 2023/12/14 11:49:24
 
 let accessMode;
 
@@ -71,30 +71,30 @@ function addButtons() {
 		if (span.length === 0)
 			return;
 
-			let butt = $('<button type="button" data-toggle="collapse" data-target="' +
-			$(span).attr('data-target') +
-			'" role="treeitem" aria-expanded="false" class="collapsed">' +
-			$(span).text() +
-			'</button>');
+		let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
+			'" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
+            $(span).text() +'</button>');
 		$(span).remove();
+        $(this).addClass('ow-btnBar');
 		$(this).prepend(butt);
 	});
 }
 
 function removeButtons() {
-	$('form legend').each(function () {
-		let butt = $('button:first',this);
-		if (butt.length === 0)
-			return;
+    $('form legend').each(function () {
+        let butt = $('button:first',this);
+        if (butt.length === 0)
+            return;
 
-			let span = $('<span data-toggle="collapse" data-target="' +
-			$(butt).attr('data-target') +
-			'" role="treeitem" aria-expanded="false" class="collapsed">' +
-			$(butt).text() +
-			'</span>');
-		$(butt).remove();
-		$(this).prepend(span);
-	});
+        let span = $('<span data-toggle="collapse" data-target="' +
+            $(butt).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(butt).text() +
+            '</span>');
+        $(butt).remove();
+        $(this).removeClass('ow-btnBar');
+        $(this).prepend(span);
+    });
 }
 
 function setCollapsed() {
@@ -112,11 +112,13 @@ function setCollapsed() {
 }
 
 function getCSSRule(search) {
-	for (let x = 1; x < document.styleSheets.length; x++) {
-		let rules = document.styleSheets[x].rules || document.styleSheets[x].cssRules;
-		for (let i = 0; i < rules.length; i++) {
-			if (rules[i].selectorText && rules[i].selectorText.lastIndexOf(search) === 0  && search.length === rules[i].selectorText.length) {
-				return rules[i];
+	for (let sheet of document.styleSheets) {
+		if (sheet.href == null) {
+			let rules = sheet.cssRules || sheet.rules;
+			for (let rule of rules) {
+				if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+					return rule;
+				}
 			}
 		}
 	}
