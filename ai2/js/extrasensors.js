@@ -1,11 +1,10 @@
 /*	--------------------------------------------------
  *	Script:	    extrasensors.js
  *	Author:	    Neil Thomas
- *  Last Edit:  
  *  Based on:   /js/extrasensors.js
  *          By: Mark Crossley
- *      Edited: 2023/03/09 10:35:27
- * -------------------------------------------------
+ *  Last Edit:  2023/12/14 16:48:50
+# * -------------------------------------------------
  * Changelog (NT)
  * 	Removed api call for version data - now in Page-Manager.js
  * 	Altered all API calls to use host root
@@ -23,17 +22,13 @@ $.extend( $.fn.dataTable.defaults, {
     columnDefs: [
         {className: "left", targets: [0,2]},
         {className: "right", targets: [1]}
-    ]
+    ],
+    bAutoWidth: false
 } );
 
 $(document).ready(function () {
     var emptyTable = "No sensors enabled. Enable in: Settings|Display&nbsp;Options|Graphs|Data Visibility";
-/*
-    $.ajax({url: "/api/settings/version.json", dataType:"json", success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
-*/
+
     var tempTable = $('#TempTable').DataTable({
         ajax: '/api/extra/temp.json'
     });
