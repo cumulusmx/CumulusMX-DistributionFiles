@@ -1,4 +1,10 @@
-// Last modified: 2021/05/16 20:55:18
+// Last modified: 2023/12/14 17:29:32
+
+// set dataTbales defaults
+$.extend($.fn.dataTable.defaults, {
+    bAutoWidth: false
+});
+
 
 $(document).ready(function () {
 	var tempTable=$('#temperature').dataTable({
@@ -99,7 +105,7 @@ $(document).ready(function () {
 var period = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
 
 $(document).ready( function() {
-	
+
 	var dateNow = new Date();
 	var dataReq = '{"startDate":"<#recordsbegandate>"}';
 	$.ajax({
