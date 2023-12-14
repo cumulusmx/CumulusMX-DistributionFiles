@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	page-manager.js		v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	2023/12/13 11:06:49
+ * 	Last Edit:	2023/12/14 16:41:19
  * 	Role:
  * 		Provide all utility js scripts
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -53,8 +53,10 @@ let checkTheme = function() {
 		console.log('Theme change to: ' + CMXConfig.Theme );
 		$('#theme').attr('href', 'themes/' + CMXConfig.Theme + '.css')
 	}
-
-	$('body').removeClass('hidden');
+	// yield to allow page redraw
+	setTimeout(function () {
+		$('body').removeClass('hidden');
+	}, 5);
 };
 
 //checkTheme();
