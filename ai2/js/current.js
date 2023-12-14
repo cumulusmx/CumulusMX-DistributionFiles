@@ -1,8 +1,10 @@
-// Last modified: 2023/07/22 18:00:21
-//04/10/2023 17:41
+// Last modified: 2023/12/14 17:17:29
+//
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
+let debug = false;
+
 
 var cp = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 // End of configuration section
@@ -48,7 +50,9 @@ $(document).ready(function () {
 		let data = JSON.parse(evt.data);
 
 		updateDisplay(data);
-		showData( data );
+		if (debug) {
+			showData(data);
+		}
 	}
 
 	function formatTime() {
@@ -69,14 +73,14 @@ $(document).ready(function () {
 		}
 		return tim;
 	}
-	
+
 	//	Done by Neil
 	function formatDateTime( aTime ) {
 		var d = new Date( aTime );
 		var tim;
 		tim = ('' + d.getHours()).padStart(2,'0') + ':' + ('' + d.getMinutes()).padStart(2,'0') + ' on ';
 		tim += d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear();
-		
+
 		return tim;
 	}
 
@@ -85,13 +89,17 @@ $(document).ready(function () {
 		window.clearTimeout(lastUpdateTimer);
 		lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
-		$('#LastUpdateIcon').attr('src', 'img/green.png');
+		if ($('#LastUpdateIcon').attr('src') != 'img/green.png') {
+			$('#LastUpdateIcon').attr('src', 'img/green.png');
+		}
 
 		let dataStopped = data.DataStopped;
 
 		if (dataStopped) {
-			$('#DataStoppedIcon').attr('src', 'img/red.png');
-		} else {
+			if ($('#DataStoppedIcon').attr('src') != 'img/red.png') {
+				$('#DataStoppedIcon').attr('src', 'img/red.png');
+			}
+		} else if ($('#DataStoppedIcon').attr('src') != 'img/green.png') {
 			$('#DataStoppedIcon').attr('src', 'img/green.png');
 		}
 
@@ -99,13 +107,12 @@ $(document).ready(function () {
 		// the element with the same id to the value
 		Object.keys(data).forEach(function (key) {
 			let id = '#' + key;
- 
- 
+
 			if (key.indexOf('Alarm') == -1) {
 				if ($(id).length) {
 					$(id).text(data[key]);
 				}
-			}            
+			}
 		});
 
 		$('.WindUnit').text(data.WindUnit);
@@ -115,35 +122,35 @@ $(document).ready(function () {
 		$('.WindRunUnit').text( data.WindUnit.slice(0, -2) );
 
 		//Modified by Neil
-		var tmpTrend = data.TempTrend.replace(',','.');
-		if (tmpTrend === 0 ) {
+		var tmpTrend = Number(data.TempTrend.replace(',','.'));
+		if (tmpTrend === 0 && $('#TempTrendImg').attr('src') != 'img/steady.png') {
 			$('#TempTrendImg').attr('src', 'img/steady.png');
-		} else if (tmpTrend > 0 ) {
+		} else if (tmpTrend > 0  && $('#TempTrendImg').attr('src') != 'img/up.png') {
 			$('#TempTrendImg').attr('src', 'img/up.png');
-		} else {
+		} else if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
 			$('#TempTrendImg').attr('src', 'img/down.png');
 		}
 
-		tmpTrend = data.PressTrend.replace(',','.');
-		if ( tmpTrend == 0) {
+		tmpTrend = Number(data.PressTrend.replace(',','.'));
+		if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/steady.png') {
 			$('#PressTrendImg').attr('src', 'img/steady.png');
-		} else if ( tmpTrend > 0) {
+		} else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
 			$('#PressTrendImg').attr('src', 'img/up.png');
-		} else {
+		} else if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
 			$('#PressTrendImg').attr('src', 'img/down.png');
 		}
 
 		//	Added by Neil
-		var curRainRate = data.RainRate.replace(',','.');
+		var curRainRate = Number(data.RainRate.replace(',','.'));
 		if (curRainRate > 0) {
-			if( curRainRate < 5 ) {
+			if (curRainRate < 5 && $('#RainRateImg').attr('src') != 'img/rain1.png') {
 				$('#RainRateImg').attr('src', 'img/rain1.png');
-			} else if ( curRainRate < 10) {
+			} else if (curRainRate < 10 && $('#RainRateImg').attr('src') != 'img/rain2.png') {
 				$('#RainRateImg').attr('src', 'img/rain2.png');
-			} else {
+			} else if (curRainRate >= 10 && $('#RainRateImg').attr('src') != 'img/rain3.png') {
 				$('#RainRateImg').attr('src', 'img/rain3.png');
 			}
-		}  else {
+		}  else if ($('#RainRateImg').attr('src') != 'img/rain0.png') {
 			$('#RainRateImg').attr('src', 'img/rain0.png');
 		}
 

@@ -1,4 +1,4 @@
-// Last modified: 2023/12/03 15:29:32
+// Last modified: 2023/12/14 17:24:31
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -99,7 +99,6 @@ $(document).ready(function () {
 
     function onMessage(evt) {
         let data = JSON.parse(evt.data);
-
         updateDisplay(data);
     }
 
@@ -127,12 +126,16 @@ $(document).ready(function () {
         window.clearTimeout(lastUpdateTimer);
         lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
-        $('#LastUpdateIcon').attr('src', 'img/green.png');
+        if ($('#LastUpdateIcon').attr('src') != 'img/green.png') {
+            $('#LastUpdateIcon').attr('src', 'img/green.png');
+        }
 
 
         if (data.DataStopped) {
-            $('#DataStoppedIcon').attr('src', 'img/red.png');
-        } else {
+            if ($('#DataStoppedIcon').attr('src') != 'img/red.png') {
+                $('#DataStoppedIcon').attr('src', 'img/red.png');
+            }
+        } else if ($('#DataStoppedIcon').attr('src') != 'img/green.png'){
             $('#DataStoppedIcon').attr('src', 'img/green.png');
         }
 
@@ -199,35 +202,35 @@ $(document).ready(function () {
         $('.RainUnit').text(data.RainUnit);
 
 		//Modified by Neil
-		var tmpTrend = data.TempTrend.replace(',','.');
-		if (tmpTrend === 0 ) {
+		var tmpTrend = Number(data.TempTrend.replace(',','.'));
+		if (tmpTrend === 0 && $('#TempTrendImg').attr('src') != 'img/steady.png') {
 			$('#TempTrendImg').attr('src', 'img/steady.png');
-		} else if (tmpTrend > 0 ) {
+		} else if (tmpTrend > 0 && $('#TempTrendImg').attr('src') != 'img/up.png') {
 			$('#TempTrendImg').attr('src', 'img/up.png');
-		} else {
+		} else if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
 			$('#TempTrendImg').attr('src', 'img/down.png');
 		}
 
-		tmpTrend = data.PressTrend.replace(',','.');
-		if ( tmpTrend == 0) {
+		tmpTrend = Number(data.PressTrend.replace(',','.'));
+		if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/steady.png') {
 			$('#PressTrendImg').attr('src', 'img/steady.png');
-		} else if ( tmpTrend > 0) {
+		} else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
 			$('#PressTrendImg').attr('src', 'img/up.png');
-		} else {
+		} else if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
 			$('#PressTrendImg').attr('src', 'img/down.png');
 		}
 
 		//	Added by Neil
-		var curRainRate = data.RainRate.replace(',','.');
+		var curRainRate = Number(data.RainRate.replace(',','.'));
 		if (curRainRate > 0) {
-			if( curRainRate < 5 ) {
+			if (curRainRate < 5 && $('#RainRateImg').attr('src') != 'img/rain1.png') {
 				$('#RainRateImg').attr('src', 'img/rain1.png');
-			} else if ( curRainRate < 10) {
+			} else if (curRainRate < 10 && $('#RainRateImg').attr('src') != 'img/rain2.png') {
 				$('#RainRateImg').attr('src', 'img/rain2.png');
-			} else {
+			} else if (curRainRate >= 10 && $('#RainRateImg').attr('src') != 'img/rain3.png') {
 				$('#RainRateImg').attr('src', 'img/rain3.png');
 			}
-		}  else {
+		}  else if ($('#RainRateImg').attr('src') != 'img/rain0.png') {
 			$('#RainRateImg').attr('src', 'img/rain0.png');
 		}
 
