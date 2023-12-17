@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	ai-extra.js			v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	17/09/2023 12:06
+ * 	Last Edit:	2023/12/15 17:49:21
  * 	Role:
  * 		To provide AI specific scripts
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -13,7 +13,7 @@ $( function() {
 	getConfig();
 	getMenu();
 	//configPage();
-	getVersion();	//	Posibly conditional
+	getVersion();	//	Possibly conditional
 	checkPanels();
 	getExtras();
 	//configPage();
@@ -62,7 +62,7 @@ let getVersion = function() {
 
 let getMenu = function() {
 	// Load AI Menues
-	console.log("Loading AI menues.");
+	console.log("Loading AI menus.");
 	$('#Menues').load("menues.html", function( response, status, xhr) {
 		if( status == "error") {
 			var msg = "Sorry but there was an error:  ";
@@ -75,7 +75,7 @@ let getMenu = function() {
 
 //	Mine
 let toggleArea = function(element) {
-	//	Function shows/hides alarm and davis panels. 
+	//	Function shows/hides alarm and davis panels.
 	$('#' + element.id + 'Panel').toggleClass("w3-hide", "w3-show");
 	var btnText = $('#' + element.id).text();
 	if( btnText.slice(0,4) == 'Show') {
@@ -96,10 +96,10 @@ let checkPanels = function() {
 		$('#Davis').trigger('click');
 	}
 };
-	
+
 let getExtras = function() {
 	//	Gets the weather station Lat, Long & altitude
-	var data = '{"Latitude": "<#latitude>", "Longitude": "<#longitude>", "Altitude": "<#altitude>", ' + 
+	var data = '{"Latitude": "<#latitude>", "Longitude": "<#longitude>", "Altitude": "<#altitude>", ' +
 			   '"CurrentDate": "<#shortdayname>, <#day> <#monthname> <#year>", ' +
 			   '"Yesterday":"<#yesterday format=\"ddd dd MMM yyyy\">"}';
 	$.ajax({
@@ -117,7 +117,7 @@ let getExtras = function() {
 		$("[data-OWData='Date']").html( result.CurrentDate );
 		$("[data-OWData='Yesterday']").html( result.Yesterday );
 	})
-	
+
 	.fail( function() {
 		console.log("Failed to get data");
 	})

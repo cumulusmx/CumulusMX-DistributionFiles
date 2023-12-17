@@ -1,4 +1,4 @@
-// Last modified: 2023/12/14 11:49:24
+// Last modified: 2023/12/17 16:49:15
 
 let StashedStationId;
 let accessMode;
@@ -68,13 +68,15 @@ $(document).ready(function () {
                         "macaddress": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (value && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                // check for MAC address format
+                                if (value != "" && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid MAC address!"
                                     });
                                     return;
                                 }
+                                // all OK
                                 callback({
                                     "status": true
                                 });
@@ -86,14 +88,34 @@ $(document).ready(function () {
                     "fields":{
                         "mac": {
                             "validator": function(callback) {
-                                let value = this.getValue();
-                                if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
-                                    callback({
-                                        "status": false,
-                                        "message": "That is not a valid MAC address!"
-                                    });
-                                    return;
+                                let value = this.getValue().trim();
+
+                                if (value != "")
+                                {
+                                    // check for IMEI format - 15 or 16 digits
+                                    if (Number.isInteger(value)) {
+                                        if (value.length == 15 || value.length == 16) {
+                                            callback({
+                                                "status": true
+                                            });
+                                        } else {
+                                            callback({
+                                                "status": false,
+                                                "message": "That is not a valid IMEI!"
+                                            });
+                                        }
+                                        return;
+                                    }
+                                    // check for MAC address format
+                                    if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                        callback({
+                                            "status": false,
+                                            "message": "That is not a valid MAC address!"
+                                        });
+                                        return;
+                                    }
                                 }
+                                // all OK
                                 callback({
                                     "status": true
                                 });
@@ -102,7 +124,7 @@ $(document).ready(function () {
                         "applicationkey": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (!/^[A-F0-9]{30,35}$/.test(value)) {
+                                if (value != "" && !/^[A-F0-9]{30,35}$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid Application Key!"
@@ -117,7 +139,7 @@ $(document).ready(function () {
                         "userkey": {
                             "validator": function(callback) {
                                 let value = this.getValue();
-                                if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                if (value != "" && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                     callback({
                                         "status": false,
                                         "message": "That is not a valid API Key!"
@@ -152,7 +174,7 @@ $(document).ready(function () {
             stationIdObj.on("change", function () {
                 let form = $("form").alpaca("get");
                 let stationid = this.getValue();
-                form.childrenByPropertyId["stationid"].setValue(stationid);
+                form.getControlByPath("stationid").setValue(stationid);
                 form.getControlByPath("Options/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
@@ -189,13 +211,13 @@ $(document).ready(function () {
 });
 
 function addButtons() {
-	$('form legend').each(function () {
-		let span = $('span:first',this);
-		if (span.length === 0)
-			return;
+    $('form legend').each(function () {
+        let span = $('span:first',this);
+        if (span.length === 0)
+            return;
 
-		let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-			'" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
             $(span).text() +'</button>');
 		$(span).remove();
         $(this).addClass('ow-btnBar');
@@ -235,17 +257,17 @@ function setCollapsed() {
 }
 
 function getCSSRule(search) {
-	for (let sheet of document.styleSheets) {
-		if (sheet.href == null) {
-			let rules = sheet.cssRules || sheet.rules;
-			for (let rule of rules) {
-				if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-					return rule;
-				}
-			}
-		}
-	}
-	return null;
+    for (let sheet of document.styleSheets) {
+        if (sheet.href != null && sheet.href.includes('alpaca')) {
+            let rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+                    return rule;
+                }
+            }
+        }
+    }
+    return null;
 }
 
 function onAccessChange(that, val) {
