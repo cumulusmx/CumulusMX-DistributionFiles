@@ -1,4 +1,4 @@
-// Last modified: 2023/12/17 17:35:44
+// Last modified: 2023/12/17 22:29:20
 
 let accessMode;
 
@@ -432,28 +432,28 @@ function addButtons() {
 
 		let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
 			'" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
-            $(span).text() +'</button>');
+			$(span).text() +'</button>');
 		$(span).remove();
-        $(this).addClass('ow-btnBar');
+		$(this).addClass('ow-btnBar');
 		$(this).prepend(butt);
 	});
 }
 
 function removeButtons() {
-    $('form legend').each(function () {
-        let butt = $('button:first',this);
-        if (butt.length === 0)
-            return;
+	$('form legend').each(function () {
+		let butt = $('button:first',this);
+		if (butt.length === 0)
+			return;
 
-        let span = $('<span data-toggle="collapse" data-target="' +
-            $(butt).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="collapsed">' +
-            $(butt).text() +
-            '</span>');
-        $(butt).remove();
-        $(this).removeClass('ow-btnBar');
-        $(this).prepend(span);
-    });
+		let span = $('<span data-toggle="collapse" data-target="' +
+			$(butt).attr('data-target') +
+			'" role="treeitem" aria-expanded="false" class="collapsed">' +
+			$(butt).text() +
+			'</span>');
+		$(butt).remove();
+		$(this).removeClass('ow-btnBar');
+		$(this).prepend(span);
+	});
 }
 
 function setCollapsed() {

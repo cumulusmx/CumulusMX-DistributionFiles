@@ -1,4 +1,4 @@
-// Last modified: 2023/12/17 16:49:15
+// Last modified: 2023/12/17 22:44:19
 
 let StashedStationId;
 let accessMode;
@@ -219,10 +219,10 @@ function addButtons() {
         let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
             $(span).text() +'</button>');
-		$(span).remove();
+        $(span).remove();
         $(this).addClass('ow-btnBar');
-		$(this).prepend(butt);
-	});
+        $(this).prepend(butt);
+    });
 }
 
 function removeButtons() {

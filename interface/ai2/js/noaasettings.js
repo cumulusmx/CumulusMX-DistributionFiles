@@ -1,4 +1,4 @@
-// Last modified: 2023/12/14 11:49:24
+// Last modified: 2023/12/17 22:57:04
 
 let accessMode;
 
@@ -102,18 +102,18 @@ $(document).ready(function() {
 });
 
 function addButtons() {
-	$('form legend').each(function () {
-		let span = $('span:first',this);
-		if (span.length === 0)
-			return;
+    $('form legend').each(function () {
+        let span = $('span:first',this);
+        if (span.length === 0)
+            return;
 
-		let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-			'" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
             $(span).text() +'</button>');
-		$(span).remove();
+        $(span).remove();
         $(this).addClass('ow-btnBar');
-		$(this).prepend(butt);
-	});
+        $(this).prepend(butt);
+    });
 }
 
 function removeButtons() {
@@ -148,17 +148,17 @@ function setCollapsed() {
 }
 
 function getCSSRule(search) {
-	for (let sheet of document.styleSheets) {
-		if (sheet.href == null) {
-			let rules = sheet.cssRules || sheet.rules;
-			for (let rule of rules) {
-				if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-					return rule;
-				}
-			}
-		}
-	}
-	return null;
+    for (let sheet of document.styleSheets) {
+        if (sheet.href != null && sheet.href.includes('alpaca')) {
+            let rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+                    return rule;
+                }
+            }
+        }
+    }
+    return null;
 }
 
 function onAccessChange(that, val) {
