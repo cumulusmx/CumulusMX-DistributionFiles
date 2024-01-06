@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2023/11/22 20:24:05
+// Last modified: 2023/12/29 15:02:33
 
 var chart, avail, config, options;
 var cache = {};
@@ -1279,7 +1279,7 @@ var doWindSpeed = function (idx) {
             type: 'line',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.decimals
+                valueDecimals: config.wind.avgdecimals
             },
             visible: true,
             color: settings.colours[idx],
@@ -1320,7 +1320,7 @@ var doWindGust = function (idx) {
             yAxis: 'Wind',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.decimals
+                valueDecimals: config.wind.gustdecimals
             },
             visible: true,
             color: settings.colours[idx],

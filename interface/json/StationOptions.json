@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/11/09 11:41:59",
+	"version": "Last Modified: 2023/12/17 17:24:19",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -525,7 +525,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #1"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #1",
+									"dependencies": {
+										"soilTempTx1": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilTempTx2": {
 									"label": "Sensor #2 Tx ID:",
@@ -540,7 +543,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #2"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #2",
+									"dependencies": {
+										"soilTempTx2": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilTempTx3": {
 									"label": "Sensor #3 Tx ID:",
@@ -555,7 +561,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #3"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #3",
+									"dependencies": {
+										"soilTempTx3": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilTempTx4": {
 									"label": "Sensor #4 Tx ID:",
@@ -570,7 +579,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #4"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra temperature sensor #4",
+									"dependencies": {
+										"soilTempTx4": [1,2,3,4,5,6,7,8]
+									}
 								}
 							}
 						},
@@ -591,7 +603,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #1"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #1",
+									"dependencies": {
+										"soilMoistTx1": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilMoistTx2": {
 									"label": "Sensor #2 Tx ID:",
@@ -606,7 +621,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #2"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #2",
+									"dependencies": {
+										"soilMoistTx2": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilMoistTx3": {
 									"label": "Sensor #3 Tx ID:",
@@ -621,7 +639,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #3"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #3",
+									"dependencies": {
+										"soilMoistTx3": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"soilMoistTx4": {
 									"label": "Sensor #4 Tx ID:",
@@ -636,7 +657,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2", "3", "4"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #4"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra soil moisture sensor #4",
+									"dependencies": {
+										"soilMoistTx4": [1,2,3,4,5,6,7,8]
+									}
 								}
 							}
 						},
@@ -657,7 +681,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra leaf sensor #1"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra leaf sensor #1",
+									"dependencies": {
+										"leafTx1": [1,2,3,4,5,6,7,8]
+									}
 								},
 								"leafTx2": {
 									"label": "Sensor #2 Tx ID:",
@@ -672,7 +699,10 @@
 									"type": "select",
 									"removeDefaultNone": true,
 									"optionLabels": ["1", "2"],
-									"helper": "Optional: Select the channel on the transmitter you want to use for your extra leaf sensor #2"
+									"helper": "Optional: Select the channel on the transmitter you want to use for your extra leaf sensor #2",
+									"dependencies": {
+										"leafTx2": [1,2,3,4,5,6,7,8]
+									}
 								}
 							}
 						}

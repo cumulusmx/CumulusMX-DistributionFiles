@@ -232,7 +232,7 @@
 									"type": "select",
 									"optionLabels": ["1 min","2 mins","5 mins","10 mins","15 mins","20 mins","30 mins","1 hr","2 hrs","3 hrs","4 hrs","6 hrs","8 hrs","12 hrs"],
 									"sort": false,
-									"removeDefaultNone": true,
+									"removeDefaultNone": false,
 									"dependencies": {
 										"repeat": true
 									}

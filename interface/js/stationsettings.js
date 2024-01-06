@@ -1,4 +1,4 @@
-// Last modified: 2023/12/03 22:51:46
+// Last modified: 2023/12/17 16:07:40
 
 let StashedStationId;
 let accessMode;
@@ -6,9 +6,9 @@ let accessMode;
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
     $("form").alpaca({
-        "dataSource": "./api/settings/stationdata.json",
-        "optionsSource": "./json/StationOptions.json",
-        "schemaSource": "./json/StationSchema.json",
+        "dataSource": "/api/settings/stationdata.json",
+        "optionsSource": "/json/StationOptions.json",
+        "schemaSource": "/json/StationSchema.json",
         "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
         "options": {
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/setsettings/updatestationconfig.json",
+                                    url: "/api/setsettings/updatestationconfig.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })

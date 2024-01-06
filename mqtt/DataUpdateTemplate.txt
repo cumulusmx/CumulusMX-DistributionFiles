@@ -10,7 +10,6 @@
             "data": "\"time\":\"<#timehhmmss>\",\"windspeed\":<#wlatest rc=y>,\"winddir\":<#bearing>",
             "retain": false,
             "doNotTriggerOnTags": "timehhmmss"
-        },
-
+        }
     ]
 }

@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2023/10/18 10:33:32",
+    "version": "Last Modified: 2023/12/14 23:25:06",
     "fields": {
         "accessible": {
             "rightLabel": "Enable accessibility features",
@@ -139,7 +139,8 @@
                     "rightLabel": "Remove space character from date separators (if present)",
                     "helpers": [
                         "CAUTION: Changing this may render your existing data files unreadable by Cumulus MX",
-                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'"
+                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'",
+                        "You MUST restart Cumulus MX after changing this setting for it to take effect"
                     ]
                 },
                 "timeFormat": {

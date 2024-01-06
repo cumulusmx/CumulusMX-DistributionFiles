@@ -1,8 +1,9 @@
 {
-	"version": "Last Modified: 2023/11/09 11:33:55",
+	"version": "Last Modified: 2023/12/17 17:20:47",
 	"type": "object",
 	"properties": {
 		"stationid": {
+			"type": "integer"
 		},
 		"accessible": {
 			"type": "boolean"
@@ -387,6 +388,12 @@
 								"soilTempIdx4": {
 									"enum": [1,2,3,4]
 								}
+							},
+							"dependencies": {
+								"soilTempIdx1": ["soilTempTx1"],
+								"soilTempIdx2": ["soilTempTx2"],
+								"soilTempIdx3": ["soilTempTx3"],
+								"soilTempIdx4": ["soilTempTx4"]
 							}
 						},
 						"extraSoilMoist": {
@@ -417,6 +424,12 @@
 								"soilMoistIdx4": {
 									"enum": [1,2,3,4]
 								}
+							},
+							"dependencies": {
+								"soilMoistIdx1": ["soilMoistTx1"],
+								"soilMoistIdx2": ["soilMoistTx2"],
+								"soilMoistIdx3": ["soilMoistTx3"],
+								"soilMoistIdx4": ["soilMoistTx4"]
 							}
 						},
 						"extraLeaf": {
@@ -435,6 +448,10 @@
 								"leafIdx2": {
 									"enum": [1,2]
 								}
+							},
+							"dependencies": {
+								"leafIdx1": ["leafTx1"],
+								"leafIdx2": ["leafTx2"]
 							}
 						}
 					},
@@ -511,6 +528,7 @@
 							"type": "boolean"
 						},
 						"stationid": {
+							"type": "integer"
 						}
 					},
 					"dependencies": {
@@ -519,6 +537,7 @@
 					}
 				},
 				"stationid": {
+					"type": "integer"
 				}
 			},
 			"dependencies": ["stationid"]
@@ -867,6 +886,7 @@
 					}
 				},
 				"stationid": {
+					"type": "integer"
 				}
 			},
 			"dependencies": {
