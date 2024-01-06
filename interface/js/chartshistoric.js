@@ -1,4 +1,4 @@
-// Last modified: 2023/10/13 21:31:02
+// Last modified: 2023/12/29 15:01:04
 
 var chart, config, available;
 
@@ -558,11 +558,17 @@ var doWind = function () {
         series: [{
                 name: 'Wind Speed',
                 color: config.series.wspeed.colour,
-                showInNavigator: true
+                showInNavigator: true,
+                tooltip: {
+                    valueDecimals: config.wind.avgdecimals
+                }
             }, {
                 name: 'Wind Gust',
                 color: config.series.wgust.colour,
-                showInNavigator: true
+                showInNavigator: true,
+                tooltip: {
+                    valueDecimals: config.wind.gustdecimals
+                }
             }, {
                 name: 'Wind Run',
                 type: 'column',

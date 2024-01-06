@@ -1,4 +1,4 @@
-// Last modified: 2023/03/16 09:59:29
+// Last modified: 2023/12/29 15:03:52
 
 var chart, config;
 
@@ -669,15 +669,20 @@ var doWind = function () {
             shared: true,
             crosshairs: true,
             valueSuffix: ' ' + config.wind.units,
-            valueDecimals: config.wind.decimals,
             xDateFormat: "%A, %b %e, %H:%M"
         },
         series: [{
             name: 'Wind Speed',
-            color: config.series.wspeed.colour
+            color: config.series.wspeed.colour,
+            tooltip: {
+                valueDecimals: config.wind.avgdecimals
+            }
         }, {
             name: 'Wind Gust',
-            color: config.series.wgust.colour
+            color: config.series.wgust.colour,
+            tooltip: {
+                valueDecimals: config.wind.gustdecimals
+            }
         }],
         rangeSelector: myRangeBtns
     };

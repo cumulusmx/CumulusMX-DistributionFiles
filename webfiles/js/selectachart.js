@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2023/08/30 17:23:18
+// Last modified: 2023/12/29 15:08:12
 
 var chart, config, options;
 var settings;
@@ -1041,7 +1041,7 @@ var doWindSpeed = function (idx) {
                 type: 'line',
                 tooltip: {
                     valueSuffix: ' ' + config.wind.units,
-                    valueDecimals: config.wind.decimals
+                    valueDecimals: config.wind.avgdecimals
                 },
                 visible: true,
                 color: settings.colours[idx],
@@ -1070,7 +1070,7 @@ var doWindGust = function (idx) {
                 type: 'line',
                 tooltip: {
                     valueSuffix: ' ' + config.wind.units,
-                    valueDecimals: config.wind.decimals
+                    valueDecimals: config.wind.gustdecimals
                 },
                 visible: true,
                 color: settings.colours[idx],

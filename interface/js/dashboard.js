@@ -1,4 +1,4 @@
-// Last modified: 2023/12/03 15:29:32
+// Last modified: 2023/12/21 15:28:32
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -127,15 +127,18 @@ $(document).ready(function () {
         window.clearTimeout(lastUpdateTimer);
         lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
-        $('#LastUpdateIcon').attr('src', 'img/up.png');
+        if ($('#LastUpdateIcon').attr('src') != 'img/up.png') {
+        	$('#LastUpdateIcon').attr('src', 'img/up.png');
+		}
 
 
         if (data.DataStopped) {
-            $('#DataStoppedIcon').attr('src', 'img/down.png');
-        } else {
+            if ($('#DataStoppedIcon').attr('src') != 'img/down.png') {
+            	$('#DataStoppedIcon').attr('src', 'img/down.png');
+            }
+        } else if ($('#DataStoppedIcon').attr('src') != 'img/up.png'){
             $('#DataStoppedIcon').attr('src', 'img/up.png');
-        }
-
+		}
 
         // Firefox gets arsy about multiple notifications so roll them up into one
         let sendNotification = false;
@@ -198,16 +201,22 @@ $(document).ready(function () {
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
 
-        if (data.TempTrend.replace(',','.') < 0) {
-            $('#TempTrendImg').attr('src', 'img/down-small.png');
-        } else {
+		var tmpTrend = Number(data.TempTrend.replace(',','.'));
+        if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down-small.png') {
+			$('#TempTrendImg').attr('src', 'img/down-small.png');
+        } else if (tmpTrend > 0 && $('#TempTrendImg').attr('src') != 'img/up-small.png') {
             $('#TempTrendImg').attr('src', 'img/up-small.png');
+        } else if (tmpTrend == 0 && $('#TempTrendImg').attr('src') != 'img/nochange-small.png') {
+            $('#TempTrendImg').attr('src', 'img/nochange-small.png');
         }
 
-        if (data.PressTrend.replace(',','.') < 0) {
+		tmpTrend = Number(data.PressTrend.replace(',','.'));
+        if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down-small.png') {
             $('#PressTrendImg').attr('src', 'img/down-small.png');
-        } else {
+        } else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up-small.png') {
             $('#PressTrendImg').attr('src', 'img/up-small.png');
+        } else if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/nochange-small.png') {
+            $('#PressTrendImg').attr('src', 'img/nochange-small.png');
         }
 
         wrData = data.WindRoseData.split(',');

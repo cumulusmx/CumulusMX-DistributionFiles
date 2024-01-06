@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/14 18:16:09
+Last modified: 2024/01/02 10:24:22
 -->
 <!doctype html>
 <html lang="en">
@@ -43,7 +43,8 @@ Last modified: 2023/10/14 18:16:09
                     "api/utils/ftpnow.json",
                     '{"dailygraphs":' + $('#dailygraphs').prop('checked') +
                         ',"noaa":' + $('#noaa').prop('checked') +
-                        ',"graphs":' + $('#graphs').prop('checked') + '}',
+                        ',"graphs":' + $('#graphs').prop('checked') +
+                        ',"logfiles":' + $('#logfiles').prop('checked') + '}',
                 ).done(function (response) {
                     $('#status').text(response);
                 }).fail(function (jqXHR, response) {
@@ -82,7 +83,8 @@ Last modified: 2023/10/14 18:16:09
                 <div>
                     <input type="checkbox" id="graphs"> <label for="graphs">Re-upload full copies of the graph data files rather than incremental</label><br>
                     <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label><br>
-                    <input type="checkbox" id="noaa"> <label for="noaa">Include transfer of latest NOAA report files</label>
+                    <input type="checkbox" id="noaa"> <label for="noaa">Include transfer of latest NOAA report files</label><br>
+                    <input type="checkbox" id="logfiles"> <label for="logfiles">Re-upload full copies of all Extra Web Files incremental log files</label>
                 </div>
                 <br>
                 <div>
