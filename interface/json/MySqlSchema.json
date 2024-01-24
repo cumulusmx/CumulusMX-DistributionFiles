@@ -126,16 +126,27 @@
 				"enabled": {
 					"type": "boolean"
 				},
-				"command": {
-					"type": "array"
-				},
-				"intervalindex": {
-					"enum": [-1,1,2,5,10,15,20,30,60,120,180,240,360,480,720]
+				"entries": {
+					"type": "array",
+					"maxItems": 10,
+					"items": {
+						"type": "object",
+						"properties": {
+							"command": {
+								"type": "string"
+							},
+							"intervalidx": {
+								"label": "Interval:",
+								"enum": [0,1,2,3,4,5,6,7,8,9,10,11],
+								"removeDefaultNone": true,
+								"sort": false
+							}
+						}
+					}
 				}
 			},
 			"dependencies": {
-				"command": ["enabled"],
-				"intervalindex": ["enabled"]
+				"entries": ["enabled"]
 			}
 		},
 		"customrollover": {
@@ -146,6 +157,7 @@
 					"type": "boolean"
 				},
 				"command": {
+					"title": "SQL:",
 					"type": "array",
 					"maxItems": 10
 				}
@@ -168,7 +180,7 @@
 						"type": "object",
 						"properties": {
 							"command": {
-								"title": "SQL commands",
+								"title": "SQL",
 								"type": "string",
 								"required": true
 							},
@@ -209,6 +221,9 @@
 					"type": "array",
 					"maxItems": 10
 				}
+			},
+			"dependencies": {
+				"command": ["enabled"]
 			}
 		}
 	}
