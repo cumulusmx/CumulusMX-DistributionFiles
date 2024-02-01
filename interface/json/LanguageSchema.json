@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2023/11/29 16:47:12",
+	"version": "Last modified: 2024/01/24 16:43:48",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -251,6 +251,12 @@
 					"type": "string"
 				},
 				"Pm10_24hr": {
+					"type": "string"
+				},
+				"Temperature": {
+					"type": "string"
+				},
+				"Humidity": {
 					"type": "string"
 				}
 			}
