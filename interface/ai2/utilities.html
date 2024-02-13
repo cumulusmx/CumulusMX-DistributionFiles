@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Utilities
+	File:	utilities_all.html		v2.0.2
+	Note:
+		This is a new filename
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	2023/12/12 23:45:35
+	Last Check:	14/11/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Utilities</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!-- Bootstrap -->
+		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" >-->
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--	Data Tables	-->
+		<link href="/lib/datatables/datatables.min.css" rel="stylesheet">
+		<script src="/lib/datatables/datatables.min.js"></script>
+		<script src="/lib/datatables/pagination_input.js"></script>
+		<script src="lib/datatables/fixedColumns4-3-0.js"></script>
+		<script src="lib/datatables/dataTables.altEditor.free.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+		<link rel="stylesheet" href="css/ai-editabletables.css">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/utilities.js"></script>
+		<script src="js/purgemysqlcache.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script>
+		$( function () {
+
+			loadlog();
+
+			setInterval(loadlog, 20000);
+
+			function loadlog() {
+				$.ajax({
+					url: "/api/data/errorlog.json",
+					dataType: "json",
+					success: function (result) {
+						$('#logcontent').empty();
+						result.forEach(element => {
+							$('#logcontent').append('<div>' + element + '</div>');
+						});
+					}
+				});
+			}
+		});
+
+		function selectText() {
+			if (document.selection) {
+				var range = document.body.createTextRange();
+				range.moveToElementText(document.getElementById("logcontent"));
+				range.select();
+			} else if (window.getSelection) {
+				var range = document.createRange();
+				range.selectNode(document.getElementById("logcontent"));
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+			}
+			document.execCommand("copy");
+		}
+
+		function clearLog() {
+			$.ajax({
+				url: "/api/data/errorlog.json",
+				dataType: "json",
+				success: function (result) {
+					$.ajax({
+						url: "/api/utils/clearerrorlog.json",
+						type: "POST",
+						data: JSON.stringify([]),
+						contentType: "application/json; charset=utf-8",
+						dataType: "json",
+						success: function (result) {
+							$('#logcontent').empty();
+							result.forEach(element => {
+								$('#logcontent').append(element + "\n");
+							});
+						}
+					});
+				}
+			});
+		}
+
+		</script>
+		<style>
+			.dataTables_filter {
+				margin-top:1vh;
+			}
+
+			.modal-dialog .ow-title { padding: 1vh 1vw;}
+			.modal-dialog .w3-btn { padding: 0.5vh 0.5vw!important;}
+
+			#logcontent { padding: 0.5vh 0.5vw;}
+			#logcontent > div {margin: 0.5vh 0; padding: 0 0.5vw;}
+			#logcontent > div:hover {background: var(--add3);}
+		</style>
+	</head>
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
+			<div class="siteWidth ow-titleBar" style=" margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<div class="ow-titleBar" style="margin: 1vh 0;">
+					<h1>Utilities One</h1>
+					<p>The AI Utilities in one place</p>
+				</div>
+				<div class="ow-twoCol ow-flex-top">
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar">
+							<h3 id="ftp-anchor">Upload/Copy Now!</h3>
+						</div>
+						<h4>Manually initiate the FTP / copy process</h4>
+						<p>You can use this utility to upload the default website data files.</p>
+						<p>
+							Please note:  The actual FTP process will be started, but it will be run as a background process. You wll have to check your
+							log files and/or FTP server to check whether it worked correctly or not.
+						</p>
+						<input type="checkbox" class="w3-check" id="graphs" aria-label="Reload complete graph data"> <label for="graphs">Re-upload full copies of the graph data files</label><br>
+						<input type="checkbox" class="w3-check" id="dailygraphs" aria-label="Include daily graph data"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label><br>
+						<input type="checkbox" class="w3-check" id="noaa" aria-label="Include NOAA reports"> <label for="noaa">Include transfer of latest NOAA report files</label>
+						<div class="ow-btnBar ow-flex-center" style="margin-top:1vh;">
+							<button class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow: 0;" aria-label="Start FTP now" id="startFTP" >Start FTP Now</button>
+							<p id="ftpStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow: 1;"></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0;">
+							<h3 id="day-anchor" class="">Reload the Dayfile</h3>
+							<p class="w3-hide">Paragraph</p>
+						</div>
+						<h4>Force a reload of the Dayfile back into CMX memory</h4>
+						<p>
+							You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart
+							it to perform the reload.
+						</p>
+						<div class="ow-btnBar ow-flex-center" style="margin-top: 1vh;">
+							<button id="reLoad" class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Reload the Dayfile">Reload Dayfile</button>
+							<div style="flex-grow:1;">
+								<p id="dayFileStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw;"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--	End of two column section	-->
+<!--			</div>
+			<div class="siteWidth">-->
+				<div class="ow-oneCol" style="row-gap: 2vh;">
+					<div class="ow-card ow-theme-add4 ow-animate-drop" style="order:0;">
+						<h3 id="purge-anchor">Purge the MySQL Database</h3>
+						<h4>Edit / Purge the failed MySQL command queue</h4>
+						<p>If you have failed MySQL commands stuck in the upload queue, this panel allows you to either delete the entire
+						failed queue, or edit/delete individual entries.</p>
+						<div class="oneCol" style="margin:1vh 0;" >
+							<table id="sqlcache" class="w3-table w3-hoverable ow-theme-add5" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
+						</div>
+						<div class="ow-btnBar ow-flex-center">
+							<button id="purgeMySQL" class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Purge ALL MySQL statements">Purge all MySQL statements</button>
+							<p id="purgeStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow:2;"></p>
+						</div>
+					</div>
+
+
+					<div class="ow-card ow-theme-add4 ow-animate-drop" style="order:1;">
+						<div class="ow-titleBar">
+							<h4>Latest Errors</h4>
+							<div class="ow-btnBar">
+								<button type="button" class="w3-btn" onclick="selectText();" aria-label="Copy to clipboard">Copy to clipboard</button>
+								<button type="button" class="w3-btn" onClick="clearLog();" aria-label="Clear the log">Clear the log</button>
+							</div>
+							<p>The log content auto refreshes every 20 seconds.
+							<i class="fa-solid fa-triangle-exclamation fa-2x" style="color: #B00;"></i></p>
+						</div>
+						<div  id="logcontent" class="ow-theme-add5" style="margin: 1vh 0;">
+							Loading...
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</html>

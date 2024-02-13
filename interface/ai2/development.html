@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	development
+	File:	development.html		v2.0.2
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	2023/12/12 23:35:36
+	Last Check:	04/10/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Sample Page</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/.test.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+
+		</style>
+	</head>
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
+			<div class="siteWidth ow-titleBar" style=" margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<!--	The menus are inserted here	-->
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<div class="ow-titleBar">
+					<h1>AI Development Page</h1>
+					<p onClick="customAlarmData()" class="ow-clickable">Click me</p>
+				</div>
+
+				<div class="oneCol" style="margin-bottom: 2vh;">
+					<div class="ow-card ow-theme-sub4">
+						<div class="ow-titleBar" style="margin: 1vh 0;">
+							<h2>Current Data</h2>
+						</div>
+						<p id="APIData">
+							Below is a two column flex box (style: &quot;ow-twoCol&quot;) with each row forced to be equal
+							height.&nbsp; This can be changed by adding the class <span class="ow-codeSpan">ow-flex-top</span> or
+							<span class="ow-codeSpan">ow-flex-center</span> or <span class="ow-codeSpan">ow-flex-bottom</span>.&nbsp;
+							Children have to be a &quot;div&quot; element.
+						</p>
+						<p id="APIPairs">You do need to add a margin to the bottom of one column panels.</p>
+					</div>
+				</div>
+
+				<div class="ow-twoCol">
+					<div class="ow-card" style="order:0;">
+						<div class="ow-titleBar">
+							<h3>Card title</h3>
+							<p ><i class="fa-solid fa-cloud"></i>Aside</p>
+						</div>
+						<p>
+							This is a ow-card.  It adds padding and a box shadow but no colour (it uses the colour of the page).  Colour can be added using 'class="ow-theme-aaaX"', where 'aaa'
+							is replaced with 'add' or 'sub' followed by a number 1 - 5.
+						</p>
+						<p>
+							The first three card use a style 'ow-titleBar' which allows more than one element to appear on the line. They will spread evenly
+							across the available space and are set to align items on their baseline.
+						</p>
+					</div>
+					<div class="ow-card ow-cardGradient" style="order:0;">
+						<div class="ow-titleBar">
+							<h3 class="ow-theme-add5-txt">Card Gradient</h3>
+							<p class="ow-theme-add5-txt">Paragraph</p>
+							<div class="w3-btn ow-theme-hvr ow-theme-add5-txt">button</div>
+						</div>
+						<p>
+							This card is coloured using a gradient (class='ow-cardGradient').  This always uses the theme colour sub5 for the top changing to
+							the theme colour add3 at the bottom.  You may need to manually add the required theme colour for any text placed in the card.
+						</p>
+						<p>
+							As this is a gradient using screen height units, the dark section at the top will be smaller on shorter screens.
+						</p>
+					</div>
+					<div class="ow-card ow-theme-add2" style="order:0;">
+						<h3>Title Bars</h3>
+						<p>
+							Title bars can be used anywhere on the page.  As stated, by default content is aligned on the baseline. You can modify this by adding
+							the classes mentioned in panel 1 above.
+						</p>
+						<p>Title Bars don't wrap so if there is too much in them it will disappear off the right edge of the bar.&nbsp; This can be modified by
+						adding the style <span class="ow-codeSpan" style="color: var(--sub5);">flex-flow: row wrap</span> to the div.</p>
+					</div>
+					<div class="ow-card ow-theme-add3" style="order:0;">
+						<h3>Panel Sizes &amp; Alignment</h3>
+						<p>
+							Panels can be set to one of 6 sizes: 1 to 6 columns.  These will display the indicated number
+							of columns on a large screen but automatically resize down to a minimum on smaller devices.  If an odd number of cards or containers
+							are used, these will center at the same size as the other panels in the set as can be seen below.
+						</p>
+					</div>
+					<div class="ow-container ow-theme-sub5" style="order:10;">
+						<h3>Basic Containers</h3>
+						<p>
+							Containers have no box shadow but they do have the same padding as cards.  They can be coloured using a
+							theme or gradient and can contain title bars as shown below.
+						</p>
+						<div class="ow-titleBar ow-animate-fadeIn" style="column-gap: 1vw;">
+							<p>Left aligned</p>
+							<p>Centered</p>
+							<p>Right aligned</p>
+						</div>
+					</div>
+				</div>
+				<!--	End of two column section	-->
+				<h3>Three columns panel</h3>
+				<div class="ow-threeCol">
+					<div class="ow-theme-add4 ow-container ow-animate-drop" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-add4</p>
+						<p>This container also uses an animation: 'ow-animate-drop' which is also used for the menus.  Animations should only be used sparingly.</p>
+					</div>
+					<div class="ow-theme-add3 ow-container ow-animate-fadeIn" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-add3</p>
+						<p>This container uses the animation: 'ow-animate-fadeIn'.  Animations can be used on any element.</p>
+					</div>
+					<div class="ow-theme-add2 ow-container" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-add2</p>
+					</div>
+					<div class="ow-theme-add1 ow-container" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-add1</p>
+					</div>
+					<div class="ow-theme ow-container" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme</p>
+					</div>
+					<div class="ow-theme-sub1 ow-container" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-sub1</p>
+					</div>
+					<div class="ow-theme-sub2 ow-container" style="order:0;">
+						<h4>h4 title</h4>
+						<p>Colour: ow-theme-sub2</p>
+					</div>
+				</div>
+				<!--	End of three column section	-->
+				<h2>Four Column panels</h2>
+				<div class="ow-fourCol">
+					<div class="ow-theme-add5 ow-card">
+						<h5>h5 Title</h5>
+						<div>Basic LED: <div class="ow-led ow-LED-on"></div><div class="ow-led"></div></div>
+					</div>
+					<div class="ow-theme-add4 ow-card">
+						<h5>h5 title</h5>
+						<div>Small basic LED:<div class="ow-led ow-LED-on ow-small"></div><div class="ow-led ow-small"></div></div>
+					</div>
+					<div class="ow-theme-add3 ow-card ow-animate-drop">
+						<div>Basic round LED:<div class="ow-led ow-round ow-LED-on"></div><div class="ow-led ow-round"></div></div>
+					</div>
+					<div class="ow-theme-add2 ow-card ow-animate-drop">
+						<div>Small round LED:<div class="ow-led ow-LED-on ow-round ow-small"></div><div class="ow-led ow-round ow-small"></div></div>
+					</div>
+					<div class="ow-theme-add1 ow-card w3-animate-fadeIn">
+						<div>Brick LED:<div class="ow-led ow-brick ow-LED-on"></div><div class="ow-led ow-brick"></div></div>
+					</div>
+					<div class="ow-theme ow-card">
+						<div>Lozenge LED:<div class="ow-led ow-lozenge ow-LED-on"></div><div class="ow-led ow-lozenge"></div></div>
+					</div>
+					<div class="ow-theme-sub1 ow-card ow-animate-drop">
+						<div>Oval LED:<div class="ow-led ow-oval ow-LED-on"></div><div class="ow-led ow-oval"></div></div>
+					</div>
+					<div class="ow-theme-sub2 ow-card w3-animate-opacity">
+						<p>Theme: ow-theme-sub1</p>
+					</div>
+					<div class="ow-theme-sub3 ow-card">
+						<p>Theme: ow-theme-sub3</p>
+					</div>
+					<div class="ow-theme-sub4 ow-card">
+						<p>Theme: ow-theme-sub4</p>
+					</div>
+					<div class="ow-theme-sub5 ow-card">
+						<p>Theme: ow-theme-sub5</p>
+					</div>
+				</div>
+				<h2>Five column panels</h2>
+				<div class="ow-fiveCol">
+					<div class="ow-card ow-clickable" onClick="showModal('Xmodal')">
+						<p>One</p><p>You can click this panel to show the modal popup.</p>
+					</div>
+					<div class="ow-card">
+						<p>Two</p><p>This card have no colour so use the page background colour.</p>
+					</div>
+					<div class="ow-card"><p>Three</p></div>
+					<div class="ow-card"><p>Four</p></div>
+					<div class="ow-card"><p>Five</p></div>
+					<div class="ow-card"><p>Six</p></div>
+				</div>
+				<h3>Six column panels</h3>
+				<div class="ow-sixCol">
+					<div class="ow-theme-add2 ow-card">ow-theme-add2<br>&nbsp;</div>
+					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
+					<div class="ow-theme-add2 ow-card">ow-theme-add2<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>
+					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
+					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
+					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
+				</div>
+			</div>
+
+		</div>
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+
+		<!--	Modal 	-->
+		<div id="MXmodal" class="w3-modal ow-theme-modal">
+			<div class="w3-modal-content w3-round-large ow-modal" style="width: 35vw;">
+
+				<div class="ow-theme-sub5 ow-titleBar" style="align-items: start; border-radius: 8px 8px 0 0;">
+					<h3 style="padding: 1vh 0 0.5vh 1vw ">Gauge Units</h3>
+					<span onclick="showModal('Xmodal')" class="w3-btn ow-theme-action-hvr" style="border-radius: 0 8px 0 8px;"><i class="fa-solid fa-xmark"></i></span>
+				</div>
+				<div class="w3-container" style="margin-top: 1vh;">
+					<div class="ow-twoCol" style="max-height:70vh; overflow: auto;">
+						<div class="">
+							<div class="w3-col l3 m3 s5"><span class="lang_temparature">Temperature</span>:</div>
+							<div class="w3-col l2 m3 s3"><input id="rad_unitsTemp1" type="radio" class="w3-radio" name="rad_unitsTemp" value="C" checked onclick="gauges.setUnits(this);"><label id="lab_unitsTemp1" for="rad_unitsTemp1">&deg;C</label></div>
+							<div class="w3-rest"><input id="rad_unitsTemp2" type="radio" class="w3-radio" name="rad_unitsTemp" value="F" onclick="gauges.setUnits(this);"><label id="lab_unitsTemp2" for="rad_unitsTemp2">&deg;F</label></div>
+						</div>
+						<div>
+							<div class="w3-col l3 m3 s5"><span id="lang_rainfall">Rainfall</span></div>
+							<div class="w3-col l2 m3 s3"><input id="rad_unitsRain1" type="radio" class="w3-radio" name="rad_unitsRain" value="mm" checked onclick="gauges.setUnits(this);"><label id="lab_unitsRain1" for="rad_unitsRain1">mm</label></div>
+							<div class="w3-rest"><input id="rad_unitsRain2" type="radio" class="w3-radio" name="rad_unitsRain" value="in" onclick="gauges.setUnits(this);"><label id="lab_unitsRain2" for="rad_unitsRain2">Inch</label></div>
+						</div>
+						<div>
+							<div class="w3-col l3 m3 s5"><span id="lang_pressure">Pressure</span></div>
+							<div class="w3-col l2 m2 s3"><input id="rad_unitsPress1" type="radio" class="w3-radio" name="rad_unitsPress" value="hPa" checked onclick="gauges.setUnits(this);"><label id="lab_unitsPress1" for="rad_unitsPress1">hPa</label></div>
+							<div class="w3-col l2 m2 s4"><input id="rad_unitsPress2" type="radio" class="w3-radio" name="rad_unitsPress" value="inHg" onclick="gauges.setUnits(this);"><label id="lab_unitsPress2" for="rad_unitsPress2">inHg</label></div>
+							<div class="w3-col s5 w3-hide-large w3-hide-medium">&nbsp;</div>
+							<div class="w3-col l2 m2 s3"><input id="rad_unitsPress3" type="radio" class="w3-radio" name="rad_unitsPress" value="mb" onclick="gauges.setUnits(this);"><label id="lab_unitsPress3" for="rad_unitsPress3">mb</label></div>
+							<div class="w3-col l2 m3 s4"><input id="rad_unitsPress4" type="radio" class="w3-radio" name="rad_unitsPress" value="kPa" onclick="gauges.setUnits(this);"><label id="lab_unitsPress4" for="rad_unitsPress4">kPa</label></div>
+						</div>
+						<div>
+							<div class="w3-col l3 m3 s5"><span id="lang_windSpeed">Wind Speed</span></div>
+							<div class="w3-col l2 m2 s3"><input id="rad_unitsWind4" type="radio" class="w3-radio" name="rad_unitsWind" value="km/h" checked onclick="gauges.setUnits(this);"><label id="lab_unitsWind4" for="rad_unitsWind4">km/h</label></div>
+							<div class="w3-col l2 m2 s4"><input id="rad_unitsWind3" type="radio" class="w3-radio" name="rad_unitsWind" value="m/s" onclick="gauges.setUnits(this);"><label id="lab_unitsWind3" for="rad_unitsWind3">m/s</label></div>
+							<div class="w3-col s5 w3-hide-medium w3-hide-large">&nbsp;</div>
+							<div class="w3-col l2 m2 s3"><input id="rad_unitsWind1" type="radio" class="w3-radio" name="rad_unitsWind" value="mph" onclick="gauges.setUnits(this);"><label id="lab_unitsWind1" for="rad_unitsWind1">mph</label></div>
+							<div class="w3-col l3 m3 s4"><input id="rad_unitsWind2" type="radio" class="w3-radio" name="rad_unitsWind" value="kts" onclick="gauges.setUnits(this);"><label id="lab_unitsWind2" for="rad_unitsWind2">knots</label></div>
+						</div>
+						<div>
+							<div class="w3-col l3 m3 s5"><span id="lang_cloudbase">Cloud Base</span></div>
+							<div class="w3-col l2 m2 s3"><input id="rad_unitsCloudBase1" type="radio" class="w3-radio" name="rad_unitsCloud" value="m" checked onclick="gauges.setUnits(this);"><label id="lab_unitsCloudBase1" for="rad_unitsCloudBase1">m</label></div>
+							<div class="w3-col l7 m7 s4"><input id="rad_unitsCloudBase2" type="radio" class="w3-radio" name="rad_unitsCloud" value="ft" onclick="gauges.setUnits(this);"><label id="lab_unitsCloudBase2" for="rad_unitsCloudBase2">ft</label></div>
+						</div>
+					</div>
+				</div>
+				<div class="w3-container ow-theme-sub5" style="border-radius: 0 0 8px 8px; margin-top:-1vh;">
+					<p class="w3-right ow-txt-small">Powered by <span class="ow-theme-txt">Cumulus MX</span></p>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>

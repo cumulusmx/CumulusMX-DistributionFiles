@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	This period highs & lows
+	File:	recsthisperiod.html			v2.0.2
+	Note:
+		This is a new file name
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	2023/12/14 18:06:21
+	Last Check:	14/11/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Records this period</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!-- datepicker -->
+		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/recsthisperiod.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+			.ow-btnBar > button { max-width: 10em;}/*  Stops buttons stretching across all available space */
+			td:nth-of-type(2),th:nth-of-type(2) {
+				border-right: thin dotted var(--theme); /*	Adds a border between reading and date	*/
+			}
+			input[type=text] {
+				max-width: 10em;
+				background: var(--add3);
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
+			<div class="siteWidth ow-titleBar" style="margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<h5 class="w3-align-right">
+					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude: <span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<!--	The menus are inserted here	-->
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<!--	Page Title Bar	-->
+				<div class="ow-titleBar" style="margin-bottom: 2vh;">
+					<h1>This period's highs and lows</h1>
+					<p class="w3-hide">Dislays selected records up to <span data-OWData="Yesterday"></span></p>
+				</div>
+
+				<div class="ow-btnBar" style="justify-content: center; margin-bottom: 1vh;">
+					<div>Start Date:&nbsp;<input type="text" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
+					<div>End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo"></div>
+					<button type="button" class="w3-btn" onclick="load()">Load</button>
+				</div>
+
+				<!--	You can change the class to 'ow-oneCol' if you prefer but you will need to adjust the width 's4' for titles	-->
+				<div class="ow-twoCol" style="row-gap: var(--rowGap);"><!--	Add style ow-flex-top' to have unequal columns	-->
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Temperatures</h3>
+							<i class="fa-solid fa-temperature-half"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High Temperature</p>
+							<p class="w3-col s2 w3-right-align"><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highTempTimeDayfile" class=""></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low Temperature</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowTempTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High Dew Point</p>
+							<p class="w3-col s2 w3-right-align"><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highDewPointTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low Dew Point</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowDewPointTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High apparent temperature</p>
+							<p class="w3-col s2 w3-right-align"><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highApparentTempTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low apparent temp.</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowApparentTempTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High Feels Like</p>
+							<p class="w3-col s2 w3-right-align"><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highFeelsLikeTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low Feels like</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowFeelsLikeTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High Humidex</p>
+							<p class="w3-col s2 w3-right-align"><span id="highHumidexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highHumidexTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low Wind Chill</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowWindChillTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High Heat Index</p>
+							<p class="w3-col s2 w3-right-align"><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highHeatIndexTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest minimum temp</p>
+							<p class="w3-col s2 w3-right-align"><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highMinTempTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low maximum temp</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowMaxTempTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">High daily temp range</p>
+							<p class="w3-col s2 w3-right-align"><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="highDailyTempRangeTimeDayfile"></span></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Low daily temp range</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p class="w3-rest w3-right-align"><span id="lowDailyTempRangeTimeDayfile"></span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Rainfall</h3>
+							<i class="fa-solid fa-droplet" style="color: #0061ff;"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest rain rate</p>
+							<p class="w3-col s2 w3-right-align"><span id="highRainRateValDayfile"></span><span class="unit-rain"></span>/hr</p>
+							<p class="w3-rest w3-right-align" id="highRainRateTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest hourly rain</p>
+							<p class="w3-col s2 w3-right-align"><span id="highHourlyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p class="w3-rest w3-right-align" id="highHourlyRainTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest daily rain</p>
+							<p class="w3-col s2 w3-right-align"><span id="highDailyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p class="w3-rest w3-right-align" id="highDailyRainTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest 24hr rain</p>
+							<p class="w3-col s2 w3-right-align"><span id="highRain24hValDayfile"></span><span class="unit-rain"></span></p>
+							<p class="w3-rest w3-right-align" id="highRain24hTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest monthly rain</p>
+							<p class="w3-col s2 w3-right-align"><span id="highMonthlyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p class="w3-rest w3-right-align" id="highMonthlyRainTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Longest dry period</p>
+							<p class="w3-col s2 w3-right-align"><span id="longestDryPeriodValDayfile"></span> day(s)</p>
+							<p class="w3-rest w3-right-align" id="longestDryPeriodTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Longest wet period</p>
+							<p class="w3-col s2 w3-right-align"><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
+							<p class="w3-rest w3-right-align" id="longestWetPeriodTimeDayfile">-</p>
+						</div>
+
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Winds</h3>
+							<i class="fa-solid fa-wind"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest gust speed</p>
+							<p class="w3-col s2 w3-right-align"><span id="highGustValDayfile"></span><span class="unit-wind"></span></p>
+							<p class="w3-rest w3-right-align" id="highGustTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest average speed</p>
+							<p class="w3-col s2 w3-right-align"><span id="highWindValDayfile"></span><span class="unit-wind"></span></p>
+							<p class="w3-rest w3-right-align" id="highWindTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Longest daily wind run</p>
+							<p class="w3-col s2 w3-right-align"><span id="highWindRunValDayfile"></span><span class="unit-windrun"></span></p>
+							<p class="w3-rest w3-right-align" id="highWindRunTimeDayfile"></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Humidity</h3>
+							<i class="fa-solid fa-cloud-rain" style="color: #0061ff;"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest humidity</p>
+							<p class="w3-col s2 w3-right-align"><span id="highHumidityValDayfile"></span>%</p>
+							<p class="w3-rest w3-right-align" id="highHumidityTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Lowest humidity</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowHumidityValDayfile"></span>%</p>
+							<p class="w3-rest w3-right-align" id="lowHumidityTimeDayfile"></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Pressure</h3>
+							<i class="fa-solid fa-compress" style="color: #ffaa00;"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-right-align"><strong>Date &amp; time</strong></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Highest pressure</p>
+							<p class="w3-col s2 w3-right-align"><span id="highBarometerValDayfile"></span><span class="unit-press"></span></p>
+							<p class="w3-rest w3-right-align" id="highBarometerTimeDayfile"></p>
+						</div>
+						<div class="w3-row ow-tableRow">
+							<p class="w3-col s4">Lowest pressure</p>
+							<p class="w3-col s2 w3-right-align"><span id="lowBarometerValDayfile"></span><span class="unit-press"></span></p>
+							<p class="w3-rest w3-right-align" id="lowBarometerTimeDayfile"></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4 w3-hide" style="order:0;">
+						<div class="ow-titleBar" style="margin: 1vh 0">
+							<h3>Solar</h3>
+							<i class="fa-solid fa-sun-plant-wilt" style="color: #fec700;"></i>
+						</div>
+						<div class="w3-row">
+							<p class="w3-col s4">&nbsp;</p>
+							<p class="w3-col s2 w3-right-align"><strong>Reading</strong></p>
+							<p class="w3-rest w3-center"><strong>Date &amp; time</strong></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

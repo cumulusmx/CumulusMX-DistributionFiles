@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Alarm Settings
+	File:	alarmsettings.html		v2.0.2
+	Author:	D.N.C.Thomas		Sept 2023
+	Last Edit:	2023/12/12 23:47:13
+	Last Check:	04/10/2023
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Alarm Settings</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/MeerKat.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/page-manager.js"></script>
+		<script src="js/ai-extra.js"></script>
+		<script src="js/alarmsettings.js"></script>"
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+			table {background: var(--add5); border-collapse: collapse; width: 100%;}
+			td { border:thin solid var(--add4); text-align: center;}
+			th { border: thin solid var(--add5); background: var(--add3)!important; vertical-align: bottom;}
+			td:nth-of-type(2)	{ width: 14em; text-align:left;}
+			input[type=number] { max-width:5em; padding: 0 0 0 8px;margin:0;}
+			#alarms input[type=text] { padding: 1px 8px; max-width: 10em; }
+
+			td:nth-of-type(5),
+			td:nth-of-type(8),
+			td:nth-of-type(9),
+			td:nth-of-type(10),
+			td:nth-of-type(11) { border-right: thin solid var(--theme);}
+
+			input[type=checkbox]{ margin: 0 1em;}
+
+/*
+			#Alarms td:nth-of-type(1),
+			#Alarms td:nth-of-type(5),
+			#Alarms td:nth-of-type(10),
+			#Alarms td:nth-of-type(11),
+			#Alarms td:nth-of-type(9) {text-align: center; border-right: thin solid var(--l4);}
+			#Alarms td, #Alarms th {padding: 2px 4px; vertical-align: bottom;}
+
+			#Alarms th:nth-of-type(4) {text-align:center!important;}
+			#Alarms td:nth-of-type(2) {min-width: 12em;}
+*/
+			/*	If you want a different size font, edit the two entries below	*/
+			td, th {font-size: 90%;}
+			input { font-size: 90%;}
+		</style>
+	</head>
+	<body class="hidden ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
+			<div class="siteWidth ow-titleBar" style=" margin:auto;">
+				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+					<h5 class="w3-align-right">
+					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<!--	The menus are inserted here	-->
+				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
+				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
+			</div>
+
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<div class="ow-titleBar" style="margin-bottom: 2vh;">
+					<h1>Alarm Settings</h1>
+					<p>Use this page to configure alarms, notification and emails.</p>
+				</div>
+
+				<div class="ow-oneCol" style="row-gap: 2vh;">
+					<div class="ow-card ow-theme-add4 ow-animate-fadeIn">
+
+						<table id="alarms" class="w3-hoverable w3-striped" cellspacing="0" role="grid">
+							<thead>
+								<tr>
+									<th>Enable</th>
+									<th>Alarm</th>
+									<th colspan="2">Value</th>
+									<th>Play<br>sound</th>
+									<th>Set sound file</th>
+									<th>Action</th>
+									<th>Action Params</th>
+									<th>Notify</th>
+									<th>Email</th>
+									<th>Latches</th>
+									<th>Latch hrs</th>
+									<th>Threshold</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input id="tempBelowEnabled"					type="checkbox"								aria-label="Enable temperature below alarm"></td>
+									<td class="alarmName" aria-hidden>Temperature falls below:</td>
+									<td><input id="tempBelowVal" class="valInput"		type="number" min="-50" max="50" step="0.1" aria-label="Temperature falls below value"></td>
+									<td class="tempUnits"></td>
+									<td><input id="tempBelowSoundEnabled"				type="checkbox"								aria-label="Enable temperature below sound"></td>
+									<td><input id="tempBelowSound"						type="text" 								aria-label="Temperature below sound filename"></td>
+									<td><input id="tempBelowAction"						type="text"									aria-label="Temperature below action"></td>
+									<td><input id="tempBelowActionParams"				type="text"									aria-label="Temperature below action parameters"></td>
+									<td><input id="tempBelowNotify"						type="checkbox"								aria-label="Enable temperature below notifications"></td>
+									<td><input id="tempBelowEmail"						type="checkbox"								aria-label="Enable temperature below emails"></td>
+									<td><input id="tempBelowLatches"					type="checkbox"								aria-label="Enable temperature below latching"></td>
+									<td><input id="tempBelowLatchHrs" class="valInput"	type="number" min="0" max="999" step="any"  aria-label="Temperature below latching hours"></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="tempAboveEnabled" aria-label="Enable temperature above alarm"></td>
+									<td aria-hidden>Temperature rises above:</td>
+									<td><input class="valInput" id="tempAboveVal" type="number" min="-50" max="50" step="0.1" aria-label="Temperature rises above value"></td>
+									<td class="tempUnits"></td>
+									<td><input type="checkbox" id="tempAboveSoundEnabled" aria-label="Enable temperature above sound"></td>
+									<td><input id="tempAboveSound" type="text" aria-label="Temperature above sound filename"></td>
+									<td><input id="tempAboveAction" type="text"aria-label="Temperature above action"></td>
+									<td><input id="tempAboveActionParams" type="text" aria-label="Temperature above action parameters"></td>
+									<td><input type="checkbox" id="tempAboveNotify" aria-label="Enable temperature above notifications"></td>
+									<td><input type="checkbox" id="tempAboveEmail" aria-label="Enable temperature above emails"></td>
+									<td><input type="checkbox" id="tempAboveLatches" aria-label="Enable temperature above latching"></td>
+									<td><input id="tempAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Temperature above latching hours"></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="tempChangeEnabled" aria-label="Enable temperature change alarm"></td>
+									<td aria-hidden>Temperature changes by:</td>
+									<td><input class="valInput" id="tempChangeVal" type="number" min="0" max="10" step="0.1" aria-label="Temperature changes more than value"></td>
+									<td><span class="tempUnits"></span>/hr</td>
+									<td><input type="checkbox" id="tempChangeSoundEnabled" aria-label="Enable temperature change sound"></td>
+									<td><input id="tempChangeSound" type="text" aria-label="Temperature change sound filename"></td>
+									<td><input id="tempChangeAction" type="text"  aria-label="Temperature change action"></td>
+									<td><input id="tempChangeActionParams"  type="text" aria-label="Temperature change action parameters"></td>
+									<td><input type="checkbox" id="tempChangeNotify" aria-label="Enable temperature change notifications"></td>
+									<td><input type="checkbox" id="tempChangeEmail" aria-label="Enable temperature change emails"></td>
+									<td><input type="checkbox" id="tempChangeLatches" aria-label="Enable temperature change latching"></td>
+									<td><input id="tempChangeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Temperature change latching hours"></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="pressBelowEnabled" aria-label="Enable pressure below alarm"></td>
+									<td aria-hidden>Pressure falls below:</td>
+									<td><input class="valInput" id="pressBelowVal" type="number" min="20" max="1050" aria-label="Pressure falls below value"></td>
+									<td class="pressUnits"></td>
+						<td><input type="checkbox" id="pressBelowSoundEnabled" aria-label="Enable pressure below sound"></td>
+						<td><input id="pressBelowSound"  type="text" aria-label="Pressure below sound filename"></td>
+						<td><input id="pressBelowAction"  type="text" aria-label="Pressure below action"></td>
+						<td><input id="pressBelowActionParams"  type="text" aria-label="Pressure below action parameters"></td>
+						<td><input type="checkbox" id="pressBelowNotify" aria-label="Enable pressure below notifications"></td>
+						<td><input type="checkbox" id="pressBelowEmail" aria-label="Enable pressure below emails"></td>
+						<td><input type="checkbox" id="pressBelowLatches" aria-label="Enable pressure below latching"></td>
+						<td><input id="pressBelowLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure below latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="pressAboveEnabled" aria-label="Enable pressure above alarm"></td>
+						<td aria-hidden>Pressure rises above:</td>
+						<td><input class="valInput" id="pressAboveVal" type="number" min="20" max="1050" aria-label="Pressure rises above value"></td>
+						<td class="pressUnits"></td>
+						<td><input type="checkbox" id="pressAboveSoundEnabled" aria-label="Enable pressure above sound"></td>
+						<td><input id="pressAboveSound"  type="text" aria-label="Pressure above sound filename"></td>
+						<td><input id="pressAboveAction"  type="text" aria-label="Pressure above action"></td>
+						<td><input id="pressAboveActionParams"  type="text" aria-label="Pressure above action parameters"></td>
+						<td><input type="checkbox" id="pressAboveNotify" aria-label="Enable pressure above notifications"></td>
+						<td><input type="checkbox" id="pressAboveEmail" aria-label="Enable pressure above emails"></td>
+						<td><input type="checkbox" id="pressAboveLatches" aria-label="Enable pressure above latching"></td>
+						<td><input id="pressAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure above latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="pressChangeEnabled" aria-label="Enable pressure change alarm"></td>
+						<td aria-hidden>Pressure changes by:</td>
+						<td><input class="valInput" id="pressChangeVal" type="number" min="0" max="20" step="0.1" aria-label="Pressure changes more than value"></td>
+						<td><span class="pressUnits"></span>/hr</td>
+						<td><input type="checkbox" id="pressChangeSoundEnabled" aria-label="Enable pressure change sound"></td>
+						<td><input id="pressChangeSound"  type="text" aria-label="Pressure change sound filename"></td>
+						<td><input id="pressChangeAction"  type="text" aria-label="Pressure change action"></td>
+						<td><input id="pressChangeActionParams"  type="text" aria-label="Pressure change action parameters"></td>
+						<td><input type="checkbox" id="pressChangeNotify" aria-label="Enable pressure change notifications"></td>
+						<td><input type="checkbox" id="pressChangeEmail" aria-label="Enable pressure change emails"></td>
+						<td><input type="checkbox" id="pressChangeLatches" aria-label="Enable pressure change latching"></td>
+						<td><input id="pressChangeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Pressure change latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="rainAboveEnabled" aria-label="Enable rainfall alarm"></td>
+						<td aria-hidden>Rainfall today more than:</td>
+						<td><input class="valInput" id="rainAboveVal" type="number" min="0" max="200" step="0.1" aria-label="Rainfall today more than value"></td>
+						<td class="rainUnits"></td>
+						<td><input type="checkbox" id="rainAboveSoundEnabled" aria-label="Enable rainfall sound"></td>
+						<td><input id="rainAboveSound"  type="text" aria-label="Rainfall sound filename"></td>
+						<td><input id="rainAboveAction"  type="text" aria-label="Rainfall action"></td>
+						<td><input id="rainAboveActionParams"  type="text" aria-label="Rainfall action parameters"></td>
+						<td><input type="checkbox" id="rainAboveNotify" aria-label="Enable rainfall notifications"></td>
+						<td><input type="checkbox" id="rainAboveEmail" aria-label="Enable rainfall emails"></td>
+						<td><input type="checkbox" id="rainAboveLatches" aria-label="Enable rainfall latching"></td>
+						<td><input id="rainAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Rainfall latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="rainRateAboveEnabled" aria-label="Enable rain rate alarm"></td>
+						<td aria-hidden>Rainfall rate rises above:</td>
+						<td><input class="valInput" id="rainRateAboveVal" type="number" min="0" max="200" step="0.1" aria-label="Rain rate today more than value"></td>
+						<td><span class="rainUnits"></span>/hr</td>
+						<td><input type="checkbox" id="rainRateAboveSoundEnabled" aria-label="Enable rain rate sound"></td>
+						<td><input id="rainRateAboveSound"  type="text" aria-label="Rain rate sound filename"></td>
+						<td><input id="rainRateAboveAction"  type="text" aria-label="Rain rate action"></td>
+						<td><input id="rainRateAboveActionParams"  type="text" aria-label="Rain rate action parameters"></td>
+						<td><input type="checkbox" id="rainRateAboveNotify" aria-label="Enable rain rate notifications"></td>
+						<td><input type="checkbox" id="rainRateAboveEmail" aria-label="Enable rain rate emails"></td>
+						<td><input type="checkbox" id="rainRateAboveLatches" aria-label="Enable rain rate latching"></td>
+						<td><input id="rainRateAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Rain rate latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="isRainingEnabled" aria-label="Enable is raining alarm"></td>
+						<td>Is Raining</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="isRainingSoundEnabled" aria-label="Enable is raining sound"></td>
+						<td><input id="isRainingSound"  type="text" aria-label="Is raining sound filename"></td>
+						<td><input id="isRainingAction"  type="text" aria-label="Is raining action"></td>
+						<td><input id="isRainingActionParams"  type="text" aria-label="Is raining action parameters"></td>
+						<td><input type="checkbox" id="isRainingNotify" aria-label="Enable is raining notifications"></td>
+						<td><input type="checkbox" id="isRainingEmail" aria-label="Enable is raining emails"></td>
+						<td><input type="checkbox" id="isRainingLatches" aria-label="Enable is raining latching"></td>
+						<td><input id="isRainingLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Is raining latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="gustAboveEnabled" aria-label="Enable wind gust alarm"></td>
+						<td aria-hidden>Wind gust more than:</td>
+						<td><input class="valInput" id="gustAboveVal" type="number" min="0" max="100" step="0.1" aria-label="Wind gust more than value"></td>
+						<td class="windUnits"></td>
+						<td><input type="checkbox" id="gustAboveSoundEnabled" aria-label="Enable wind gust sound"></td>
+						<td><input id="gustAboveSound"  type="text" aria-label="Wind gust sound filename"></td>
+						<td><input id="gustAboveAction"  type="text" aria-label="Wind gust action"></td>
+						<td><input id="gustAboveActionParams"  type="text" aria-label="Wind gust action parameters"></td>
+						<td><input type="checkbox" id="gustAboveNotify" aria-label="Enable wind gust notifications"></td>
+						<td><input type="checkbox" id="gustAboveEmail" aria-label="Enable wind gust emails"></td>
+						<td><input type="checkbox" id="gustAboveLatches" aria-label="Enable wind gust latching"></td>
+						<td><input id="gustAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Wind gust latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="windAboveEnabled" aria-label="Enable wind average alarm"></td>
+						<td aria-hidden>Average wind more than:</td>
+						<td><input class="valInput"  id="windAboveVal" type="number" min="0" max="100" step="0.1" aria-label="Wind average more than value"></td>
+						<td class="windUnits"></td>
+						<td><input type="checkbox" id="windAboveSoundEnabled" aria-label="Enable wind average sound"></td>
+						<td><input id="windAboveSound"  type="text" aria-label="Wind average sound filename"></td>
+						<td><input id="windAboveAction"  type="text" aria-label="Wind average action"></td>
+						<td><input id="windAboveActionParams"  type="text" aria-label="Wind average action parameters"></td>
+						<td><input type="checkbox" id="windAboveNotify" aria-label="Enable wind average notifications"></td>
+						<td><input type="checkbox" id="windAboveEmail" aria-label="Enable wind average emails"></td>
+						<td><input type="checkbox" id="windAboveLatches" aria-label="Enable wind average latching"></td>
+						<td><input id="windAboveLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Wind average latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="newRecordEnabled" aria-label="Enable all-time record alarm"></td>
+						<td aria-hidden>New all-time record</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="newRecordSoundEnabled" aria-label="Enable new record lost sound"></td>
+						<td><input id="newRecordSound"  type="text" aria-label="New record sound filename"></td>
+						<td><input id="newRecordAction"  type="text" aria-label="New record action"></td>
+						<td><input id="newRecordActionParams"  type="text" aria-label="New record action parameters"></td>
+						<td><input type="checkbox" id="newRecordNotify" aria-label="Enable new record notifications"></td>
+						<td><input type="checkbox" id="newRecordEmail" aria-label="Enable new record emails"></td>
+						<td><input type="checkbox" id="newRecordLatches" aria-label="Enable new record latching"></td>
+						<td><input id="newRecordLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="New record latching hours"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="contactLostEnabled" aria-label="Enable sensor contact lost alarm"></td>
+						<td aria-hidden>Sensor contact lost</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="contactLostSoundEnabled" aria-label="Enable sensor contact lost sound"></td>
+						<td><input id="contactLostSound"  type="text" aria-label="Sensor contact lost sound filename"></td>
+						<td><input id="contactLostAction"  type="text" aria-label="Sensor contact lost action"></td>
+						<td><input id="contactLostActionParams"  type="text" aria-label="Sensor contact lost action parameters"></td>
+						<td><input type="checkbox" id="contactLostNotify" aria-label="Enable sensor contact lost notifications"></td>
+						<td><input type="checkbox" id="contactLostEmail" aria-label="Enable sensor contact lost emails"></td>
+						<td><input type="checkbox" id="contactLostLatches" aria-label="Enable sensor contact lost latching"></td>
+						<td><input id="contactLostLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Sensor contact lost latching hours"></td>
+						<td><input id="contactLostThreshold" type="number" min="1" max="99" step="1" aria-label="Sensor contact lost trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="dataStoppedEnabled" aria-label="Enable data stopped alarm"></td>
+						<td aria-hidden>Data connection is lost</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="dataStoppedSoundEnabled" aria-label="Enable data stopped sound"></td>
+						<td><input id="dataStoppedSound"  type="text" aria-label="Data stopped sound filename"></td>
+						<td><input id="dataStoppedAction"  type="text" aria-label="Data stopped action"></td>
+						<td><input id="dataStoppedActionParams"  type="text" aria-label="Data stopped action parameters"></td>
+						<td><input type="checkbox" id="dataStoppedNotify" aria-label="Enable data stopped notifications"></td>
+						<td><input type="checkbox" id="dataStoppedEmail" aria-label="Enable data stopped emails"></td>
+						<td><input type="checkbox" id="dataStoppedLatches" aria-label="Enable data stopped latching"></td>
+						<td><input id="dataStoppedLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Data stopped latching hours"></td>
+						<td><input id="dataStoppedThreshold" type="number" min="1" max="99" step="1" aria-label="Data stopped trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="batteryLowEnabled" aria-label="Enable battery low alarm"></td>
+						<td aria-hidden>Station batteries are low</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="batteryLowSoundEnabled" aria-label="Enable battery low sound"></td>
+						<td><input id="batteryLowSound"  type="text" aria-label="Battery low sound filename"></td>
+						<td><input id="batteryLowAction"  type="text" aria-label="Battery low action"></td>
+						<td><input id="batteryLowActionParams"  type="text" aria-label="Battery low action parameters"></td>
+						<td><input type="checkbox" id="batteryLowNotify" aria-label="Enable battery low notifications"></td>
+						<td><input type="checkbox" id="batteryLowEmail" aria-label="Enable battery low emails"></td>
+						<td><input type="checkbox" id="batteryLowLatches" aria-label="Enable battery low latching"></td>
+						<td><input id="batteryLowLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Battery low latching hours"></td>
+						<td><input id="batteryLowThreshold" type="number" min="1" max="99" step="1" aria-label="Battery low trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="spikeEnabled" aria-label="Enable data spike alarm"></td>
+						<td aria-hidden>Data spike is detected</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="spikeSoundEnabled" aria-label="Enable data spike sound"></td>
+						<td><input id="spikeSound" type="text"  aria-label="Data spike sound filename"></td>
+						<td><input id="spikeAction"  type="text" aria-label="Data spike action"></td>
+						<td><input id="spikeActionParams" type="text"  aria-label="Data spike action parameters"></td>
+						<td><input type="checkbox" id="spikeNotify" aria-label="Enable data spike notifications"></td>
+						<td><input type="checkbox" id="spikeEmail" aria-label="Enable data spike emails"></td>
+						<td><input type="checkbox" id="spikeLatches" aria-label="Enable data spike latching"></td>
+						<td><input id="spikeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Data spike latching hours"></td>
+						<td><input id="spikeThreshold" type="number" min="1" max="99" step="1" aria-label="Data spike trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="ftpUploadEnabled" aria-label="Enable web uploads alarm"></td>
+						<td aria-hidden>Web upload errors</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="ftpUploadSoundEnabled" aria-label="Enable web uploads sound"></td>
+						<td><input id="ftpUploadSound"  type="text" aria-label="Web uploads sound filename"></td>
+						<td><input id="ftpUploadAction"  type="text" aria-label="Web uploads action"></td>
+						<td><input id="ftpUploadActionParams"  type="text" aria-label="Web uploads action parameters"></td>
+						<td><input type="checkbox" id="ftpUploadNotify" aria-label="Enable web uploads notifications"></td>
+						<td><input type="checkbox" id="ftpUploadEmail" aria-label="Enable web uploads emails"></td>
+						<td><input type="checkbox" id="ftpUploadLatches" aria-label="Enable web uploads latching"></td>
+						<td><input id="ftpUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Web uploads latching hours"></td>
+						<td><input id="ftpUploadThreshold" type="number" min="1" max="99" step="1" aria-label="Web uploads trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="httpUploadEnabled" aria-label="Enable third party uploads alarm"></td>
+						<td aria-hidden>Third party upload errors</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="httpUploadSoundEnabled" aria-label="Enable third party uploads sound"></td>
+						<td><input id="httpUploadSound"  type="text" aria-label="Third party uploads sound filename"></td>
+						<td><input id="httpUploadAction"  type="text" aria-label="Third party uploads action"></td>
+						<td><input id="httpUploadActionParams"  type="text" aria-label="Third party uploads action parameters"></td>
+						<td><input type="checkbox" id="httpUploadNotify" aria-label="Enable third party uploads notifications"></td>
+						<td><input type="checkbox" id="httpUploadEmail" aria-label="Enable third party uploads emails"></td>
+						<td><input type="checkbox" id="httpUploadLatches" aria-label="Enable third party uploads latching"></td>
+						<td><input id="httpUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Third party uploads latching hours"></td>
+						<td><input id="httpUploadThreshold" type="number" min="1" max="99" step="1" aria-label="Third party uploads trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="mySqlUploadEnabled" aria-label="Enable MySQL uploads alarm"></td>
+						<td aria-hidden>MySQL upload errors</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="mySqlUploadSoundEnabled" aria-label="Enable MySQL uploads sound"></td>
+						<td><input id="mySqlUploadSound" type="text"  aria-label="MySQL uploads sound filename"></td>
+						<td><input id="mySqlUploadAction" type="text"  aria-label="MySQL uploads action"></td>
+						<td><input id="mySqlUploadActionParams"  type="text" aria-label="MySQL uploads action parameters"></td>
+						<td><input type="checkbox" id="mySqlUploadNotify" aria-label="Enable MySQL uploads notifications"></td>
+						<td><input type="checkbox" id="mySqlUploadEmail" aria-label="Enable MySQL uploads emails"></td>
+						<td><input type="checkbox" id="mySqlUploadLatches" aria-label="Enable MySQL uploads latching"></td>
+						<td><input id="mySqlUploadLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="MySQL uploads latching hours"></td>
+						<td><input id="mySqlUploadThreshold" type="number" min="1" max="99" step="1" aria-label="MySQL uploads trip threshold"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="upgradeEnabled" aria-label="Enable Cumulus upgrade available alarm"></td>
+						<td aria-hidden>Cumulus upgrade available</td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" id="upgradeSoundEnabled" aria-label="Enable Cumulus upgrade sound"></td>
+						<td><input id="upgradeSound"  type="text" aria-label="Cumulus upgrade sound filename"></td>
+						<td><input id="upgradeAction"  type="text" aria-label="Cumulus upgrade action"></td>
+						<td><input id="upgradeActionParams" type="text"  aria-label="Cumulus upgrade action parameters"></td>
+						<td><input type="checkbox" id="upgradeNotify" aria-label="Enable Cumulus upgrade notifications"></td>
+						<td><input type="checkbox" id="upgradeEmail" aria-label="Enable Cumulus upgrade emails"></td>
+						<td><input type="checkbox" id="upgradeLatches" aria-label="Enable Cumulus upgrade latching"></td>
+						<td><input id="upgradeLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Cumulus upgrade latching hours"></td>
+						<td>&nbsp;</td>
+					</tr>
+					</tbody>
+				</table>
+					</div>
+
+					<div class="ow-card ow-theme-add4 ow-animate-drop">
+						<div class="ow-titleBar" style="margin:1vh 0;">
+							<h4>Email Settings</h4>
+						</div>
+						<div class="ow-titleBar ow-flex-center">
+							<span style="flex-grow:0;" aria-hidden>From email address:</span>
+							<input id="fromEmail" style="min-width: 20em; max-width: 40em; flex-grow:1" aria-label="From email address">
+							<span style="flex-grow:0;" aria-hidden>To email address(es):</span>
+							<input id="destEmail" style="min-width: 20em; max-width: 40em; flex-grow:1;"  aria-label="To email address or addresses. Separate multiple email addresses with a semicolon">
+						</div>
+						 <span aria-hidden>Separate multiple email addresses with a semicolon ";". Eg: joe@somewhere.com; jane@here.net</span>
+						 <div class="ow-titleBar ow-flex-top" style="margin: 1vh 0; ">
+							<label style="min-width:30em;"><input type="checkbox" class="w3-checkbox" id="useBcc">Put destination emails in the BCC list rather than To list</label>
+							By default the destination email addresses are put in the 'To' list and will be visible to every recepient, use this option to add them to the BCC list instead.
+						 </div>
+						 <div class="ow-titleBar ow-flex-top" style="margin: 1vh 0;">
+							<label style="min-width: 30em;"><input type="checkbox" id="useHtml"> Email uses HTML text formatting</label>
+							By default the email messages use UTF-8 plain text, but you can define your own in strings.ini and use HTML if you wish
+						 </div>
+						 <div class="ow-btnBar" style="margin:1vh 0; justify-content: center;">
+							<button type="submit" form="recsform" class="w3-btn" style="max-width: 15em;" onclick="updateAlarms()">Update Alarms</button>
+							<button type="button" class="w3-btn"  style="max-width: 15em;" onclick="testEmail()">Send Test Email</button>
+						 </div>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
