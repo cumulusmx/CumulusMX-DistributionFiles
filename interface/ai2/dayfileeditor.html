@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Day File Editor
-	File:	dayfileeditor.html		v2.0.2
-	Author:	D.N.C.Thomas		Sept 2023
+	File:	dayfileeditor.html		v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
 	Note:
 		This is a new file name
-	Last Edit:	2023/12/15 16:29:14
+	Last Edit:	2024-02-21
 	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -55,35 +55,20 @@
 		<link rel="stylesheet" href="css/ai-editabletables.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/dayfileeditor.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
-			input[type=text] { max-width: 8em;}
-			input[type=search] { background:var(--add3);}
 			/*	Units	*/
 			/*	You MAY need to manually edit the following styles to match your units	*/
-			#datalog tbody .tempUnits:after { content:"°C";  font-size: 8px; padding-left: 2px; vertical-align: text-top;}
-			#datalog tbody .windUnits:after { content:"kmh"; font-size: 8px; padding-left: 2px; vertical-align: baseline;}
-			#datalog tbody .rainUnits:after { content:"mm";  font-size: 8px; padding-left: 2px; vertical-align: baseline;}
 			#datalog tbody .percent:after   { content:"%";   font-size:10px; padding-left: 2px; vertical-align: text-top;}
 			#datalog tbody .rainRateUnits:after { content:"mm/hr"; font-size:8px; padding-left: 2px; vertical-align: baseline;}
-			#datalog tbody .pressUnits:after { content:"hPa"; font-size:8px; padding-left: 2px; vertical-align: baseline; }
 			#datalog tbody .bearing:after    { content:"°";   font-size:10px; padding-left: 2px; vertical-align:text-top;}
 			#datalog tbody .hours:after    { content:"hrs";   font-size: 8px; padding-left: 2px; vertical-align:baseline;}
 			#datalog tbody .solarUnits:after { content:"w/m\00b2";	  font-size: 8px; padding-left:2px;vertical-align:baseline;}
-			#datalog tbody>tr.selected, table.dataTable tbody>tr>.selected { mix-blend-mode: difference; }
-
-			#datalog thead th {vertical-align: bottom;}
-			#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
-			#datalog tbody tr:hover { background-color: var(--add4)!important;}
-			#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
-			#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
-			#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}
 
 			.dtfc-fixed-left:nth-of-type(2) { border-right:thin solid var(--add3)!important; }
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
@@ -102,8 +87,6 @@
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
 				<!--	The menus are inserted here	-->
-				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
-				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
 		</header>
 

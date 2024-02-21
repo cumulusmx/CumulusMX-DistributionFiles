@@ -26,7 +26,7 @@ html {
 
 body, p, label {
 	font-family: Inter, serif;
-	font-size: clamp( 14px, 1.1vw, 16px );
+	font-size: clamp( 14px, 1.2vw, 16px );
 }
 
 h1, h2, h3, h4, h5, h6 {

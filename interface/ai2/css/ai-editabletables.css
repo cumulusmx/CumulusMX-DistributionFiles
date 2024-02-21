@@ -4,7 +4,7 @@
  * Purpose:	Styles for pages using X-editable tables
  * Version:	4.0.0
  *	Author:	Neil Thomas
- * Edited:	31.03.2023
+ * Edited:	21-02-2024
  * Checked:
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -24,6 +24,7 @@ input[readonly] {
 
 #dateFrom, #dateTo {
 	background-color: var(--add3);
+	color: var(--theme)!important;
 }
 
 .paginate_input{
@@ -54,6 +55,7 @@ input[readonly] {
 
 .paginate_button:hover {
 	background-color: var(--add5)!important;
+	color: var(--add4)!important;
 }
 
 .paginate .paginate_total { margin-right: 1em!important;}
@@ -63,7 +65,7 @@ input[readonly] {
 	background: var(--add3)!important;
 	color: var(--sub5)!important;
 	padding: 0.25em 2em!important;
-	border:none;
+	border:thin solid rgba(0,0,0,0);
 }
 
 .modal input[type="text"] {
@@ -141,3 +143,11 @@ thead tr {background: var(--add4);}
 
 td.dataTables_empty { text-align: left!important;}
 
+#datalog tbody>tr.selected { mix-blend-mode: plus-darker; }
+#datalog thead th {vertical-align: bottom;}
+#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
+#datalog tbody tr:hover { background-color: var(--add4)!important;}
+
+#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
+#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
+#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}
