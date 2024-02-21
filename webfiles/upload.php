@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2024/01/04 17:36:44";
+$last_Modified="2024/02/11 12:14:50";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -16,7 +16,6 @@ $secret = 'change_this_to_the_value_in_CMX';
 // *******************************************
 
 // limitPath: restricts the upload script to placing files in the same folder structure as the script resides
-// That is you cannot specify something like /etc/init.d/sudo as a filename
 // Setting this to false allows the script to attempt to write anywhere in your filesystem that it has permission
 $limitPath = true;
 
