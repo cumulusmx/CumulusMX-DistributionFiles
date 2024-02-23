@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	This period highs & lows
-	File:	recsthisperiod.html			v2.0.2
-	Note:
-		This is a new file name
-	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/14 18:06:21
-	Last Check:	14/11/2023
+	File:	recsthisperiod.html		v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
+	Note:	This is a new file name
+	Last Edit:	2024-02-23
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -42,8 +41,7 @@
 		<link rel="stylesheet" href="css/main.css?v1.2">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/recsthisperiod.js"></script>
 
 		<!--	Local scripts & styles	-->
@@ -56,15 +54,16 @@
 			}
 			input[type=text] {
 				max-width: 10em;
-				background: var(--add3);
 				text-align: center;
+				border:none;
+				border-bottom: 1px solid var(--theme);
 			}
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>

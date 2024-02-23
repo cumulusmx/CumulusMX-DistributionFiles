@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Airlink Sensors
-	File:	airlinksensors.html		v2.0.2
-	Note:	This is a new filename for airlink.html
-	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/12 23:22:37
-	Last Check:	14/11/2023
+	File:	airlinksensors.html		v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
+	Note:	New filename for airlink.html
+	Last Edit:	2024-02-23
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -38,8 +38,7 @@
 		<link rel="stylesheet" href="css/main.css?v1.2">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/airlinksensors.js"></script>
 
 		<!--	Local scripts & styles	-->
@@ -49,10 +48,10 @@
 
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
@@ -83,107 +82,119 @@
 							<h4>Particle Count (outdoor)</h4>
 							<i class="fa-solid fa-spray-can-sparkles"></i>
 						</div>
-						<table id="CountsOutTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="CountsOutTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 					<div class="ow-theme-add4 ow-card" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h4>Particle Count (indoor)</h4>
 							<i class="fa-solid fa-spray-can-sparkles"></i>
 						</div>
-						<table id="CountsInTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="CountsInTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 					<div class="ow-theme-add4 ow-card" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h4>Air Quality Index Confidence(%) (outdoors)</h4>
 						</div>
-						<table id="PctOutTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="PctOutTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 					<div class="ow-theme-add4 ow-card" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h4>Air Quality Index Confidence(%) (indoors)</h4>
 							<i class="fa-solid fa-cloud-rain"></i>
 						</div>
-						<table id="PctInTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="PctInTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 					<div class="ow-theme-add4 ow-card" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h4>Air Quality Index (outdoor)</h4>
 							<i class="fa-solid fa-cloud-rain"></i>
 						</div>
-						<table id="AqiOutTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="AqiOutTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 					<div class="ow-theme-add4 ow-card" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h4>Air Quality Indix (indoor)</h4>
 							<i class="fa-solid fa-cloud-rain"></i>
 						</div>
-						<table id="AqiInTable" class="w3-table w3-hoverable">
-							<thead>
-								<tr>
-									<th>PM Size</th>
-									<th>1 Min</th>
-									<th>1 Hr</th>
-									<th>3 Hrs</th>
-									<th>24 Hrs</th>
-									<th>Nowcast</th>
-								</tr>
-							</thead>
-						</table>
+						<div class="w3-responsive">
+							<table id="AqiInTable" class="w3-table w3-hoverable">
+								<thead>
+									<tr>
+										<th>PM Size</th>
+										<th>1 Min</th>
+										<th>1 Hr</th>
+										<th>3 Hrs</th>
+										<th>24 Hrs</th>
+										<th>Nowcast</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

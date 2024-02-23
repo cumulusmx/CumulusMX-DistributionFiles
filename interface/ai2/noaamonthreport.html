@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	NOAA Monthly Reports
-	File:	noaamonthreport.html	v2.0.2
-	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/12 23:40:59
+	File:	noaamonthreport.html	v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
+	Last Edit:	2024-02-23
 	Last Check:	14/11/2023
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -40,14 +40,14 @@
 		<link rel="stylesheet" href="css/main.css?v1.2">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/noaamonthreport.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
+			select {border-radius: 6px; padding: 0.4em 0.5em!important;}
 			#selMonth { max-width:8em;}
 			#selYear {max-width: 5em;}
 			#generate-button { background: linear-gradient( 90deg, #eb9316 0, var(--add3) 75%)!important; flex-grow:0;}
@@ -56,10 +56,10 @@
 			#generateAll-button:hover	{ background: linear-gradient( 90deg, var(--add3) 0, #2aabd2 75%)!important;}
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style="margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 				<h5 class="w3-align-right">
 					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>

@@ -23,8 +23,8 @@ input[readonly] {
 }
 
 #dateFrom, #dateTo {
-	background-color: var(--add3);
-	color: var(--theme)!important;
+	background-color: var(--sub5);
+	color: var(--add5)!important;
 }
 
 .paginate_input{
@@ -143,7 +143,7 @@ thead tr {background: var(--add4);}
 
 td.dataTables_empty { text-align: left!important;}
 
-#datalog tbody>tr.selected { mix-blend-mode: plus-darker; }
+#datalog tbody>tr.selected { mix-blend-mode: multiply; }
 #datalog thead th {vertical-align: bottom;}
 #datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
 #datalog tbody tr:hover { background-color: var(--add4)!important;}
