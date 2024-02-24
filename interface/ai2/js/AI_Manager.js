@@ -19,7 +19,6 @@ let ThemeNames = ["Arcadia",		"Arcadia-Dark", 	"Cherry Tomato",	"Cherry Tomato D
 				  "Red Pear",		"Red Pear Dark",	"Russet Orange",	"Russet Orange Dark",
 				  "Spring Crocus",	"Spring Crocus Dark",	"Valiant Poppy","Valiant Poppy Dark"];
 
-
 $( function () {
 	if( typeof( Storage ) == 'undefined' ) {
 		console.log( 'Local storage unavailable.' );
@@ -123,7 +122,7 @@ let setUpAnimation = function( animation ) {
 };
 
 var clearScheme = function() {
-   localStorage.removeItem("CMXai2.1");
+   localStorage.removeItem( AIStore );
    alert("Saved configuration removed");
    window.location.assign("configai.html");
 };
@@ -135,13 +134,13 @@ var setScheme = function(destination) {
 	newConfig = Object.assign(newConfig, {'PaddingTop': $('#paddingTop').val()+'px', 'PaddingBottom': $('#paddingBottom').val()+'px' } );
 	var code = JSON.stringify( newConfig);
 	if( destination == 'store' ) {
-		localStorage.setItem( 'CMXai2.1', code );
+		localStorage.setItem( AIStore, code );
 
 	}
 	if( typeof( Storage ) !== "undefined" ) {
 		console.log('Storing');
-		localStorage.setItem( 'CMXai2.1', code );
-		localStorage.setItem('CMXai2.1', JSON.stringify( CMXConfig ));
+		localStorage.setItem( AIStore, code );
+		localStorage.setItem( AIStore, JSON.stringify( CMXConfig ));
 
 		alert( "The current configuration is now stored for all pages" );
 		$('#CMXInfo').html(JSON.stringify(CMXConfig).replaceAll(',',', '));

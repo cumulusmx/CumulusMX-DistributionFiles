@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	This Years Records Editor
-	File:	editalltimerecs.html		v2.0.2
+	File:	editalltimerecs.html	v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
 	Note:	This is new filename
-	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/12 23:37:09
-	Last Check:	14/11/2023
+	Last Edit:	2024-02-24
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CumulusMX All-time Records Editor</title>
+		<title>CumulusMX This Years Records Editor</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -47,8 +47,7 @@
 		<link rel="stylesheet" href="css/main.css?v1.2">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/editthisyearrecs.js"></script>
 
 		<!--	Local scripts & styles	-->
@@ -66,10 +65,10 @@
 			.ow-fontFix:hover{ color: var(--sub3)!important;}
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 					<h5 class="w3-align-right">
 					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
@@ -78,10 +77,7 @@
 			</div>
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
-				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
-				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
-
 		</header>
 
 		<div id="content">
@@ -95,7 +91,7 @@
 					</div>
 
 				</div>
-				<div class="ow-txt-small w3-right-align">Caution: this can be lengthy process<br>towards the end of the year</div>
+				<div class="ow-txt-small w3-right-align"><strong>Caution</strong>: this can be lengthy process<br>towards the end of the year</div>
 
 				<div class="ow-oneCol" style="margin-top:1vh;">
 					<div class="ow-card ow-theme-add4">

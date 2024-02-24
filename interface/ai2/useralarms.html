@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Custom Alarms
-	File:	customalarms.html		v2.0.2
-	Author:	D.N.C.Thomas		Sept 2023
-	Last Edit:	2023/12/17 23:01:37
+	File:	customalarms.html		v4.0.0
+	Author:	D.N.C.Thomas		  Feb 2024
+	Last Edit:	2024-02-24
 	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -45,8 +45,7 @@
 		<link rel="stylesheet" href="css/alpacaforms.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/page-manager.js"></script>
-		<script src="js/ai-extra.js"></script>
+		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/useralarms.js"></script>
 
 		<!--	Local scripts & styles	-->
@@ -92,10 +91,10 @@
 			button.btn { background-image: linear-gradient( var(--theme-sub3) ,var(--theme))!important;}
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 					<h5 class="w3-align-right">
 					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
@@ -105,8 +104,6 @@
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
 				<!--	The menus are inserted here	-->
-				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
-				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
 
 		</header>
@@ -122,6 +119,7 @@
 					<div class="ow-card ow-theme-add4">
 						<div class="ow-titleBar" style="margin: 1vh 0;">
 							<h2>User Alarms</h2>
+							<p>Set up your own alarms to display on the dashboard and optionally send you emails / perform custom actions</p>
 						</div>
 						<form id="alarmsForm"></form>
 

@@ -73,8 +73,9 @@ $(document).ready(function() {
 	//sessionStorage.removeItem('CMXRecords');
 	$('.w3-table').addClass('w3-hide');
 	var month = sessionStorage.getItem('CMXRecords');
+		console.log("Stored month: " + month)
 		if( month === null ) {
-			//console.log('Session returned:  null');
+			console.log('Session returned:  null');
 			$.ajax( {
 				url: '/api/tags/process.txt',
 				dataType: 'json',
@@ -89,7 +90,7 @@ $(document).ready(function() {
 				$('#' + month).addClass('ow-theme-sub3');
 			});
 		} else {
-			//console.log('Session storage returned: ' + month);
+			console.log('Session storage returned: ' + month);
 			$('#month-' + month).removeClass('w3-hide');
 			$('#' + month).addClass('ow-theme-sub3');
 		};

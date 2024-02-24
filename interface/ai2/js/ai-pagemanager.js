@@ -23,6 +23,8 @@ let CMXConfig = {
 	'Version': '4.0.0'
 }
 
+let AIStore = 'CMXai4.0.0';
+
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    	Check if the page structure can be stored:
     If it can, store & load it, otherwise use
@@ -32,11 +34,11 @@ let getConfig = function() {
 	if( typeof( Storage ) === "undefined" ) {
 		console.log('Storage unavailable; hardwired config being used');
 	} else {
-		var storedConfig = JSON.parse( localStorage.getItem( 'CMXai4.0.0' ));
+		var storedConfig = JSON.parse( localStorage.getItem( AIStore ));
 		if( storedConfig === null ) {
 			console.log('First use;');
             console.log('Storing default configuration');
-	        localStorage.setItem( 'CMXai4.0.0', JSON.stringify( CMXConfig ));
+	        localStorage.setItem( AIStore, JSON.stringify( CMXConfig ));
 		} else {
 			console.log('Configuration stored already; reading..');
 			CMXConfig = storedConfig;

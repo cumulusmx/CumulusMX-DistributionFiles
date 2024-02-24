@@ -3,7 +3,7 @@
 	Page:	Custom Logs Settings
 	File:	customlogs.html			v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-02-21
+	Last Edit:	2024-02-24
 	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -50,21 +50,22 @@
 
 		<!--	Local scripts & styles	-->
 		<style>
-			td:nth-of-type(1), th:nth-of-type(1),
-			td:nth-of-type(4), th:nth-of-type(4) { width: 6em; }
+			td:nth-of-type(1), th:nth-of-type(1) {width: 4em;}
+			td:nth-of-type(4), th:nth-of-type(4) { width: 7em; }
 			td:nth-of-type(2), th:nth-of-type(2) { width: 10em; }
 			td:nth-of-type(5), th:nth-of-type(5) { width: 110px; text-align: center;}
 			#dailyform td:nth-of-type(4),
-			#dailyform td:nth-of-type(4) {width: 110px!important;}
+			#dailyform th:nth-of-type(4) {width: 110px!important;}
 			/*	Controls the list items	*/
 			.ow-listItem p:nth-of-type(1) {flex: none; width: 8em; font-weight: 700;}
 			button.btn { background-image: linear-gradient( var(--theme-sub3) ,var(--theme))!important;}
+			
 		</style>
 	</head>
-	<body class="hidden ow-theme-add5">
+	<body class="ow-theme-add5">
 		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
-				<img src="img/CMX-Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 					<h5 class="w3-align-right">
 					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
@@ -74,10 +75,7 @@
 
 			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
 				<!--	The menus are inserted here	-->
-				<div id="Main_Menu" class="siteWidth w3-bar ow-theme-sub3" style="border-top: 1px solid var(--sub5);"></div>
-				<div id="Main_Menu_Mobile" class="w3-bar-block w3-hide w3-hide-large"></div>
 			</div>
-
 		</header>
 
 		<div id="content">
@@ -85,7 +83,7 @@
 			<div class="siteWidth">
 				<div class="ow-titleBar" style="margin-bottom: 2vh;">
 					<h1>Custom Log Settings</h1>
-					<p>Use this page to configure alarms, notification and emails.</p>
+					<p>Use this page to configure your own logs.</p>
 				</div>
 
 				<div class="ow-oneCol" style="row-gap: 2vh;">
