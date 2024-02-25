@@ -30,9 +30,6 @@ $( function () {
 		setUpAnimation( CMXConfig.Seagull.Animation )
 	}
 	displayCurrent();
-//	$('input[type=radio]').bind('change', function() {
-//		alert("Display mode: " + $('input[type=radio]:checked').val());
-//	})
 });
 
 let displayCurrent = function() {
@@ -72,6 +69,7 @@ let displayCurrent = function() {
 		console.log('Stay on top: ' + CMXConfig.Seagull.OnTop);
 		configPage();
 	});
+	$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 };
 
 let setupTheme = function( activeTheme ) {
@@ -124,30 +122,29 @@ let setUpAnimation = function( animation ) {
 var clearScheme = function() {
    localStorage.removeItem( AIStore );
    alert("Saved configuration removed");
-   window.location.assign("configai.html");
+   configPage();
+   //window.location.assign("configai.html");
 };
 
 var setScheme = function(destination) {
 	//	Store the scheme
-	var newConfig = {'Theme': $('#ThemeList').val(), 'darkMode': $("#darkMode").is(':checked')};
-	newConfig = Object.assign(newConfig, {'StaticHead': $('#BannerState').is(':checked'), 'StaticFoot': $('#FooterState').is(':checked')});
-	newConfig = Object.assign(newConfig, {'PaddingTop': $('#paddingTop').val()+'px', 'PaddingBottom': $('#paddingBottom').val()+'px' } );
-	var code = JSON.stringify( newConfig);
+	$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' '));
+	
 	if( destination == 'store' ) {
+		//	This is never run
 		localStorage.setItem( AIStore, code );
-
+		console.log("Stored as variable 'code'");
 	}
 	if( typeof( Storage ) !== "undefined" ) {
 		console.log('Storing');
-		localStorage.setItem( AIStore, code );
+		//localStorage.setItem( AIStore, code );
 		localStorage.setItem( AIStore, JSON.stringify( CMXConfig ));
-
+		//$('#CMXInfo').html(JSON.stringify(CMXConfig, null, ' '));
 		alert( "The current configuration is now stored for all pages" );
-		$('#CMXInfo').html(JSON.stringify(CMXConfig).replaceAll(',',', '));
 	}
+	/**/
 }
 
 function showConfig() {
-
 	$('#CMXInfo').html(JSON.stringify(CMXConfig).replaceAll(',',', '));
 }

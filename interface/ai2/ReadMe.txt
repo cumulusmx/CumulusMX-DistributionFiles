@@ -2,7 +2,7 @@ Alternative Interface
 =====================
 ReadMe File
 -----------
-This update is to accommodate the changes made by Mark for CumulusMX Version 3.27.1 (build 3260).  It will NOT work with builds before this due to the significant changes Mark has made to the API calls.
+This update is to accommodate the changes made by Mark for CumulusMX Version 4.0.0.  It will NOT work with older versions of CumulusMX.
 
 GENERAL
 -------
@@ -14,13 +14,13 @@ CHANGED
 -------
 Dashboard
 ~~~~~~~~~
-The way that Alarms are displayed has changed due to changes made by Mark.  All LEDs are added to the page dynamically using line 383 in the dashboard.js file:
+The way that Alarms are displayed has changed.  All LEDs are added to the page dynamically using line 383 in the dashboard.js file:
 
-$('#alarms').append('<div class="led-block" style="order:0;"><div class="ow-led ow-brick" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+    $('#alarms').append('<div class="led-block" style="order:0;"><div class="ow-led ow-brick" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
 
-If the alarm names spill over onto a new line than you can always change the name. (Mark forces them to have non-breaking spaces).  You can also change the class 'ow-brick' to any of: ow-brick, ow-oval, ow-lozenge, ow-round or leave it out completely; if you do leave it out you may wish to use the style ow-small (can be used with ow-round as well).
+If the alarm names spill over onto a new line than you can always change the name.  You can also change the class 'ow-brick' to any of: ow-brick, ow-oval, ow-lozenge, ow-round or leave it out completely; if you do leave it out you may wish to use the style ow-small (can be used with ow-round as well).
 
-If you want to have different shapes then this can be done by using some decision making code based on the alarm.Notify or alarm.Email fields.  If you do this then you also have the opportunity to change the 'order' style to change the order in which the alarms are displayed.
+If you want to have different shapes then this can be done by using some decision making code based on the 'alarm.Notify' or 'alarm.Email' fields.  If you do this then you also have the opportunity to change the 'order' style to change the order in which the alarms are displayed.
 
 Current Readings
 ~~~~~~~~~~~~~~~~
@@ -58,14 +58,10 @@ Data Log Editors
 ~~~~~~~~~~~~~~~~
 These now automatically collect the correct units for your station.  You have to manually load the data for the selected period in the Data Log Viewer.
 
-Setting
-=======
-IMPORTANT
----------
-If you try to edit the 'Internet Settings ~ Web/Upload Site ~ General Settings / Advanced Settings you will find that the panels DO NOT OPEN.  I have been unable to correct this.  Further more, if you make ANY changes on this page YOU ARE STRONGLY ADVISED TO CHECK ALL SETTINGS for this page on the DEFAULT INTERFACE.
+Settings
+========
 
-If you use 'MySQL Settings ~ Custom Upload - Timed'  You MAY find that the Interval checkbox stays checked.  If this is OK by you then it will work.  However, if your custom upload is a one-off daily event you should check using the default Interface.
-
+In this version all the forms work correctly so you can confidently make changes to any settings.
 
 Animations
 ----------

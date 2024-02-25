@@ -152,6 +152,7 @@ let configPage = function() {
 	contentHt = $( window ).height() - elementHt;
 	$('#content').css('min-height', contentHt + 'px');
 	//	Configure seagull
+
 	if( CMXConfig.Seagull.Animation == 'none' ) {
 		$('#ow-gullRight').css('animation', 'appearRight 1.4s');
 	} else {
