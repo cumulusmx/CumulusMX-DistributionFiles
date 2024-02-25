@@ -23,6 +23,8 @@
   --sub4: #464234;
   --sub5: #3b372b;
   --modal: rgba(118, 111, 87, 0.2);
+  --LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
 }
 
 /*  Theme colour combinations (Foreground / Background)	*/

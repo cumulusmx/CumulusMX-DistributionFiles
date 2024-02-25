@@ -18,8 +18,8 @@ html {
 	--columnGap: 1vw;
 	--fixedColumn: 1em;
 	--shadow:	 3px 3px 6px rgba(128, 128, 128, 0.5);
-	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
-	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+/*	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);*/
 }
 
 /*	Only change below if you are compentant using css	*/

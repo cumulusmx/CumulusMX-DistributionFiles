@@ -286,6 +286,7 @@ $(document).ready(function () {
         response = '{"action":"' + action + '","lines":' + lines + ',"extra":"false","data": ' + data + '}';
         return response;
     }
+    
 });
 
 function load() {

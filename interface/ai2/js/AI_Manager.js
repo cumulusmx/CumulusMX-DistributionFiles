@@ -10,10 +10,10 @@
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 //	Configure 'thems' for drop down
-let ThemeNames = ["Arcadia",		"Arcadia-Dark", 	"Cherry Tomato",	"Cherry Tomato Dark",
+let ThemeNames = ["Arcadia",		"Arcadia Dark", 	"Cherry Tomato",	"Cherry Tomato Dark",
 				  "Chili Oil",		"Chili Oil Dark",	"Crocus Petal",		"Crocus Petal Dark",
 				  "Cylon Yellow",	"Cylon Yellow Dark","Emporador",	"Emporador Dark",
-				  "Grey",   		"Dark Grey",		"Lime Punch",		"Lime Punch Dark",
+				  "Grey",   		"Dark Grey",		"High Contrast", "Lime Punch",		"Lime Punch Dark",
 				  "Marsala",		"Marsala Dark",     "Martini Olive",	"Martini Olive Dark",
 				  "Meerkat",		"MeerKat Dark",     "Nebulas Blue",		"Nebulas Blue Dark",
 				  "Red Pear",		"Red Pear Dark",	"Russet Orange",	"Russet Orange Dark",
