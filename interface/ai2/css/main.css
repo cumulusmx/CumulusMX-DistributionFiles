@@ -332,6 +332,8 @@ h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; 
 	/*background-image: linear-gradient( to right, var(--theme), var(--add3));*/
 	background: var(--LRgradient);
 }
+.ow-defaultInt:hover { color: var(--sub5)!important;}
+
 .ow-defaultInt.mobile {
 	max-width: 16em;
 	margin-left: calc( 100% - 16em);

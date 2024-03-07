@@ -146,7 +146,7 @@ td.dataTables_empty { text-align: left!important;}
 #datalog tbody>tr.selected { mix-blend-mode: multiply; }
 #datalog thead th {vertical-align: bottom;}
 #datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
-#datalog tbody tr:hover { background-color: var(--add4)!important;}
+#datalog tbody tr:hover { background-color: var(--add3)!important; font-weight:600;}
 
 #datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
 #datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
