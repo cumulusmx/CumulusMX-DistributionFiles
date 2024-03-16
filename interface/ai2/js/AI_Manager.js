@@ -39,11 +39,13 @@ let displayCurrent = function() {
 	$('#BannerState').on('change', function() {
 		CMXConfig.StaticHead = $('#BannerState').prop('checked');
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	$('#FooterState').prop('checked', (CMXConfig.StaticFoot ? ' selected' : '' ));
 	$('#FooterState').on('change', function() {
 		CMXConfig.StaticFoot = $('#FooterState').prop('checked');
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	//$('#darkMode').prop('checked', (CMXConfig.darkMode ? ' selected' : '' ));
 	$('#paddingTop').prop('value', parseInt(CMXConfig.PaddingTop ));
@@ -51,23 +53,27 @@ let displayCurrent = function() {
 		CMXConfig.PaddingTop = $('#paddingTop').val();
 		console.log("Padding top: " + CMXConfig.PaddingTop + CMXConfig.Units);
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	$('#paddingBottom').prop('value', parseInt(CMXConfig.PaddingBottom ));
 	$('#paddingBottom').on('blur', function(){
 		CMXConfig.PaddingBottom = $('#paddingBottom').val();
 		console.log("Padding bottom: " + CMXConfig.PaddingBottom + CMXConfig.Units);
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	$('#animationSpeed').prop('value', parseInt(CMXConfig.Seagull.Duration));
 	$('#animationSpeed').on('blur', function(){
 		CMXConfig.Seagull.Duration = $('#animationSpeed').prop('value');
 		console.log('Animation speed: ' + CMXConfig.Seagull.Duration);
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	$('#stayOnTop').prop('value', (CMXConfig.Seagull.OnTop ? ' checked' : '' ));
 	$('#stayOnTop').on('change', function() {
 		CMXConfig.Seagull.OnTop = $('#stayOnTop').prop('checked');
 		console.log('Stay on top: ' + CMXConfig.Seagull.OnTop);
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 };
