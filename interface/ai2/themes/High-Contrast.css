@@ -23,9 +23,11 @@
     --sub4: #183a1d;
     --sub5: #183a1d;
     --modal: rgba(249, 204, 83, 0.3);
-    --LRgradient: linear-gradient( 90deg, var(--add1), var(--add4) 20%, var(--add4) 80%, var(--theme) 100%);
+    --LRgradient: linear-gradient( 90deg, var(--add1), var(--add4) 20%);
 	--RLgradient: linear-gradient( 270deg, var(--add4), var(--add1) 30%, var(--add1) 70%, var(--add4) 100%);
-    --BtnGradient: linear-gradient( var(--add4), var(--add3))
+    --BtnGradient: linear-gradient( var(--add4), var(--add3));
+    --BtnGradient: linear-gradient( 90deg, var(--add1), var(--add4) 20%, var(--add4) 80%, var(--theme) 100%);
+    --BtnGradientHvr: linear-gradient( 270deg, var(--add4), var(--add1) 30%, var(--add1) 70%, var(--add4) 100%);
 }
 
 /*  Theme colour combinations (Foreground / Background)    */

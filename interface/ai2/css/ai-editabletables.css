@@ -33,17 +33,19 @@ input[readonly] {
 	color: var(--sub5)!important;
 }
 .paginate_button {
-	background-color: var(--add3);
+	/*background-color: var(--add3);*/
+	background-image: var(--BtnGradient)!important;
 /*	color: var(--sub5)!important;*/
 	padding: 0.25em 2.0em!important;
 	margin:0.3em 0.3em;
 	border-radius: 2em!important;
+	border: thin solid var(--theme)!important;
 }
 
 #datalog_last,
 #datalog_next,
 #datalog_previous,
-#datalog_first {color: var(--sub5)!important;}
+#datalog_first {color: var(--sub5)!important; }
 
 #datalog_last.disabled,
 #datalog_next.disabled,
@@ -54,7 +56,7 @@ input[readonly] {
 .dataTables_filter label { color: var(--sub5);}
 
 .paginate_button:hover {
-	background-color: var(--add5)!important;
+	background-image: var(--BtnGradientHvr)!important;
 	color: var(--add4)!important;
 }
 
@@ -62,10 +64,15 @@ input[readonly] {
 
 .dt-buttons button {
 	border-radius: 2em!important;
-	background: var(--add3)!important;
+	background-image: var(--BtnGradient)!important;
 	color: var(--sub5)!important;
 	padding: 0.25em 2em!important;
-	border:thin solid rgba(0,0,0,0);
+	border:thin solid var(--add3);
+}
+
+.dt-buttons button:hover {
+	background-image: var(--BtnGradientHvr)!important;
+	border: var(--theme);
 }
 
 .modal input[type="text"] {

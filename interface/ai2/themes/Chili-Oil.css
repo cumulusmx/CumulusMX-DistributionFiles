@@ -25,7 +25,12 @@
     --modal: rgba(148, 67, 63, 0.3);
     --LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
 	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
-    --BtnGradient: linear-gradient( var(--add4), var(--add3))
+    --Gradient1: linear-gradient( 180deg, var(--add1) 2.6em, var(--add2) 2.7em, var(--add4) 100%);
+	--Gradient2: linear-gradient( 180deg, var(--add2) 2.6em, var(--add4) 2.7em, var(--add5) 100%);
+    --Grad1Text: var(--sub5);
+    --Grad2Text: var(--sub5);
+    --BtnGradient: linear-gradient(0deg, var(--add4) 5%, var(--add3) 95%);
+    --BtnGradientHvr: linear-gradient( 180deg, var(add4) 5%, var(--add3) 95%);
 }
 
 /*  Theme colour combinations (Foreground / Background)    */
@@ -74,7 +79,7 @@
 /*	Theme TEXT only HOVER colours	*/
 .ow-theme-add5-txt-hvr:hover	{color: var(--add5);}
 .ow-theme-txt-hvr:hover			{color: var(--theme);}
-.ow-theme-sub5-txt-hvr:hover,	{color: var(--sub5);}
+.ow-theme-sub5-txt-hvr:hover	{color: var(--sub5);}
 
 /*	Theme BORDER only colours	*/
 .ow-theme-add5-bdr	{border-color: var(--add5);}

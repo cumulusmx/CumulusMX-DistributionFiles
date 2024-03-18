@@ -25,6 +25,13 @@
 	--modal: rgba(196, 62, 60, 0.3);
 	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
 	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--Gradient1: linear-gradient( 180deg, var(--add1) 2.6em, var(--add2) 2.7em, var(--add4) 100%);
+	--Gradient2: linear-gradient( 180deg, var(--add2) 2.6em, var(--add4) 2.7em, var(--add5) 100%);
+    --Grad1Text: var(--sub5);
+    --Grad2Text: var(--sub5);
+    --BtnGradient: linear-gradient( var(--add4), var(--add3))
 }
 
 /*  Theme colour combinations (Foreground / Background)	*/

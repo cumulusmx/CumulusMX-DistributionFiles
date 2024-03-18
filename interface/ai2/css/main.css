@@ -18,8 +18,6 @@ html {
 	--columnGap: 1vw;
 	--fixedColumn: 1em;
 	--shadow:	 3px 3px 6px rgba(128, 128, 128, 0.5);
-/*	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
-	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);*/
 }
 
 /*	Only change below if you are compentant using css	*/
@@ -27,26 +25,40 @@ html {
 body, p, label {
 	font-family: Inter, serif;
 	font-size: clamp( 14px, 1.2vw, 16px );
+	font-size: clamp(0.875rem, 0.8125rem + 0.25vw, 1rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Red Rose', Inter, serif;
 }
 
-h1 { font-size: clamp( 24px, 3.5vw, 30px ); }
+h1 { font-size: clamp(1.625rem, 1.4375rem + 0.75vw, 2rem);}
 
-h2 { font-size: clamp( 20px, 2.5vw, 25px ); }
+h2 { font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);}
 
-h3 { font-size: clamp( 18px, 1.8vw, 22px ); }
+h3 { font-size: clamp(1.125rem, 0.9375rem + 0.75vw, 1.5rem);}
 
-h4 { font-size: clamp( 16px, 1.5vw, 19px ); }
+h4 { font-size: clamp(1rem, 0.875rem + 0.5vw, 1.25rem); font-weight:600;}
 
-h5 { font-size: clamp( 14px, 1.3vw, 16px ); font-weight: 700;}
+h5 { font-size: clamp( 0.875rem, 0.8125rem + 0.25vw, 1rem ); font-weight: 700; font-style:italic;}
 
-h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; }
+h6 { font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.9375rem); font-weight:600; font-style:italic; }
 
-.hidden {
-	display: none;
+select {
+	background-image: var(--BtnGradient);
+}
+
+select:hover {
+	background-image: var(--BtnGradientHvr);
+}
+
+input[type=number] {
+	background-image: var(--BtnGradient);
+	border: var(--theme)
+}
+
+input[type=number]:hover {
+	background-image: var(--BtnGradientHvr);
 }
 
 .siteWidth {
@@ -93,6 +105,16 @@ h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; 
 .ow-card {
 	padding: 0.5vh 1vw 1vh 1vw;
 	box-shadow: var(--shadow);
+}
+
+.ow-Gradient1 {
+	background-image: var(--Gradient1);
+	color: var(--Grad1Text)
+}
+
+.ow-Gradient2 {
+	background-image: var(--Gradient2);
+	color: var(--Grad2Text);
 }
 
 .ow-gradientSub {
@@ -216,17 +238,23 @@ h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; 
 	flex: 1 0 auto;
 	border-radius: 1em;
 	font-family: 'red Rose';
-	background: var(--LRgradient);
+	background: var(--BtnGradient);
+	border: thin solid var(--theme);
 }
 
 .ow-btn {
 	border-radius: 1em;
-	background: var(--LRgradient) ;
-	/*box-shadow: var(--shadow);*/
+	padding: 5px 14px;
+	background-image: var(--BtnGradient) ;
+	border: thin solid var(--theme);
 }
 
 .ow-btnBar > button:hover {
-	background: var(--RLgradient) ;
+	background-image: var(--BtnGradientHvr) ;
+}
+
+.ow-btn:hover { 
+	background-image: var(--BtnGradientHvr);
 }
 
 .ow-listItem {
@@ -329,7 +357,6 @@ h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; 
 
 .ow-defaultInt, .ow-menuMobile {
 	border-radius: 2em 0 0 2em;
-	/*background-image: linear-gradient( to right, var(--theme), var(--add3));*/
 	background: var(--LRgradient);
 }
 .ow-defaultInt:hover { color: var(--sub5)!important;}
@@ -492,15 +519,7 @@ h6 { font-size: clamp( 13px, 1.1vw, 14px ); font-weight:600; font-style:italic; 
 }
 
 /*	w3Pro Over-rides	*/
-.w3-btn {
-	padding: 5px 14px;
-}
-.w3-btn:hover {
-	box-shadow: 0 4px 8px 0 rgba(128, 128, 128, 0.2), 0 4px 8px 0 rgba(0,0,0,0.19);
-}
-.w3-bar-item {
-	padding: 5px 14px!important;
-}
+
 .w3-dropdown-content {
 	border-radius: 0 0 1vh 1vh;
 	border-top: 5px solid var(--sub5);

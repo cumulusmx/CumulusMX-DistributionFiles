@@ -11,20 +11,27 @@
 
 /*  Theme colour variables	*/
 :root {
-	 --add5: #fbf6fa;
-	 --add4: #f2e3ed;
-	 --add3: #e4c6db;
-	 --add2: #d7aac9;
-	 --add1: #c98db6;
-	 --theme: #bc70a4;
-	 --sub1: #b25c97;
-	 --sub2: #a44d88;
-	 --sub3: #8f4377;
-	 --sub4: #7b3a66;
-	 --sub5: #663055;
-	 --modal: rgba(188, 246, 250, 0.3);
-	 --LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
-	 --RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--add5: #fbf6fa;
+	--add4: #f2e3ed;
+	--add3: #e4c6db;
+	--add2: #d7aac9;
+	--add1: #c98db6;
+	--theme: #bc70a4;
+	--sub1: #b25c97;
+	--sub2: #a44d88;
+	--sub3: #8f4377;
+	--sub4: #7b3a66;
+	--sub5: #663055;
+	--modal: rgba(188, 246, 250, 0.3);
+	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--Gradient1: linear-gradient( 180deg, var(--add1) 2.6em, var(--add2) 2.7em, var(--add4) 100%);
+	--Gradient2: linear-gradient( 180deg, var(--add2) 2.6em, var(--add4) 2.7em, var(--add5) 100%);
+    --Grad1Text: var(--sub5);
+    --Grad2Text: var(--sub5);
+    --BtnGradient: linear-gradient( var(--add4), var(--add3))
  }
 
 /*  Theme colour combinations (Foreground / Background)	*/

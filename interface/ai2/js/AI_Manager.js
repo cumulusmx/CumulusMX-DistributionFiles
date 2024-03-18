@@ -15,7 +15,7 @@ let ThemeNames = ["Arcadia",		"Arcadia Dark", 	"Cherry Tomato",	"Cherry Tomato D
 				  "Cylon Yellow",	"Cylon Yellow Dark","Emporador",	"Emporador Dark",
 				  "Grey",   		"Dark Grey",		"High Contrast", "Lime Punch",		"Lime Punch Dark",
 				  "Marsala",		"Marsala Dark",     "Martini Olive",	"Martini Olive Dark",
-				  "Meerkat",		"MeerKat Dark",     "Nebulas Blue",		"Nebulas Blue Dark",
+				  "MeerKat",		"MeerKat Dark",     "Nebulas Blue",		"Nebulas Blue Dark",
 				  "Red Pear",		"Red Pear Dark",	"Russet Orange",	"Russet Orange Dark",
 				  "Spring Crocus",	"Spring Crocus Dark",	"Valiant Poppy","Valiant Poppy Dark"];
 
@@ -39,13 +39,13 @@ let displayCurrent = function() {
 	$('#BannerState').on('change', function() {
 		CMXConfig.StaticHead = $('#BannerState').prop('checked');
 		configPage();
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig();
 	});
 	$('#FooterState').prop('checked', (CMXConfig.StaticFoot ? ' selected' : '' ));
 	$('#FooterState').on('change', function() {
 		CMXConfig.StaticFoot = $('#FooterState').prop('checked');
 		configPage();
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig();
 	});
 	//$('#darkMode').prop('checked', (CMXConfig.darkMode ? ' selected' : '' ));
 	$('#paddingTop').prop('value', parseInt(CMXConfig.PaddingTop ));
@@ -53,29 +53,29 @@ let displayCurrent = function() {
 		CMXConfig.PaddingTop = $('#paddingTop').val();
 		console.log("Padding top: " + CMXConfig.PaddingTop + CMXConfig.Units);
 		configPage();
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig();
 	});
 	$('#paddingBottom').prop('value', parseInt(CMXConfig.PaddingBottom ));
 	$('#paddingBottom').on('blur', function(){
 		CMXConfig.PaddingBottom = $('#paddingBottom').val();
 		console.log("Padding bottom: " + CMXConfig.PaddingBottom + CMXConfig.Units);
 		configPage();
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig();
 	});
 	$('#animationSpeed').prop('value', parseInt(CMXConfig.Seagull.Duration));
 	$('#animationSpeed').on('blur', function(){
 		CMXConfig.Seagull.Duration = $('#animationSpeed').prop('value');
 		console.log('Animation speed: ' + CMXConfig.Seagull.Duration);
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig()
 	});
 	$('#stayOnTop').prop('value', (CMXConfig.Seagull.OnTop ? ' checked' : '' ));
 	$('#stayOnTop').on('change', function() {
 		CMXConfig.Seagull.OnTop = $('#stayOnTop').prop('checked');
 		console.log('Stay on top: ' + CMXConfig.Seagull.OnTop);
 		configPage();
-		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+		showConfig();
 	});
-	$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+	//$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 };
 
 let setupTheme = function( activeTheme ) {
@@ -92,6 +92,7 @@ let setupTheme = function( activeTheme ) {
 	selector.on('change', function() {
 		CMXConfig.Theme = $('#ThemeList').prop('value');
 		checkTheme();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 };
 
@@ -107,6 +108,7 @@ let setUpUnits = function( activeUnits ){
 	$('#unitSelect').on('change', function() {
 		CMXConfig.Units = $('#unitSelect').val();
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 	//console.log("Units done");
 }
@@ -122,14 +124,16 @@ let setUpAnimation = function( animation ) {
 	$('#animationSelect').on('change', function() {
 		CMXConfig.Seagull.Animation = $('#animationSelect').prop('value');
 		configPage();
+		$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
 	});
 };
 
 var clearScheme = function() {
-   localStorage.removeItem( AIStore );
-   alert("Saved configuration removed");
-   configPage();
-   //window.location.assign("configai.html");
+    //localStorage.removeItem( AIStore );
+	//localStorage.clear();
+    alert("All saved configuration values removed");
+    configPage();
+    showConfig();
 };
 
 var setScheme = function(destination) {

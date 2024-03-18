@@ -9,7 +9,7 @@
 
 //  Page structure
 let CMXConfig = {
-	'Theme': 'Grey',
+	'Theme': 'Martini-Olive',
 	'StaticHead': true,
 	'StaticFoot': true,
 	'Units':	'em',
@@ -34,6 +34,7 @@ let getConfig = function() {
 	if( typeof( Storage ) === "undefined" ) {
 		console.log('Storage unavailable; hardwired config being used');
 	} else {
+		//localStorage.clear();	// Temp
 		var storedConfig = JSON.parse( localStorage.getItem( AIStore ));
 		if( storedConfig === null ) {
 			console.log('First use;');
