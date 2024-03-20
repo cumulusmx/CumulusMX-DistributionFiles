@@ -18,7 +18,7 @@ let CMXConfig = {
 	'Seagull': {
 		'Animation': 'none',
 		'Duration': 5,
-		'OnTop': true
+		'OnTop': false
 	},
 	'Version': '4.0.0'
 }

@@ -29,8 +29,8 @@
 	--Gradient2: linear-gradient( 180deg, var(--add3) 2.6em, var(--add2) 2.7em, var(--theme) 100%);
   --Grad1Text: var(--sub5);
   --Grad2Text: var(--sub5);
-	--BtnGradient: linear-gradient( 0deg, var(add3) 5%, var(--sub3) 95%);
-	--BtnGradientHvr: linear-gradient( 180deg, var(--add3) 5%, var(var(--sub3) 95%))
+	--BtnGradient: linear-gradient( 0deg, var(--add3) 5%, var(--sub1) 95%);
+	--BtnGradientHvr: linear-gradient( 180deg, var(--add3) 5%, var(--sub1) 95%);
 }
 
 /*  Theme colour combinations (Foreground / Background)	*/

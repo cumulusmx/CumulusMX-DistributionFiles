@@ -29,7 +29,7 @@
 	--Gradient2: linear-gradient( 180deg, var(--add2) 2.6em, var(--add4) 2.7em, var(--add5) 100%);
     --Grad1Text: var(--sub5);
     --Grad2Text: var(--sub5);
-    --BtnGradient: linear-gradient(0deg, var(--add4) 55, var(--add3) 95%);
+    --BtnGradient: linear-gradient(0deg, var(--add4) 5%, var(--add3) 95%);
 	--BtnGradientHvr: linear-gradient( 180deg, var(--add4) 5%, var(--add3) 95%);
 }
 

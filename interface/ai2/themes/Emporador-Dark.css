@@ -29,17 +29,17 @@
 	--Gradient2: linear-gradient( 180deg, var(--add3) 2.6em, var(--add2) 2.7em, var(--add1) 100%);
     --Grad1Text: var(--sub5);
     --Grad2Text: var(--sub5);
-	--BtnGradient: linear-gradient( 0deg, var(--add3) 5%, var(--sub3) 95%);
-	--BtnGradientHvr: linear-gradient( 180deg, var(--add3) 5%, var(--sub3) 95%);
+	--BtnGradient: linear-gradient( 0deg, var(--add3) 5%, var(--sub1) 95%);
+	--BtnGradientHvr: linear-gradient( 180deg, var(--add3) 5%, var(--sub1) 95%);
 }
 
 /*  Theme colour combinations (Foreground / Background)	*/
 .ow-theme-add5	{color: var(--sub5); background-color: var(--add5);}
 .ow-theme-add4	{color: var(--sub5); background-color: var(--add4);}
 .ow-theme-add3	{color: var(--sub5); background-color: var(--add3);}
-.ow-theme-add2	{color: var(--add5); background-color: var(--add2);}
-.ow-theme-add1	{color: var(--add5); background-color: var(--add1);}
-.ow-theme		{color: var(--add5); background-color: var(--theme);}
+.ow-theme-add2	{color: var(--sub5); background-color: var(--add2);}
+.ow-theme-add1	{color: var(--sub5); background-color: var(--add1);}
+.ow-theme		{color: var(--sub5); background-color: var(--theme);}
 .ow-theme-sub1	{color: var(--add5); background-color: var(--sub1);}
 .ow-theme-sub2	{color: var(--add5); background-color: var(--sub2);}
 .ow-theme-sub3	{color: var(--add5); background-color: var(--sub3);}
@@ -54,7 +54,7 @@
 .ow-theme-add3-hvr:hover	{color: var(--sub5); background-color: var(--add3);}
 .ow-theme-add2-hvr:hover	{color: var(--sub5); background-color: var(--add2);}
 .ow-theme-add1-hvr:hover	{color: var(--sub5); background-color: var(--add1);}
-.ow-theme-hvr:hover 		{color: var(--add5); background-color:var(--theme); }
+.ow-theme-hvr:hover 		{color: var(--sub5); background-color:var(--theme); }
 .ow-theme-sub1-hvr:hover 	{color: var(--add5); background-color: var(--sub1);}
 .ow-theme-sub2-hvr:hover 	{color: var(--add5); background-color: var(--sub2);}
 .ow-theme-sub3-hvr:hover	{color: var(--add5); background-color: var(--sub3);}
