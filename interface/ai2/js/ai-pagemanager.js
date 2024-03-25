@@ -219,6 +219,10 @@ let toggleMenu = function( menu ) {
 		$('#menu' + menu.id).removeClass('w3-show');
 		$( menu.id ).attr('aria-expanded', false );
 	} else {
+		//	Close any open sub-menus
+		$('.w3-dropdown-click').children().removeClass('w3-show');
+		$('.w3-dropdown-click').children().attr('aria-expanded', false)
+		//	Open the sellected sub-menu
 		$('#menu' + menu.id).addClass('w3-show').removeClass('w3-hide');
 		$( menu.id ).attr('aria-expanded', true );
 	}

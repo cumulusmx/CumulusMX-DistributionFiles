@@ -350,7 +350,7 @@ input[type=number]:hover {
 }
 
 .ow-divider {
-	border: thin solid var(--sub5);
+	border-bottom: thin solid var(--sub5);
 	height: 1px!important;
 	box-shadow: var(--shadow);
 }
