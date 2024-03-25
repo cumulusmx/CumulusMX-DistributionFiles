@@ -65,8 +65,9 @@ $(document).ready(function () {
                 toDate.datepicker('option', { minDate: date });
             });
 
-        fromDate.datepicker('setDate', now);
+        
         toDate.datepicker('setDate', now);
+        fromDate.datepicker('setDate', now);
     }});
 
 	//	Added by Neil
@@ -98,8 +99,9 @@ $(document).ready(function () {
         success: function (result) {
             // we want all lower case and yy for the year not yyyy
             var format = result.toLowerCase().replace('yyyy','yy');
-            fromDate.datepicker('option', 'dateFormat', format);
+            
             toDate.datepicker('option', 'dateFormat', format);
+            fromDate.datepicker('option', 'dateFormat', format);
         }
     });
 
@@ -354,7 +356,7 @@ $(document).ready(function () {
     }
 
     var today = new Date();
-    myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
+    //myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
 });
 
 function load() {

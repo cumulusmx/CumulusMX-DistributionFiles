@@ -288,7 +288,7 @@ $(document).ready(function () {
     }
     
     var current = new Date();
-    myTable.api().ajax.url('/api/data/logfile' + '?from=' + formatDateStr(current) + '&to=' + formatDateStr(current)).load();
+     myTable.api().ajax.url('/api/data/logfile' + '?from=' + formatDateStr(current) + '&to=' + formatDateStr(current)).load();
 });
 
 function load() {
