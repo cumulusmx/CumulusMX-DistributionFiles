@@ -10,6 +10,8 @@ GENERAL
 Dashboard, Current Readings, Gauges, Today V Yesterday, Additional Sensors & Airlink Sensors
 All these pages now display todays date.
 
+The mobile menu sub-menus now close when another is selected.
+
 CHANGED
 -------
 Dashboard
@@ -24,13 +26,13 @@ If you want to have different shapes then this can be done by using some decisio
 
 Current Readings
 ~~~~~~~~~~~~~~~~
-As well as Font Awesome icons, Outdoor Temperature and Pressure show an indicator for rising, falling or static; Rainfall Rate also shows an indicator for the severity of the rate: one, two or three raindrops.  If it is not raining the image is a raindrop with a green cross.
+As well as Font Awesome icons, Outdoor Temperature and Pressure show an indicator for rising, falling or static; Rainfall Rate also shows an indicator for the severity of the rate: one, two or three raindrops.  If it is not raining the image is a raindrop with a red circle with an oblique line.
 
 Also included on this page is a green icon if the readings are still being received.
 
 Gauges
 ~~~~~~
-The gauges page includes the forcast scroller used on the default public website.  If you don't want it simply add the style 'w3-hide' to line 205 of the ai-gauges.html page.
+The gauges page includes the forecast scroller used on the default public website.  If you don't want it simply add the style 'w3-hide' to line 205 of the ai-gauges.html page.
 
 Charts
 ~~~~~~
@@ -40,13 +42,11 @@ The Historic charts page display yesterdays date as the most recent date for dat
 
 Today Vs Yesterday
 ~~~~~~~~~~~~~~~~~~
-The temperature column for yesterday also includes the date yesterday.  I haven't extended this to other panels but by looking at the code it should not be difficult for you to do.  I didn't know if it would be best to just have the date or the word as well - it's up to you.  Todays date could also be used in the 'today' column by adding '<span data-OWData="Date"></span>' but note that this used the long month name. (This can also be ammended at the bottom of the 'ai-extra.js' file).
+The temperature column for yesterday also includes the date yesterday.  I haven't extended this to other panels but by looking at the code it should not be difficult for you to do.  I didn't know if it would be best to just have the date or the word as well - it's up to you.  Todays date could also be used in the 'today' column by adding '<span data-OWData="Date"></span>' but note that this uses the long month name. (This can also be ammended at the bottom of the 'ai-extra.js' file).
 
-Monthly Records
-~~~~~~~~~~~~~~~
-The first time you load the Monthly Records Editor it will load the month you first started your weather station records.  Otherwise it will load the last month you viewed in the current session.
-
-If your station is new and you don't have records for all months, the missing months buttons will be removed.  If you don't want this, you can edit the records.js file and remove the function beginning at line 101.
+Weather Records
+~~~~~~~~~~~~~~~~~~~~
+If your station is new and you don't have records for all months, the missing months buttons will be removed..
 
 If you want the bottons in a different order, e.g., you want the 'All-time', 'This Month' & 'This Year' buttons together give them the style: 'order:-1' to put them at the start or 'order:1' to put them at the end.
 

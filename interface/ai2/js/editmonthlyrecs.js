@@ -1,4 +1,5 @@
-// Last modified: 2023/10/13 21:32:44
+// Last modified: 2023/10/13 21:32:44	Mark
+// Last modified: 2024/-3/25 15:03		Neil
 
 var updateUrl = '/api/edit/monthly';
 var editFieldName;
@@ -69,8 +70,42 @@ $(document).ready(function() {
 		$('.months').children('button').attr('aria-selected', false);
 		$(this).attr('aria-selected', true);
 	});
+
+	//	Remove unwanted buttons
+	var months = ['Jan', 'Feb','Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var startYear, startMonth, thisYear, thisMonth;
+	$.ajax( {
+		url: '/api/tags/process.txt',
+		dataType: 'json',
+		type: 'POST',
+		data: '{"startDate":"<#recordsbegandate format=\"yyyy MM\">"}' 
+	})
+	.done( function (result){
+		console.log("Full start date: " + result.startDate);
+		startYear = parseInt(result.startDate.slice(0,4));
+		startMonth = parseInt(result.startDate.slice(5,7));
+		currentYear = new Date().getFullYear();
+		currentMonth = new Date().getMonth() ;
+		
+		if( (startYear + 1) == currentYear && currentMonth < startMonth ) {
+			for ( var mon = currentMonth + 1; mon < (startMonth - 1); mon++) {
+				$('#' + months[mon]).addClass('w3-hide');
+			}
+			Diamond = '<span style="flex-grow:0;align-self:center;padding:0 3px;">';
+			Diamond += '<i class="fa-solid fa-diamond ow-theme-add3-txt ow-txt-small w3-hide-small"></i></span>';
+			$('#' + months[currentMonth + 1]).after(Diamond);
+		}
+		if( startYear == currentYear) {
+			for( var mon = 0; mon <= startMonth; mon++){
+				$('#' + months[mon]).addClass('w3-hide');
+			}
+			for( var mon = currentMonth; mon < 12; mon++){
+				$('#' + months[mon]).addClass('w3-hide');
+			}
+		}
+	})
+	.fail( function() {console.log("Failed to get start date")});
 	
-	//sessionStorage.removeItem('CMXRecords');
 	$('.w3-table').addClass('w3-hide');
 	var month = sessionStorage.getItem('CMXRecords');
 		console.log("Stored month: " + month)

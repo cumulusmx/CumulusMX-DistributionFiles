@@ -108,6 +108,7 @@ $(document).ready( function() {
 
 	var dateNow = new Date();
 	var dataReq = '{"startDate":"<#recordsbegandate>"}';
+	//console.log("dataReq: " + dataReq);
 	$.ajax({
 		url: '/api/tags/process.txt',
         dataType: 'json',
@@ -120,11 +121,23 @@ $(document).ready( function() {
 		if( startDate.getFullYear() == dateNow.getFullYear()) {
 			console.log("Need to hide some buttons");
 			for ( var btn = 0; btn < startDate.getMonth(); btn++) {
+				console.log("Button ID: " + btn + 1);
 				$('#btn' + ( btn + 1)).addClass('w3-hide');
 			}
 			for (var btn = 11; btn > dateNow.getMonth(); btn--) {
 				$('#btn' + (btn + 1)).addClass('w3-hide');
 			}
+		}
+		if ( startDate.getFullYear() == (dateNow.getFullYear() - 1) && startDate.getMonth() > dateNow.getMonth()){
+			console.log("Need to remove middle buttons.")
+			for (var btn = dateNow.getMonth() + 1; btn < startDate.getMonth(); btn++) {
+				console.log("Button to hide: " + btn);
+				$('#btn' + (btn + 1)).addClass('w3-hide');
+			}
+			var htmlX = '<span style="flex-grow:0;align-self:center;padding:0 3px;">';
+        	htmlX += '<i class="fa-solid fa-diamond ow-theme-add3-txt ow-txt-small w3-hide-small"></i></span>';
+			//console.log("Insert after: " + parseInt(dateNow.getMonth() + 1));
+        	$('#btn' + parseInt(dateNow.getMonth() + 1)).after(htmlX)
 		}
 	})
 	.fail( function() {
