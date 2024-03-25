@@ -95,8 +95,8 @@ $(document).ready(function () {
         success: function (result) {
             // we want all lower case and yy for the year not yyyy
             var format = result.toLowerCase().replace('yyyy','yy');
-            fromDate.datepicker('option', 'dateFormat', format);
             toDate.datepicker('option', 'dateFormat', format);
+            fromDate.datepicker('option', 'dateFormat', format);
         }
     });
 
@@ -287,6 +287,8 @@ $(document).ready(function () {
         return response;
     }
     
+    var current = new Date();
+    myTable.api().ajax.url('/api/data/logfile' + '?from=' + formatDateStr(current) + '&to=' + formatDateStr(current)).load();
 });
 
 function load() {

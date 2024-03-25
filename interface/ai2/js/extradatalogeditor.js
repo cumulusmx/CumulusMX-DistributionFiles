@@ -352,6 +352,9 @@ $(document).ready(function () {
         response = '{"action":"' + action + '","lines":' + lines + ',"extra":"true","data": ' + data + '}';
         return response;
     }
+
+    var today = new Date();
+    myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
 });
 
 function load() {
