@@ -17,7 +17,7 @@ $.extend( $.fn.dataTable.defaults, {
     paging: false,
     info: false,
     language: {
-        "emptyTable": "No sensors enabled<br>Enable in Setting~Display Options~Graphs~Data Visibility"
+        "emptyTable": "No sensors enabled.<br>Enable in Setting~Display Options~Graphs~Data Visibility"
     },
     columnDefs: [
         {className: "left", targets: [0,2]},

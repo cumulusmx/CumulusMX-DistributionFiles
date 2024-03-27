@@ -356,6 +356,7 @@ $(document).ready(function () {
     }
 
     var today = new Date();
+    //  If you have extra log files you can uncomment the following line.
     //myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
 });
 

@@ -10,11 +10,14 @@
 */
 
 input[type="text"] {
-	background-color: var(--add5);
+	background-color: var(--theme)!important;
+	border: none;
 	color: var(--sub5);
 	/*font-size: 14px;*/
-	max-width:100px;
-	padding: 0 8px;
+	max-width:8em;
+	padding: 0.5em 1em;
+	border-radius: 0.5em;
+	text-align: center;
 	margin-left:5px;
 }
 input[readonly] {
