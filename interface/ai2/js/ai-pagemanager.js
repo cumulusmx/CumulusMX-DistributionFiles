@@ -236,4 +236,7 @@ let showModal = function(modal){
 		$('#M' + modal).css('display', 'none');
 		//console.log('Modal M' + modal + ' should be hidden');
 	}
+	var height = $('#C' + modal).outerHeight();
+	var margin = ($(window).height() - height) / 2.5;
+	$('#C' + modal).css('transform', 'translate(0px,' + margin +'px)' )
 };

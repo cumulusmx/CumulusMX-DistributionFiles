@@ -41,7 +41,7 @@
 		<script>
 		</script>
 		<style>
-
+ 
 		</style>
 	</head>
 	<body class=ow-theme-add5>
@@ -74,9 +74,9 @@
 				<div class="oneCol" style="margin-bottom: 2vh;">
 					<div class="ow-card ow-theme-sub4">
 						<div class="ow-titleBar" style="margin: 1vh 0;">
-							<h2>Current Data</h2>
+							<h2>Current Available Data</h2>
 						</div>
-						<p>
+						<p id="APIData">
 							Below is a two column flex box (style: &quot;ow-twoCol&quot;) with each row forced to be equal
 							height.&nbsp; This can be changed by adding the class <span class="ow-codeSpan">ow-flex-top</span> or
 							<span class="ow-codeSpan">ow-flex-center</span> or <span class="ow-codeSpan">ow-flex-bottom</span>.&nbsp;
@@ -97,6 +97,7 @@
 							Colour can be added using 'class="ow-theme-aaaX"', where 'aaa' is replaced with 'add' or 'sub' followed 
 							by a number 1 - 5.
 						</p>
+						<table id="test"><thead><th>0</th><th>1</th><th>2</th></thead></table>
 						<p>
 							The first three card use a style 'ow-titleBar' which allows more than one element to appear on the 
 							line.&nbsp; They will spread evenly	across the available space and are set to align items on their 
@@ -107,7 +108,7 @@
 						<div class="ow-titleBar">
 							<h3>Card Gradients</h3>
 							<p>Paragraph</p>
-							<div class="ow-btn" onClick="showModal('Xmodal');">button</div>
+							<div class="ow-btn" onClick="getAvailableData();">button</div>
 						</div>
 						<p>
 							This card is coloured using a gradient (class='ow-Gradient1').  This uses three adjacent theme colours 

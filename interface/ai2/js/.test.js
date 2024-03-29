@@ -87,3 +87,30 @@ let getYesterdayData = function() {
 		}
 	})
 };
+
+let getAvailableData = function() {
+	var pointer = 4;
+	$.ajax({
+		url: '/api/graphdata/availabledata.json',
+		dataType: 'json',
+		success: function(result){
+			console.log("Data collected");
+			$('#APIData').html( JSON.stringify( result ).replaceAll(',',', '));
+			if(result.ExtraTemp || result.ExtraHum || result.ExtraDew || result.ExtraDewPoint || result.SoilMoist || result.Temp || result.LeafWetness || result.UserTemp || result.CO2) {
+				console.log("Other sensors available");
+			} else {
+				console.log("Other sensors not available");
+			}
+			if(result.ExtraTemp){ 
+				for (key of result.ExtraTemp) {
+					console.log("Title H" + pointer + ": " + key);
+					$('#test')
+					pointer++;
+				}
+			}
+		},
+		error: function() {
+			console.log("Failed to get data");
+		}
+	})
+}

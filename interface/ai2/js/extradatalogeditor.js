@@ -99,7 +99,7 @@ $(document).ready(function () {
         success: function (result) {
             // we want all lower case and yy for the year not yyyy
             var format = result.toLowerCase().replace('yyyy','yy');
-            
+            console.log("");
             toDate.datepicker('option', 'dateFormat', format);
             fromDate.datepicker('option', 'dateFormat', format);
         }
@@ -118,7 +118,7 @@ $(document).ready(function () {
             title: "Time",
             readonly: true
         },
-        {title:"Temp 1", className:"tempUnits"},
+        {title:"Temp X", className:"tempUnits"},
         {title:"Temp 2", className:"tempUnits"},
         {title:"Temp 3", className:"tempUnits"},
         {title:"Temp 4", className:"tempUnits"},
@@ -355,6 +355,25 @@ $(document).ready(function () {
         return response;
     }
 
+    //  Done by Neil
+    $.ajax({
+        //  Check if extrat sensors have been configured
+        url: '/api/graphdata/availabledata.json',
+		dataType: 'json',
+		success: function(result){
+            if(result.ExtraTemp || result.ExtraHum || result.ExtraDew || result.ExtraDewPoint || result.SoilMoist || result.Temp || result.LeafWetness || result.UserTemp || result.CO2) {
+				console.log("Other sensors available");
+                //  Load the extra sensor log file.
+                var today = new Date();
+                myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
+			} else {
+                //  Disable 'Load' button
+				console.log("Other sensors not available");
+                $('#loadBtn').addClass('w3-disabled');
+			}
+        }
+    })
+    
     var today = new Date();
     //  If you have extra log files you can uncomment the following line.
     //myTable.api().ajax.url('/api/data/extralogfile'+'?from='+formatDateStr(today)+'&to='+formatDateStr(today)).load();
