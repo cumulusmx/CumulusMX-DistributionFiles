@@ -3,7 +3,6 @@
 let accessMode;
 let csvChar;
 
-
 $(document).ready(function () {
     $('#alarmsForm').alpaca({
         'dataSource': '/api/settings/useralarms.json',

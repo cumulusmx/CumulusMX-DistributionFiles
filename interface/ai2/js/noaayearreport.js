@@ -12,15 +12,7 @@
 
 //$.fn.dataTable.ext.errMode = 'none';
 $(document).ready(function () {
-/*	$.ajax({
-		url: "/api/settings/version.json",
-		dataType:"json"
-	})
-	.done(function (result) {
-		$('#Version').text(result.Version);
-		$('#Build').text(result.Build);
-	});
-*/
+
 	$.ajax({
 		url: '/api/tags/process.txt',
 		dataType: 'json',
