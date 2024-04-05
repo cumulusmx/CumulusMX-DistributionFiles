@@ -3,8 +3,8 @@
 	Page:	Alarm Settings
 	File:	alarmsettings.html		v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-02-24
-	Last Check:	
+	Last Edit:	2024-04-05
+	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -20,7 +20,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
 		<!--	jQuery CDN	(Use for public website)	-->
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
@@ -35,7 +35,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-pagemanager.js"></script>
-		<script src="js/alarmsettings.js"></script>"
+		<script src="js/alarmsettings.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
@@ -89,7 +89,7 @@
 				<div class="ow-oneCol" style="row-gap: 2vh;">
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn">
 
-						<table id="alarms" class="w3-hoverable w3-striped" cellspacing="0" role="grid">
+						<table id="alarms" class="w3-hoverable w3-striped" role="grid">
 							<thead>
 								<tr>
 									<th>Enable</th>
@@ -449,7 +449,7 @@
 							By default the email messages use UTF-8 plain text, but you can define your own in strings.ini and use HTML if you wish
 						 </div>
 						 <div class="ow-btnBar" style="margin:1vh 0; justify-content: center;">
-							<button type="submit" form="recsform" class="w3-btn" style="max-width: 15em;" onclick="updateAlarms()">Update Alarms</button>
+							<button type="submit" class="w3-btn" style="max-width: 15em;" onclick="updateAlarms()">Update Alarms</button>
 							<button type="button" class="w3-btn"  style="max-width: 15em;" onclick="testEmail()">Send Test Email</button>
 						 </div>
 					</div>
