@@ -67,7 +67,7 @@ $(document).ready(function () {
 
 	//	Added by Neil
 	var styles = "<style>\n";
-	var data = '{"TempUnit": "<#tempunitnodeg>", "PressUnit": "<#pressunit>", "WindUnit": "<#windunit>", "RainUnit": "<#rainunit>"}';
+	var data = '{"TempUnit": "<#tempunitnodeg>", "PressUnit": "<#pressunit>", "WindUnit": "<#windunit>", "RainUnit": "<#rainunit>", "WindRunUnit":"<#windrununit>"}';
 	$.ajax({ 
 		url:  '/api/tags/process.txt',
         dataType: 'json',
@@ -79,6 +79,7 @@ $(document).ready(function () {
 		styles = "<style>\n";
 		styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
 		styles += "#datalog tbody .windUnits:after { content:\"" + result.WindUnit + "\";}\n";
+        styles += "#datalog tbody .windRunUnits:after { content: \"" + result.WindRunUnit + "\";}\n";
 		styles += "#datalog tbody .rainUnits:after { content:\"" + result.RainUnit + "\";}\n";
 		styles += "#datalog tbody .rainRateUnits:after { content:\"" + result.RainUnit + "/hr\";}\n";
 		styles += '#datalog tbody .pressUnits:after { content:\"' + result.PressUnit + "\";}\n";
@@ -130,8 +131,8 @@ $(document).ready(function () {
         {title: "Heat Index"},
         {title: "UV Index"},
         {title: "Solar Rad",		className: 'solarUnits'},
-        {title: "ET"},
-        {title: "Annual ET"},
+        {title: "ET",               className: 'rainUnits'},
+        {title: "Annual ET",        className: 'rainUnits'},
         {title: "Apparent temp",	className: 'tempUnits'},
         {title: "Max Solar rad",	className: 'solarUnits'},
         {title: "Sun hours",		className: 'hours'},

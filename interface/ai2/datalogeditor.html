@@ -63,13 +63,25 @@
 		<style>
 			input[type=text] { max-width: 8em; border:none; border-bottom: 1px solid var(--theme);}
 			input[type=search] { background:var(--add3);}
-			/*	Units	*/
-			/*	You need to manually edit the following styles to match your units	*/
-			#datalog tbody .percent:after   { content:"%";   font-size:10px; padding-left: 2px; vertical-align: text-top;}
-			#datalog tbody .rainRateUnits:after { content:"mm/hr"; font-size:8px; padding-left: 2px; vertical-align: baseline;}
-			#datalog tbody .bearing:after    { content:"°";   font-size:10px; padding-left: 2px; vertical-align:text-top;}
-			#datalog tbody .hours:after    { content:"hrs";   font-size: 8px; padding-left: 2px; vertical-align:baseline;}
-			#datalog tbody .solarUnits:after { content:"w/m\00b2";	  font-size: 8px; padding-left:2px;vertical-align:baseline;}
+
+						/*	Units	*/
+			/*	Adjust size of units	*/
+			#datalog tbody .tempUnits:after,
+			#datalog tbody .percent:after,
+			#datalog tbody .bearing:after		{ font-size: 0.6em; padding-left: 0.3em; vertical-align: top;}
+			#datalog tbody .windUnits:after,
+			#datalog tbody .windRunUnits:after,
+			#datalog tbody .rainUnits:after,
+			#datalog tbody .rainRateUnits:after,
+			#datalog tbody .pressUnits:after,
+			#datalog tbody .hours:after,
+			#datalog tbody .solarUnits:after	{ font-size: 0.6em; padding-left: 0.3em; vertical-align: baseline;}
+			
+			/*	You MAY need to manually edit the following styles to match your units	*/
+			#datalog tbody .percent:after   	{ content:"%"; }
+			#datalog tbody .bearing:after    	{ content:"°"; }
+			#datalog tbody .hours:after    		{ content:"hrs"; }
+			#datalog tbody .solarUnits:after 	{ content:"w/m\00b2"; }
 
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
 		</style>

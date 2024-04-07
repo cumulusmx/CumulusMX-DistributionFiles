@@ -63,13 +63,31 @@
 		</script>
 		<style>
 			/*	Units	*/
-			/*	Standard Units are selected by CMX but you may want to manually edit these to match your units	*/
-			#datalog tbody .percent:after   { content:"%";   font-size:10px; padding-left: 2px; vertical-align: text-top;}
-			#datalog tbody .rainRateUnits:after { content:"mm/hr"; font-size:8px; padding-left: 2px; vertical-align: baseline;}
-			#datalog tbody .bearing:after    { content:"°";   font-size:10px; padding-left: 2px; vertical-align:text-top;}
-			#datalog tbody .hours:after    { content:"hrs";   font-size: 8px; padding-left: 2px; vertical-align:baseline;}
-			#datalog tbody .solarUnits:after { content:"w/m\00b2";	  font-size: 8px; padding-left:2px;vertical-align:baseline;}
-			#datalog tbody>tr.selected, table.dataTable tbody>tr>.selected { mix-blend-mode: difference; }
+			/*	Adjust size of units	*/
+			#datalog tbody .tempUnits:after,
+			#datalog tbody .percent:after,
+			#datalog tbody .bearing:after		{ font-size: 0.6em; padding-left: 0.3em; vertical-align: top;}
+			#datalog tbody .soilMUnits:after,
+			#datalog tbody .leafWUnits:after,
+			#datalog tbody .airQual1Units:after,
+			#datalog tbody .airQual2Units:after,
+			#datalog tbody .airQual3Units:after,
+			#datalog tbody .airQual4:after,
+			#datalog tbody .CO2Units:after,
+			#datalog tbody .CO2_5Units:after,
+			#datalog tbody .CO2_10Units:after	{ font-size: 0.6em; padding-left: 0.3em; vertical-align: baseline;}
+			
+			/*	You MAY need to manually edit the following styles if you have extra sensors	*/
+			#datalog tbody .percent:after   	{ content: "%"; }
+			#datalog tbody .soilMUnits:after   	{ content: "-"; }
+			#datalog tbody .leafWUnits:after	{ content: "%rm"; }
+			#datalog tbody .airQual1Units:after,
+			#datalog tbody .airQual2Units:after,
+			#datalog tbody .airQual3Units:after,
+			#datalog tbody .airQual4Units:after { content: "-"; }
+			#datalog tbody .CO2Units:after		{ content: "-"; }
+			#datalog tbody .CO2_5Units:after	{ content: "-"; }
+			#datalog tbody .CO2_10Units:after		{ content: "-"; }
 
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
 		</style>
