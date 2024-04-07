@@ -16,6 +16,7 @@ $(document).ready(function() {
 		styles = "<style>\n";
 		styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
 		styles += "#datalog tbody .windUnits:after { content:\"" + result.WindUnit + "\";}\n";
+		styles += "#datalog tbody .windRunUnits:after { content: \"" + result.WindRunUnit + "\";}\n";
 		styles += "#datalog tbody .rainUnits:after { content:\"" + result.RainUnit + "\";}\n";
 		styles += "#datalog tbody .rainRateUnits:after { content:\"" + result.RainUnit + "/hr\";}\n";
 		styles += '#datalog tbody .pressUnits:after { content:\"' + result.PressUnit + "\";}\n";
