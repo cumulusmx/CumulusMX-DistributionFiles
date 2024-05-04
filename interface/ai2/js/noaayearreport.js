@@ -79,3 +79,16 @@ function generateAll() {
 		$('#report').text('Something went wrong! (' + textStatus + ')');
 	});
 }
+
+function uploadRpt() {
+	var year = $('#datepicker').val();
+	$.ajax({
+		url: '/api/uploadreport/noaayear?year='+year
+	})
+	.done(function(data) {
+		alert("Report upload: " + data);
+	})
+	.fail(function(jqXHR, textStatus) {
+		$('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
+	});
+}

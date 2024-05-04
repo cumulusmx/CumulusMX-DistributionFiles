@@ -56,7 +56,9 @@ Each panel is part of a flex box so you can change their order just by changing 
 
 Data Log Editors
 ~~~~~~~~~~~~~~~~
-These now automatically collect the correct units for your station.  You have to manually load the data for the selected period in the Data Log Viewer.
+These now automatically collect the correct units for your station.  You have to manually load the data for the selected period in the Extra Data Log Viewer.
+
+All units are now correctly collected and displayed except for any extra sensors for which only temperature and humidity units are available.  You can edit the 'extradatalogeditor.html script to set the units required in the dedicated styles section before the body of the page.
 
 Settings
 ========

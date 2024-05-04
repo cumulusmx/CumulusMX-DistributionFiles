@@ -50,10 +50,12 @@
 			select {border-radius: 6px; padding: 0.4em 0.5em!important;}
 			#selMonth { max-width:8em;}
 			#selYear {max-width: 5em;}
-			#generate-button { background: linear-gradient( 90deg, #eb9316 0, var(--add3) 75%)!important; flex-grow:0;}
-			#generate-button:hover { background: linear-gradient( 90deg, var(--add3) 0, #eb9316 75%)!important;}
-			#generateAll-button	{ background: linear-gradient( 90deg, #2aabd2 0, var(--add3) 75%)!important; flex-grow:0;}
-			#generateAll-button:hover	{ background: linear-gradient( 90deg, var(--add3) 0, #2aabd2 75%)!important;}
+			#generate-button { background: linear-gradient( 0deg, #eaa74a 0, var(--add3) 50%)!important; flex-grow:0;}
+			#generate-button:hover { background: linear-gradient( 180deg, #eaa74a 0, var(--add3) 50%)!important;}
+			#generateAll-button	{ background: linear-gradient( 0deg, #47bbde 0, var(--add3) 50%)!important; flex-grow:0;}
+			#generateAll-button:hover	{ background: linear-gradient( 180deg, #47bbde 0, var(--add3) 50%)!important;}
+			#upload-button {background: linear-gradient( 0deg, #9f63ed 0, var(--add3) 50%)!important;flex-grow:0;}
+			#upload-button:hover {background: linear-gradient( 180deg, #9f63ed 0, var(--add3) 50%)!important;}
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -85,8 +87,9 @@
 					<span style="min-width:11em;">Select year:&nbsp;<select class="w3-select ow-theme-add3" id="selYear" aria-label="select year"></select></span>
 					<span style="min-width: 12em;">month:&nbsp;<select class="w3-select ow-theme-add3" id="selMonth" aria-label="select month"></select></span>
 					<button type="button" class="w3-btn" id="load-button" onclick="load()" style="flex-grow:0;">Load Report</button>
-					<button type="button" class="w3-btn btn-warning" id="generate-button" onclick="generate()">(Re)Generate this Report</button>
-					<button type="button" class="w3-btn btn-info" id="generateAll-button" onclick="generateAll()">Regenerate all missing Reports</button><br>
+					<button type="button" class="w3-btn btn-warning" id="generate-button" onclick="generate()">(Re)Generate Report</button>
+					<button type="button" class="w3-btn btn-info" id="generateAll-button" onclick="generateAll()">(Re)Generate all missing</button>
+					<button type="button" class="w3-btn btn-default" id="upload-button" onClick="uploadRpt()">Re-upload Report</button>
 				</div>
 
 				<p>Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly</p>

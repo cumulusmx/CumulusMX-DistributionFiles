@@ -124,3 +124,18 @@ function generateAll() {
 		$('#report').html('Something went wrong! (' + textStatus + ')');
 	});
 }
+
+function uploadRpt() {
+	var year = $('#selYear').val();
+	var month = $('#selMonth').val();
+	$.ajax({
+		url: '/api/uploadreport/noaamonth?year='+year+'&month='+month,
+	})
+	.done(function(data) {
+		alert("Report upload: " + data);
+	})
+	.fail(function(jqXHR, textStatus) {
+		$('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
+	});
+}
+
