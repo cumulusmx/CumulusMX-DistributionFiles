@@ -40,12 +40,19 @@
 		<!--	Local scripts & styles	-->
 		<style>
 			input[type=checkbox] { margin-top: -0.5em;}
-			input[type=number] { max-width: 8em; padding: 0 0 0 0.5em; border:none; border-bottom: 1px solid var(--sub5);}
+			input[type=number] { max-width: 8em; padding: 3px 0 3px 0.75em; border:none; border-bottom: 1px solid var(--sub5); border-radius: 8px;}
 			select {
 				border:none;
 				padding:0.2em 0 0.2em 0.5em;
 				border-bottom:1px solid #ccc;
 				height: 1.8em;
+			}
+			.swatchGrid {
+				display:grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows:auto;
+				grid-auto-rows:auto;
+				gap:1vh 3px;
 			}
 		</style>
 	</head>
@@ -134,18 +141,18 @@
 						<div class="ow-titleBar" style="margin:1vh 0;">
 							<h3>Theme colours</h3>
 						</div>
-						<div class="ow-sixCol">
-							<div class="ow-theme-add5 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-add5</div>
-							<div class="ow-theme-add4 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-add4</div>
-							<div class="ow-theme-add3 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-add3</div>
-							<div class="ow-theme-add2 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-add2</div>
-							<div class="ow-theme-add1 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-add1</div>
-							<div class="ow-theme w3-padding-large w3-center">ow-theme</div>
-							<div class="ow-theme-sub1 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub1</div>
-							<div class="ow-theme-sub2 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub2</div>
-							<div class="ow-theme-sub3 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub3</div>
-							<div class="ow-theme-sub4 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub4</div>
-							<div class="ow-theme-sub5 ow-theme-bdr w3-border w3-padding-large w3-center">ow-theme-sub5</div>
+						<div class="swatchGrid">
+							<div class="ow-theme-add5 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add5</div>
+							<div class="ow-theme-add4 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add4</div>
+							<div class="ow-theme-add3 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add3</div>
+							<div class="ow-theme-add2 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add2</div>
+							<div class="ow-theme-add1 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">ow-theme-add1</div>
+							<div class="ow-theme w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:1 / span 3;">ow-theme</div>
+							<div class="ow-theme-sub1 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub1</div>
+							<div class="ow-theme-sub2 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">ow-theme-sub2</div>
+							<div class="ow-theme-sub3 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub3</div>
+							<div class="ow-theme-sub4 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub4</div>
+							<div class="ow-theme-sub5 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub5</div>
 						</div>
 						<p>
 							The same colours are available as text only <span class="ow-codeSpan">ow-theme-xxxx-txt</span>,
