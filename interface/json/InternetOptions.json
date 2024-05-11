@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/12/10 22:28:12",
+	"version": "Last Modified: 2024/03/20 12:18:02",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -251,7 +251,7 @@
 							"helpers": [
 								"Set the maximum number of concurrent PHP uploads allowed to your web server",
 								"Changing this setting requires a restart of CMX to take effect",
-								"Defaults: Windows=4, Mono=1"
+								"Default = 2"
 							],
 							"dependencies": {
 								"ftpmode": 3
@@ -334,6 +334,10 @@
 								"wxnowcomment": {
 									"label": "wxnow.txt Comment:",
 									"helper": "Text to append to the wxnow.txt file. This can contain web tags"
+								},
+								"wxnowutc": {
+									"rightLabel": "Force UTC timestamp in wxnow.txt file",
+									"helper": "Normally the wxnow.txt uses the local date/time in the file. You can override this and force it to be UTC"
 								}
 							},
 							"dependencies": {
@@ -500,7 +504,14 @@
 				},
 				"authenticate": {
 					"label": "Authentication:",
-					"rightLabel": "Enable server authentication",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						"None",
+						"Username/Password",
+						"Google OAuth 2.0"
+					],
+					"removeDefaultNone": true,
 					"helper": "Does your SMTP server require username/password authentication",
 					"dependencies": {
 						"enabled": true
@@ -510,7 +521,8 @@
 					"label": "Username:",
 					"helper": "The username to connect to your SMTP server",
 					"dependencies": {
-						"enabled": true
+						"enabled": true,
+						"authenticate": [1,2]
 					}
 				},
 				"password": {
@@ -518,7 +530,25 @@
 					"type": "password",
 					"helper": "The password used to authenticate with your SMTP server",
 					"dependencies": {
-						"enabled": true
+						"enabled": true,
+						"authenticate": 1
+					}
+				},
+				"clientid": {
+					"label": "Client ID:",
+					"helper": "The Client ID of your Google OAuth 2.0 credentials",
+					"dependencies": {
+						"enabled": true,
+						"authenticate": 2
+					}
+				},
+				"clientsecret": {
+					"label": "Client Secret:",
+					"type": "password",
+					"helper": "The Client Secret of your Google OAuth 2.0 credentials",
+					"dependencies": {
+						"enabled": true,
+						"authenticate": 2
 					}
 				}
 			}
@@ -564,6 +594,14 @@
 			   "size": {
 					"label": "Image Size:",
 					"helper": "Set the image size in pixels",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"transparent": {
+					"label" : "Shadow:",
+					"rightLabel": "Make shadow transparent",
+					"helper": "Draw the shadow as transparent so the background shows through. If disabled then the shadow is drawn as dimming by 80%",
 					"dependencies": {
 						"enabled": true
 					}

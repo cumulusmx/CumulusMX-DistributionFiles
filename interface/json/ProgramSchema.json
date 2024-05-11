@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2023/10/18 10:37:12",
+    "version": "Last Modified: 2024/02/07 17:57:10",
     "type": "object",
     "properties": {
         "accessible": {
@@ -92,6 +92,9 @@
                 "ftplogging": {
                     "type": "boolean"
                 },
+                "ftplogginglevel": {
+                    "enum": [0, 1, 2, 3, 4, 5]
+                },
                 "emaillogging": {
                     "type": "boolean"
                 },
@@ -101,6 +104,9 @@
                 "errorlistlevel": {
                     "enum": [1, 2]
                 }
+            },
+            "dependencies": {
+                "ftplogginglevel": ["ftplogging"]
             }
         },
         "options": {

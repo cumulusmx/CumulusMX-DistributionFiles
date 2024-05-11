@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/12/10 22:28:24",
+	"version": "Last Modified: 2024/03/20 12:18:03",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -180,6 +180,10 @@
 								},
 								"wxnowcomment": {
 									"type": "string"
+								},
+								"wxnowutc": {
+									"type": "boolean",
+									"title": "wxnow.txt Use UTC:"
 								}
 							}
 						},
@@ -321,11 +325,15 @@
 					"type": "boolean"
 				},
 				"authenticate": {
-					"type": "boolean"
+					"enum": [0,1,2]
 				},
 				"user": {
 				},
 				"password": {
+				},
+				"clientid": {
+				},
+				"clientsecret": {
 				}
 			},
 			"dependencies": {
@@ -333,9 +341,11 @@
 				"port": ["enabled"],
 				"ssloption": ["enabled"],
 				"authenticate": ["enabled"],
-				"user": ["enabled"],
-				"password": ["enabled"],
-				"ignorecerterrors": ["enabled", "ssloption"]
+				"user": ["enabled", "authenticate"],
+				"password": ["enabled", "authenticate"],
+				"ignorecerterrors": ["enabled", "ssloption"],
+				"clientid": ["enabled", "authenticate"],
+				"clientsecret": ["enabled", "authenticate"]
 			}
 
 		},
@@ -369,6 +379,9 @@
 					"minimum": 20,
 					"maximum": 400
 				},
+				"transparent": {
+					"type": "boolean"
+				},
 				"includemoonimage": {
 					"type": "boolean"
 				},
@@ -385,6 +398,7 @@
 			"dependencies": {
 				"includemoonimage": ["enabled"],
 				"size": ["enabled"],
+				"transparent": ["enabled"],
 				"ftpdest": ["includemoonimage"],
 				"copyimage": ["enabled"],
 				"copydest": ["copyimage"]

@@ -1,0 +1,131 @@
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Script:	Alpaca Forms styles
+ * 	File: alpacaforms.css			v2.0
+ * 	Author:	Neil Thomas
+ * 	Created:		15/10/2023 10:52
+ *  Last updated:	2023/12/17 17:08:30
+ * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+.radio {
+	display: inline-block;
+	padding-left: 40px;
+	vertical-align: middle;
+	margin-top: 10px;
+}
+.radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+
+.alpaca-field > legend > .collapsed::before {
+	content: '\25B8';
+	padding-left: 0.5%;
+	color: var(--sub5);
+}
+
+.alpaca-field > legend > span::before {
+	content: "\25BE";
+	padding-left: 0.5%;
+}
+
+.alpaca-container-has-items {
+	margin-left: 0;
+}
+
+.alpaca-form-buttons-container {
+	margin-bottom: 20px;
+	text-align: left;
+	font-size: 18px;
+}
+
+.hideme {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	display: flex;
+}
+
+.form-control {
+	font-size: 100%;
+}
+
+table {
+	width: 100%!important;
+	border: thin solid var(--add5);
+	margin: 1vh 0;
+	min-width: 60em;
+	border-collapse: collapse;
+}
+
+td {
+	padding: 0.3em 0.5em;
+	border: thin solid var(--add4);
+	background: var(--add5);
+	color: var(--sub5);
+	vertical-align: center;
+	text-align:center;
+}
+
+th {
+	padding: 0.4em 0.1em;
+	border: thin solid var(--add5);
+	background: var(--add3);
+	color: var(--sub5);
+	vertical-align: bottom;
+}
+
+legend {
+	color: inherit;
+}
+
+.alpaca-form-buttons-container {
+	text-align: center;
+}
+
+.alpaca-container-has-items {
+	margin-left: 1%;
+}
+
+.collapse.in {
+	margin-left: 1%;
+}
+
+.alpaca-form-buttons-container > button,
+.alpaca-array-toolbar > button {
+	background-image: var(--BtnGradient)!important;
+	color: var(--sub5)!important;
+	border-radius: 2em;
+	border:thin solid var(--theme);
+	padding: 0.2em 3em;
+}
+
+.alpaca-form-buttons-container > button:hover,
+.alpaca-array-toolbar > button:hover {
+	background-image: var(--BtnGradientHvr)!important;
+	color: var(--sub5)!important;
+}
+
+
+.alpaca-array-toolbar > button  {
+	padding: 0.8em 3em;
+	text-shadow: 0 0 0 0 var(--add5)!important;
+}
+
+input[type=text] {
+	background: var(--add4);
+	color: var(--sub5)!important;
+}
+
+checkbox.alpaca-control { padding: 0;}
+
+select.alpaca-control {
+	font-size: 100%;
+	height: 2.0em;
+	background: var(--add4);
+	color: var(--sub5);
+}
+
+.alpaca-array-actionbar.btn-group > button {
+	background-color: var(--add3);
+	border:none;
+	padding:0.3em!important;
+	color: var(--sub5);
+}

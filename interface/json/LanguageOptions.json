@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/01/24 16:44:32",
+	"version": "Last modified: 2024/05/11 12:32:02",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -402,6 +402,10 @@
 							"label": "Cumulus Upgrade",
 							"type": "text"
 						},
+						"firmware": {
+							"label": "Firmware Upgrade",
+							"type": "text"
+						},
 						"ftpStopped": {
 							"label": "Web Uploads",
 							"type": "text"
@@ -494,6 +498,10 @@
 							"label": "Cumulus Upgrade",
 							"type": "text"
 						},
+						"firmware": {
+							"label": "Firmware Upgrade",
+							"type": "text"
+						},
 						"ftpStopped": {
 							"label": "Web Uploads",
 							"type": "text"
@@ -507,6 +515,34 @@
 							"type": "text"
 						}
 					}
+				}
+			}
+		},
+		"webtags": {
+			"collapsible": true,
+			"collapsed": true,
+			"helper": "Please see the Wiki for more information on web tag custom formats",
+			"helperPosition": "above",
+			"fields": {
+				"gentimedate": {
+					"label": "General time & date",
+					"type": "text",
+					"helper": "Text displayed for general time & date web tags"
+				},
+				"recdate": {
+					"label": "Record date",
+					"type": "text",
+					"helper": "Text displayed for record web tags that are date only"
+				},
+				"rectimedate": {
+					"label": "Record time & date",
+					"type": "text",
+					"helper": "Text displayed for record web tags that have a time and date"
+				},
+				"recwetdrytimedate": {
+					"label": "Record dry/wet days",
+					"type": "text",
+					"helper": "Text displayed for record dry wet periods"
 				}
 			}
 		}

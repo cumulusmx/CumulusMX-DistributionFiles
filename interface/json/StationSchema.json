@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/12/17 17:20:47",
+	"version": "Last Modified: 2024/05/11 12:28:06",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -792,6 +792,10 @@
 				"userkey": {
 				},
 				"mac": {
+					"dependencies": ["stationid"]
+				},
+				"stationid": {
+					"type": "integer"
 				}
 			},
 			"dependencies": ["stationid"]
@@ -819,6 +823,9 @@
 					"type": "boolean"
 				},
 				"calculateet": {
+					"type": "boolean"
+				},
+				"calculateslp": {
 					"type": "boolean"
 				},
 				"cumuluspresstrendnames": {

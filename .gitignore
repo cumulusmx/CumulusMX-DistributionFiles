@@ -5,3 +5,7 @@
 updates.txt
 .vscode/
 hash_md5*.txt
+*.runtimeconfig.json
+*.dll.config
+*.deps.json
+runtimes/

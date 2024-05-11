@@ -1,0 +1,106 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *	Theme:	Dark Emporador		(#6C4F3D)	v3.0.1
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Designed for:	CMX AI 					v2.0.1
+ *	&				CMX Default website		v3.0.0
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *	Author:		DNC Thomas
+ *	Last edit:	11/09/2023 10:26
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*  Theme colour variables	*/
+:root {
+	--sub5: #f8f4f2;
+	--sub4: #e6dbd3;
+	--sub3: #ceb6a8;
+	--sub2: #b5927c;
+	--sub1: #976f55;
+	--theme: #6c4f3d;
+	--add1: #614737;
+	--add2: #563f30;
+	--add3: #4b372a;
+	--add4: #412f24;
+	--add5: #36271e;
+	--modal: rgba(108, 79, 61, 0.3);
+	--LRgradient: linear-gradient( 90deg, var(--theme), var(--add3) 50%);
+	--RLgradient: linear-gradient( 270deg, var(--theme), var(--add3) 50%);
+	--Gradient1: linear-gradient( 180deg, var(--add4) 2.6em, var(--add3) 2.7em, var(--add2) 100%);
+	--Gradient2: linear-gradient( 180deg, var(--add3) 2.6em, var(--add2) 2.7em, var(--add1) 100%);
+    --Grad1Text: var(--sub5);
+    --Grad2Text: var(--sub5);
+	--BtnGradient: linear-gradient( 0deg, var(--add3) 5%, var(--sub1) 95%);
+	--BtnGradientHvr: linear-gradient( 180deg, var(--add3) 5%, var(--sub1) 95%);
+}
+
+/*  Theme colour combinations (Foreground / Background)	*/
+.ow-theme-add5	{color: var(--sub5); background-color: var(--add5);}
+.ow-theme-add4	{color: var(--sub5); background-color: var(--add4);}
+.ow-theme-add3	{color: var(--sub5); background-color: var(--add3);}
+.ow-theme-add2	{color: var(--sub5); background-color: var(--add2);}
+.ow-theme-add1	{color: var(--sub5); background-color: var(--add1);}
+.ow-theme		{color: var(--sub5); background-color: var(--theme);}
+.ow-theme-sub1	{color: var(--add5); background-color: var(--sub1);}
+.ow-theme-sub2	{color: var(--add5); background-color: var(--sub2);}
+.ow-theme-sub3	{color: var(--add5); background-color: var(--sub3);}
+.ow-theme-sub4	{color: var(--add5); background-color: var(--sub4);}
+.ow-theme-sub5	{color: var(--add5); background-color: var(--sub5);}
+
+.ow-theme-action {color: var(--sub3); background-color: var(--add3);}
+
+/*	heme colour combinations for HOVER effects (Foreground / Background)	*/
+.ow-theme-add5-hvr:hover	{color: var(--sub5); background-color: var(--add5);}
+.ow-theme-add4-hvr:hover	{color: var(--sub5); background-color: var(--add4);}
+.ow-theme-add3-hvr:hover	{color: var(--sub5); background-color: var(--add3);}
+.ow-theme-add2-hvr:hover	{color: var(--sub5); background-color: var(--add2);}
+.ow-theme-add1-hvr:hover	{color: var(--sub5); background-color: var(--add1);}
+.ow-theme-hvr:hover 		{color: var(--sub5); background-color:var(--theme); }
+.ow-theme-sub1-hvr:hover 	{color: var(--add5); background-color: var(--sub1);}
+.ow-theme-sub2-hvr:hover 	{color: var(--add5); background-color: var(--sub2);}
+.ow-theme-sub3-hvr:hover	{color: var(--add5); background-color: var(--sub3);}
+.ow-theme-sub4-hvr:hover	{color: var(--add5); background-color: var(--sub4);}
+.ow-theme-sub5-hvr:hover	{color: var(--add5); background-color: var(--sub5);}
+
+.ow-theme-action-hvr:hover	{color: var(--add3); background-color: var(--sub3);}
+
+/*	Theme TEXT only colours	*/
+.ow-theme-add5-txt	{color: var(--add5);}
+.ow-theme-add4-txt	{color: var(--add4);}
+.ow-theme-add3-txt	{color: var(--add3);}
+.ow-theme-add2-txt	{color: var(--add2);}
+.ow-theme-add1-txt	{color: var(--add1);}
+.ow-theme-txt		{color: var(--theme);}
+.ow-theme-sub1-txt	{color: var(--sub1);}
+.ow-theme-sub2-txt	{color: var(--sub2);}
+.ow-theme-sub3.txt	{color: var(--sub3);}
+.ow-theme-sub4-txt	{color: var(--sub4);}
+.ow-theme-sub5-txt	{color: var(--sub5);}
+
+/*	Theme TEXT only HOVER colours	*/
+.ow-theme-add5-txt-hvr:hover	{color: var(--add5);}
+.ow-theme-txt-hvr:hover			{color: var(--theme);}
+.ow-theme-sub5-txt-hvr:hover	{color: var(--sub5);}
+
+/*	Theme BORDER only colours	*/
+.ow-theme-add5-bdr	{border-color: var(--add5);}
+.ow-theme-add4-bdr	{border-color: var(--add4);}
+.ow-theme-add3-bdr	{border-color: var(--add3);}
+.ow-theme-add2-bdr	{border-color: var(--add2);}
+.ow-theme-add1-bdr	{border-color: var(--add1);}
+.ow-theme-bdr		{border-color: var(--theme);}
+.ow-theme-sub1-bdr	{border-color: var(--sub1);}
+.ow-theme-sub2-bdr	{border-color: var(--sub2);}
+.ow-theme-sub3-bdr	{border-color: var(--sub3);}
+.ow-theme-sub4-bdr	{border-color: var(--sub4);}
+.ow-theme-sub5-bdr	{border-color: var(--sub5);}
+
+/*	Theme BORDER only HOVER colours	*/
+.ow-theme-add5-bdr-hvr:hover	{border-color: var(--add5); }
+.ow-theme-bdr-hvr:hover 		{border-color: var(--theme);}
+.ow-theme-sub5-bdr-hvr:hover	{border-color: var(--sub5);}
+
+/*	Theme Modal Window Background	*/
+.ow-theme-modal {
+	background-color: var(--theme);
+	background-color: var(--modal);
+}

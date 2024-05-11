@@ -1,157 +1,149 @@
-// Last modified: 2023/10/13 21:44:35
+// Last modified: 2024/02/03 17:30:43
 
 let accessMode;
 let csvChar;
 
 
 $(document).ready(function () {
-    $.ajax({
-        url: '../api/info/csvseparator.txt',
-        success: function(result){
-            $('[data-csv]').html(result);
-            csvChar = result;
+    $('#intvlform').alpaca({
+        'dataSource': './api/settings/customlogsintvl.json',
+        'optionsSource': './json/CustomLogsIntvlOptions.json',
+        'schemaSource': './json/CustomLogsIntvlSchema.json',
+        'ui': 'bootstrap',
+        'view': 'bootstrap-edit',
+        'options': {
+            'form': {
+                'buttons': {
+                    // don't use the Submit button because that is disabled on validation errors
+                    'validate': {
+                        'title': 'Save Settings',
+                        'click': function() {
+                            this.refreshValidationState(true);
+                            if (this.isValid(true)) {
+                                let json = this.getValue();
 
-            $('#intvlform').alpaca({
-                'dataSource': './api/settings/customlogsintvl.json',
-                'optionsSource': './json/CustomLogsIntvlOptions.json',
-                'schemaSource': './json/CustomLogsIntvlSchema.json',
-                'ui': 'bootstrap',
-                'view': 'bootstrap-edit',
-                'options': {
-                    'form': {
-                        'buttons': {
-                            // don't use the Submit button because that is disabled on validation errors
-                            'validate': {
-                                'title': 'Save Settings',
-                                'click': function() {
-                                    this.refreshValidationState(true);
-                                    if (this.isValid(true)) {
-                                        let json = this.getValue();
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: '../api/setsettings/updatecustomlogsintvl.json',
-                                            data: {json: JSON.stringify(json)},
-                                            dataType: 'text'
-                                        })
-                                        .done(function () {
-                                            alert('Settings updated');
-                                        })
-                                        .fail(function (jqXHR, textStatus) {
-                                            alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
-                                        });
-                                    } else {
-                                        let firstErr = $('form').find('.has-error:first')
-                                        let path = $(firstErr).attr('data-alpaca-field-path');
-                                        let msg = $(firstErr).children('.alpaca-message').text();
-                                        alert('Invalid value in the form: ' + path + msg);
-                                        if ($(firstErr).is(':visible')) {
-                                            let entry = $(firstErr).focus();
-                                            $(window).scrollTop($(entry).position().top);
-                                        }
-                                    }
-                                },
-                                'styles': 'alpaca-form-button-submit'
-                            }
-                        }
-                    },
-                    'fields': {
-                        'interval': {
-                            'items': {
-                                'fields': {
-                                    'content': {
-                                        'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
-                                    }
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../api/setsettings/updatecustomlogsintvl.json',
+                                    data: {json: JSON.stringify(json)},
+                                    dataType: 'text'
+                                })
+                                .done(function () {
+                                    alert('Settings updated');
+                                })
+                                .fail(function (jqXHR, textStatus) {
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
+                                });
+                            } else {
+                                let firstErr = $('form').find('.has-error:first')
+                                let path = $(firstErr).attr('data-alpaca-field-path');
+                                let msg = $(firstErr).children('.alpaca-message').text();
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
+                                    let entry = $(firstErr).focus();
+                                    $(window).scrollTop($(entry).position().top);
                                 }
                             }
-                        }
+                        },
+                        'styles': 'alpaca-form-button-submit'
                     }
-                },
-                'postRender': function (form) {
-                    // Change in accessibility is enabled
-                    let accessObj = form.childrenByPropertyId['accessible'];
-                    onAccessChange(null, accessObj.getValue());
-                    accessMode = accessObj.getValue();
-
-                    if (!accessMode) {
-                        setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
-                    }
-
-                    // Trigger changes is the accessibility mode is changed
-                    //accessObj.on('change', function() {onAccessChange(this)});
                 }
-            });
-
-            $('#dailyform').alpaca({
-                'dataSource': './api/settings/customlogsdaily.json',
-                'optionsSource': './json/CustomLogsDailyOptions.json',
-                'schemaSource': './json/CustomLogsDailySchema.json',
-                'ui': 'bootstrap',
-                'view': 'bootstrap-edit',
-                'options': {
-                    'form': {
-                        'buttons': {
-                            // don't use the Submit button because that is disabled on validation errors
-                            'validate': {
-                                'title': 'Save Settings',
-                                'click': function() {
-                                    this.refreshValidationState(true);
-                                    if (this.isValid(true)) {
-                                        let json = this.getValue();
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: '../api/setsettings/updatecustomlogsdaily.json',
-                                            data: {json: JSON.stringify(json)},
-                                            dataType: 'text'
-                                        })
-                                        .done(function () {
-                                            alert('Settings updated');
-                                        })
-                                        .fail(function (jqXHR, textStatus) {
-                                            alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
-                                        });
-                                    } else {
-                                        let firstErr = $('form').find('.has-error:first')
-                                        let path = $(firstErr).attr('data-alpaca-field-path');
-                                        let msg = $(firstErr).children('.alpaca-message').text();
-                                        alert('Invalid value in the form: ' + path + msg);
-                                        if ($(firstErr).is(':visible')) {
-                                            let entry = $(firstErr).focus();
-                                            $(window).scrollTop($(entry).position().top);
-                                        }
-                                    }
-                                },
-                                'styles': 'alpaca-form-button-submit'
+            },
+            'fields': {
+                'interval': {
+                    'items': {
+                        'fields': {
+                            'content': {
+                                'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
                             }
                         }
-                    },
-                    'fields': {
-                        'daily': {
-                            'items': {
-                                'fields': {
-                                    'content': {
-                                        'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
-                                    }
+                    }
+                }
+            }
+        },
+        'postRender': function (form) {
+            // Change in accessibility is enabled
+            let accessObj = form.childrenByPropertyId['accessible'];
+            onAccessChange(null, accessObj.getValue());
+            accessMode = accessObj.getValue();
+
+            if (!accessMode) {
+                setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
+            }
+
+            // Trigger changes is the accessibility mode is changed
+            //accessObj.on('change', function() {onAccessChange(this)});
+        }
+    });
+
+    $('#dailyform').alpaca({
+        'dataSource': './api/settings/customlogsdaily.json',
+        'optionsSource': './json/CustomLogsDailyOptions.json',
+        'schemaSource': './json/CustomLogsDailySchema.json',
+        'ui': 'bootstrap',
+        'view': 'bootstrap-edit',
+        'options': {
+            'form': {
+                'buttons': {
+                    // don't use the Submit button because that is disabled on validation errors
+                    'validate': {
+                        'title': 'Save Settings',
+                        'click': function() {
+                            this.refreshValidationState(true);
+                            if (this.isValid(true)) {
+                                let json = this.getValue();
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../api/setsettings/updatecustomlogsdaily.json',
+                                    data: {json: JSON.stringify(json)},
+                                    dataType: 'text'
+                                })
+                                .done(function () {
+                                    alert('Settings updated');
+                                })
+                                .fail(function (jqXHR, textStatus) {
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
+                                });
+                            } else {
+                                let firstErr = $('form').find('.has-error:first')
+                                let path = $(firstErr).attr('data-alpaca-field-path');
+                                let msg = $(firstErr).children('.alpaca-message').text();
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
+                                    let entry = $(firstErr).focus();
+                                    $(window).scrollTop($(entry).position().top);
                                 }
                             }
+                        },
+                        'styles': 'alpaca-form-button-submit'
+                    }
+                }
+            },
+            'fields': {
+                'daily': {
+                    'items': {
+                        'fields': {
+                            'content': {
+                                'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
+                            }
                         }
                     }
-                },
-                'postRender': function (form) {
-                    // Change in accessibility is enabled
-                    let accessObj = form.childrenByPropertyId['accessible'];
-                    onAccessChange(null, accessObj.getValue());
-                    accessMode = accessObj.getValue();
-
-                    if (!accessMode) {
-                        setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
-                    }
-
-                    // Trigger changes is the accessibility mode is changed
-                    //accessObj.on('change', function() {onAccessChange(this)});
                 }
-            });
+            }
+        },
+        'postRender': function (form) {
+            // Change in accessibility is enabled
+            let accessObj = form.childrenByPropertyId['accessible'];
+            onAccessChange(null, accessObj.getValue());
+            accessMode = accessObj.getValue();
+
+            if (!accessMode) {
+                setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
+            }
+
+            // Trigger changes is the accessibility mode is changed
+            //accessObj.on('change', function() {onAccessChange(this)});
         }
     });
 });

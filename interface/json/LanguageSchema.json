@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/01/24 16:43:48",
+	"version": "Last modified: 2024/05/11 12:24:21",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -359,6 +359,10 @@
 							"type": "string",
 							"maxLength": 20
 						},
+						"firmware": {
+							"type": "string",
+							"maxLength": 20
+						},
 						"ftpStopped": {
 							"type": "string",
 							"maxLength": 20
@@ -431,6 +435,9 @@
 						"upgrade": {
 							"type": "string"
 						},
+						"firmware": {
+							"type": "string"
+						},
 						"ftpStopped": {
 							"type": "string"
 						},
@@ -441,6 +448,24 @@
 							"type": "string"
 						}
 					}
+				}
+			}
+		},
+		"webtags": {
+			"title": "Web Tags",
+			"type": "object",
+			"properties": {
+				"gentimedate": {
+					"type": "string"
+				},
+				"recdate": {
+					"type": "string"
+				},
+				"rectimedate": {
+					"type": "string"
+				},
+				"recwetdrytimedate": {
+					"type": "string"
 				}
 			}
 		}

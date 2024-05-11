@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/14 18:13:45
+Last modified: 2024/02/03 17:29:07
 -->
 <!doctype html>
 <html lang="en">
@@ -99,15 +99,15 @@ Last modified: 2023/10/14 18:13:45
                 </p>
                 <p>
                     <b>Data Content:</b> This string is used to create the data in the log file, you use webtags to specify the data.<br>
-                    Your data string will be automtically prefixed with the date or date-time in the log file.
+                    Your data string will be automatically prefixed with the date or date-time in the log file.
                 </p>
                 <p>
                     For example you could use the string: <span style="font-family:'Courier New'">&lt;#temp&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1&gt;</span><br>
-                    You can also use modifiers in the webtags for further control of the output like this: <span style="font-family:'Courier New'">&lt;#temp rc=y&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1 dp=2 rc=y&gt;</span>
+                    You can also use modifiers in the webtags for further control of the output like this: <span style="font-family:'Courier New'">&lt;#temp rc=y&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1 dp=2 rc=y&gt;</span><br>
+                    You <b>MUST</b> use the rc=y web tag parameter for numeric values if your locale uses a comma decimal
                 </p>
                 <p style="font-size:16px;font-style: italic;">
-                    <b>Note:</b> It is <b>important</b> to use the same field separator as CMX uses for the other data files.<br>
-                    Your field separator is:- <b>"<span data-csv></span>"</b>
+                    <b>Note:</b> It is <b>important</b> to use a comma "," as the field separator as CMX will only recognise this format.
                 </p>
             </div>
         </div>

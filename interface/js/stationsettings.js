@@ -1,4 +1,4 @@
-// Last modified: 2023/12/17 16:07:40
+// Last modified: 2024/05/11 12:22:15
 
 let StashedStationId;
 let accessMode;
@@ -178,6 +178,7 @@ $(document).ready(function () {
                 form.getControlByPath("Options/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
+                form.getControlByPath("ecowittapi/stationid").setValue(stationid);
                 form.getControlByPath("general/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
                 // set the settings name for WLL/Davis cloud
                 setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
@@ -195,6 +196,7 @@ $(document).ready(function () {
             let stationid = form.childrenByPropertyId["stationid"].getValue();
             form.getControlByPath("Options/stationid").setValue(stationid);
             form.getControlByPath("daviswll/stationid").setValue(stationid);
+            form.getControlByPath("ecowittapi/stationid").setValue(stationid);
             form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
 
 

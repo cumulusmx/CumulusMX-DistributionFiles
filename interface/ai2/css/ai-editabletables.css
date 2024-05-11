@@ -1,0 +1,163 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Script:	ai-editable-tables.css
+ * Purpose:	Styles for pages using X-editable tables
+ * Version:	4.0.0
+ *	Author:	Neil Thomas
+ * Edited:	21-02-2024
+ * Checked:
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+input[type="text"] {
+	background-color: var(--theme)!important;
+	border: none;
+	color: var(--sub5);
+	/*font-size: 14px;*/
+	max-width:8em;
+	padding: 0.5em 1em;
+	border-radius: 0.5em;
+	text-align: center;
+	margin-left:5px;
+}
+input[readonly] {
+	background-color: var(--add3)!important;
+	color: var(--theme)!important;
+}
+
+#dateFrom, #dateTo {
+	background-color: var(--sub5);
+	color: var(--add5)!important;
+}
+
+.paginate_input{
+	width: 50px;
+	background-color: var(--add3)!important;
+	color: var(--sub5)!important;
+}
+.paginate_button {
+	/*background-color: var(--add3);*/
+	background-image: var(--BtnGradient)!important;
+/*	color: var(--sub5)!important;*/
+	padding: 0.25em 2.0em!important;
+	margin:0.3em 0.3em;
+	border-radius: 2em!important;
+	border: thin solid var(--theme)!important;
+}
+
+#datalog_last,
+#datalog_next,
+#datalog_previous,
+#datalog_first {color: var(--sub5)!important; }
+
+#datalog_last.disabled,
+#datalog_next.disabled,
+#datalog_previous.disabled,
+#datalog_first.disabled {color: var(--theme)!important;}
+
+#datalog_filter label,
+.dataTables_filter label { color: var(--sub5);}
+
+.paginate_button:hover {
+	background-image: var(--BtnGradientHvr)!important;
+	color: var(--add4)!important;
+}
+
+.paginate .paginate_total { margin-right: 1em!important;}
+
+.dt-buttons button {
+	border-radius: 2em!important;
+	background-image: var(--BtnGradient)!important;
+	color: var(--sub5)!important;
+	padding: 0.25em 2em!important;
+	border:thin solid var(--add3);
+}
+
+.dt-buttons button:hover {
+	background-image: var(--BtnGradientHvr)!important;
+	border: var(--theme);
+}
+
+.modal input[type="text"] {
+	max-width:200px;
+}
+
+.datepicker-dropdown {
+	background-color: var(--theme);
+	color: var(--sub5);
+}
+
+thead th {
+	vertical-align: bottom!important;
+	text-align: center!important;
+	padding-top:0!important;
+}
+
+#datalog td {
+	text-align:center!important;
+	font-size: 12px;
+}
+
+.dtfc-fixed-left { background-color: var(--add5); }
+.dtfc-fixed-left:nth-of-type(3) { border-right:thin solid var(--add3); }
+
+thead .dtfc-fixed-left { background-color: var(--add4);}
+
+
+.even .dtfc-fixed-left { background-color: var(--add4); }
+
+
+.dataTables_filter { margin-top: 1vh;}
+thead tr {background: var(--add4);}
+
+
+/*	Format modal	*/
+
+.modal-content {
+	min-width: 400px;
+	border-radius: 1em!important;
+}
+
+.ow-modal-head 	{ border-radius: 8px 1em 0 0!important;}
+
+.ow-modal-head .ow-title { margin: 1em!important;}
+
+.ow-modal-head button {
+	border-radius: 1em;
+	padding: 0.5em!important;
+	color: var(--add4)!important;
+}
+
+.modal-body {
+	min-height: 30vh;
+	max-height: 80vh;
+	overflow: scroll;
+	margin-top:0;
+	background: var(--add3);
+	color: var(--sub3);
+}
+
+.modal-body input[type=text]{ background-color: var(--sub5); color: var(--add5);}
+.modal-body div.form-group { margin:0;padding:0;}
+.modal-footer button { border-radius: 2em!important; padding: 0.2em 2em;}
+
+
+.modal-footer {min-height: 2em;border-radius: 0 0 1em 1em!important;}
+
+#datalog thead th {font-size: 12px;}
+
+/*	Reformat to support dark mode	*/
+.dataTables_info {
+	color: var(--sub4)!important;
+}
+
+td.dataTables_empty { text-align: left!important;}
+
+#datalog tbody>tr.selected { mix-blend-mode: multiply; }
+#datalog thead th {vertical-align: bottom;}
+#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
+#datalog tbody tr:hover { background-color: var(--add3)!important; font-weight:600;}
+
+#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
+#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
+#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}
