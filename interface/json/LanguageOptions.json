@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/05/10 23:51:48",
+	"version": "Last modified: 2024/05/11 12:32:02",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -261,27 +261,27 @@
 			"collapsed": true,
 			"fields": {
 				"Current": {
-					"label": "Current Value",
+					"label": "Current",
 					"type": "text"
 				},
 				"Hr24": {
-					"label": "24 hr Value",
+					"label": "24 hr",
 					"type": "text"
 				},
 				"Pm2p5": {
-					"label": "PM 2.5 Value",
+					"label": "PM 2.5",
 					"type": "text"
 				},
 				"Pm2p5_24hr": {
-					"label": "PM 2.5 24 hr Value",
+					"label": "PM 2.5 24 hr",
 					"type": "text"
 				},
 				"Pm10": {
-					"label": "PM 10 Value",
+					"label": "PM 10",
 					"type": "text"
 				},
 				"Pm10_24hr": {
-					"label": "PM 10 24 hr Value",
+					"label": "PM 10 24 hr",
 					"type": "text"
 				},
 				"Temperature": {
