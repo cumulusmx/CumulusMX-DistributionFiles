@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Dashboard
+	File:	index.html				v4.0.0
+	Author:	D.N.C.Thomas		 Feb 2024
+	Last Edit:	2024-02-23
+	Last Check: 2024-04-05
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CumulusMX Dashboard</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2023">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+		<!--	jQuery CDN	(Use for public website)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery Local	(Use for AI)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/w3Pro+.css">
+		<link rel="stylesheet" href="themes/Martini-Olive.css" id="theme">
+		<link rel="stylesheet" href="css/main.css?v1.2">
+		<link rel="stylesheet" href="css/gauges.css">
+
+		<!-- SteelSeries -->
+		<script src="/lib/steelseries/scripts/steelseries_tween.min.js"></script>
+		<script src="/lib/steelseries/scripts/language.min.js"></script>
+		<script src="/lib/steelseries/scripts/RGraph.common.core.min.js"></script>
+		<script src="/lib/steelseries/scripts/RGraph.rose.min.js"></script>
+		<script src="lib/steelseries/scripts/gauges.js"></script>
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/ai-pagemanager.js"></script>
+		<script src="js/dashboard.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+			#AlarmsPanel, #DavisPanel {
+				border: thin solid var(--theme);
+				margin: 1vh 0;
+			}
+		</style>
+	</head>
+	<body class="ow-theme-add5">
+		<header class="ow-theme w3-bottombar ow-theme-sub5-bdr">
+			<div class="siteWidth ow-titleBar" style="margin:auto;">
+				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<h5 class="w3-align-right">
+					Latitude: <span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
+					Longitude: <span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
+					Altitude: <span data-cmxData="Altitude">xxm</span>
+				</h5>
+			</div>
+
+			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+				<!--	The menus are inserted here	-->
+			</div>
+
+		</header>
+
+		<div id="content">
+			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<div class="siteWidth">
+				<!--	Page Title Bar	-->
+				<div class="ow-titleBar" style="flex-wrap: wrap;">
+					<h1>Dashboard for <span id="StationName"></span></h1>
+					<div class="ow-btnBar ow-flexCenter" style="column-gap: 0.5em;">
+						<input id="bt" type="button" class="w3-btn w3-round-large ow-theme-add2 ow-theme-hvr ow-btn" value="Play Alarm Sounds" style="display: none;">
+						<div id="Alarms" class="w3-btn ow-theme-add4 ow-theme-hvr ow-btn" onClick="toggleArea(this)">Hide Alarms</div>
+						<div id="Davis" class="w3-btn ow-theme-add4 ow-theme-hvr ow-btn" onClick="toggleArea(this)">Hide Davis Info.</div>
+						<div class="w3-btn ow-theme-add4 ow-theme-hvr ow-btn" onClick="showModal('Almanac')">Sun &amp; Moon Info.</div>
+					</div>
+				</div>
+				<!--	Alarms Panel	-->
+				<div id="AlarmsPanel" class="ow-container ow-animate-drop">
+					<h4>Alarms</h4>
+					<div id="alarms" class="ow-sixCol" style="row-gap: 0; margin-bottom: 1vh;">
+					</div>
+				</div>
+				<!--	Davis Station Data	-->
+				<div id="DavisPanel" class="ow-container ow-animate-drop">
+					<h4>Davis Weather Station Status</h4>
+					<div class="ow-fiveCol" style="row-gap:0; margin-bottom:1vh;">
+						<div>Packets Received: <span id="DavisPacketsReceived">not known</span></div>
+						<div>Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
+						<div>Failure Rate: <span id="DavisSuccess">not known</span></div>
+						<div>Packet streak: <span id="DavisMaxInARow">not known</span></div>
+						<div>CRC Errors: <span id="DavisCRCErrors">not known</span></div>
+						<div>Consol Battery: <span id="ConsolBattery">not known</span></div>
+						<div>ISS Battery: <span id="DavisTXBattery0">not known</span></div>
+						<!--	Add extra battery data up to 7
+						<div>Transmitter 2: <span data-OWdata="ConsolBattery1" id="DavisTXBattery1"></span></div>-->
+					</div>
+				</div>
+				<!--	CMX Content	-->
+				<div class="ow-titleBar">
+					<h3>Weather Overview</h3>
+					<p>Date: <span data-OWData="Date"></span></p>
+				</div>
+				<div class="ow-fourCol">
+					<div class="ow-card ow-theme-add4" style="order:1;">
+						<!--	Outdoor Temperature	-->
+						<div class="ow-titleBar" style="justify-content: center">
+							<h3>Temperatures</h3>
+						</div>
+						<div class="w3-center">
+							<h3><span id="OutdoorTemp">xx.x</span><span class="TempUnit">&deg;K</span></h3>
+							<h4><img id="TempTrendImg" src="img/up.png" alt="up" class="ow-icon-small"> <span id="TempTrend">-.-</span><span class="TempUnit">&deg;F</span>/hr</h4>
+							<p><span>High</span>: <span id="HighTempToday" class="high">--.-</span><span class="TempUnit"></span><span class="ow-at" id="HighTempTodayTime">--:--</span><br>
+							<span>Low</span>: <span id="LowTempToday" class="low">--.-</span><span class="TempUnit"></span><span class="ow-at" id="LowTempTodayTime">--:--</span></p>
+							<p><span>Avg</span>: <span id="AvgTempToday" >--.-</span><span class="TempUnit"></span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:2;">
+						<!--	Pressure	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Pressure</h3>
+						</div>
+						<div class="w3-center">
+							<h3><span id="Pressure" class="ow-reading">xxxx.x</span><span class="PressUnit">mb</span></h3>
+							<h4><img id="PressTrendImg" src="img/up.png" alt="up" class="ow-icon-small"><span id="PressTrend">-.-</span><span class="PressUnit">mb</span>/hr</h4>
+							<p><span>High</span>: <span id="HighPressToday" class="high">----.-</span><span class="PressUnit"></span><span class="ow-at" id ="HighPressTodayTime">--:--</span><br>
+							<span>Low</span>: <span id="LowPressToday" class="low">----.-</span><span class="PressUnit"></span><span class="ow-at" id="LowPressTodayTime">--:--</span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:3;">
+						<!--	Rainfall	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Rainfall</h3>
+						</div>
+						<div class="w3-center">
+							<h3><span id="RainToday" class="ow-reading">xx.x</span><span class="RainUnit">in</span></h3>
+							<h4><img id="RainRateImg" src="img/rain.png" alt="No rain" class="ow-icon-small">Rate: <span id="RainRate">x.x</span><span class="RainUnit">in</span>/hr</h4>
+							<p><span id="HighRainRate">High Rate</span>: <span id="HighRainRateToday" class="high">--.-</span><span class="RainUnit"></span>/hr<span class="ow-at" id="HighRainRateTodayTime">--:--</span></p>
+							<p>
+								This month: <span id="RainMonth">-.-</span><span class="RainUnit">mm</span><br>
+								This year: <span id="RainYear">-.-</span><span class="RainUnit">mm</span>
+							</p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme ow-animate-fadeIn" style="order:4;">
+						<!--	Times	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Local Time</h3>
+						</div>
+						<div class="w3-center">
+							<h3><span class="digiclock">--:--:--</span></h3>
+							<h5>Last Cumulus update<br>
+							<span id="lastupdatetime" class="w3-large">xx:yy:zz</span><img id="LastUpdateIcon" src="img/green.png" class="ow-icon-small" alt="green"></h5>
+							<h5>Last station update<br>
+							<span id="LastDataRead" class="bold w3-large">--:--:--</span><img id="DataStoppedIcon" src="img/green.png" class="ow-icon-small" alt="green"></h5>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:5;">
+						<!--	Wind Speed	-->
+						<div class="ow-titleBar" style="justify-content: center">
+							<h3>Wind Speed</h3>
+						</div>
+						<div class="w3-center">
+							<div id="tip_6" class="gauge">
+								<canvas id="canvas_wind" class="ow-gaugeStandard"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:6;">
+						<!--	Wind Direction	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Wind Direction</h3>
+						</div>
+						<div class="w3-center">
+							<div id="tip_7" class="gauge">
+								<canvas id="canvas_dir" class="ow-gaugeStandard"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:7;">
+						<!--	Wind Rose	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Wind Rose</h3>
+						</div>
+						<div class="w3-center">
+							<div id="tip_10" class="gauge">
+								<canvas id="canvas_rose" class="ow-gaugeStandard"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:8;">
+						<!--	Wind Speeds text	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Wind Speeds</h3>
+						</div>
+						<div class="w3-center">
+							<h4>Average: <span id="WindAverage">-.-</span><span class="WindUnit sup">---</span></h4>
+							<p>Gust: <span id="Recentmaxgust" class="ow-reading">--.-</span><span class="WindUnit sup">---</span></p>
+							<p><span>High gust</span>: <span id="HighGustToday" class="high">--.-</span><span class="WindUnit ">---</span><span class="ow-at" id="HighGustTodayTime">--:--</span></p>
+							<p>Windrun: <span id="WindRunToday"></span> <span class="WindRunUnit"></span></p>
+							<p>Beaufort: <span id="Beaufort">??</span> (<span id="BeaufortDesc"></span>)</p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:9;">
+						<!--	Humidity	-->
+						<div class="ow-titleBar" style="justify-content: center">
+							<h3>Humidity</h3>
+						</div>
+						<div class="w3-center">
+							<h4><span id="OutdoorHum" class="ow-reading">--.-</span>%</h4>
+							<p><span>High&nbsp;</span><span id="HighHumToday" class="high">--</span> %<span class="ow-at" id="HighHumTodayTime">--:--</span></p>
+							<p><span>Low&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span> %<span class="ow-at" id="LowHumTodayTime">--:--</span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:10;">
+						<!--	Dew Point	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Dew Point</h3>
+						</div>
+						<div class="w3-center">
+							<h4><span id="OutdoorDewpoint" class="ow-reading">--.-</span><span class="TempUnit sup">&deg;F</span></h4>
+							<p><span>High&nbsp;</span><span id="HighDewpointToday" class="high">--.-</span><span class="TempUnit"></span><span class="ow-at" id="HighDewpointTodayTime">--:--</span></p>
+							<p><span>Low&nbsp;&nbsp;</span><span id="LowDewpointToday" class="low">--.-</span><span class="TempUnit"></span><span class="ow-at" id="LowDewpointTodayTime">--:--</span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:11;">
+						<!--	Wind Chill	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Wind Chill</h3>
+						</div>
+						<div class="w3-center">
+							<h4><span id="WindChill" class="ow-reading">--.-</span><span class="TempUnit sup">&deg;C</span></h4>
+							<p><span>Low&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ow-at" id="LowWindChillTodayTime">--:--</span></p>
+						</div>
+					</div>
+					<div class="ow-card ow-theme-add4" style="order:12;">
+						<!--	Solar Radiation	-->
+						<div class="ow-titleBar" style="justify-content: center;">
+							<h3>Solar Radiation</h3>
+						</div>
+						<div class="w3-center">
+							<h4>Rad.&nbsp;<span id="SolarRad" class="ow-reading">---.-</span>&nbsp;W/m<sup>2</sup></h4>
+							<p><span>High&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ow-at" id="HighSolarRadTodayTime">--:--</span></p>
+							<h4>UV Index&nbsp;<span id="UVindex" class="ow-reading">--</span></h4>
+							<p><span>High&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ow-at" id="HighUVindexTodayTime">--:--</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+			<div class="siteWidth">
+				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
+					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h6 class="w3-right-align">
+						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
+						V<span data-cmxdata="Version">X.YY.Z</span>
+						(b:<span data-cmxdata="Build">xxxx</span>)
+					</h6>
+				</div>
+			</div>
+		</footer>
+
+		<!--	Modal 	-->
+		<div id="MAlmanac" class="w3-modal ow-theme-modal">
+			<div id="CAlmanac" class="w3-modal-content ow-theme-add5 w3-round-large ow-modal" style="width: 35vw;">
+				<div class="ow-theme-sub5 ow-titleBar" style="align-items: start; border-radius: 8px 8px 0 0;">
+					<h3 style="padding: 1vh 0 0.5vh 1vw ">Celestial Information</h3>
+					<span onclick="showModal('Almanac')" class="w3-btn ow-theme-action-hvr" style="border-radius: 0 8px 0 8px;padding:0.5vh 1em;"><i class="fa-solid fa-xmark"></i></span>
+				</div>
+				<div class="w3-container" style="margin: 1vh; max-height: 60vh; overflow: auto;">
+					<div class="ow-titleBar">
+						<div><h4 class="w3-center w3-bottombar ow-theme-add3-bdr">Sunrise<br><span id="Sunrise"></span></h4></div>
+						<div><h4 class="w3-center w3-bottombar ow-theme-add2-bdr">Sunset<br><span id="Sunset"></span></h4></div>
+						<div><h4 class="w3-center w3-bottombar ow-theme-add3-bdr">Moonrise<br><span id="Moonrise"></span></h4></div>
+						<div><h4 class="w3-center w3-bottombar ow-theme-add2-bdr">Moonset<br><span id="Moonset"></span></h4></div>
+					</div>
+					<div class="ow-titleBar" style="margin: 1vh 0;">
+						<h4><span>Forecast</span>: <span id="Forecast">---</span></h4>
+					</div>
+				</div>
+				<div class="w3-container ow-theme-sub5" style="border-radius: 0 0 8px 8px; margin-top:-1vh;">
+					<p class="w3-right ow-txt-small">Powered by <span class="ow-theme-txt"><strong>Cumulus MX</strong></span></p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

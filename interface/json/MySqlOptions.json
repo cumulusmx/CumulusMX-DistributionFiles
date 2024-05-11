@@ -131,9 +131,8 @@
 					"rightLabel": "Custom Seconds Enabled"
 				},
 				"command": {
-					"label": "SQL commands:",
-					"collapsible": true,
-					"collapsed": false,
+					"label": "SQL Commands:",
+					"collapsible": false,
 					"dependencies": {
 						"enabled": true
 					}
@@ -155,33 +154,27 @@
 				"enabled": {
 					"rightLabel": "Custom Minutes Enabled"
 				},
-				"command": {
-					"label": "SQL commands:",
-					"collapsible": true,
-					"collapsed": false,
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"intervalindex": {
-					"label": "Interval:",
-					"optionLabels": [
-						"1 minute",
-						"2 minutes",
-						"3 minutes",
-						"4 minutes",
-						"5 minutes",
-						"6 minutes",
-						"10 minutes",
-						"12 minutes",
-						"15 minutes",
-						"20 minutes",
-						"30 minutes",
-						"60 minutes"
-					],
-					"removeDefaultNone": true,
-					"dependencies": {
-						"enabled": true
+				"entries": {
+					"collapsible": false,
+					"label": "SQL Commands:",
+					"fields": {
+						"item": {
+							"fields": {
+								"command": {
+									"label": "SQL:",
+									"required": true
+								},
+								"intervalidx": {
+									"label": "Interval:",
+									"optionLabels": ["1 min","2 mins","3 mins","4 mins","5 mins","6 mins","10 mins","12 mins","15 mins","20 mins","30 mins","60 mins"],
+									"removeDefaultNone": true,
+									"sort": false
+								}
+							}
+						},
+						"dependencies": {
+							"enabled": true
+						}
 					}
 				}
 			}
@@ -196,7 +189,7 @@
 				},
 				"command": {
 					"label": "SQL commands:",
-					"collapsible": true,
+					"collapsible": false,
 					"collapsed": false,
 					"dependencies": {
 						"enabled": true
@@ -213,7 +206,7 @@
 					"rightLabel": "Custom Timed Enabled"
 				},
 				"entries": {
-					"label": "SQL commands:",
+					"label": "SQL Commands:",
 					"fields": {
 						"item": {
 							"fields": {
@@ -232,7 +225,7 @@
 									"type": "select",
 									"optionLabels": ["1 min","2 mins","5 mins","10 mins","15 mins","20 mins","30 mins","1 hr","2 hrs","3 hrs","4 hrs","6 hrs","8 hrs","12 hrs"],
 									"sort": false,
-									"removeDefaultNone": true,
+									"removeDefaultNone": false,
 									"dependencies": {
 										"repeat": true
 									}
@@ -256,8 +249,6 @@
 				},
 				"command": {
 					"label": "SQL commands:",
-					"collapsible": true,
-					"collapsed": false,
 					"dependencies": {
 						"enabled": true
 					}

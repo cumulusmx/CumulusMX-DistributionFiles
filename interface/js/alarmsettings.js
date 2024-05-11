@@ -1,4 +1,4 @@
-// Last modified: 2023/07/22 17:54:10
+// Last modified: 2024/02/14 10:33:42
 
 $(document).ready(function() {
     $.ajax({
@@ -275,6 +275,17 @@ function updateAlarms() {
                     Email       : $('#upgradeEmail').prop('checked'),
                     Latches     : $('#upgradeLatches').prop('checked'),
                     LatchHrs    : $('#upgradeLatchHrs').val()
+                },
+                firmware: {
+                    Enabled     : $('#firmwareEnabled').prop('checked'),
+                    SoundEnabled: $('#firmwareSoundEnabled').prop('checked'),
+                    Sound       : $('#firmwareSound').val(),
+                    Action      : $('#firmwareAction').val(),
+                    ActionParams: $('#firmwareActionParams').val(),
+                    Notify      : $('#firmwareNotify').prop('checked'),
+                    Email       : $('#firmwareEmail').prop('checked'),
+                    Latches     : $('#firmwareLatches').prop('checked'),
+                    LatchHrs    : $('#firmwareLatchHrs').val()
                 }
             },
             email: {

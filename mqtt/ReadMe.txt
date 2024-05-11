@@ -22,7 +22,7 @@ There are three options for sending MQTT data:
 
     3. Send a new message to each topic, specifying a fixed interval for each topic.
         For this option:
-        a. Use the UserIntervalTemplate.txt file
+        a. Use the IntervalTemplate.txt file
         b. Modify to your needs
             Note that for each topic you must specify the interval in seconds that it will be updated in the "interval" field
         c. Save the template to a new filename, then add it to the Cumulus MX config at:

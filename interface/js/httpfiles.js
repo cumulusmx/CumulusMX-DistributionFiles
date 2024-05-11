@@ -1,10 +1,15 @@
-// Last modified: 2023/04/11 16:57:42
+// Last modified: 2024/03/06 22:37:33
 
 let accessMode;
 let csvChar;
 
 
 $(document).ready(function () {
+    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    }});
+
     $('#filesForm').alpaca({
         'dataSource': './api/settings/httpfiles.json',
         'optionsSource': './json/HttpFilesOptions.json',

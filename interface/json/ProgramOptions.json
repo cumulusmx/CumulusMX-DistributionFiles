@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2023/10/18 10:33:32",
+    "version": "Last Modified: 2024/02/07 17:59:26",
     "fields": {
         "accessible": {
             "rightLabel": "Enable accessibility features",
@@ -96,6 +96,24 @@
                         "Note: SFTP only logs to the MX diags file and PHP upload logging is included in debug/data logging"
                     ]
                 },
+                "ftplogginglevel": {
+                    "label" : "FTP logging level:",
+                    "type": "select",
+                    "sort": false,
+                    "optionLabels": [
+                        "Trace",
+                        "Debug",
+                        "Information",
+                        "Warning",
+                        "Failure",
+                        "Critcal"
+                    ],
+                    "removeDefaultNone": true,
+                    "helpers": [
+                        "Controls the level of FTP activity detail logged to ftp.log",
+                        "Default = Information, only change this if requested for support purposes"
+                    ]
+                },
                 "emaillogging": {
                     "rightLabel": "Email logging",
                     "helper": "Enable extra SMTP logging to the smtp.log file in the MXdiags folder."
@@ -138,8 +156,8 @@
                 "removespacefromdateseparator": {
                     "rightLabel": "Remove space character from date separators (if present)",
                     "helpers": [
-                        "CAUTION: Changing this may render your existing data files unreadable by Cumulus MX",
-                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'"
+                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'",
+                        "You MUST restart Cumulus MX after changing this setting for it to take effect"
                     ]
                 },
                 "timeFormat": {

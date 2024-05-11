@@ -1,4 +1,4 @@
-// Last modified: 2023/12/03 22:51:46
+// Last modified: 2024/03/31 18:10:17
 
 let StashedStationId;
 let accessMode;
@@ -6,9 +6,9 @@ let accessMode;
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
     $("form").alpaca({
-        "dataSource": "./api/settings/stationdata.json",
-        "optionsSource": "./json/StationOptions.json",
-        "schemaSource": "./json/StationSchema.json",
+        "dataSource": "/api/settings/stationdata.json",
+        "optionsSource": "/json/StationOptions.json",
+        "schemaSource": "/json/StationSchema.json",
         "ui": "bootstrap",
         "view": "bootstrap-edit-horizontal",
         "options": {
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/setsettings/updatestationconfig.json",
+                                    url: "/api/setsettings/updatestationconfig.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })
@@ -178,6 +178,7 @@ $(document).ready(function () {
                 form.getControlByPath("Options/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/stationid").setValue(stationid);
                 form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
+                form.getControlByPath("ecowittapi/stationid").setValue(stationid);
                 form.getControlByPath("general/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(o.text), a), []));
                 // set the settings name for WLL/Davis cloud
                 setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
@@ -195,6 +196,7 @@ $(document).ready(function () {
             let stationid = form.childrenByPropertyId["stationid"].getValue();
             form.getControlByPath("Options/stationid").setValue(stationid);
             form.getControlByPath("daviswll/stationid").setValue(stationid);
+            form.getControlByPath("ecowittapi/stationid").setValue(stationid);
             form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
 
 

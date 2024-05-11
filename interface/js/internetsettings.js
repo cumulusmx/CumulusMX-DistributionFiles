@@ -1,4 +1,4 @@
-// Last modified: 2023/02/13 17:29:12
+// Last modified: 2024/01/25 20:55:51
 
 let accessMode;
 
@@ -245,8 +245,8 @@ $(document).ready(function() {
             // Trigger changes is the accessibility mode is changed
             //accessObj.on("change", function() {onAccessChange(this)});
 
-            // Set PHP key/secret fields to "reveal" when they have focus
-            $('#phpsecret')
+            // Set password fields to "reveal" when they have focus
+            $(':password')
                 .focusout(function() {
                     $(this).attr('type', 'password');
                 })

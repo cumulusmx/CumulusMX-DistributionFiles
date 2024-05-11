@@ -1,4 +1,4 @@
-// Last modified: 2023/12/05 00:11:52
+// Last modified: 2024/02/04 16:17:04
 
 let accessMode;
 
@@ -8,6 +8,9 @@ $(document).ready(function() {
         dataType: "json",
         success: function (result) {
             let units = result;
+
+            if (units.press == 'in')
+                units.press = 'inHg';
 
             $("form").alpaca({
                 "dataSource": "./api/settings/calibrationdata.json",

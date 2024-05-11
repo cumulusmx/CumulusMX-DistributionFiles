@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2023/11/22 20:24:05
+// Last modified: 2024/02/21 22:54:44
 
 var chart, avail, config, options;
 var cache = {};
@@ -321,6 +321,8 @@ var updateChart = function (val, num, id) {
         case 'Feels Like':
             doFeelsLike(num);
             break;
+        case 'Humidex':
+            doHumidex(num);
 
         case 'Humidity':
             doHumidity(num);
@@ -1032,6 +1034,48 @@ var doFeelsLike = function (idx) {
     }
 };
 
+var doHumidex = function (idx) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    if (cache === null || cache.temp === undefined)
+    {
+        $.ajax({
+            url: 'api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
+            dataType: 'json',
+            success: function (resp) {
+                cache.temp = resp;
+                addSeries();
+            },
+            async: false
+        });
+    }
+    else
+    {
+        addSeries();
+    }
+
+    function addSeries() {
+        chart.addSeries({
+            index: idx,
+            data: cache.temp.feelslike,
+            id: 'Humidex',
+            name: 'Humidex',
+            yAxis: 'Temperature',
+            type: 'line',
+            tooltip: {
+                //valueSuffix: ' °' + config.temp.units,
+                valueDecimals: config.temp.decimals
+            },
+            visible: true,
+            color: settings.colours[idx],
+            zIndex: 100 - idx
+        });
+        chart.hideLoading();
+    }
+};
+
 
 var doHumidity = function (idx) {
     chart.showLoading();
@@ -1279,7 +1323,7 @@ var doWindSpeed = function (idx) {
             type: 'line',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.decimals
+                valueDecimals: config.wind.avgdecimals
             },
             visible: true,
             color: settings.colours[idx],
@@ -1320,7 +1364,7 @@ var doWindGust = function (idx) {
             yAxis: 'Wind',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.decimals
+                valueDecimals: config.wind.gustdecimals
             },
             visible: true,
             color: settings.colours[idx],
@@ -1478,7 +1522,7 @@ var doPm2p5 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/airqualitydata.json',
+        url: 'api/graphdata/airqualitydata.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1507,7 +1551,7 @@ var doPm10 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/airqualitydata.json',
+        url: 'api/graphdata/intvairquality.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1766,7 +1810,7 @@ var doSoilMoist = function (idx, val) {
     if (cache === null || cache.soilmoist === undefined)
     {
         $.ajax({
-            url: 'api/graphdata/soilmoist.json',
+            url: 'api/graphdata/intvsoilmoist.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.soilmoist = resp;
@@ -1810,7 +1854,7 @@ var doLeafWet = function (idx, val) {
     if (cache === null || cache.leafwet === undefined)
     {
         $.ajax({
-            url: 'api/graphdata/leafwetness.json',
+            url: 'api/graphdata/intvleafwetness.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.leafwet = resp;

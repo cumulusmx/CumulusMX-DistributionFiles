@@ -1,21 +1,21 @@
 <?php
-// Last modified: 2023/12/09 20:06:07
-
+$last_Modified="2024/02/27 10:34:15";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
 Use as an alternative to FTP/SFTP upload of data
 
-Mark Crossley - 2023
+Mark Crossley - 2023-2024
 
 */
 
-// *** YOU NEED TO CHANGE THIS VALUE ***
-// Our signature secret
+// *** YOU NEED TO CHANGE THIS VALUE *********
+// My upload secret                          *
 $secret = 'change_this_to_the_value_in_CMX';
+//                                           *
+// *******************************************
 
 // limitPath: restricts the upload script to placing files in the same folder structure as the script resides
-// That is you cannot specify something like /etc/init.d/sudo as a filename
 // Setting this to false allows the script to attempt to write anywhere in your filesystem that it has permission
 $limitPath = true;
 
@@ -48,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_SERVER["HTTP_DATA"])) {
     <body>
         Welcome to upload.php<br>
 <?php
-    echo str_repeat("xx xx", 1000), "<br>\n"
+    echo "Version: $last_Modified<br>";
+    echo "Engine : " . phpversion() . "<br>";
+    echo str_repeat("xx xx", 1000), "<br>\n";
 ?>
     </body>
 </html>
@@ -117,18 +119,39 @@ if (isset($_SERVER['HTTP_FILE'])) {
 // Now what are we doing with the file?
 if (isset($_SERVER["HTTP_ACTION"])) {
     $action = $_SERVER['HTTP_ACTION'];
+    if ($action !== 'replace' && $action !== 'append') {
+        exitCode(422, "Error: Invalid header ACTION = $action");
+    }
 } else {
     exitCode(422, 'Error: No action');
 }
 
-if ($action !== 'replace' && $action !== 'append') {
-    exitCode(422, "Error: Invalid header ACTION = $action");
+// set to 'logfile' for appending CSV log file data, 'json' for incremental Graph files
+if ($action == 'append') {
+    if (isset($_SERVER['HTTP_FILETYPE'])) {
+        $fileType = $_SERVER['HTTP_FILETYPE'];
+        if ($fileType !== 'logfile' && $fileType !== 'json') {
+            exitCode(422, 'Error: Invalid file type = '. $fileType);
+        }
+    } else {
+        // backwards compatibility for pre-incremental log files
+        $fileType = 'json';
+    }
 }
 
 // If appending - get the earlist timestamp - JS timestamps overflow PHP int!
-if ($action === 'append') {
+if ($action === 'append' && $fileType === 'json') {
     if (isset($_SERVER['HTTP_OLDEST'])) {
         $oldestTs = (float)$_SERVER['HTTP_OLDEST'];
+    } else {
+        exitCode(422, 'Error: No oldest timestamp');
+    }
+}
+
+// If appending to a log file, get the expected existing file length (in lines)
+if ($action === 'append' && $fileType === 'logfile') {
+    if (isset($_SERVER['HTTP_LINECOUNT'])) {
+        $linecount = (int)$_SERVER['HTTP_LINECOUNT'];
     } else {
         exitCode(422, 'Error: No oldest timestamp');
     }
@@ -147,14 +170,11 @@ if ($binary != '0' && $binary != '1') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $data = $_SERVER["HTTP_DATA"];
-    if ($binary == "0")
-    {
-        // Text GET data is also encoded, decode before signature check
-        $data = base64_decode($data);
+    // ALL (binary and text) GET data is encoded, only decode text before signature check
+    if (!$binary) {
+        $data =  base64_decode($data);
     }
-}
-else
-{
+} else {
     if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
         $data = $_SERVER['HTTP_RAW_POST_DATA'];
     } else {
@@ -177,7 +197,7 @@ else
 }
 
 if ($debug) {
-    //echo "Data = $data\n";
+    echo "Data:\n" . substr($data, 0, 500) ."\n";
 }
 
 // ---------------------------------------------------------------
@@ -204,12 +224,31 @@ if ($utf8 == '0') {
 if ($action === 'replace') {
     // do we need to decode a base64 string back to binary data
     echo 'Opening ' . ($binary == '1' ? 'binary' : 'text') . " file $name for replacement\n";
-    if ($binary == '1') {
+    // Binary POST data is encoded - we send it as text/plain
+    if ($binary) {
         $data =  base64_decode($data);
     }
     WriteFile($name, $data, $binary == '1');
     exitCode(200);
 } else if ($action === 'append') {
+    if ($fileType === 'json') {
+        AppendJsondata();
+    } else if ($fileType === 'logfile') {
+        AppendLogData();
+    }
+}
+
+exitCode(200);
+
+///////// end of script //////////
+
+// ---------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------
+
+function AppendJsondata() {
+    global $data, $name, $debug, $oldestTs;
+
     // first check we have some data to append!
     $dataObj = json_decode($data, false);
     if (is_null($dataObj)) {
@@ -247,6 +286,7 @@ if ($action === 'replace') {
         echo "\n";
     }
 
+
     // remove the old data
     foreach ($fileObj as $key => $val) {
         if (is_null($val)) {
@@ -255,10 +295,16 @@ if ($action === 'replace') {
 
         // $val format is [[ts,val],[ts,val]...]
         if ($debug) {
-            echo "Processing entry $key\n";
+            echo "Processing entry: $key\n";
         }
 
         $arr = $val;
+
+        // test if the new data is older than latest value already in the file
+        if (end($val)[0] > $dataObj->$key[0][0]) {
+            exitCode(406, 'New data [' . $dataObj->$key[0][0] .'] is older than the existing data ['. end($val)[0] . ']');
+        }
+
         do {
             if (sizeof($arr) > 0 && $arr[0][0] < $oldestTs) {
                 if ($debug) {
@@ -290,23 +336,40 @@ if ($action === 'replace') {
     // write the file back again
     echo "Appending text file $name\n";
     WriteFile($name, json_encode($fileObj));
-
-} else {
-    exitCode(422, 'Error: Invalid action'. $action);
 }
 
-exitCode(200);
+function AppendLogData() {
+    global $data, $name, $linecount;
 
-///////// end of script //////////
+    // first check we have some data to append!
+    if ($data == '') {
+        exitCode(500, 'No data received');
+    }
 
-// ---------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------
+    // next check we have an existing file to append
+    // if not then just write the new data to a dest file
+    echo "Opening text file $name for appending\n";
+    if (!file_exists($name) || filesize($name) === 0) {
+        echo "No existing file to append data - $name\n";
+        WriteFile($name, $data);
+        exitCode(200);
+    }
+
+    // test if the file is already the correct length (lines)
+    $file = new \SplFileObject($name);
+    while($file->valid()) $file->fgets();
+    if ($file->key() > $linecount + 1) {
+        exitCode(406, "The file [$name] has [" . $file->key() . "] lines, should be [$linecount]");
+    }
+    $file = null;
+
+    // append the new data
+    AppendFile($name, $data);
+}
 
 function CalculateSignature($secret, $data) {
     return hash_hmac('sha256', $data, $secret, false);
 }
-
 
 function WriteFile($filename, $content, $binary=false) {
         // open the target file for writing
@@ -331,12 +394,34 @@ function WriteFile($filename, $content, $binary=false) {
         fclose($outFile);
 }
 
+function AppendFile($filename, $content) {
+    // open the target file for appending
+    $mode = 'a';
+
+    $outFile = fopen($filename, $mode) or die("Cannot open file $filename with mode $mode");
+    if (!$outFile) {
+        echo "Failed to open file $filename - mode $mode";
+        http_response_code(500);
+        exit;
+    }
+
+    echo "Writing text file $filename\n";
+
+    if (fwrite($outFile, $content) == FALSE) {
+        echo "Write failed";
+        http_response_code(500);
+    } else {
+        echo 'Write complete';
+    }
+
+    fclose($outFile);
+}
+
 set_exception_handler(function($ex) {
     echo "\nException occurred!\n\n";
     echo print_r($ex);
     exitCode(500);
 });
-
 
 function resolvePath($path) {
     if(DIRECTORY_SEPARATOR !== '/') {

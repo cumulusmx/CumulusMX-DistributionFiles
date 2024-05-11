@@ -58,6 +58,7 @@
 "UV":"<#UV>",
 "THWindex":"<#THWindex>",
 "TempChangeLastHour":"<#TempChangeLastHour>",
+"TempAvg24Hrs":"<#TempAvg24Hrs>",
 "rfall":"<#rfall>",
 "rrate":"<#rrate>",
 "rmonth":"<#rmonth>",

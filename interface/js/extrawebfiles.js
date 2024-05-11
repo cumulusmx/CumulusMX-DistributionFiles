@@ -1,7 +1,7 @@
 /*
  * examples/full/javascript/demo.js
  *
- * Last modified: 2021/05/16 20:55:40
+ * Last modified: 2023/12/21 16:18:42
  *
  * This file is part of EditableGrid.
  * http://editablegrid.net
@@ -49,7 +49,7 @@ editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) 
 };
 
 
-// Override the checkbox renderer to make it accesible
+// Override the checkbox renderer to make it accessible
 CheckboxCellRenderer.prototype.render = function(element, value)
 {
 	// convert value to boolean just in case

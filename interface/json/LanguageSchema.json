@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2023/11/29 16:47:12",
+	"version": "Last modified: 2024/05/10 23:45:20",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -252,6 +252,12 @@
 				},
 				"Pm10_24hr": {
 					"type": "string"
+				},
+				"Temperature": {
+					"type": "string"
+				},
+				"Humidity": {
+					"type": "string"
 				}
 			}
 		},
@@ -353,6 +359,10 @@
 							"type": "string",
 							"maxLength": 20
 						},
+						"firmware": {
+							"type": "string",
+							"maxLength": 20
+						},
 						"ftpStopped": {
 							"type": "string",
 							"maxLength": 20
@@ -425,6 +435,9 @@
 						"upgrade": {
 							"type": "string"
 						},
+						"firmware": {
+							"type": "string"
+						},
 						"ftpStopped": {
 							"type": "string"
 						},
@@ -435,6 +448,24 @@
 							"type": "string"
 						}
 					}
+				}
+			}
+		},
+		"webtags": {
+			"title": "Web Tags",
+			"type": "object",
+			"properties": {
+				"gentimedate": {
+					"type": "string"
+				},
+				"recdate": {
+					"type": "string"
+				},
+				"rectimedate": {
+					"type": "string"
+				},
+				"recwetdrytimedate": {
+					"type": "string"
 				}
 			}
 		}
