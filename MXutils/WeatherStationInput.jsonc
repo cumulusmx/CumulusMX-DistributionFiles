@@ -1,0 +1,128 @@
+/*
+    Last Updated: 2024/05/30 11:29:36
+
+    Proposed JSON Station format for feeding data into Cumulus MX
+    Input can via one of the following:
+        - A specified file
+        - HTTP POST to Cumulus MX Local API
+        - MQTT
+
+    Partial data may be sent, for example temperature/humidity in one data set, and wind/rain data in another
+
+    You will need to remove all comments from the JSON a real data exchange
+*/
+{
+    // Need only supply units for the values submitted
+    "units": {
+        "temperature": "C|F",
+        "windspeed": "mph|ms|kph|knots",
+        "rainfall": "mm|in",
+        "pressure": "hPa|kPa|inHg",
+        "soilmoisture": "cb|%"
+    },
+    // Last time the data was updated - Unix timestamp (seconds)
+    "lastupdated": 9999999999,      // int
+    // Start of data
+    "temperature": {
+        "outdoor": 99.9,            // float
+        "indoor": 99.9,             // float
+        "dewpoint": 99.9            // float
+    },
+    "humidity": {
+        "outdoor": 99,              // int
+        "indoor": 99                // int
+    },
+    "wind": {
+        "speed": 99.9,              // float
+        "direction": 360,           // float
+        "gust10m": 99.9             // float
+    },
+    "rain": {
+        // Ideally provide an ever incrementing counter
+        // Second best provide an annual total
+        "counter": 999.9,           // float
+        "year": 999.9,              // float
+        "rate": 99.9                // float
+    },
+    "pressure": {
+        // Can just provide one value, if only absolute is supplied CMX will calculate Sea Level Pressure
+        "sealevel": 999.9,          // float
+        "absolute": 999.9           // float
+    },
+    "solar": {
+        "irradiation": 999,         // int (W/m²)
+        "uvi": 9.9                  // float
+    },
+    "extratemp": [
+        // Up to 10 sensors allowed
+        {
+            "index": 1,             // int (1-10)
+            "temperature": 99.9,    // float
+            "humidity": 99          // int
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "usertemp": [
+        // Up to 8 sensors allowed
+        {
+            "index": 1,             // int (1-8)
+            "temperature": 99.9    // float
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "soiltemp": [
+        // Up to 16 sensors allowed
+        {
+            "index": 1,             // int (1-16)
+            "temperature": 99.9     // float
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "soilmoisture": [
+        // Up to 16 sensors allowed
+        {
+            "index": 1,             // int (1-16)
+            "value": 99             // int
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "leafwetness": [
+        // Up to 8 sensors allowed
+        {
+            "index": 1,             // int (1-8)
+            "value": 99             // int
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "airquality": [
+        // Up to 4 sensors allowed
+        {
+            "index": 1,             // int (1-4)
+            "pm2p5": 99.9,          // float
+            "pm2p5avg24h": 99.9,    // float
+            "pm10": 99.9,           // float
+            "pm10avg24h": 99.9      // float
+        }
+        //,{
+        // etc ...
+        //}
+    ],
+    "co2": {
+        "co2": 999,             // int
+        "co2_24h": 999,         // int
+        "pm2p5": 99.9,          // float
+        "pm2p5avg24h": 99.9,    // float
+        "pm10": 99.9,           // float
+        "pm10avg24h": 99.9      // float
+    }
+}

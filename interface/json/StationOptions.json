@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/11 12:26:53",
+	"version": "Last Modified: 2024/05/30 17:22:39",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -31,6 +31,7 @@
 						"HTTP (Wunderground)",
 						"HTTP (Ambient)",
 						"WeatherFlow Tempest",
+						"JSON Data Input",
 						"Fine Offset",
 						"Fine Offset with Solar Sensors",
 						"EasyWeather",
@@ -60,7 +61,10 @@
 						"30 minutes"
 					],
 					"removeDefaultNone": true,
-					"helper": "Frequency of Cumulus log entries - set your station to the same"
+					"helpers": [
+						"Frequency of Cumulus log entries - ideally set your station to the same",
+						"Think - Do I really need 1 minute logging? For the vast majority of users 5 or 10 minutes is fine"
+					]
 				},
 				"logrollover": {
 					"collapsible": true,
@@ -105,7 +109,8 @@
 							"optionLabels": [
 								"Milli-bar (mbar)",
 								"Hectopascal (hPa)",
-								"Inches of mercury (inHg)"
+								"Inches of mercury (inHg)",
+								"Kilopascal (kPa)"
 							]
 						},
 						"temp": {
@@ -1311,6 +1316,106 @@
 			},
 			"dependencies": {
 				"stationid": [12,14,18]
+			}
+		},
+		"jsonstation": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"conntype": {
+					"label": "Data Source:",
+					"type": "select",
+					"optionLabels": [
+						"From file",
+						"HTTP POST",
+						"MQTT Topic"
+					],
+					"removeDefaultNone": true,
+					"helper": "If you change the data source you must restart Cumulus MX for it to take effect"
+				},
+				"filename": {
+					"label": "File Name:",
+					"helper": "Enter the path/filename of the file which will contain your JSON data",
+					"dependencies": {
+						"conntype": 0
+					}
+				},
+				"dummy": {
+					"fieldClass": "displayonly",
+					"helpers": [
+						"The data must be sent as a HTTP POST message with the JSON text in the request body.",
+						"Configure the source server to send the request to:-<br>http://[CMX_IP_Address]:8998/station/json"
+					],
+					"dependencies": {
+						"conntype": 1
+					}
+				},
+				"mqttserver": {
+					"label": "MQTT Server:",
+					"helper": "Enter the name/IP of your MQTT server",
+					"dependencies": {
+						"conntype": 2
+					}
+				},
+				"mqttport": {
+					"label": "MQTT port:",
+					"helper": "TCP/IP port for your MQTT server. Default is 1883",
+					"dependencies": {
+						"conntype": 2
+					}
+				},
+				"mqttuser": {
+					"label": "User Name:",
+					"helper": "Enter the user name for your MQTT server. Leave blank for anonymous access",
+					"dependencies": {
+						"conntype": 2
+					}
+				},
+				"mqttpass": {
+					"label": "Password:",
+					"helper": "Enter the user password for your MQTT server. Leave blank for anonymous access",
+					"dependencies": {
+						"conntype": 2
+					}
+				},
+				"mqtttopic": {
+					"label": "Topic:",
+					"helper": "Enter the topic on your MQTT server that supplies the data",
+					"dependencies": {
+						"conntype": 2
+					}
+				},
+				"advanced": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"conntype": {
+							"type": "integer",
+							"fieldClass": "hideme"
+						},
+						"filedelay": {
+							"label": "File Read Delay (ms):",
+							"helper": "How long to wait after the file is written to before trying to read it. Default = 200ms",
+							"dependencies": {
+								"conntype": 0
+							}
+						},
+						"mqtttls": {
+							"label": "Use TLS:",
+							"rightLabel": "MQTT Server requires TLS for encryption",
+							"helper": "Enable if TLS encryption is required by your server, if you host your own server this is unlikely",
+							"dependencies": {
+								"conntype": 2
+							}
+						}
+					},
+					"dependencies": {
+						"conntype": [0,2]
+					}
+				}
+			},
+			"dependencies": {
+				"stationid": 21
 			}
 		},
 		"Options": {

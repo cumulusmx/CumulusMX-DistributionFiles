@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/03/20 12:18:02",
+	"version": "Last Modified: 2024/05/12 18:05:29",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -508,8 +508,7 @@
 					"sort": false,
 					"optionLabels": [
 						"None",
-						"Username/Password",
-						"Google OAuth 2.0"
+						"Username/Password"
 					],
 					"removeDefaultNone": true,
 					"helper": "Does your SMTP server require username/password authentication",
@@ -532,23 +531,6 @@
 					"dependencies": {
 						"enabled": true,
 						"authenticate": 1
-					}
-				},
-				"clientid": {
-					"label": "Client ID:",
-					"helper": "The Client ID of your Google OAuth 2.0 credentials",
-					"dependencies": {
-						"enabled": true,
-						"authenticate": 2
-					}
-				},
-				"clientsecret": {
-					"label": "Client Secret:",
-					"type": "password",
-					"helper": "The Client Secret of your Google OAuth 2.0 credentials",
-					"dependencies": {
-						"enabled": true,
-						"authenticate": 2
 					}
 				}
 			}

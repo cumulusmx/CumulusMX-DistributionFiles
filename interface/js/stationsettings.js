@@ -1,4 +1,4 @@
-// Last modified: 2024/05/11 12:22:15
+// Last modified: 2024/05/29 11:17:34
 
 let StashedStationId;
 let accessMode;
@@ -199,9 +199,20 @@ $(document).ready(function () {
             form.getControlByPath("ecowittapi/stationid").setValue(stationid);
             form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
 
-
             // Keep a record of the last value
             StashedStationId = stationid;
+
+            // On changing the JSON Station connection type, propgate to advanced settings
+            let connType = form.getControlByPath("jsonstation/conntype");
+            connType.on("change", function () {
+                let form = $("form").alpaca("get");
+                let type = this.getValue();
+                form.getControlByPath("jsonstation/advanced/conntype").setValue(+type);
+                form.getControlByPath("jsonstation/advanced/conntype").refresh();
+            });
+            // Set the initial value of JSON Station connection type in advanced settings
+            form.getControlByPath("jsonstation/advanced/conntype").setValue(+form.getControlByPath("jsonstation/conntype").getValue());
+
 
             // Set the initial title of Davis WLL/Cloud
             setDavisStationTitle(form.getControlByPath("daviswll"), stationid);

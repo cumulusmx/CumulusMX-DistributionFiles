@@ -165,9 +165,6 @@
 					"type": "integer",
 					"minimum": 1,
 					"maximum": 16
-				},
-				"catchup": {
-					"type": "boolean"
 				}
 			},
 			"dependencies": {
@@ -177,8 +174,7 @@
 				"includeuv": ["enabled"],
 				"includesolar": ["enabled"],
 				"includesoiltemp": ["enabled"],
-				"soiltempsensor": ["enabled","includesoiltemp"],
-				"catchup": ["enabled"]
+				"soiltempsensor": ["enabled","includesoiltemp"]
 			}
 		},
 		"cwop": {
