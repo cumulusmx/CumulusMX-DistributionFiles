@@ -275,17 +275,6 @@
 						"enabled": true,
 						"includesoiltemp": true
 					}
-				},
-				"catchup": {
-					"label": "Catch up:",
-					"rightLabel": "Enable catch up",
-					"helpers": [
-						"When Cumulus starts, send each entry read from the station logger",
-						"Note: if you send more than few records WOW will throttle you and stop accepting them"
-					],
-					"dependencies": {
-						"enabled": true
-					}
 				}
 			}
 		},

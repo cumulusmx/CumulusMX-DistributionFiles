@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/03/20 12:18:03",
+	"version": "Last Modified: 2024/05/12 18:04:46",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -325,15 +325,11 @@
 					"type": "boolean"
 				},
 				"authenticate": {
-					"enum": [0,1,2]
+					"enum": [0,1]
 				},
 				"user": {
 				},
 				"password": {
-				},
-				"clientid": {
-				},
-				"clientsecret": {
 				}
 			},
 			"dependencies": {
