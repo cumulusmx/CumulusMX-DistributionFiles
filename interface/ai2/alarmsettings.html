@@ -45,6 +45,7 @@
 			td { border:thin solid var(--add4); text-align: center;}
 			th { border: thin solid var(--add5); background: var(--add3)!important; vertical-align: bottom;}
 			td:nth-of-type(2)	{ width: 14em; text-align:left;}
+			input {border-radius: 4px; border:none;}
 			input[type=number] { max-width:5em; padding: 0 0 0 8px;margin:0;}
 			#alarms input[type=text] { padding: 1px 8px; max-width: 10em; }
 
@@ -59,6 +60,13 @@
 			/*	If you want a different size font, edit the two entries below	*/
 			td, th {font-size: 90%;}
 			input { font-size: 90%;}
+			/*	This adjusts the hover effect - remove if you don't like. */
+			tr:hover > td {
+				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
+				border-top: thin solid var(--add2);
+				border-bottom: thin solid var(--add2);
+			}
+
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -89,7 +97,7 @@
 				<div class="ow-oneCol" style="row-gap: 2vh;">
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn">
 
-						<table id="alarms" class="w3-hoverable w3-striped" role="grid">
+						<table id="alarms" class="w3-striped" role="grid">
 							<thead>
 								<tr>
 									<th>Enable</th>

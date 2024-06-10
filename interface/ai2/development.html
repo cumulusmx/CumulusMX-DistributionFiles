@@ -40,6 +40,14 @@
 		<script>
 		</script>
 		<style>
+			.unitsGrid {
+				display:grid;
+				grid-template-columns: 8em repeat( 4, 1fr);
+				grid-template-rows:auto;
+				grid-auto-rows:auto;
+				align-items: baseline;
+				gap:1vh 3px;
+			}
 		</style>
 	</head>
 	<body class=ow-theme-add5>
@@ -104,9 +112,9 @@
 						<div class="ow-titleBar">
 							<h3>Card Gradients</h3>
 							<p>Paragraph</p>
-							<div class="ow-btn" onClick="showModal('Xmodal');">button</div>
+							<div class="ow-btn ow-clickable"  onClick="showModal('Xmodal');">button</div>
 						</div>
-						<p>
+						<p id="APIPairs">
 							This card is coloured using a gradient (<strong>class='ow-Gradient1'</strong>).  This uses three adjacent 
 							theme colours dark to light whether or not you use a normal or dark theme.&nbsp; There is also an 
 							'<strong>ow-Gradient2</strong>' class which is usually a step lighter.  Text is the either light or dark 
@@ -154,9 +162,9 @@
 							<p>Right aligned</p>
 						</div>
 						<div class="ow-btnBar ow-theme-txt">
-							<div class="ow-btn" onClick="showModal('Xmodal');">Click me</div>
+							<div class="ow-btn ow-clickable" onClick="showModal('Xmodal');">Click me</div>
 							Text in button bar aligns top
-							<div class="ow-btn" onClick="showModal('Xmodal');">Or Me</div>
+							<div class="ow-btn ow-clickable" onClick="showModal('Xmodal');">Or Me</div>
 						</div>
 					</div>
 				</div>
@@ -279,7 +287,7 @@
 
 		<!--	Modal 	-->
 		<div id="MXmodal" class="w3-modal ow-theme-modal">
-			<div id="CXmodal" class="w3-modal-content w3-round-large ow-modal ow-theme-add3" style="width: 35vw;">
+			<div id="CXmodal" class="w3-modal-content w3-round-large ow-modal ow-theme-add3" style="width: minmax( 95%,20vw);">
 
 				<div class="ow-theme ow-titleBar" style="align-items: start; border-radius: 8px 8px 0 0;">
 					<h3 style="padding: 1vh 0 0.5vh 1vw ">Modal Title</h3>
@@ -287,26 +295,21 @@
 				</div>
 
 				<div class="w3-container" style="margin-top: 1vh;">
-					<!--	The html below is merely for demonstartion - anything can be placed here	-->
+					<!--	The html below is merely for demonstration - anything can be placed here	-->
 					<div class="ow-oneCol" style="max-height:70vh; overflow: auto;">
-						<div>
-							<p>This modal demonstrates using both flexboxes; for the initial 'body' container, and then columns from the w3Pro stylesheets to align the buttons.</p>
-							<div class="w3-col l3 m3 s5"><span class="lang_temparature">Temperature</span>:</div>
-							<div class="w3-col l2 m3 s3"><input id="rad_unitsTemp1" type="radio" class="w3-radio" name="rad_unitsTemp" value="C" checked ><label id="lab_unitsTemp1" for="rad_unitsTemp1">&deg;C</label></div>
-							<div class="w3-rest"><input id="rad_unitsTemp2" type="radio" class="w3-radio" name="rad_unitsTemp" value="F"><label id="lab_unitsTemp2" for="rad_unitsTemp2">&deg;F</label></div>
-						</div>
-						<div>
-							<div class="w3-col l3 m3 s5"><span id="lang_pressure">Pressure</span>:</div>
-							<div class="w3-col l2 m2 s3"><input id="rad_unitsPress1" type="radio" class="w3-radio" name="rad_unitsPress" value="hPa" checked><label id="lab_unitsPress1" for="rad_unitsPress1">hPa</label></div>
-							<div class="w3-col l2 m2 s4"><input id="rad_unitsPress2" type="radio" class="w3-radio" name="rad_unitsPress" value="inHg" ><label id="lab_unitsPress2" for="rad_unitsPress2">inHg</label></div>
-							<div class="w3-col s5 w3-hide-large w3-hide-medium">&nbsp;</div>
-							<div class="w3-col l2 m2 s3"><input id="rad_unitsPress3" type="radio" class="w3-radio" name="rad_unitsPress" value="mb" ><label id="lab_unitsPress3" for="rad_unitsPress3">mb</label></div>
-							<div class="w3-col l2 m3 s4"><input id="rad_unitsPress4" type="radio" class="w3-radio" name="rad_unitsPress" value="kPa" ><label id="lab_unitsPress4" for="rad_unitsPress4">kPa</label></div>
-						</div>
-						<div>
-							<div class="w3-col l3 m3 s5"><span id="lang_cloudbase">Cloud Base</span>:</div>
-							<div class="w3-col l2 m3 s3"><input id="rad_unitsCloudBase1" type="radio" class="w3-radio" name="rad_unitsCloud" value="m" checked ><label id="lab_unitsCloudBase1" for="rad_unitsCloudBase1">m</label></div>
-							<div class="w3-rest"><input id="rad_unitsCloudBase2" type="radio" class="w3-radio" name="rad_unitsCloud" value="ft" ><label id="lab_unitsCloudBase2" for="rad_unitsCloudBase2">ft</label></div>
+						<p>This modal demonstrates using both flexboxes; for the initial 'body' container, and then a grid to align the option buttons.</p>
+						<div class="unitsGrid">
+							<div id="lang_temperature">Temperature:</div>
+							<div><input id="rad_unitsTemp1" type="radio" class="w3-radio" name="rad_unitsTemp" value="C" checked ><label id="lab_unitsTemp1" for="rad_unitsTemp1">&deg;C</label></div>
+							<div><input id="rad_unitsTemp2" type="radio" class="w3-radio" name="rad_unitsTemp" value="F"><label id="lab_unitsTemp2" for="rad_unitsTemp2">&deg;F</label></div>
+							<div id="lang_pressure" style="grid-column:1;">Pressure:</div>
+							<div><input id="rad_unitsPress1" type="radio" class="w3-radio" name="rad_unitsPress" value="hPa" checked><label id="lab_unitsPress1" for="rad_unitsPress1">hPa</label></div>
+							<div><input id="rad_unitsPress2" type="radio" class="w3-radio" name="rad_unitsPress" value="inHg" ><label id="lab_unitsPress2" for="rad_unitsPress2">inHg</label></div>
+							<div><input id="rad_unitsPress3" type="radio" class="w3-radio" name="rad_unitsPress" value="mb" ><label id="lab_unitsPress3" for="rad_unitsPress3">mb</label></div>
+							<div><input id="rad_unitsPress4" type="radio" class="w3-radio" name="rad_unitsPress" value="kPa" ><label id="lab_unitsPress4" for="rad_unitsPress4">kPa</label></div>
+							<div id="lang_cloudbase">Cloudbase:</div>
+							<div><input id="rad_unitsCloudBase1" type="radio" class="w3-radio" name="rad_unitsCloud" value="m" checked ><label id="lab_unitsCloudBase1" for="rad_unitsCloudBase1">m</label></div>
+							<div><input id="rad_unitsCloudBase2" type="radio" class="w3-radio" name="rad_unitsCloud" value="ft" ><label id="lab_unitsCloudBase2" for="rad_unitsCloudBase2">ft</label></div>
 						</div>
 					</div>
 				</div>

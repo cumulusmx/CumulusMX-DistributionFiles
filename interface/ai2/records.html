@@ -3,8 +3,8 @@
 	Page:	Records
 	File:	records.html			v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-02-23
-	Last Check:	2024-04-05
+	Last Edit:	2024-05-08
+	Last Check:	2024-0
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -47,6 +47,16 @@
 			.ow-btnBar > button { max-width: 10em;}/*  Stops buttons stretching across all available space */
 			td:nth-of-type(2),th:nth-of-type(2) {
 				border-right: thin solid var(--theme); /*	Adds a border between reading and date	*/
+			}
+			td:nth-of-type(2), th:nth-of-type(2) {
+				/*	Adds the gradient in the data column - remove next line if not wanted	*/
+				background: linear-gradient(90deg, var(--add4) 0%, var(--add3) 95%);
+				min-width: 9em!important;
+			}
+			tr:hover > td {
+				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
+				border-top: thin solid var(--add2);
+				border-bottom: thin solid var(--add2);
 			}
 		</style>
 	</head>

@@ -184,8 +184,10 @@ input[type=number]:hover {
 }
 
 .ow-tableRow:hover {
-	background: var(--add3);
+	background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
+	border-bottom: thin solid var(--add2);
 }
+.ow-tableRow:nth-of-type(1):hover { background: var(--add4)}
 
 .ow-tableRow * {
 	margin:0;

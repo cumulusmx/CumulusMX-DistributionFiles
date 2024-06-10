@@ -53,6 +53,15 @@
 				border: thin solid var(--theme);
 				margin: 1vh 0;
 			}
+			.celestialGrid {
+				display:grid;
+				grid-template-columns: repeat( 4, 1fr);
+				grid-template-rows:auto;
+				grid-auto-rows:auto;
+				align-items: baseline;
+				justify-items: stretch;
+				gap:1vh 3px;
+			}
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -274,20 +283,20 @@
 
 		<!--	Modal 	-->
 		<div id="MAlmanac" class="w3-modal ow-theme-modal">
-			<div id="CAlmanac" class="w3-modal-content ow-theme-add5 w3-round-large ow-modal" style="width: 35vw;">
+			<div id="CAlmanac" class="w3-modal-content ow-theme-add5 w3-round-large ow-modal" style="width: minmax(90%,25em);">
 				<div class="ow-theme-sub5 ow-titleBar" style="align-items: start; border-radius: 8px 8px 0 0;">
 					<h3 style="padding: 1vh 0 0.5vh 1vw ">Celestial Information</h3>
 					<span onclick="showModal('Almanac')" class="w3-btn ow-theme-action-hvr" style="border-radius: 0 8px 0 8px;padding:0.5vh 1em;"><i class="fa-solid fa-xmark"></i></span>
 				</div>
 				<div class="w3-container" style="margin: 1vh; max-height: 60vh; overflow: auto;">
-					<div class="ow-titleBar">
-						<div><h4 class="w3-center w3-bottombar ow-theme-add3-bdr">Sunrise<br><span id="Sunrise"></span></h4></div>
-						<div><h4 class="w3-center w3-bottombar ow-theme-add2-bdr">Sunset<br><span id="Sunset"></span></h4></div>
-						<div><h4 class="w3-center w3-bottombar ow-theme-add3-bdr">Moonrise<br><span id="Moonrise"></span></h4></div>
-						<div><h4 class="w3-center w3-bottombar ow-theme-add2-bdr">Moonset<br><span id="Moonset"></span></h4></div>
+					<div class="celestialGrid">
+						<div class="w3-center w3-bottombar" style="border-color:#ffbb00"><h4>Sunrise</h4><p id="Sunrise"></p></div>
+						<div class="w3-center w3-bottombar" style="border-color:#ff8800"><h4>Sunset</h4><p id="Sunset"></p></div>
+						<div class="w3-center w3-bottombar" style="border-color:#AAAAFF"><h4>Moonrise</h4><p id="Moonrise"></p></div>
+						<div class="w3-center w3-bottombar" style="border-color:#6666FF"><h4>Moonset</h4><p id="Moonset"></p></div>
 					</div>
-					<div class="ow-titleBar" style="margin: 1vh 0;">
-						<h4><span>Forecast</span>: <span id="Forecast">---</span></h4>
+					<div style="display:grid; grid-template-columns: 7em 1fr;align-items:baseline;">
+						<h4><span>Forecast</span>:</h4><p id="Forecast">---</p>
 					</div>
 				</div>
 				<div class="w3-container ow-theme-sub5" style="border-radius: 0 0 8px 8px; margin-top:-1vh;">
