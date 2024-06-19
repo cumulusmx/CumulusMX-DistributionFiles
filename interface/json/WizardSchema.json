@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/28 20:44:01",
+	"version": "Last Modified: 2024/06/17 22:14:48",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -199,7 +199,6 @@
 						}
 					}
 				},
-
 
 				"gw1000": {
 					"title": "Ecowitt Local API Settings",

@@ -1,4 +1,4 @@
-// Last modified: 2023/12/03 22:55:07
+// Last modified: 2024/06/17 22:14:46
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -206,9 +206,7 @@ $(document).ready(function () {
                                 "mac": {
                                     "validator": function(callback) {
                                         let value = this.getValue().trim();
-
-                                        if (value != "")
-                                        {
+                                        if (value != "") {
                                             // check for IMEI format - 15 or 16 digits
                                             if (Number.isInteger(value)) {
                                                 if (value.length == 15 || value.length == 16) {
@@ -240,12 +238,14 @@ $(document).ready(function () {
                                 "applicationkey": {
                                     "validator": function(callback) {
                                         let value = this.getValue();
-                                        if (!/^[A-F0-9]{30,35}$/.test(value)) {
-                                            callback({
-                                                "status": false,
-                                                "message": "That is not a valid Application Key!"
-                                            });
-                                            return;
+                                        if (value != "") {
+                                            if (!/^[A-F0-9]{30,35}$/.test(value)) {
+                                                callback({
+                                                    "status": false,
+                                                    "message": "That is not a valid Application Key!"
+                                                });
+                                                return;
+                                            }
                                         }
                                         callback({
                                             "status": true
@@ -255,12 +255,14 @@ $(document).ready(function () {
                                 "userkey": {
                                     "validator": function(callback) {
                                         let value = this.getValue();
-                                        if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
-                                            callback({
-                                                "status": false,
-                                                "message": "That is not a valid API Key!"
-                                            });
-                                            return;
+                                        if (value != "") {
+                                            if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                                callback({
+                                                    "status": false,
+                                                    "message": "That is not a valid API Key!"
+                                                });
+                                                return;
+                                            }
                                         }
                                         callback({
                                             "status": true

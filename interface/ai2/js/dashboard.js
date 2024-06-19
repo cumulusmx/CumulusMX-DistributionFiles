@@ -1,4 +1,4 @@
-// Last modified: 2023/12/14 17:24:31
+// Last modified: 2024/06/09 21:07:44
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -461,7 +461,10 @@ let DavisStats = function() {
 		success: function(data) {
 			//console.log(data['DavisTotalPacketsReceived']);
 			var batteries = data.txbattery.split(' ');
-			var packetPercent = Math.round(data.DavisTotalPacketsMissed / data.DavisTotalPacketsReceived * 1000)/10;
+            var packetPercent = 0;
+            if (data.DavisTotalPacketsReceived > 0) {
+			    packetPercent = Math.round(data.DavisTotalPacketsMissed / data.DavisTotalPacketsReceived * 1000)/10;
+            }
 			$('#DavisPacketsReceived').html(data.DavisTotalPacketsReceived);
 			$('#DavisPacketsMissed').html(data.DavisTotalPacketsMissed);
 			$('#DavisSuccess').html(packetPercent + '%');

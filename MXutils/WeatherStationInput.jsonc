@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2024/05/30 11:29:36
+    Last Updated: 2024/06/07 21:56:39
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -34,7 +34,7 @@
     },
     "wind": {
         "speed": 99.9,              // float
-        "direction": 360,           // float
+        "direction": 360,           // int (1-360, 0=calm if enabled in CMX)
         "gust10m": 99.9             // float
     },
     "rain": {
