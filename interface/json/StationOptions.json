@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/30 17:22:39",
+	"version": "Last Modified: 2024/07/11 22:34:03",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1475,7 +1475,6 @@
 					"rightLabel": "Calculate sea level pressure",
 					"helpers": [
 						"Use the Cumulus calculated value from the absolute pressure instead of the value supplied station",
-						"Currently only applies to HTTP Ecowitt, HTTP Ambient & GW1000 stations",
 						"When enabled, the pressure calibration is applied to the raw station pressure"
 					]
 				},

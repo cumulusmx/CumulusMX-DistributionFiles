@@ -1,4 +1,4 @@
-// Last modified: 2024/06/09 21:07:44
+// Last modified: 2024/07/14 22:30:59
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -197,6 +197,7 @@ $(document).ready(function () {
         playSnd();
 
         $('.WindUnit').text(data.WindUnit);
+        $('.WindRunUnit').text(data.WindRunUnit);
         $('.PressUnit').text(data.PressUnit);
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
@@ -470,7 +471,7 @@ let DavisStats = function() {
 			$('#DavisSuccess').html(packetPercent + '%');
 			$('#DavisMaxInARow').html(data.DavisMaxInARow);
 			$('#DavisCRCErrors').html(data.DavisNumCRCerrors);
-			$('#ConsolBattery').html(data.battery + 'v');
+			$('#ConsoleBattery').html(data.battery + 'v');
 			$('#DavisTXBattery0').html(batteries[0].slice(2,4).toUpperCase());
 			$('#DavisTXBattery1').text(batteries[1].slice(2,4).toUpperCase());
 			$('#DavisTXBattery2').text(batteries[2].slice(2,4).toUpperCase());

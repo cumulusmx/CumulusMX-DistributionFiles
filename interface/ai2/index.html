@@ -3,7 +3,7 @@
 	Page:	Dashboard
 	File:	index.html				v4.0.0
 	Author:	D.N.C.Thomas		 Feb 2024
-	Last Edit:	2024-02-23
+	Last Edit:	2024/07/21 14:25:03
 	Last Check: 2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -100,7 +100,7 @@
 						<div>Failure Rate: <span id="DavisSuccess">not known</span></div>
 						<div>Packet streak: <span id="DavisMaxInARow">not known</span></div>
 						<div>CRC Errors: <span id="DavisCRCErrors">not known</span></div>
-						<div>Consol Battery: <span id="ConsolBattery">not known</span></div>
+						<div>Console Battery: <span id="ConsoleBattery">not known</span></div>
 						<div>ISS Battery: <span id="DavisTXBattery0">not known</span></div>
 						<!--	Add extra battery data up to 7
 						<div>Transmitter 2: <span data-OWdata="ConsolBattery1" id="DavisTXBattery1"></span></div>-->
@@ -161,8 +161,10 @@
 							<h3><span class="digiclock">--:--:--</span></h3>
 							<h5>Last Cumulus update<br>
 							<span id="lastupdatetime" class="w3-large">xx:yy:zz</span><img id="LastUpdateIcon" src="img/green.png" class="ow-icon-small" alt="green"></h5>
+
 							<h5>Last station update<br>
-							<span id="LastDataRead" class="bold w3-large">--:--:--</span><img id="DataStoppedIcon" src="img/green.png" class="ow-icon-small" alt="green"></h5>
+							<span id="LastDataRead" class="bold w3-large">--:--:--</span><img id="DataStoppedIcon" src="img/green.png" class="ow-icon-small" alt="green"><br>
+							<span id="LastDataReadDate" class="ow-txt-small"></span></h5>
 						</div>
 					</div>
 					<div class="ow-card ow-theme-add4" style="order:5;">
@@ -218,8 +220,8 @@
 						</div>
 						<div class="w3-center">
 							<h4><span id="OutdoorHum" class="ow-reading">--.-</span>%</h4>
-							<p><span>High&nbsp;</span><span id="HighHumToday" class="high">--</span> %<span class="ow-at" id="HighHumTodayTime">--:--</span></p>
-							<p><span>Low&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span> %<span class="ow-at" id="LowHumTodayTime">--:--</span></p>
+							<p><span>High&nbsp;</span><span id="HighHumToday" class="high">--</span>%<span class="ow-at" id="HighHumTodayTime">--:--</span></p>
+							<p><span>Low&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span>%<span class="ow-at" id="LowHumTodayTime">--:--</span></p>
 						</div>
 					</div>
 					<div class="ow-card ow-theme-add4" style="order:10;">
