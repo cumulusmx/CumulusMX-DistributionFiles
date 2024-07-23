@@ -1,4 +1,4 @@
-// Last modified: 2023/10/13 21:35:15
+// Last modified: 2024/07/12 10:54:15
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
@@ -84,6 +84,7 @@ window.addEventListener("load", function() {
         }
 
         $('.WindUnit').text(data.WindUnit);
+        $('.WindRunUnit').text(data.WindRunUnit);
         $('.PressUnit').text(data.PressUnit);
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
