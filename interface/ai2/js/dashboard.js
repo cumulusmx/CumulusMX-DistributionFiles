@@ -454,7 +454,7 @@ $(document).ready(function () {
 
 //	Added by Neil
 let DavisStats = function() {
-	params="DavisTotalPacketsReceived&DavisTotalPacketsMissed&DavisMaxInARow&DavisNumCRCerrors&txbattery&battery";
+	params="DavisTotalPacketsReceived&DavisTotalPacketsMissed&DavisMaxInARow&DavisNumCRCerrors&txbattery&battery&DavisFirmwareVersion";
 	$.ajax({
 		url: '/api/tags/process.json?' + params,
 		dataType: 'json',
@@ -467,6 +467,7 @@ let DavisStats = function() {
 			$('#DavisSuccess').html(packetPercent + '%');
 			$('#DavisMaxInARow').html(data.DavisMaxInARow);
 			$('#DavisCRCErrors').html(data.DavisNumCRCerrors);
+            $('#DavisFirmware').html( data.DavisFirmwareVersion );
 			$('#ConsolBattery').html(data.battery + 'v');
 			$('#DavisTXBattery0').html(batteries[0].slice(2,4).toUpperCase());
 			$('#DavisTXBattery1').text(batteries[1].slice(2,4).toUpperCase());
