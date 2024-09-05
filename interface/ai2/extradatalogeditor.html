@@ -62,6 +62,12 @@
 		<script>
 		</script>
 		<style>
+			/*	This block adjusts the hover highlight.  Just delete if not wanted	*/
+			tr:hover > td {
+				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
+				border-top: thin solid var(--add2);
+				border-bottom: thin solid var(--add2);
+			}
 			/*	Units	*/
 			/*	Adjust size of units	*/
 			#datalog tbody .tempUnits:after,
