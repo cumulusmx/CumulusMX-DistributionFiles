@@ -547,6 +547,7 @@ var doWind = function () {
 		tooltip: {
 			shared: true,
 			split: false,
+			useHTML: true,
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
