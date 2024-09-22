@@ -1,0 +1,124 @@
+{
+	"version": "Last Modified: 2024/09/18 18:06:44",
+	"fields": {
+		"accessible": {
+			"fieldClass": "hideme"
+		},
+		"dataname": {
+			"label": "Data Parameter",
+			"type": "select",
+			"sort": false,
+			"optionLabels": [
+				"Highest Gust",
+				"Wind Run",
+				"Highest Average Windspeed",
+				"Lowest Temperature",
+				"Highest Temperature",
+				"Average Temperature",
+				"Highest Heat Index",
+				"Highest Apparent Temperature",
+				"Lowest Apparent Temperature",
+				"Lowest Wind Chill",
+				"Highest Dew Point",
+				"Lowest Dew Point",
+				"Highest Feels Like",
+				"Lowest Feels Like",
+				"Highest Humidex",
+				"Lowest Pressure",
+				"Highest Pressure",
+				"Highest Rain Rate",
+				"Total Rainfall",
+				"Highest Hourly Rain",
+				"Most Rain in 24h",
+				"Lowest Humidity",
+				"Highest Humidity",
+				"Sunshine Hours",
+				"Highest Solar Radiation",
+				"Highest UV-Index",
+				"Evapotranspiration",
+				"Heating Degree Days",
+				"Cooling Degree Days",
+				"Chill Hours"
+			]
+		},
+		"function": {
+			"label": "Function",
+			"type": "select",
+			"sort": false,
+			"optionLabels": [
+				"Minimum",
+				"Maximum",
+				"Average",
+				"Sum",
+				"Count"
+			]
+		},
+		"where": {
+			"label": "Where",
+			"type": "text",
+			"helpers": [
+				"Comparison string for the data. Only include values in the result that match this where condition",
+				"Example: <= 10",
+				"Allowed operators: >, >=, <, <=, =",
+				"Leave blank to include all values"
+			],
+			"dependencies": {
+				"function": ["count"]
+			}
+		},
+		"startsel": {
+			"label": "Start Date Preset",
+			"type": "select",
+			"sort": false,
+			"optionLabels": [
+				"User Entered",
+				"This Month",
+				"This Year",
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December",
+				"Yearly"
+			]
+		},
+		"start": {
+			"label": "Start Date (YYYY-MM-DD)",
+			"type": "date",
+			"id": "startDate",
+			"dependencies": {
+				"startsel": ["User"]
+			}
+		},
+		"end": {
+			"label": "End Date (YYYY-MM-DD)",
+			"type": "date",
+			"id": "endDate",
+			"dependencies": {
+				"startsel": ["User"]
+			}
+		},
+		"countfunction": {
+			"label": "Result Function",
+			"type": "select",
+			"sort": false,
+			"optionLabels": [
+				"Most/Highest value in period",
+				"Least/Lowest value in period"
+			],
+			"helpers": [
+				"Do you want the highest or lowest value in the period?"
+			],
+			"dependencies": {
+				"startsel": ["Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12", "Yearly"]
+			}
+		}
+	}
+}

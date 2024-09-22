@@ -3,7 +3,7 @@
 	Page:	Dashboard
 	File:	index.html				v4.0.0
 	Author:	D.N.C.Thomas		 Feb 2024
-	Last Edit:	2024/07/21 14:25:03
+	Last Edit:	2024/09/05 11:36:19
 	Last Check: 2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -95,15 +95,36 @@
 				<div id="DavisPanel" class="ow-container ow-animate-drop">
 					<h4>Davis Weather Station Status</h4>
 					<div class="ow-fiveCol" style="row-gap:0; margin-bottom:1vh;">
-						<div>Packets Received: <span id="DavisPacketsReceived">not known</span></div>
-						<div>Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
-						<div>Failure Rate: <span id="DavisSuccess">not known</span></div>
-						<div>Packet streak: <span id="DavisMaxInARow">not known</span></div>
-						<div>CRC Errors: <span id="DavisCRCErrors">not known</span></div>
+						<div class="davisVP2">Packets Received: <span id="DavisPacketsReceived">not known</span></div>
+						<div class="davisVP2">Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
+						<div class="davisVP2">Failure Rate: <span id="DavisSuccess">not known</span></div>
+						<div class="davisVP2">Packet streak: <span id="DavisMaxInARow">not known</span></div>
+						<div class="davisVP2">CRC Errors: <span id="DavisCRCErrors">not known</span></div>
 						<div>Console Battery: <span id="ConsoleBattery">not known</span></div>
-						<div>ISS Battery: <span id="DavisTXBattery0">not known</span></div>
-						<!--	Add extra battery data up to 7
-						<div>Transmitter 2: <span data-OWdata="ConsolBattery1" id="DavisTXBattery1"></span></div>-->
+						<div id="DavisXmt0">Xmt Batt 1: <span id="DavisTXBattery0">not known</span></div>
+						<div id="DavisXmt1">Xmt Batt 2: <span id="DavisTXBattery1">not known</span></div>
+						<div id="DavisXmt2">Xmt Batt 3: <span id="DavisTXBattery2">not known</span></div>
+						<div id="DavisXmt3">Xmt Batt 4: <span id="DavisTXBattery3">not known</span></div>
+						<div id="DavisXmt4">Xmt Batt 5: <span id="DavisTXBattery4">not known</span></div>
+						<div id="DavisXmt5">Xmt Batt 6: <span id="DavisTXBattery5">not known</span></div>
+						<div id="DavisXmt6">Xmt Batt 7: <span id="DavisTXBattery6">not known</span></div>
+						<div id="DavisXmt7">Xmt Batt 8: <span id="DavisTXBattery7">not known</span></div>
+						<div id="DavisPct0" class="davisWLL">Percent Recv 1: <span id="DavisPercentReceived0">not known</span>%</div>
+						<div id="DavisPct1" class="davisWLL">Percent Recv 2: <span id="DavisPercentReceived1">not known</span>%</div>
+						<div id="DavisPct2" class="davisWLL">Percent Recv 3: <span id="DavisPercentReceived2">not known</span>%</div>
+						<div id="DavisPct3" class="davisWLL">Percent Recv 4: <span id="DavisPercentReceived3">not known</span>%</div>
+						<div id="DavisPct4" class="davisWLL">Percent Recv 5: <span id="DavisPercentReceived4">not known</span>%</div>
+						<div id="DavisPct5" class="davisWLL">Percent Recv 6: <span id="DavisPercentReceived5">not known</span>%</div>
+						<div id="DavisPct6" class="davisWLL">Percent Recv 7: <span id="DavisPercentReceived6">not known</span>%</div>
+						<div id="DavisPct7" class="davisWLL">Percent Recv 8: <span id="DavisPercentReceived7">not known</span>%</div>
+						<div id="DavisRssi0" class="davisWLL">RSSI 1: <span id="DavisTxRssi0">not known</span> dB</div>
+						<div id="DavisRssi1" class="davisWLL">RSSI 2: <span id="DavisTxRssi1">not known</span> dB</div>
+						<div id="DavisRssi2" class="davisWLL">RSSI 3: <span id="DavisTxRssi2">not known</span> dB</div>
+						<div id="DavisRssi3" class="davisWLL">RSSI 4: <span id="DavisTxRssi3">not known</span> dB</div>
+						<div id="DavisRssi4" class="davisWLL">RSSI 5: <span id="DavisTxRssi4">not known</span> dB</div>
+						<div id="DavisRssi5" class="davisWLL">RSSI 6: <span id="DavisTxRssi5">not known</span> dB</div>
+						<div id="DavisRssi6" class="davisWLL">RSSI 7: <span id="DavisTxRssi6">not known</span> dB</div>
+						<div id="DavisRssi7" class="davisWLL">RSSI 8: <span id="DavisTxRssi7">not known</span> dB</div>
 					</div>
 				</div>
 				<!--	CMX Content	-->

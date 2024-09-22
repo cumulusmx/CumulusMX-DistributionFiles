@@ -1,0 +1,130 @@
+<!--
+Created: 2024/08/13 10:24:51
+Last modified: 2024/09/14 14:15:47
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Daily Data Viewer - Cumulus MX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-style.css" rel="stylesheet">
+
+    <!-- menu -->
+    <script src="js/menu.js"></script>
+
+    <!-- jquery -->
+    <script src="lib/jquery/jquery-latest.min.js"></script>
+    <script src="lib/jquery/jquery.tmpl.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- date picker -->
+    <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+    <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
+
+    <link href="css/cumulus.css" rel="stylesheet">
+
+   <script src="js/dailydata.js"></script>
+
+    <style>
+        .form-group {
+            margin-bottom: 0px;
+        }
+        .paginate_input{
+            width: 50px
+        }
+        .multi-select {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+        }
+        .multi-select select {
+            height: 100px;
+        }
+        .dateselect {
+            text-align: right;
+        }
+        .mylabel {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+        .my-title {
+            font-size: large;
+            border-bottom: 1px;
+            border-bottom-color: black;
+            border-bottom-style: solid;
+        }
+        .my-unit {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav">
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- END NAVIGATION MENU -->
+
+    <div id="container" class="container">
+        <div class="row top-buffer">
+            <div class="col-md-12">
+                <h1>Daily Data Viewer</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="my-title">Date Range</div>
+                <div class="cont">
+                    <label class="mylabel" for="dateFrom" aria-hidden="true">Start Date:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date. Format is full year hyphen month hyphen day">
+                    <label class="mylabel" for="dateFrom" aria-hidden="true">End Date:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date. Format is full year hyphen month hyphen day">
+                    <div>
+                        <br>
+                        <label class="mylabel" for="format">Viewing format:</label>
+                        <select id="format">
+                            <option>Table</option>
+                            <option>CSV</option>
+                        </select>
+                        &nbsp;
+                        <button type="button" class="btn btn-default" onclick="showData()">View Data</button>
+                        <button type="button" class="btn btn-default" onclick="downloadData()">Download CSV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <!--<p><img src="img/logo.png" alt=""></p>-->
+                    <p>Cumulus MX <span id="Version"></span>&nbsp;b<span id="Build"></span></p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+</body>
+</html>

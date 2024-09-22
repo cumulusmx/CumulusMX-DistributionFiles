@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2023/12/10 22:21:02
+ Last modified: 2024/09/18 11:53:10
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -27,7 +27,8 @@ let menuSrc = [
 	{title: "Today/Yesterday",    menu: "b",    url: "todayyest.html"},
 	{title: "Records",         submenu: true,       items: [
 		{title: "Records",            menu: "b",    url: "records.html"},
-		{title: "This Period",        menu: "b",    url: "thisperiod.html"}
+		{title: "This Period",        menu: "b",    url: "thisperiod.html"},
+		{title: "Daily Data Query",   menu: "b",    url: "querydayfile.html"}
 	]},
 	{title: "Extra sensors",      submenu: true,       items: [
 		{title: "Extra sensors",        menu: "b",    url: "extra.html"},
@@ -36,7 +37,9 @@ let menuSrc = [
 	{title: "Data logs",      submenu: true,       items: [
 		{title: "Monthly logs",        menu: "b",    url: "datalogs.html"},
 		{title: "Extra data logs",     menu: "b",    url: "extradatalogs.html"},
-		{title: "Dayfile",             menu: "b",    url: "dayfileviewer.html"}
+		{title: "Dayfile",             menu: "b",    url: "dayfileviewer.html"},
+		{title: "Interval data viewer",menu: "b",    url: "intervaldata.html"},
+		{title: "Daily data viewer",   menu: "b",    url: "dailydata.html"}
 	]},
 	{title: "Reports",      submenu: true,       items: [
 		{title: "NOAA Month Report",      menu: "b",    url: "noaamonthreport.html"},
@@ -54,7 +57,7 @@ let menuSrc = [
 		{title: "Calibration settings", menu: "b",    url: "calibrationsettings.html"},
 		{title: "NOAA settings",        menu: "b",    url: "noaasettings.html"},
 		{title: "MySQL settings",       menu: "b",    url: "mysqlsettings.html"},
-		{title: "MQTT settings",        menu: "b",     url:"mqttsettings.html"},
+		{title: "MQTT settings",        menu: "b",    url: "mqttsettings.html"},
 		{title: "Alarms",               menu: "b",    url: "alarmsettings.html"},
 		{title: "Custom Alarms",        menu: "b",    url: "useralarms.html"},
 		{title: "Custom logs",          menu: "b",    url: "customlogs.html"},

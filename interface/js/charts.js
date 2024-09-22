@@ -1,4 +1,4 @@
-// Last modified: 2023/12/29 14:57:31
+// Last modified: 2024/09/14 21:54:43
 
 var chart, config, doSelect;
 
@@ -1914,7 +1914,7 @@ var doSoilMoist = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Moisture (' + config.soilmoisture.units + ')'},
+                title: {text: 'Moisture'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1961,7 +1961,7 @@ var doSoilMoist = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: ' ' + config.soilmoisture.units,
+            //valueSuffix: ' ' + config.soilmoisture.units,
             valueDecimals: 0,
             xDateFormat: "%A, %b %e, %H:%M"
         },
@@ -1981,7 +1981,8 @@ var doSoilMoist = function () {
                 chart.addSeries({
                     name: key,
                     color: config.series.soilmoist.colour[id],
-                    data: value
+                    data: value,
+                    tooltip: {valueSuffix: ' ' + config.soilmoisture.units[id]}
                 });
              });
 

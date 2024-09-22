@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	charts.js			v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	06/10/2023 09:53
+ * 	Last Edit:	2024/08/01 20:39:16
  * 	Based on:	Marks script of the same name
  * 	Last Mod:	2023/05/22 20:17:02
  * 	Role:
@@ -44,7 +44,7 @@ var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond" style="color:{serie
 					 '<td><strong>{point.y}</strong></td></tr>';
 
 $(document).ready(function () {
-	
+
 	$('.selectGraph').click( function() {
 		sessionStorage.setItem('CMXTrends', this.id );
 		doSelect( this.id );
@@ -132,7 +132,7 @@ $(document).ready(function () {
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
-		
+
 		var chart = sessionStorage.getItem('CMXTrends');
 		if( chart === null ) {
 			chart = 'temp';
@@ -1515,9 +1515,9 @@ var doAirQuality = function () {
 	});
 };
 /**/
-/*
+
 var doExtraTemp = function () {
-	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
+	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at the logging interval resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
 	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
@@ -1639,9 +1639,9 @@ var doExtraTemp = function () {
 		}
 	});
 };
-*/
+
 var doExtraHum = function () {
-	$('#chartdescription').text('Line chart showing recent additional humidity sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+	$('#chartdescription').text('Line chart showing recent additional humidity sensor values at the logging interval resolution. These sensors are unique to the station and placed to suit the station requirements.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
@@ -1754,7 +1754,7 @@ var doExtraHum = function () {
 };
 
 var doExtraDew = function () {
-	$('#chartdescription').text('Line chart showing recent additional dew point sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+	$('#chartdescription').text('Line chart showing recent additional dew point sensor values at the logging interval resolution. These sensors are unique to the station and placed to suit the station requirements.');
 	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
@@ -1876,7 +1876,7 @@ var doExtraDew = function () {
 };
 
 var doSoilTemp = function () {
-	$('#chartdescription').text('Line chart showing recent soil tempertaure sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
+	$('#chartdescription').text('Line chart showing recent soil tempertaure sensor values at the logging interval resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
 	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
@@ -1998,7 +1998,7 @@ var doSoilTemp = function () {
 };
 
 var doSoilMoist = function () {
-	$('#chartdescription').text('Line chart showing recent soil moisture sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
+	$('#chartdescription').text('Line chart showing recent soil moisture sensor values at a the logging interval resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
@@ -2106,7 +2106,7 @@ var doSoilMoist = function () {
 };
 
 var doLeafWet = function () {
-	$('#chartdescription').text('Line chart showing recent leaf wetness sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+	$('#chartdescription').text('Line chart showing recent leaf wetness sensor values at the logging interval resolution. These sensors are unique to the station and placed to suit the station requirements.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
@@ -2216,7 +2216,7 @@ var doLeafWet = function () {
 };
 
 var doUserTemp = function () {
-	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
+	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at the logging interval resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
 	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
@@ -2338,7 +2338,7 @@ var doUserTemp = function () {
 };
 
 var doCO2 = function () {
-	$('#chartdescription').text('Line chart showing recent carbon dioxide sensor values at a one minute resolution. Typically these sensors only provide meaningful data indoors. This sensor may also show particulate matter, temperature and humidity values.');
+	$('#chartdescription').text('Line chart showing recent carbon dioxide sensor values at the logging interval resolution. Typically these sensors only provide meaningful data indoors. This sensor may also show particulate matter, temperature and humidity values.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
