@@ -1,0 +1,96 @@
+{
+	"version": "Last Modified: 2024/09/19 21:44:27",
+	"type": "object",
+	"properties": {
+		"accessible": {
+			"type": "boolean"
+		},
+		"dataname": {
+			"enum": [
+				"HighGust",
+				"WindRun",
+				"HighAvgWind",
+				"LowTemp",
+				"HighTemp",
+				"AvgTemp",
+				"HighHeatIndex",
+				"HighAppTemp",
+				"LowAppTemp",
+				"LowWindChill",
+				"HighDewPoint",
+				"LowDewPoint",
+				"HighFeelsLike",
+				"LowFeelsLike",
+				"HighHumidex",
+				"LowPress",
+				"HighPress",
+				"HighRainRate",
+				"TotalRain",
+				"HighHourlyRain",
+				"HighRain24h",
+				"LowHumidity",
+				"HighHumidity",
+				"SunShineHours",
+				"HighSolar",
+				"HighUv",
+				"ET",
+				"HeatingDegreeDays",
+				"CoolingDegreeDays",
+				"ChillHours"
+			],
+			"required": true
+		},
+		"function": {
+			"enum": [
+				"min",
+				"max",
+				"avg",
+				"sum",
+				"count"
+			],
+			"required": true
+		},
+		"where": {
+			"type": "string"
+		},
+		"startsel": {
+			"enum": [
+				"User",
+				"ThisMonth",
+				"ThisYear",
+				"Month1",
+				"Month2",
+				"Month3",
+				"Month4",
+				"Month5",
+				"Month6",
+				"Month7",
+				"Month8",
+				"Month9",
+				"Month10",
+				"Month11",
+				"Month12",
+				"Yearly"
+			],
+			"required": true
+		},
+		"start": {
+			"type": "string"
+		},
+		"end": {
+			"type": "string"
+		},
+		"countfunction": {
+			"enum": [
+				"max",
+				"min"
+			]
+		}
+	},
+	"dependencies": {
+		"where": ["function"],
+		"start": ["startsel"],
+		"end": ["startsel"],
+		"countfunction": ["startsel"]
+	}
+}

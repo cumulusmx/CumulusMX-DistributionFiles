@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/28 20:55:42",
+	"version": "Last Modified: 2024/09/19 21:15:25",
 	"fields":{
 		"location": {
 			"fields": {
@@ -85,37 +85,35 @@
 
 		"station": {
 			"fields": {
+				"stationid": {
+					"type": "integer",
+					"fieldClass": "hideme"
+				},
+				"manufacturer": {
+					"label": "Manufacturer",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						" Select Manufacturer",
+						"Davis",
+						"Ecowitt (and clones)",
+						"Fine Offset (and clones)",
+						"WeatherFlow",
+						"Weather Underground",
+						"Ambient",
+						"JSON Data Input",
+						"Oregon Scientific (serial)",
+						"Oregon Scientific (USB)",
+						"Instromet",
+						"LaCrosse",
+						"Cumulus MX Simulator"
+					]
+				},
 				"stationtype": {
 					"label": "Station type",
 					"type": "select",
 					"sort": false,
-					"optionLabels": [
-						" Select Station",
-						"PWS Simulator",
-						"Davis Vantage Pro",
-						"Davis Vantage Pro2/Vue",
-						"Davis WeatherLink Live",
-						"Davis WeatherLink Cloud (WLL/WLC)",
-						"Davis WeatherLink Cloud (VP2)",
-						"Ecowitt Local API",
-						"Ecowitt Cloud",
-						"HTTP (Ecowitt)",
-						"HTTP (Wunderground)",
-						"HTTP (Ambient)",
-						"WeatherFlow Tempest",
-						"JSON Data Input",
-						"Fine Offset",
-						"Fine Offset with Solar Sensors",
-						"EasyWeather",
-						"Instromet",
-						"LaCrosse WS2300",
-						"Oregon Scientific WMR100",
-						"Oregon Scientific WMR200",
-						"Oregon Scientific WM-918",
-						"Oregon Scientific WMR-928"
-					],
 					"removeDefaultNone": true,
-					"focus": true,
 					"hideInitValidationError": true
 				},
 				"stationmodel": {
@@ -160,7 +158,7 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": [0, 1]
+						"stationid": [0, 1]
 					}
 				},
 
@@ -263,7 +261,7 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": 11
+						"stationid": 11
 					}
 				},
 
@@ -343,7 +341,7 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": [19,20]
+						"stationid": [19,20]
 					}
 				},
 
@@ -371,7 +369,22 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": 12
+						"stationid": 12
+					}
+				},
+
+				"ecowitthttpapi": {
+					"fields": {
+						"ipaddress": {
+							"label": "IP address:",
+							"type": "ipv4",
+							"helpers": [
+								"The IPv4 address of your station or gateway device"
+							]
+						}
+					},
+					"dependencies": {
+						"stationid": 22
 					}
 				},
 
@@ -381,14 +394,14 @@
 					"label" : "Device Id",
 						"rightlabel": "Tempest Device Id",
 						"helper": "Get this from the weatherflow app"
-						},
+					},
 					"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
 					"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
 					"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
 					},
 					"dependencies": {
-						"stationtype": 16
-						}
+						"stationid": 16
+					}
 				},
 
 				"fineoffset": {
@@ -405,11 +418,11 @@
 								"The time span around the synchronised read to avoid reading from the console.",
 								"The default 3 seconds means do not read from  3 secs before to 3 secs after the expected write time.",
 								 "Time in seconds"
-								]
+							]
 						}
 					},
 					"dependencies": {
-						"stationtype": [5, 7]
+						"stationid": [5, 7]
 					}
 				},
 
@@ -426,7 +439,7 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": 4
+						"stationid": 4
 					}
 				},
 
@@ -443,7 +456,7 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": 10
+						"stationid": 10
 					}
 				},
 
@@ -455,47 +468,39 @@
 						}
 					},
 					"dependencies": {
-						"stationtype": [2, 3]
+						"stationid": [2, 3]
 					}
 				},
 
 				"http-wunder": {
-					"collapsible": true,
-					"collapsed": false,
 					"helpers": [
 						"Configure your station to send data to Cumulus using the Wunderground protocol",
 						"Note: If possible use the Ecowitt protocol rather than this one",
 						"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
 					],
 					"dependencies": {
-						"stationtype": 13
+						"stationid": 13
 					}
 				},
 				"http-ecowitt": {
-					"collapsible": true,
-					"collapsed": false,
 					"helpers": [
 						"Configure your Ecowitt station, or GW-XX00 device to send data to Cumulus using the Ecowitt protocol",
 						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
 					],
 					"dependencies": {
-						"stationtype": 14
+						"stationid": 14
 					}
 				},
 				"http-ambient": {
-					"collapsible": true,
-					"collapsed": false,
 					"helpers": [
 						"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
 						"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br>Interval: 20"
 					],
 					"dependencies": {
-						"stationtype": 15
+						"stationid": 15
 					}
 				},
 				"ecowittapi": {
-					"collapsible": true,
-					"collapsed": false,
 					"helpersPosition": "above",
 					"fields": {
 						"applicationkey": {
@@ -513,16 +518,17 @@
 								"MAC format is  XX:XX:XX:XX:XX:XX",
 								"IMEI format is 15 or 16 digits",
 								"You can find this on your device in the Ecowitt WS View or WS View Plus app"
-							]
+							],
+							"dependencies": {
+								"stationid": [14,18,22]
+							}
 						}
 					},
 					"dependencies": {
-						"stationtype": [12,14,18]
+						"stationid": [12,14,18,22]
 					}
 				},
 				"jsonstation": {
-					"collapsible": true,
-					"collapsed": false,
 					"fields": {
 						"conntype": {
 							"label": "Data Source:",

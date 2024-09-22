@@ -1,4 +1,4 @@
-// Last modified: 2023/12/21 15:28:32
+// Last modified: 2024/09/05 15:17:41
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -99,7 +99,6 @@ $(document).ready(function () {
 
     function onMessage(evt) {
         let data = JSON.parse(evt.data);
-
         updateDisplay(data);
     }
 
@@ -128,17 +127,17 @@ $(document).ready(function () {
         lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
         if ($('#LastUpdateIcon').attr('src') != 'img/up.png') {
-        	$('#LastUpdateIcon').attr('src', 'img/up.png');
-		}
+            $('#LastUpdateIcon').attr('src', 'img/up.png');
+}
 
 
         if (data.DataStopped) {
             if ($('#DataStoppedIcon').attr('src') != 'img/down.png') {
-            	$('#DataStoppedIcon').attr('src', 'img/down.png');
+                $('#DataStoppedIcon').attr('src', 'img/down.png');
             }
         } else if ($('#DataStoppedIcon').attr('src') != 'img/up.png'){
             $('#DataStoppedIcon').attr('src', 'img/up.png');
-		}
+        }
 
         // Firefox gets arsy about multiple notifications so roll them up into one
         let sendNotification = false;
@@ -201,16 +200,16 @@ $(document).ready(function () {
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
 
-		var tmpTrend = Number(data.TempTrend.replace(',','.'));
+        var tmpTrend = Number(data.TempTrend.replace(',','.'));
         if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down-small.png') {
-			$('#TempTrendImg').attr('src', 'img/down-small.png');
+            $('#TempTrendImg').attr('src', 'img/down-small.png');
         } else if (tmpTrend > 0 && $('#TempTrendImg').attr('src') != 'img/up-small.png') {
             $('#TempTrendImg').attr('src', 'img/up-small.png');
         } else if (tmpTrend == 0 && $('#TempTrendImg').attr('src') != 'img/nochange-small.png') {
             $('#TempTrendImg').attr('src', 'img/nochange-small.png');
         }
 
-		tmpTrend = Number(data.PressTrend.replace(',','.'));
+        tmpTrend = Number(data.PressTrend.replace(',','.'));
         if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down-small.png') {
             $('#PressTrendImg').attr('src', 'img/down-small.png');
         } else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up-small.png') {

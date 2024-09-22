@@ -1,4 +1,4 @@
-// Last modified: 2023/10/13 21:40:36
+// Last modified: 2024/09/20 17:09:32
 
 var myTable;
 var currMonth;
@@ -33,38 +33,53 @@ $(document).ready(function () {
             // do nothing
         }
 
-        fromDate = $('#dateFrom').datepicker({
-                dateFormat: 'dd-mm-yy',
-                maxDate: '0d',
-                firstDay: 1,
-                changeMonth: true,
-                changeYear: true
-            }).val(formatUserDateStr(now))
-            .on('change', function() {
-                var date = fromDate.datepicker('getDate');
-                if (toDate.datepicker('getDate') < date) {
-                    toDate.datepicker('setDate', date);
-                }
-                toDate.datepicker('option', { minDate: date });
-            });
+        $.ajax({
+            url: 'api/tags/process.txt',
+            dataType: 'text',
+            method: 'POST',
+            data: '<#recordsbegandate format="yyyy-MM-dd">',
+            contentType: 'text/plain'
+        })
+        .done(function (startDate) {
+            let start = new Date(startDate);
 
-        toDate = $('#dateTo').datepicker({
-                dateFormat: "dd-mm-yy",
-                maxDate: '0d',
-                firstDay: 1,
-                changeMonth: true,
-                changeYear: true
-            }).val(formatUserDateStr(now))
-            .on('change', function() {
-                var date = fromDate.datepicker('getDate');
-                if (toDate.datepicker('getDate') < date) {
-                    toDate.datepicker('setDate', date);
-                }
-                toDate.datepicker('option', { minDate: date });
-            });
+            fromDate = $('#dateFrom').datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: '0d',
+                    firstDay: 1,
+                    yearRange: start.getFullYear() + ':' + now.getFullYear(),
+                    changeMonth: true,
+                    changeYear: true
+                }).val(formatUserDateStr(now))
+                .on('change', function() {
+                    var date = fromDate.datepicker('getDate');
+                    if (toDate.datepicker('getDate') < date) {
+                        toDate.datepicker('setDate', date);
+                    }
+                    toDate.datepicker('option', { minDate: date });
+                });
 
-        fromDate.datepicker('setDate', now);
-        toDate.datepicker('setDate', now);
+            toDate = $('#dateTo').datepicker({
+                    dateFormat: "dd-mm-yy",
+                    minDate: start,
+                    maxDate: '0d',
+                    firstDay: 1,
+                    yearRange: start.getFullYear() + ':' + now.getFullYear(),
+                    changeMonth: true,
+                    changeYear: true
+                }).val(formatUserDateStr(now))
+                .on('change', function() {
+                    var date = fromDate.datepicker('getDate');
+                    if (toDate.datepicker('getDate') < date) {
+                        toDate.datepicker('setDate', date);
+                    }
+                    toDate.datepicker('option', { minDate: date });
+                });
+
+            fromDate.datepicker('setDate', now);
+            toDate.datepicker('setDate', now);
+        });
     }});
 
 

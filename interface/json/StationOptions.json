@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/07/11 22:34:03",
+	"version": "Last Modified: 2024/09/20 13:57:44",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -13,35 +13,30 @@
 			"collapsible": true,
 			"collapsed": true,
 			"fields": {
+				"manufacturer": {
+					"label": "Manufacturer",
+					"type": "select",
+					"sort": false,
+					"optionLabels": [
+						" Select Manufacturer",
+						"Davis",
+						"Ecowitt (and clones)",
+						"Fine Offset (and clones)",
+						"WeatherFlow",
+						"Weather Underground",
+						"Ambient",
+						"JSON Data Input",
+						"Oregon Scientific (serial)",
+						"Oregon Scientific (USB)",
+						"Instromet",
+						"LaCrosse",
+						"Cumulus MX Simulator"
+					]
+				},
 				"stationtype": {
 					"label": "Station&nbsp;type",
 					"type": "select",
 					"sort": false,
-					"optionLabels": [
-						" Select Station",
-						"PWS Simulator",
-						"Davis Vantage Pro",
-						"Davis Vantage Pro2/Vue",
-						"Davis WeatherLink Live",
-						"Davis WeatherLink Cloud (WLL/WLC)",
-						"Davis WeatherLink Cloud (VP2)",
-						"Ecowitt Local API",
-						"Ecowitt Cloud",
-						"HTTP (Ecowitt)",
-						"HTTP (Wunderground)",
-						"HTTP (Ambient)",
-						"WeatherFlow Tempest",
-						"JSON Data Input",
-						"Fine Offset",
-						"Fine Offset with Solar Sensors",
-						"EasyWeather",
-						"Instromet",
-						"LaCrosse WS2300",
-						"Oregon Scientific WMR100",
-						"Oregon Scientific WMR200",
-						"Oregon Scientific WM-918",
-						"Oregon Scientific WMR-928"
-					],
 					"removeDefaultNone": true
 				},
 				"stationmodel": {
@@ -201,7 +196,7 @@
 							"type": "text",
 							"helper": "A longer description of the location"
 						},
-						"altitude":{
+						"altitude": {
 							"helper": "Enter the altitude of your station (in the units below)"
 						},
 						"Latitude": {
@@ -454,8 +449,16 @@
 						"apiStationId": {
 							"label": "Your device id on WeatherLink:",
 							"helpers": [
-								"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
+								"You can enter the station id, or the station uuid (below)",
+								"Enter the numeric station id used for your station in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
 								"If more than one station is registered to your account, then all the station ids will be listed in the console and the MX diags file. You will then have to enter the required id manually in this field"
+							]
+						},
+						"apiStationUuid": {
+							"label": "Your device uuid on WeatherLink:",
+							"helpers": [
+								"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
+								"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
 							]
 						}
 					}
@@ -913,7 +916,7 @@
 			"collapsed": true,
 			"fields": {
 				"deviceid": {
-					"label" : "Device Id",
+					"label": "Device Id",
 					"rightlabel": "Tempest Device Id",
 					"helper": "Get this from the weatherflow app"
 				},
@@ -925,7 +928,7 @@
 					"label": "Security Token",
 					"helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"
 				},
-				"dayshistory":{
+				"dayshistory": {
 					"label": "History Days Import",
 					"helpers": [
 						"Number of days to import from the WeatherFlow website.",
@@ -951,7 +954,7 @@
 					"helpers": [
 						"The time span around the synchronised read to avoid reading from the console.",
 						"The default 3 seconds means do not read from 3 secs before to 3 secs after the expected write time.",
-						 "Time in seconds"
+						"Time in seconds"
 					]
 				},
 				"advanced": {
@@ -1107,7 +1110,7 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpersPosition": "above",
-			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than the HTTP protocol",
+			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than the Custom Server protocol",
 			"fields": {
 				"setcustom": {
 					"label": "Enable Gateway Config:",
@@ -1167,6 +1170,22 @@
 				"stationid": 14
 			}
 		},
+		"ecowitthttpapi": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"ipaddress": {
+					"label": "IP address:",
+					"type": "ipv4",
+					"helpers": [
+						"The IPv4 address of your station or gateway device"
+					]
+				}
+			},
+			"dependencies": {
+				"stationid": 22
+			}
+		},
 		"ecowittmaps": {
 			"collapsible": true,
 			"collapsed": true,
@@ -1203,6 +1222,14 @@
 					],
 					"removeDefaultNone": true,
 					"helper": "You can over-ride the default tipping bucket sensor with the piezo sensor found in the WS90"
+				},
+				"piezosrain": {
+					"label": "Use Piezo IsRaining:",
+					"rightLabel": "Use the piezo sensor IsRaining value to trigger Cumulus MX IsRaining",
+					"helper": "Note: Currently only available with a WS90 connected to a GW2000 (Sept 2024)",
+					"dependencies": {
+						"stationid": [14,22]
+					}
 				},
 				"wn34chan1": {
 					"label": "WN34 chan 1:",
@@ -1267,10 +1294,14 @@
 					"removeDefaultNone": true,
 					"optionLabels": ["User 8","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
 					"helper": "Select the mapping for your WN34 sensor"
+				},
+				"stationid": {
+					"type": "integer",
+					"fieldClass": "hideme"
 				}
 			},
 			"dependencies": {
-				"stationid": [12,14,18]
+				"stationid": [12,14,18,22]
 			}
 		},
 		"http-ambient": {
@@ -1278,7 +1309,7 @@
 			"collapsed": false,
 			"helpers": [
 				"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
-				"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> nterval: 20"
+				"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20"
 			],
 			"dependencies": {
 				"stationid": 15
@@ -1306,7 +1337,7 @@
 						"You can find this on your device in the Ecowitt WS View or WS View Plus app"
 					],
 					"dependencies": {
-						"stationid": [14,18]
+						"stationid": [14,18,22]
 					}
 				},
 				"stationid": {
@@ -1315,7 +1346,7 @@
 				}
 			},
 			"dependencies": {
-				"stationid": [12,14,18]
+				"stationid": [12,14,18,22]
 			}
 		},
 		"jsonstation": {
@@ -1584,6 +1615,11 @@
 								"Defaults value is -1, which is interpreted as 0.2 mm or 0.01 inches for *most* stations",
 								"DO NOT set to zero, then every day would be counted as a rain day"
 							]
+						},
+						"uselogger": {
+							"label": "Use data logger:",
+							"rightLabel": "Use the logger/cloud for catch-up",
+							"helper": "By disabling this option, you can over-ride the default behaviour of attempting to download catch-up data from the logger (or cloud) on start-up"
 						}
 					}
 				},

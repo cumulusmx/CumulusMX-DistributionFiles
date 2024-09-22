@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/12 18:05:29",
+	"version": "Last Modified: 2024/09/15 11:11:37",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -326,7 +326,7 @@
 									},
 									"helpers": [
 										"Select which standard files are to be created locally/uploaded/copied every update interval",
-										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
 										"Note: The websitedata.json file is required for the default web site and is uploaded once or when the station configuration is changed",
 										"Note: The wxnow.txt file is created every minute, regardless of your web interval"
 									]
