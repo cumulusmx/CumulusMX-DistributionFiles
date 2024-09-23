@@ -1,6 +1,7 @@
-// Last modified: 2023/11/01 15:36:15
+// Last modified: 2024/09/23 11:21:55
 
 let accessMode;
+let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
 
 $(document).ready(function () {
 
@@ -20,6 +21,18 @@ $(document).ready(function () {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
+                                let form = $("form").alpaca("get");
+                                let airLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
+                                let airLinkOut = form.getControlByPath('airLink/outdoor/enabled').getValue();
+                                let extra = form.getControlByPath('httpSensors/extraStation').getValue();
+
+
+                                if (airLinkIn != stashedAirLinkIn || airLinkOut != stashedAirLinkOut || extra != stashedExtra) {
+                                    alert("You have changed the Extra Sensor settings, you must restart Cumulus MX for this to take effect");
+                                    stashedAirLinkIn = airLinkIn;
+                                    stashedAirLinkOut = airLinkOut;
+                                    stashedExtra = extra;
+                                }
 
                                 $.ajax({
                                     type: "POST",
@@ -130,6 +143,10 @@ $(document).ready(function () {
                 form.getControlByPath("httpSensors/ecowitt/stationid").setValue(stationid);
             });
 
+            // Keep a record of the last value
+            stashedAirLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
+            stashedAirLinkOut = form.getControlByPath('airLink/outdoor/enabled').getValue();
+            stashedExtra = form.getControlByPath('httpSensors/extraStation').getValue();
         }
     });
 });
