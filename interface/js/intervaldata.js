@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/20 17:05:18
+// Last modified: 2024/09/24 15:30:39
 
 
 var fromDate, toDate;
@@ -520,9 +520,9 @@ $(document).ready(function () {
         });
 
         now = roundMinutes(new Date());
-        toDate.val(formatUserDateStr(now))
+        toDate.datetimepicker('setOptions', {value: formatUserDateStr(now)});
         now.setHours(now.getHours() - 1);
-        fromDate.val(formatUserDateStr(now));
+        fromDate.datetimepicker('setOptions', {value: formatUserDateStr(now)});
     });
 });
 
