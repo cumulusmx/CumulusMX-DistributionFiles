@@ -372,7 +372,8 @@ input[type=number]:hover {
 	padding: 0 1em;
 }
 
-.w3-bar-item i {
+.w3-bar-item i,
+.w3-bar-item span {
 	margin-left:1em;
 	float:right;
 }

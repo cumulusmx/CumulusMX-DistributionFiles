@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Daily Data Viewer
-	File:	dailydata.html		 v1.0.0
-	Author:	D.N.C.Thomas	  Sept 2024
+	Page:	Interval Data Viewer
+	File:	intervaldata.html		v1.0.0
+	Author:	D.N.C.Thomas		 Sept 2024
 	Last Edit:	
-	Last Check:	 
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CumulusMX Daily Data Viewer</title>
+		<title>CumulusMX Interval Data Viewer</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -28,17 +28,17 @@
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-    	<!-- Bootstrap -->
-    	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-    	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-
-    	<!-- date picker -->
-    	<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
-    	<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
-    	<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
-    	<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
-
+		<!-- Bootstrap -->
+		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+	
+		<!-- Moment.js -->
+		<script src="/lib/moment/moment.min.js"></script>
+	
+		<!-- datetime picker -->
+		<link href="/lib/datetimepicker/jquery.datetimepicker.css" rel="stylesheet">
+		<script src="/lib/datetimepicker/jquery.datetimepicker.js"></script>
 
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/w3Pro+.css">
@@ -47,36 +47,15 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-pagemanager.js"></script>
-        <script src="js/dailydata.js"></script>
+		<script src="js/intervaldata.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
-        .form-groupX {
-            margin-bottom: 0px;
-        }
-        .paginate_input{
-            width: 50px
-        }
-        .multi-select {
-            display: flex;
-            flex-direction: column;
-            width: 200px;
-        }
-        .multi-select select {
-            height: 100px;
-        }
-        .dateselect {
-            text-align: right;
-        }
-        .mylabel {
-            margin-left: 1vw;
-            /*margin-right: 1vw;*/
-        }
-		input[type=text]{ color:var(--theme);max-width:8em; margin-left: 1em;}
-		input[type=select] { margin-left: 1em;}
-		.ow-titleBar { margin-bottom:0.75em;}
+			.mylabel {padding-left: 1em;}
+			.ow-titleBar {margin-bottom:0.75vh;}
+			input[type=text]{color: var(--theme);}
 		</style>
 	</head>
 	<body class=ow-theme-add5>
@@ -99,44 +78,35 @@
 		<div id="content">
 			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
 			<div class="siteWidth">
-				<div class="ow-titleBar" style="margin-top:1vh;">
-					<h1>Daily Data Viewer</h1>
+				<div class="ow-titleBar">
+					<h1>Interval Data Viewer</h1>
 				</div>
 
-				<div class="oneCol" style="margin-top: 2vh;">
-					<div class="ow-card" style="margin-bottom:1vh;">
-                    	<div class="ow-titleBar" style="margin-bottom:1vh;">
-							<h4>Date Range</h4>
-							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Date:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date. Format is full year hyphen month hyphen day"></span>
-                        	<span><label class="mylabel" for="dateFrom" aria-hidden="true">End Date:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date. Format is full year hyphen month hyphen day"></span>
+				<div class="oneCol" style="margin-bottom: 2vh;">
+					<div class="ow-card">
+						<div class="ow-titleBar" style="margin: 1vh 0;">
+							<h3>Date-Time Range</h3>
+							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Time:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes"></span>
+							<span><label class="mylabel" for="dateTo" aria-hidden="true">End Time:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes"></span>
 						</div>
-                    	<div class="ow-titleBar">
-                        	<span style="min-width:30em;""><label class="mylabelX" for="format">Viewing format:</label>
-		                    	<select id="format" class="w3-select" style="max-width: 10vw;">
-                                	<option>Table</option>
-                                	<option>CSV</option>
-                            	</select>
-							</span>
-                        	<span>
-								<button type="button" class="ow-btn ow-theme-add3" onclick="showData()">View Data</button>&nbsp;
-                        		<button type="button" class="ow-btn ow-theme-add3" onclick="downloadData()">Download CSV</button>
-							</span>
-                        </div>
-                    </div>
-				</div>
-
-				<div class="ow-oneCol">
-					<div id="containerX" class="ow-container" style="order:0;">
-						<div class="ow-titleBar" style="margin-bottom:1vh;">
-							<h3>Available Data Items</h3>
-							<p><i class="fa-solid fa-info ow-theme-txt"></i> You must choose at least one</p>
+						<div class="ow-titleBar">
+							<span style="min-width:30em;">
+							<label class="mylabel" for="format">Viewing format:</label>
+							<select id="format" class="w3-select ow-theme-add3" style="max-width:10em;margin-left:1em;">
+								<option>Table</option>
+								<option>CSV</option>
+							</select></span>
+							<span><button type="button" class="ow-btn ow-theme-add3" onclick="showData()">View Data</button>&nbsp;
+							<button type="button" class="ow-btn ow-theme-add3" onclick="downloadData()">Download CSV</button></span>
 						</div>
 					</div>
 				</div>
-				<div id="container"></div>
-			</div>
-		</div>
 
+				<div id="container">
+				</div>
+			</div>
+
+		</div>
 		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
 			<div class="siteWidth">
 				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
