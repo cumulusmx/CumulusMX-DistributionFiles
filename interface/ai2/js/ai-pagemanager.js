@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: ai-pagemanager.js   V4.0.0
     Author:	Neil Thomas		    Feb 2024
-   	Last Edit:	
+   	Last Edit:	2024/09/27 15:34:15
    	Role:
    	Manage and provide utility scripts for
     The AI
@@ -119,7 +119,7 @@ let checkTheme = function() {
 		console.log('Theme changed to: ' + CMXConfig.Theme );
 		$('#theme').attr('href', 'themes/' + CMXConfig.Theme + '.css');
 	}
-	
+
 	// yield to allow page redraw
 	setTimeout(function () {
 		console.log('Displaying page');
@@ -132,7 +132,7 @@ let configPage = function() {
 	//	Check for fixed header
 	if( CMXConfig.StaticHead ) {
 		elementHt = $('header').outerHeight( true );
-		if( elementHt < 90) { elementHt = 124}
+		if( elementHt < 100) { elementHt = 124}
 		//console.log("Header height: " + elementHt);
 		$('header').addClass('w3-top');
 		$('#content').css('margin-top', elementHt + 'px');
@@ -165,7 +165,7 @@ let configPage = function() {
 		$('#ow-gullRight').css('z-index', '-200' );
 	}
 };
-	
+
 
 //	Temp development
 //localStorage.clear("CMXai4.0.0")

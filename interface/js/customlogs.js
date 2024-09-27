@@ -1,4 +1,4 @@
-// Last modified: 2024/09/26 18:05:38
+// Last modified: 2024/09/27 10:20:45
 
 let accessMode;
 let csvChar;
@@ -196,12 +196,10 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href != null && sheet.href.includes('alpaca')) {
-            let rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
