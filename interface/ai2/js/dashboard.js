@@ -1,4 +1,4 @@
-// Last modified: 2024/09/13 17:07:50
+// Last modified: 2024/09/28 12:09:33
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -521,7 +521,7 @@ const DavisData = '{' +
     '"DavisMaxInARow": <#DavisMaxInARow>, ' +
     '"DavisNumCRCerrors": <#DavisNumCRCerrors>, ' +
     '"txbattery": "<#txbattery>", ' +
-    '"battery": <#battery rc=y>, ' +
+    '"battery": "<#battery rc=y>", ' +
     '"DavisPercentReceived0": <#DavisReceptionPercent tx=1>, ' +
     '"DavisPercentReceived1": <#DavisReceptionPercent tx=2>, ' +
     '"DavisPercentReceived2": <#DavisReceptionPercent tx=3>, ' +
