@@ -9,3 +9,4 @@ hash_md5*.txt
 *.dll.config
 *.deps.json
 runtimes/
+CHANGELOG.md
