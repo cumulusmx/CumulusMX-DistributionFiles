@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2023/03/16 10:54:59
+// Last modified: 2024/10/04 23:34:42
 
 var chart, avail, config, options;
 var settings = {
@@ -498,7 +498,7 @@ var addSoilMoistAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Soil Moisture (' +  config.soilmoisture.units + ')'},
+        title: {text: 'Soil Moisture'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'SoilMoist',
         showEmpty: false,
@@ -506,7 +506,6 @@ var addSoilMoistAxis = function (idx) {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
         },
         min: 0,
-        max: 100,
         allowDecimals: false
     }, false, false);
 };
@@ -1413,6 +1412,8 @@ var doSoilMoist = function (idx, val) {
 
     // get the sensor name
     var name = val.split('-').slice(1).join('-');
+    var unitIdx = config.series.soilmoist.name.indexOf(name);
+    var suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
 
     $.ajax({
         url: '/api/graphdata/soilmoist.json',
@@ -1427,7 +1428,7 @@ var doSoilMoist = function (idx, val) {
                 yAxis: "SoilMoist",
                 type: "line",
                 tooltip: {
-                    valueSuffix: ' ' + config.soilmoisture.units
+                    valueSuffix: suffix
                 },
                 visible: true,
                 color: settings.colours[idx],

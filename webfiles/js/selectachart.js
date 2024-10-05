@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2024/09/14 22:11:23
+// Last modified: 2024/10/04 23:20:51
 
 var chart, config, options;
 var settings;
@@ -501,7 +501,7 @@ var addSoilMoistAxis = function (idx) {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
         },
         min: 0,
-        max: config.soilmoisture.units === '%' ? 100 : 200, // Davis 0-200 cb, Ecowitt 0-100%
+        max: config.soilmoisture.units.includes('cb') ? 200 : 100, // Davis 0-200 cb, Ecowitt 0-100%
         allowDecimals: false
     }, false, false);
 };
@@ -1409,7 +1409,8 @@ var doSoilMoist = function (idx, val) {
 
     // get the sensor name
     var name = val.split('-').slice(1).join('-');
-    var unitIdx = name.split(' ')[1] - 1;
+    var unitIdx = config.series.soilmoist.name.indexOf(name);
+    var suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
 
     $.ajax({
         url: 'soilmoistdata.json',
@@ -1424,7 +1425,7 @@ var doSoilMoist = function (idx, val) {
                 yAxis: "SoilMoist",
                 type: "line",
                 tooltip: {
-                    valueSuffix: ' ' + config.soilmoisture.units[unitIdx]
+                    valueSuffix: suffix
                 },
                 visible: true,
                 color: settings.colours[idx],

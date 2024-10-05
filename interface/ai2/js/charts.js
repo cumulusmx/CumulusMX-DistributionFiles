@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	charts.js			v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	2024/08/01 20:39:16
+ * 	Last Edit:	2024/10/04 12:52:06
  * 	Based on:	Marks script of the same name
  * 	Last Mod:	2023/05/22 20:17:02
  * 	Role:
@@ -2022,7 +2022,7 @@ var doSoilMoist = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Moisture (' + config.soilmoisture.units + ')'},
+				title: {text: 'Soil Moisture'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Moisture'},
 				labels: {
@@ -2075,7 +2075,7 @@ var doSoilMoist = function () {
 			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
 						  '<td><b>{point.y}</b></td></tr>',
 			footerFormat: '</table>',
-			valueSuffix: ' ' + config.soilmoisture.units,
+			//valueSuffix: ' ' + config.soilmoisture.units,
 			valueDecimals: 0,
 			xDateFormat: "%A, %b %e, %H:%M"
 		},
@@ -2095,7 +2095,8 @@ var doSoilMoist = function () {
 				chart.addSeries({
 					name: key,
 					color: config.series.soilmoist.colour[id],
-					data: value
+                    data: value,
+                    tooltip: {valueSuffix: ' ' + config.soilmoisture.units[id]}
 				});
 			 });
 

@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/14 22:00:46
+// Last modified: 2024/10/04 23:25:37
 
 var chart, avail, config, options;
 var settings = {
@@ -38,15 +38,15 @@ var compassP = function (deg) {
 };
 
 $(document).ready(function () {
-    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
     // get all the required config data before we start using it
-    $.ajax({url: 'api/graphdata/availabledata.json', success: function (result1) {
-        $.ajax({url: 'api/graphdata/selectachart.json', success: function (result2) {
-            $.ajax({url: "api/graphdata/graphconfig.json", success: function (result3) {
+    $.ajax({url: '/api/graphdata/availabledata.json', success: function (result1) {
+        $.ajax({url: '/api/graphdata/selectachart.json', success: function (result2) {
+            $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result3) {
                 avail = result1;
                 settings = result2;
                 config = result3;
@@ -348,7 +348,7 @@ var updateColour = function (sel) {
 };
 
 var storeSettings = function () {
-    var url = '../api/graphdata/selectachart.json';
+    var url = '/api/graphdata/selectachart.json';
     $.ajax({
         url: url,
         type: 'POST',
@@ -500,7 +500,6 @@ var addSoilMoistAxis = function (idx) {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
         },
         min: 0,
-        max: 100,
         allowDecimals: false
     }, false, false);
 };
@@ -673,7 +672,7 @@ var doTemp = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -702,7 +701,7 @@ var doInTemp = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -731,7 +730,7 @@ var doHeatIndex = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -760,7 +759,7 @@ var doDewPoint = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -789,7 +788,7 @@ var doWindChill = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -818,7 +817,7 @@ var doAppTemp = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -847,7 +846,7 @@ var doFeelsLike = function (idx) {
     addTemperatureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/tempdata.json',
+        url: '/api/graphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -877,7 +876,7 @@ var doHumidity = function (idx) {
     addHumidityAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/humdata.json',
+        url: '/api/graphdata/humdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -906,7 +905,7 @@ var doInHumidity = function (idx) {
     addHumidityAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/humdata.json',
+        url: '/api/graphdata/humdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -936,7 +935,7 @@ var doSolarRad = function (idx) {
     addSolarAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/solardata.json',
+        url: '/api/graphdata/solardata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -967,7 +966,7 @@ var doUV = function (idx) {
     addUVAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/solardata.json',
+        url: '/api/graphdata/solardata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -997,7 +996,7 @@ var doPress = function (idx) {
     addPressureAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/pressdata.json',
+        url: '/api/graphdata/pressdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1027,7 +1026,7 @@ var doWindSpeed = function (idx) {
     addWindAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/winddata.json',
+        url: '/api/graphdata/winddata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1056,7 +1055,7 @@ var doWindGust = function (idx) {
     addWindAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/winddata.json',
+        url: '/api/graphdata/winddata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1085,7 +1084,7 @@ var doWindDir = function (idx) {
     addBearingAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/wdirdata.json',
+        url: '/api/graphdata/wdirdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1127,7 +1126,7 @@ var doRainfall = function (idx) {
     addRainAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/raindata.json',
+        url: '/api/graphdata/raindata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1158,7 +1157,7 @@ var doRainRate = function (idx) {
     addRainRateAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/raindata.json',
+        url: '/api/graphdata/raindata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1188,7 +1187,7 @@ var doPm2p5 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/airqualitydata.json',
+        url: '/api/graphdata/airqualitydata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1217,7 +1216,7 @@ var doPm10 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: 'api/graphdata/airqualitydata.json',
+        url: '/api/graphdata/airqualitydata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1249,7 +1248,7 @@ var doExtraTemp = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/extratemp.json',
+        url: '/api/graphdata/extratemp.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1281,7 +1280,7 @@ var doUserTemp = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/usertemp.json',
+        url: '/api/graphdata/usertemp.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1313,7 +1312,7 @@ var doExtraHum = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/extrahum.json',
+        url: '/api/graphdata/extrahum.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1345,7 +1344,7 @@ var doExtraDew = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/extradew.json',
+        url: '/api/graphdata/extradew.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1377,7 +1376,7 @@ var doSoilTemp = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/soiltemp.json',
+        url: '/api/graphdata/soiltemp.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1407,10 +1406,11 @@ var doSoilMoist = function (idx, val) {
 
     // get the sensor name
     var name = val.split('-').slice(1).join('-');
-    var unitIdx = name.split(' ')[1] - 1;
+    var unitIdx = config.series.soilmoist.name.indexOf(name);
+    var suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
 
     $.ajax({
-        url: 'api/graphdata/soilmoist.json',
+        url: '/api/graphdata/soilmoist.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1422,7 +1422,7 @@ var doSoilMoist = function (idx, val) {
                 yAxis: "SoilMoist",
                 type: "line",
                 tooltip: {
-                    valueSuffix: ' ' + config.soilmoisture.units[unitIdx]
+                    valueSuffix: suffix
                 },
                 visible: true,
                 color: settings.colours[idx],
@@ -1441,7 +1441,7 @@ var doLeafWet = function (idx, val) {
     var name = val.split('-').slice(1).join('-');
 
     $.ajax({
-        url: 'api/graphdata/leafwetness.json',
+        url: '/api/graphdata/leafwetness.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();

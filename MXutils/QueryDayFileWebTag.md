@@ -1,17 +1,17 @@
 <!--
-    Last updated:  2024/09/20 14:48:49
+    Last updated:  2024/10/04 16:51:17
 -->
 # Web Tag QueryDayFile
 The web tag takes the form:
 ```go
-<#QueryDayFile value=MinTemp function=min [where=>10] dateFrom=2023-01-01 [dateTo=2024-01-01] [resfunc=max] [showDate=y] [format="date_format"] [dp=N] [tc=y] [rc=y]>
+<#QueryDayFile value=LowTemp function=min [where=>10] dateFrom=2023-01-01 [dateTo=2024-01-01] [resfunc=max] [showDate=y] [format="date_format"] [dp=N] [tc=y] [rc=y]>
 ```
 
 **If there is an existing web tag for the value you require, please use that specific tag rather than this general query. The specific tag is likely be *much* more efficient.**
 
 ## Parameters
 ### value:
-Required. The name of the value int he day file to query.
+Required. The name of the value in the day file to query.
 
 Possible value strings:
 
@@ -63,7 +63,7 @@ Possible function strings:
 ### where:
 Required if function = count.
 
-Criteria applied to the count. This is a comparison value, so for example you want to count days where the minimum temperature was below zero °C you would use where=<0.
+Criteria applied to the count. This is a comparison value, so for example you want to count days where the minimum temperature was below zero °C you would use `where=<0`.
 
 You can use the following comparison strings:
 
@@ -88,14 +88,14 @@ The value is found for dates >= dateFrom.
 ### dateTo:
 Optional if dateFrom has one of the special values.
 
-Required if dateFrom is a date string - format "yyyy-MM-dd"
+Required if dateFrom is a date string - format `yyyy-MM-dd`
 
 The value is found for dates <= dateTo
 
 ### resFunc:
 Result function.
 
-Mandatory for grouped results, ie those using the date options: Month-[N], Year-[N], Month[N], Yearly
+Mandatory for grouped results, ie those using the date options: `Month-[N], Year-[N], Month[N], Yearly`
 
 Controls if the largest or smallest value for the grouped period is returned.
 
@@ -111,16 +111,16 @@ If omitted, then the web tag returns only the numeric value.
 
 If present, the the web tag returns a pair of strings, the value itself, and the date-time it occurred in the format: ["value","datetime_string"]
 
-The parameter showdate should not be used if the function is one of "avg", "sum", or "count". If specified for these functions it returns a datetime_string of "-".
+The parameter showDate should not be used if the function is one of "avg", "sum", or "count". If specified for these functions it returns a datetime_string of "-".
 
 ### format:
 Optional. The standard date formatting string used by all date-time web tags.
 
 ### dp:
-Optional. The standard decimal place definer used by all numeric web tags, it defaults to dp=1
+Optional. The standard decimal place definer used by all numeric web tags, it defaults to `dp=1`
 
 ### tc:
-Optional. The standard truncate definer used by all numeric web tags. If present it truncates the value to an integer (dp=0 will round the value to an integer).
+Optional. The standard truncate definer used by all numeric web tags. If present it truncates the value to an integer (`dp=0` will round the value to an integer).
 
 This parameter is automatically added if the function is "count"
 
@@ -148,7 +148,7 @@ Highest sun hours in any year, and the year it occurred:
 
 The total evapotranspiration last month:
 
-    <#QueryDayFile value=DayEVT> function=sum from=Month-1 dp=2>
+    <#QueryDayFile value=ET> function=sum from=Month-1 dp=2>
 
     returns: 23.56
 

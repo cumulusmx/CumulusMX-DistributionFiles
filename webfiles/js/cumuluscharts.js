@@ -1,4 +1,4 @@
-// Last modified: 2024/09/14 22:06:24
+// Last modified: 2024/10/04 16:03:23
 
 var chart, config;
 
@@ -2067,7 +2067,7 @@ var doSoilMoist = function () {
         tooltip: {
             shared: true,
             split: false,
-            valueSuffix: ' ' + config.soilmoisture.units,
+            //valueSuffix: ' ' + config.soilmoisture.units[id],
             valueDecimals: 0,
             xDateFormat: "%A, %b %e, %H:%M"
         },

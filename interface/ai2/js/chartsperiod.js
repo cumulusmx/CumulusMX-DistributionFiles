@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2023/09/25 11:13:43
+// Last modified: 2024/10/04 23:37:02
 
 var chart, avail, config, options;
 var cache = {};
@@ -565,7 +565,7 @@ var addSoilMoistAxis = function (idx) {
 
 	// nope no existing axis, add one
 	chart.addAxis({
-		title: {text: 'Soil Moisture (' +  config.soilmoisture.units + ')'},
+		title: {text: 'Soil Moisture'},
 		opposite: idx < settings.series.length / 2 ? false : true,
 		id: 'SoilMoist',
 		showEmpty: false,
@@ -573,7 +573,6 @@ var addSoilMoistAxis = function (idx) {
 			align: idx < settings.series.length / 2 ? 'right' : 'left'
 		},
 		min: 0,
-		max: 100,
 		allowDecimals: false
 	}, false, false);
 };
@@ -1761,6 +1760,9 @@ var doSoilMoist = function (idx, val) {
 	chart.showLoading();
 
 	addSoilMoistAxis(idx);
+    var name = val.split('-').slice(1).join('-');
+    var unitIdx = config.series.soilmoist.name.indexOf(name);
+    var suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
 
 	// get the sensor name
 	var name = val.split('-').slice(1).join('-');
@@ -1768,7 +1770,7 @@ var doSoilMoist = function (idx, val) {
 	if (cache === null || cache.soilmoist === undefined)
 	{
 		$.ajax({
-			url: '/api/graphdata/soilmoist.json',
+            url: '/api/graphdata/intvsoilmoist.json?start=' + getUnixTimeStamp($("#dateFrom").datepicker('getDate')) + '&end=' + getUnixTimeStamp($("#dateTo").datepicker('getDate')),
 			dataType: 'json',
 			success: function (resp) {
 				cache.soilmoist = resp;
@@ -1791,7 +1793,7 @@ var doSoilMoist = function (idx, val) {
 			yAxis: "SoilMoist",
 			type: "line",
 			tooltip: {
-				valueSuffix: ' ' + config.soilmoisture.units
+				valueSuffix: suffix
 			},
 			visible: true,
 			color: settings.colours[idx],

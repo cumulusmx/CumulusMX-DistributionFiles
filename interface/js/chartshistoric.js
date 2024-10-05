@@ -1,4 +1,4 @@
-// Last modified: 2023/12/29 15:01:04
+// Last modified: 2024/10/04 15:50:42
 
 var chart, config, available;
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-        url: "api/graphdata/availabledata.json",
+        url: "/api/graphdata/availabledata.json",
         dataType: "json",
         success: function (result) {
             available = result;
@@ -71,12 +71,12 @@ $(document).ready(function () {
     });
 
 
-    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
-    $.ajax({url: "api/graphdata/graphconfig.json", success: function (result) {
+    $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
         config = result;
         var value = parent.location.hash.replace('#', '');
         doGraph(value);
@@ -186,7 +186,7 @@ var doTemp = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/tempdata.json',
+        url: '/api/dailygraphdata/tempdata.json',
         dataType: 'json',
         success: function (resp) {
            var titles = {
@@ -362,7 +362,7 @@ var doPress = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/pressdata.json',
+        url: '/api/dailygraphdata/pressdata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -470,7 +470,7 @@ var compassP = function (deg) {
 //     chart.showLoading();
 
 //     $.ajax({
-//         url: 'api/dailygraphdata/wdirdata.json',
+//         url: '/api/dailygraphdata/wdirdata.json',
 //         dataType: 'json',
 //         success: function (resp) {
 //             chart.hideLoading();
@@ -591,7 +591,7 @@ var doWind = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/winddata.json',
+        url: '/api/dailygraphdata/winddata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -702,7 +702,7 @@ var doRain = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/raindata.json',
+        url: '/api/dailygraphdata/raindata.json',
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -801,7 +801,7 @@ var doHum = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/humdata.json',
+        url: '/api/dailygraphdata/humdata.json',
         dataType: 'json',
         success: function (resp) {
             var titles = {
@@ -896,7 +896,7 @@ var doSolar = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/solardata.json',
+        url: '/api/dailygraphdata/solardata.json',
         dataType: 'json',
         success: function (resp) {
             var titles = {
@@ -1100,7 +1100,7 @@ var doDegDays = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/degdaydata.json',
+        url: '/api/dailygraphdata/degdaydata.json',
         dataType: 'json',
         success: function (resp) {
             var subtitle = '';
@@ -1221,7 +1221,7 @@ var doTempSum = function () {
     chart.showLoading();
 
     $.ajax({
-        url: 'api/dailygraphdata/tempsumdata.json',
+        url: '/api/dailygraphdata/tempsumdata.json',
         dataType: 'json',
         success: function (resp) {
             var subtitle = '';
