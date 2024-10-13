@@ -53,6 +53,16 @@
 				border: thin solid var(--theme);
 				margin: 1vh 0;
 			}
+			#DavisPanel span { float: right; }
+			#DavisPanel > div > div {
+				border-top: thin solid transparent;
+				border-bottom: thin solid transparent;
+			}
+			#DavisPanel > div > div:hover {
+				background: linear-gradient( 0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
+				border-top: thin solid var(--add2);
+				border-bottom: thin solid var(--add2);
+			}
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -94,13 +104,15 @@
 				<!--	Davis Station Data	-->
 				<div id="DavisPanel" class="ow-container ow-animate-drop">
 					<h4>Davis Weather Station Status</h4>
-					<div class="ow-fiveCol" style="row-gap:0; margin-bottom:1vh;">
+					<div class="ow-threeCol" style="gap:0 3vw; margin-bottom:1vh;">
 						<div class="davisVP2">Packets Received: <span id="DavisPacketsReceived">not known</span></div>
 						<div class="davisVP2">Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
-						<div class="davisVP2">Failure Rate: <span id="DavisSuccess">not known</span></div>
 						<div class="davisVP2">Packet streak: <span id="DavisMaxInARow">not known</span></div>
+						<div class="davisVP2">Failure Rate: <span id="DavisSuccess">not known</span></div>
 						<div class="davisVP2">CRC Errors: <span id="DavisCRCErrors">not known</span></div>
 						<div>Console Battery: <span id="ConsoleBattery">not known</span></div>
+					</div>
+					<div class="ow-fourCol" style="gap:0 2vw; margin-bottom:1vh;">
 						<div id="DavisXmt0">Xmt Batt 1: <span id="DavisTXBattery0">not known</span></div>
 						<div id="DavisXmt1">Xmt Batt 2: <span id="DavisTXBattery1">not known</span></div>
 						<div id="DavisXmt2">Xmt Batt 3: <span id="DavisTXBattery2">not known</span></div>
