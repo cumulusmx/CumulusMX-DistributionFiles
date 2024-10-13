@@ -563,7 +563,7 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
+    let html = '<!DOCTYPE html><html><head><title>Interval Data Viewer</title></head>';
     html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/Grey.css">';
     html += '<link rel="stylesheet" href="css/main.css"></head>';
     html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
