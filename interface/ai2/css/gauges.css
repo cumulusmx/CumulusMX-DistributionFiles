@@ -102,7 +102,7 @@ label {
   border-radius: 10px;
   display: none;
   position: absolute;
-  border: 1px solid var(--sub5);
+  border: 3px ridge var(--theme)!important;
   background: var(--add5);
   color: var(--theme);
   padding: 0 7px 3px 7px;
@@ -114,7 +114,6 @@ label {
 	line-height:1em;
 	padding: 0;
 }
-
 
 .tipinfo{
   text-align: left;
