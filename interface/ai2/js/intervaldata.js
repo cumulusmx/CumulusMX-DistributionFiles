@@ -447,7 +447,7 @@ $(document).ready(function () {
 
 function makeTable(D) {
     var a = '';
-    a += '<table><thead><tr>';
+    a += '<table class="w3-table"><thead><tr>';
 
     for (j = 0; j < D[0].length; j++) {
         a += '<th>' + D[0][j] + '</th>';
@@ -563,13 +563,16 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '';
+    let html = '<!DOCTYPE html><html><head><title>Interval Data Viewer</title></head>';
+    html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/Grey.css">';
+    html += '<link rel="stylesheet" href="css/main.css"></head>';
+    html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
+	html += '<div><h3>Interval Data Viewer</h3></div></div>';
     if (format == 'CSV') {
-        html = '<html lang="en"><head><title>Interval Data Viewer</title></head>';
-        html += '<body>' + convertToCSV(result, true) + '</body></html>';
+        html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
     } else {
-        html = '<html lang="en"><head><title>Interval Data Viewer</title><style>table{border-collapse:collapse;}th,td{border:1px solid #ddd;padding:8px;text-align:center;}th{background-color:#f2f2f2;color:black;}tr:nth-child(even){background-color:#f9f9f9;}tr:hover{background-color:#ddd;}td{white-space:nowrap;}</style></head>';
-        html += '<body>' + makeTable(result) + '</body></html>';
+        html += '<div class="ow-container">' + makeTable(result) + '</div></body></html>';
     }
     w.document.open().write(html);
     w.focus();
