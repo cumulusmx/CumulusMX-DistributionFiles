@@ -568,7 +568,7 @@ function createDataPage(result) {
     html += '<link rel="stylesheet" href="css/main.css"></head>';
     html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
-	html += '<div><h3>Daily Data Viewer</h3></div></div>';
+	html += '<div><h3>Interval Data Viewer</h3></div></div>';
     if (format == 'CSV') {
         html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
     } else {
