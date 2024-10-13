@@ -25,15 +25,18 @@ body {
   vertical-align: top;
   position: relative;
 }
-.gaugeSizeSml {
+.gaugeSizeSml,
+.ow-gaugeSmall {
   width: 181px;
   height: 181px;
 }
-.gaugeSizeStd {
+.gaugeSizeStd,
+.ow-gaugeStandard {
   width: 221px;
   height: 221px;
 }
-.gaugeSizeLrg {
+.gaugeSizeLrg,
+.ow-gaugeLarge {
   width: 261px;
   height: 261px;
 }
@@ -97,6 +100,7 @@ label {
   font-family: sans-serif;
   font-size: 10px;
 }
+
 .tipinfo{
   text-align: left;
   padding: 3px 0 3px 2px;
