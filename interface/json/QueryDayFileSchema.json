@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/19 21:44:27",
+	"version": "Last Modified: 2024/10/05 17:33:16",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -56,8 +56,11 @@
 		"startsel": {
 			"enum": [
 				"User",
+				"ThisDay",
+				"SpecificDay",
 				"ThisMonth",
 				"ThisYear",
+				"Yearly",
 				"Month1",
 				"Month2",
 				"Month3",
@@ -69,8 +72,7 @@
 				"Month9",
 				"Month10",
 				"Month11",
-				"Month12",
-				"Yearly"
+				"Month12"
 			],
 			"required": true
 		},
@@ -79,6 +81,28 @@
 		},
 		"end": {
 			"type": "string"
+		},
+		"month": {
+			"enum": [
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"7",
+				"8",
+				"9",
+				"10",
+				"11",
+				"12"
+			],
+			"required": true
+		},
+		"day": {
+			"type": "integer",
+			"minimum": 1,
+			"required": true
 		},
 		"countfunction": {
 			"enum": [
@@ -89,8 +113,11 @@
 	},
 	"dependencies": {
 		"where": ["function"],
+		"function": ["startsel"],
 		"start": ["startsel"],
 		"end": ["startsel"],
+		"month": ["startsel"],
+		"day": ["startsel"],
 		"countfunction": ["startsel"]
 	}
 }

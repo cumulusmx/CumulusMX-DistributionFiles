@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2024/05/11 12:33:27";
+$last_Modified="2024/10/16 12:52:24";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -186,7 +186,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
-        if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
+        if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'br') {
+            echo "Decompressing Brotli data\n";
+            $data = brotli_uncompress($data);
+        } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
             echo "Unzipping data\n";
             $data = gzdecode($data);
         } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'deflate') {

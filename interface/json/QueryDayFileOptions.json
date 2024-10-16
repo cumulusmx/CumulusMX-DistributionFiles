@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/27 15:41:46",
+	"version": "Last Modified: 2024/10/05 17:26:54",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -51,7 +51,13 @@
 				"Average",
 				"Sum",
 				"Count"
-			]
+			],
+			"helpers": [
+				"The function to apply to the value in each period"
+			],
+			"dependencies": {
+				"startsel": ["User", "ThisMonth", "ThisYear", "Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12", "Yearly"]
+			}
 		},
 		"where": {
 			"label": "Where",
@@ -72,8 +78,11 @@
 			"sort": false,
 			"optionLabels": [
 				"User Entered",
+				"On This Day",
+				"On Specified Day",
 				"This Month",
 				"This Year",
+				"Yearly",
 				"January",
 				"February",
 				"March",
@@ -85,8 +94,7 @@
 				"September",
 				"October",
 				"November",
-				"December",
-				"Yearly"
+				"December"
 			]
 		},
 		"start": {
@@ -105,19 +113,57 @@
 				"startsel": ["User"]
 			}
 		},
+		"month": {
+			"label": "Month",
+			"type": "select",
+			"sort": false,
+			"optionLabels": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December"
+			],
+			"removeDefaultNone": true,
+			"helpers": [
+				"Select the month of 'On Specified Day'"
+			],
+			"dependencies": {
+				"startsel": ["SpecificDay"]
+			}
+		},
+		"day": {
+			"label": "Day",
+			"type": "integer",
+			"removeDefaultNone": true,
+			"helpers": [
+				"Select the day of 'On Specified Day'"
+			],
+			"dependencies": {
+				"startsel": ["SpecificDay"]
+			}
+		},
 		"countfunction": {
 			"label": "Result Function",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"Most/Highest value in period",
-				"Least/Lowest value in period"
+				"Most/Highest value in the groups",
+				"Least/Lowest value in the groups"
 			],
+			"removeDefaultNone": true,
 			"helpers": [
-				"Do you want the highest or lowest value in the period?"
+				"Do you want the highest or lowest value of all the grouped periods?"
 			],
 			"dependencies": {
-				"startsel": ["Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12", "Yearly"]
+				"startsel": ["ThisDay", "SpecificDay", "Yearly", "Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12"]
 			}
 		}
 	}

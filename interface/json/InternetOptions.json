@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/15 11:11:37",
+	"version": "Last Modified: 2024/10/16 10:04:57",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -241,6 +241,17 @@
 							"helpers": [
 								"Some web servers do not seem to work well with GET uploads, if you experience issues with the small uploads (realtime.txt etc) then this option can be disabled",
 								"Disabling this option will make small uploads slightly slower"
+							],
+							"dependencies": {
+								"ftpmode": 3
+							}
+						},
+						"phpusebrotli": {
+							"label": "Brotli Compression",
+							"rightLabel": "Use Brotli compression for PHP file uploads",
+							"helpers": [
+								"Enables support for Brotli compression of PHP file uploads to your web server",
+								"Note, this also requires PHP support for Brotli compression on your web server - CHECK this support is available before enabling this option"
 							],
 							"dependencies": {
 								"ftpmode": 3
