@@ -1,4 +1,4 @@
-// Last modified: 2024/09/27 10:20:21
+// Last modified: 2024/10/05 17:41:25
 
 let accessMode;
 
@@ -7,7 +7,7 @@ $(document).ready(function() {
     now.setHours(0, 0, 0, 0);
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType:'json'
     })
     .done(function (result) {
@@ -18,8 +18,8 @@ $(document).ready(function() {
     // Create the form
 
     $("form").alpaca({
-        "optionsSource": "./json/QueryDayFileOptions.json",
-        "schemaSource": "./json/QueryDayFileSchema.json",
+        "optionsSource": "/json/QueryDayFileOptions.json",
+        "schemaSource": "/json/QueryDayFileSchema.json",
         "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {
@@ -30,11 +30,19 @@ $(document).ready(function() {
                         "click": function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
+                                let form = $('form').alpaca('get');
+                                let startSel = form.getControlByPath('startsel')
                                 let json = this.getValue();
+
+                                if (startSel.getValue() == 'SpecificDay') {
+                                    let mon = form.getControlByPath('month').getValue();
+                                    let day = form.getControlByPath('day').getValue();
+                                    json.startsel = 'Day' + addLeadingZeros(mon) + addLeadingZeros(day);
+                                }
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/records/query/dayfile.json",
+                                    url: "/api/records/query/dayfile.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })
@@ -125,8 +133,25 @@ $(document).ready(function() {
             now.setDate(now.getDate() - 1);
             //var start = new Date(result.began)
 
+            // set initial values
+            form.getControlByPath('day').setValue(1);
+            form.getControlByPath('day').schema.maximum = 31;
+
+            form.getControlByPath('month').on('change', function () {
+                let mon = form.getControlByPath('month').getValue();
+                let dayObj = form.getControlByPath('day');
+                let day = dayObj.getValue();
+
+                dayObj.schema.maximum = monthDays[mon];
+                dayObj.refresh();
+                dayObj.refreshValidationState();
+            });
+
+            // force a non-required field to have a default value
+            form.getControlByPath('countfunction').setValue('max');
+
             $.ajax({
-                url: 'api/tags/process.txt',
+                url: '/api/tags/process.txt',
                 dataType: 'text',
                 method: 'POST',
                 data: '<#recordsbegandate format="yyyy-MM-dd">',
@@ -267,3 +292,5 @@ function onAccessChange(that, val) {
         removeButtons();
     }
 }
+
+let  monthDays = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

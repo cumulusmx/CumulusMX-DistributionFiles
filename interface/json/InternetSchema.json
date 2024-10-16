@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/05/12 18:04:46",
+	"version": "Last Modified: 2024/10/16 10:05:16",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -97,6 +97,9 @@
 						"phpuseget": {
 							"type": "boolean"
 						},
+						"phpusebrotli": {
+							"type": "boolean"
+						},
 						"ftpmode": {
 						}
 					},
@@ -109,6 +112,7 @@
 						"phpignorecerts": ["ftpmode"],
 						"phppersistent": ["ftpmode"],
 						"phpuseget": ["ftpmode"],
+						"phpusebrotli": ["ftpmode"],
 						"maxuploads": ["ftpmode"]
 					}
 				}

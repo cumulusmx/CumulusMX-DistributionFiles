@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/10/04 23:25:37
+// Last modified: 2024/10/07 14:20:25
 
 var chart, avail, config, options;
 var settings = {
@@ -43,143 +43,145 @@ $(document).ready(function () {
         $('#Build').text(result.Build);
     }});
 
-    // get all the required config data before we start using it
-    $.ajax({url: '/api/graphdata/availabledata.json', success: function (result1) {
-        $.ajax({url: '/api/graphdata/selectachart.json', success: function (result2) {
-            $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result3) {
-                avail = result1;
-                settings = result2;
-                config = result3;
 
-                // add the default select option
-                var option = $('<option />');
-                option.html(txtSelect);
-                option.val(0);
-                $('#data0').append(option.clone());
-                $('#data1').append(option.clone());
-                $('#data2').append(option.clone());
-                $('#data3').append(option.clone());
-                $('#data4').append(option.clone());
-                $('#data5').append(option);
+    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const settingsRes = $.ajax({ url: '/api/graphdata/selectachart.json', dataType: 'json' });
+    const configRes = $.ajax({ url: "/api/graphdata/graphconfig.json", dataType: 'json' });
 
-                // then the real series options
-                for (var k in result1) {
-                    if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
-                        var optgrp = $('<optgroup />');
-                        optgrp.attr('label', k);
-                        result1[k].forEach(function (val) {
-                            var option = $('<option />');
-                            option.html(val);
-                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
-                                option.val(val);
-                            } else {
-                                option.val(k + '-' + val);
-                            }
-                            optgrp.append(option);
-                        });
-                        $('#data0').append(optgrp.clone());
-                        $('#data1').append(optgrp.clone());
-                        $('#data2').append(optgrp.clone());
-                        $('#data3').append(optgrp.clone());
-                        $('#data4').append(optgrp.clone());
-                        $('#data5').append(optgrp);
+    Promise.all([availRes, settingsRes, configRes])
+    .then(function (results) {
+
+        avail = results[0];
+        settings = results[1];
+        config = results[2];
+
+        // add the default select option
+        var option = $('<option />');
+        option.html(txtSelect);
+        option.val(0);
+        $('#data0').append(option.clone());
+        $('#data1').append(option.clone());
+        $('#data2').append(option.clone());
+        $('#data3').append(option.clone());
+        $('#data4').append(option.clone());
+        $('#data5').append(option);
+
+        // then the real series options
+        for (var k in avail) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
+                var optgrp = $('<optgroup />');
+                optgrp.attr('label', k);
+                avail[k].forEach(function (val) {
+                    var option = $('<option />');
+                    option.html(val);
+                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
+                        option.val(val);
+                    } else {
+                        option.val(k + '-' + val);
                     }
-                }
-
-                // add the chart theme colours
-                Highcharts.theme.colors.forEach(function(col, idx) {
-                    var option = $('<option style="background-color:' + col + '"/>');
-                    option.html(idx);
-                    option.val(col);
-                    $('#colour0').append(option.clone());
-                    $('#colour1').append(option.clone());
-                    $('#colour2').append(option.clone());
-                    $('#colour3').append(option.clone());
-                    $('#colour4').append(option.clone());
-                    $('#colour5').append(option);
+                    optgrp.append(option);
                 });
+                $('#data0').append(optgrp.clone());
+                $('#data1').append(optgrp.clone());
+                $('#data2').append(optgrp.clone());
+                $('#data3').append(optgrp.clone());
+                $('#data4').append(optgrp.clone());
+                $('#data5').append(optgrp);
+            }
+        }
 
-                // Draw the basic chart
-                freezing = config.temp.units === 'C' ? 0 : 32;
-                var options = {
-                    chart: {
-                        renderTo: 'chartcontainer',
-                        type: 'line',
-                        alignTicks: true
+        // add the chart theme colours
+        Highcharts.theme.colors.forEach(function(col, idx) {
+            var option = $('<option style="background-color:' + col + '"/>');
+            option.html(idx);
+            option.val(col);
+            $('#colour0').append(option.clone());
+            $('#colour1').append(option.clone());
+            $('#colour2').append(option.clone());
+            $('#colour3').append(option.clone());
+            $('#colour4').append(option.clone());
+            $('#colour5').append(option);
+        });
+
+        // Draw the basic chart
+        freezing = config.temp.units === 'C' ? 0 : 32;
+        var options = {
+            chart: {
+                renderTo: 'chartcontainer',
+                type: 'line',
+                alignTicks: true
+            },
+            title: {text: 'Recent Data Select-a-Chart'},
+            credits: {enabled: true},
+            xAxis: {
+                type: 'datetime',
+                ordinal: false,
+                dateTimeLabelFormats: {
+                    day: '%e %b',
+                    week: '%e %b %y',
+                    month: '%b %y',
+                    year: '%Y'
+                }
+            },
+            yAxis: [],
+            legend: {enabled: true},
+            plotOptions: {
+                series: {
+                    dataGrouping: {
+                        enabled: false
                     },
-                    title: {text: 'Recent Data Select-a-Chart'},
-                    credits: {enabled: true},
-                    xAxis: {
-                        type: 'datetime',
-                        ordinal: false,
-                        dateTimeLabelFormats: {
-                            day: '%e %b',
-                            week: '%e %b %y',
-                            month: '%b %y',
-                            year: '%Y'
+                    states: {
+                        hover: {
+                            halo: {
+                                size: 5,
+                                opacity: 0.25
+                            }
                         }
                     },
-                    yAxis: [],
-                    legend: {enabled: true},
-                    plotOptions: {
-                        series: {
-                            dataGrouping: {
-                                enabled: false
-                            },
-                            states: {
-                                hover: {
-                                    halo: {
-                                        size: 5,
-                                        opacity: 0.25
-                                    }
-                                }
-                            },
-                            cursor: 'pointer',
-                            marker: {
-                                enabled: false,
-                                states: {
-                                    hover: {
-                                        enabled: true,
-                                        radius: 0.1
-                                    }
-                                }
+                    cursor: 'pointer',
+                    marker: {
+                        enabled: false,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 0.1
                             }
-                        },
-                        line: {lineWidth: 2}
-                    },
-                    tooltip: {
-                        shared: true,
-                        split: false,
-                        xDateFormat: '%A, %b %e, %H:%M'
-                    },
-                    series: [],
-                    rangeSelector: myRanges
-                };
-
-                // draw the basic chart framework
-                chart = new Highcharts.StockChart(options);
-
-                // Set the dropdowns to defaults or previous values
-                for (var i = 0; i < 6; i++) {
-                    if (settings.colours[i] == '' || settings.colours[i] == null) {
-                        $('#colour' + i).css('background', chart.options.colors[i]);
-                        $('#colour' + i).val(chart.options.colors[i]);
-                        settings.colours[i] = chart.options.colors[i];
-                    } else {
-                        $('#colour' + i).css('background', settings.colours[i]);
-                        $('#colour' + i).val(settings.colours[i]);
+                        }
                     }
-                    if (settings.series[i] != '0') {
-                        // This series has some data associated with it
-                        $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
-                        $('#data' + i).val(settings.series[i]);
-                        // Draw it on the chart
-                        updateChart(settings.series[i], i, 'data' + i);
-                    }
-                }
-            }});
-        }});
-    }});
+                },
+                line: {lineWidth: 2}
+            },
+            tooltip: {
+                shared: true,
+                split: false,
+                xDateFormat: '%A, %b %e, %H:%M'
+            },
+            series: [],
+            rangeSelector: myRanges
+        };
+
+        // draw the basic chart framework
+        chart = new Highcharts.StockChart(options);
+
+        // Set the dropdowns to defaults or previous values
+        for (var i = 0; i < 6; i++) {
+            if (settings.colours[i] == '' || settings.colours[i] == null) {
+                $('#colour' + i).css('background', chart.options.colors[i]);
+                $('#colour' + i).val(chart.options.colors[i]);
+                settings.colours[i] = chart.options.colors[i];
+            } else {
+                $('#colour' + i).css('background', settings.colours[i]);
+                $('#colour' + i).val(settings.colours[i]);
+            }
+            if (settings.series[i] != '0') {
+                // This series has some data associated with it
+                $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
+                $('#data' + i).val(settings.series[i]);
+                // Draw it on the chart
+                updateChart(settings.series[i], i, 'data' + i);
+            }
+        }
+    });
 });
 
 

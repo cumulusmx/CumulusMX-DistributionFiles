@@ -1,4 +1,4 @@
-// Last modified: 2024/09/26 18:02:27
+// Last modified: 2024/10/05 17:45:34
 
 let accessMode;
 
@@ -21,7 +21,15 @@ $(document).ready(function() {
                         "click": function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
+                                let form = $('form').alpaca('get');
+                                let startSel = form.getControlByPath('startsel')
                                 let json = this.getValue();
+
+                                if (startSel.getValue() == 'SpecificDay') {
+                                    let mon = form.getControlByPath('month').getValue();
+                                    let day = form.getControlByPath('day').getValue();
+                                    json.startsel = 'Day' + addLeadingZeros(mon) + addLeadingZeros(day);
+                                }
 
                                 $.ajax({
                                     type: "POST",
@@ -115,6 +123,23 @@ $(document).ready(function() {
 
             now.setDate(now.getDate() - 1);
             //var start = new Date(result.began)
+
+            // set initial values
+            form.getControlByPath('day').setValue(1);
+            form.getControlByPath('day').schema.maximum = 31;
+
+            form.getControlByPath('month').on('change', function () {
+                let mon = form.getControlByPath('month').getValue();
+                let dayObj = form.getControlByPath('day');
+                let day = dayObj.getValue();
+
+                dayObj.schema.maximum = monthDays[mon];
+                dayObj.refresh();
+                dayObj.refreshValidationState();
+            });
+
+            // force a non-required field to have a default value
+            form.getControlByPath('countfunction').setValue('max');
 
             $.ajax({
                 url: '/api/tags/process.txt',
@@ -264,11 +289,13 @@ function onAccessChange(that, val) {
 }
 
 //  Added by Neil
-
 function tidyBootstrap() {
     console.log('Removing bootstrap column class');
     $('#alpaca4').parent().removeClass('col-sm-9');
     $('#alpaca5').parent().removeClass('col-sm-9');
     $('#alpaca6').parent().removeClass('col-sm-9');
+    $('#alpaca7').parent().removeClass('col-sm-9');
     $('.control-label').parent().removeClass('col-sm-3');
 }
+
+let  monthDays = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
