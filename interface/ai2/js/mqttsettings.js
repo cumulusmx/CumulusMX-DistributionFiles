@@ -4,17 +4,12 @@ let accessMode;
 
 $(document).ready(function() {
 
-    $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
-
     // Create the form
 
     $("form").alpaca({
-        "dataSource": "./api/settings/mqttdata.json",
-        "optionsSource": "./json/MqttOptions.json",
-        "schemaSource": "./json/MqttSchema.json",
+        "dataSource": "/api/settings/mqttdata.json",
+        "optionsSource": "/json/MqttOptions.json",
+        "schemaSource": "/json/MqttSchema.json",
         "view": "bootstrap-edit-horizontal",
         "options": {
             "form": {
@@ -29,7 +24,7 @@ $(document).ready(function() {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../api/setsettings/updatemqttconfig.json",
+                                    url: "/api/setsettings/updatemqttconfig.json",
                                     data: {json: JSON.stringify(json)},
                                     dataType: "text"
                                 })
@@ -126,10 +121,12 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
+        if (sheet.href != null && sheet.href.includes('alpaca')) {
+            let rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+                    return rule;
+                }
             }
         }
     }
