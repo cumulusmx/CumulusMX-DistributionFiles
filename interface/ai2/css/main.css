@@ -6,7 +6,7 @@
  *	&				CMX Default website		v3.0.0
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *	Author:		DNC Thomas
- *	Last edit:	2023/12/12 23:20:13
+ *	Last edit:	2024/10/24 23:20:13
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*	Variables
@@ -382,6 +382,11 @@ input[type=number]:hover {
 	margin-left: 0.5em;
 }
 
+.ow-hoverable tbody tr:hover {
+	background: linear-gradient(0deg, var(--add3)0, var(--add4)25%, var(--add4)75%, var(--add3)100%);
+	border-top: thin solid var(--sub5);
+	border-bottom: thin solid var(--sub5);
+}
 
 /*	ANIMATIONS	*/
 /*	Used for menus	*/
