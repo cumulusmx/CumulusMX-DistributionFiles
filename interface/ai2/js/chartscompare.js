@@ -40,6 +40,8 @@ var compassP = function (deg) {
 var myTooltipHead = '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>';
 var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond" style="color:{series.color}"></i>&nbsp;{series.name}</td>' +
 					 '<td><strong>{point.y}</strong></td></tr>';
+var beaufortScale, beaufortDesc, frostTemp;
+beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate breeze','Fresh breeze','Strong breeze','Near gale','Gale','Strong gale','Storm','Violent storm','Hurricane'];
 
 $(document).ready(function () {
 
@@ -50,6 +52,15 @@ $(document).ready(function () {
                 avail = result1;
                 settings = result2;
                 config = result3;
+                //  Configure for beaufort scale variations based on wind units
+           		switch(config.wind.units){
+                    case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
+                    case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
+                    case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
+                    case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
+                    default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
+                    // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
+                }	
 
                 // add the default select option
                 var option = $('<option />');
@@ -102,6 +113,7 @@ $(document).ready(function () {
 
                 // Draw the basic chart
                 freezing = config.temp.units === 'C' ? 0 : 32;
+                frostTemp = config.temp.units === 'C' ? 4 : 39;
                 var options = {
                     chart: {
                         renderTo: 'chartcontainer',
@@ -445,7 +457,11 @@ var addTemperatureAxis = function (idx) {
             color: 'rgb(0, 0, 180)',
             width: 1,
             zIndex: 2
-        }],
+        },{
+			value: frostTemp,
+			color: 'rgb(128,128,255)', width: 1, zIndex: 2,
+			label: {text: 'Frost possible',y:12}
+		}],
         minRange: config.temp.units == 'C' ? 5 : 10,
         allowDecimals: false
     }, false, false);
@@ -561,6 +577,55 @@ var addWindAxis = function (idx) {
         labels: {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
         },
+        plotLines: [{
+			value: beaufortScale[1],
+			color: 'rgb(255,220,0)', width: 1, zIndex:12,
+			label: { text: beaufortDesc[1], y:12}
+		},{
+			value: beaufortScale[2],
+			color: 'rgb(255,200,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[2], y:12}
+		},{
+			value: beaufortScale[3],
+			color: 'rgb(255,180,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[3], y:12}
+		},{
+			value: beaufortScale[4],
+			color: 'rgb(255,160,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[4], y:12}
+		},{
+			value: beaufortScale[5],
+			color: 'rgb(255,140,0)', width:1, zIndex:12,
+			label: {text:beaufortDesc[5], y:12}
+		},{
+			value: beaufortScale[6],
+			color: 'rgb(255,120,0)', width:1, zIndex:12,
+			label: { text: beaufortDesc[6], y:12}
+		},{
+			value: beaufortScale[7],
+			color: 'rgb(255,100,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[7], y:12}
+		},{
+			value: beaufortScale[8],
+			color: 'rgb(255,80,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[8], y:12}
+		},{
+			value: beaufortScale[9],
+			color: 'rgb(255,60,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[9], y:12}
+		},{
+			value: beaufortScale[10],
+			color: 'rgb(255,40,0)', width:1, zIndex:12,
+			label: {text:beaufortDesc[10], y:12}
+		},{
+			value: beaufortScale[11],
+			color: 'rgb(255,20,0)', width:1, zIndex:12,
+			label: { text: beaufortDesc[11], y:12}
+		},{
+			value: beaufortScale[11],
+			//color: 'rgb(255,0,0)', width:1, zIndex:12,
+			label: {text: beaufortDesc[12]}
+		}],
         min: 0,
         allowDecimals: config.wind.units == 'm/s' ? true : false
     }, false, false);
