@@ -1,4 +1,4 @@
-// Last modified: 2024/09/05 15:31:25
+// Last modified: 2024/09/19 21:15:23
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -299,7 +299,8 @@ $(document).ready(function () {
             }
         },
         "postRender": function (form) {
-            let stationIdObj = form.getControlByPath("station/stationtype");
+            let stationIdObj = form.getControlByPath("station/stationid");
+            let stationTypeObj = form.getControlByPath("station/stationtype");
             let manufacturerObj = form.getControlByPath("station/manufacturer");
 
             let webEnabled = form.getControlByPath("internet/ftp/enabled");
@@ -373,33 +374,36 @@ $(document).ready(function () {
             // On changing the manufacturer, repopulate the station type list
             manufacturerObj.on("change", function () {
                 let form = $("form").alpaca("get");
-                let stationIdObj = form.getControlByPath("station/stationtype")
-                stationIdObj.refresh();
-                if (stationIdObj.selectOptions.length == 1) {
-                    stationIdObj.setValue(stationIdObj.selectOptions[0].value);
+                let stationTypeObj = form.getControlByPath("station/stationtype")
+                stationTypeObj.refresh();
+                if (stationTypeObj.selectOptions.length == 1) {
+                    stationTypeObj.setValue(stationTypeObj.selectOptions[0].value);
+                    stationIdObj.setValue(stationTypeObj.selectOptions[0].value);
                 } else {
+                    stationTypeObj.setValue(-1);
                     stationIdObj.setValue(-1);
                 }
             });
 
-            let currId = stationIdObj.getValue();
-            stationIdObj.options.dataSource = setStationOptions;
-            stationIdObj.refresh();
+            let currId = stationTypeObj.getValue();
+            stationTypeObj.options.dataSource = setStationOptions;
+            stationTypeObj.refresh();
+            stationTypeObj.setValue(+currId);
             stationIdObj.setValue(+currId);
 
             // On changing the station type, propagate down to sub-sections
-            stationIdObj.on("change", function () {
+            stationTypeObj.on("change", function () {
                 let form = $("form").alpaca("get");
                 let manuObj = $('#' + form.getControlByPath("station/manufacturer").id);
                 let manu = manuObj[0].options[manuObj[0].selectedIndex].innerText;
                 let stationid = this.getValue();
+                stationIdObj.setValue(+stationid);
                 form.getControlByPath("station/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(manu + " " + o.text), a), []));
-                form.getControlByPath("station/daviscloud/stationtype").setValue(stationid);
+                form.getControlByPath("station/daviscloud/stationtype").setValue(+stationid);
             });
 
             // Set the initial stationid for Davis Cloud
-            var stationid = stationIdObj.getValue();
-            form.getControlByPath("station/daviscloud/stationtype").setValue(stationid);
+            form.getControlByPath("station/daviscloud/stationtype").setValue(+currId);
 
             // On changing the web uploads enabled, disable/enable the other FTP options
             webEnabled.on("change", function () {
@@ -544,12 +548,12 @@ let allStations = {
 };
 
 let davisStations = {'Select Station Type...': -1 , 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
-let ewStations = {'Select Station Type...': -1 , 'FineOffset': 5 , 'FineOffset with Solar Sensor': 7 , 'EasyWeather File': 4};
-let oregonStations = {'Select Station Type...': -1 , 'WMR-928': 2, 'WMR-918': 3};
+let ewStations = {'Select Station Type...': -1, 'FineOffset': 5, 'FineOffset with Solar Sensor': 7, 'EasyWeather File': 4};
+let oregonStations = {'Select Station Type...': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
-let oregonUsbStations = {'Select Station Type...': -1 , 'WMR200': 9, 'WMR100': 8};
+let oregonUsbStations = {'Select Station Type...': -1, 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'Select Station Type...': -1 , 'HTTP Local API': 22 , 'TCP Local API': 12 , 'HTTP Custom Sender': 14 , 'Ecowitt.net Cloud': 18};
+let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'TCP Local API': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
 let httpStations = {'HTTP Sender (WUnderground format)': 13};
 let ambientStations = {'HTTP Sender (Ambient format)': 15};
 let weatherflowStations = {'Tempest': 16};
