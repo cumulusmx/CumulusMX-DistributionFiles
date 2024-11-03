@@ -1,4 +1,4 @@
-// Last modified: 2023/10/30 15:34:30
+// Last modified: 2024/10/29 11:27:28
 
 $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
     console.log(message);
@@ -6,71 +6,71 @@ $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
 
 $(document).ready(function () {
     var tempTable=$('#temperature').dataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columns": [{"width": "50%"}, {"width": "20%"}, null],
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
+        paging: false,
+        searching: false,
+        info: false,
+        ordering: false,
+        columns: [{width: '50%'}, {width: '20%'}, null],
+        columnDefs: [
+            {className: 'left', targets: [0,2]},
+            {className: 'right', targets: [1]}
         ],
-        "ajax": '../api/records/alltime/temperature.json'
+        ajax: '/api/records/alltime/temperature.json'
     });
 
     var humTable=$('#humidity').dataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columns": [{"width": "50%"}, {"width": "20%"}, null],
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
+        paging: false,
+        searching: false,
+        info: false,
+        ordering: false,
+        columns: [{width: '50%'}, {width: '20%'}, null],
+        columnDefs: [
+            {className: 'left', targets: [0,2]},
+            {className: 'right', targets: [1]}
         ],
-        "ajax": '../api/records/alltime/humidity.json'
+        ajax: '/api/records/alltime/humidity.json'
     });
 
     var pressTable=$('#pressure').dataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columns": [{"width": "50%"}, {"width": "20%"}, null],
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
+        paging: false,
+        searching: false,
+        info: false,
+        ordering: false,
+        columns: [{width: '50%'}, {width: '20%'}, null],
+        columnDefs: [
+            {className: 'left', targets: [0,2]},
+            {className: 'right', targets: [1]}
         ],
-        "ajax": '../api/records/alltime/pressure.json'
+        ajax: '/api/records/alltime/pressure.json'
     });
 
     var windTable=$('#wind').dataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columns": [{"width": "50%"}, {"width": "20%"}, null],
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
+        paging: false,
+        searching: false,
+        info: false,
+        ordering: false,
+        columns: [{width: '50%'}, {width: '20%'}, null],
+        columnDefs: [
+            {className: 'left', targets: [0,2]},
+            {className: 'right', targets: [1]}
         ],
-        "ajax": '../api/records/alltime/wind.json'
+        ajax: '/api/records/alltime/wind.json'
     });
 
     var rainTable=$('#rain').dataTable({
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "ordering": false,
-        "columns": [{"width": "50%"}, {"width": "20%"}, null],
-        "columnDefs": [
-            {"className": "left", "targets": [0,2]},
-            {"className": "right", "targets": [1]}
+        paging: false,
+        searching: false,
+        info: false,
+        ordering: false,
+        columns: [{width: '50%'}, {width: '20%'}, null],
+        columnDefs: [
+            {className: 'left', targets: [0,2]},
+            {className: 'right', targets: [1]}
         ],
-        "ajax": '../api/records/alltime/rain.json'
+        ajax: '/api/records/alltime/rain.json'
     });
 
-    $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
+    $.ajax({url: '/api/info/version.json', dataType:'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
@@ -83,13 +83,13 @@ $(document).ready(function () {
 
             var urlPrefix;
             if (checkedValue === 'alltime') {
-                urlPrefix = "../api/records/alltime/";
+                urlPrefix = '/api/records/alltime/';
             } else if (checkedValue === 'thismonth') {
-                urlPrefix = "../api/records/thismonth/";
+                urlPrefix = '/api/records/thismonth/';
             } else if (checkedValue === 'thisyear') {
-                urlPrefix = "../api/records/thisyear/";
+                urlPrefix = '/api/records/thisyear/';
             } else {
-                urlPrefix = "../api/records/month/"+checkedValue+"/";
+                urlPrefix = '/api/records/month/'+checkedValue+'/';
             }
 
             tempTable.api().ajax.url( urlPrefix+'temperature.json' ).load();

@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/05/11 12:32:02",
+	"version": "Last modified: 2024/10/26 09:46:13",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -543,6 +543,22 @@
 					"label": "Record dry/wet days",
 					"type": "text",
 					"helper": "Text displayed for record dry wet periods"
+				}
+			}
+		},
+		"snow": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"snowdepth": {
+					"label": "Snow Depth",
+					"type": "text",
+					"helper": "Text displayed for snow depth fields"
+				},
+				"snow24h": {
+					"label": "Snowfall 24h",
+					"type": "text",
+					"helper": "Text displayed for snowfall in last 24 hours fields"
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/05/11 12:24:21",
+	"version": "Last modified: 2024/10/26 09:46:14",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -465,6 +465,18 @@
 					"type": "string"
 				},
 				"recwetdrytimedate": {
+					"type": "string"
+				}
+			}
+		},
+		"snow": {
+			"title": "Snowfall",
+			"type": "object",
+			"properties": {
+				"snowdepth": {
+					"type": "string"
+				},
+				"snow24h": {
 					"type": "string"
 				}
 			}

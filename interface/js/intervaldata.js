@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/24 15:30:39
+// Last modified: 2024/10/29 11:00:48
 
 
 var fromDate, toDate;
@@ -7,7 +7,7 @@ var fromDate, toDate;
 $(document).ready(function () {
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json'
     })
     .done(function (result) {
@@ -467,7 +467,7 @@ $(document).ready(function () {
     now.setHours(0, 0, 0, 0);
 
     $.ajax({
-        url: 'api/tags/process.txt',
+        url: '/api/tags/process.txt',
         dataType: 'text',
         method: 'POST',
         data: '<#recordsbegandate format="yyyy/MM/dd">',
@@ -626,12 +626,12 @@ function roundMinutes(date) {
 
 function createQuery() {
     let valid = false;
-    let url = 'api/data/intervaldata.json?';
+    let url = '/api/data/intervaldata.json?';
 
     url += 'from=' + Math.floor(fromDate.datetimepicker('getValue').getTime() / 1000) + '&to=' + Math.floor(toDate.datetimepicker('getValue').getTime() / 1000);
 
     url += '&data='
-    $("input[type='checkbox']").each(function () {
+    $('input[type="checkbox"]').each(function () {
         if ($(this).is(':checked')) {
             url += $(this).attr('id') + ',';
             valid = true;

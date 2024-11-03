@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/20 13:57:44",
+	"version": "Last Modified: 2024/10/29 20:22:42",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -126,6 +126,15 @@
 								"Inches"
 							]
 						},
+						"snow": {
+							"type": "select",
+							"removeDefaultNone": true,
+							"sort": false,
+							"optionLabels": [
+								"Centimetres",
+								"Inches"
+							]
+						},
 						"cloudbaseft": {
 							"label": "Cloudbase",
 							"rightLabel": "Show cloud base in feet",
@@ -135,8 +144,7 @@
 							"collapsible": true,
 							"collapsed": true,
 							"helpers": [
-								"Here be dragons! Only alter these settings if you understand what they do.",
-								"THESE OVERIDES ARE ONLY VALID AFTER THE UNITS CONFIGURATION ABOVE HAS BEEN SET, SAVED AND THIS PAGE RELOADED"
+								"THESE OVERIDES ARE ONLY VALID AFTER THE UNITS CONFIGURATION ABOVE HAS BEEN SET, SAVED, AND THEN THIS PAGE RELOADED"
 							],
 							"helpersPosition": "above",
 							"fields": {
@@ -1756,6 +1764,17 @@
 						"November",
 						"December"
 					]
+				},
+				"rainweekstart": {
+					"label": "Start of rainfall week:",
+					"helper": "Select the day of the week from which the weekly total is to be calculated",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"optionLabels": [
+						"Sunday",
+						"Monday"
+					]
 				}
 			}
 		},
@@ -1825,8 +1844,15 @@
 				"threshold": {
 					"label": "Threshold temperature:",
 					"helpers": [
-						"Temperature below which Cumulus will start counting chill hours. In your native units",
+						"Temperature below which Cumulus will start counting chill hours if the temperature is also above your base temperature. In your native units",
 						"Defaults: 7°C / 45°F"
+					]
+				},
+				"basetemp": {
+					"label": "Base temperature:",
+					"helpers": [
+						"Temperature above which Cumulus will start counting chill hours if the temperature is also below the threshold temperature. In your native units",
+						"Defaults: -99°C / -99°F"
 					]
 				},
 				"month": {

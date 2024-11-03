@@ -1,4 +1,4 @@
-// Last modified: 2024/10/04 15:50:42
+// Last modified: 2024/10/30 22:15:22
 
 var chart, config, available;
 
@@ -40,6 +40,12 @@ $(document).ready(function () {
             case 'tempsum':
                 doTempSum();
                 break;
+            case 'chillhrs':
+                doChillHrs();
+                break;
+            case 'snow':
+                doSnow();
+                break;
             default:
                 doTemp();
                 break;
@@ -48,35 +54,43 @@ $(document).ready(function () {
     };
 
     $.ajax({
-        url: "/api/graphdata/availabledata.json",
-        dataType: "json",
-        success: function (result) {
-            available = result;
-            if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('#temp').parent().remove();
-            }
-            if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('#humidity').parent().remove();
-            }
-            if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#solar').parent().remove();
-            }
-            if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
-                $('#degdays').parent().remove();
-            }
-            if (result.TempSum === undefined || result.TempSum.Count == 0) {
-                $('#tempsum').parent().remove();
-            }
+        url: '/api/graphdata/availabledata.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        available = result;
+        if (result.Temperature === undefined || result.Temperature.Count == 0) {
+            $('#temp').parent().remove();
+        }
+        if (result.Humidity === undefined || result.Humidity.Count == 0) {
+            $('#humidity').parent().remove();
+        }
+        if (result.Solar === undefined || result.Solar.Count == 0) {
+            $('#solar').parent().remove();
+        }
+        if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
+            $('#degdays').parent().remove();
+        }
+        if (result.TempSum === undefined || result.TempSum.Count == 0) {
+            $('#tempsum').parent().remove();
+        }
+        if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
+            $('#chillhrs').parent().remove();
+        }
+        if (result.Snow === undefined || result.Snow.Count == 0) {
+            $('#snow').parent().remove();
         }
     });
 
 
-    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: '/api/info/version.json', dataType: 'json'})
+    .done(function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
-    }});
+    });
 
-    $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
+    $.ajax({url: '/api/graphdata/graphconfig.json'})
+    .done(function (result) {
         config = result;
         var value = parent.location.hash.replace('#', '');
         doGraph(value);
@@ -85,7 +99,7 @@ $(document).ready(function () {
             $('input[name=options]').removeAttr('checked').parent().removeClass('active');
             $('input[name=options][value=' + value + ']').prop('checked', true).parent().addClass('active');
         }
-    }});
+    });
 });
 
 
@@ -187,86 +201,86 @@ var doTemp = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/tempdata.json',
-        dataType: 'json',
-        success: function (resp) {
-           var titles = {
-               'minTemp'  : 'Min Temp',
-               'maxTemp'  : 'Max Temp',
-               'avgTemp'  : 'Avg Temp',
-               'heatIndex': 'Heat Index',
-               'minApp'   : 'Min Apparent',
-               'maxApp'   : 'Max Apparent',
-               'minDew'   : 'Min Dewpoint',
-               'maxDew'   : 'Max Dewpoint',
-               'minFeels' : 'Min Feels',
-               'maxFeels' : 'Max Feels',
-               'humidex'  : 'Humidex',
-               'windChill': 'Wind Chill'
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var titles = {
+            'minTemp'  : 'Min Temp',
+            'maxTemp'  : 'Max Temp',
+            'avgTemp'  : 'Avg Temp',
+            'heatIndex': 'Heat Index',
+            'minApp'   : 'Min Apparent',
+            'maxApp'   : 'Max Apparent',
+            'minDew'   : 'Min Dewpoint',
+            'maxDew'   : 'Max Dewpoint',
+            'minFeels' : 'Min Feels',
+            'maxFeels' : 'Max Feels',
+            'humidex'  : 'Humidex',
+            'windChill': 'Wind Chill'
+        };
+        var visibility = {
+            'minTemp'  : true,
+            'maxTemp'  : true,
+            'avgTemp'  : false,
+            'heatIndex': false,
+            'minApp'   : false,
+            'maxApp'   : false,
+            'minDew'   : false,
+            'maxDew'   : false,
+            'minFeels' : false,
+            'maxFeels' : false,
+            'humidex'  : false,
+            'windChill': false
             };
-            var visibility = {
-                'minTemp'  : true,
-                'maxTemp'  : true,
-                'avgTemp'  : false,
-                'heatIndex': false,
-                'minApp'   : false,
-                'maxApp'   : false,
-                'minDew'   : false,
-                'maxDew'   : false,
-                'minFeels' : false,
-                'maxFeels' : false,
-                'humidex'  : false,
-                'windChill': false
-             };
-            var idxs = ['minTemp', 'maxTemp', 'avgTemp', 'heatIndex', 'minApp', 'maxApp', 'minDew', 'maxDew', 'minFeels', 'maxFeels', 'windChill', 'humidex'];
+        var idxs = ['minTemp', 'maxTemp', 'avgTemp', 'heatIndex', 'minApp', 'maxApp', 'minDew', 'maxDew', 'minFeels', 'maxFeels', 'windChill', 'humidex'];
 
-            idxs.forEach(function(idx) {
-                var valueSuffix = ' °' + config.temp.units;
-                yaxis = 0;
+        idxs.forEach(function(idx) {
+            var valueSuffix = ' °' + config.temp.units;
+            yaxis = 0;
 
-                if (idx in resp) {
-                    var clrIdx = idx.toLowerCase();
-                    if ('heatIndex' === idx || 'humidex' === idx) {
-                        clrIdx = 'max' + clrIdx;
-                    } else if ('windChill' === idx) {
-                        clrIdx = 'min' + clrIdx;
-                    }
-
-                    if (idx === 'humidex') {
-                        valueSuffix = null;
-                        if (config.temp.units == 'F') {
-                            chart.yAxis[1].remove();
-                            chart.addAxis({
-                                id: 'humidex',
-                                title:{text: 'Humidex'},
-                                opposite: true,
-                                labels: {
-                                    align: 'left'
-                                },
-                                alignTicks: true,
-                                gridLineWidth: 0, // Not working?
-                                gridZIndex: -10, // Hides the grid lines for this axis
-                                showEmpty: false
-                            });
-
-                            yaxis = 'humidex';
-                        }
-                    }
-
-                    chart.addSeries({
-                        name: titles[idx],
-                        data: resp[idx],
-                        color: config.series[clrIdx].colour,
-                        visible: visibility[idx],
-                        showInNavigator: visibility[idx],
-                        yAxis: yaxis,
-                        tooltip: {valueSuffix: valueSuffix}
-                    }, false);
-
+            if (idx in resp) {
+                var clrIdx = idx.toLowerCase();
+                if ('heatIndex' === idx || 'humidex' === idx) {
+                    clrIdx = 'max' + clrIdx;
+                } else if ('windChill' === idx) {
+                    clrIdx = 'min' + clrIdx;
                 }
-            });
-            chart.hideLoading();
-            chart.redraw();
-        }
+
+                if (idx === 'humidex') {
+                    valueSuffix = null;
+                    if (config.temp.units == 'F') {
+                        chart.yAxis[1].remove();
+                        chart.addAxis({
+                            id: 'humidex',
+                            title:{text: 'Humidex'},
+                            opposite: true,
+                            labels: {
+                                align: 'left'
+                            },
+                            alignTicks: true,
+                            gridLineWidth: 0, // Not working?
+                            gridZIndex: -10, // Hides the grid lines for this axis
+                            showEmpty: false
+                        });
+
+                        yaxis = 'humidex';
+                    }
+                }
+
+                chart.addSeries({
+                    name: titles[idx],
+                    data: resp[idx],
+                    color: config.series[clrIdx].colour,
+                    visible: visibility[idx],
+                    showInNavigator: visibility[idx],
+                    yAxis: yaxis,
+                    tooltip: {valueSuffix: valueSuffix}
+                }, false);
+
+            }
+        });
+        chart.hideLoading();
+        chart.redraw();
     });
 };
 
@@ -363,12 +377,12 @@ var doPress = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/pressdata.json',
-        dataType: 'json',
-        success: function (resp) {
-            chart.hideLoading();
-            chart.series[0].setData(resp.maxBaro);
-            chart.series[1].setData(resp.minBaro);
-        }
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        chart.hideLoading();
+        chart.series[0].setData(resp.maxBaro);
+        chart.series[1].setData(resp.minBaro);
     });
 };
 
@@ -592,13 +606,13 @@ var doWind = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/winddata.json',
-        dataType: 'json',
-        success: function (resp) {
-            chart.hideLoading();
-            chart.series[0].setData(resp.maxWind);
-            chart.series[1].setData(resp.maxGust);
-            chart.series[2].setData(resp.windRun);
-        }
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        chart.hideLoading();
+        chart.series[0].setData(resp.maxWind);
+        chart.series[1].setData(resp.maxGust);
+        chart.series[2].setData(resp.windRun);
     });
 };
 
@@ -703,12 +717,12 @@ var doRain = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/raindata.json',
-        dataType: 'json',
-        success: function (resp) {
-            chart.hideLoading();
-            chart.series[0].setData(resp.rain);
-            chart.series[1].setData(resp.maxRainRate);
-        }
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        chart.hideLoading();
+        chart.series[0].setData(resp.rain);
+        chart.series[1].setData(resp.maxRainRate);
     });
 };
 
@@ -802,30 +816,30 @@ var doHum = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/humdata.json',
-        dataType: 'json',
-        success: function (resp) {
-            var titles = {
-                'minHum'  : 'Minimum Humidity',
-                'maxHum': 'Maximum Humidity'
-             }
-             var idxs = ['minHum', 'maxHum'];
-             var cnt = 0;
-             idxs.forEach(function(idx) {
-                 if (idx in resp) {
-                     chart.addSeries({
-                         name: titles[idx],
-                         color: config.series[idx.toLowerCase()].colour,
-                         data: resp[idx],
-                         showInNavigator: true
-                     }, false);
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var titles = {
+            'minHum'  : 'Minimum Humidity',
+            'maxHum': 'Maximum Humidity'
+            }
+            var idxs = ['minHum', 'maxHum'];
+            var cnt = 0;
+            idxs.forEach(function(idx) {
+                if (idx in resp) {
+                    chart.addSeries({
+                        name: titles[idx],
+                        color: config.series[idx.toLowerCase()].colour,
+                        data: resp[idx],
+                        showInNavigator: true
+                    }, false);
 
-                     cnt++;
-                 }
-             });
+                    cnt++;
+                }
+            });
 
-            chart.hideLoading();
-            chart.redraw();
-        }
+        chart.hideLoading();
+        chart.redraw();
     });
 };
 
@@ -897,119 +911,119 @@ var doSolar = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/solardata.json',
-        dataType: 'json',
-        success: function (resp) {
-            var titles = {
-                solarRad: 'Solar Radiation',
-                uvi     : 'UV Index',
-                sunHours: 'Sunshine Hours'
-            };
-            var types = {
-                solarRad: 'area',
-                uvi     : 'line',
-                sunHours: 'column'
-            };
-            var tooltips = {
-                solarRad: {
-                    valueSuffix: ' W/m\u00B2',
-                    valueDecimals: 0
-                },
-                uvi: {
-                    valueSuffix: ' ',
-                    valueDecimals: config.uv.decimals
-                },
-                sunHours: {
-                    valueSuffix: ' hours',
-                    valueDecimals: 0
-                }
-            };
-            var indexes = {
-                solarRad: 1,
-                uvi     : 2,
-                sunHours: 0
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var titles = {
+            solarRad: 'Solar Radiation',
+            uvi     : 'UV Index',
+            sunHours: 'Sunshine Hours'
+        };
+        var types = {
+            solarRad: 'area',
+            uvi     : 'line',
+            sunHours: 'column'
+        };
+        var tooltips = {
+            solarRad: {
+                valueSuffix: ' W/m\u00B2',
+                valueDecimals: 0
+            },
+            uvi: {
+                valueSuffix: ' ',
+                valueDecimals: config.uv.decimals
+            },
+            sunHours: {
+                valueSuffix: ' hours',
+                valueDecimals: 0
             }
-            var fillColor = {
-                solarRad: {
-                    linearGradient: {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
-                    stops: [
-                        [0, config.series.solarrad.colour],
-                        [1, Highcharts.color(config.series.solarrad.colour).setOpacity(0).get('rgba')]
-                    ]
-                },
-                uvi     : null,
-                sunHours: null
-            };
-            var idxs = ['solarRad', 'uvi', 'sunHours'];
-
-            idxs.forEach(function(idx) {
-                if (idx in resp) {
-                    var clrIdx;
-                    if (idx === 'uvi')
-                        clrIdx ='uv';
-                    else if (idx === 'solarRad')
-                        clrIdx = 'solarrad';
-                    else if (idx === 'sunHours')
-                        clrIdx = 'sunshine';
-
-                    if (idx === 'uvi') {
-                        chart.addAxis({
-                            id: idx,
-                            title: {text: 'UV Index'},
-                            opposite: true,
-                            min: 0,
-                            labels: {
-                                align: 'left'
-                            },
-                            showEmpty: false
-                        });
-                    } else if (idx === 'sunHours') {
-                        chart.addAxis({
-                            id: idx,
-                            title: {text: 'Sunshine Hours'},
-                            opposite: true,
-                            min: 0,
-                            labels: {
-                                align: 'left'
-                            },
-                            showEmpty: false
-                        });
-                    } else if (idx === 'solarRad') {
-                        chart.addAxis({
-                            id: idx,
-                            title: {text: 'Solar Radiation (W/m\u00B2)'},
-                            min: 0,
-                            opposite: false,
-                            labels: {
-                                align: 'right',
-                                x: -5
-                            },
-                            showEmpty: false
-                        });
-                    }
-
-                    chart.addSeries({
-                        name: titles[idx],
-                        type: types[idx],
-                        yAxis: idx,
-                        tooltip: tooltips[idx],
-                        data: resp[idx],
-                        color: config.series[clrIdx].colour,
-                        showInNavigator: idx !== 'solarRad',
-                        index: indexes[idx],
-                        fillColor: fillColor[idx],
-                        zIndex: idx === 'uvi' ? 99 : null
-                    }, false);
-                }
-            });
-
-            chart.hideLoading();
-            chart.redraw();
+        };
+        var indexes = {
+            solarRad: 1,
+            uvi     : 2,
+            sunHours: 0
         }
+        var fillColor = {
+            solarRad: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+                    [0, config.series.solarrad.colour],
+                    [1, Highcharts.color(config.series.solarrad.colour).setOpacity(0).get('rgba')]
+                ]
+            },
+            uvi     : null,
+            sunHours: null
+        };
+        var idxs = ['solarRad', 'uvi', 'sunHours'];
+
+        idxs.forEach(function(idx) {
+            if (idx in resp) {
+                var clrIdx;
+                if (idx === 'uvi')
+                    clrIdx ='uv';
+                else if (idx === 'solarRad')
+                    clrIdx = 'solarrad';
+                else if (idx === 'sunHours')
+                    clrIdx = 'sunshine';
+
+                if (idx === 'uvi') {
+                    chart.addAxis({
+                        id: idx,
+                        title: {text: 'UV Index'},
+                        opposite: true,
+                        min: 0,
+                        labels: {
+                            align: 'left'
+                        },
+                        showEmpty: false
+                    });
+                } else if (idx === 'sunHours') {
+                    chart.addAxis({
+                        id: idx,
+                        title: {text: 'Sunshine Hours'},
+                        opposite: true,
+                        min: 0,
+                        labels: {
+                            align: 'left'
+                        },
+                        showEmpty: false
+                    });
+                } else if (idx === 'solarRad') {
+                    chart.addAxis({
+                        id: idx,
+                        title: {text: 'Solar Radiation (W/m\u00B2)'},
+                        min: 0,
+                        opposite: false,
+                        labels: {
+                            align: 'right',
+                            x: -5
+                        },
+                        showEmpty: false
+                    });
+                }
+
+                chart.addSeries({
+                    name: titles[idx],
+                    type: types[idx],
+                    yAxis: idx,
+                    tooltip: tooltips[idx],
+                    data: resp[idx],
+                    color: config.series[clrIdx].colour,
+                    showInNavigator: idx !== 'solarRad',
+                    index: indexes[idx],
+                    fillColor: fillColor[idx],
+                    zIndex: idx === 'uvi' ? 99 : null
+                }, false);
+            }
+        });
+
+        chart.hideLoading();
+        chart.redraw();
     });
 };
 
@@ -1222,43 +1236,269 @@ var doTempSum = function () {
 
     $.ajax({
         url: '/api/dailygraphdata/tempsumdata.json',
-        dataType: 'json',
-        success: function (resp) {
-            var subtitle = '';
-            if (available.TempSum.indexOf('Sum0') != -1) {
-                subtitle = 'Sum#0 base: 0°' + config.temp.units;
-                if (available.TempSum.indexOf('Sum1') != -1 || available.TempSum.indexOf('Sum2') != -1) {
-                    subtitle += ' - ';
-                }
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var subtitle = '';
+        if (available.TempSum.indexOf('Sum0') != -1) {
+            subtitle = 'Sum#0 base: 0°' + config.temp.units;
+            if (available.TempSum.indexOf('Sum1') != -1 || available.TempSum.indexOf('Sum2') != -1) {
+                subtitle += ' - ';
             }
-            if (available.TempSum.indexOf('Sum1') != -1) {
-                subtitle += 'Sum#1 base: ' + resp.options.sumBase1 + '°' + config.temp.units;
-                if (available.TempSum.indexOf('Sum2') != -1) {
-                    subtitle += ' - ';
-                }
-            }
-            if (available.TempSum.indexOf('Sum2') != -1) {
-                subtitle += 'Sum#2 base: ' + resp.options.sumBase2 + '°' + config.temp.units;
-            }
-
-            chart.setSubtitle({text: subtitle});
-
-            available.TempSum.forEach(idx => {
-                if (idx in resp) {
-                   Object.keys(resp[idx]).forEach(yr => {
-                       chart.addSeries({
-                           name: idx + '-' + yr,
-                           visible: false,
-                           data: resp[idx][yr]
-                       }, false);
-                   });
-                   // make the last series visible
-                   chart.series[chart.series.length -1].visible = true;
-                }
-            });
-
-            chart.hideLoading();
-            chart.redraw();
         }
+        if (available.TempSum.indexOf('Sum1') != -1) {
+            subtitle += 'Sum#1 base: ' + resp.options.sumBase1 + '°' + config.temp.units;
+            if (available.TempSum.indexOf('Sum2') != -1) {
+                subtitle += ' - ';
+            }
+        }
+        if (available.TempSum.indexOf('Sum2') != -1) {
+            subtitle += 'Sum#2 base: ' + resp.options.sumBase2 + '°' + config.temp.units;
+        }
+
+        chart.setSubtitle({text: subtitle});
+
+        available.TempSum.forEach(idx => {
+            if (idx in resp) {
+                Object.keys(resp[idx]).forEach(yr => {
+                    chart.addSeries({
+                        name: idx + '-' + yr,
+                        visible: false,
+                        data: resp[idx][yr]
+                    }, false);
+                });
+                // make the last series visible
+                chart.series[chart.series.length -1].visible = true;
+            }
+        });
+    })
+    .always(function() {
+        chart.hideLoading();
+        chart.redraw();
+    });
+};
+
+var doChillHrs = function () {
+    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern. Three ranges are defined for each year: The ranges being measured relative to the base temperatures of; 0°C/32°F, 5°C/40°F, and 10°C/50°F respectively. Though the station owner can override these values and define their own.');
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false,
+            zoomType: 'x'
+        },
+        title: {text: 'Chill Hours'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b',
+                month: '%b',
+                year: ''
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Total Hours'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -10
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 10
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            xDateFormat: '%e %B',
+            useHTML: true,
+            headerFormat: '{point.key}<table>',
+            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
+            '<td style="text-align: right; font-weight: bold;">{point.y:0f} hrs</td></tr>',
+            footerFormat: '</table>'
+        },
+        series: []
+    };
+
+    chart = new Highcharts.Chart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: '/api/dailygraphdata/chillhrsdata.json',
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var subtitle = 'Threshold: ' + resp.options.threshold + '°' + config.temp.units + ' Base: ' + resp.options.basetemp + '°' + config.temp.units;
+        chart.setSubtitle({text: subtitle});
+
+        for (var yr in resp.data) {
+            chart.addSeries({
+                name: yr,
+                visible: false,
+                data: resp.data[yr]
+            }, false);
+        }
+
+        // make the last series visible
+        chart.series[chart.series.length -1].visible = true;
+    })
+    .always(function() {
+        chart.hideLoading();
+        chart.redraw();
+    });
+};
+
+
+var doSnow = function () {
+    $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'column',
+            alignTicks: true
+        },
+        title: {text: 'Snowfall'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b %y',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Snow depth (' + config.snow.units + ')'},
+                opposite: false,
+                min: 0,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            column: {
+                dataGrouping: {
+                    enabled: false
+                }
+            },
+            series: {
+                grouping: false,
+                pointPadding: 0,
+                groupPadding: 0.05,
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            valueDecimals: 1,
+            xDateFormat: '%e %b %y'
+        },
+        series: [],
+        rangeSelector: {
+            inputEnabled: false,
+            selected: 1
+        },
+        navigator: {
+            series: {
+                type: 'column'
+            }
+        }
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: '/api/dailygraphdata/dailysnow.json',
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        if ('SnowDepth' in resp && resp.SnowDepth.length > 0) {
+            chart.addSeries({
+                name: 'Snow Depth',
+                type: 'column',
+                color: config.series.snowdepth.colour,
+                tooltip: {valueSuffix: ' ' + config.snow.units},
+                data: resp.SnowDepth,
+                showInNavigator: true
+            });
+        }
+
+        if ('Snow24h' in resp && resp.Snow24h.length > 0) {
+            chart.addSeries({
+                name: 'Snowfall 24h',
+                type: 'column',
+                color: config.series.snow24h.colour,
+                tooltip: {valueSuffix: ' ' + config.snow.units},
+                data: resp.Snow24h,
+                showInNavigator: true
+            });
+        }
+    })
+    .always(function() {
+        chart.hideLoading();
     });
 };

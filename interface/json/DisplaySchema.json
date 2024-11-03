@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2024/10/30 09:15:02",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -19,6 +20,9 @@
 				},
 				"windrosepoints": {
 					"enum": [8, 16]
+				},
+				"displaysnow": {
+					"type": "boolean"
 				}
 			}
 		},
@@ -335,6 +339,18 @@
 									"type": "string"
 								}
 							}
+						},
+						"snow": {
+							"title": "Snowfall",
+							"type": "object",
+							"properties": {
+								"Depth": {
+									"type": "string"
+								},
+								"Last24h": {
+									"type": "string"
+								}
+							}
 						}
 					}
 				}
@@ -433,6 +449,15 @@
 							"enum": [0,1,2]
 						},
 						"TempSum2": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"chillhrs": {
+					"title": "Chill Hours",
+					"type": "object",
+					"properties": {
+						"ChillHrs": {
 							"enum": [0,1,2]
 						}
 					}
@@ -585,6 +610,18 @@
 							"enum": [0,1,2]
 						},
 						"hum": {
+							"enum": [0,1,2]
+						}
+					}
+				},
+				"snow": {
+					"title": "Snowfall",
+					"type": "object",
+					"properties": {
+						"Depth": {
+							"enum": [0,1,2]
+						},
+						"Last24h": {
 							"enum": [0,1,2]
 						}
 					}

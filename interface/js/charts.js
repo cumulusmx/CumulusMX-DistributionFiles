@@ -1,4 +1,4 @@
-// Last modified: 2024/10/04 15:48:38
+// Last modified: 2024/10/29 10:11:47
 
 var chart, config, doSelect;
 
@@ -29,8 +29,8 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        url: "/api/graphdata/availabledata.json",
-        dataType: "json",
+        url: '/api/graphdata/availabledata.json',
+        dataType: 'json',
         success: function (result) {
             if (result.Temperature === undefined || result.Temperature.Count == 0) {
                 $('#mySelect option[value="temp"]').remove();
@@ -144,12 +144,12 @@ $(document).ready(function () {
         parent.location.hash = sel;
     };
 
-    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
-    $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
+    $.ajax({url: '/api/graphdata/graphconfig.json', success: function (result) {
         config = result;
         var value = parent.location.hash.replace('#', '');
 

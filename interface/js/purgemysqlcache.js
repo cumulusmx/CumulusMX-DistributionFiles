@@ -1,4 +1,4 @@
-// Last modified: 2023/10/30 15:16:30
+// Last modified: 2024/10/29 11:17:48
 
 $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
     console.log(message);
@@ -7,17 +7,17 @@ $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
 $(document).ready(function() {
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType:'json',
         success: function (result) {
             $('#Version').text(result.Version);
             $('#Build').text(result.Build);
     }});
 
-    $("#reload").click(function(event) {
+    $('#reload').click(function(event) {
         $('#status').text('');
         $.ajax({
-            url: "api/utils/purgemysql",
+            url: '/api/utils/purgemysql',
             dataType: 'text'
         })
         .done(function (response) {
@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
 
     var columnDefs = [{
-        title: "Key",
+        title: 'Key',
         readonly: true
     }, {
         title: 'MySQL Statement',
@@ -50,7 +50,7 @@ $(document).ready(function() {
         autoWidth: false,
         rowId: 'key',
         ajax: {
-            url: 'api/data/mysqlcache.json',
+            url: '/api/data/mysqlcache.json',
             data: function (data) {
                 delete data.columns;
             }
@@ -91,7 +91,7 @@ $(document).ready(function() {
             $(selector + ' .modal-body .alert').remove();
 
             $.ajax({
-                url: 'api/edit/mysqlcache',
+                url: '/api/edit/mysqlcache',
                 type: 'POST',
                 data: formatRequestSingle('Edit', rowdata),
                 success: success,
@@ -118,7 +118,7 @@ $(document).ready(function() {
         },
         onDeleteRow: function(datatable, rowdata, success, error) {
             $.ajax({
-                url: 'api/edit/mysqlcache',
+                url: '/api/edit/mysqlcache',
                 type: 'POST',
                 data: formatRequestMulti('Delete', rowdata),
                 success: success,

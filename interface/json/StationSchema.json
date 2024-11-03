@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/20 13:58:24",
+	"version": "Last Modified: 2024/10/29 20:09:10",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -102,11 +102,18 @@
 							],
 							"required": true
 						},
+						"snow": {
+							"title": "Snow Depth",
+							"enum": [
+								0,
+								1
+							]
+						},
 						"cloudbaseft": {
 							"type": "boolean"
 						},
 						"advanced": {
-							"title": "Advanced Options",
+							"title": "Advanced Options - Number Decimals",
 							"type": "object",
 							"properties": {
 								"tempdp": {
@@ -1682,7 +1689,7 @@
 			}
 		},
 		"AnnualRainfall": {
-			"title": "Annual Rainfall",
+			"title": "Rainfall",
 			"type": "object",
 			"properties": {
 				"ytdamount": {
@@ -1708,6 +1715,9 @@
 						11,
 						12
 					]
+				},
+				"rainweekstart": {
+					"enum": [0, 1]
 				}
 			}
 		},
@@ -1761,6 +1771,9 @@
 			"type": "object",
 			"properties": {
 				"threshold": {
+					"type": "number"
+				},
+				"basetemp": {
 					"type": "number"
 				},
 				"month": {

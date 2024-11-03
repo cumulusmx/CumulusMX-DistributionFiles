@@ -1,12 +1,12 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/20 17:11:31
+// Last modified: 2024/10/29 10:33:22
 
 var fromDate, toDate;
 
 $(document).ready(function () {
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json'
     })
     .done(function (result) {
@@ -312,7 +312,7 @@ $(document).ready(function () {
     now.setHours(0, 0, 0, 0);
 
     $.ajax({
-        url: 'api/tags/process.txt',
+        url: '/api/tags/process.txt',
         dataType: 'json',
         method: 'POST',
         data: '{"rollovertime":"<#rollovertime>","began":"<#recordsbegandate format="yyyy/MM/dd">"}',
@@ -358,7 +358,7 @@ $(document).ready(function () {
             });
 
         toDate = $('#dateTo').datepicker({
-            dateFormat: "yy-mm-dd",
+            dateFormat: 'yy-mm-dd',
             minDate: start,
             maxDate: '0d',
             firstDay: 1,
@@ -452,14 +452,14 @@ function downloadData() {
 
 function createQuery() {
     let valid = false;
-    let url = 'api/data/dailydata.json?';
-    let startDate = $("#dateFrom").datepicker('getDate').getTime() / 1000;
-    let endDate = $("#dateTo").datepicker('getDate').getTime() / 1000;
+    let url = '/api/data/dailydata.json?';
+    let startDate = $('#dateFrom').datepicker('getDate').getTime() / 1000;
+    let endDate = $('#dateTo').datepicker('getDate').getTime() / 1000;
 
     url += 'from=' + Math.floor(startDate) + '&to=' + Math.floor(endDate);
 
     url += '&data='
-    $("input[type='checkbox']").each(function () {
+    $('input[type="checkbox"]').each(function () {
         if ($(this).is(':checked')) {
             url += $(this).attr('id') + ',';
             valid = true;

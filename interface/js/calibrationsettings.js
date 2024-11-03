@@ -1,70 +1,70 @@
-// Last modified: 2024/09/27 10:20:40
+// Last modified: 2024/10/29 10:10:40
 
 let accessMode;
 
 $(document).ready(function() {
     $.ajax({
-        url: "api/info/units.json",
-        dataType: "json",
+        url: '/api/info/units.json',
+        dataType: 'json',
         success: function (result) {
             let units = result;
 
             if (units.press == 'in')
                 units.press = 'inHg';
 
-            $("form").alpaca({
-                "dataSource": "./api/settings/calibrationdata.json",
-                "optionsSource": "./json/CalibrationOptions.json",
-                "schemaSource": "./json/CalibrationSchema.json",
-                "ui": "bootstrap",
-                "view": "bootstrap-edit-horizontal",
-                "options": {
-                    "form": {
-                        "buttons": {
+            $('form').alpaca({
+                dataSource: '/api/settings/calibrationdata.json',
+                optionsSource: '/json/CalibrationOptions.json',
+                schemaSource: '/json/CalibrationSchema.json',
+                ui: 'bootstrap',
+                view: 'bootstrap-edit-horizontal',
+                options: {
+                    form: {
+                        buttons: {
                             // don't use the Submit button because that is disabled on validation errors
-                            "validate": {
-                                "title": "Save Settings",
-                                "click": function() {
+                            validate: {
+                                title: 'Save Settings',
+                                click: function() {
                                     this.refreshValidationState(true);
                                     if (this.isValid(true)) {
                                         let json = this.getValue();
 
                                         $.ajax({
-                                            type: "POST",
-                                            url: "../api/setsettings/updatecalibrationconfig.json",
+                                            type: 'POST',
+                                            url: '/api/setsettings/updatecalibrationconfig.json',
                                             data: {json: JSON.stringify(json)},
-                                            dataType: "text"
+                                            dataType: 'text'
                                         })
                                         .done(function () {
-                                            alert("Settings updated");
+                                            alert('Settings updated');
                                         })
                                         .fail(function (jqXHR, textStatus) {
-                                            alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                            alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                         });
                                     } else {
-                                        let firstErr = $('form').find(".has-error:first")
+                                        let firstErr = $('form').find('.has-error:first')
                                         let path = $(firstErr).attr('data-alpaca-field-path');
                                         let msg = $(firstErr).children('.alpaca-message').text();
-                                        alert("Invalid value in the form: " + path + msg);
-                                        if ($(firstErr).is(":visible")) {
+                                        alert('Invalid value in the form: ' + path + msg);
+                                        if ($(firstErr).is(':visible')) {
                                             let entry = $(firstErr).focus();
                                             $(window).scrollTop($(entry).position().top);
                                         }
                                     }
                                 },
-                                "styles": "alpaca-form-button-submit"
+                                styles: 'alpaca-form-button-submit'
                             }
                         }
                     }
                 },
-                "postRender": function (form) {
+                postRender: function (form) {
                     // Change in accessibility is enabled
-                    let accessObj = form.childrenByPropertyId["accessible"];
+                    let accessObj = form.childrenByPropertyId['accessible'];
                     onAccessChange(null, accessObj.getValue());
                     accessMode = accessObj.getValue();
 
                     // Trigger changes is the accessibility mode is changed
-                    //accessObj.on("change", function() {onAccessChange(this)});
+                    //accessObj.on('change', function() {onAccessChange(this)});
 
                     if (!accessMode) {
                         setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
@@ -114,7 +114,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -130,7 +130,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
@@ -189,7 +189,7 @@ function onAccessChange(that, val) {
 
 function setlabel(that, val) {
     let label = that.options.label;
-    label += " (" + val + "):";
+    label += ' (' + val + '):';
     that.options.label = label;
     that.refresh();
 }

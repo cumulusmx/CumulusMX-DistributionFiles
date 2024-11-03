@@ -1,4 +1,4 @@
-// Last modified: 2024/09/27 10:20:45
+// Last modified: 2024/10/29 10:30:14
 
 let accessMode;
 let csvChar;
@@ -6,25 +6,25 @@ let csvChar;
 
 $(document).ready(function () {
     $('#intvlform').alpaca({
-        'dataSource': './api/settings/customlogsintvl.json',
-        'optionsSource': './json/CustomLogsIntvlOptions.json',
-        'schemaSource': './json/CustomLogsIntvlSchema.json',
-        'ui': 'bootstrap',
-        'view': 'bootstrap-edit',
-        'options': {
-            'form': {
-                'buttons': {
+        dataSource: '/api/settings/customlogsintvl.json',
+        optionsSource: '/json/CustomLogsIntvlOptions.json',
+        schemaSource: '/json/CustomLogsIntvlSchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    'validate': {
-                        'title': 'Save Settings',
-                        'click': function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: '../api/setsettings/updatecustomlogsintvl.json',
+                                    url: '/api/setsettings/updatecustomlogsintvl.json',
                                     data: {json: JSON.stringify(json)},
                                     dataType: 'text'
                                 })
@@ -45,23 +45,23 @@ $(document).ready(function () {
                                 }
                             }
                         },
-                        'styles': 'alpaca-form-button-submit'
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             },
-            'fields': {
-                'interval': {
-                    'items': {
-                        'fields': {
-                            'content': {
-                                'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
+            fields: {
+                interval: {
+                    items: {
+                        fields: {
+                            content: {
+                                placeholder: 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
                             }
                         }
                     }
                 }
             }
         },
-        'postRender': function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
@@ -77,25 +77,25 @@ $(document).ready(function () {
     });
 
     $('#dailyform').alpaca({
-        'dataSource': './api/settings/customlogsdaily.json',
-        'optionsSource': './json/CustomLogsDailyOptions.json',
-        'schemaSource': './json/CustomLogsDailySchema.json',
-        'ui': 'bootstrap',
-        'view': 'bootstrap-edit',
-        'options': {
-            'form': {
-                'buttons': {
+        dataSource: '/api/settings/customlogsdaily.json',
+        optionsSource: '/json/CustomLogsDailyOptions.json',
+        schemaSource: '/json/CustomLogsDailySchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    'validate': {
-                        'title': 'Save Settings',
-                        'click': function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: '../api/setsettings/updatecustomlogsdaily.json',
+                                    url: '/api/setsettings/updatecustomlogsdaily.json',
                                     data: {json: JSON.stringify(json)},
                                     dataType: 'text'
                                 })
@@ -116,23 +116,23 @@ $(document).ready(function () {
                                 }
                             }
                         },
-                        'styles': 'alpaca-form-button-submit'
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             },
-            'fields': {
-                'daily': {
-                    'items': {
-                        'fields': {
-                            'content': {
-                                'placeholder': 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
+            fields: {
+                daily: {
+                    items: {
+                        fields: {
+                            content: {
+                                placeholder: 'eg. <#temp>' + csvChar +'<#hum>' + csvChar + '<#SoilTemp1>'
                             }
                         }
                     }
                 }
             }
         },
-        'postRender': function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
@@ -154,7 +154,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -170,7 +170,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
