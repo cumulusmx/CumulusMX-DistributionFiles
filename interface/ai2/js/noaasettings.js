@@ -1,4 +1,4 @@
-// Last modified: 2023/12/17 22:57:04
+// Last modified: 2024/09/27 10:22:13
 
 let accessMode;
 
@@ -107,11 +107,12 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
-            $(span).text() +'</button>');
+            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+            $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(span).text() +
+            '</button>');
         $(span).remove();
-        $(this).addClass('ow-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -122,13 +123,12 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-        let span = $('<span data-toggle="collapse" data-target="' +
+            let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ow-btnBar');
         $(this).prepend(span);
     });
 }
