@@ -1,10 +1,15 @@
-// Last modified: 2023/12/17 22:46:09
+// Last modified: 2024/09/27 10:21:01
 
 let accessMode;
 let csvChar;
 
 
 $(document).ready(function () {
+    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    }});
+
     $('#filesForm').alpaca({
         'dataSource': '/api/settings/httpfiles.json',
         'optionsSource': '/json/HttpFilesOptions.json',
@@ -64,10 +69,6 @@ $(document).ready(function () {
             //accessObj.on('change', function() {onAccessChange(this)});
         }
     });
-
-    //	Added by Neil
-
-
 });
 
 function addButtons() {
@@ -76,11 +77,12 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
-            $(span).text() +'</button>');
+            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+            $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(span).text() +
+            '</button>');
         $(span).remove();
-        $(this).addClass('ow-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -91,13 +93,12 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-        let span = $('<span data-toggle="collapse" data-target="' +
+            let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ow-btnBar');
         $(this).prepend(span);
     });
 }
@@ -150,3 +151,4 @@ function onAccessChange(that, val) {
         removeButtons();
     }
 }
+

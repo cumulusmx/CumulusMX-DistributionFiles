@@ -342,7 +342,7 @@ $(document).ready(function () {
 
 function makeTable(D) {
     var a = '';
-    a += '<table class="w3-table"><thead><tr>';
+    a += '<table class="w3-table w3-hoverable"><thead><tr>';
 
     for (j = 0; j < D[0].length; j++) {
         a += '<th>' + D[0][j] + '</th>';
@@ -441,7 +441,7 @@ function createDataPage(result) {
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'DailyData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
     let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
-    html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/Grey.css">';
+    html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
     html += '<link rel="stylesheet" href="css/main.css"></head>';
     html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';

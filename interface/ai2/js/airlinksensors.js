@@ -1,12 +1,11 @@
-// Last modified: 2021/05/16 20:53:09
+// Last modified: 2023/10/30 15:18:26
+
+$.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
+    console.log(message);
+};
 
 $(document).ready(function () {
-/*
-    $.ajax({url: "/api/settings/version.json", dataType:"json", success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
-*/
+
     var countsOutTable = $('#CountsOutTable').DataTable({
         "paging": false,
         "searching": false,
@@ -14,7 +13,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkCountsOut.json'
     });
@@ -26,7 +25,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkAqiOut.json'
     });
@@ -38,7 +37,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkPctOut.json'
     });
@@ -50,7 +49,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkCountsIn.json'
     });
@@ -62,7 +61,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkAqiIn.json'
     });
@@ -74,7 +73,7 @@ $(document).ready(function () {
         "ordering": false,
         "columnDefs": [
             {"className": "left", "targets": [0]},
-            {"className": "w3-right-align", "targets": [1,2,3,4,5]}
+            {"className": "right", "targets": [1,2,3,4,5]}
         ],
         "ajax": '/api/extra/airLinkPctIn.json'
     });
