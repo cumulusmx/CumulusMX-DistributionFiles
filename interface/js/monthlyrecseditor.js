@@ -1,6 +1,6 @@
-// Last modified: 2023/11/07 11:50:48
+// Last modified: 2024/10/29 11:05:23
 
-var updateUrl = 'api/edit/monthly';
+var updateUrl = '/api/edit/monthly';
 var editFieldName;
 var newValue, newTime;
 var oldValue, oldTime;
@@ -22,12 +22,12 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/monthlyrecords.json',
+        url: '/api/edit/monthlyrecords.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 // set the value and add some accessibility
-                //$('#' + key).text(value).on('shown', function(e, editable) {editable.input.$input.attr("aria-label", editable.options.title)});
+                //$('#' + key).text(value).on('shown', function(e, editable) {editable.input.$input.attr('aria-label', editable.options.title)});
                 $('#' + key)
                     .text(value)
                     .attr('aria-haspopup', true)
@@ -37,7 +37,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/monthlyrecordsdayfile.json',
+        url: '/api/edit/monthlyrecordsdayfile.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -64,8 +64,8 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/version.json',
-        dataType: "json",
+        url: '/api/info/version.json',
+        dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
             $('#Build').text(result.Build);
@@ -157,8 +157,8 @@ function getMonthlyLogs() {
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();
     $.ajax({
-        url: "api/edit/monthlyrecordslogfile.json",
-        dataType:"json",
+        url: '/api/edit/monthlyrecordslogfile.json',
+        dataType:'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 $('#' + key).text(value);

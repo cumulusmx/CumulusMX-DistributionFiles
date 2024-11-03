@@ -1,9 +1,9 @@
-// Last modified: 2024/02/14 10:33:42
+// Last modified: 2024/10/29 10:04:41
 
 $(document).ready(function() {
     $.ajax({
-        url: "api/settings/alarms.json",
-        dataType:"json",
+        url: '/api/settings/alarms.json',
+        dataType:'json',
         success: function (result) {
             $.each(result.data, function(alarm, data) {
                 $.each(data, function(prop, value) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
                 });
             });
             $.each(result.units, function(key, value) {
-                $("." + key).text(value);
+                $('.' + key).text(value);
             });
             $('#fromEmail').val(result.email.fromEmail)
             $('#destEmail').val(result.email.destEmail)
@@ -32,9 +32,9 @@ $(document).ready(function() {
 
 function updateAlarms() {
     $.ajax({
-        url: "api/setsettings/updatealarmconfig.json",
+        url: '/api/setsettings/updatealarmconfig.json',
         type: 'POST',
-        contentType:"application/json",
+        contentType:'application/json',
         dataType: 'text',
         data: JSON.stringify({
             data: {
@@ -296,17 +296,17 @@ function updateAlarms() {
             }
         })
     }).done(function () {
-        alert("Settings updated");
+        alert('Settings updated');
     }).fail(function (jqXHR, textStatus) {
-        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+        alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
     });
 }
 
 function testEmail() {
     $.ajax({
-        url: "api/setsettings/testemail.json",
+        url: '/api/setsettings/testemail.json',
         type: 'POST',
-        contentType:"application/json",
+        contentType:'application/json',
         dataType: 'text',
         data: JSON.stringify({
             fromEmail: $('#fromEmail').val(),
@@ -315,8 +315,8 @@ function testEmail() {
             useBcc   : $('#useBcc').prop('checked')
         })
     }).done(function (result) {
-        alert("Test email sent");
+        alert('Test email sent');
     }).fail(function (jqXHR, textStatus) {
-        alert("Test email failed: " + jqXHR.responseText);
+        alert('Test email failed: ' + jqXHR.responseText);
     });
 }

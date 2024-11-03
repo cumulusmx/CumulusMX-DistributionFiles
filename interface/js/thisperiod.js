@@ -1,4 +1,4 @@
-// Last modified: 2023/10/13 21:40:46
+// Last modified: 2024/10/29 11:37:37
 
 //const userLocale =
 //  navigator.languages && navigator.languages.length
@@ -47,7 +47,7 @@ $(document).ready(function() {
     toDate.datepicker('setDate', now);
 
     $.ajax({
-        url: 'api/graphdata/units.json',
+        url: '/api/graphdata/units.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
@@ -66,7 +66,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/dateformat.txt',
+        url: '/api/info/dateformat.txt',
         dataType: 'text',
         success: function (result) {
             // we want all lower case and yy for the year not yyyy
@@ -82,7 +82,7 @@ function load() {
     var startDate = $('#dateFrom').datepicker('getDate');
     var endDate = $('#dateTo').datepicker('getDate');
     $.ajax({
-        url: 'api/records/thisperiod?startdate=' + formatDateStr(startDate) + '&enddate=' + formatDateStr(endDate),
+        url: '/api/records/thisperiod?startdate=' + formatDateStr(startDate) + '&enddate=' + formatDateStr(endDate),
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -102,7 +102,7 @@ function load() {
                         }
                     } else {
                         var d = new Date(date[2], date[1] - 1, date[0], time[0], time[1]);
-                        value = d.toLocaleDateString(userLocale, {year: 'numeric', month: 'short', day: '2-digit'}) + " " + d.toLocaleTimeString();
+                        value = d.toLocaleDateString(userLocale, {year: 'numeric', month: 'short', day: '2-digit'}) + ' ' + d.toLocaleTimeString();
                     }
                 }*/
                 $('#' + key).text(value);

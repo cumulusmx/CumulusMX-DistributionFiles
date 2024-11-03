@@ -1,4 +1,4 @@
-// Last modified: 2024/09/05 15:17:41
+// Last modified: 2024/10/29 10:35:35
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -27,7 +27,7 @@ $(document).ready(function () {
             if (promise !== undefined) {
                 promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
-                    //alert("hi");
+                    //alert('hi');
                     $('#bt').addClass('show').click(function () {
                         //audioElement.play();
                         $('#bt').removeClass('show');
@@ -46,18 +46,18 @@ $(document).ready(function () {
             title += 's';
         }
 
-        if (!("Notification" in window)) {
+        if (!('Notification' in window)) {
             // Check if the browser supports notifications
             alert(text);
-        } else if (Notification.permission === "granted") {
+        } else if (Notification.permission === 'granted') {
             // Check whether notification permissions have already been granted;
             // if so, create a notification
             let notification = new Notification(title, { body: text, icon: img });
-        } else if (Notification.permission !== "denied") {
+        } else if (Notification.permission !== 'denied') {
             // We need to ask the user for permission
             Notification.requestPermission().then((permission) => {
                 // If the user accepts, let's create a notification
-                if (permission === "granted") {
+                if (permission === 'granted') {
                     let notification = new Notification(title, { body: text, icon: img });
                 }
             });
@@ -141,7 +141,7 @@ $(document).ready(function () {
 
         // Firefox gets arsy about multiple notifications so roll them up into one
         let sendNotification = false;
-        let notificationMessage = "";
+        let notificationMessage = '';
 
         // Get the keys from the object and set
         // the element with the same id to the value
@@ -276,8 +276,8 @@ $(document).ready(function () {
             humTL: inp.LowHumToday.toString(),
             humTH: inp.HighHumToday.toString(),
             inhum: inp.IndoorHum.toString(),
-            SensorContactLost: "0",
-            forecast: (inp.Forecast || "n/a").toString(),
+            SensorContactLost: '0',
+            forecast: (inp.Forecast || 'n/a').toString(),
             tempunit: inp.TempUnit.substr(inp.TempUnit.length - 1),
             windunit: inp.WindUnit,
             pressunit: inp.PressUnit,
@@ -304,7 +304,7 @@ $(document).ready(function () {
             TwgustTM: inp.HighGustTodayTime,
             windTM: inp.HighWindToday.toString(),
             bearingTM: inp.HighGustBearingToday.toString(),
-            timeUTC: "",
+            timeUTC: '',
             BearingRangeFrom10: inp.BearingRangeFrom10.toString(),
             BearingRangeTo10: inp.BearingRangeTo10.toString(),
             UV: inp.UVindex.toString(),
@@ -315,18 +315,18 @@ $(document).ready(function () {
             domwinddir: inp.DominantWindDirection.toString(),
             WindRoseData: inp.WindRoseData,
             windrun: inp.WindRunToday.toString(),
-            cloudbasevalue: "",
-            cloudbaseunit: "",
-            version: "",
-            build: "",
-            ver: "12"
+            cloudbasevalue: '',
+            cloudbaseunit: '',
+            version: '',
+            build: '',
+            ver: '12'
         };
     }
 
     function doAjaxUpdate() {
         $.ajax({
-            url: "api/data/currentdata",
-            dataType: "json",
+            url: '/api/data/currentdata',
+            dataType: 'json',
             success: function (data) {
                 updateDisplay(data);
             }
@@ -336,7 +336,7 @@ $(document).ready(function () {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/info/wsport.json',
+            url: '/api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);
@@ -355,7 +355,7 @@ $(document).ready(function () {
 
     // Get the alarm settings - only do this on page load
     $.ajax({
-        url: 'api/info/alarms.json',
+        url: '/api/info/alarms.json',
         dataType: 'json',
         success: function (result) {
             let playSnd = false;
@@ -399,7 +399,7 @@ $(document).ready(function () {
                 }
 
                 if (!('Notification' in window)) {
-                    console.log("This browser does not support notifications.");
+                    console.log('This browser does not support notifications.');
                     } else {
                         if (checkNotificationPromise()) {
                             Notification.requestPermission()
@@ -418,7 +418,7 @@ $(document).ready(function () {
 
     // Get the station name - only do this on page load
     $.ajax({
-        url: 'api/tags/process.json?locationJsEnc',
+        url: '/api/tags/process.json?locationJsEnc',
         dataType: 'json',
         success: function (result) {
             $('#StationName').html(result.locationJsEnc);

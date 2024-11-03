@@ -1,107 +1,107 @@
-// Last modified: 2024/09/27 10:22:40
+// Last modified: 2024/10/29 11:33:11
 
 let StashedStationId;
 let accessMode;
 
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
-    $("form").alpaca({
-        "dataSource": "/api/settings/stationdata.json",
-        "optionsSource": "/json/StationOptions.json",
-        "schemaSource": "/json/StationSchema.json",
-        "ui": "bootstrap",
-        "view": "bootstrap-edit-horizontal",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        dataSource: '/api/settings/stationdata.json',
+        optionsSource: '/json/StationOptions.json',
+        schemaSource: '/json/StationSchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit-horizontal',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
-                                let form = $("form").alpaca("get");
-                                let stationIdObj = form.getControlByPath("general/stationtype");
+                                let form = $('form').alpaca('get');
+                                let stationIdObj = form.getControlByPath('general/stationtype');
                                 let stationId = stationIdObj.getValue();
 
                                 if (stationId == -1) {
-                                    alert("You have not selected a station type");
+                                    alert('You have not selected a station type');
                                     return;
                                 }
                                 if (stationId != StashedStationId) {
-                                    alert("You have changed the Station type, you must restart Cumulus MX");
+                                    alert('You have changed the Station type, you must restart Cumulus MX');
                                     StashedStationId = stationId;
                                 }
 
                                 let json = this.getValue();
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "/api/setsettings/updatestationconfig.json",
+                                    type: 'POST',
+                                    url: '/api/setsettings/updatestationconfig.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert("Settings updated");
+                                    alert('Settings updated');
                                 })
                                 .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             },
-            "fields": {
-                "gw1000": {
-                    "fields": {
-                        "macaddress": {
-                            "validator": function(callback) {
+            fields: {
+                gw1000: {
+                    fields: {
+                        macaddress: {
+                            validator: function(callback) {
                                 let value = this.getValue();
                                 // check for MAC address format
-                                if (value != "" && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                if (value != '' && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
-                                        "status": false,
-                                        "message": "That is not a valid MAC address!"
+                                        status: false,
+                                        message: 'That is not a valid MAC address!'
                                     });
                                     return;
                                 }
                                 // all OK
                                 callback({
-                                    "status": true
+                                    status: true
                                 });
                             }
                         }
                     }
                 },
-                "ecowittapi": {
-                    "fields":{
-                        "mac": {
-                            "validator": function(callback) {
+                ecowittapi: {
+                    fields:{
+                        mac: {
+                            validator: function(callback) {
                                 let value = this.getValue().trim();
 
-                                if (value != "")
+                                if (value != '')
                                 {
                                     // check for IMEI format - 15 or 16 digits
                                     if (Number.isInteger(value)) {
                                         if (value.length == 15 || value.length == 16) {
                                             callback({
-                                                "status": true
+                                                status: true
                                             });
                                         } else {
                                             callback({
-                                                "status": false,
-                                                "message": "That is not a valid IMEI!"
+                                                status: false,
+                                                message: 'That is not a valid IMEI!'
                                             });
                                         }
                                         return;
@@ -109,45 +109,45 @@ $(document).ready(function () {
                                     // check for MAC address format
                                     if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                         callback({
-                                            "status": false,
-                                            "message": "That is not a valid MAC address!"
+                                            status: false,
+                                            message: 'That is not a valid MAC address!'
                                         });
                                         return;
                                     }
                                 }
                                 // all OK
                                 callback({
-                                    "status": true
+                                    status: true
                                 });
                             }
                         },
-                        "applicationkey": {
-                            "validator": function(callback) {
+                        applicationkey: {
+                            validator: function(callback) {
                                 let value = this.getValue();
-                                if (value != "" && !/^[A-F0-9]{30,35}$/.test(value)) {
+                                if (value != '' && !/^[A-F0-9]{30,35}$/.test(value)) {
                                     callback({
-                                        "status": false,
-                                        "message": "That is not a valid Application Key!"
+                                        status: false,
+                                        message: 'That is not a valid Application Key!'
                                     });
                                     return;
                                 }
                                 callback({
-                                    "status": true
+                                    status: true
                                 });
                             }
                         },
-                        "userkey": {
-                            "validator": function(callback) {
+                        userkey: {
+                            validator: function(callback) {
                                 let value = this.getValue();
-                                if (value != "" && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                if (value != '' && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                     callback({
-                                        "status": false,
-                                        "message": "That is not a valid API Key!"
+                                        status: false,
+                                        message: 'That is not a valid API Key!'
                                     });
                                     return;
                                 }
                                 callback({
-                                    "status": true
+                                    status: true
                                 });
                             }
                         }
@@ -156,9 +156,9 @@ $(document).ready(function () {
 
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
+            let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
@@ -167,14 +167,14 @@ $(document).ready(function () {
             }
 
             // Trigger changes is the accessibility mode is changed
-            accessObj.on("change", function() {onAccessChange(this)});
+            accessObj.on('change', function() {onAccessChange(this)});
 
-            let manufacturerObj = form.getControlByPath("general/manufacturer");
+            let manufacturerObj = form.getControlByPath('general/manufacturer');
 
             // On changing the manufacturer, repopulate the station type list
-            manufacturerObj.on("change", function () {
-                let form = $("form").alpaca("get");
-                let stationIdObj = form.getControlByPath("general/stationtype")
+            manufacturerObj.on('change', function () {
+                let form = $('form').alpaca('get');
+                let stationIdObj = form.getControlByPath('general/stationtype')
                 stationIdObj.refresh();
                 if (stationIdObj.selectOptions.length == 1) {
                     stationIdObj.setValue(stationIdObj.selectOptions[0].value);
@@ -183,7 +183,7 @@ $(document).ready(function () {
                 }
             });
 
-            let stationIdObj = form.getControlByPath("general/stationtype");
+            let stationIdObj = form.getControlByPath('general/stationtype');
 
             let currId = stationIdObj.getValue();
             stationIdObj.options.dataSource = setStationOptions;
@@ -191,58 +191,58 @@ $(document).ready(function () {
             stationIdObj.setValue(+currId);
 
             // On changing the station type, propagate down to sub-sections
-            stationIdObj.on("change", function () {
-                let form = $("form").alpaca("get");
-                let manuObj = $('#' + form.getControlByPath("general/manufacturer").id);
+            stationIdObj.on('change', function () {
+                let form = $('form').alpaca('get');
+                let manuObj = $('#' + form.getControlByPath('general/manufacturer').id);
                 let manu = manuObj[0].options[manuObj[0].selectedIndex].innerText;
                 let stationid = this.getValue();
-                form.childrenByPropertyId["stationid"].setValue(stationid);
-                form.getControlByPath("Options/stationid").setValue(stationid);
-                form.getControlByPath("daviswll/stationid").setValue(stationid);
-                form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
-                form.getControlByPath("ecowittmaps/stationid").setValue(stationid);
-                form.getControlByPath("ecowittapi/stationid").setValue(stationid);
-                form.getControlByPath("general/stationmodel").setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(manu + " " + o.text), a), []));
+                form.childrenByPropertyId['stationid'].setValue(stationid);
+                form.getControlByPath('Options/stationid').setValue(stationid);
+                form.getControlByPath('daviswll/stationid').setValue(stationid);
+                form.getControlByPath('daviswll/advanced/stationid').setValue(stationid);
+                form.getControlByPath('ecowittmaps/stationid').setValue(stationid);
+                form.getControlByPath('ecowittapi/stationid').setValue(stationid);
+                form.getControlByPath('general/stationmodel').setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(manu + ' ' + o.text), a), []));
                 // set the settings name for WLL/Davis cloud
-                setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
+                setDavisStationTitle(form.getControlByPath('daviswll'), stationid);
             });
 
             // On changing the Davis VP connection type, propagate down to advanced settings
-            form.getControlByPath("davisvp2/davisconn/conntype").on("change", function () {
-                let form = $("form").alpaca("get");
+            form.getControlByPath('davisvp2/davisconn/conntype').on('change', function () {
+                let form = $('form').alpaca('get');
                 let conntype = this.getValue();
-                form.getControlByPath("davisvp2/advanced/conntype").setValue(conntype);
-                form.getControlByPath("davisvp2/advanced/conntype").refresh();
+                form.getControlByPath('davisvp2/advanced/conntype').setValue(conntype);
+                form.getControlByPath('davisvp2/advanced/conntype').refresh();
             });
 
             // Set the initial value of the sub-section  station ids
-            let stationid = form.childrenByPropertyId["stationid"].getValue();
-            form.getControlByPath("Options/stationid").setValue(stationid);
-            form.getControlByPath("daviswll/stationid").setValue(stationid);
-            form.getControlByPath("daviswll/advanced/stationid").setValue(stationid);
-            form.getControlByPath("ecowittmaps/stationid").setValue(stationid);
-            form.getControlByPath("ecowittapi/stationid").setValue(stationid);
+            let stationid = form.childrenByPropertyId['stationid'].getValue();
+            form.getControlByPath('Options/stationid').setValue(stationid);
+            form.getControlByPath('daviswll/stationid').setValue(stationid);
+            form.getControlByPath('daviswll/advanced/stationid').setValue(stationid);
+            form.getControlByPath('ecowittmaps/stationid').setValue(stationid);
+            form.getControlByPath('ecowittapi/stationid').setValue(stationid);
 
             // Keep a record of the last value
             StashedStationId = stationid;
 
             // On changing the JSON Station connection type, propgate to advanced settings
-            let connType = form.getControlByPath("jsonstation/conntype");
-            connType.on("change", function () {
-                let form = $("form").alpaca("get");
+            let connType = form.getControlByPath('jsonstation/conntype');
+            connType.on('change', function () {
+                let form = $('form').alpaca('get');
                 let type = this.getValue();
-                form.getControlByPath("jsonstation/advanced/conntype").setValue(+type);
-                form.getControlByPath("jsonstation/advanced/conntype").refresh();
+                form.getControlByPath('jsonstation/advanced/conntype').setValue(+type);
+                form.getControlByPath('jsonstation/advanced/conntype').refresh();
             });
             // Set the initial value of JSON Station connection type in advanced settings
-            form.getControlByPath("jsonstation/advanced/conntype").setValue(+form.getControlByPath("jsonstation/conntype").getValue());
+            form.getControlByPath('jsonstation/advanced/conntype').setValue(+form.getControlByPath('jsonstation/conntype').getValue());
 
 
             // Set the initial title of Davis WLL/Cloud
-            setDavisStationTitle(form.getControlByPath("daviswll"), stationid);
+            setDavisStationTitle(form.getControlByPath('daviswll'), stationid);
             // Set the initial value of Davis advanced conntype
-            let conntype = form.getControlByPath("davisvp2/davisconn/conntype").getValue();
-            form.getControlByPath("davisvp2/advanced/conntype").setValue(+conntype);
+            let conntype = form.getControlByPath('davisvp2/davisconn/conntype').getValue();
+            form.getControlByPath('davisvp2/advanced/conntype').setValue(+conntype);
         }
     });
 });
@@ -386,13 +386,13 @@ function onAccessChange(that, val) {
 
 function setDavisStationTitle(that, val) {
     if (val == 11) { // WLL
-        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Live";
+        that.field[0].firstElementChild.firstElementChild.innerText = ' Davis WeatherLink Live';
         //that.refresh();
     } else if (val == 19) { // Davis cloud WLL
-        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Cloud (WLL/WLC)";
+        that.field[0].firstElementChild.firstElementChild.innerText = ' Davis WeatherLink Cloud (WLL/WLC)';
         //that.refresh();
     } else if (val == 20) { // Davis cloud VP2
-        that.field[0].firstElementChild.firstElementChild.innerText = " Davis WeatherLink Cloud (VP2)";
+        that.field[0].firstElementChild.firstElementChild.innerText = ' Davis WeatherLink Cloud (VP2)';
         //that.refresh();
     }
 }

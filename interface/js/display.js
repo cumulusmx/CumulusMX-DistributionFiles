@@ -1,56 +1,56 @@
-// Last modified: 2024/09/27 10:20:51
+// Last modified: 2024/10/29 10:39:18
 
 let accessMode;
 
 $(document).ready(function () {
-    $("form").alpaca({
-        "dataSource": "./api/settings/displayoptions.json",
-        "optionsSource": "./json/DisplayOptions.json",
-        "schemaSource": "./json/DisplaySchema.json",
-        "view": "bootstrap-edit-horizontal",
-        "ui": "bootstrap",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        dataSource: '/api/settings/displayoptions.json',
+        optionsSource: '/json/DisplayOptions.json',
+        schemaSource: '/json/DisplaySchema.json',
+        view: 'bootstrap-edit-horizontal',
+        ui: 'bootstrap',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "../api/setsettings/updatedisplay.json",
+                                    type: 'POST',
+                                    url: '/api/setsettings/updatedisplay.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert("Settings updated");
+                                    alert('Settings updated');
                                 })
                                 .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change if accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
+            let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
@@ -59,21 +59,21 @@ $(document).ready(function () {
             }
 
             // messy, but cannot find another way of setting the rightLabels of array checkboxes
-            setSensorLabels(form, "DataVisibility/extratemp/sensors");
-            setSensorLabels(form, "DataVisibility/extrahum/sensors");
-            setSensorLabels(form, "DataVisibility/extradew/sensors");
-            setSensorLabels(form, "DataVisibility/soiltemp/sensors");
-            setSensorLabels(form, "DataVisibility/soilmoist/sensors");
-            setSensorLabels(form, "DataVisibility/leafwet/sensors");
-            setSensorLabels(form, "DataVisibility/usertemp/sensors");
-            setSensorLabels(form, "DataVisibility/aq/sensors");
+            setSensorLabels(form, 'DataVisibility/extratemp/sensors');
+            setSensorLabels(form, 'DataVisibility/extrahum/sensors');
+            setSensorLabels(form, 'DataVisibility/extradew/sensors');
+            setSensorLabels(form, 'DataVisibility/soiltemp/sensors');
+            setSensorLabels(form, 'DataVisibility/soilmoist/sensors');
+            setSensorLabels(form, 'DataVisibility/leafwet/sensors');
+            setSensorLabels(form, 'DataVisibility/usertemp/sensors');
+            setSensorLabels(form, 'DataVisibility/aq/sensors');
 
-            setSensorLabels(form, "Graphs/colour/extratemp/sensors");
-            setSensorLabels(form, "Graphs/colour/extrahum/sensors");
-            setSensorLabels(form, "Graphs/colour/extradew/sensors");
-            setSensorLabels(form, "Graphs/colour/soiltemp/sensors");
-            setSensorLabels(form, "Graphs/colour/soilmoist/sensors");
-            setSensorLabels(form, "Graphs/colour/usertemp/sensors");
+            setSensorLabels(form, 'Graphs/colour/extratemp/sensors');
+            setSensorLabels(form, 'Graphs/colour/extrahum/sensors');
+            setSensorLabels(form, 'Graphs/colour/extradew/sensors');
+            setSensorLabels(form, 'Graphs/colour/soiltemp/sensors');
+            setSensorLabels(form, 'Graphs/colour/soilmoist/sensors');
+            setSensorLabels(form, 'Graphs/colour/usertemp/sensors');
         }
     });
 });

@@ -1,22 +1,22 @@
-// Last modified: 2023/10/13 21:35:05
+// Last modified: 2024/10/29 10:52:04
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
 
     function OpenWebSocket(wsport) {
 
-        if ("WebSocket" in window) {
+        if ('WebSocket' in window) {
             // Open the web socket
-            var ws = new WebSocket("ws://" + location.hostname + ":" + wsport + '/ws');
+            var ws = new WebSocket('ws://' + location.hostname + ':' + wsport + '/ws');
             ws.onopen = function () {
 
                 // send a message to stop the server timing out the connection
                 setInterval(function () {
-                    ws.send("Keep alive");
+                    ws.send('Keep alive');
                 }, 60000);
 
                 ws.onmessage = function (evt) {
@@ -27,13 +27,13 @@ window.addEventListener("load", function () {
 
                 // websocket is closed.
                 ws.onclose = function () {
-                    alert("Connection is closed...");
+                    alert('Connection is closed...');
                 };
             };
 
         } else {
             // The browser doesn't support WebSocket
-            alert("WebSocket not supported by your browser!");
+            alert('WebSocket not supported by your browser!');
         }
     }
 
@@ -88,8 +88,8 @@ window.addEventListener("load", function () {
             humTL: inp.LowHumToday.toString(),
             humTH: inp.HighHumToday.toString(),
             inhum: inp.IndoorHum.toString(),
-            SensorContactLost: "0",
-            forecast: (inp.Forecast || "n/a").toString(),
+            SensorContactLost: '0',
+            forecast: (inp.Forecast || 'n/a').toString(),
             tempunit: inp.TempUnit.substr(inp.TempUnit.length - 1),
             windunit: inp.WindUnit,
             pressunit: inp.PressUnit,
@@ -116,7 +116,7 @@ window.addEventListener("load", function () {
             TwgustTM: inp.HighGustTodayTime,
             windTM: inp.HighWindToday.toString(),
             bearingTM: inp.HighGustBearingToday.toString(),
-            timeUTC: "",
+            timeUTC: '',
             BearingRangeFrom10: inp.BearingRangeFrom10.toString(),
             BearingRangeTo10: inp.BearingRangeTo10.toString(),
             UV: inp.UVindex.toString(),
@@ -129,16 +129,16 @@ window.addEventListener("load", function () {
             windrun: inp.WindRunToday.toString(),
             cloudbasevalue: inp.Cloudbase,
             cloudbaseunit: inp.CloudbaseUnit,
-            version: "",
-            build: "",
-            ver: "12"
+            version: '',
+            build: '',
+            ver: '12'
         };
     }
 
     function doAjaxUpdate() {
         $.ajax({
-            url: "api/data/currentdata",
-            dataType: "json",
+            url: '/api/data/currentdata',
+            dataType: 'json',
             success: function (data) {
                 updateDisplay(data);
             }
@@ -148,7 +148,7 @@ window.addEventListener("load", function () {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/info/wsport.json',
+            url: '/api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);

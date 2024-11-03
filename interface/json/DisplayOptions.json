@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2024/10/30 09:15:29",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -57,6 +58,11 @@
 						"The number of cardinal points to display on the Wind Rose",
 						"Set this to 8 for Fine Offset stations"
 					]
+				},
+				"displaysnow": {
+					"label": "Snowfall:",
+					"rightLabel": "Display Snowfall data",
+					"helper": ["Enabling this option will display snowfall data from the Weather Diary on the default web site"]
 				}
 			}
 		},
@@ -432,6 +438,20 @@
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
+						},
+						"snow": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"Depth": {
+									"label": "Snow Depth",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"Last24h": {
+									"label": "Snowfall in 24hr",
+									"$ref": "#/definitions/colorpicker"
+								}
+							}
 						}
 					}
 				}
@@ -553,6 +573,16 @@
 						},
 						"TempSum2": {
 							"label": "Annual Temperature Sum #2",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"chillhrs": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"ChillHrs": {
+							"label": "Chill Hours",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -684,6 +714,20 @@
 						},
 						"hum": {
 							"label": "Humidity",
+							"$ref": "#/definitions/visibility"
+						}
+					}
+				},
+				"snow": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"Depth": {
+							"label": "Snow Depth",
+							"$ref": "#/definitions/visibility"
+						},
+						"Last24h": {
+							"label": "Snowfall in 24h",
 							"$ref": "#/definitions/visibility"
 						}
 					}

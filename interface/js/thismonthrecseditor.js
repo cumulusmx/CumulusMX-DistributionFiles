@@ -1,6 +1,6 @@
-// Last modified: 2023/11/07 10:43:45
+// Last modified: 2024/10/29 11:36:39
 
-var updateUrl = 'api/edit/thismonth';
+var updateUrl = '/api/edit/thismonth';
 var editFieldName;
 var newValue, newTime;
 var oldValue, oldTime;
@@ -16,7 +16,7 @@ $(document).ready(function() {
     $('.loading-overlay-image-container').show();
 
     $.ajax({
-        url: 'api/edit/thismonthrecords.json',
+        url: '/api/edit/thismonthrecords.json',
         dataType: 'json',
         success: function (result) {
             // set the value and add some accessibility
@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/thismonthrecordsdayfile.json',
+        url: '/api/edit/thismonthrecordsdayfile.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -49,7 +49,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/thismonthrecordslogfile.json',
+        url: '/api/edit/thismonthrecordslogfile.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -76,7 +76,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);

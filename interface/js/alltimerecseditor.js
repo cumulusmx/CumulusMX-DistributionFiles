@@ -1,6 +1,6 @@
-// Last modified: 2023/11/07 12:17:20
+// Last modified: 2024/10/29 10:05:43
 
-var updateUrl = 'api/edit/alltime';
+var updateUrl = '/api/edit/alltime';
 var editFieldName;
 var newValue, newTime;
 var oldValue, oldTime;
@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('.loading-overlay-image-container').show();
 
     $.ajax({
-        url: 'api/edit/alltimerecords.json',
+        url: '/api/edit/alltimerecords.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/alltimerecordsdayfile.json',
+        url: '/api/edit/alltimerecordsdayfile.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -56,7 +56,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
@@ -149,8 +149,8 @@ function getMonthlyLogs() {
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();
     $.ajax({
-        url: "api/edit/alltimerecordslogfile.json",
-        dataType: "json",
+        url: '/api/edit/alltimerecordslogfile.json',
+        dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 $('#' + key).text(value);
