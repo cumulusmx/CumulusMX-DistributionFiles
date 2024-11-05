@@ -36,10 +36,11 @@ $(document).ready(function () {
 			case 'wind':	doWind();		break;
 			case 'windDir':	doWindDir();	break;
 			case 'rain':	doRain();		break;
-		    case 'humidity':	doHum();		break;
+		    case 'humidity':	doHum();	break;
 			case 'solar':	doSolar();		break;
 			case 'degdays':	doDegDays();	break;
 			case 'tempsum':	doTempSum();	break;
+			case 'snow':	doSnow();	 	break;
 			default:		doTemp();		break;
 		}
 //        parent.location.hash = value;
@@ -1333,4 +1334,123 @@ var doTempSum = function () {
 			chart.redraw();
 		}
 	});
+};
+
+var doSnow = function () {
+    $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'column',
+            alignTicks: true
+        },
+        title: {text: 'Snowfall'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b %y',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Snow depth (' + config.snow.units + ')'},
+                opposite: false,
+                min: 0,
+                labels: {
+                    align: 'right',
+                    x: -5
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            column: {
+                dataGrouping: {
+                    enabled: false
+                }
+            },
+            series: {
+                grouping: false,
+                pointPadding: 0,
+                groupPadding: 0.05,
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+			useHTML: true,
+			headerFormat: myTooltipHead,
+			pointFormat: myTooltipPoint,
+			footerFormat: '</table>',
+            valueDecimals: 1,
+            xDateFormat: '%e %b %y'
+        },
+        series: [],
+        rangeSelector: {
+            inputEnabled: false,
+            selected: 1
+        },
+        navigator: {
+            series: {
+                type: 'column'
+            }
+        }
+    };
+
+    chart = new Highcharts.StockChart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: '/api/dailygraphdata/dailysnow.json',
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        if ('SnowDepth' in resp && resp.SnowDepth.length > 0) {
+            chart.addSeries({
+                name: 'Snow Depth',
+                type: 'column',
+                color: config.series.snowdepth.colour,
+                tooltip: {valueSuffix: ' ' + config.snow.units},
+                data: resp.SnowDepth,
+                showInNavigator: true
+            });
+        }
+
+        if ('Snow24h' in resp && resp.Snow24h.length > 0) {
+            chart.addSeries({
+                name: 'Snowfall 24h',
+                type: 'column',
+                color: config.series.snow24h.colour,
+                tooltip: {valueSuffix: ' ' + config.snow.units},
+                data: resp.Snow24h,
+                showInNavigator: true
+            });
+        }
+    })
+    .always(function() {
+        chart.hideLoading();
+    });
 };
