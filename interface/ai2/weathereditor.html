@@ -89,6 +89,7 @@
 				padding-left: 0.5em;
 			}
 			.ui-icon { background-color: var(--add5)!important;}
+
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -115,30 +116,46 @@
 					<p>Diary &amp; Conditions</p>
 				</div>
 
-				<div class="ow-oneCol" style="row-gap: 2vh;">
-					<div class="ow-theme-add4 ow-card ow-animate-fadeIn" style="order:0;">
-						<h4>Weather Diary</h4>
-						<div class="ow-titleBar" style="flex-flow: row wrap;">
-							<div id="datepicker" style=" flex-grow:0;margin-bottom: 1vh;" aria-label="Date picker"></div>
-							<input type="hidden" id="date_hidden_input">
-							<div style="min-width: 30em; flex-grow: 3; margin-bottom: 1vh;">
-								<p>Selected date: <strong><span id="selectedDate"></span></strong></p>
-								<h5>Your diary entry</h5>
-								<input type="text" class="w3-input ow-theme-add5 w3-border ow-theme-bdr" id="inputComment" aria-label="Your diary entry">
-								<h4>Snowfall information</h4>
-								<div class="ow-titleBar ow-flex-center" style="justify-content: flex-start; margin-bottom:1vh;">
-									<label for="inputSnowFalling">Falling:&nbsp;</label><input type="checkbox" class="w3-check" id="inputSnowFalling" aria-label="Is snow falling?">
-									<label for="inputSnowLying">Lying:&nbsp;</label><input type="checkbox" class="w3-check" id="inputSnowLying" aria-label="Is snow laying?">
-									<label for="inputSnowDepth">Depth (cm):&nbsp;</label><input type="number" class="w3-number" id="inputSnowDepth" step="0.1" min="0" value="0" style="width:5em" aria-label="Depth of laying snow">
+					<div class="ow-oneCol" style="row-gap:2vh;">
+						<div class="ow-card ow-theme-add4">
+							<h3>Weather Diary</h3>
+							<div style="display:flex; gap:1vh 2vw; flex-flow: row wrap;">
+								<div>
+									<div id="datepicker" style="width:252px; min-height:276px;"></div>
+									<input type="hidden" id="date_hidden_input">
 								</div>
-								<div class="ow-btnBar ow-flex-center" style="margin: 1vh 0;">
-									<button class="w3-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Submit your diary entry" onclick="applyDiaryEntry()">Apply</button>
-									<button class="w3-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Clear the current diary entry" onclick="deleteDiaryEntry()">Delete</button>
+								<div style="flex-grow:2;">
+									<h4 class="w3-hide">Entry for...</h4>
+									<div style="display:flex;gap:1vh 1vw; align-items:baseline;">
+										<h4>Entry for:</h4>
+										<p class="w3-hide">Selected date:</p>
+										<p><strong><span id="selectedDate"></span></strong></p>
+										<p><label for="inputTime">Time:</label></p>
+										<input type="time" id="inputTime" aria-label="Time for entry" style="width:5em" class="ow-theme">
+									</div>
+									<p>Entry</p>
+									<input type="text" class="w3-input ow-theme-add5 w3-border ow-theme-bdr" style="width:100%;" id="inputComment" aria-label="Your diary entry">
+									<h4>Snowfall Information</h4>
+									<div style="display:flex;gap:1vh 1vw;">
+										<label for="inputSnow24h">Snowfall in last 24 hours (cm):</label><input type="number" class="w3-number" id="inputSnow24h" step="0.1" min="0" style="width:5em" aria-label="Snowfall in last 24 hours">
+										<label for="inputSnowDepth">Depth (cm):</label><input type="number" class="w3-number" id="inputSnowDepth" step="0.1" min="0" value="0" style="width:5em" aria-label="Depth of laying snow">
+									</div>
+									<div class="ow-btnBar ow-flex-center" style="margin: 1vh 0;flex-flow:row wrap; justify-content: flex-end;">
+										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Submit your diary entry" onclick="applyDiaryEntry()">Apply</button>
+										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Clear the current diary entry" onclick="deleteDiaryEntry()">Delete</button>
+									</div>
+									<div class="ow-btnBar" style="margin:1vh 0; flex-flow:row wrap; justify-content:flex-start;">
+										<a href="/api/data/diaryexport.txt" download class="w3-btn ow-btn ow-theme-add3" style="flex-grow:0;" aria-label="Export your diary entries">Export all</a>
+										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Upload diary entries" onClick="uploadFile()">Upload file</button>
+										<!--<label class="ow-btn2 ow-theme-add3" style="Zdisplay:inline-block;" for="upFile">Select file</label>-->
+										<input type="file" id="upFile" class="ow-btn" >
+									</div>
 									<p id="status" class="ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="flex-grow: 3;">--</p>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="ow-theme-add4 ow-card ow-animate-fadeIn" style="order:0;">
 						<h4>Current Conditions</h4>
 						<p>
