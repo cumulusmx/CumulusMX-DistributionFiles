@@ -95,7 +95,7 @@ function getSummaryData() {
     })
     .done(function (result) {
         activeDates = result.dates;
-        snowHour = ('0' + result.snowHour).slice(-2) + ":00:00"
+        snowHour = ('0' + result.snowHour).slice(-2) + ":00:00";
         $("#datepicker").datepicker("refresh");
         $('#inputTime').val(snowHour)
     })
