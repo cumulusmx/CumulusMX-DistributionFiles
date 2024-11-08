@@ -144,6 +144,19 @@
 										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Submit your diary entry" onclick="applyDiaryEntry()">Apply</button>
 										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Clear the current diary entry" onclick="deleteDiaryEntry()">Delete</button>
 									</div>
+									<div style="display:flex; flex-flow: row wrap; justify-content:flex-start;align-items:first baseline; gap:1vh;">
+										<h5>Automated readings:</h5>
+										<select id="automated" style="width: 12em" class="ow-theme-add4">
+											<option value="0">Disabled</option>
+											<option value="1">Laser Distance #1</option>
+											<option value="2">Laser Distance #2</option>
+											<option value="3">Laser Distance #3</option>
+											<option value="4">Laser Distance #4</option>
+										</select>
+										<p style="flex-grow:0; flex-shrink:3; max-width: 27em;">
+											Adds an automated reading to the database from the above sensor at the snow reading time. This only creates the record if a manual record has not already been created.
+										</p>
+									</div>
 									<div class="ow-btnBar" style="margin:1vh 0; flex-flow:row wrap; justify-content:flex-start;">
 										<a href="/api/data/diaryexport.txt" download class="w3-btn ow-btn ow-theme-add3" style="flex-grow:0;" aria-label="Export your diary entries">Export all</a>
 										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Upload diary entries" onClick="uploadFile()">Upload file</button>

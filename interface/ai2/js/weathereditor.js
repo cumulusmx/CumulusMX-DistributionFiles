@@ -4,24 +4,17 @@
  *  Last edit:  27-04-2023 14:24
  *  Based on:   conditions edtor and diary editor
  *          By: Mark Crossley
- *      Edited: 2021/06/09 21:50:22 & 2022/06/23 17:02:06
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-// Last modified: 2024/11/02 11:55:48
+
+// Last modified: 2024/11/06 12:11:29
 
 var activeDates;
-var snowHour;
+var defaultSnowHour;
+var automated = 0;
 
 $(document).ready(function () {
-/*    $.ajax({
-        url: '/api/info/version.json',
-        dataType: 'json'
-    })
-    .done(function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    });
-*/
+
     $.ajax({
         url: '/api/info/units.json',
         dataType: 'json'
@@ -29,7 +22,36 @@ $(document).ready(function () {
    .done(function (result) {
         $('#snow24hLabel').append(' (' + result.snow + ')');
         $('#snowDepthLabel').append(' (' + result.snow + ')');
+    });
+
+    $.ajax({
+        url: '/api/info/snowinfo.json',
+        dataType: 'json'
     })
+   .done(function (result) {
+        defaultSnowHour = ('0' + result.snowHour).slice(-2) + ":00:00"
+        $('#inputTime').val(defaultSnowHour);
+        $('#automated').val(result.automated);
+    })
+    .always(function (result) {
+        $('#automated').on('change', function () {
+            $.ajax({
+                url: '/api/edit/diaryautomate',
+                type: 'POST',
+                data: this.value,
+                dataType: 'html'
+            })
+            .done(function (result) {
+                console.log(result);
+                // notify user
+                $('#status').text(result);
+                timeOut('#status');
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                $('#status').text('Error: ' + textStatus);
+            });
+        });
+    });
 
     $('#datepicker').datepicker({
         dateFormat: 'yy-mm-dd',
@@ -62,10 +84,10 @@ $(document).ready(function () {
             .done(function (result) {
                 $('#inputComment').val(result.Entry);
                 $('#inputSnow24h').val(result.Snow24h);
+                $('#inputTime').val(result.Time);
                 $('#inputSnowDepth').val(result.SnowDepth);
                 $('#status').text('');
                 $('#selectedDate').text(selDate.toDateString());
-                $('#inputTime').val(result.Time);
                 $('#status').text('');
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
@@ -84,7 +106,6 @@ $(document).ready(function () {
     // Go get our diary data
     getSummaryData();
     $.datepicker._gotoToday($('#datepicker'));
-
     loadCC();
 });
 
@@ -95,16 +116,14 @@ function getSummaryData() {
     })
     .done(function (result) {
         activeDates = result.dates;
-        snowHour = ('0' + result.snowHour).slice(-2) + ":00:00";
         $("#datepicker").datepicker("refresh");
-        $('#inputTime').val(snowHour)
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         $('#status').text('Error: ' + textStatus);
     });
 }
 
-function deleteDiaryEntry() {
+function deleteEntry() {
     var date = $('#datepicker').datepicker('getDate');
 
     $('#status').text('');
@@ -133,7 +152,7 @@ function deleteDiaryEntry() {
                 $('#inputSnow24h').val(null);
                 $('#inputSnowDepth').val(null);
                 $('#status').text('Entry deleted.');
-                timeOut('status');
+                timeOut('#status');
             } else {
                 $('#status').text('Error: ' + result.result);
             }
@@ -171,7 +190,7 @@ function applyDiaryEntry() {
             // notify user
             if (result.result === 'Success') {
                 $('#status').text('Entry added/updated OK.');
-                timeOut('status');
+                timeOut('#status');
             } else {
                 $('#status').text('Error: ' + result.result);
             }
@@ -210,7 +229,7 @@ function uploadFile() {
         console.log(result);
         // notify user
         $('#status').text(result);
-        timeOut('status');
+        timeOut('#stutus');
         // update datepicker
         getSummaryData();
     })
@@ -219,6 +238,9 @@ function uploadFile() {
     });
 }
 
+
+function automated(sel) {
+}
 
 function getDateString(date) {
     return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
@@ -255,7 +277,6 @@ function loadCC() {
 	})
 	.done(function(resp) {
 		//$('#inputCurrCond').val(resp.data);
-		console.log('Load success');
 		$('#inputCurrCond')[0].value = resp.data;
 	})
 	.fail(function(jqXHR, textStatus) {
@@ -273,7 +294,6 @@ function applyEntry() {
 		data    : body,
 		dataType: 'json'
 	}).done(function (result) {
-		console.log(result.result);
 		// notify user
 		if (result.result === 'Success') {
 			$("#CCstatus").text('Entry added/updated OK.');
