@@ -1,7 +1,8 @@
-// Last modified: 2024/11/02 11:55:48
+// Last modified: 2024/11/06 12:11:29
 
 var activeDates;
-var snowHour;
+var defaultSnowHour;
+var automated = 0;
 
 $(document).ready(function () {
     $.ajax({
@@ -20,7 +21,35 @@ $(document).ready(function () {
    .done(function (result) {
         $('#snow24hLabel').append(' (' + result.snow + ')');
         $('#snowDepthLabel').append(' (' + result.snow + ')');
+    });
+
+    $.ajax({
+        url: '/api/info/snowinfo.json',
+        dataType: 'json'
     })
+   .done(function (result) {
+        defaultSnowHour = ('0' + result.snowHour).slice(-2) + ":00:00"
+        $('#inputTime').val(defaultSnowHour);
+        $('#automated').val(result.automated);
+    })
+    .always(function (result) {
+        $('#automated').on('change', function () {
+            $.ajax({
+                url: '/api/edit/diaryautomate',
+                type: 'POST',
+                data: this.value,
+                dataType: 'html'
+            })
+            .done(function (result) {
+                console.log(result);
+                // notify user
+                $('#status').text(result);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                $('#status').text('Error: ' + textStatus);
+            });
+        });
+    });
 
     $('#datepicker').datepicker({
         dateFormat: 'yy-mm-dd',
@@ -53,10 +82,10 @@ $(document).ready(function () {
             .done(function (result) {
                 $('#inputComment').val(result.Entry);
                 $('#inputSnow24h').val(result.Snow24h);
+                $('#inputTime').val(result.Time);
                 $('#inputSnowDepth').val(result.SnowDepth);
                 $('#status').text('');
                 $('#selectedDate').text(selDate.toDateString());
-                $('#inputTime').val(result.Time);
                 $('#status').text('');
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
@@ -84,9 +113,7 @@ function getSummaryData() {
     })
     .done(function (result) {
         activeDates = result.dates;
-        snowHour = ('0' + result.snowHour).slice(-2) + ":00:00"
         $("#datepicker").datepicker("refresh");
-        $('#inputTime').val(snowHour)
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         $('#status').text('Error: ' + textStatus);
@@ -205,6 +232,9 @@ function uploadFile() {
     });
 }
 
+
+function automated(sel) {
+}
 
 function getDateString(date) {
     return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
