@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/02 10:24:21
+Last modified: 2024/11/06 10:57:22
 -->
 <!doctype html>
 <html lang="en">
@@ -118,6 +118,19 @@ Last modified: 2024/11/02 10:24:21
                             <a href="api/data/diaryexport.txt" download><button class="btn btn-primary" form="diaryform" >Export All</button></a>
                             <button type="submit" class="btn btn-primary" form="diaryform" onclick="uploadFile()">Upload File</button>
                             <input type="file" style="display: inline-block;" id="upFile" placeholder="Upload file name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="automated" id="automatedLabel" class="control-label col-xs-2">Automated readings</label>
+                        <div class="col-xs-10">
+                            <select class="form-control" id="automated" style="width: 170px">
+                                <option value="0">Disabled</option>
+                                <option value="1">Laser Distance #1</option>
+                                <option value="2">Laser Distance #2</option>
+                                <option value="3">Laser Distance #3</option>
+                                <option value="4">Laser Distance #4</option>
+                            </select>
+                            Adds an automated reading to the database from the above sensor at the snow reading time. This only creates the record if a manual record has not already been created.
                         </div>
                     </div>
                     <div class="form-group">
