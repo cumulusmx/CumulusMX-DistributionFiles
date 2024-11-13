@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/29 20:22:42",
+	"version": "Last Modified: 2024/11/10 14:13:49",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -127,6 +127,15 @@
 							]
 						},
 						"snow": {
+							"type": "select",
+							"removeDefaultNone": true,
+							"sort": false,
+							"optionLabels": [
+								"Centimetres",
+								"Inches"
+							]
+						},
+						"laser": {
 							"type": "select",
 							"removeDefaultNone": true,
 							"sort": false,

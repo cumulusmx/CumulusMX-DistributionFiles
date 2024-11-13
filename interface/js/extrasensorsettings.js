@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:47:49
+// Last modified: 2024/11/12 10:27:01
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
@@ -142,6 +142,17 @@ $(document).ready(function () {
                 let stationid = this.getValue();
                 form.getControlByPath('httpSensors/ecowitt/stationid').setValue(stationid);
             });
+
+            // On changing the JSON Station connection type, propgate to advanced settings
+            let connType = form.getControlByPath('httpSensors/jsonstation/conntype');
+            connType.on('change', function () {
+                let form = $('form').alpaca('get');
+                let type = this.getValue();
+                form.getControlByPath('httpSensors/jsonstation/advanced/conntype').setValue(+type);
+                form.getControlByPath('httpSensors/jsonstation/advanced/conntype').refresh();
+            });
+            // Set the initial value of JSON Station connection type in advanced settings
+            form.getControlByPath('httpSensors/jsonstation/advanced/conntype').setValue(+form.getControlByPath('httpSensors/jsonstation/conntype').getValue());
 
             // Keep a record of the last value
             stashedAirLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
