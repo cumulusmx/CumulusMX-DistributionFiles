@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/11/01 15:49:55",
+	"version": "Last Modified: 2024/11/11 23:28:55",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -84,7 +84,7 @@
 			"type": "object",
 			"properties": {
 				"extraStation": {
-					"enum": [-1, 0, 1, 2]
+					"enum": [-1, 0, 1, 2, 3]
 				},
 				"ecowittapi": {
 					"title": "Ecowitt Cloud Access API",
@@ -133,6 +133,9 @@
 							"type": "boolean"
 						},
 						"useLeak": {
+							"type": "boolean"
+						},
+						"useLaserDist": {
 							"type": "boolean"
 						},
 						"useCamera": {
@@ -244,12 +247,103 @@
 							"type": "boolean"
 						}
 					}
+				},
+				"jsonstation": {
+					"title": "JSON Station",
+					"type": "object",
+					"properties": {
+						"conntype": {
+							"enum": [
+								0,
+								1,
+								2
+							]
+						},
+						"filename": {
+							"type": "string",
+							"dependencies": "conntype"
+						},
+						"dummy": {
+							"dependencies": "conntype"
+						},
+						"mqttserver": {
+							"type": "string",
+							"dependencies": "conntype"
+						},
+						"mqttport": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 65535,
+							"dependencies": "conntype"
+						},
+						"mqttuser": {
+							"type": "string",
+							"dependencies": "conntype"
+						},
+						"mqttpass": {
+							"type": "string",
+							"dependencies": "conntype"
+						},
+						"mqtttopic": {
+							"type": "string",
+							"dependencies": "conntype"
+						},
+						"advanced": {
+							"title": "Advanced Settings",
+							"type": "object",
+							"properties": {
+								"conntype": {
+									"type": "integer"
+								},
+								"filedelay": {
+									"type": "integer",
+									"minimum": 0,
+									"dependencies": "conntype"
+								},
+								"mqtttls": {
+									"type": "boolean",
+									"dependencies": "conntype"
+								}
+							},
+							"dependencies": [
+								"conntype"
+							]
+						},
+						"useSolar": {
+							"type": "boolean"
+						},
+						"useUv": {
+							"type": "boolean"
+						},
+						"useTempHum": {
+							"type": "boolean"
+						},
+						"useSoilMoist": {
+							"type": "boolean"
+						},
+						"useLeafWet": {
+							"type": "boolean"
+						},
+						"useUserTemp": {
+							"type": "boolean"
+						},
+						"useAQI": {
+							"type": "boolean"
+						},
+						"useCo2": {
+							"type": "boolean"
+						},
+						"useLaserDist": {
+							"type": "boolean"
+						}
+					}
 				}
 			},
 			"dependencies": {
 				"ecowitt": ["extraStation"],
 				"ecowittapi": ["extraStation"],
-				"ambient": ["extraStation"]
+				"ambient": ["extraStation"],
+				"jsonstation": ["extraStation"]
 			}
 		},
 		"blakeLarsen": {
