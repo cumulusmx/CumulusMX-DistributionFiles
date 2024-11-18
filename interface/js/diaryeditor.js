@@ -1,4 +1,4 @@
-// Last modified: 2024/11/06 12:11:29
+// Last modified: 2024/11/18 15:01:28
 
 var activeDates;
 var defaultSnowHour;
@@ -21,6 +21,13 @@ $(document).ready(function () {
    .done(function (result) {
         $('#snow24hLabel').append(' (' + result.snow + ')');
         $('#snowDepthLabel').append(' (' + result.snow + ')');
+        if (result.snow == "cm") {
+            $('#inputSnow24h').attr('step', '0.1');
+            $('#inputSnowDepth').attr('step', '0.1');
+        } else {
+            $('#inputSnow24h').attr('step', '0.01');
+            $('#inputSnowDepth').attr('step', '0.01');
+        }
     });
 
     $.ajax({
@@ -144,7 +151,7 @@ function deleteEntry() {
             console.log("Delete " + date + ": " + result.result);
             // notify user
             if (result.result === 'Success') {
-                $('#inputTime').val(snowHour);
+                $('#inputTime').val(defaultSnowHour);
                 $('#inputComment').val(null);
                 $('#inputSnow24h').val(null);
                 $('#inputSnowDepth').val(null);
@@ -170,7 +177,7 @@ function applyEntry() {
         $('#status').text('Error: You must select a date first.');
     } else {
         var body = '{"Date":"' + getDateString(date) + '",' +
-            '"Time":' + $('#inputTime').val() + '",' +
+            '"Time":"' + $('#inputTime').val() + '",' +
             '"Entry":"' + $('#inputComment').val() + '",' +
             '"Snow24h":"' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : "NULL") + '",' +
             '"SnowDepth":"' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : "NULL") + '"}';

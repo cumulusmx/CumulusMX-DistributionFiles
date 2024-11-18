@@ -1,5 +1,21 @@
 {
 	"definitions": {
+		"calibnospike": {
+			"fields": {
+				"offset": {
+					"label": "Offset",
+					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+				},
+				"multiplier": {
+					"label": "Multiplier:",
+					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+				},
+				"multiplier2": {
+					"label": "Multiplier ^2:",
+					"helper": "The Multiplier ^2 affects the curve of the correction"
+				}
+			}
+		},
 		"calib": {
 			"fields": {
 				"offset": {
@@ -61,7 +77,21 @@
 		"pressure": {
 			"collapsible": true,
 			"collapsed": true,
-			"$ref": "#/definitions/limits"
+			"$ref": "#/definitions/limits",
+			"helpers": [
+				"Only applied to the Sea Level Pressure value supplied by your station",
+				"If the option for Cumulus calculated SLP is enabled, then this calibration will NOT be applied"
+			]
+		},
+		"pressureStn": {
+			"collapsible": true,
+			"collapsed": true,
+			"$ref": "#/definitions/calibnospike",
+			"helpers": [
+				"Only applied to the station (or raw/absolute) pressure value supplied by your station",
+				"The altimeter pressure is dervied from the calibrated value",
+				"If the option for Cumulus calculated SLP is enabled, then this the calibration that will be applied"
+			]
 		},
 		"temp": {
 			"collapsible": true,
