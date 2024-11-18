@@ -354,6 +354,8 @@ input[type=number]:hover {
 	border-bottom: thin solid var(--sub5);
 	height: 1px!important;
 	box-shadow: var(--shadow);
+	width:100%!important;
+	display:block;
 }
 
 .ow-defaultInt, .ow-menuMobile {

@@ -1,8 +1,8 @@
 				<div class="siteWidth w3-bar ow-menu ow-fadeIn">
 					<a href="index.html" class="w3-bar-item w3-btn ow-theme-hvr">Dashboard</a>
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="PagesL" class="w3-btn ow-theme-add1-hvr" aria-label="Weather data" onClick="toggleMenu(this);">Weather data<i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
-						<div id="menuPagesL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-add2 ow-animate-drop">
+						<button id="PagesL" class="w3-btn ow-theme-add1-hvr" aria-label="Weather data" onClick="toggleMainMenu(this);">Weather data<i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
+						<div id="menuPagesL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-add2 ow-animate-drop">			
 							<a href="current.html"			class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Readings now">Current readings </a>
 							<a href="ai_gauges.html" 		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Gauges"><i class="fa-solid fa-gauge-high"></i>Gauges</a>
 							<a href="charts.html" 			class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Recent Charts"><i class="fa-solid fa-chart-column"></i><i class="fa-solid fa-chart-line"></i>Recent charts</a>
@@ -13,27 +13,25 @@
 							<a href="records.html" 			class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Weather records">Weather records</a>
 							<a href="recsthisperiod.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Records for any period">Records this period</a>
 							<a href="querydayfile.html"     class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Query specific data in the Day File"><i class="fa-solid fa-question"></i>Daily Data Query</a>
-							<div class="ow-divider"></div>
+							<span class="ow-divider"></span>
 							<a href="noaamonthreport.html" 	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Monthly NOAA reports"><i class="fa-regular fa-clipboard"></i>Monthly NOAA report</a>
 							<a href="noaayearreport.html" 	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Yearly NOAA reports"><i class="fa-regular fa-clipboard"></i>Yearly NOAA report</a>
 						</div>
 					</div>
 					
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="ExtraL" class="w3-btn ow-theme-add1-hvr" aria-label="Your extra sensors" onClick="toggleMenu(this);">Extra sensors <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
+						<button id="ExtraL" class="w3-btn ow-theme-add1-hvr" aria-label="Your extra sensors" onClick="toggleMainMenu(this);">Extra sensors <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
 						<div id="menuExtraL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-add2 ow-animate-drop">
 							<a href="extrasensors.html"			class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Your additional sensors"><i class="fa-solid fa-wand-magic-sparkles"></i>Additional sensors</a>
 							<a href="airlinksensors.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Airlink sensors"><i class="fa-solid fa-tower-cell"></i>AirLink sensors</a>
 						</div>
 					</div>
 					
-					<a href="/index.html" target="_blank" 	class="w3-bar-item w3-btn w3-right w3-hide-small w3-hide-medium ow-defaultInt"><i class="fa-solid fa-gears"></i><span class="w3-hide-medium">CMX </span>Dashboard</a>
-
 					<div class="w3-bar-item" style="max-width: 1.5em;"><i class="fa-solid fa-diamond ow-theme-txt ow-txt-small" style="padding-top:6px;" ></i></div>
 
 					<!--	Start of Station Configuration menu	-->
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="LogsL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Edit Logs" onClick="toggleMenu(this);">Logs <i class="fa-solid fa-caret-down fa-xs ow-caret"></i></button>
+						<button id="LogsL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Edit Logs" onClick="toggleMainMenu(this);">Logs <i class="fa-solid fa-caret-down fa-xs ow-caret"></i></button>
 						<div id="menuLogsL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-sub2 ow-animate-drop">
 							<a href="datalogeditor.html" 		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit the readings logs"><i class="fa-regular fa-pen"></i>Edit the Readings logs</a>
 							<a href="extradatalogeditor.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit any extra data logs"><i class="fa-regular fa-pen"></i>Edit the extra data logs</a>
@@ -44,20 +42,20 @@
 					</div>
 
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="SettingsL" class="w3-btn theme ow-theme-sub3-hvr ow-thin" aria-label="Adjust settings" onClick="toggleMenu(this);">Settings <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
+						<button id="SettingsL" class="w3-btn theme ow-theme-sub3-hvr ow-thin" aria-label="Adjust settings" onClick="toggleMainMenu(this);">Settings <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
 						<div id="menuSettingsL" class="w3-dropdown-content w3-bar-block ow-theme-sub2 ow-animate-drop" style="min-width: 650px!important; width:60vw; max-width: 900px!important;margin-left: -20vw;box-shadow: var(--shadow);">
 							<div class="ow-fiveCol ">
 								<div class="">
 									<p class="w3-bar-item w3-center ow-theme-add5-txt" style="margin:0; padding: 0; font-size: 120%;">Primary settings</p>
-									<div class="ow-divider"></div>
+									<span class="ow-divider"></span>
 									<a href="wizard.html" 			class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Configuration wizard"><i class="fa-solid fa-list-check"></i>Configuration Wizard</a>
-									<div class="ow-divider" ></div>
+									<span class="ow-divider" ></span>
 									<a href="programsettings.html" 	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Program settings"><i class="fa-solid fa-list-check"></i>Program settings</a>
 									<a href="stationsettings.html" 	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Station settings"><i class="fa-solid fa-list-check"></i>Station settings</a>
 									<a href="internetsettings.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Internet settings"><i class="fa-solid fa-list-check"></i>Internet Settings</a>
 								</div>
 								<div class="">
-									<div class="ow-divider w3-hide"></div>
+									<span class="ow-divider w3-hide"></span>
 									<a href="thirdpartysettings.html"		class="w3-bar-item w3-btn ow-theme-hvr"  role="menuitem" aria-label="Third party uploads"><i class="fa-solid fa-list-check"></i>Third party settings</a>
 									<a href="extrasensorsettings.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Configure your extra sensors"><i class="fa-solid fa-list-check"></i>Extra sensor settings</a>
 									<a href="extrawebfiles.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Upload additional files"><i class="fa-solid fa-arrow-up-from-bracket"></i>Extra web files</a>
@@ -66,7 +64,7 @@
 									<a href="noaareportsettings.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="NOAA settings">NOAA settings</a>
 								</div>
 								<div class="" style="border-top: 2px solid var(--sub5);margin-top:-2px;">
-									<div class="ow-divider w3-hide"></div>
+									<span class="ow-divider w3-hide"></span>
 									<a href="mysqlsettings.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="MySQL settings"><i class="fa-solid fa-database"></i>MySQL settings</a>
 									<a href="mqttsettings.html"         class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="MQTT settings">MQTT Settings</a>
 									<a href="alarmsettings.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Alarm settings"><i class="fa-regular fa-bell"></i>Alarm settings</a>
@@ -80,11 +78,11 @@
 					</div>
 
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="EditL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Edit records" onClick="toggleMenu(this);">Edit <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
+						<button id="EditL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Edit records" onClick="toggleMainMenu(this);">Edit <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
 						<div id="menuEditL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-sub2 ow-animate-drop">
 							<a href="raintodayeditor.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit today's rain"><i class="fa-solid fa-droplet"></i>Edit today's rain</a>
 							<a href="weathereditor.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Weather conditions editor"><i class="fa-solid fa-cloud-sun-rain"></i>Weather conditions editor</a>
-							<div class="ow-divider"></div>
+							<span class="ow-divider"></span>
 							<a href="editalltimerecs.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit all-time records">Edit All-time records</a>
 							<a href="editmonthlyrecs.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit monthly records">Edit Monthly records</a>
 							<a href="editthismonthrecs.html"	class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit 'this months' records">Edit This month's records</a>
@@ -93,16 +91,18 @@
 					</div>
 
 					<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
-						<button id="UtilsL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Utilities" onClick="toggleMenu(this);">Utilities <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
+						<button id="UtilsL" class="w3-btn theme ow-theme-sub3-hvr" aria-label="Utilities" onClick="toggleMainMenu(this);">Utilities <i class="fa-solid fa-caret-down fa-2xs ow-caret"></i></button>
 						<div id="menuUtilsL" class="w3-dropdown-content w3-bar-block ow-card ow-theme-sub2 ow-animate-drop">
 							<a href="utilities.html"		class="w3-bar-item w3-btn ow-theme-hvr ow-sub" role="menuitem" aria-label="FTP/Copy and Dayfile">FTP/Copy &amp; Dayfile</a>
 							<a href="utilities.html#day-anchor"	class="w3-bar-item w3-btn ow-theme-hvr ow-sub" role="menuitem" aria-label="Reload the day file">Reload Dayfile</a>
 							<a href="utilities.html#purge-anchor"	class="w3-bar-item w3-btn ow-theme-hvr ow-sub" role="menuitem" aria-label="Purge MySQL"><i class="fa-solid fa-server"></i>Purge MySQL</a>
 							<a href="utilerrorslog.html"	class="w3-bar-item w3-btn ow-theme-hvr ow-sub" role="menuitem" aria-label="Show atest erros"><i class="fa-solid fa-triangle-exclamation" style="color:#f00;"></i>Latest errors</a>
-							<div class="ow-theme-l3-bdr ow-divider"></div>
+							<span class="ow-theme-l3-bdr ow-divider"></span>
 							<a href="configai.html"		class="w3-bar-item w3-btn theme ow-theme-sub3-hvr w3-hide-small" role="menuitem" aria-label="AI Settings"><i class="fa-solid fa-gears"></i>AI Settings</a>
 						</div>
 					</div>
+
+					<a href="/index.html" target="_blank" 	class="w3-bar-item w3-btn w3-right w3-hide-small w3-hide-medium ow-defaultInt"><i class="fa-solid fa-gears"></i><span class="w3-hide-medium">CMX </span>Dashboard</a>
 
 					<button id="g" class="w3-bar-item w3-btn ow-theme-sub1 ow-theme-add3-hvr w3-right w3-hide-large ow-defaultInt" onClick="toggleMobileMenu(this);" role="menuitem" aria-label="Mobile menu toggle">Menu:<strong><i class="fa-solid fa-bars"></i></strong></button>
 
@@ -155,7 +155,7 @@
 								<div class="ow-btnBar">
 									<div class="w3-padding">
 										<a href="wizard.html"               class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Setup Wizard">Configuration Wizard</a>
-										<div class="ow-divider"></div>
+										<span class="ow-divider"></span>
 										<a href="programsettings.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Configure CMX settings">CumulusMX settings</a>
 										<a href="stationsettings.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit station settings">Station settings</a>
 										<a href="internetsettings.html"		class="w3-bar-item w3-btn ow-theme-hvr" role="menuitem" aria-label="Edit Internet settings">Internet settings</a>
