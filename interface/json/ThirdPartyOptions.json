@@ -580,6 +580,61 @@
 				}
 			}
 		},
+		"bluesky": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "Enabled"
+				},
+				"id": {
+					"label": "Identifier:",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"password": {
+					"label": "Password:",
+					"type": "password",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"interval": {
+					"label": "Interval:",
+					"helper":  "Interval between updates in minutes",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"lang": {
+					"label": "Posting Language Code",
+					"helper": "The language code helps apps process/index your posts",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"baseUrl": {
+					"label": "Base URL",
+					"helper": "The base URL for BlueSky, do not alter unless required",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"contentTemplate": {
+					"label": "Content Template:",
+					"type": "textarea",
+					"helpers":  [
+						"Edit the /web/Bluesky.txt file and reload this page to refesh the Cumulus configuration",
+						"You can include URLs 'https://xx.yy/page.htm|Link Text|' and Bluesky tags '#MyTag'",
+						"NOTE: Your total parsed content is limited to 300 characters - this excludes any URLs, but includes the link text"
+					],
+					"dependencies": {
+						"enabled": true
+					}
+				}
+			}
+		},
 		"customhttp": {
 			"collapsible":true,
 			"collapsed": true,

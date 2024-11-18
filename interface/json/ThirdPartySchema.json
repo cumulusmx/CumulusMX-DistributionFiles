@@ -372,6 +372,38 @@
 				"includerain": ["enabled"]
 			}
 		},
+		"bluesky": {
+			"title": "Bluesky",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"id": {
+				},
+				"password": {
+				},
+				"interval": {
+					"type": "integer",
+					"minimum": 5
+				},
+				"lang": {
+				},
+				"baseUrl": {
+				},
+				"contentTemplate": {
+					"readonly": true
+				}
+			},
+			"dependencies": {
+				"id": ["enabled"],
+				"password": ["enabled"],
+				"interval": ["enabled"],
+				"contentTemplate": ["enabled"],
+				"lang": ["enabled"],
+				"baseUrl": ["enabled"]
+			}
+		},
 		"customhttp": {
 			"title": "Custom HTTP",
 			"type": "object",
