@@ -208,23 +208,43 @@ let checkPanels = function() {
 };
 
 let toggleMobileMenu = function() {
+	//	Not used !!!!
 	$('#menuMobile').toggleClass('w3-show', 'w3-hide');
 	$('#Main_Menu_Mobile').toggleClass('w3-show', 'w3-hide');
 }
 
 let toggleMenu = function( menu ) {
-	//Alt menu script
+	//Alt menu script - current
 	var menuID = menu.id;
 	if( $('#menu' + menu.id). hasClass('w3-show')) {
 		$('#menu' + menu.id).removeClass('w3-show');
-		$( menu.id ).attr('aria-expanded', false );
+		$( '#' + menu.id ).attr('aria-expanded', false );
 	} else {
 		//	Close any open sub-menus
 		$('.w3-dropdown-click').children().removeClass('w3-show');
 		$('.w3-dropdown-click').children().attr('aria-expanded', false)
 		//	Open the sellected sub-menu
 		$('#menu' + menu.id).addClass('w3-show').removeClass('w3-hide');
-		$( menu.id ).attr('aria-expanded', true );
+		$( '#' + menu.id ).attr('aria-expanded', true );
+	}
+}
+
+let toggleMainMenu = function( menu) {
+	//	Used to add accessibility to desktop menu
+	var menuID = menu.id;
+	if( $('#menu' + menuID).css('display') == 'block') {
+		$('#menu' + menuID).css('display', 'none');
+		$('#' + menuID).attr('aria-expanded', false);
+		console.log("Closing menu for " + menuID );
+	} else {
+		//	Clear other panels and aria labels
+		$('.w3-dropdown-content').css('display', 'none');
+		$('.w3-dropdown-hover button').attr('aria-expanded', false);
+		console.log("Closing all panels")
+		//	Now set the required button
+		$('#menu' + menuID).css('display', 'block');
+		$('#' + menuID).attr('aria-expanded', 'true');
+		console.log("Menu " + menuID + " should be open and aria label set")
 	}
 }
 
