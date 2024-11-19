@@ -385,7 +385,21 @@
 				},
 				"interval": {
 					"type": "integer",
-					"minimum": 5
+					"minimum": 0
+				},
+				"times": {
+					"type": "array",
+					"maxItems": 5,
+					"items": {
+						"type": "object",
+						"properties": {
+							"time": {
+								"title": "Time to run",
+								"type": "string",
+								"format": "time"
+							}
+						}
+					}
 				},
 				"lang": {
 				},
@@ -399,6 +413,7 @@
 				"id": ["enabled"],
 				"password": ["enabled"],
 				"interval": ["enabled"],
+				"times": ["enabled"],
 				"contentTemplate": ["enabled"],
 				"lang": ["enabled"],
 				"baseUrl": ["enabled"]

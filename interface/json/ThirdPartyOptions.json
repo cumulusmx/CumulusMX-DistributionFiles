@@ -602,7 +602,24 @@
 				},
 				"interval": {
 					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"helper":  "Interval between updates in minutes, set zero to disable interval posts",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"times": {
+					"label": "Fixed Posting Times:",
+					"collapsible": true,
+					"collapsed": false,
+					"items": {
+						"fields": {
+							"time": {
+								"type": "time",
+								"dateFormat": "HH:mm",
+								"placeholder": "00:00"
+							}
+						}
+					},
 					"dependencies": {
 						"enabled": true
 					}

@@ -10,7 +10,7 @@ A number of sample templates are saved in this folder to give you a start on con
 
 There are three options for sending MQTT data:
 
-    1. Send a new message to the topis(s) whenever new data is received from your station.
+    1. Send a new message to the topic(s) whenever new data is received from your station.
         a. For this option, use the DataUpdateTemplate.txt file - see below...
         b. Save the template to a new filename, then add it to the Cumulus MX config at:
             Settings > MQTT Settings > Send messages on update
