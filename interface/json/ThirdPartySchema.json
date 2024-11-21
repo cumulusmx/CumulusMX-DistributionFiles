@@ -385,11 +385,12 @@
 				},
 				"interval": {
 					"type": "integer",
-					"minimum": 0
+					"minimum": 10,
+					"maximum": 1440
 				},
 				"times": {
 					"type": "array",
-					"maxItems": 5,
+					"maxItems": 10,
 					"items": {
 						"type": "object",
 						"properties": {

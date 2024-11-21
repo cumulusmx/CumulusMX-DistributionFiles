@@ -213,6 +213,24 @@ let toggleMobileMenu = function() {
 	$('#Main_Menu_Mobile').toggleClass('w3-show', 'w3-hide');
 }
 
+let toggleMainMenu = function( menu ) {
+	//Alt menu script
+	var menuID = menu.id;
+	if( $('#menu' + menuID).css('display') == 'block'){
+		$('#menu' + menuID).css('display', 'none');
+		$('#menu' + menuID).attr('aria-expanded', false);
+	} else {
+		$('.w3-dropdown-hover').children("div").css('display', 'none');
+		$('.w3-dropdown-hover').children("div").removeClass('w3-show');
+		$('.w3-dropdown-hover').children("div").attr('aria-expanded', false);
+	
+		//	Display chosen panel
+		$('#menu' + menuID).css('display', 'block');
+	//	$('#menu' + menuID).addClass('w3-show');
+		$('#menu' + menuID).attr('aria-expanded', true);
+	}
+}
+
 let toggleMenu = function( menu ) {
 	//Alt menu script - current
 	var menuID = menu.id;

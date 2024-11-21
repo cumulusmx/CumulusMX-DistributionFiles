@@ -1,4 +1,0 @@
-Current temperature: <#temp><#tempunitnoenc>
-Current wind speed: <#wspeed> <#windunit>
-
-https://cumulus.hosiene.co.uk|Created by CumulusMX| #LiveWeather #CumulusMX
