@@ -1,0 +1,9 @@
+### Edit this file as you like, remove these comments, and save it as Bluesky.txt ###
+### Include links as   : https://link_url|Text for link|                          ###
+### Include hashtags as: #TagName                                                 ###
+### Include mentions as: @username                                                ###
+
+Current temperature: <#temp><#tempunitnoenc>
+Current wind speed: <#wspeed> <#windunit>
+
+https://cumulus.hosiene.co.uk|Created by CumulusMX| #CumulusMX #LiveWeather

@@ -602,7 +602,8 @@
 				},
 				"interval": {
 					"label": "Interval:",
-					"helper":  "Interval between updates in minutes, set zero to disable interval posts",
+					"placeholder": "Disabled",
+					"helper":  "Interval between updates in minutes, delete entry to disable interval posts",
 					"dependencies": {
 						"enabled": true
 					}
