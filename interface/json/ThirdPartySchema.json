@@ -388,6 +388,9 @@
 					"minimum": 10,
 					"maximum": 1440
 				},
+				"contentTemplate": {
+					"readonly": true
+				},
 				"times": {
 					"type": "array",
 					"maxItems": 10,
@@ -398,6 +401,11 @@
 								"title": "Time to run",
 								"type": "string",
 								"format": "time"
+							},
+							"file": {
+								"title": "Template file",
+								"type": "string",
+								"default": "web/Bluesky.txt"
 							}
 						}
 					}
@@ -405,9 +413,6 @@
 				"lang": {
 				},
 				"baseUrl": {
-				},
-				"contentTemplate": {
-					"readonly": true
 				}
 			},
 			"dependencies": {
