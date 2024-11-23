@@ -246,7 +246,7 @@ let toggleMenu = function( menu ) {
 		$( '#' + menu.id ).attr('aria-expanded', true );
 	}
 }
-
+/*
 let toggleMainMenu = function( menu) {
 	//	Used to add accessibility to desktop menu
 	var menuID = menu.id;
@@ -265,7 +265,7 @@ let toggleMainMenu = function( menu) {
 		console.log("Menu " + menuID + " should be open and aria label set")
 	}
 }
-
+*/
 let showModal = function(modal){
 	if( $('#M' + modal).css('display') == 'none') {
 		$('#M' + modal).css('display', 'block');

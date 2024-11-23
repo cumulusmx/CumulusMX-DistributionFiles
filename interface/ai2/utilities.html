@@ -4,7 +4,7 @@
 	File:	utilities_all.html		v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
 	Note:	This is a new filename
-	Last Edit:	2024-02-24
+	Last Edit:	2024-11-23
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -161,7 +161,7 @@
 						<input type="checkbox" class="w3-check" id="dailygraphs" aria-label="Include daily graph data"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label><br>
 						<input type="checkbox" class="w3-check" id="noaa" aria-label="Include NOAA reports"> <label for="noaa">Include transfer of latest NOAA report files</label>
 						<div class="ow-btnBar ow-flex-center" style="margin-top:1vh;">
-							<button class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow: 0;" aria-label="Start FTP now" id="startFTP" >Start FTP Now</button>
+							<button class="ow-btn ow-theme-add3 ow-theme-hvr" style="flex-grow: 0;" aria-label="Start FTP now" id="startFTP" >Start FTP Now</button>
 							<p id="ftpStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow: 1;"></p>
 						</div>
 					</div>
@@ -176,7 +176,7 @@
 							it to perform the reload.
 						</p>
 						<div class="ow-btnBar ow-flex-center" style="margin-top: 1vh;">
-							<button id="reLoad" class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Reload the Dayfile">Reload Dayfile</button>
+							<button id="reLoad" class="ow-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Reload the Dayfile">Reload Dayfile</button>
 							<div style="flex-grow:1;">
 								<p id="dayFileStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw;"></p>
 							</div>
@@ -196,7 +196,7 @@
 							<table id="sqlcache" class="w3-table w3-hoverable ow-theme-add5" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
 						</div>
 						<div class="ow-btnBar ow-flex-center">
-							<button id="purgeMySQL" class="w3-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Purge ALL MySQL statements">Purge all MySQL statements</button>
+							<button id="purgeMySQL" class="ow-btn ow-theme-add3 ow-theme-hvr" style="flex-grow:0;" aria-label="Purge ALL MySQL statements">Purge all MySQL statements</button>
 							<p id="purgeStatus" class="ow-animate-fadeIn ow-theme-add5 w3-border ow-theme-bdr statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow:2;"></p>
 						</div>
 					</div>
@@ -206,8 +206,8 @@
 						<div class="ow-titleBar">
 							<h4>Latest Errors</h4>
 							<div class="ow-btnBar">
-								<button type="button" class="w3-btn" onclick="selectText();" aria-label="Copy to clipboard">Copy to clipboard</button>
-								<button type="button" class="w3-btn" onClick="clearLog();" aria-label="Clear the log">Clear the log</button>
+								<button type="button" class="ow-btn" onclick="selectText();" aria-label="Copy to clipboard">Copy to clipboard</button>
+								<button type="button" class="ow-btn" onClick="clearLog();" aria-label="Clear the log">Clear the log</button>
 							</div>
 							<p>The log content auto refreshes every 20 seconds.
 							<i class="fa-solid fa-triangle-exclamation fa-2x" style="color: #B00;"></i></p>

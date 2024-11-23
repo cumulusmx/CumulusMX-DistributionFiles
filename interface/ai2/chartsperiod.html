@@ -64,14 +64,18 @@
 			}
 			select {
 				font-size: 82%;
-				max-width: 8.5em!important;
+				max-width: 10em!important;
 				padding: 0.3em 0.5em!important;
-				border-radius: 6px;
+				/*border-radius: 6px;*/
 			}
 			select[name^="colour"] {
 				width: 45px;
-				font-size: 100%;
-				padding: 0.1em 0.5em!important;
+				border-radius: 0 0.6em 0.6em 0;
+				/*font-size: 100%;
+				padding: 0.1em 0.5em!important;*/
+			}
+			select[name^="data"] {
+				border-radius: 0.6em 0 0 0.6em;
 			}
 			#dateFrom, #dateTo { max-width: 10em;}
 		</style>
@@ -140,14 +144,14 @@
 						</div>
 					</div>
 
-					<div class="ow-btnBar" style="margin: 1vh 0; justify-content: center; order:3;">
+					<div class="ow-btnBar" style="margin: 1vh 0; justify-content: center; order:3; align-items: baseline;">
 						<div>
 							<span id="datestart">Start Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom" aria-labelledby="datestart">
 						</div>
 						<div>
 							<span id="dateend">End Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo" aria-labelledby="dateend">
 						</div>
-						<button type="button" class="w3-btn" style="max-width: 12em;" onclick="updateSeries()">Update</button>
+						<button type="button" class="ow-btn ow-thin" style="max-width: 12em;" onclick="updateSeries()">Update</button>
 					</div>
 
 					<div id="chartcontainer" style="order:1;"></div>
