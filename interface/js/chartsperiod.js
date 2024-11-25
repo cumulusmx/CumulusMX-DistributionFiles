@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2024/10/30 11:19:14
+// Last modified: 2024/11/24 12:26:50
 
 var chart, avail, config, options;
 var cache = {};
@@ -91,8 +91,9 @@ $(document).ready(function () {
         }
     });
 
-    fromDate.datepicker('setDate', now);
     toDate.datepicker('setDate', now);
+    var then = new Date(now.setMonth(now.getMonth() - 1));
+    fromDate.datepicker('setDate', then);
 
     // get all the required config data before we start using it
     function ajax1() {return $.ajax({url: '/api/graphdata/availabledata.json'});}

@@ -36,6 +36,9 @@
 					"EmailMsg": {
 						"type": "string"
 					},
+					"BskyFile": {
+						"type": "string"
+					},
 					"Latch": {
 						"type": "boolean"
 					},

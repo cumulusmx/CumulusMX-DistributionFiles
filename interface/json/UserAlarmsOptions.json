@@ -40,6 +40,10 @@
 						"label": "Email message",
 						"placeholder": "Greenhouse temp is low = {0}"
 					},
+					"BskyFile": {
+						"label": "Bluesky Template file",
+						"placeholder": "web/BlueskyAlarm.txt"
+					},
 					"Latch": {
 						"label": "Latch"
 					},
