@@ -542,6 +542,8 @@ input[type=number]:hover {
 	margin: 0.3vh 0.3vw 0.3vh 0;
 }
 
+.w3-check { width:1.2em; height:1.2em;top:2px; }
+
 /*	Buttons	*/
 .w3-btn:hover i {
 /*	Modifies hover for fontawsome icons	*/
