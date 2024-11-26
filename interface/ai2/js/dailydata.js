@@ -176,7 +176,7 @@ $(document).ready(function () {
         // derived temperatures
         if (dataVisibility.temperature.DewPoint > 0 || dataVisibility.temperature.FeelsLike > 0 || dataVisibility.temperature.HeatIndex > 0 || dataVisibility.temperature.Humidex > 0 || dataVisibility.temperature.WindChill > 0) {
             let derivedTempBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Dervied Temperature</h4>' }))
+                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Derived Temperature</h4>' }))
                 .append($('<div>'));
             if (dataVisibility.temperature.DewPoint > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '35' }))
