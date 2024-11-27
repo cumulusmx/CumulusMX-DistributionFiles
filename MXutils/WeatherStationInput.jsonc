@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2024/11/11 09:44:02
+    Last Updated: 2024/11/27 11:51:42
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -130,7 +130,8 @@
         // Up to 4 sensors allowed
         {
             "index": 1,             // int (1-4)
-            "value": 99.9           // float
+            "range": 99.9,       // float
+            "depth": 99.9           // float
         }
         //,{
         // etc ...
