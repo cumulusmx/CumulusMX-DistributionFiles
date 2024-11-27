@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:		utilities.js
  * 	Author:		Neil Thomas
- * 	Last Edit:	27-04-2023 14:23
+ * 	Last Edit:	27-11-2024 12:43
  * 	Based on:	/js/utilFTPnow.html & 
  *              /util_reloaddayfile.html
  * 			By:	Mark Crossley
@@ -37,7 +37,8 @@ $( function () {
 			"/api/utils/ftpnow.json",
 			'{"dailygraphs":' + $('#dailygraphs').prop('checked') +
 				',"noaa":' + $('#noaa').prop('checked') +
-				',"graphs":' + $('#graphs').prop('checked') + '}',
+				',"graphs":' + $('#graphs').prop('checked') + 
+				',"logfiles":' + $('#logfiles').prop('checked') + '}' ,
 		).done(function (response) {
 			$('#ftpStatus').html( response);
 		}).fail(function (jqXHR, response) {
