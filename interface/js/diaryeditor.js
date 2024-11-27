@@ -1,4 +1,4 @@
-// Last modified: 2024/11/18 15:01:28
+// Last modified: 2024/11/27 14:40:28
 
 var activeDates;
 var defaultSnowHour;
@@ -237,10 +237,6 @@ function uploadFile() {
     .fail(function (jqXHR, textStatus, errorThrown) {
         $('#status').text('Error: ' + textStatus);
     });
-}
-
-
-function automated(sel) {
 }
 
 function getDateString(date) {
