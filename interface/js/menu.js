@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2024/11/23 18:24:02
+ Last modified: 2024/11/28 20:24:39
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -77,7 +77,8 @@ let menuSrc = [
 		{title: "Reload Dayfile",   menu: "b",  label: "Reload the dayfile",       url: "util_reloaddayfile.html"},
 		{title: "Upload/Copy Now!", menu: "b",  label: "Upload or copy files now", url: "util_ftpnow.html"},
 		{title: "Purge MySQL",      menu: "b",  label: "Purge MySQL upload queue", url: "util_purgemysql.html"},
-		{title: "Latest Errors",    menu: "b",  label: "Show the latest errors",   url: "util_errorlog.html"}
+		{title: "Latest Errors",    menu: "b",  label: "Show the latest errors",   url: "util_errorlog.html"},
+		{title: "Alternative Interface", menu: "b", label: "Alternative interface",   url: "ai2/index.html"}
 	]}
 ];
 

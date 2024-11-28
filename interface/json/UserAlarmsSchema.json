@@ -24,7 +24,7 @@
 					},
 					"Type": {
 						"type": "string",
-						"enum": ["Above", "Below"],
+						"enum": ["Above", "Below", "Equals"],
 						"required": true
 					},
 					"Value": {

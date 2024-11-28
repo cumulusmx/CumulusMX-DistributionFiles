@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:09:08
+Last modified: 2024/11/28 20:38:32
 -->
 <!doctype html>
 <html lang="en">
@@ -140,12 +140,14 @@ Last modified: 2024/11/23 15:09:08
             <div class="col-md-12">
                 <p>
                     <b>Name:</b> A descriptive name for the alarm, this will appear in emails and the diagnostic log.<br>
-                    - The name shoud be unique and short.<br>
+                    - The name should be unique and short.<br>
                 </p>
                 <p>
-                    <b>Web Tag:</b> Enter a <b><i>single</i></b> valid numeric or boolean web tag to be tested.<br>
-                    - If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
-                    - You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
+                    <b>Web Tag(s):</b> Enter a either:<br>
+                    - A single valid numeric or boolean web tag to be tested<br>
+                    - Multiple web tags and the arithmetic operaors: + - * / % (mod)<br>
+                    If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
+                    You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
                 </p>
                 <p>
                     <b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.

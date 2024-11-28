@@ -640,6 +640,25 @@
 						"enabled": true
 					}
 				},
+				"variable": {
+					"label": "Variable Posting Times:",
+					"collapsible": true,
+					"collapsed": false,
+					"items": {
+						"fields": {
+							"time": {
+								"optionLabels": ["Sun Rise", "Sun Set", "Dawn Start", "Dusk End"],
+								"sort": false
+							},
+							"file": {
+								"placeholder": "Bluesky.txt"
+							}
+						}
+					},
+					"dependencies": {
+						"enabled": true
+					}
+				},
 				"lang": {
 					"label": "Posting Language Code",
 					"helper": "The language code helps apps process/index your posts",
@@ -649,7 +668,8 @@
 				},
 				"baseUrl": {
 					"label": "Base URL",
-					"helper": "The base URL for BlueSky, do not alter unless required",
+					"helper": "The base URL for BlueSky, Only change this if you are using your own Personal Data Server (PDS) or another non-bsky.social PDS",
+					"placeholder": "https://bsky.social",
 					"dependencies": {
 						"enabled": true
 					}

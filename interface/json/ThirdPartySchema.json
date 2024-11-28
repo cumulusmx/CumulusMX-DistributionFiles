@@ -410,6 +410,24 @@
 						}
 					}
 				},
+				"variable": {
+					"type": "array",
+					"maxItems": 4,
+					"items": {
+						"type": "object",
+						"properties": {
+							"time": {
+								"title": "Time to run",
+								"enum": ["sunrise", "sunset", "dawn", "dusk"]
+							},
+							"file": {
+								"title": "Template file",
+								"type": "string",
+								"default": "web/Bluesky.txt"
+							}
+						}
+					}
+				},
 				"lang": {
 				},
 				"baseUrl": {
@@ -420,6 +438,7 @@
 				"password": ["enabled"],
 				"interval": ["enabled"],
 				"times": ["enabled"],
+				"variable": ["enabled"],
 				"contentTemplate": ["enabled"],
 				"lang": ["enabled"],
 				"baseUrl": ["enabled"]
