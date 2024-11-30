@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2024/11/28 20:24:39
+ Last modified: 2024/11/30 10:59:16
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -20,14 +20,14 @@ let menuSrc = [
 	{title: "Gauges",    menu: "b", label: "Gauges",            url: "gauges.html"},
 	{title: "Charts",    menu: "b", submenu: true, label: "Charts sub-menu", items: [
 		{title: "Recent Charts",         menu: "b", label: "Recent charts",         url: "charts.html"},
-		{title: "Recent Select-a-Chart", menu: "b", label: "Recent select-a-chart", url: "chartscompare.html"},
-		{title: "Select-a-Period",       menu: "b", label: "Select-a-period",       url: "chartsperiod.html"},
+		{title: "Recent Select-a-Chart", menu: "b", label: "Recent selected data charts", url: "chartscompare.html"},
+		{title: "Select-a-Period",       menu: "b", label: "Selected period charts",       url: "chartsperiod.html"},
 		{title: "Daily Charts",          menu: "b", label: "Daily charts",          url: "chartshistoric.html"}
 	]},
 	{title: "Today/Yesterday", menu: "b", label: "Todays and yesterdays data", url: "todayyest.html"},
 	{title: "Records", submenu: true, label: "Records sub-menu", items: [
 		{title: "Records",          menu: "b", label: "All time records",    url: "records.html"},
-		{title: "This Period",      menu: "b", label: "This period records", url: "thisperiod.html"},
+		{title: "This Period",      menu: "b", label: "Selected period records", url: "thisperiod.html"},
 		{title: "Daily Data Query", menu: "b", label: "Daily data query",    url: "querydayfile.html"}
 	]},
 	{title: "Extra sensors", submenu: true, label:"Extra sensors sub-menu", items: [
@@ -39,7 +39,7 @@ let menuSrc = [
 		{title: "Extra data logs",     menu: "b", label: "Extra data logs viewer editor",   url: "extradatalogs.html"},
 		{title: "Dayfile",             menu: "b", label: "Dayfile viewer editor",           url: "dayfileviewer.html"},
 		{title: "Interval data viewer",menu: "b", label: "Interval data log viewer editor", url: "intervaldata.html"},
-		{title: "Daily data viewer",   menu: "b", label: "daily data viewer",               url: "dailydata.html"}
+		{title: "Daily data viewer",   menu: "b", label: "Daily data viewer",               url: "dailydata.html"}
 	]},
 	{title: "Reports", submenu: true, label: "Reports sub-menu", items: [
 		{title: "NOAA Month Report", menu: "b", label: "NOAA monthly reports", url: "noaamonthreport.html"},
@@ -58,9 +58,9 @@ let menuSrc = [
 		{title: "NOAA settings",        menu: "b",  label: "NOAA settings",         url: "noaasettings.html"},
 		{title: "MySQL settings",       menu: "b",  label: "MySQL settings",        url: "mysqlsettings.html"},
 		{title: "MQTT settings",        menu: "b",  label: "MQTT settings",         url: "mqttsettings.html"},
-		{title: "Alarms",               menu: "b",  label: "Alarms settings",       url: "alarmsettings.html"},
-		{title: "Custom Alarms",        menu: "b",  label: "Custom alarms settings", url: "useralarms.html"},
-		{title: "Custom logs",          menu: "b",  label: "Custom logs settings",  url: "customlogs.html"},
+		{title: "Alarms",               menu: "b",  label: "Alarm settings",        url: "alarmsettings.html"},
+		{title: "User defined Alarms",  menu: "b",  label: "User defined alarm settings", url: "useralarms.html"},
+		{title: "Custom logs",          menu: "b",  label: "Custom log settings",   url: "customlogs.html"},
 		{title: "Display options",      menu: "b",  label: "Data display settings", url: "display.html"},
 		{title: "Locale strings",       menu: "b",  label: "String localisations",  url: "locale.html"}
 	]},

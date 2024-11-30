@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:35:35
+// Last modified: 2024/11/29 16:15:40
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -17,14 +17,15 @@ $(document).ready(function () {
 
     let audioElement = document.createElement('audio');
 
-    function playSnd() {
+    function playSound() {
         if (playList.length) {
             playList[0].addEventListener('ended', function () {
                 playList.shift();
-                playSnd()
+                playSound()
             });
             let promise = playList[0].play();
             if (promise !== undefined) {
+                log('Playing sound');
                 promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
                     //alert('hi');
@@ -153,6 +154,8 @@ $(document).ready(function () {
 
                     // set the indicator state
                     if (alarm.triggered && alarmState[alarm.id] == false) {
+                        log(alarm.id + ' Triggered');
+
                         alarmState[alarm.id] = true;
 
                         // set the indicator
@@ -160,8 +163,9 @@ $(document).ready(function () {
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
-                            let sndFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
-                            playList.push(new Audio(sndFile));
+                            log(alarm.id + ' Queueing sound')
+                            let soundFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
+                            playList.push(new Audio(soundFile));
                         }
 
                         // notify?
@@ -169,7 +173,7 @@ $(document).ready(function () {
                             sendNotification = true;
                             let message = '‣ ' + alarmSettings[alarm.id].Name;
 
-                            console.log('Notify: ' + message);
+                            log(alarm.id + ' Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
 
@@ -178,7 +182,8 @@ $(document).ready(function () {
                             $('#' + alarm.Id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
-                        alarmState[key] = false;
+                        log(alarm.id + ' Cleared');
+                        alarmState[alarm.id] = false;
                         $(id).removeClass('indicatorOn').addClass('indicatorOff');
                     }
                 });
@@ -193,7 +198,7 @@ $(document).ready(function () {
             createNotification(notificationMessage);
         }
 
-        playSnd();
+        playSound();
 
         $('.WindUnit').text(data.WindUnit);
         $('.PressUnit').text(data.PressUnit);
@@ -234,6 +239,10 @@ $(document).ready(function () {
     let pad = function (x) {
         return x < 10 ? '0' + x : x;
     };
+
+    let log = function (x) {
+        console.log(new Date().toISOString().slice(11,23) + ' ' + x);
+    }
 
     let ticktock = function () {
         let d = new Date();
@@ -399,7 +408,7 @@ $(document).ready(function () {
                 }
 
                 if (!('Notification' in window)) {
-                    console.log('This browser does not support notifications.');
+                    log('This browser does not support notifications.');
                     } else {
                         if (checkNotificationPromise()) {
                             Notification.requestPermission()
