@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/10/30 11:18:32
+// Last modified: 2024/12/01 16:29:24
 
 var chart, avail, config, options;
 var settings = {
@@ -268,6 +268,9 @@ var updateChart = function (val, num, id) {
             break;
         case 'Feels Like':
             doFeelsLike(num);
+            break;
+        case 'Humidex':
+            doHumidex(num);
             break;
 
         case 'Humidity':
@@ -871,6 +874,34 @@ var doFeelsLike = function (idx) {
     });
 };
 
+var doHumidex = function (idx) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    $.ajax({
+        url: '/api/graphdata/tempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp.humidex,
+                id: 'Humidex',
+                name: 'Humidex',
+                yAxis: 'Temperature',
+                type: 'line',
+                tooltip: {
+                    //valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
 
 var doHumidity = function (idx) {
     chart.showLoading();
