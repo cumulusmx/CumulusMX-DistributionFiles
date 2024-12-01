@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2024/11/24 12:26:50
+// Last modified: 2024/12/01 16:13:41
 
 var chart, avail, config, options;
 var cache = {};
@@ -325,6 +325,7 @@ var updateChart = function (val, num, id) {
             break;
         case 'Humidex':
             doHumidex(num);
+            break;
 
         case 'Humidity':
             doHumidity(num);
@@ -1060,7 +1061,7 @@ var doHumidex = function (idx) {
     function addSeries() {
         chart.addSeries({
             index: idx,
-            data: cache.temp.feelslike,
+            data: cache.temp.humidex,
             id: 'Humidex',
             name: 'Humidex',
             yAxis: 'Temperature',
