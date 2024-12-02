@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/30 10:04:45
+Last modified: 2024/12/02 15:51:36
 -->
 <!doctype html>
 <html lang="en">
@@ -149,29 +149,16 @@ Last modified: 2024/11/30 10:04:45
                     If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
                     You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
                 </p>
-                <p>
-                    <b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.
-                </p>
-                <p>
-                    <b>Value:</b> The alarm threshold value to be tested against the web tag value.
-                </p>
-                <p>
-                    <b>Email:</b> Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.
-                </p>
-                <p>
-                    <b>Email Msg:</b> Text to send in the email, you can use the parameter {0} to represent the current web tag value.
-                <p>
-                    <b>Latch:</b> Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.
-                </p>
-                <p>
-                    <b>Latch Hours:</b> The number of hours the alarm is latched for.
-                </p>
-                <p>
-                    <b>Action:</b> If non-blank, a program or script that is executed when the alarm is triggered.
-                </p>
-                <p>
-                    <b>Action Params:</b> Parameters to be passed to the action program or script, the parameters can contain web tags.
-                </p>
+                <p><b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.</p>
+                <p><b>Value:</b> The alarm threshold value to be tested against the web tag value.</p>
+                <p><b>Email:</b> Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.</p>
+                <p><b>Email Msg:</b> Text to send in the email, you can use the parameter {0} to represent the current web tag value.
+                <p><b>Bluesky Template:</b> Path to a Bluesky template file (see Third party uploads for template details) to create a post to Bluesky when the alarm occurs.<br>
+                    Leaving this field blank suppresses the creation of a post.</p>
+                <p><b>Latch:</b> Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.</p>
+                <p><b>Latch Hours:</b> The number of hours the alarm is latched for.</p>
+                <p><b>Action:</b> If non-blank, a program or script that is executed when the alarm is triggered.</p>
+                <p><b>Action Params:</b> Parameters to be passed to the action program or script, the parameters can contain web tags.</p>
             </div>
         </div>
 
