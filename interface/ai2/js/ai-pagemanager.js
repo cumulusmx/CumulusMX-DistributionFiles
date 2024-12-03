@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: ai-pagemanager.js   V4.0.0
     Author:	Neil Thomas		    Feb 2024
-   	Last Edit:	2024/09/27 15:34:15
+   	Last Edit:	2024/12/03 11:28:37
    	Role:
    	Manage and provide utility scripts for
     The AI
@@ -218,16 +218,16 @@ let toggleMainMenu = function( menu ) {
 	var menuID = menu.id;
 	if( $('#menu' + menuID).css('display') == 'block'){
 		$('#menu' + menuID).css('display', 'none');
-		$('#menu' + menuID).attr('aria-expanded', false);
+		$('#' + menuID).attr('aria-expanded', false);
 	} else {
 		$('.w3-dropdown-hover').children("div").css('display', 'none');
 		$('.w3-dropdown-hover').children("div").removeClass('w3-show');
 		$('.w3-dropdown-hover').children("div").attr('aria-expanded', false);
-	
+
 		//	Display chosen panel
 		$('#menu' + menuID).css('display', 'block');
 	//	$('#menu' + menuID).addClass('w3-show');
-		$('#menu' + menuID).attr('aria-expanded', true);
+		$('#' + menuID).attr('aria-expanded', true);
 	}
 }
 
