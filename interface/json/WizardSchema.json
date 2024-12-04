@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/19 21:19:01",
+	"version": "Last Modified: 2024/10/24 23:06:21",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -55,6 +55,10 @@
 				"rain": {
 					"enum": [0,1],
 					"required": true
+				},
+				"snow": {
+					"title": "Snow Depth",
+					"enum": [0,1]
 				}
 			}
 		},

@@ -18,13 +18,13 @@
 					},
 					"WebTag": {
 						"type": "text",
-						"label": "Web tag",
+						"label": "Web tag(s)",
 						"placeholder": "<#ExtraTemp2 rc=y>"
 					},
 					"Type": {
 						"type": "select",
 						"label": "Type",
-						"optionLabels": ["Above", "Below"],
+						"optionLabels": ["Above", "Below", "Equals"],
 						"sort": false,
 						"removeDefaultNone": true
 					},
@@ -39,6 +39,10 @@
 					"EmailMsg": {
 						"label": "Email message",
 						"placeholder": "Greenhouse temp is low = {0}"
+					},
+					"BskyFile": {
+						"label": "Bluesky Template file",
+						"placeholder": "web/BlueskyAlarm.txt"
 					},
 					"Latch": {
 						"label": "Latch"

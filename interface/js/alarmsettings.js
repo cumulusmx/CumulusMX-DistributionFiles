@@ -1,9 +1,9 @@
-// Last modified: 2024/02/14 10:33:42
+// Last modified: 2024/11/24 17:31:37
 
 $(document).ready(function() {
     $.ajax({
-        url: "api/settings/alarms.json",
-        dataType:"json",
+        url: '/api/settings/alarms.json',
+        dataType:'json',
         success: function (result) {
             $.each(result.data, function(alarm, data) {
                 $.each(data, function(prop, value) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
                 });
             });
             $.each(result.units, function(key, value) {
-                $("." + key).text(value);
+                $('.' + key).text(value);
             });
             $('#fromEmail').val(result.email.fromEmail)
             $('#destEmail').val(result.email.destEmail)
@@ -32,9 +32,9 @@ $(document).ready(function() {
 
 function updateAlarms() {
     $.ajax({
-        url: "api/setsettings/updatealarmconfig.json",
+        url: '/api/setsettings/updatealarmconfig.json',
         type: 'POST',
-        contentType:"application/json",
+        contentType:'application/json',
         dataType: 'text',
         data: JSON.stringify({
             data: {
@@ -45,6 +45,7 @@ function updateAlarms() {
                     Sound       : $('#tempBelowSound').val(),
                     Action      : $('#tempBelowAction').val(),
                     ActionParams: $('#tempBelowActionParams').val(),
+                    Bsky        : $('#tempBelowBsky').val(),
                     Notify      : $('#tempBelowNotify').prop('checked'),
                     Email       : $('#tempBelowEmail').prop('checked'),
                     Latches     : $('#tempBelowLatches').prop('checked'),
@@ -57,6 +58,7 @@ function updateAlarms() {
                     Sound       : $('#tempAboveSound').val(),
                     Action      : $('#tempAboveAction').val(),
                     ActionParams: $('#tempAboveActionParams').val(),
+                    Bsky        : $('#tempAboveBsky').val(),
                     Notify      : $('#tempAboveNotify').prop('checked'),
                     Email       : $('#tempAboveEmail').prop('checked'),
                     Latches     : $('#tempAboveLatches').prop('checked'),
@@ -69,6 +71,7 @@ function updateAlarms() {
                     Sound       : $('#tempChangeSound').val(),
                     Action      : $('#tempChangeAction').val(),
                     ActionParams: $('#tempChangeActionParams').val(),
+                    Bsky        : $('#tempChangeBsky').val(),
                     Notify      : $('#tempChangeNotify').prop('checked'),
                     Email       : $('#tempChangeEmail').prop('checked'),
                     Latches     : $('#tempChangeLatches').prop('checked'),
@@ -81,6 +84,7 @@ function updateAlarms() {
                     Sound       : $('#pressBelowSound').val(),
                     Action      : $('#pressBelowAction').val(),
                     ActionParams: $('#pressBelowActionParams').val(),
+                    Bsky        : $('#pressBelowBsky').val(),
                     Notify      : $('#pressBelowNotify').prop('checked'),
                     Email       : $('#pressBelowEmail').prop('checked'),
                     Latches     : $('#pressBelowLatches').prop('checked'),
@@ -93,6 +97,7 @@ function updateAlarms() {
                     Sound       : $('#pressAboveSound').val(),
                     Action      : $('#pressAboveAction').val(),
                     ActionParams: $('#pressAboveActionParams').val(),
+                    Bsky        : $('#pressAboveBsky').val(),
                     Notify      : $('#pressAboveNotify').prop('checked'),
                     Email       : $('#pressAboveEmail').prop('checked'),
                     Latches     : $('#pressAboveLatches').prop('checked'),
@@ -105,6 +110,7 @@ function updateAlarms() {
                     Sound       : $('#pressChangeSound').val(),
                     Action      : $('#pressChangeAction').val(),
                     ActionParams: $('#pressChangeActionParams').val(),
+                    Bsky        : $('#pressChangeBsky').val(),
                     Notify      : $('#pressChangeNotify').prop('checked'),
                     Email       : $('#pressChangeEmail').prop('checked'),
                     Latches     : $('#pressChangeLatches').prop('checked'),
@@ -117,10 +123,11 @@ function updateAlarms() {
                     Sound       : $('#rainAboveSound').val(),
                     Action      : $('#rainAboveAction').val(),
                     ActionParams: $('#rainAboveActionParams').val(),
+                    Bsky        : $('#rainAboveBsky').val(),
                     Notify      : $('#rainAboveNotify').prop('checked'),
                     Email       : $('#rainAboveEmail').prop('checked'),
                     Latches     : $('#rainAboveLatches').prop('checked'),
-                    LatchHrs    : $('#rainAboveLatchHrs').val(),
+                    LatchHrs    : $('#rainAboveLatchHrs').val()
                 },
                 rainRateAbove: {
                     Enabled     : $('#rainRateAboveEnabled').prop('checked'),
@@ -129,10 +136,12 @@ function updateAlarms() {
                     Sound       : $('#rainRateAboveSound').val(),
                     Action      : $('#rainRateAboveAction').val(),
                     ActionParams: $('#rainRateAboveActionParams').val(),
+                    Bsky        : $('#rainRateAboveBsky').val(),
                     Notify      : $('#rainRateAboveNotify').prop('checked'),
                     Email       : $('#rainRateAboveEmail').prop('checked'),
                     Latches     : $('#rainRateAboveLatches').prop('checked'),
-                    LatchHrs    : $('#rainRateAboveLatchHrs').val()
+                    LatchHrs    : $('#rainRateAboveLatchHrs').val(),
+                    Action      : $('#rainRateAboveAction').val()
                 },
                 isRaining: {
                     Enabled     : $('#isRainingEnabled').prop('checked'),
@@ -140,6 +149,7 @@ function updateAlarms() {
                     Sound       : $('#isRainingSound').val(),
                     Action      : $('#isRainingAction').val(),
                     ActionParams: $('#isRainingActionParams').val(),
+                    Bsky        : $('#isRainingBsky').val(),
                     Notify      : $('#isRainingNotify').prop('checked'),
                     Email       : $('#isRainingEmail').prop('checked'),
                     Latches     : $('#isRainingLatches').prop('checked'),
@@ -152,6 +162,7 @@ function updateAlarms() {
                     Sound       : $('#gustAboveSound').val(),
                     Action      : $('#gustAboveAction').val(),
                     ActionParams: $('#gustAboveActionParams').val(),
+                    Bsky      : $('#gustAboveBsky').val(),
                     Notify      : $('#gustAboveNotify').prop('checked'),
                     Email       : $('#gustAboveEmail').prop('checked'),
                     Latches     : $('#gustAboveLatches').prop('checked'),
@@ -164,6 +175,7 @@ function updateAlarms() {
                     Sound       : $('#windAboveSound').val(),
                     Action      : $('#windAboveAction').val(),
                     ActionParams: $('#windAboveActionParams').val(),
+                    Bsky        : $('#windAboveBsky').val(),
                     Notify      : $('#windAboveNotify').prop('checked'),
                     Email       : $('#windAboveEmail').prop('checked'),
                     Latches     : $('#windAboveLatches').prop('checked'),
@@ -175,6 +187,7 @@ function updateAlarms() {
                     Sound       : $('#newRecordSound').val(),
                     Action      : $('#newRecordAction').val(),
                     ActionParams: $('#newRecordActionParams').val(),
+                    Bsky        : $('#newRecordBsky').val(),
                     Notify      : $('#newRecordNotify').prop('checked'),
                     Email       : $('#newRecordEmail').prop('checked'),
                     Latches     : $('#newRecordLatches').prop('checked'),
@@ -187,6 +200,7 @@ function updateAlarms() {
                     Sound       : $('#contactLostSound').val(),
                     Action      : $('#contactLostAction').val(),
                     ActionParams: $('#contactLostActionParams').val(),
+                    Bsky        : $('#contactLostBsky').val(),
                     Notify      : $('#contactLostNotify').prop('checked'),
                     Email       : $('#contactLostEmail').prop('checked'),
                     Latches     : $('#contactLostLatches').prop('checked'),
@@ -199,6 +213,7 @@ function updateAlarms() {
                     Sound       : $('#dataStoppedSound').val(),
                     Action      : $('#dataStoppedAction').val(),
                     ActionParams: $('#dataStoppedActionParams').val(),
+                    Bsky        : $('#dataStoppedBsky').val(),
                     Notify      : $('#dataStoppedNotify').prop('checked'),
                     Email       : $('#dataStoppedEmail').prop('checked'),
                     Latches     : $('#dataStoppedLatches').prop('checked'),
@@ -211,6 +226,7 @@ function updateAlarms() {
                     Sound       : $('#batteryLowSound').val(),
                     Action      : $('#batteryLowAction').val(),
                     ActionParams: $('#batteryLowActionParams').val(),
+                    Bsky        : $('#batteryLowBsky').val(),
                     Notify      : $('#batteryLowNotify').prop('checked'),
                     Email       : $('#batteryLowEmail').prop('checked'),
                     Latches     : $('#batteryLowLatches').prop('checked'),
@@ -223,6 +239,7 @@ function updateAlarms() {
                     Sound       : $('#spikeSound').val(),
                     Action      : $('#spikeAction').val(),
                     ActionParams: $('#spikeActionParams').val(),
+                    Bsky        : $('#spikeBsky').val(),
                     Notify      : $('#spikeNotify').prop('checked'),
                     Email       : $('#spikeEmail').prop('checked'),
                     Latches     : $('#spikeLatches').prop('checked'),
@@ -235,6 +252,7 @@ function updateAlarms() {
                     Sound       : $('#ftpUploadSound').val(),
                     Action      : $('#ftpUploadAction').val(),
                     ActionParams: $('#ftpUploadActionParams').val(),
+                    Bsky        : $('#ftpUploadBsky').val(),
                     Notify      : $('#ftpUploadNotify').prop('checked'),
                     Email       : $('#ftpUploadEmail').prop('checked'),
                     Latches     : $('#ftpUploadLatches').prop('checked'),
@@ -247,6 +265,7 @@ function updateAlarms() {
                     Sound       : $('#httpUploadSound').val(),
                     Action      : $('#httpUploadAction').val(),
                     ActionParams: $('#httpUploadActionParams').val(),
+                    Bsky        : $('#httpUploadBsky').val(),
                     Notify      : $('#httpUploadNotify').prop('checked'),
                     Email       : $('#httpUploadEmail').prop('checked'),
                     Latches     : $('#httpUploadLatches').prop('checked'),
@@ -259,6 +278,7 @@ function updateAlarms() {
                     Sound       : $('#mySqlUploadSound').val(),
                     Action      : $('#mySqlUploadAction').val(),
                     ActionParams: $('#mySqlUploadActionParams').val(),
+                    Bsky        : $('#mySqlUploadBsky').val(),
                     Notify      : $('#mySqlUploadNotify').prop('checked'),
                     Email       : $('#mySqlUploadEmail').prop('checked'),
                     Latches     : $('#mySqlUploadLatches').prop('checked'),
@@ -271,6 +291,7 @@ function updateAlarms() {
                     Sound       : $('#upgradeSound').val(),
                     Action      : $('#upgradeAction').val(),
                     ActionParams: $('#upgradeActionParams').val(),
+                    Bsky        : $('#upgradeBsky').val(),
                     Notify      : $('#upgradeNotify').prop('checked'),
                     Email       : $('#upgradeEmail').prop('checked'),
                     Latches     : $('#upgradeLatches').prop('checked'),
@@ -282,6 +303,7 @@ function updateAlarms() {
                     Sound       : $('#firmwareSound').val(),
                     Action      : $('#firmwareAction').val(),
                     ActionParams: $('#firmwareActionParams').val(),
+                    Bsky        : $('#firmwareBsky').val(),
                     Notify      : $('#firmwareNotify').prop('checked'),
                     Email       : $('#firmwareEmail').prop('checked'),
                     Latches     : $('#firmwareLatches').prop('checked'),
@@ -296,17 +318,17 @@ function updateAlarms() {
             }
         })
     }).done(function () {
-        alert("Settings updated");
+        alert('Settings updated');
     }).fail(function (jqXHR, textStatus) {
-        alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+        alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
     });
 }
 
 function testEmail() {
     $.ajax({
-        url: "api/setsettings/testemail.json",
+        url: '/api/setsettings/testemail.json',
         type: 'POST',
-        contentType:"application/json",
+        contentType:'application/json',
         dataType: 'text',
         data: JSON.stringify({
             fromEmail: $('#fromEmail').val(),
@@ -315,8 +337,8 @@ function testEmail() {
             useBcc   : $('#useBcc').prop('checked')
         })
     }).done(function (result) {
-        alert("Test email sent");
+        alert('Test email sent');
     }).fail(function (jqXHR, textStatus) {
-        alert("Test email failed: " + jqXHR.responseText);
+        alert('Test email failed: ' + jqXHR.responseText);
     });
 }

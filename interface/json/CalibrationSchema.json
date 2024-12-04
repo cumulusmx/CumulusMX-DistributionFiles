@@ -1,5 +1,18 @@
 {
 	"definitions": {
+		"OM": {
+			"properties": {
+				"offset": {
+					"type": "number"
+				},
+				"multiplier": {
+					"type": "number"
+				},
+				"multiplier2": {
+					"type": "number"
+				}
+			}
+		},
 		"OMS": {
 			"properties": {
 				"offset": {
@@ -50,8 +63,13 @@
 		},
 		"pressure": {
 			"type": "object",
-			"title": "Pressure",
+			"title": "Sea Level Pressure",
 			"$ref": "#/definitions/limits"
+		},
+		"pressureStn": {
+			"type": "object",
+			"title": "Station Pressure",
+			"$ref": "#/definitions/OM"
 		},
 		"temp": {
 			"type": "object",

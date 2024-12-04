@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 	Script:	ai-configmgr.js		v3.0.2
- * 	Author:	Neil Thomas		 Nov 2024
- * 	Last Edit:	2024/11/14
+ * 	Script:	ai-config.js		v3.0.2
+ * 	Author:	Neil Thomas		  Nov 2024
+ * 	Last Edit:	2024/11213
  * 	Role:	Utility for the ai-config page:
  * 	a)	Enable the theme to be changed dynamically
  * 	b)	To select Dark mode for the theme

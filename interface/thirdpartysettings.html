@@ -1,5 +1,5 @@
 <!--
-Last modified: 2023/10/14 18:15:48
+Last modified: 2024/11/23 15:09:55
 -->
 <!doctype html>
 <html lang="en">
@@ -24,6 +24,11 @@ Last modified: 2023/10/14 18:15:48
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- DateTime Picker -->
+    <script src="lib/moment/moment.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script src="lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Alpaca -->
     <script src="lib/handlebars/handlebars.min.js"></script>
@@ -84,10 +89,9 @@ Last modified: 2023/10/14 18:15:48
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul id="Main_Menu" class="nav navbar-nav">
-                </ul>
-            </div><!--/.nav-collapse -->
+            <nav class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav"></ul>
+            </nav><!--/.nav-collapse -->
         </div>
     </div>
     <!-- END NAVIGATION MENU -->

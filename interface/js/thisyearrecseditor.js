@@ -1,6 +1,6 @@
-// Last modified: 2023/11/07 10:46:44
+// Last modified: 2024/10/29 11:38:47
 
-var updateUrl = 'api/edit/thisyear';
+var updateUrl = '/api/edit/thisyear';
 var newValue, newTime;
 var oldValue, oldTime;
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('.loading-overlay-image-container').show();
 
     $.ajax({
-        url: 'api/edit/thisyearrecords.json',
+        url: '/api/edit/thisyearrecords.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -29,7 +29,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/edit/thisyearrecordsdayfile.json',
+        url: '/api/edit/thisyearrecordsdayfile.json',
         dataType: 'json',
         success: function (result) {
             $.each(result, function(key, value) {
@@ -56,7 +56,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: 'api/info/version.json',
+        url: '/api/info/version.json',
         dataType: 'json',
         success: function (result) {
             $('#Version').text(result.Version);
@@ -70,7 +70,7 @@ $(document).ready(function() {
         $.fn.editable.defaults.clear = false;
         $.fn.editable.defaults.send = 'always';
         $.fn.editable.defaults.type = 'text';
-        $.fn.editable.defaults.emptytext = "-";
+        $.fn.editable.defaults.emptytext = '-';
         $.fn.editable.defaults.step = 'any';
         $.fn.editable.defaults.unsavedclass = null;
         // add some accessibility to the default buttons
@@ -146,8 +146,8 @@ function getMonthlyLogs() {
     $('.loading-overlay').show();
     $('.loading-overlay-image-container').show();
     $.ajax({
-        url: "api/edit/thisyearrecordslogfile.json",
-        dataType:"json",
+        url: '/api/edit/thisyearrecordslogfile.json',
+        dataType:'json',
         success: function (result) {
             $.each(result, function(key, value) {
                 $('#' + key).text(value);

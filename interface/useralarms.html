@@ -1,11 +1,11 @@
 <!--
-Last modified: 2023/11/29 14:39:30
+Last modified: 2024/12/02 15:51:36
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>User Alarm settings - Cumulus MX</title>
+    <title>User Defined Alarm settings - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -119,10 +119,9 @@ Last modified: 2023/11/29 14:39:30
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul id="Main_Menu" class="nav navbar-nav">
-                </ul>
-            </div><!--/.nav-collapse -->
+            <nav class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav"></ul>
+            </nav><!--/.nav-collapse -->
         </div>
     </div>
     <!-- END NAVIGATION MENU -->
@@ -141,36 +140,25 @@ Last modified: 2023/11/29 14:39:30
             <div class="col-md-12">
                 <p>
                     <b>Name:</b> A descriptive name for the alarm, this will appear in emails and the diagnostic log.<br>
-                    - The name shoud be unique and short.<br>
+                    - The name should be unique and short.<br>
                 </p>
                 <p>
-                    <b>Web Tag:</b> Enter a <b><i>single</i></b> valid numeric or boolean web tag to be tested.<br>
-                    - If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
-                    - You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
+                    <b>Web Tag(s):</b> Enter a either:<br>
+                    - A single valid numeric or boolean web tag to be tested<br>
+                    - Multiple web tags and the arithmetic operaors: + - * / % (mod)<br>
+                    If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
+                    You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).
                 </p>
-                <p>
-                    <b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.
-                </p>
-                <p>
-                    <b>Value:</b> The alarm threshold value to be tested against the web tag value.
-                </p>
-                <p>
-                    <b>Email:</b> Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.
-                </p>
-                <p>
-                    <b>Email Msg:</b> Text to send in the email, you can use the parameter {0} to represent the current web tag value.
-                <p>
-                    <b>Latch:</b> Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.
-                </p>
-                <p>
-                    <b>Latch Hours:</b> The number of hours the alarm is latched for.
-                </p>
-                <p>
-                    <b>Action:</b> If non-blank, a program or script that is executed when the alarm is triggered.
-                </p>
-                <p>
-                    <b>Action Params:</b> Parameters to be passed to the action program or script, the parameters can contain web tags.
-                </p>
+                <p><b>Type:</b> Determines if the alarm is triggered if the web tag value is above or below the alarm value.</p>
+                <p><b>Value:</b> The alarm threshold value to be tested against the web tag value.</p>
+                <p><b>Email:</b> Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.</p>
+                <p><b>Email Msg:</b> Text to send in the email, you can use the parameter {0} to represent the current web tag value.
+                <p><b>Bluesky Template:</b> Path to a Bluesky template file (see Third party uploads for template details) to create a post to Bluesky when the alarm occurs.<br>
+                    Leaving this field blank suppresses the creation of a post.</p>
+                <p><b>Latch:</b> Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.</p>
+                <p><b>Latch Hours:</b> The number of hours the alarm is latched for.</p>
+                <p><b>Action:</b> If non-blank, a program or script that is executed when the alarm is triggered.</p>
+                <p><b>Action Params:</b> Parameters to be passed to the action program or script, the parameters can contain web tags.</p>
             </div>
         </div>
 

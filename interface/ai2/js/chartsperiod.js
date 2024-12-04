@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2024/10/04 23:37:02
+// Last modified: 2024/12/01 16:21:26
 
 var chart, avail, config, options;
 var cache = {};
@@ -93,8 +93,9 @@ $(document).ready(function () {
 		}
 	});
 
-	fromDate.datepicker('setDate', now);
 	toDate.datepicker('setDate', now);
+	var then = new Date(now.setMonth(now.getMonth() - 1));
+	fromDate.datepicker('setDate', then);
 
 	// get all the required config data before we start using it
 	$.ajax({url: '/api/graphdata/availabledata.json', success: function (result1) {
@@ -111,7 +112,7 @@ $(document).ready(function () {
                     case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
                     default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
                     // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-                }	
+                }
 
 				// add the default select option
 				var option = $('<option />');
@@ -334,6 +335,9 @@ var updateChart = function (val, num, id) {
 			break;
 		case 'Feels Like':
 			doFeelsLike(num);
+			break;
+		case 'Humidex':
+			doHumidex(num);
 			break;
 
 		case 'Humidity':
@@ -643,7 +647,7 @@ var addWindAxis = function (idx) {
 		labels: {
 			align: idx < settings.series.length / 2 ? 'right' : 'left'
 		},
-        plotLines: [{
+			plotLines: [{
 			value: beaufortScale[1],
 			color: 'rgb(255,220,0)', width: 1, zIndex:12,
 			label: { text: beaufortDesc[1], y:12}
@@ -1097,6 +1101,47 @@ var doFeelsLike = function (idx) {
 	}
 };
 
+var doHumidex = function (idx) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    if (cache === null || cache.temp === undefined)
+    {
+        $.ajax({
+            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            dataType: 'json',
+            success: function (resp) {
+                cache.temp = resp;
+                addSeries();
+            },
+            async: false
+        });
+    }
+    else
+    {
+        addSeries();
+    }
+
+    function addSeries() {
+        chart.addSeries({
+            index: idx,
+            data: cache.temp.humidex,
+            id: 'Humidex',
+            name: 'Humidex',
+            yAxis: 'Temperature',
+            type: 'line',
+            tooltip: {
+                //valueSuffix: ' °' + config.temp.units,
+                valueDecimals: config.temp.decimals
+            },
+            visible: true,
+            color: settings.colours[idx],
+            zIndex: 100 - idx
+        });
+        chart.hideLoading();
+    }
+};
 
 var doHumidity = function (idx) {
 	chart.showLoading();

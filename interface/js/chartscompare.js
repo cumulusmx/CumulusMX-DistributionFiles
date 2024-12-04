@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/10/07 14:20:25
+// Last modified: 2024/12/01 16:29:24
 
 var chart, avail, config, options;
 var settings = {
@@ -38,7 +38,7 @@ var compassP = function (deg) {
 };
 
 $(document).ready(function () {
-    $.ajax({url: "/api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
     const settingsRes = $.ajax({ url: '/api/graphdata/selectachart.json', dataType: 'json' });
-    const configRes = $.ajax({ url: "/api/graphdata/graphconfig.json", dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
 
     Promise.all([availRes, settingsRes, configRes])
     .then(function (results) {
@@ -68,7 +68,7 @@ $(document).ready(function () {
 
         // then the real series options
         for (var k in avail) {
-            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow'].indexOf(k) === -1) {
                 var optgrp = $('<optgroup />');
                 optgrp.attr('label', k);
                 avail[k].forEach(function (val) {
@@ -269,6 +269,9 @@ var updateChart = function (val, num, id) {
         case 'Feels Like':
             doFeelsLike(num);
             break;
+        case 'Humidex':
+            doHumidex(num);
+            break;
 
         case 'Humidity':
             doHumidity(num);
@@ -427,7 +430,7 @@ var addTemperatureAxis = function (idx) {
    chart.addAxis({
         title: {text: 'Temperature (°' + config.temp.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
-        id: "Temperature",
+        id: 'Temperature',
         showEmpty: false,
         labels: {
             formatter: function () {
@@ -457,7 +460,7 @@ var addPressureAxis = function (idx) {
     chart.addAxis({
         title: {text: 'Pressure (' + config.press.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
-        id: "Pressure",
+        id: 'Pressure',
         showEmpty: false,
         labels: {
             align: idx < settings.series.length / 2 ? 'right' : 'left'
@@ -871,6 +874,34 @@ var doFeelsLike = function (idx) {
     });
 };
 
+var doHumidex = function (idx) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    $.ajax({
+        url: '/api/graphdata/tempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp.humidex,
+                id: 'Humidex',
+                name: 'Humidex',
+                yAxis: 'Temperature',
+                type: 'line',
+                tooltip: {
+                    //valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
 
 var doHumidity = function (idx) {
     chart.showLoading();
@@ -1259,8 +1290,8 @@ var doExtraTemp = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "Temperature",
-                type: "line",
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -1291,8 +1322,8 @@ var doUserTemp = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "Temperature",
-                type: "line",
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -1355,8 +1386,8 @@ var doExtraDew = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "Temperature",
-                type: "line",
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -1387,8 +1418,8 @@ var doSoilTemp = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "Temperature",
-                type: "line",
+                yAxis: 'Temperature',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' °' + config.temp.units,
                     valueDecimals: config.temp.decimals
@@ -1421,8 +1452,8 @@ var doSoilMoist = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "SoilMoist",
-                type: "line",
+                yAxis: 'SoilMoist',
+                type: 'line',
                 tooltip: {
                     valueSuffix: suffix
                 },
@@ -1452,8 +1483,8 @@ var doLeafWet = function (idx, val) {
                 data: resp[name],
                 id: val,
                 name: name,
-                yAxis: "LeafWetness",
-                type: "line",
+                yAxis: 'LeafWetness',
+                type: 'line',
                 tooltip: {
                     valueSuffix: ' ' + config.leafwet.units
                 },
@@ -1464,3 +1495,4 @@ var doLeafWet = function (idx, val) {
         }
     });
 };
+

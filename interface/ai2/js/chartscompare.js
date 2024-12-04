@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/10/04 23:34:42
+// Last modified: 2024/12/01 16:30:19
 
 var chart, avail, config, options;
 var settings = {
@@ -60,7 +60,7 @@ $(document).ready(function () {
                     case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
                     default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
                     // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-                }	
+                }
 
                 // add the default select option
                 var option = $('<option />');
@@ -284,6 +284,9 @@ var updateChart = function (val, num, id) {
             break;
         case 'Feels Like':
             doFeelsLike(num);
+            break;
+        case 'Humidex':
+            doHumidex(num);
             break;
 
         case 'Humidity':
@@ -940,6 +943,34 @@ var doFeelsLike = function (idx) {
     });
 };
 
+var doHumidex = function (idx) {
+    chart.showLoading();
+
+    addTemperatureAxis(idx);
+
+    $.ajax({
+        url: '/api/graphdata/tempdata.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp.humidex,
+                id: 'Humidex',
+                name: 'Humidex',
+                yAxis: 'Temperature',
+                type: 'line',
+                tooltip: {
+                    //valueSuffix: ' °' + config.temp.units,
+                    valueDecimals: config.temp.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        }
+    });
+};
 
 var doHumidity = function (idx) {
     chart.showLoading();

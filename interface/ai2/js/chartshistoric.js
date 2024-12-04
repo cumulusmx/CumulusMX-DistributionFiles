@@ -1,4 +1,4 @@
-// Last modified: 2023/05/23 09:54:51
+// Last modified: 2024/12/04 11:22:40
 
 var chart, config, available;
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
 		doGraph( this.id );
 	});
 
-	
+
 	var doGraph = function (value) {
 		sessionStorage.setItem('CMXDaily', value );
 		$('.selectGraph').removeClass('ow-theme-sub3');
@@ -40,7 +40,8 @@ $(document).ready(function () {
 			case 'solar':	doSolar();		break;
 			case 'degdays':	doDegDays();	break;
 			case 'tempsum':	doTempSum();	break;
-			case 'snow':	doSnow();	 	break;
+			case 'chillhrs':	doChillHrs();	break;
+			case 'snow':	doSnow();	break;
 			default:		doTemp();		break;
 		}
 //        parent.location.hash = value;
@@ -66,12 +67,18 @@ $(document).ready(function () {
 			if (result.TempSum === undefined || result.TempSum.Count == 0) {
 				$('#tempsum').addClass('w3-hide');
 			}
+			if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
+				$('#chillhrs').addClass('w3-hide');
+			}
+			if (result.Snow === undefined || result.Snow.Count == 0) {
+				$('#snow').addClass('w3-hide');
+			}
 		}
 	});
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
-		
+
 		var chart = sessionStorage.getItem('CMXDaily');
 		if( chart === null ) {
 			chart = 'temp';
@@ -84,7 +91,7 @@ $(document).ready(function () {
 			case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
 			default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
 			// NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-		}	
+		}
 
 		doGraph( chart );
 	}});
@@ -1336,6 +1343,116 @@ var doTempSum = function () {
 	});
 };
 
+var doChillHrs = function () {
+    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern. Three ranges are defined for each year: The ranges being measured relative to the base temperatures of; 0°C/32°F, 5°C/40°F, and 10°C/50°F respectively. Though the station owner can override these values and define their own.');
+    var options = {
+        chart: {
+            renderTo: 'chartcontainer',
+            type: 'line',
+            alignTicks: false,
+            zoomType: 'x'
+        },
+        title: {text: 'Chill Hours'},
+        credits: {enabled: true},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                day: '%e %b',
+                week: '%e %b',
+                month: '%b',
+                year: ''
+            }
+        },
+        yAxis: [{
+                // left
+                title: {text: 'Total Hours'},
+                opposite: false,
+                labels: {
+                    align: 'right',
+                    x: -10
+                }
+            }, {
+                // right
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                title: {text: null},
+                labels: {
+                    align: 'left',
+                    x: 10
+                }
+            }],
+        legend: {enabled: true},
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        halo: {
+                            size: 5,
+                            opacity: 0.25
+                        }
+
+                    }
+                },
+                cursor: 'pointer',
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 0.1
+                        }
+                    }
+                }
+            },
+            line: {lineWidth: 2}
+        },
+        tooltip: {
+            shared: true,
+            split: false,
+            xDateFormat: '%e %B',
+            useHTML: true,
+            headerFormat: '{point.key}<table>',
+            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
+            '<td style="text-align: right; font-weight: bold;">{point.y:0f} hrs</td></tr>',
+            footerFormat: '</table>'
+        },
+        series: []
+    };
+
+    chart = new Highcharts.Chart(options);
+    chart.showLoading();
+
+    $.ajax({
+        url: '/api/dailygraphdata/chillhrsdata.json',
+        dataType: 'json'
+    })
+    .done(function (resp) {
+        var subtitle = 'Threshold: ' + resp.options.threshold + '°' + config.temp.units + ' Base: ' + resp.options.basetemp + '°' + config.temp.units;
+        chart.setSubtitle({text: subtitle});
+
+        for (var yr in resp.data) {
+            chart.addSeries({
+                name: yr,
+                visible: false,
+                data: resp.data[yr]
+            }, false);
+        }
+
+        // make the last series visible
+        chart.series[chart.series.length -1].visible = true;
+    })
+    .always(function() {
+        chart.hideLoading();
+        chart.redraw();
+    });
+};
+
+
 var doSnow = function () {
     $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
     var options = {
@@ -1401,10 +1518,6 @@ var doSnow = function () {
         tooltip: {
             shared: true,
             split: false,
-			useHTML: true,
-			headerFormat: myTooltipHead,
-			pointFormat: myTooltipPoint,
-			footerFormat: '</table>',
             valueDecimals: 1,
             xDateFormat: '%e %b %y'
         },

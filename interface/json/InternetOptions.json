@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/16 10:04:57",
+	"version": "Last Modified: 2024/10/17 09:57:59",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -250,7 +250,7 @@
 							"label": "Brotli Compression",
 							"rightLabel": "Use Brotli compression for PHP file uploads",
 							"helpers": [
-								"Enables support for Brotli compression of PHP file uploads to your web server",
+								"Enables Brotli compression of PHP file uploads to your web server if it supports it",
 								"Note, this also requires PHP support for Brotli compression on your web server - CHECK this support is available before enabling this option"
 							],
 							"dependencies": {

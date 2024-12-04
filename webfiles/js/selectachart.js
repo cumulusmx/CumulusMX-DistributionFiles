@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2024/10/04 23:20:51
+// Last modified: 2024/10/30 11:20:22
 
 var chart, config, options;
 var settings;
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
             // then the real series options
             for (var k in result1) {
-                if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
+                if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow'].indexOf(k) === -1) {
                     var optgrp = $('<optgroup />');
                     optgrp.attr('label', k);
                     result1[k].forEach(function (val) {

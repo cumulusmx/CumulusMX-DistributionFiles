@@ -1,7 +1,7 @@
 /*
  * examples/full/javascript/demo.js
  *
- * Last modified: 2023/12/21 16:18:42
+ * Last modified: 2024/10/29 10:51:02
  *
  * This file is part of EditableGrid.
  * http://editablegrid.net
@@ -12,14 +12,14 @@
  */
 
 // create our editable grid
-var editableGrid = new EditableGrid("DemoGridFull", {
+var editableGrid = new EditableGrid('DemoGridFull', {
 	enableSort: false, // true is the default, set it to false if you don't want sorting to be enabled
 	pageSize: 15
 });
 
 // helper function to get path of a demo image
 function image(relativePath) {
-	return "js/images/" + relativePath;
+	return 'js/images/' + relativePath;
 }
 
 
@@ -27,9 +27,9 @@ function image(relativePath) {
 editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) {
 
     $.ajax({
-        url: "/api/setsettings/updateextrawebfiles.html",
+        url: '/api/setsettings/updateextrawebfiles.html',
         type: 'POST',
-        dataType: "text",
+        dataType: 'text',
         data: {
             id: editableGrid.getRowId(rowIndex),
             column: columnIndex,
@@ -38,7 +38,7 @@ editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) 
 
         success: function (response) {
             // reset old value if failed
-            if (response != "success") editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+            if (response != 'success') editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
             // here you could also highlight the updated row to give the user some feedback
         },
 
@@ -53,18 +53,18 @@ editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) 
 CheckboxCellRenderer.prototype.render = function(element, value)
 {
 	// convert value to boolean just in case
-	value = (value && value != 0 && value != "false") ? true : false;
+	value = (value && value != 0 && value != 'false') ? true : false;
 
 	// if check box already created, just update its state
 	if (element.firstChild) { element.firstChild.checked = value; return; }
 
 	// create and initialize checkbox
-	var htmlInput = document.createElement("input");
-	htmlInput.setAttribute("type", "checkbox");
-	htmlInput.setAttribute("id", this.column.name + "-" + element.rowIndex)
-	var htmlLabel = document.createElement("label");
-	htmlLabel.setAttribute("for", this.column.name + "-" + element.rowIndex)
-	htmlLabel.setAttribute("style", "position:absolute; top:-1000px");
+	var htmlInput = document.createElement('input');
+	htmlInput.setAttribute('type', 'checkbox');
+	htmlInput.setAttribute('id', this.column.name + '-' + element.rowIndex)
+	var htmlLabel = document.createElement('label');
+	htmlLabel.setAttribute('for', this.column.name + '-' + element.rowIndex)
+	htmlLabel.setAttribute('style', 'position:absolute; top:-1000px');
 	htmlLabel.innerHTML = this.column.label;
 
 	// give access to the cell editor and element from the editor field
@@ -86,7 +86,7 @@ CheckboxCellRenderer.prototype.render = function(element, value)
 	htmlInput.checked = value;
 	htmlInput.disabled = (!this.column.editable || !this.editablegrid.isEditable(element.rowIndex, element.columnIndex));
 
-	EditableGrid.prototype.addClassName(element, "boolean");
+	EditableGrid.prototype.addClassName(element, 'boolean');
 };
 
 
@@ -98,7 +98,7 @@ EditableGrid.prototype.initializeGrid = function()
 		tableRendered = function() { this.updatePaginator(); };
 
 		// render the grid (parameters will be ignored if we have attached to an existing HTML table)
-		renderGrid("tablecontent", "testgrid", "tableid");
+		renderGrid('tablecontent', 'testgrid', 'tableid');
 	}
 };
 
@@ -118,7 +118,7 @@ EditableGrid.prototype.onloadJSON = function(url)
 // function to render the paginator control
 EditableGrid.prototype.updatePaginator = function()
 {
-	var paginator = $("#paginator").empty();
+	var paginator = $('#paginator').empty();
 	var nbPages = this.getPageCount();
 
 	// get interval
@@ -127,34 +127,34 @@ EditableGrid.prototype.updatePaginator = function()
 
 	// get pages in interval (with links except for the current page)
 	var pages = this.getPagesInInterval(interval, function(pageIndex, isCurrent) {
-		if (isCurrent) return "" + (pageIndex + 1);
-		return $("<a>").css("cursor", "pointer").html(pageIndex + 1).click(function(event) { editableGrid.setPageIndex(parseInt($(this).html()) - 1); });
+		if (isCurrent) return '' + (pageIndex + 1);
+		return $('<a>').css('cursor', 'pointer').html(pageIndex + 1).click(function(event) { editableGrid.setPageIndex(parseInt($(this).html()) - 1); });
 	});
 
 	// "first" link
-	var link = $("<a>").html("<img src='" + image("gofirst.png") + "'/>&nbsp;");
-	if (!this.canGoBack()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
-	else link.css("cursor", "pointer").click(function(event) { editableGrid.firstPage(); });
+	var link = $('<a>').html('<img src="' + image('gofirst.png') + '"/>&nbsp;');
+	if (!this.canGoBack()) link.css({ opacity : 0.4, filter: 'alpha(opacity=40)' });
+	else link.css('cursor', 'pointer').click(function(event) { editableGrid.firstPage(); });
 	paginator.append(link);
 
 	// "prev" link
-	link = $("<a>").html("<img src='" + image("prev.png") + "'/>&nbsp;");
-	if (!this.canGoBack()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
-	else link.css("cursor", "pointer").click(function(event) { editableGrid.prevPage(); });
+	link = $('<a>').html('<img src="' + image('prev.png') + '"/>&nbsp;');
+	if (!this.canGoBack()) link.css({ opacity : 0.4, filter: 'alpha(opacity=40)' });
+	else link.css('cursor', 'pointer').click(function(event) { editableGrid.prevPage(); });
 	paginator.append(link);
 
 	// pages
-	for (p = 0; p < pages.length; p++) paginator.append(pages[p]).append(" | ");
+	for (p = 0; p < pages.length; p++) paginator.append(pages[p]).append(' | ');
 
 	// "next" link
-	link = $("<a>").html("<img src='" + image("next.png") + "'/>&nbsp;");
-	if (!this.canGoForward()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
-	else link.css("cursor", "pointer").click(function(event) { editableGrid.nextPage(); });
+	link = $('<a>').html('<img src="' + image('next.png') + '"/>&nbsp;');
+	if (!this.canGoForward()) link.css({ opacity : 0.4, filter: 'alpha(opacity=40)' });
+	else link.css('cursor', 'pointer').click(function(event) { editableGrid.nextPage(); });
 	paginator.append(link);
 
 	// "last" link
-	link = $("<a>").html("<img src='" + image("golast.png") + "'/>&nbsp;");
-	if (!this.canGoForward()) link.css({ opacity : 0.4, filter: "alpha(opacity=40)" });
-	else link.css("cursor", "pointer").click(function(event) { editableGrid.lastPage(); });
+	link = $('<a>').html('<img src="' + image('golast.png') + '"/>&nbsp;');
+	if (!this.canGoForward()) link.css({ opacity : 0.4, filter: 'alpha(opacity=40)' });
+	else link.css('cursor', 'pointer').click(function(event) { editableGrid.lastPage(); });
 	paginator.append(link);
 };

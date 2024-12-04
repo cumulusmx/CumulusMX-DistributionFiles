@@ -354,8 +354,6 @@ input[type=number]:hover {
 	border-bottom: thin solid var(--sub5);
 	height: 1px!important;
 	box-shadow: var(--shadow);
-	width:100%!important;
-	display:block;
 }
 
 .ow-defaultInt, .ow-menuMobile {
@@ -543,6 +541,8 @@ input[type=number]:hover {
 .w3-dropdown-content > a {
 	margin: 0.3vh 0.3vw 0.3vh 0;
 }
+
+.w3-check { width:1.2em; height:1.2em;top:2px; }
 
 /*	Buttons	*/
 .w3-btn:hover i {

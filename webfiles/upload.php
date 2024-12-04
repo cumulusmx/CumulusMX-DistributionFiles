@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2024/10/16 12:52:24";
+$last_Modified="2024/11/28 17:56:02";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -92,14 +92,21 @@ if (isset($_SERVER['HTTP_FILE'])) {
     $name = $_SERVER['HTTP_FILE'];
 
     // first check if the file is escaping our local folder structure
+    $name_dir = pathinfo($name)['dirname'];
     if ($limitPath) {
-        $name_dir = pathinfo($name)['dirname'];
         $name_fullpath = resolvePath($name_dir);
         $cwd = getcwd();
 
         if (substr($name_fullpath, 0, strlen($cwd)) !== $cwd) {
             exitCode(500, 'Error: Attempting to escape local folder structure');
         }
+    }
+
+    // check if the path exists
+    if (!is_dir($name_dir)) {
+        // try an create it
+        echo "Creating folder $name_dir";
+        mkdir($name_dir, 0777, true) or die("Cannot create required path $name_dir");
     }
 
     // if the file exists, check the file is writable

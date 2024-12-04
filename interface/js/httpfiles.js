@@ -1,28 +1,28 @@
-// Last modified: 2024/09/27 10:21:01
+// Last modified: 2024/10/29 10:54:12
 
 let accessMode;
 let csvChar;
 
 
 $(document).ready(function () {
-    $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+    $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
     $('#filesForm').alpaca({
-        'dataSource': './api/settings/httpfiles.json',
-        'optionsSource': './json/HttpFilesOptions.json',
-        'schemaSource': './json/HttpFilesSchema.json',
-        'ui': 'bootstrap',
-        'view': 'bootstrap-edit',
-        'options': {
-            'form': {
-                'buttons': {
+        dataSource: './api/settings/httpfiles.json',
+        optionsSource: './json/HttpFilesOptions.json',
+        schemaSource: './json/HttpFilesSchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    'validate': {
-                        'title': 'Save Settings',
-                        'click': function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
@@ -50,12 +50,12 @@ $(document).ready(function () {
                                 }
                             }
                         },
-                        'styles': 'alpaca-form-button-submit'
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             }
         },
-        'postRender': function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
@@ -77,7 +77,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -93,7 +93,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +

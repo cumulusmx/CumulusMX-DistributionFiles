@@ -1,113 +1,113 @@
-// Last modified: 2024/09/27 10:20:56
+// Last modified: 2024/11/12 10:27:01
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
 
 $(document).ready(function () {
 
-    $("form").alpaca({
-        "dataSource": "./api/settings/extrasensordata.json",
-        "optionsSource": "./json/ExtraSensorOptions.json",
-        "schemaSource": "./json/ExtraSensorSchema.json",
-        "view": "bootstrap-edit-horizontal",
-        "ui": "bootstrap",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        dataSource: '/api/settings/extrasensordata.json',
+        optionsSource: '/json/ExtraSensorOptions.json',
+        schemaSource: '/json/ExtraSensorSchema.json',
+        view: 'bootstrap-edit-horizontal',
+        ui: 'bootstrap',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
-                                let form = $("form").alpaca("get");
+                                let form = $('form').alpaca('get');
                                 let airLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
                                 let airLinkOut = form.getControlByPath('airLink/outdoor/enabled').getValue();
                                 let extra = form.getControlByPath('httpSensors/extraStation').getValue();
 
 
                                 if (airLinkIn != stashedAirLinkIn || airLinkOut != stashedAirLinkOut || extra != stashedExtra) {
-                                    alert("You have changed the Extra Sensor settings, you must restart Cumulus MX for this to take effect");
+                                    alert('You have changed the Extra Sensor settings, you must restart Cumulus MX for this to take effect');
                                     stashedAirLinkIn = airLinkIn;
                                     stashedAirLinkOut = airLinkOut;
                                     stashedExtra = extra;
                                 }
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "../api/setsettings/updateextrasensorconfig.json",
+                                    type: 'POST',
+                                    url: '/api/setsettings/updateextrasensorconfig.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert("Settings updated");
+                                    alert('Settings updated');
                                 })
                                 .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             },
-            "fields": {
-                "httpSensors": {
-                    "fields": {
-                        "ecowittapi": {
-                            "fields":{
-                                "mac": {
-                                    "validator": function(callback) {
+            fields: {
+                httpSensors: {
+                    fields: {
+                        ecowittapi: {
+                            fields:{
+                                mac: {
+                                    validator: function(callback) {
                                         let value = this.getValue();
-                                        if (value != "" && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
+                                        if (value != '' && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                             callback({
-                                                "status": false,
-                                                "message": "That is not a valid MAC address!"
+                                                'status': false,
+                                                'message': 'That is not a valid MAC address!'
                                             });
                                             return;
                                         }
                                         callback({
-                                            "status": true
+                                            'status': true
                                         });
                                     }
                                 },
-                                "applicationkey": {
-                                    "validator": function(callback) {
+                                applicationkey: {
+                                    validator: function(callback) {
                                         let value = this.getValue();
-                                        if (value != "" && !/^[A-F0-9]{30,35}$/.test(value)) {
+                                        if (value != '' && !/^[A-F0-9]{30,35}$/.test(value)) {
                                             callback({
-                                                "status": false,
-                                                "message": "That is not a valid Application Key!"
+                                                'status': false,
+                                                'message': 'That is not a valid Application Key!'
                                             });
                                             return;
                                         }
                                         callback({
-                                            "status": true
+                                            status: true
                                         });
                                     }
                                 },
-                                "userkey": {
-                                    "validator": function(callback) {
+                                userkey: {
+                                    validator: function(callback) {
                                         let value = this.getValue();
-                                        if (value != "" && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
+                                        if (value != '' && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                             callback({
-                                                "status": false,
-                                                "message": "That is not a valid API Key!"
+                                                'status': false,
+                                                'message': 'That is not a valid API Key!'
                                             });
                                             return;
                                         }
                                         callback({
-                                            "status": true
+                                            'status': true
                                         });
                                     }
                                 }
@@ -117,9 +117,9 @@ $(document).ready(function () {
                 }
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
+            let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
@@ -128,20 +128,31 @@ $(document).ready(function () {
             }
 
             // Trigger changes is the accessibility mode is changed
-            //accessObj.on("change", function() {onAccessChange(this)});
+            //accessObj.on('change', function() {onAccessChange(this)});
 
             // Get the extra sensor station type
-            let stationIdObj = form.getControlByPath("httpSensors/extraStation");
+            let stationIdObj = form.getControlByPath('httpSensors/extraStation');
 
             // Set the inital value in the ecowitt subsection
-            form.getControlByPath("httpSensors/ecowitt/stationid").setValue(stationIdObj.getValue());
+            form.getControlByPath('httpSensors/ecowitt/stationid').setValue(stationIdObj.getValue());
 
             // On changing the station type, propagate down to sub-sections
-            stationIdObj.on("change", function () {
-                let form = $("form").alpaca("get");
+            stationIdObj.on('change', function () {
+                let form = $('form').alpaca('get');
                 let stationid = this.getValue();
-                form.getControlByPath("httpSensors/ecowitt/stationid").setValue(stationid);
+                form.getControlByPath('httpSensors/ecowitt/stationid').setValue(stationid);
             });
+
+            // On changing the JSON Station connection type, propgate to advanced settings
+            let connType = form.getControlByPath('httpSensors/jsonstation/conntype');
+            connType.on('change', function () {
+                let form = $('form').alpaca('get');
+                let type = this.getValue();
+                form.getControlByPath('httpSensors/jsonstation/advanced/conntype').setValue(+type);
+                form.getControlByPath('httpSensors/jsonstation/advanced/conntype').refresh();
+            });
+            // Set the initial value of JSON Station connection type in advanced settings
+            form.getControlByPath('httpSensors/jsonstation/advanced/conntype').setValue(+form.getControlByPath('httpSensors/jsonstation/conntype').getValue());
 
             // Keep a record of the last value
             stashedAirLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
@@ -157,7 +168,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -173,7 +184,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +

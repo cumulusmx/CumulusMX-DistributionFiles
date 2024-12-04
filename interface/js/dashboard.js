@@ -1,4 +1,4 @@
-// Last modified: 2024/09/05 15:17:41
+// Last modified: 2024/11/29 16:15:40
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -17,17 +17,18 @@ $(document).ready(function () {
 
     let audioElement = document.createElement('audio');
 
-    function playSnd() {
+    function playSound() {
         if (playList.length) {
             playList[0].addEventListener('ended', function () {
                 playList.shift();
-                playSnd()
+                playSound()
             });
             let promise = playList[0].play();
             if (promise !== undefined) {
+                log('Playing sound');
                 promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
-                    //alert("hi");
+                    //alert('hi');
                     $('#bt').addClass('show').click(function () {
                         //audioElement.play();
                         $('#bt').removeClass('show');
@@ -46,18 +47,18 @@ $(document).ready(function () {
             title += 's';
         }
 
-        if (!("Notification" in window)) {
+        if (!('Notification' in window)) {
             // Check if the browser supports notifications
             alert(text);
-        } else if (Notification.permission === "granted") {
+        } else if (Notification.permission === 'granted') {
             // Check whether notification permissions have already been granted;
             // if so, create a notification
             let notification = new Notification(title, { body: text, icon: img });
-        } else if (Notification.permission !== "denied") {
+        } else if (Notification.permission !== 'denied') {
             // We need to ask the user for permission
             Notification.requestPermission().then((permission) => {
                 // If the user accepts, let's create a notification
-                if (permission === "granted") {
+                if (permission === 'granted') {
                     let notification = new Notification(title, { body: text, icon: img });
                 }
             });
@@ -141,7 +142,7 @@ $(document).ready(function () {
 
         // Firefox gets arsy about multiple notifications so roll them up into one
         let sendNotification = false;
-        let notificationMessage = "";
+        let notificationMessage = '';
 
         // Get the keys from the object and set
         // the element with the same id to the value
@@ -153,6 +154,8 @@ $(document).ready(function () {
 
                     // set the indicator state
                     if (alarm.triggered && alarmState[alarm.id] == false) {
+                        log(alarm.id + ' Triggered');
+
                         alarmState[alarm.id] = true;
 
                         // set the indicator
@@ -160,8 +163,9 @@ $(document).ready(function () {
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
-                            let sndFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
-                            playList.push(new Audio(sndFile));
+                            log(alarm.id + ' Queueing sound')
+                            let soundFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
+                            playList.push(new Audio(soundFile));
                         }
 
                         // notify?
@@ -169,7 +173,7 @@ $(document).ready(function () {
                             sendNotification = true;
                             let message = '‣ ' + alarmSettings[alarm.id].Name;
 
-                            console.log('Notify: ' + message);
+                            log(alarm.id + ' Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
 
@@ -178,7 +182,8 @@ $(document).ready(function () {
                             $('#' + alarm.Id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
-                        alarmState[key] = false;
+                        log(alarm.id + ' Cleared');
+                        alarmState[alarm.id] = false;
                         $(id).removeClass('indicatorOn').addClass('indicatorOff');
                     }
                 });
@@ -193,7 +198,7 @@ $(document).ready(function () {
             createNotification(notificationMessage);
         }
 
-        playSnd();
+        playSound();
 
         $('.WindUnit').text(data.WindUnit);
         $('.PressUnit').text(data.PressUnit);
@@ -234,6 +239,10 @@ $(document).ready(function () {
     let pad = function (x) {
         return x < 10 ? '0' + x : x;
     };
+
+    let log = function (x) {
+        console.log(new Date().toISOString().slice(11,23) + ' ' + x);
+    }
 
     let ticktock = function () {
         let d = new Date();
@@ -276,8 +285,8 @@ $(document).ready(function () {
             humTL: inp.LowHumToday.toString(),
             humTH: inp.HighHumToday.toString(),
             inhum: inp.IndoorHum.toString(),
-            SensorContactLost: "0",
-            forecast: (inp.Forecast || "n/a").toString(),
+            SensorContactLost: '0',
+            forecast: (inp.Forecast || 'n/a').toString(),
             tempunit: inp.TempUnit.substr(inp.TempUnit.length - 1),
             windunit: inp.WindUnit,
             pressunit: inp.PressUnit,
@@ -304,7 +313,7 @@ $(document).ready(function () {
             TwgustTM: inp.HighGustTodayTime,
             windTM: inp.HighWindToday.toString(),
             bearingTM: inp.HighGustBearingToday.toString(),
-            timeUTC: "",
+            timeUTC: '',
             BearingRangeFrom10: inp.BearingRangeFrom10.toString(),
             BearingRangeTo10: inp.BearingRangeTo10.toString(),
             UV: inp.UVindex.toString(),
@@ -315,18 +324,18 @@ $(document).ready(function () {
             domwinddir: inp.DominantWindDirection.toString(),
             WindRoseData: inp.WindRoseData,
             windrun: inp.WindRunToday.toString(),
-            cloudbasevalue: "",
-            cloudbaseunit: "",
-            version: "",
-            build: "",
-            ver: "12"
+            cloudbasevalue: '',
+            cloudbaseunit: '',
+            version: '',
+            build: '',
+            ver: '12'
         };
     }
 
     function doAjaxUpdate() {
         $.ajax({
-            url: "api/data/currentdata",
-            dataType: "json",
+            url: '/api/data/currentdata',
+            dataType: 'json',
             success: function (data) {
                 updateDisplay(data);
             }
@@ -336,7 +345,7 @@ $(document).ready(function () {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/info/wsport.json',
+            url: '/api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);
@@ -355,7 +364,7 @@ $(document).ready(function () {
 
     // Get the alarm settings - only do this on page load
     $.ajax({
-        url: 'api/info/alarms.json',
+        url: '/api/info/alarms.json',
         dataType: 'json',
         success: function (result) {
             let playSnd = false;
@@ -399,7 +408,7 @@ $(document).ready(function () {
                 }
 
                 if (!('Notification' in window)) {
-                    console.log("This browser does not support notifications.");
+                    log('This browser does not support notifications.');
                     } else {
                         if (checkNotificationPromise()) {
                             Notification.requestPermission()
@@ -418,7 +427,7 @@ $(document).ready(function () {
 
     // Get the station name - only do this on page load
     $.ajax({
-        url: 'api/tags/process.json?locationJsEnc',
+        url: '/api/tags/process.json?locationJsEnc',
         dataType: 'json',
         success: function (result) {
             $('#StationName').html(result.locationJsEnc);

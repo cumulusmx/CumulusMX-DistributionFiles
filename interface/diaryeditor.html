@@ -1,5 +1,5 @@
 <!--
-Last modified: 2022/06/11 23:34:20
+Last modified: 2024/11/27 14:40:12
 -->
 <!doctype html>
 <html lang="en">
@@ -60,10 +60,9 @@ Last modified: 2022/06/11 23:34:20
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul id="Main_Menu" class="nav navbar-nav">
-                </ul>
-            </div><!--/.nav-collapse -->
+            <nav class="navbar-collapse collapse">
+                <ul id="Main_Menu" class="nav navbar-nav"></ul>
+            </nav><!--/.nav-collapse -->
         </div>
     </div>
     <!-- END NAVIGATION MENU -->
@@ -88,37 +87,51 @@ Last modified: 2022/06/11 23:34:20
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="inputTime" class="control-label col-xs-2">Time</label>
+                        <div class="col-xs-10">
+                            <input type="time" class="form-control" id="inputTime" style="width: 120px">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="inputComment" class="control-label col-xs-2">Comments</label>
                         <div class="col-xs-10">
-                            <input type="text" class="form-control" id="inputComment" style="height: 70px">
+                            <input type="text" class="form-control" id="inputComment" style="height: 70px" placeholder="Blank">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputSnowFalling" class="control-label col-xs-2">Snow Falling</label>
-                        <div class="col-xs-10" style="width: 6%">
-                            <input type="checkbox" class="form-control" id="inputSnowFalling" style="min-width: 20px; min-height: 20px">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputSnowLying" class="control-label col-xs-2">Snow Lying</label>
-                        <div class="col-xs-10" style="width: 6%">
-                            <input type="checkbox" class="form-control" id="inputSnowLying" style="min-width: 20px; min-height: 20px">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputSnowDepth" class="control-label col-xs-2">Snow Depth (cm)</label>
+                        <label for="inputSnow24h" id="snow24hLabel" class="control-label col-xs-2">Snow Fall in last 24 hours</label>
                         <div class="col-xs-10">
+                            <input type="number" class="form-control" id="inputSnow24h" min="0" step="0.1" style="width: 120px" placeholder="null">
                         </div>
-                            <input type="number" class="form-control" id="inputSnowDepth" step="0.01" style="width: 120px">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSnowDepth" id="snowDepthLabel" class="control-label col-xs-2">Snow Depth</label>
+                        <div class="col-xs-10">
+                            <input type="number" class="form-control" id="inputSnowDepth" min="0" step="0.1" style="width: 120px" placeholder="null">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
                             <button type="submit" class="btn btn-primary" form="diaryform" onclick="applyEntry()">Apply</button>
                             <button type="submit" class="btn btn-primary" form="diaryform" onclick="deleteEntry()">Delete</button>
+                            <a href="api/data/diaryexport.txt" download><button class="btn btn-primary" form="diaryform" >Export All</button></a>
+                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="uploadFile()">Upload File</button>
+                            <input type="file" style="display: inline-block;" id="upFile" placeholder="Upload file name">
                         </div>
                     </div>
-                    <br>
+                    <div class="form-group">
+                        <label for="automated" id="automatedLabel" class="control-label col-xs-2">Automated readings</label>
+                        <div class="col-xs-10">
+                            <select class="form-control" id="automated" style="width: 170px">
+                                <option value="0">Disabled</option>
+                                <option value="1">Laser Depth #1</option>
+                                <option value="2">Laser Depth #2</option>
+                                <option value="3">Laser Depth #3</option>
+                                <option value="4">Laser Depth #4</option>
+                            </select>
+                            Adds an automated reading to the database from the above sensor at the snow reading time. This only creates the record if a manual record has not already been created.
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="status" class="control-label col-xs-2"></label>
                         <div class="col-xs-10">

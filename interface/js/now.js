@@ -1,11 +1,11 @@
-// Last modified: 2024/07/12 10:54:15
+// Last modified: 2024/10/29 11:14:31
 
 // Configuration section
 var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
-window.addEventListener("load", function() {
+window.addEventListener('load', function() {
     var lastUpdateTimer, keepAliveTimer, ws;
     var cp = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 
@@ -116,8 +116,8 @@ window.addEventListener("load", function() {
 
     function doAjaxUpdate() {
         $.ajax({
-            url: "api/data/currentdata",
-            dataType: "json",
+            url: '/api/data/currentdata',
+            dataType: 'json',
             success: function (data) {
                 updateDisplay(data);
             }
@@ -127,7 +127,7 @@ window.addEventListener("load", function() {
     if (useWebSockets) {
         // Obtain the websockets port and open the connection
         $.ajax({
-            url: 'api/info/wsport.json',
+            url: '/api/info/wsport.json',
             dataType: 'json',
             success: function (result) {
                 OpenWebSocket(result.wsport);

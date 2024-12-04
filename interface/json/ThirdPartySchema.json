@@ -372,6 +372,78 @@
 				"includerain": ["enabled"]
 			}
 		},
+		"bluesky": {
+			"title": "Bluesky",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"id": {
+				},
+				"password": {
+				},
+				"interval": {
+					"type": "integer",
+					"minimum": 60,
+					"maximum": 1440
+				},
+				"contentTemplate": {
+					"readonly": true
+				},
+				"times": {
+					"type": "array",
+					"maxItems": 10,
+					"items": {
+						"type": "object",
+						"properties": {
+							"time": {
+								"title": "Time to run",
+								"type": "string",
+								"format": "time"
+							},
+							"file": {
+								"title": "Template file",
+								"type": "string",
+								"default": "web/Bluesky.txt"
+							}
+						}
+					}
+				},
+				"variable": {
+					"type": "array",
+					"maxItems": 4,
+					"items": {
+						"type": "object",
+						"properties": {
+							"time": {
+								"title": "Time to run",
+								"enum": ["sunrise", "sunset", "dawn", "dusk"]
+							},
+							"file": {
+								"title": "Template file",
+								"type": "string",
+								"default": "web/Bluesky.txt"
+							}
+						}
+					}
+				},
+				"lang": {
+				},
+				"baseUrl": {
+				}
+			},
+			"dependencies": {
+				"id": ["enabled"],
+				"password": ["enabled"],
+				"interval": ["enabled"],
+				"times": ["enabled"],
+				"variable": ["enabled"],
+				"contentTemplate": ["enabled"],
+				"lang": ["enabled"],
+				"baseUrl": ["enabled"]
+			}
+		},
 		"customhttp": {
 			"title": "Custom HTTP",
 			"type": "object",

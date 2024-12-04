@@ -3,7 +3,7 @@
 	Page:	Weather Diary Plus
 	File:	weathereditor.html		v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-04-05
+	Last Edit:	2024/12/02 14:53:28
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -53,14 +53,8 @@
 		</script>
 		<style>
 			.hasData {
-				color: #f00;
-				font-weight: 900;
-				border-color: #f00 !important;
-				border-color: var(--add2) !important;
-				border-style: solid !important;
-				border-width: thin !important;
-				color: var(--theme);
-				border-color: var(--add5) !important;
+				outline: 1px solid var(--theme);
+				outline-offset: -1px;
 			}
 			.noData {
 				outline: 0;
@@ -89,7 +83,6 @@
 				padding-left: 0.5em;
 			}
 			.ui-icon { background-color: var(--add5)!important;}
-
 		</style>
 	</head>
 	<body class="ow-theme-add5">
@@ -116,59 +109,48 @@
 					<p>Diary &amp; Conditions</p>
 				</div>
 
-					<div class="ow-oneCol" style="row-gap:2vh;">
-						<div class="ow-card ow-theme-add4">
-							<h3>Weather Diary</h3>
-							<div style="display:flex; gap:1vh 2vw; flex-flow: row wrap;">
-								<div>
-									<div id="datepicker" style="width:252px; min-height:276px;"></div>
-									<input type="hidden" id="date_hidden_input">
+				<div class="ow-oneCol" style="row-gap: 2vh;">
+					<div class="ow-theme-add4 ow-card ow-animate-fadeIn" style="order:0;">
+						<h4>Weather Diary</h4>
+						<div class="ow-titleBar" style="flex-flow: row wrap;">
+							<div id="datepicker" style=" flex-grow:0;margin-bottom: 1vh;" aria-label="Date picker"></div>
+							<input type="hidden" id="date_hidden_input">
+							<div style="min-width: 30em; flex-grow: 3; margin-bottom: 1vh;">
+								<h4>Your diary entry</h4>
+								<div class="ow-btnBar" style="justify-content: flex-start;align-items:baseline; column-gap:1vw;">
+									<p>Selected date: <strong><span id="selectedDate"></span></strong></p>
+									<label for="inputTime" class="control-label">Time</label>
+									<input type="time" class="ow-btn form-control" role="button" aria-label="Set the time" id="inputTime" style="width: 120px">
 								</div>
-								<div style="flex-grow:2;">
-									<h4 class="w3-hide">Entry for...</h4>
-									<div style="display:flex;gap:1vh 1vw; align-items:baseline;">
-										<h4>Entry for:</h4>
-										<p class="w3-hide">Selected date:</p>
-										<p><strong><span id="selectedDate"></span></strong></p>
-										<p><label for="inputTime">Time:</label></p>
-										<input type="time" id="inputTime" aria-label="Time for entry" style="width:7em" class="ow-theme">
-									</div>
-									<p>Entry</p>
-									<input type="text" class="w3-input ow-theme-add5 w3-border ow-theme-bdr" style="width:100%;" id="inputComment" aria-label="Your diary entry">
-									<h4>Snowfall Information</h4>
-									<div style="display:flex;gap:1vh 1vw;">
-										<label for="inputSnow24h">Snowfall in last 24 hours (cm):</label><input type="number" class="w3-number" id="inputSnow24h" step="0.1" min="0" style="width:5em" aria-label="Snowfall in last 24 hours">
-										<label for="inputSnowDepth">Depth (cm):</label><input type="number" class="w3-number" id="inputSnowDepth" step="0.1" min="0" value="0" style="width:5em" aria-label="Depth of laying snow">
-									</div>
-									<div class="ow-btnBar ow-flex-center" style="margin: 1vh 0;flex-flow:row wrap; justify-content: flex-end;">
-										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Submit your diary entry" onclick="applyDiaryEntry()">Apply</button>
-										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Clear the current diary entry" onclick="deleteDiaryEntry()">Delete</button>
-									</div>
-									<div style="display:flex; flex-flow: row wrap; justify-content:flex-start;align-items:first baseline; gap:1vh;">
-										<h5>Automated readings:</h5>
-										<select id="automated" style="width: 12em" class="ow-theme-add4">
-											<option value="0">Disabled</option>
-											<option value="1">Laser Distance #1</option>
-											<option value="2">Laser Distance #2</option>
-											<option value="3">Laser Distance #3</option>
-											<option value="4">Laser Distance #4</option>
-										</select>
-										<p style="flex-grow:0; flex-shrink:3; max-width: 27em;">
-											Adds an automated reading to the database from the above sensor at the snow reading time. This only creates the record if a manual record has not already been created.
-										</p>
-									</div>
-									<div class="ow-btnBar" style="margin:1vh 0; flex-flow:row wrap; justify-content:flex-start;">
-										<a href="/api/data/diaryexport.txt" download class="w3-btn ow-btn ow-theme-add3" style="flex-grow:0;" aria-label="Export your diary entries">Export all</a>
-										<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Upload diary entries" onClick="uploadFile()">Upload file</button>
-										<!--<label class="ow-btn2 ow-theme-add3" style="Zdisplay:inline-block;" for="upFile">Select file</label>-->
-										<input type="file" id="upFile" class="ow-btn" >
-									</div>
-									<p id="status" class="ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="flex-grow: 3;">--</p>
+								<input type="text" class="w3-input ow-theme-add5 w3-border ow-theme-bdr" role="button" id="inputComment" aria-label="Your diary entry">
+								<h4>Snowfall information</h4>
+								<div class="ow-btnBar" style="justify-content: flex-start;margin-bottom:1vh;">
+									<div class="ow-btnBar" style="align-items:baseline"><label for="inputSnow24h">Snowfall in last 24 hours (cm):&nbsp;</label><input type="number" class="form-control" id="inputSnow24h" min="0" step="0.1" style="width: 120px" placeholder="null"></div>
+									<div class="ow-btnBar" style="align-items:baseline"><label for="inputSnowDepth">Snow Depth (cm):&nbsp;</label><input type="number" class="form-control" id="inputSnowDepth" min="0" step="0.1" style="width: 120px" placeholder="null"></div>
+								</div>
+								<div class="ow-btnBar" style="justify-content:flex-start; column-gap: 1vw;align-items:baseline;margin-bottom:0.5vh;" role="menubar">
+									<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Submit your diary entry" onclick="applyEntry()">Apply</button>
+									<button class="ow-btn ow-thin ow-theme-add3" style="flex-grow:0;" aria-label="Clear the current diary entry" onclick="deleteEntry()">Delete</button>
+									<a href="/api/data/diaryexport.txt" download=""><button class="ow-btn Zbtn-primary ow-thin ow-theme-add3" form="diaryform" aria-label="Export your diary entries">Export All</button></a>
+									<button type="submit" style="flex-grow:0;" class="ow-btn" form="diaryform" aria-label="Upload diary entries" onclick="uploadFile()">Upload File</button>
+									<input type="file" style="display: inline-block;" id="upFile" aria-label="Select your file" placeholder="Upload file name">
+								</div>
+								<p id="status" class="ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="flex-grow: 3;">--</p>
+								<!--	Automated Readings	-->
+								<div class="ow-btnBar" style="justify-content:flex-start;align-items:baseline;margin-top:0.5vh;">
+									<label for="automated" id="automatedLabel" class="control-label">Automated readings</label>
+									<select class="form-control" id="automated" style="width: 170px" aria-label="Choose sensor to triger auto updates">
+										<option value="0">Disabled</option>
+										<option value="1">Laser Distance #1</option>
+										<option value="2">Laser Distance #2</option>
+										<option value="3">Laser Distance #3</option>
+										<option value="4">Laser Distance #4</option>
+									</select>
+									<p style="flex-shrink: 2; max-width:25em;">Adds an automated reading to the database from the selected sensor at the snow reading time. This only creates the record if a manual record has not already been created.</p>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<div class="ow-theme-add4 ow-card ow-animate-fadeIn" style="order:0;">
 						<h4>Current Conditions</h4>
 						<p>
@@ -178,14 +160,11 @@
 						<p>Only plain text is supported and any 'newline' characters are converted to spaces.</p>
 						<p><textarea wrap="hard" cols="80" id="inputCurrCond" class="ow-theme-add5 " style="padding:8px; width:100%; max-width:100%; height: 100px;"></textarea></p>
 						<div class="ow-btnBar ow-flex-center" style="margin: 1vh 0;">
-							<button class="w3-btn ow-theme-add3" style="flex-grow: 0;" aria-label="Apply your comment" id="apply-button" onclick="applyEntry()">Apply</button>
+							<button class="ow-btn ow-theme-add3" style="flex-grow: 0;" aria-label="Apply your comment" id="apply-button" onclick="applyCCEntry()">Apply</button>
 							<p id="CCstatus" class="ow-theme-add5 w3-border ow-theme-add3-bdr statusBar" style="flex-grow: 3;"></p>
 						</div>
 					</div>
 				</div>
-
-
-
 			</div>
 
 		</div>

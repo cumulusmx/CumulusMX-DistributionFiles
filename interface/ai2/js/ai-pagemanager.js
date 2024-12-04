@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: ai-pagemanager.js   V4.0.0
     Author:	Neil Thomas		    Feb 2024
-   	Last Edit:	2024/09/27 15:34:15
+   	Last Edit:	2024/12/04 11:22:13
    	Role:
    	Manage and provide utility scripts for
     The AI
@@ -208,6 +208,7 @@ let checkPanels = function() {
 };
 
 let toggleMobileMenu = function() {
+	//	Not used !!!!
 	$('#menuMobile').toggleClass('w3-show', 'w3-hide');
 	$('#Main_Menu_Mobile').toggleClass('w3-show', 'w3-hide');
 }
@@ -217,35 +218,54 @@ let toggleMainMenu = function( menu ) {
 	var menuID = menu.id;
 	if( $('#menu' + menuID).css('display') == 'block'){
 		$('#menu' + menuID).css('display', 'none');
-		$('#menu' + menuID).attr('aria-expanded', false);
+		$('#' + menuID).attr('aria-expanded', false);
 	} else {
 		$('.w3-dropdown-hover').children("div").css('display', 'none');
 		$('.w3-dropdown-hover').children("div").removeClass('w3-show');
 		$('.w3-dropdown-hover').children("div").attr('aria-expanded', false);
-	
+
 		//	Display chosen panel
 		$('#menu' + menuID).css('display', 'block');
 	//	$('#menu' + menuID).addClass('w3-show');
-		$('#menu' + menuID).attr('aria-expanded', true);
+		$('#' + menuID).attr('aria-expanded', true);
 	}
 }
 
 let toggleMenu = function( menu ) {
-	//Alt menu script
+	//Alt menu script - current
 	var menuID = menu.id;
 	if( $('#menu' + menu.id). hasClass('w3-show')) {
 		$('#menu' + menu.id).removeClass('w3-show');
-		$( menu.id ).attr('aria-expanded', false );
+		$( '#' + menu.id ).attr('aria-expanded', false );
 	} else {
 		//	Close any open sub-menus
 		$('.w3-dropdown-click').children().removeClass('w3-show');
 		$('.w3-dropdown-click').children().attr('aria-expanded', false)
 		//	Open the sellected sub-menu
 		$('#menu' + menu.id).addClass('w3-show').removeClass('w3-hide');
-		$( menu.id ).attr('aria-expanded', true );
+		$( '#' + menu.id ).attr('aria-expanded', true );
 	}
 }
-
+/*
+let toggleMainMenu = function( menu) {
+	//	Used to add accessibility to desktop menu
+	var menuID = menu.id;
+	if( $('#menu' + menuID).css('display') == 'block') {
+		$('#menu' + menuID).css('display', 'none');
+		$('#' + menuID).attr('aria-expanded', false);
+		console.log("Closing menu for " + menuID );
+	} else {
+		//	Clear other panels and aria labels
+		$('.w3-dropdown-content').css('display', 'none');
+		$('.w3-dropdown-hover button').attr('aria-expanded', false);
+		console.log("Closing all panels")
+		//	Now set the required button
+		$('#menu' + menuID).css('display', 'block');
+		$('#' + menuID).attr('aria-expanded', 'true');
+		console.log("Menu " + menuID + " should be open and aria label set")
+	}
+}
+*/
 let showModal = function(modal){
 	if( $('#M' + modal).css('display') == 'none') {
 		$('#M' + modal).css('display', 'block');

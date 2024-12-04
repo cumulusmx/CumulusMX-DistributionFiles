@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2024/06/07 21:56:39
+    Last Updated: 2024/11/27 11:51:42
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -18,7 +18,8 @@
         "windspeed": "mph|ms|kph|knots",
         "rainfall": "mm|in",
         "pressure": "hPa|kPa|inHg",
-        "soilmoisture": "cb|%"
+        "soilmoisture": "cb|%",
+        "laserdist": "mm|cm|in"
     },
     // Last time the data was updated - Unix timestamp (seconds)
     "lastupdated": 9999999999,      // int
@@ -124,5 +125,16 @@
         "pm2p5avg24h": 99.9,    // float
         "pm10": 99.9,           // float
         "pm10avg24h": 99.9      // float
-    }
+    },
+    "laserdist": [
+        // Up to 4 sensors allowed
+        {
+            "index": 1,             // int (1-4)
+            "range": 99.9,       // float
+            "depth": 99.9           // float
+        }
+        //,{
+        // etc ...
+        //}
+    ]
 }

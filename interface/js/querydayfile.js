@@ -1,4 +1,4 @@
-// Last modified: 2024/10/05 17:41:25
+// Last modified: 2024/10/30 10:52:28
 
 let accessMode;
 
@@ -17,17 +17,17 @@ $(document).ready(function() {
 
     // Create the form
 
-    $("form").alpaca({
-        "optionsSource": "/json/QueryDayFileOptions.json",
-        "schemaSource": "/json/QueryDayFileSchema.json",
-        "view": "bootstrap-edit-horizontal",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        optionsSource: '/json/QueryDayFileOptions.json',
+        schemaSource: '/json/QueryDayFileSchema.json',
+        view: 'bootstrap-edit-horizontal',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Update",
-                        "click": function() {
+                    validate: {
+                        title: 'Update',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let form = $('form').alpaca('get');
@@ -41,10 +41,10 @@ $(document).ready(function() {
                                 }
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "/api/records/query/dayfile.json",
+                                    type: 'POST',
+                                    url: '/api/records/query/dayfile.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function (result) {
                                     let res = JSON.parse(result);
@@ -59,7 +59,7 @@ $(document).ready(function() {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
                                 alert('Invalid value in the form: ' + path + msg);
@@ -69,13 +69,13 @@ $(document).ready(function() {
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             },
-            "fields": {
-                "where": {
-                    "validator": function(callback) {
+            fields: {
+                where: {
+                    validator: function(callback) {
                         let form = $('form').alpaca('get');
 
                         let value = this.getValue();
@@ -84,19 +84,19 @@ $(document).ready(function() {
 
                         if (value.length == 0 && func == 'count') {
                             callback({
-                                "status": false,
-                                "message": "You must use a 'where' condition when using the Count function"
+                                status: false,
+                                message: 'You must use a "where" condition when using the Count function'
                             });
                             return;
                         }
                         // all OK
                         callback({
-                            "status": true
+                            status: true
                         });
                     }
                 },
-                "countfunction": {
-                    "validator": function(callback) {
+                countfunction: {
+                    validator: function(callback) {
                         /*
                         let form = $('form').alpaca('get');
 
@@ -106,21 +106,21 @@ $(document).ready(function() {
 
                         if (value.length == 0 && func == 'count' && (startSel.startsWith('Month') || startSel =='Yearly')) {
                             callback({
-                                "status": false,
-                                "message": "You must use a count function when using the Count function with a recurring period (month/year)"
+                                status: false,
+                                message: 'You must use a count function when using the Count function with a recurring period (month/year)'
                             });
                             return;
                         }
                         */
                         // all OK
                         callback({
-                            "status": true
+                            status: true
                         });
                     }
                 }
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
@@ -179,7 +179,7 @@ $(document).ready(function() {
                 });
 
                 toDate = $('#endDate').datepicker({
-                    dateFormat: "yy-mm-dd",
+                    dateFormat: 'yy-mm-dd',
                     minDate: start,
                     maxDate: '0d',
                     firstDay: 1,
@@ -220,7 +220,7 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
@@ -236,7 +236,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +

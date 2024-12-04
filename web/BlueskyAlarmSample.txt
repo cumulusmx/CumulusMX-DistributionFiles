@@ -1,0 +1,10 @@
+### Edit this file as you like, remove these comments, and save it as BlueskyAlarm.txt ###
+### To include the standard alarm message: |IncludeAlarmMessage|                       ###
+### Include links as       : https://link_url|Text for link|                           ###
+### Include hashtags as    : #TagName                                                  ###
+### Include mentions as    : @username                                                 ###
+### Attach images (up to 4): image:path_to_file|Alternative text|                      ###
+##########################################################################################
+|IncludeAlarmMessage|
+image:https://cumulus.hosiene.co.uk/images/cumulus.png|Cumulus MX logo|
+https://cumulus.hosiene.co.uk|Created by CumulusMX| #CumulusMX #LiveWeather

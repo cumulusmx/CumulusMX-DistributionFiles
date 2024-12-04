@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/09/19 21:15:25",
+	"version": "Last Modified: 2024/10/24 23:06:31",
 	"fields":{
 		"location": {
 			"fields": {
@@ -76,6 +76,15 @@
 					"sort": false,
 					"optionLabels": [
 						"Millimetres",
+						"Inches"
+					]
+				},
+				"snow": {
+					"type": "select",
+					"removeDefaultNone": true,
+					"sort": false,
+					"optionLabels": [
+						"Centimetres",
 						"Inches"
 					]
 				}
