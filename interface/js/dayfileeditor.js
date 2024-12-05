@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 09:54:56
+// Last modified: 2024/12/05 17:46:24
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -65,7 +65,7 @@ $(document).ready(function() {
         {title: 'High humidity', type: 'number', min: 0, max: 100},
         {title: 'High humidity time', type:'text', pattern: timeRegex},
         {title: 'Total ET', type: 'number', min: 0, step: etStep},
-        {title: 'Total hours of sunshine', type: 'number', min: 0},
+        {title: 'Total hours of sunshine', type: 'number', min: 0, step: 0.01},
         {title: 'High heat index', type: 'number', step: tempStep},
         {title: 'High heat index time', type:'text', pattern: timeRegex},
         {title: 'High apparent temp', type: 'number', step: tempStep},

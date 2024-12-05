@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:35:53
+// Last modified: 2024/12/05 17:48:02
 
 var myTable;
 var currMonth;
@@ -159,7 +159,7 @@ $(document).ready(function () {
             {title: 'Annual ET', type: 'number', min: 0, step: etStep},
             {title: 'Apparent temp', type: 'number', step: tempStep},
             {title: 'Max Solar rad', type: 'number'},
-            {title: 'Sun hours', type: 'number', step: tempStep},
+            {title: 'Sun hours', type: 'number', step: 0.01},
             {title: 'Wind bearing', type: 'number', min: 0, max: 360},
             {title: 'RG-11 Rain', type: 'number', min: 0, step: rainStep},
             {title: 'Rain Since Midnight', type: 'number', min: 0, step: rainStep},
