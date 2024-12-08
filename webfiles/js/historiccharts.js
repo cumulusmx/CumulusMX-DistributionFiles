@@ -1,4 +1,4 @@
-// Last modified: 2024/10/30 22:22:43
+// Last modified: 2024/12/08 14:07:08
 
 var chart, config, available;
 
@@ -1263,7 +1263,7 @@ var doSnow = function () {
             type: 'column',
             alignTicks: true
         },
-        title: {text: 'Snowfall'},
+        title: {text: 'Snow'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -1277,7 +1277,7 @@ var doSnow = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Snow depth (' + config.snow.units + ')'},
+                title: {text: 'Snow (' + config.snow.units + ')'},
                 opposite: false,
                 min: 0,
                 labels: {
