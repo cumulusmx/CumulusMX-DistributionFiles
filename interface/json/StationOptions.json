@@ -938,8 +938,8 @@
 					"helper": "Get this from the weatherflow app"
 				},
 				"tcpport": {
-					"label": "TCP/IP Port",
-					"helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."
+					"label": "UDP Port",
+					"helper": "UDP port to listen on. Don't change unless you know what you're doing."
 				},
 				"token": {
 					"label": "Security Token",
