@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/30 09:15:02",
+	"version": "Last Modified: 2024/12/08 15:44:23",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -615,7 +615,7 @@
 					}
 				},
 				"snow": {
-					"title": "Snowfall",
+					"title": "Snow",
 					"type": "object",
 					"properties": {
 						"Depth": {
