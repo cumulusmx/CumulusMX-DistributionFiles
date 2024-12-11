@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2023/09/28 10:43:19
+ * Last Modified: 2024/12/11 12:39:29
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -819,6 +819,9 @@ gauges = (function () {
                         cache.title = strings.temp_title_in;
                         cache.loc = strings.temp_in_info;
                         cache.value = extractDecimal(data.intemp);
+                        if (cache.value = -9999) {
+                            cache.value = data.tempunit[1] === 'C' ? gaugeGlobals.tempScaleDefMinC : gaugeGlobals.tempScaleDefMinF;
+                        }
                         cache.popupImg = 1;
                         if (data.intempTL && data.intempTH) {
                             // Indoor - and Max/Min values supplied
@@ -1452,6 +1455,7 @@ gauges = (function () {
                         steelseries.Section(80, 100, 'rgba(255,0,0,0.3)')
                     ];
                     params.area = cache.areas;
+                    params.minValue = 0;
                     params.maxValue = 100;
                     params.thresholdVisible = false;
                     params.titleString = cache.title;
