@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:33:11
+// Last modified: 2024/12/12 11:45:36
 
 let StashedStationId;
 let accessMode;
@@ -176,11 +176,7 @@ $(document).ready(function () {
                 let form = $('form').alpaca('get');
                 let stationIdObj = form.getControlByPath('general/stationtype')
                 stationIdObj.refresh();
-                if (stationIdObj.selectOptions.length == 1) {
-                    stationIdObj.setValue(stationIdObj.selectOptions[0].value);
-                } else {
-                    stationIdObj.setValue(-1);
-                }
+                stationIdObj.setValue(-1);
             });
 
             let stationIdObj = form.getControlByPath('general/stationtype');
