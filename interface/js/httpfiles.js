@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:54:12
+// Last modified: 2024/12/13 22:29:10
 
 let accessMode;
 let csvChar;
@@ -51,6 +51,31 @@ $(document).ready(function () {
                             }
                         },
                         styles: 'alpaca-form-button-submit'
+                    }
+                }
+            },
+            fields: {
+                files: {
+                    items: {
+                        fields: {
+                            Url: {
+                                validator: function(callback) {
+                                    let value = this.getValue();
+                                    // check for URL format or <ecowittcameraurl>
+                                    if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl>)$/.test(value)) {
+                                        callback({
+                                            status: false,
+                                            message: 'That is not a valid URL!'
+                                        });
+                                        return;
+                                    }
+                                    // all OK
+                                    callback({
+                                        status: true
+                                    });
+                                }
+                            }
+                        }
                     }
                 }
             }

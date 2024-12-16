@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2024/12/11 12:39:29
+ * Last Modified: 2024/12/15 12:31:13
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -819,7 +819,7 @@ gauges = (function () {
                         cache.title = strings.temp_title_in;
                         cache.loc = strings.temp_in_info;
                         cache.value = extractDecimal(data.intemp);
-                        if (cache.value = -9999) {
+                        if (cache.value == -9999) {
                             cache.value = data.tempunit[1] === 'C' ? gaugeGlobals.tempScaleDefMinC : gaugeGlobals.tempScaleDefMinF;
                         }
                         cache.popupImg = 1;

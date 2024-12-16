@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/11/12 10:28:34",
+	"version": "Last Modified: 2024/12/16 16:51:49",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -217,7 +217,7 @@
 							"label": "Leak",
 							"rightLabel": "Use the leak sensor data from your Ecowitt"
 						},
-						"userLaserDist": {
+						"useLaserDist": {
 							"label": "Laser Distance",
 							"rightLabel": "Use the laser distance data from your Ecowitt"
 						},
