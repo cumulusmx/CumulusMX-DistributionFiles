@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2024/12/01 16:13:41
+// Last modified: 2024/12/17 10:44:04
 
 var chart, avail, config, options;
 var cache = {};
@@ -119,7 +119,7 @@ $(document).ready(function () {
 
         // then the real series options
         for (var k in avail) {
-            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow'].indexOf(k) === -1) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow', 'ChillHours'].indexOf(k) === -1) {
                 var optgrp = $('<optgroup />');
                 optgrp.attr('label', k);
                 avail[k].forEach(function (val) {
@@ -1677,7 +1677,7 @@ var doExtraHum = function (idx, val) {
     if (cache === null || cache.extrahum === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intextrahum.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvextrahum.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.extrahum = resp;
