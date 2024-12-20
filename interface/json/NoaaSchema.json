@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2024/12/07 16:33:24",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -33,6 +34,9 @@
 			"type": "object",
 			"title": "Report Options",
 			"properties": {
+				"outputtext": {
+					"enum": [0, 1]
+				},
 				"timeformat": {
 					"enum": [0, 1]
 				},

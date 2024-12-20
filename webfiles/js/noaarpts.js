@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  *  noaarpts.js
- *  Last modified: 2021/07/10 13:19:42
+ *  Last modified: 2024/12/07 17:04:27
  *  Populates the dropdown menus using the records began date
  *
  * 	Requires jQuery
@@ -104,7 +104,12 @@ let getMonRpt = function(month) {
         url: reqRpt,
         dataType: 'text',
         success: function(data) {
-            $('#noaareport').text(data);
+            if (cmx_data.options.noaaFormat == "text") {
+                $('#noaareport').empty();
+                $('#noaareport').append('<pre>' + data + '</pre>');
+            } else {
+                $('#noaareport').html(data);
+            }
         },
         error: function() {
             alert('Did not find the required report\n\nPlease try another date');
@@ -133,7 +138,12 @@ let getYearRpt = function(yr) {
         url: reqRpt,
         dataType: 'text',
         success: function(data) {
-            $('#noaareport').text(data);
+            if (cmx_data.options.noaaFormat == "text") {
+                $('#noaareport').empty();
+                $('#noaareport').append('<pre>' + data + '</pre>');
+            } else {
+                $('#noaareport').html(data);
+            }
         },
         error: function() {
             alert('Did not find the required report\n\nPlease try another date');

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:11:00
+Last modified: 2024/12/06 20:33:04
 -->
 <!doctype html>
 <html lang="en">
@@ -35,19 +35,29 @@ Last modified: 2024/11/23 15:11:00
         .top-buffer { margin-top:40px; }
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
+        .report-container {justify-content: center; width: 100%; display: flex;}
     </style>
 
     <script>
-        //$.fn.dataTable.ext.errMode = 'none';
+        var outputText;
+
         $(document).ready(function () {
             $.ajax({
-                url: "api/info/version.json",
+                url: "/api/info/version.json",
                 dataType:"json"
             })
             .done(function (result) {
                 $('#Version').text(result.Version);
                 $('#Build').text(result.Build);
             });
+
+            var conf = $.ajax({
+                url: '/api/settings/noaadata.json',
+                dataType: 'json'
+            })
+            .done(function (result) {
+                outputText = result.options.outputtext;
+            })
 
             $.ajax({
                 url: '/api/tags/process.txt',
@@ -79,7 +89,12 @@ Last modified: 2024/11/23 15:11:00
                 url: 'api/reports/noaayear?year='+year
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
             })
             .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
@@ -92,7 +107,12 @@ Last modified: 2024/11/23 15:11:00
                 url: 'api/genreports/noaayear?year='+year
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
                 alert("Report (Re)generated");
             })
             .fail(function(jqXHR, textStatus) {
@@ -105,7 +125,12 @@ Last modified: 2024/11/23 15:11:00
                 url: 'api/genreports/all'
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
             })
             .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
@@ -158,8 +183,7 @@ Last modified: 2024/11/23 15:11:00
             </div>
         </div>
 
-        <div class="row">
-            <pre id="report"></pre>
+        <div class="row report-container" id="report">
         </div>
 
     </div>

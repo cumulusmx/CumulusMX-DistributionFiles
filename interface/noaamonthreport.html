@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:11:16
+Last modified: 2024/12/06 15:30:49
 -->
 <!doctype html>
 <html lang="en">
@@ -41,6 +41,7 @@ Last modified: 2024/11/23 15:11:16
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         .ui-datepicker-calendar {display: none;}
+        .report-container {justify-content: center; width: 100%; display: flex;}
     </style>
 
     <script>
@@ -48,17 +49,25 @@ Last modified: 2024/11/23 15:11:16
         var thisMonth;
         var startYear;
         var startMonth;
-
+        var outputText;
 
         $(document).ready(function () {
             $.ajax({
-                url: 'api/info/version.json',
+                url: '/api/info/version.json',
                 dataType: 'json'
             })
             .done(function (result) {
                 $('#Version').text(result.Version);
                 $('#Build').text(result.Build);
             });
+
+            var conf = $.ajax({
+                url: '/api/settings/noaadata.json',
+                dataType: 'json'
+            })
+            .done(function (result) {
+                outputText = result.options.outputtext;
+            })
 
             $.ajax({
                 url: '/api/tags/process.txt',
@@ -85,8 +94,9 @@ Last modified: 2024/11/23 15:11:16
                 }
 
                 changeYear();
-
-                load();
+                $.when(conf).done(function (a1) {
+                    load();
+                });
             });
 
             $('#selYear').on('change', function () {
@@ -129,7 +139,12 @@ Last modified: 2024/11/23 15:11:16
                 url: 'api/reports/noaamonth?year='+year+'&month='+month,
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
             })
             .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
@@ -143,7 +158,12 @@ Last modified: 2024/11/23 15:11:16
                 url: 'api/genreports/noaamonth?year='+year+'&month='+month
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
                 alert("Report (Re)generated");
             })
             .fail(function(jqXHR, textStatus) {
@@ -156,7 +176,12 @@ Last modified: 2024/11/23 15:11:16
                 url: 'api/genreports/all'
             })
             .done(function(data) {
-                $('#report').text(data);
+                if (outputText) {
+                    $('#report').empty();
+                    $('#report').append('<pre>' + data + '</pre>');
+                } else {
+                    $('#report').html(data);
+                }
             })
             .fail(function(jqXHR, textStatus) {
                 $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
@@ -211,9 +236,8 @@ Last modified: 2024/11/23 15:11:16
             </div>
         </div>
 
-        <div class="row">
-                <pre id="report"></pre>
-            </div>
+        <div class="row report-container" id="report">
+        </div>
     </div>
 
     <!-- FOOTER -->
