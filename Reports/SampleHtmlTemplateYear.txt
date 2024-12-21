@@ -1,0 +1,97 @@
+<style type="text/css">
+  .noaaRpt {
+    margin: auto;
+    width: 750px;
+    text-align: center;
+  }
+  .noaaRpt table {
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  .noaaRpt th {
+    text-align: right;
+    vertical-align: bottom;
+    padding: 5px;
+  }
+  .noaaRpt td {
+    text-align: right;
+    padding-bottom: 5px;
+    padding-left: 15px;
+  }
+  .noaaRpt .underline {
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+  }
+  .noaaRpt .totals > td {
+    border-top: 1px solid black;
+    font-weight: bold;
+  }
+</style>
+
+<div class="noaaRpt">
+  <h2>Annual Climatological Summary for <#YEAR#></h2>
+  <div>
+    <p>Name: <b><#NAME#></b> City: <b><#CITY#></b> State: <b><#STATE#></b></p>
+    <p>Elevation: <b><#ELEV#></b> Latitude: <b><#LAT#></b> Longitude: <b><#LONG#></b></p>
+  </div>
+
+  <h3>Temperature (&deg;<#TEMPUNIT#>)</h3>
+  <table>
+    <tr class="underline">
+      <th>Month</th>
+      <th>Mean<br>Max<br>Temp</th>
+      <th>Mean<br>Min<br>Temp</th>
+      <th>Mean<br>Temp</th>
+      <th>Dep.<br>from<br>Norm</th>
+      <th>Heat<br>Deg<br>Days</th>
+      <th>Cool<br>Deg<br>Days</th>
+      <th>High<br>Temp</th>
+      <th>Date</th>
+      <th>Low<br>Temp</th>
+      <th>Date</th>
+      <th>Max<br>Temp<br>&gt;=<br><#MAXTEMPCOMP1#></th>
+      <th>Max<br>Temp<br>&lt;=<br><#MAXTEMPCOMP2#></th>
+      <th>Min<br>Temp<br>&lt;=<br><#MINTEMPCOMP1#></th>
+      <th>Min<br>Temp<br>&lt;=<br><#MINTEMPCOMP2#></th>
+    </tr>
+    <#TEMPTABLECONTENT#>
+    <tr class="totals">
+      <td>Annual:</td>
+      <#TEMPTABLESUMMARY#>
+    </tr>
+  </table>
+
+  <h3>Precipitation (<#RAINUNIT#>)</h3>
+  <table>
+    <tr class="underline">
+      <th>Month</th>
+      <th>Total</th>
+      <th>Dep.<br>from<br>Norm</th>
+      <th>Max<br>Obs.<br>Day</th>
+      <th>Date</th>
+      <th>Days<br>&gt;=<br><#RAINCOMP1#></th>
+      <th>Days<br>&gt;=<br><#RAINCOMP2#></th>
+      <th>Days<br>&gt;=<br><#RAINCOMP3#></th>
+    </tr>
+    <#RAINTABLECONTENT#>
+    <tr class="totals">
+      <td>Annual:</td>
+      <#RAINTABLESUMMARY#>
+  </table>
+
+  <h3>Wind Speed (<#WINDUNIT#>)</h3>
+  <table>
+    <tr>
+      <th>Month</th>
+      <th>High<br>Avg.</th>
+      <th>High<br>Gust</th>
+      <th>Gust<br>Date</th>
+      <th>Dom<br>Dir</th>
+    </tr>
+    <#WINDTABLECONTENT#>
+    <tr class="totals">
+      <td>Annual:</td>
+      <#WINDTABLESUMMARY#>
+    </tr>
+  </table>
+</div>

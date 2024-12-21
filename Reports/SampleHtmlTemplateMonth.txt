@@ -1,0 +1,71 @@
+<style type="text/css">
+  .noaaRpt {
+    margin: auto;
+    width: 700px;
+    text-align: center;
+  }
+  .noaaRpt table {
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  .noaaRpt th {
+    text-align: right;
+    vertical-align: bottom;
+    padding: 5px;
+  }
+  .noaaRpt td {
+    text-align: right;
+    padding-bottom: 5px;
+    padding-left: 15px;
+  }
+  .noaaRpt .underline {
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+  }
+  .noaaRpt .totals > td {
+    border-top: 1px solid black;
+    font-weight: bold;
+  }
+</style>
+
+<div class="noaaRpt">
+  <h2>Monthly Climatological Summary for <#MONTH#> <#YEAR#></h2>
+  <div>
+    <p>Name: <b><#NAME#></b> City: <b><#CITY#></b> State: <b><#STATE#></b></p>
+    <p>Elevation: <b><#ELEV#></b> Latitude: <b><#LAT#></b> Longitude: <b><#LONG#></b></p>
+    <p>Temperature (&deg;<#TEMPUNIT#>), Rain (<#RAINUNIT#>), Wind Speed (<#WINDUNIT#>)</p>
+    <p>Heat Base: <#HEATBASE#>&deg;<#TEMPUNIT#> Cool Base: <#COOLBASE#>&deg;<#TEMPUNIT#> Method: Integration</p>
+  </div>
+
+  <table>
+    <tr class="underline">
+      <th>Day</th>
+      <th>Mean<br>Temp</th>
+      <th>High<br>Temp</th>
+      <th>High<br>Temp<br>Time</th>
+      <th>Low<br>Temp</th>
+      <th>Low<br>Temp<br>Time</th>
+      <th>Heat<br>Deg<br>Days</th>
+      <th>Cool<br>Deg<br>Days</th>
+      <th>Rain</th>
+      <th>Avg<br>Wind<br>Speed</th>
+      <th>High<br>Wind<br>Speed</th>
+      <th>High<br>Wind<br>Time</th>
+      <th>Dom<br>Dir</th>
+    </tr>
+    <#TABLECONTENT#>
+    <tr class="totals">
+      <td>Monthly:</td>
+      <#TABLESUMMARY#>
+    </tr>
+  </table>
+
+  <div>
+    <p><b>Max Temp</b> &gt;= <#MAXTEMPCOMP1#> = <b><#MAXTEMPCOUNT1#></b> days</p>
+    <p><b>Max Temp</b> &lt;= <#MAXTEMPCOMP2#> = <b><#MAXTEMPCOUNT2#></b> days</p>
+    <p><b>Min Temp</b> &lt;= <#MINTEMPCOMP1#> = <b><#MINTEMPCOUNT1#></b> days</p>
+    <p><b>Min Temp</b> &lt;= <#MINTEMPCOMP2#> = <b><#MINTEMPCOUNT2#></b> days</p>
+    <p><b>Max Rain:</b> <#MAXRAIN#> <#RAINUNIT#> on day <#MAXRAINDAY#></p>
+    <p><b>Days of Rain: <#RAINDAYS1#></b> [&gt;= <#RAINCOMP1#> <#RAINUNIT#>] <b><#RAINDAYS2#></b> [&gt;= <#RAINCOMP2#> <#RAINUNIT#>] <b><#RAINDAYS3#></b> [&gt;= <#RAINCOMP3#> <#RAINUNIT#>]</p>
+  </div>
+</div>
