@@ -1,0 +1,76 @@
+<article class="report-container">
+  <header>
+    <h2>Annual Climatological Summary for [#YEAR#]</h2>
+    <p>Name: <b>[#NAME#]</b> City: <b>[#CITY#]</b> State: <b>[#STATE#]</b></p>
+    <p>Elevation: <b>[#ELEV#]</b> Latitude: <b>[#LAT#]</b> Longitude: <b>[#LONG#]</b></p>
+  </header>
+  <section>
+    <header>
+      <h3>Temperature (&deg;[#TEMPUNIT#])</h3>
+    </header>
+    <table class="report-table">
+      <tr class="underline">
+        <th>Month</th>
+        <th>Mean<br>Max<br>Temp</th>
+        <th>Mean<br>Min<br>Temp</th>
+        <th>Mean<br>Temp</th>
+        <th>Depart.<br>from<br>Norm</th>
+        <th>Heating<br>Degree<br>Days</th>
+        <th>Cooling<br>Degree<br>Days</th>
+        <th>High<br>Temp</th>
+        <th>High<br>Temp<br>Date</th>
+        <th>Low<br>Temp</th>
+        <th>Low<br>Temp<br>Date</th>
+        <th>Max<br>Temp<br>&gt;=<br>[#MAXTEMPCOMP1#]</th>
+        <th>Max<br>Temp<br>&lt;=<br>[#MAXTEMPCOMP2#]</th>
+        <th>Min<br>Temp<br>&lt;=<br>[#MINTEMPCOMP1#]</th>
+        <th>Min<br>Temp<br>&lt;=<br>[#MINTEMPCOMP2#]</th>
+      </tr>
+[#TEMPTABLECONTENT#]
+      <tr class="totals">
+        <td>Annual:</td>
+[#TEMPTABLESUMMARY#]
+      </tr>
+    </table>
+  </section>
+  <section>
+    <header>
+      <h3>Precipitation ([#RAINUNIT#])</h3>
+    </header>
+    <table class="report-table">
+      <tr class="underline">
+        <th>Month</th>
+        <th>Total<br>Rain</th>
+        <th>Depart.<br>from<br>Norm</th>
+        <th>Max<br>Obs.<br>Day</th>
+        <th>Max<br>Obs.<br>Date</th>
+        <th>Days<br>&gt;=<br>[#RAINCOMP1#]</th>
+        <th>Days<br>&gt;=<br>[#RAINCOMP2#]</th>
+        <th>Days<br>&gt;=<br>[#RAINCOMP3#]</th>
+      </tr>
+[#RAINTABLECONTENT#]
+      <tr class="totals">
+        <td>Annual:</td>
+[#RAINTABLESUMMARY#]
+    </table>
+  </section>
+  <section>
+    <header>
+      <h3>Wind Speed ([#WINDUNIT#])</h3>
+    </header>
+    <table class="report-table">
+      <tr>
+        <th>Month</th>
+        <th>High<br>Avg.</th>
+        <th>High<br>Gust</th>
+        <th>High<br>Gust<br>Date</th>
+        <th>Dominant<br>Wind<br>Dir</th>
+      </tr>
+[#WINDTABLECONTENT#]
+      <tr class="totals">
+        <td>Annual:</td>
+[#WINDTABLESUMMARY#]
+      </tr>
+    </table>
+  </section>
+</article>

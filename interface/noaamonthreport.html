@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/12/06 15:30:49
+Last modified: 2024/12/22 12:14:46
 -->
 <!doctype html>
 <html lang="en">
@@ -41,7 +41,37 @@ Last modified: 2024/12/06 15:30:49
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         .ui-datepicker-calendar {display: none;}
-        .report-container {justify-content: center; width: 100%; display: flex;}
+        .report-container {
+            margin: auto;
+            justify-content: center;
+        }
+        .report-container {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        .report-table th {
+            text-align: right;
+            vertical-align: bottom;
+            padding: 5px;
+        }
+        .report-table td {
+            text-align: right;
+            padding-bottom: 5px;
+            padding-left: 15px;
+        }
+        .underline {
+            border-bottom: 1px solid black;
+            margin-bottom: 5px;
+        }
+        .totals > td {
+            border-top: 1px solid black;
+            font-weight: bold;
+        }
+        .report-summary {
+            text-align: left;
+            margin: 20px auto;
+            width: 50%;
+        }
     </style>
 
     <script>
@@ -67,6 +97,17 @@ Last modified: 2024/12/06 15:30:49
             })
             .done(function (result) {
                 outputText = result.options.outputtext;
+                if (outputText) {
+                    $('#report').append('<pre></pre>');
+                    $('#report')
+                    .css('display', 'flex')
+                    .css('width', '100%');
+                } else {
+                    $('#report')
+                    .css('text-align', 'center')
+                    .css('width', '700px')
+                    .css('display', 'block !important');
+                }
             })
 
             $.ajax({
@@ -221,7 +262,7 @@ Last modified: 2024/12/06 15:30:49
     </div>
     <!-- END NAVIGATION MENU -->
 
-    <div class="container">
+    <main class="container">
         <h1>NOAA Monthly Report</h1>
 
         <div class="row">
@@ -238,11 +279,10 @@ Last modified: 2024/12/06 15:30:49
 
         <div class="row report-container" id="report">
         </div>
-    </div>
+    </main>
 
     <!-- FOOTER -->
-    <div id="footerwrap">
-        <footer class="clearfix"></footer>
+    <footer id="footerwrap">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
@@ -251,7 +291,7 @@ Last modified: 2024/12/06 15:30:49
                 </div>
             </div><!-- /row -->
         </div><!-- /container -->
-    </div><!-- /footerwrap -->
+    </footer><!-- /footerwrap -->
 
     <div id="dialog" title="Status Message">
         <p></p>
