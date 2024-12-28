@@ -1,4 +1,4 @@
-// Last modified: 2024/12/08 14:07:08
+// Last modified: 2024/12/28 11:40:50
 
 var chart, config, available;
 
@@ -1146,7 +1146,7 @@ var doTempSum = function () {
 };
 
 var doChillHrs = function () {
-    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern. Three ranges are defined for each year: The ranges being measured relative to the base temperatures of; 0°C/32°F, 5°C/40°F, and 10°C/50°F respectively. Though the station owner can override these values and define their own.');
+    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
