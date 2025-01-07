@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/11/10 14:13:49",
+	"version": "Last Modified: 2025/01/01 15:47:37",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -141,7 +141,8 @@
 							"sort": false,
 							"optionLabels": [
 								"Centimetres",
-								"Inches"
+								"Inches",
+								"Millimetres"
 							]
 						},
 						"cloudbaseft": {
