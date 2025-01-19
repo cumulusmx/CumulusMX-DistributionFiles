@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:39:18
+// Last modified: 2025/01/14 15:28:09
 
 let accessMode;
 
@@ -67,6 +67,9 @@ $(document).ready(function () {
             setSensorLabels(form, 'DataVisibility/leafwet/sensors');
             setSensorLabels(form, 'DataVisibility/usertemp/sensors');
             setSensorLabels(form, 'DataVisibility/aq/sensors');
+            setSensorLabels(form, 'DataVisibility/snow/CurrLast24h/sensors');
+            setSensorLabels(form, 'DataVisibility/laser/Depth/sensors');
+            setSensorLabels(form, 'DataVisibility/laser/Dist/sensors');
 
             setSensorLabels(form, 'Graphs/colour/extratemp/sensors');
             setSensorLabels(form, 'Graphs/colour/extrahum/sensors');

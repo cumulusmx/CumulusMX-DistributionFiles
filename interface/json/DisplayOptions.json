@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/30 09:15:29",
+	"version": "Last Modified: 2025/01/14 15:15:14",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -723,12 +723,39 @@
 					"collapsed": true,
 					"fields": {
 						"Depth": {
-							"label": "Snow Depth",
+							"label": "Daily Snow Depth",
 							"$ref": "#/definitions/visibility"
 						},
 						"Last24h": {
-							"label": "Snowfall in 24h",
+							"label": "Daily Snowfall in 24h",
 							"$ref": "#/definitions/visibility"
+						},
+						"CurrLast24h": {
+							"fields": {
+								"sensors": {
+									"$ref": "#/definitions/sensors"
+								}
+							}
+						}
+					}
+				},
+				"laser": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"Depth": {
+							"fields": {
+								"sensors": {
+									"$ref": "#/definitions/sensors"
+								}
+							}
+						},
+						"Dist": {
+							"fields": {
+								"sensors": {
+									"$ref": "#/definitions/sensors"
+								}
+							}
 						}
 					}
 				}

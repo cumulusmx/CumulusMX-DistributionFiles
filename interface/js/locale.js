@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:03:27
+// Last modified: 2025/01/14 15:31:21
 
 let accessMode;
 
@@ -59,15 +59,17 @@ $(document).ready(function () {
             }
 
             setCompassLabels(form);
-            setSensorLabels(form, 'extraTemp')
-            setSensorLabels(form, 'extraHum')
-            setSensorLabels(form, 'extraDP')
-            setSensorLabels(form, 'userTemp')
-            setSensorLabels(form, 'soilTemp')
-            setSensorLabels(form, 'soilMoist')
-            setSensorLabels(form, 'leafWet')
-            setSensorLabels(form, 'airQuality/sensor')
-            setAvgSensorLabels(form, 'airQuality/sensorAvg')
+            setSensorLabels(form, 'extraTemp');
+            setSensorLabels(form, 'extraHum');
+            setSensorLabels(form, 'extraDP');
+            setSensorLabels(form, 'userTemp');
+            setSensorLabels(form, 'soilTemp');
+            setSensorLabels(form, 'soilMoist');
+            setSensorLabels(form, 'leafWet');
+            setSensorLabels(form, 'airQuality/sensor');
+            setAvgSensorLabels(form, 'airQuality/sensorAvg');
+            setSensorLabels(form, 'laser/depth');
+            setSensorLabels(form, 'laser/dist');
         }
     });
 });

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/12/08 15:44:23",
+	"version": "Last Modified: 2025/01/14 15:26:15",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -623,6 +623,51 @@
 						},
 						"Last24h": {
 							"enum": [0,1,2]
+						},
+						"CurrLast24h": {
+							"title": "Current 24hr Accumulation per Sensor",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "number",
+										"enum": [0,1,2]
+									}
+								}
+							}
+						}
+					}
+				},
+				"laser" : {
+					"title": "Laser Sensors",
+					"type": "object",
+					"properties": {
+						"Depth": {
+							"title": "Depth",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "number",
+										"enum": [0,1,2]
+									}
+								}
+							}
+						},
+						"Dist": {
+							"title": "Distance",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "number",
+										"enum": [0,1,2]
+									}
+								}
+							}
 						}
 					}
 				}
