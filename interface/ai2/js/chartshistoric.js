@@ -11,16 +11,39 @@ beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate bree
 
 
 $(document).ready(function () {
-	/*
-	$('.btn').change(function () {
 
-		var myRadio = $('input[name=options]');
-		var checkedValue = myRadio.filter(':checked').val();
-
-		doGraph(checkedValue);
+	$.ajax({
+		url: "/api/graphdata/availabledata.json",
+		dataType: "json",
+		success: function (result) {
+			//	Hide unwanted buttons
+			available = result;
+			if (result.Temperature === undefined || result.Temperature.Count == 0) {
+				$('#temp').remove();
+			}
+			if (result.Humidity === undefined || result.Humidity.Count == 0) {
+				$('#humidity').remove();
+			}
+			if (result.Solar === undefined || result.Solar.Count == 0) {
+				$('#solar').remove();
+			}
+			if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
+				$('#degdays').remove();
+			}
+			if (result.TempSum === undefined || result.TempSum.Count == 0) {
+				$('#tempsum').remove();
+			}
+			if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
+				$('#chillhrs').remove();
+			}
+			if (result.Snow === undefined || result.Snow.Count == 0) {
+				$('#snow').remove();
+			}
+		}
 	});
-	*/
-   	$('.selectGraph').click( function() {
+
+	$('.selectGraph').click( function() {
+		//	Allocate 'click()' funtion to remaining buttons
 		sessionStorage.setItem('CMXDaily', this.id );
 		doGraph( this.id );
 	});
@@ -28,53 +51,25 @@ $(document).ready(function () {
 
 	var doGraph = function (value) {
 		sessionStorage.setItem('CMXDaily', value );
-		$('.selectGraph').removeClass('ow-theme-sub3');
-		$('#' + value).addClass('ow-theme-sub3');
+		$('.selectGraph').removeClass('w3-disabled');
+		$('#' + value).addClass('w3-disabled');
 		switch (value) {
-			case 'temp':	doTemp();		break;
-			case 'press':	doPress();		break;
-			case 'wind':	doWind();		break;
-			case 'windDir':	doWindDir();	break;
-			case 'rain':	doRain();		break;
-		    case 'humidity':	doHum();	break;
-			case 'solar':	doSolar();		break;
-			case 'degdays':	doDegDays();	break;
-			case 'tempsum':	doTempSum();	break;
+			case 'temp':		doTemp();		break;
+			case 'press':		doPress();		break;
+			case 'wind':		doWind();		break;
+			case 'windDir':		doWindDir();	break;
+			case 'rain':		doRain();		break;
+		    case 'humidity':	doHum();		break;
+			case 'solar':		doSolar();		break;
+			case 'degdays':		doDegDays();	break;
+			case 'tempsum':		doTempSum();	break;
 			case 'chillhrs':	doChillHrs();	break;
-			case 'snow':	doSnow();	break;
-			default:		doTemp();		break;
+			case 'snow':		doSnow();		break;
+			default:			doTemp();		$('#temp').addClass('w3-disabled');	break;
 		}
 //        parent.location.hash = value;
 	};
 
-	$.ajax({
-		url: "/api/graphdata/availabledata.json",
-		dataType: "json",
-		success: function (result) {
-			available = result;
-			if (result.Temperature === undefined || result.Temperature.Count == 0) {
-				$('#temp').addClass('w3-hide');
-			}
-			if (result.Humidity === undefined || result.Humidity.Count == 0) {
-				$('#humidity').addClass('w3-hide');
-			}
-			if (result.Solar === undefined || result.Solar.Count == 0) {
-				$('#solar')/addClass('w3-hide');
-			}
-			if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
-				$('#degdays').addClass('w3-hide');
-			}
-			if (result.TempSum === undefined || result.TempSum.Count == 0) {
-				$('#tempsum').addClass('w3-hide');
-			}
-			if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
-				$('#chillhrs').addClass('w3-hide');
-			}
-			if (result.Snow === undefined || result.Snow.Count == 0) {
-				$('#snow').addClass('w3-hide');
-			}
-		}
-	});
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;

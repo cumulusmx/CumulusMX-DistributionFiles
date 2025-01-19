@@ -11,7 +11,7 @@
 var chart, config, doSelect;
 //	Added by Neil
 var myTooltipHead = '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>';
-var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond" style="color:{series.color}"></i>&nbsp;{series.name}</td>' +
+var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond w3-small" style="color:{series.color}"></i>&nbsp;{series.name}</td>' +
 					 '<td><strong>{point.y}</strong></td></tr>';
 var beaufortScale, beaufortDesc, frostTemp;
 
@@ -48,64 +48,67 @@ var myBackground = {
 
 $(document).ready(function () {
 
-	$('.selectGraph').click( function() {
-		sessionStorage.setItem('CMXTrends', this.id );
-		doSelect( this.id );
-	});
-
 	$.ajax({
 		url: '/api/graphdata/availabledata.json',
 		dataType: 'json',
 		success: function (result) {
+			//	Remove unwanted buttons
 			if (result.Temperature === undefined || result.Temperature.Count == 0) {
-				$('#temp').addClass('w3-hide');
+				$('#temp').remove();
 			}
 			if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-				$('#dailytemp').addClass('w3-hide')
+				$('#dailytemp').remove()
 			}
 			if (result.Humidity === undefined || result.Humidity.Count == 0) {
-				$('#humidity').addClass('w3-hide')
+				$('#humidity').remove()
 			}
 			if (result.Solar === undefined || result.Solar.Count == 0) {
-				$('#solar').addClass('w3-hide');
+				$('#solar').remove();
 			}
 			if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-				$('#sunhours').addClass('w3-hide');
+				$('#sunhours').remove();
 			}
 			if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-				$('#airquality').addClass('w3-hide');
+				$('#airquality').remove();
 			}
 			if (result.ExtraTemp == undefined || result.ExtraTemp.Count == 0) {
-				$('#extratemp').addClass('w3-hide');
+				$('#extratemp').remove();
 			}
 			if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
-				$('#extrahum').addClass('w3-hide');
+				$('#extrahum').remove();
 			}
 			if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
-				$('#extradew').addClass('w3-hide');
+				$('#extradew').remove();
 			}
 			if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
-				$('#soiltemp').addClass('w3-hide');
+				$('#soiltemp').remove();
 			}
 			if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
-				$('#soilmoist').addClass('w3-hide');
+				$('#soilmoist').remove();
 			}
 			if (result.LeafWetness == undefined || result.LeafWetness.Count == 0) {
-				$('#leafwet').addClass('w3-hide');
+				$('#leafwet').remove();
 			}
 			if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
-				$('#usertemp').addClass('w3-hide');
+				$('#usertemp').remove();
 			}
 			if (result.CO2 == undefined || result.CO2.Count == 0) {
-				$('#co2').addClass('w3-hide');
+				$('#co2').remove();
 			}
 		}
 	});
 
+	$('.selectGraph').click( function() {
+		//	Allocate 'click()' function to those that are left
+		sessionStorage.setItem('CMXTrends', this.id );
+		doSelect( this.id );
+	});
+
+
 	doSelect = function (sel) {
 		sessionStorage.setItem('CMXTrends', sel );
-		$('.selectGraph').removeClass('ow-theme-sub3');
-		$('#' + sel).addClass('ow-theme-sub3');
+		$('.selectGraph').removeClass('w3-disabled');
+		$('#' + sel).addClass('w3-disabled');
 		switch (sel) {
 			case 'temp':		doTemp();		break;
 			case 'dailytemp':	doDailyTemp();	break;
@@ -129,6 +132,7 @@ $(document).ready(function () {
 			default:
 				doTemp();
 				sessionStorage.setItem('CMXTrends','temp');
+				$('#temp').addClass('ow-disabled');
 				break;
 		}
 	};
