@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/01 15:47:37",
+	"version": "Last Modified: 2025/01/19 18:10:52",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -20,8 +20,8 @@
 					"optionLabels": [
 						" Select Manufacturer",
 						"Davis",
-						"Ecowitt (and clones)",
-						"Fine Offset (and clones)",
+						"Ecowitt and clones",
+						"Fine Offset (legacy) and clones",
 						"WeatherFlow",
 						"Weather Underground",
 						"Ambient",

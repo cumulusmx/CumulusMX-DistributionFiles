@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/24 23:06:21",
+	"version": "Last Modified: 2025/01/19 18:07:48",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -70,21 +70,7 @@
 					"type": "integer"
 				},
 						"manufacturer": {
-					"enum": [
-						-1,
-						0,
-						6,
-						2,
-						9,
-						7,
-						8,
-						11,
-						1,
-						4,
-						5,
-						3,
-						10
-					],
+					"enum": [-1,0,6,2,9,7,8,11,1,4,5,3,10],
 					"required": true
 				},
 				"stationtype": {
@@ -273,7 +259,7 @@
 				},
 
 				"fineoffset": {
-					"title": "Fine Offset Settings",
+					"title": "Fine Offset (legacy) Settings",
 					"type": "object",
 					"properties": {
 						"syncreads" : {
@@ -309,7 +295,7 @@
 							"type": "string"
 						},
 						"baudrate": {
-							"enum": [19200, 115200]
+							"enum": [19200,115200]
 						}
 					}
 				},

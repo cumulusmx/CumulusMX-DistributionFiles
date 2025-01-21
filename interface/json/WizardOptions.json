@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/24 23:06:31",
+	"version": "Last Modified: 2025/01/19 18:10:10",
 	"fields":{
 		"location": {
 			"fields": {
@@ -105,8 +105,8 @@
 					"optionLabels": [
 						" Select Manufacturer",
 						"Davis",
-						"Ecowitt (and clones)",
-						"Fine Offset (and clones)",
+						"Ecowitt and clones",
+						"Fine Offset (legacy models) and clones",
 						"WeatherFlow",
 						"Weather Underground",
 						"Ambient",
@@ -198,7 +198,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Wind sensor"
 								},
 								"temphum": {
@@ -206,7 +206,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
 								},
 								"rain": {
@@ -214,7 +214,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Rain sensor"
 								},
 								"solar": {
@@ -222,7 +222,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
 								},
 								"uv": {
@@ -230,7 +230,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
 								}
 							}
@@ -284,7 +284,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Wind sensor"
 								},
 								"temphum": {
@@ -292,7 +292,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
 								},
 								"rain": {
@@ -300,7 +300,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["1","2","3","4","5","6","7","8"],
 									"helper": "Select the ISS transmitter ID for your Rain sensor"
 								},
 								"solar": {
@@ -308,7 +308,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
 								},
 								"uv": {
@@ -316,7 +316,7 @@
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
+									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
 									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
 								}
 							},
