@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/12/12 16:33:22",
+	"version": "Last Modified: 2025/01/23 15:00:49",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -55,6 +55,7 @@
 				},
 				"timeformat": {
 					"label": "Time format:",
+					"type": "select",
 					"removeDefaultNone": "true",
 					"optionLabels": [
 						"24 Hour",

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/12/22 12:14:46
+Last modified: 2025/01/24 16:37:22
 -->
 <!doctype html>
 <html lang="en">
@@ -30,9 +30,11 @@ Last modified: 2024/12/22 12:14:46
     <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
     <!-- Custom Files -->
-    <!-- <script src="js/noaareports.js"></script> -->
+    <script src="js/noaamonth.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/noaareports.css" rel="stylesheet">
+
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -41,208 +43,7 @@ Last modified: 2024/12/22 12:14:46
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         .ui-datepicker-calendar {display: none;}
-        .report-container {
-            margin: auto;
-            justify-content: center;
-        }
-        .report-container {
-            border-collapse: collapse;
-            margin: 0 auto;
-        }
-        .report-table th {
-            text-align: right;
-            vertical-align: bottom;
-            padding: 5px;
-        }
-        .report-table td {
-            text-align: right;
-            padding-bottom: 5px;
-            padding-left: 15px;
-        }
-        .underline {
-            border-bottom: 1px solid black;
-            margin-bottom: 5px;
-        }
-        .totals > td {
-            border-top: 1px solid black;
-            font-weight: bold;
-        }
-        .report-summary {
-            text-align: left;
-            margin: 20px auto;
-            width: 50%;
-        }
     </style>
-
-    <script>
-        var thisYear;
-        var thisMonth;
-        var startYear;
-        var startMonth;
-        var outputText;
-
-        $(document).ready(function () {
-            $.ajax({
-                url: '/api/info/version.json',
-                dataType: 'json'
-            })
-            .done(function (result) {
-                $('#Version').text(result.Version);
-                $('#Build').text(result.Build);
-            });
-
-            var conf = $.ajax({
-                url: '/api/settings/noaadata.json',
-                dataType: 'json'
-            })
-            .done(function (result) {
-                outputText = result.options.outputtext;
-                if (outputText) {
-                    $('#report').append('<pre></pre>');
-                    $('#report')
-                    .css('display', 'flex')
-                    .css('width', '100%');
-                } else {
-                    $('#report')
-                    .css('text-align', 'center')
-                    .css('width', '700px')
-                    .css('display', 'block !important');
-                }
-            })
-
-            $.ajax({
-                url: '/api/tags/process.txt',
-                dataType: 'json',
-                type: 'POST',
-                data: '{"month": <#recordsbegandate format="%M">, "year": <#recordsbegandate format="yyyy">}'
-            })
-            .done(function (result) {
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                thisYear = now.getFullYear();
-                thisMonth = now.getMonth() + 1;
-                startMonth =  result.month;
-                startYear = result.year;
-
-                var startYear = parseInt(result.year);
-
-                for (var i = thisYear; i >= startYear; i--) {
-                    $('#selYear').append($('<option>', {
-                        value: i,
-                        text: i
-                    }));
-                }
-
-                changeYear();
-                $.when(conf).done(function (a1) {
-                    load();
-                });
-            });
-
-            $('#selYear').on('change', function () {
-                changeYear();
-            });
-        });
-
-        function changeYear() {
-            var year = $('#selYear').val();
-            var firstMonth = 1;
-            var lastMonth = 12;
-            if (year == thisYear) {
-                lastMonth = thisMonth;
-            }
-            if (year == startYear) {
-                firstMonth = startMonth;
-            }
-
-            var now = new Date();
-            // subtract 1 day
-            now.setTime(now.getTime()-(1*24*3600000));
-            // and set to first of month
-            now.setDate(1);
-            $('#selMonth').empty();
-
-            for (var i = firstMonth; i <= lastMonth; i++) {
-                now.setMonth(i - 1);
-                $('#selMonth').append($('<option>', {
-                    value: i,
-                    text: now.toLocaleString('default', {month: "long"}),
-                    selected: year == thisYear && i === thisMonth
-                }));
-            }
-        }
-
-        function load() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/reports/noaamonth?year='+year+'&month='+month,
-            })
-            .done(function(data) {
-                if (outputText) {
-                    $('#report').empty();
-                    $('#report').append('<pre>' + data + '</pre>');
-                } else {
-                    $('#report').html(data);
-                }
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generate() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/genreports/noaamonth?year='+year+'&month='+month
-            })
-            .done(function(data) {
-                if (outputText) {
-                    $('#report').empty();
-                    $('#report').append('<pre>' + data + '</pre>');
-                } else {
-                    $('#report').html(data);
-                }
-                alert("Report (Re)generated");
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generateAll() {
-            $.ajax({
-                url: 'api/genreports/all'
-            })
-            .done(function(data) {
-                if (outputText) {
-                    $('#report').empty();
-                    $('#report').append('<pre>' + data + '</pre>');
-                } else {
-                    $('#report').html(data);
-                }
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function uploadRpt() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/uploadreport/noaamonth?year='+year+'&month='+month,
-            })
-            .done(function(data) {
-                alert("Report upload: " + data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-    </script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->

@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2024/11/27 11:51:42
+    Last Updated: 2025/01/22 10:05:37
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -9,7 +9,7 @@
 
     Partial data may be sent, for example temperature/humidity in one data set, and wind/rain data in another
 
-    You will need to remove all comments from the JSON a real data exchange
+    **** You MUST remove all comments from the JSON before using as a live JSON file ****
 */
 {
     // Need only supply units for the values submitted
