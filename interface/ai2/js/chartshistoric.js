@@ -1486,8 +1486,8 @@ var doSnow = function () {
                 }
             },
             series: {
-                grouping: false,
-                pointPadding: 0,
+                grouping: true,
+                pointPadding: 0.05,
                 groupPadding: 0.05,
                 states: {
                     hover: {
