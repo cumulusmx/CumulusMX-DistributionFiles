@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/19 18:10:52",
+	"version": "Last Modified: 2025/01/28 21:01:13",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1445,6 +1445,13 @@
 						"filedelay": {
 							"label": "File Read Delay (ms):",
 							"helper": "How long to wait after the file is written to before trying to read it. Default = 200ms",
+							"dependencies": {
+								"conntype": 0
+							}
+						},
+						"fileignore": {
+							"label": "File Change Ignore (ms):",
+							"helper": "Period of time after a change that further changes are ignored. Default = 600ms",
 							"dependencies": {
 								"conntype": 0
 							}

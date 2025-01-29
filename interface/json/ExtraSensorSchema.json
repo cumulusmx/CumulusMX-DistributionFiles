@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/21 11:06:57",
+	"version": "Last Modified: 2025/01/28 21:01:43",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -295,6 +295,11 @@
 									"type": "integer"
 								},
 								"filedelay": {
+									"type": "integer",
+									"minimum": 0,
+									"dependencies": "conntype"
+								},
+								"fileignore": {
 									"type": "integer",
 									"minimum": 0,
 									"dependencies": "conntype"

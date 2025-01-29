@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/19 18:06:19",
+	"version": "Last Modified: 2025/01/28 21:02:14",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -376,10 +376,10 @@
 							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"solar": {
-							"enum": [1,2,3,4,5,6,7,8]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"uv": {
-							"enum": [1,2,3,4,5,6,7,8]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						}
 					},
 					"dependencies": [
@@ -953,6 +953,11 @@
 							"type": "integer"
 						},
 						"filedelay": {
+							"type": "integer",
+							"minimum": 0,
+							"dependencies": "conntype"
+						},
+						"fileignore": {
 							"type": "integer",
 							"minimum": 0,
 							"dependencies": "conntype"

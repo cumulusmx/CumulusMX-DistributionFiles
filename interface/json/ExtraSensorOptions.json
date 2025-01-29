@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/21 11:06:58",
+	"version": "Last Modified: 2025/01/28 21:01:45",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -517,6 +517,14 @@
 										"conntype": 0
 									}
 								},
+								"fileignore": {
+									"label": "File Change Ignore (ms):",
+									"helper": "Period of time after a change that further changes are ignored. Default = 600ms",
+									"dependencies": {
+										"conntype": 0
+									}
+								},
+
 								"mqtttls": {
 									"label": "Use TLS:",
 									"rightLabel": "MQTT Server requires TLS for encryption",
