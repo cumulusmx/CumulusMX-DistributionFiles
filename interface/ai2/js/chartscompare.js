@@ -118,7 +118,7 @@ $(document).ready(function () {
                     chart: {
                         renderTo: 'chartcontainer',
                         type: 'spline',
-                        zoomType: 'x',
+                        //zooming:{type:'x'},
                         alignTicks: true
                     },
                     title: {text: 'Recent Data Select-a-Chart'},

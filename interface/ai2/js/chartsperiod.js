@@ -169,7 +169,7 @@ $(document).ready(function () {
 					chart: {
 						renderTo: 'chartcontainer',
 						type: 'spline',
-						zoomType: 'x',
+						zooming:{type:'x'},
 						alignTicks: true
 					},
 					title: {text: 'All Data Select-a-Chart'},

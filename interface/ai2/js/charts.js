@@ -167,7 +167,8 @@ var doTemp = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming: {type:'x'},
+
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -334,7 +335,7 @@ var doPress = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -440,7 +441,7 @@ var doWindDir = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'scatter',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -586,7 +587,7 @@ var doWind = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -745,7 +746,7 @@ var doRain = function () {
 			type: 'line',
 			backgroundColor: myBackground,
 			plotBackgroundColor: '#fff',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: true
 		},
@@ -859,7 +860,7 @@ var doHum = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -980,7 +981,7 @@ var doSolar = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: true
 		},
@@ -1133,7 +1134,7 @@ var doSunHours = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'column',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1237,7 +1238,7 @@ var doDailyRain = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'column',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1344,7 +1345,7 @@ var doDailyTemp = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1481,7 +1482,7 @@ var doAirQuality = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1604,7 +1605,7 @@ var doExtraTemp = function () {
 			type: 'line',
 			backgroundColor: myBackground,
 			plotBackgroundColor: '#fff',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1729,7 +1730,7 @@ var doExtraHum = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1843,7 +1844,7 @@ var doExtraDew = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1965,7 +1966,7 @@ var doSoilTemp = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2090,7 +2091,7 @@ var doSoilMoist = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2199,7 +2200,7 @@ var doLeafWet = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2310,7 +2311,7 @@ var doUserTemp = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2435,7 +2436,7 @@ var doCO2 = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zoomType: 'x',
+			zooming:{type:'x'},
 			borderWidth:0,
 			alignTicks: false
 		},

@@ -57,7 +57,6 @@ $(document).ready(function () {
 			case 'temp':		doTemp();		break;
 			case 'press':		doPress();		break;
 			case 'wind':		doWind();		break;
-			case 'windDir':		doWindDir();	break;
 			case 'rain':		doRain();		break;
 		    case 'humidity':	doHum();		break;
 			case 'solar':		doSolar();		break;
@@ -100,6 +99,7 @@ var doTemp = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
+			zooming:{type:'x'},
 			alignTicks: false
 		},
 		title: {text: 'Temperature'},
@@ -290,6 +290,7 @@ var doPress = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
+			zooming:{type:'x'},
 			alignTicks: false
 		},
 		title: {text: 'Pressure'},
@@ -395,114 +396,13 @@ var compassP = function (deg) {
 	return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
- var doWindDir = function () {
-//     var options = {
-//         chart: {
-//             renderTo: 'chartcontainer',
-//             type: 'scatter',
-//             alignTicks: false
-//         },
-//         title: {text: 'Dominant Wind Direction'},
-//         credits: {enabled: true},
-//         boost: {
-//             useGPUTranslations: false,
-//             usePreAllocated: true
-//         },
-//         xAxis: {
-//             type: 'datetime',
-//             ordinal: false,
-//             dateTimeLabelFormats: {
-//                 day: '%e %b %y',
-//                 week: '%e %b %y',
-//                 month: '%b %y',
-//                 year: '%Y'
-//             }
-//         },
-//         yAxis: [{
-//                 // left
-//                 title: {text: 'Bearing'},
-//                 opposite: false,
-//                 min: 0,
-//                 max: 360,
-//                 tickInterval: 45,
-//                 labels: {
-//                     align: 'right',
-//                     x: -5,
-//                     formatter: function () {
-//                         return compassP(this.value);
-//                     }
-//                 }
-//             }, {
-//                 // right
-//                 linkedTo: 0,
-//                 gridLineWidth: 0,
-//                 opposite: true,
-//                 title: {text: null},
-//                 min: 0,
-//                 max: 360,
-//                 tickInterval: 45,
-//                 labels: {
-//                     align: 'left',
-//                     x: 5,
-//                     formatter: function () {
-//                         return compassP(this.value);
-//                     }
-//                 }
-//             }],
-//         legend: {enabled: true},
-//         plotOptions: {
-//             scatter: {
-//                 animationLimit: 1,
-//                 cursor: 'pointer',
-//                 enableMouseTracking: false,
-//                 boostThreshold: 200,
-//                 marker: {
-//                     states: {
-//                         hover: {enabled: false},
-//                         select: {enabled: false},
-//                         normal: {enabled: false}
-//                     }
-//                 },
-//                 shadow: false,
-//                 label: {enabled: false}
-//             }
-//         },
-//         tooltip: {
-//             enabled: false
-//         },
-//         series: [{
-//                 name: 'Bearing',
-//                 type: 'scatter',
-//                 marker: {
-//                     symbol: 'circle',
-//                     radius: 2
-//                 }
-//             }],
-//         rangeSelector: {
-//             inputEnabled: false,
-//             selected: 1
-//         }
-//     };
-
-//     chart = new Highcharts.StockChart(options);
-//     chart.showLoading();
-
-//     $.ajax({
-//         url: '/api/dailygraphdata/wdirdata.json',
-//         dataType: 'json',
-//         success: function (resp) {
-//             chart.hideLoading();
-//             chart.series[0].setData(resp.windDir);
-//         }
-//     });
-};
-
 var doWind = function () {
 	$('#chartdescription').text('Curved line chart showing daily high gust, high average wind speed, and daily wind run values.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
+			zooming:{type:'x'},
 			alignTicks: false
 		},
 		title: {text: 'Wind Speed'},
@@ -673,6 +573,7 @@ var doRain = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'column',
+			zooming:{type:'x'},
 			alignTicks: true
 		},
 		title: {text: 'Rainfall'},
@@ -787,6 +688,7 @@ var doHum = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
+			zooming:{type:'x'},
 			alignTicks: false
 		},
 		title: {text: 'Relative Humidity'},
@@ -908,6 +810,7 @@ var doSolar = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
+			zooming:{type:'x'},
 			alignTicks: true
 		},
 		title: {text: 'Solar'},
@@ -1097,7 +1000,7 @@ var doDegDays = function () {
 			renderTo: 'chartcontainer',
 			type: 'spline',
 			alignTicks: false,
-			zoomType: 'x'
+			zooming:{type:'x'}
 		},
 		title: {text: 'Degree Days'},
 		credits: {enabled: true},
@@ -1219,7 +1122,7 @@ var doTempSum = function () {
 			renderTo: 'chartcontainer',
 			type: 'spline',
 			alignTicks: false,
-			zoomType: 'x'
+			zooming:{type:'x'}
 		},
 		title: {text: 'Temperature Sum'},
 		credits: {enabled: true},
@@ -1345,7 +1248,7 @@ var doChillHrs = function () {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false,
-            zoomType: 'x'
+            zooming:{type:'x'}
         },
         title: {text: 'Chill Hours'},
         credits: {enabled: true},
@@ -1447,13 +1350,13 @@ var doChillHrs = function () {
     });
 };
 
-
 var doSnow = function () {
     $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
+			zooming:{type:'x'},
             alignTicks: true
         },
         title: {text: 'Snowfall'},
