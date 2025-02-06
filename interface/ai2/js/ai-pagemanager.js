@@ -131,10 +131,10 @@ let configPage = function() {
 	var elementHt, contentHt;
 	//	Check for fixed header
 	if( CMXConfig.StaticHead ) {
-		elementHt = $('header').outerHeight( true );
+		elementHt = $('#PageBanner').outerHeight( true );
 		if( elementHt < 100) { elementHt = 124}
 		//console.log("Header height: " + elementHt);
-		$('header').addClass('w3-top');
+		$('#PageBanner').addClass('w3-top');
 		$('#content').css('margin-top', elementHt + 'px');
 	}
 	//	Check for fixed footer
