@@ -134,7 +134,7 @@ let configPage = function() {
 		elementHt = $('#PageBanner').outerHeight( true );
 		if( elementHt < 100) { elementHt = 124}
 		//console.log("Header height: " + elementHt);
-		$('#PageBaner').addClass('w3-top');
+		$('#PageBanner').addClass('w3-top');
 		$('#content').css('margin-top', elementHt + 'px');
 	}
 	//	Check for fixed footer
