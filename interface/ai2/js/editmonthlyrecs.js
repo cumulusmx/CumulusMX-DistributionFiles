@@ -83,7 +83,7 @@ $(document).ready(function() {
 	.done( function (result){
 		console.log("Full start date: " + result.startDate);
 		startYear = parseInt(result.startDate.slice(0,4));
-		startMonth = parseInt(result.startDate.slice(5,7));
+		startMonth = parseInt(result.startDate.slice(5,7)) - 1;
 		currentYear = new Date().getFullYear();
 		currentMonth = new Date().getMonth() ;
 		
@@ -96,11 +96,16 @@ $(document).ready(function() {
 			$('#' + months[currentMonth + 1]).after(Diamond);
 		}
 		if( startYear == currentYear) {
-			for( var mon = 0; mon <= startMonth; mon++){
-				$('#' + months[mon]).addClass('w3-hide');
+//			console.log('Start month is: ' + startMonth + ' - ' + months[startMonth])
+//			console.log('End month: ' + currentMonth + ' - ' + months[currentMonth]);
+			var mon = 0;
+			for( var mon = 0; mon < startMonth; mon++){
+//				console.log("Need to hide month: " + mon);
+				$('#' + months[mon]).remove();
 			}
-			for( var mon = currentMonth; mon < 12; mon++){
-				$('#' + months[mon]).addClass('w3-hide');
+			for( var mon = (currentMonth + 1); mon < 12; mon++){
+//				console.log('Need to also hide: ' + mon);
+				$('#' + months[mon]).remove();
 			}
 		}
 	})
