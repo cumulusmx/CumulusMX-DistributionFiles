@@ -24,6 +24,16 @@ let CMXConfig = {
 }
 
 let AIStore = 'CMXai4.0.0';
+//	Base storage name on port and parent folder of active interface
+//	Enables multiple interfaces to be configured separately.
+let url = document.baseURI.split('/');
+var port = url[2].split(':')[1] || 'Website'; // differentiates between private and public website
+if (url.length < 5) {
+    AIStore = port + 'Root';	// Default interface
+} else {
+    AIStore = port + url[url.length - 2]; // AI2 interface
+}
+
 
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    	Check if the page structure can be stored:
@@ -131,10 +141,10 @@ let configPage = function() {
 	var elementHt, contentHt;
 	//	Check for fixed header
 	if( CMXConfig.StaticHead ) {
-		elementHt = $('header').outerHeight( true );
+		elementHt = $('#PageBanner').outerHeight( true );
 		if( elementHt < 100) { elementHt = 124}
 		//console.log("Header height: " + elementHt);
-		$('header').addClass('w3-top');
+		$('#PageBanner').addClass('w3-top');
 		$('#content').css('margin-top', elementHt + 'px');
 	}
 	//	Check for fixed footer
