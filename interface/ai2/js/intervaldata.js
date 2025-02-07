@@ -20,7 +20,8 @@ $(document).ready(function () {
             // construct the checkboxes
             // the checkbox id's are the field offset in the monthly log file - add 1000 to fields if they are in the extra log file
             // No need to compute rows - flexbox deals with it.
-            cards = $('<div>', { class: 'ow-fourCol' });
+            // If you prefer the last two panels to be smaller add the class 'ax-fixedwidth' below.
+            cards = $('<div>', { class: 'ax-column4' });
 
             // temperature Data
             let tempBoxes = $('<div>');
@@ -72,7 +73,7 @@ $(document).ready(function () {
                 let tempBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Temperature</h4>' }))
                     .append(tempBoxes);
-                cards.append($('<div>', { class: 'ow-card' }).append(tempBlock));
+                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(tempBlock));
             }
 
             // humidity Data
@@ -93,7 +94,7 @@ $(document).ready(function () {
                 let humBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Humidity</h4>' }))
                     .append(humBoxes);
-                cards.append($('<div>', {class: 'ow-card'}).append(humBlock));
+                cards.append($('<div>', {class: 'ow-card ow-theme-add4', style:'order:0;'}).append(humBlock));
             }
 
             // pressure
@@ -102,7 +103,7 @@ $(document).ready(function () {
                 .append($('<div>'))
                 .append($('<input>', { type: 'checkbox', id: '10' }))
                 .append($('<label>', { for: '10', class: 'mylabel', html: 'Sea Level Pressure' }))
-            cards.append($('<div>', { class: 'ow-card' }).append(pressBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0;' }).append(pressBlock));
 
             // wind data
             let windBlock = $('<div>', { class: 'my-unit' })
@@ -116,7 +117,7 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '7' }))
                 .append($('<label>', { for: '7', class: 'mylabel', html: 'Wind Direction' }));
-            cards.append($('<div>', { class: 'ow-card'}).append(windBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:1;'}).append(windBlock));
 
             // rainfall
             let rainBlock = $('<div>', { class: 'my-unit' })
@@ -127,7 +128,7 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '8' }))
                 .append($('<label>', { for: '8', class: 'mylabel', html: 'Rainfall Rate' }));
-            cards.append($('<div>', { class: 'ow-card'}).append(rainBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0'}).append(rainBlock));
 
             // solar
             let solarBoxes = $('<div>');
@@ -150,7 +151,7 @@ $(document).ready(function () {
                 let solarBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Solar</h4>' }))
                     .append(solarBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(solarBlock));
+                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:2'}).append(solarBlock));
             }
 
             // values from the Extras file have 1000 added to the field offset

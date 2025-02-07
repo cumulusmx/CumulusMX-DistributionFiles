@@ -16,7 +16,7 @@ $(document).ready(function () {
         // construct the checkboxes
         // checkbox id's are the field offsets in the day file
         // Under the AI, don't have to worry about rows - they are automatically accommodated
-        let cards = $('<div>', { class: 'ow-fourCol' });
+        let cards = $('<div>', { class: 'ax-column4' });
 
         // temperature Data
         let tempBoxes = $('<div>');
@@ -45,7 +45,7 @@ $(document).ready(function () {
             let tempBlock = $('<div>')
                 .append($('<div>', { class: 'ow-titleBar', html: '<h4>Temperature</h4>' }))
                 .append(tempBoxes)
-            cards.append($('<div>', { class: 'ow-card' }).append(tempBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style: 'order:0;' }).append(tempBlock));
         }
 
         // humidity Data
@@ -68,7 +68,7 @@ $(document).ready(function () {
             let humBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'ow-titleBar', html: '<h4>Humidity</h4>' }))
                 .append(humBoxes);
-            cards.append($('<div>', {class: 'ow-card' }).append(humBlock));
+            cards.append($('<div>', {class: 'ow-card ow-theme-add4', style: 'order:0' }).append(humBlock));
         }
 
         // pressure
@@ -86,7 +86,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
             .append($('<label>', { for: '9', class: 'mylabel', html: 'Min Pressure Time' }));
-        cards.append($('<div>', { class: 'ow-card' }).append(pressBlock));
+        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(pressBlock));
 
         // wind data
         let windBlock = $('<div>', { class: 'my-unit' })
@@ -112,7 +112,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
             .append($('<label>', { for: '16', class: 'mylabel', html: 'Wind Run' }));
-        cards.append($('<div>', { class: 'ow-card' }).append(windBlock));
+        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style: 'order:0' }).append(windBlock));
 
         // rainfall
         let rainBlock = $('<div>', { class: 'my-unit' })
@@ -138,7 +138,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
             .append($('<label>', { for: '54', class: 'mylabel', html: 'High Rainfall 24 Hours Time' }));
-        cards.append($('<div>', { class: 'ow-card' }).append(rainBlock));
+        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(rainBlock));
 
         // solar
         let solarBoxes = $('<div>');
@@ -170,7 +170,7 @@ $(document).ready(function () {
             let solarBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'ow-titleBar', html: '<h4>Solar<h4>' }))
                 .append(solarBoxes);
-            cards.append($('<div>', { class: 'ow-card' }).append(solarBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(solarBlock));
         }
 
         // derived temperatures
@@ -244,7 +244,7 @@ $(document).ready(function () {
                     .append($('<label>', { for: '30', class: 'mylabel', html: 'Low Apparent Time' }))
             }
 
-            cards.append($('<div>', { class: 'ow-card' }).append(derivedTempBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(derivedTempBlock));
         }
 
         // degree days
@@ -257,7 +257,7 @@ $(document).ready(function () {
             .append($('<input>', { type: 'checkbox', id: '41' }))
             .append($('<label>', { for: '41', class: 'mylabel', html: 'Cooling Degree Days' }));
 
-        cards.append($('<div>', { class: 'ow-card' }).append(degreeDayBlock));
+        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(degreeDayBlock));
 
 
         $('#container').append(cards);

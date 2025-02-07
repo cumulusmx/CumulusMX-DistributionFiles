@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Daily Data Viewer
-	File:	dailydata.html		 v1.0.0
-	Author:	D.N.C.Thomas	  Sept 2024
-	Last Edit:	
+	File:	dailydata.html		 v1.0.1
+	Author:	D.N.C.Thomas	  Sept 2025
+	Last Edit:	2025-02-07
 	Last Check:	 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -83,7 +83,7 @@
 		<header id="PageBanner" class="ow-theme w3-bottombar ow-theme-sub5-bdr">
 			<div class="siteWidth ow-titleBar" style=" margin:auto;">
 				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right">
+				<h5 class="w3-align-right">
 					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
 					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
 					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
@@ -103,8 +103,8 @@
 					<h1>Daily Data Viewer</h1>
 				</div>
 
-				<div class="oneCol" style="margin-top: 2vh;">
-					<div class="ow-card" style="margin-bottom:1vh;">
+				<div class="ax-column1" style="margin-top: 2vh;">
+					<div class="ow-container">
                     	<div class="ow-titleBar" style="margin-bottom:1vh;">
 							<h4>Date Range</h4>
 							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Date:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date. Format is full year hyphen month hyphen day"></span>
@@ -125,8 +125,8 @@
                     </div>
 				</div>
 
-				<div class="ow-oneCol">
-					<div id="containerX" class="ow-container" style="order:0;">
+				<div class="ax-column1" style="margin-bottom:0;margin-top:-2vh;">
+					<div class="ow-container" style="order:0;">
 						<div class="ow-titleBar" style="margin-bottom:1vh;">
 							<h3>Available Data Items</h3>
 							<p><i class="fa-solid fa-circle-info ow-theme-txt"></i> You must choose at least one</p>

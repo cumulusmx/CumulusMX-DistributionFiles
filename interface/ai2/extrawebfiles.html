@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Extra Webs Files
-	File:	extrawebfiles.html		v4.0.0
-	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-02-24
+	File:	extrawebfiles.html		v4.0.1
+	Author:	D.N.C.Thomas		  Feb 2025
+	Last Edit:	2025-02-07
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -88,15 +88,16 @@
 					<p>Use this page to add files to be uploaded / copied for your systems</p>
 				</div>
 
-				<div class="ow-one-col ow-theme-add4 ow-card">
-					<p>
-						Note that you can use replacable values in both the source and target file fields
+				<div class="ax-column1 ow-theme-add4 ow-card">
+					<p style="order:0;">
+						<strong>Note</strong>: that you can use replacable values in both the source and target file fields
 						for Cumulus files that change their name periodically. The allowed values are:
 						<span class="ow-theme-sub2-txt">&lt;currentlogfile&gt; &lt;currentextralogfile&gt; &lt;airlinklogfile&gt;
 						&lt;noaayearfile&gt; &lt;noaamonthfile&gt; &lt;custinterval[1-10]&gt;</span>
+						<br>
+						The tagged value will be replaced by the current logs file name.
 					</p>
-					<p>The tagged value will be replaced by the current logs file name.</p>
-					<!--	If you want to tabel to always be fully visible remove 'w3-responsive' from the line below	-->
+					<!--	If you want to table to always be fully visible remove 'w3-responsive' from the line below	-->
 					<div id="tablecontent" class="w3-responsive" style="margin-bottom:1vh;"></div>
 					<div id="paginator" class="w3-center"></div>
 					<p class="w3-hide">Please note that the destination root is tied to the FTP user and may not be the root of your website.</p>
