@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/28 21:02:14",
+	"version": "Last Modified: 2025/02/09 17:07:19",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -829,6 +829,9 @@
 			"properties": {
 				"ipaddress": {
 					"format": "ip-address"
+				},
+				"usesdcard": {
+					"type": "boolean"
 				}
 			},
 			"dependencies": [

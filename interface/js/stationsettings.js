@@ -1,4 +1,4 @@
-// Last modified: 2024/12/12 11:45:36
+// Last modified: 2025/02/09 18:23:44
 
 let StashedStationId;
 let accessMode;
@@ -239,6 +239,38 @@ $(document).ready(function () {
             // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath('davisvp2/davisconn/conntype').getValue();
             form.getControlByPath('davisvp2/advanced/conntype').setValue(+conntype);
+
+
+            // Some ecowit api control
+            let ecowittapi = form.getControlByPath('ecowittapi');
+            let sdcard = form.getControlByPath('ecowitthttpapi/usesdcard');
+
+            // Set the initial value of the ecowitt api
+            if (stationid == 22 && sdcard.getValue()) {
+                ecowittapi.hide();
+            }
+            // set the ecowitt api to listen to the ecowitt http local api SD card setting
+            ecowittapi.subscribe(sdcard, function(val) {
+                if (val) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
+            });
+            ecowittapi.subscribe(stationid, function(val) {
+                if (val != 22) {
+                    this.show();
+                } else {
+                    let form = $('form').alpaca('get');
+                    let sdcard = form.getControlByPath('ecowitthttpapi/usesdcard').getValue();
+                    if (sdcard) {
+                        this.hide();
+                    } else {
+                        this.show();
+                    }
+                }
+            });
+
         }
     });
 });
