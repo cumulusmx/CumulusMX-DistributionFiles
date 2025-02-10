@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/28 21:01:45",
+	"version": "Last Modified: 2025/02/09 13:56:23",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -600,7 +600,8 @@
 						"depth": {
 							"label": "Calculate depth:",
 							"helpers": [
-								"Cumulus calculates the depth - used for simple laser distance sensors, not required for Ecowitt LDS01 sensoors",
+								"Cumulus calculates the depth - used for simple laser distance sensors",
+								"This is not required for Ecowitt LDS01 sensors, if you enter a value Cumulus will calculate the depth from the Laser Distance value",
 								"Enter the basline distance from the sensor to bottom of the depth to be measured, use the same units as the sensor",
 								"Set to -1 (default) to disable the calculation",
 								"Depth = Baseline - Sensor_Distance_Reading"

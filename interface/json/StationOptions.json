@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/28 21:01:13",
+	"version": "Last Modified: 2025/02/09 17:09:44",
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1197,6 +1197,14 @@
 					"type": "ipv4",
 					"helpers": [
 						"The IPv4 address of your station or gateway device"
+					]
+				},
+				"usesdcard": {
+					"label": "SD Card:",
+					"rightLabel": "Use the SD card data",
+					"helpers": [
+						"Use the data from the SD card in the station or gateway device for historical data",
+						"NOTE: This feature is only supported by some devices"
 					]
 				}
 			},
