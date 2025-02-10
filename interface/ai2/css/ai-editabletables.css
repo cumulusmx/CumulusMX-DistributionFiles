@@ -25,9 +25,11 @@ input[readonly] {
 	color: var(--theme)!important;
 }
 
-#dateFrom, #dateTo {
+#dateFrom, #dateTo, #loadBtn {
 	background-color: var(--sub5);
 	color: var(--add5)!important;
+	border-radius: 1em;
+	padding:0.4em;
 }
 
 .paginate_input{

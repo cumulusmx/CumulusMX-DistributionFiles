@@ -55,8 +55,8 @@
 			input[type=text] {
 				max-width: 10em;
 				text-align: center;
-				border:none;
-				border-bottom: 1px solid var(--theme);
+				border-radius: 1em;
+				padding: 0.4em;
 			}
 			.ow-tableRow:hover {
 				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
@@ -91,8 +91,8 @@
 				</div>
 
 				<div class="ow-btnBar" style="justify-content: center; margin-bottom: 1vh; align-items:baseline;">
-					<div>Start Date:&nbsp;<input type="text" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
-					<div>End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo"></div>
+					<div>Start Date:&nbsp;<input type="text" class="w3-border ow-theme-bdr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
+					<div>End Date:&nbsp;<input type="text" class="w3-border ow-theme-bdr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
 					<button type="button" class="ow-btn ow-thin" onclick="load()">Load</button>
 				</div>
 

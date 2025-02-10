@@ -564,12 +564,13 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><title>Interval Data Viewer</title></head>';
+    let html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Interval Data Viewer</title><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>';
     html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
-    html += '<link rel="stylesheet" href="css/main.css"><style>td:first-of-type{white-space:nowrap;}</style></head>';
+    html += '<link rel="stylesheet" href="css/main.css"><style>td:first-of-type{white-space:nowrap;tbody td{text-align:center;}}</style></head>';
     html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Interval Data Viewer</h3></div></div>';
+
     if (format == 'CSV') {
         html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
     } else {

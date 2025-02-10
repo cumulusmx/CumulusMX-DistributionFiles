@@ -28,8 +28,8 @@ $(document).ready(function () {
 
 	var doGraph = function (value) {
 		sessionStorage.setItem('CMXDaily', value );
-		$('.selectGraph').removeClass('ow-theme-sub3');
-		$('#' + value).addClass('ow-theme-sub3');
+		$('.selectGraph').removeClass('w3-disabled');
+		$('#' + value).addClass('w3-disabled');
 		switch (value) {
 			case 'temp':	doTemp();		break;
 			case 'press':	doPress();		break;
@@ -53,25 +53,25 @@ $(document).ready(function () {
 		success: function (result) {
 			available = result;
 			if (result.Temperature === undefined || result.Temperature.Count == 0) {
-				$('#temp').addClass('w3-hide');
+				$('#temp').remove();
 			}
 			if (result.Humidity === undefined || result.Humidity.Count == 0) {
-				$('#humidity').addClass('w3-hide');
+				$('#humidity').remove();
 			}
 			if (result.Solar === undefined || result.Solar.Count == 0) {
-				$('#solar')/addClass('w3-hide');
+				$('#solar').remove();
 			}
 			if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
-				$('#degdays').addClass('w3-hide');
+				$('#degdays').remove();
 			}
 			if (result.TempSum === undefined || result.TempSum.Count == 0) {
-				$('#tempsum').addClass('w3-hide');
+				$('#tempsum').remove();
 			}
 			if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
-				$('#chillhrs').addClass('w3-hide');
+				$('#chillhrs').remove();
 			}
 			if (result.Snow === undefined || result.Snow.Count == 0) {
-				$('#snow').addClass('w3-hide');
+				$('#snow').remove();
 			}
 		}
 	});

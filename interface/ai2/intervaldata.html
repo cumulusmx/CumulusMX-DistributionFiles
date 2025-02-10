@@ -55,7 +55,13 @@
 		<style>
 			.mylabel {padding-left: 1em;}
 			.ow-titleBar {margin-bottom:0.75vh;}
-			input[type=text]{color: var(--theme); margin-left:1em;}
+			input[type=text]{
+				margin-left:1em;
+				text-align:center;
+				padding:0.25em;border-radius:1em;
+				border-width:thin;
+			}
+			
 		</style>
 	</head>
 	<body class=ow-theme-add5>
@@ -86,13 +92,13 @@
 					<div class="ow-container">
 						<div class="ow-titleBar" style="margin: 1vh 0;">
 							<h3>Date-Time Range</h3>
-							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Time:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes"></span>
+							<span><label class="mylabel" class="ow-theme-add4" for="dateFrom" aria-hidden="true">Start Time:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes"></span>
 							<span><label class="mylabel" for="dateTo" aria-hidden="true">End Time:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes"></span>
 						</div>
 						<div class="ow-titleBar">
 							<span style="min-width:30em;">
 							<label class="mylabel" for="format">Viewing format:</label>
-							<select id="format" class="w3-select ow-theme-add3" style="max-width:10em;margin-left:1em;">
+							<select id="format" class="w3-select ow-theme-add3 w3-border ow-theme-bdr" style="max-width:10em;margin-left:1em;padding: 0.4em 0.5em; border-radius: 1em;">
 								<option>Table</option>
 								<option>CSV</option>
 							</select></span>

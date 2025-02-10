@@ -74,8 +74,15 @@
             margin-left: 1vw;
             /*margin-right: 1vw;*/
         }
-		input[type=text]{ color:var(--theme);max-width:8em; margin-left: 1em;}
-		input[type=select] { margin-left: 1em;}
+		input[type=text]{ 
+			max-width:9em; 
+			margin-left: 1em;
+			text-align:center; 
+			border-radius:0.5em;
+			border-width:thin;
+			padding:0.25em;
+		}
+		input[type=select] { margin-left: 1em;  }
 		.ow-titleBar { margin-bottom:0.75em;}
 		</style>
 	</head>
@@ -107,12 +114,12 @@
 					<div class="ow-container">
                     	<div class="ow-titleBar" style="margin-bottom:1vh;">
 							<h4>Date Range</h4>
-							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Date:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date. Format is full year hyphen month hyphen day"></span>
-                        	<span><label class="mylabel" for="dateFrom" aria-hidden="true">End Date:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date. Format is full year hyphen month hyphen day"></span>
+							<span><label class="mylabel" for="dateFrom" aria-hidden="true">Start Date:</label><input class="ow-theme-add4" type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date. Format is full year hyphen month hyphen day"></span>
+                        	<span><label class="mylabel" for="dateFrom" aria-hidden="true">End Date:</label><input class="ow-theme-add4" type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date. Format is full year hyphen month hyphen day"></span>
 						</div>
                     	<div class="ow-titleBar">
-                        	<span style="min-width:30em;""><label class="mylabelX" for="format">Viewing format:</label>
-		                    	<select id="format" class="w3-select" style="max-width: 10vw;">
+                        	<span style="min-width:30em;"><label class="mylabelX" for="format">Viewing format:</label>
+		                    	<select id="format" class="w3-select w3-border ow-theme-bdr" style="max-width: 10vw;border-radius:1em; padding:0.4em 0.5em;">
                                 	<option>Table</option>
                                 	<option>CSV</option>
                             	</select>
