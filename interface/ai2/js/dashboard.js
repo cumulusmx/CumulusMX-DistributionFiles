@@ -17,6 +17,22 @@ $(document).ready(function () {
 
     let audioElement = document.createElement('audio');
 
+    //	Added by NEIL
+	$.ajax({
+		url: '/api/settings/displayoptions.json',
+		dataType: 'json',
+		success: function (results) {
+			var dataVisible = results.DataVisibility;
+            if( dataVisible.solar.Solar == 0 && dataVisible.solar.UV == 0 ){
+                //  Hide ethe panel
+                $('[data-cmxData-Rad]').addClass('w3-hide');
+            } else {
+                if( dataVisible.solar.Solar == 0 ) { $('[data-cmxData-Solar]').addClass('w3-hide');}
+                if( dataVisible.solar.UV == 0)  { $('[data-cmxData-UV]').addClass('w3-hide');}
+            }
+        }
+    })
+
     function playSnd() {
         if (playList.length) {
             playList[0].addEventListener('ended', function () {
