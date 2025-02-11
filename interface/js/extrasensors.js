@@ -1,4 +1,4 @@
-// Last modified: 2025/01/13 17:09:35
+// Last modified: 2025/02/11 16:13:48
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -79,6 +79,10 @@ $(document).ready(function () {
         ajax: '/api/extra/snow24h.json'
     });
 
+    var snowSeasonTable = $('#SnowSeasonTable').DataTable({
+        ajax: '/api/extra/snowseason.json'
+    });
+
     setInterval(function () {
         tempTable.ajax.url('/api/extra/temp.json').load();
         humTable.ajax.url('/api/extra/hum.json').load();
@@ -93,6 +97,7 @@ $(document).ready(function () {
         laserDepthTable.ajax.url('/api/extra/laserdepth.json').load();
         laserDistTable.ajax.url('/api/extra/laserdistance.json').load();
         snow24hTable.ajax.url('/api/extra/snow24h.json').load();
+        snowSeasonTable.ajax.url('/api/extra/snowseason.json').load();
     }, 10000);
 
 });
