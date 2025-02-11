@@ -1,5 +1,23 @@
 {
-	"version": "Last Modified: 2025/02/09 17:09:44",
+	"version": "Last Modified: 2025/02/11 15:11:55",
+	"definitions": {
+		"months": {
+			"optionLabels": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December"
+			]
+		}
+	},
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -1602,6 +1620,17 @@
 						"leafwetisrainingidx": [1,2,3,4,5,6,7,8]
 					}
 				},
+				"snowseasonstart": {
+					"label": "Snowfall Season Starts:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
+					"helpers": [
+						"The month of the year to start the total snowfall accumulation season",
+						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
+					]
+				},
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
@@ -1775,20 +1804,7 @@
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
-					"optionLabels": [
-						"January",
-						"February",
-						"March",
-						"April",
-						"May",
-						"June",
-						"July",
-						"August",
-						"September",
-						"October",
-						"November",
-						"December"
-					]
+					"$ref": "#/definitions/months"
 				},
 				"rainweekstart": {
 					"label": "Start of rainfall week:",
@@ -1809,9 +1825,13 @@
 			"fields": {
 				"starts": {
 					"label": "Growing season starting month:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month you want the growing season year to start",
-						"Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
+						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
 					]
 				},
 				"basetemp1": {
@@ -1841,9 +1861,13 @@
 			"fields": {
 				"starts": {
 					"label": "Year summation starting month:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month you want the year summing to start",
-						"Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
+						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
 					]
 				},
 				"basetemp1": {
@@ -1882,9 +1906,13 @@
 				},
 				"month": {
 					"label": "Chill Season Starts:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month of the year to start the chill hours season",
-						"Default: 10 (October), in Northern hemisphere / 4 (April), in Southern hemisphere"
+						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
 					]
 				}
 			}
