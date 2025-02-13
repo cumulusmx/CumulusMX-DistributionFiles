@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/02/09 17:07:19",
+	"version": "Last Modified: 2025/02/11 15:10:38",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -1029,6 +1029,9 @@
 					"minimum": 0,
 					"type": "number"
 				},
+				"snowseasonstart": {
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
+				},
 				"advanced": {
 					"title": "Advanced Options",
 					"type": "object",
@@ -1205,9 +1208,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
 					"type": "number",
@@ -1229,9 +1230,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
 					"type": "number",
@@ -1256,9 +1255,7 @@
 					"type": "number"
 				},
 				"month": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				}
 			}
 		}

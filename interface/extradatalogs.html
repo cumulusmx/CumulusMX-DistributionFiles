@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:13:47
+Last modified: 2025/02/12 15:29:14
 -->
 <!doctype html>
 <html lang="en">
@@ -29,7 +29,7 @@ Last modified: 2024/11/23 15:13:47
 
     <!-- DataTables -->
     <script src="lib/datatables/datatables.min.js"></script>
-    <script src="lib/datatables/pagination_input.js"></script>
+    <!--<script src="lib/datatables/pagination_input.js"></script>-->
 
     <!-- datepicker -->
     <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
@@ -69,20 +69,23 @@ Last modified: 2024/11/23 15:13:47
     </div>
     <!-- END NAVIGATION MENU -->
 
-    <div class="container" style="margin-right:10px;margin-left:10px">
+    <div class="container" style="width:95%">
         <div class="row top-buffer">
             <div class="col-md-12">
                 <h1>Extra data log viewer/editor</h1>
             </div>
         </div>
         <div class="row">
-            Start Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom">
-            End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo">
-            <button type="button" class="btn btn-default" onclick="load()">Load</button>
-
+            <div class="col-md-12">
+                Start Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom">
+                End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo">
+                <button type="button" class="btn btn-default" onclick="load()">Load</button>
+            </div>
         </div>
         <div class="row top-buffer">
-            <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
+            <div class="col-md-12">
+                <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
+            </div>
         </div>
     </div>
 

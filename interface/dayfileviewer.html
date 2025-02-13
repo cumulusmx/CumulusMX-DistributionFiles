@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:13:24
+Last modified: 2025/02/12 15:22:20
 -->
 <!doctype html>
 <html lang="en">
@@ -29,7 +29,7 @@ Last modified: 2024/11/23 15:13:24
 
     <!-- DataTables -->
     <script src="lib/datatables/datatables.min.js"></script>
-    <script src="lib/datatables/pagination_input.js"></script>
+    <!--<script src="lib/datatables/pagination_input.js"></script>-->
     <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
@@ -62,14 +62,16 @@ Last modified: 2024/11/23 15:13:24
     </div>
     <!-- END NAVIGATION MENU -->
 
-    <div class="container" style="margin-right:10px;margin-left:10px">
+    <div class="container" style="width:95%">
         <div class="row top-buffer">
             <div class="col-md-12">
                 <h1>Dayfile Viewer/Editor</h1>
             </div>
         </div>
         <div class="row top-buffer">
-            <table id="dayfile" class="display dataTable" cellspacing="0" width="100%"></table>
+            <div class="col-md-12">
+                <table id="dayfile" class="display dataTable" cellspacing="0" width="100%"></table>
+            </div>
         </div>
     </div>
 
