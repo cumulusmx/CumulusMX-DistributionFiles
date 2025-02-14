@@ -1,4 +1,4 @@
-// Last modified: 2025/02/12 15:23:39
+// Last modified: 2025/02/14 11:47:56
 
 var myTable;
 var currMonth;
@@ -178,7 +178,7 @@ $(document).ready(function () {
             lengthMenu: [10,20,50,100],
             fixedHeader: true,
             fixedColumns: {
-                left: 2
+                left: 3
             },
             scrollY: '70vh',
             scrollX: '100%',
