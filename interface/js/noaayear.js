@@ -1,6 +1,6 @@
 /*	----------------------------------------------------------
  *  noaamonth.js
- *  Last modified: 2025/01/24 16:39:33
+ *  Last modified: 2025/02/15 19:05:58
  *  Populates the dropdown menus using the records began date
  *
  * 	Mark Crossley
@@ -26,7 +26,6 @@ $(document).ready(function () {
     .done(function (result) {
         outputText = result.options.outputtext;
         if (outputText) {
-            $('#report').append('<pre></pre>');
             $('#report')
             .css('display', 'flex')
             .css('width', '100%');

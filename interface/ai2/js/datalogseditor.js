@@ -1,11 +1,11 @@
-// Last modified: 2024/09/20 17:08:03
+// Last modified: 2025/02/15 19:29:33
 
 var myTable;
 var currMonth;
 var fromDate, toDate;
 
 $(document).ready(function () {
- 
+
     $.fn.dataTable.ext.errMode = 'none';
 
 //    var fromDate, toDate;
@@ -68,7 +68,7 @@ $(document).ready(function () {
 	//	Added by Neil
 	var styles = "<style>\n";
 	var data = '{"TempUnit": "<#tempunitnodeg>", "PressUnit": "<#pressunit>", "WindUnit": "<#windunit>", "RainUnit": "<#rainunit>", "WindRunUnit":"<#windrununit>"}';
-	$.ajax({ 
+	$.ajax({
 		url:  '/api/tags/process.txt',
         dataType: 'json',
         type: 'POST',
@@ -144,14 +144,20 @@ $(document).ready(function () {
     ];
 
     myTable = $('#datalog').dataTable({
-        pagingType: "input",
+        //pagingType: "input",
         processing: true,
         serverSide: true,
         searching: true,
         searchDelay: 750,
         ordering: false,
-        fixedColumns: { left: 3},
         pageLength: 10,
+        fixedHeader: true,
+        fixedColumns: {
+            left: 3
+        },
+        scrollY: '70vh',
+        scrollX: '100%',
+        scrollCollapse: true,
         lengthMenu: [10,20,50,100],
         ajax: {
             url: "/api/data/logfile?from="+formatDateStr(now)+"&to="+formatDateStr(now),
@@ -287,7 +293,7 @@ $(document).ready(function () {
         response = '{"action":"' + action + '","lines":' + lines + ',"extra":"false","data": ' + data + '}';
         return response;
     }
-    
+
     var current = new Date();
      myTable.api().ajax.url('/api/data/logfile' + '?from=' + formatDateStr(current) + '&to=' + formatDateStr(current)).load();
 });

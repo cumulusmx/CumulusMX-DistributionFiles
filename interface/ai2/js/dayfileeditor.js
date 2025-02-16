@@ -1,11 +1,11 @@
-// Last modified: 2022/11/23 11:36:19
+// Last modified: 2025/02/15 19:30:44
 
 $(document).ready(function() {
 
 	//	Added by Neil
 	var styles = "<style>\n";
 	var data = '{"TempUnit": "<#tempunitnodeg>", "PressUnit": "<#pressunit>", "WindUnit": "<#windunit>", "RainUnit": "<#rainunit>", "WindRunUnit":"<#windrununit>"}';
-	$.ajax({ 
+	$.ajax({
 		url:  '/api/tags/process.txt',
         dataType: 'json',
         type: 'POST',
@@ -93,15 +93,21 @@ $(document).ready(function() {
 	];
 
 	var myTable = $('#datalog').DataTable({
-		pagingType: 'input',
+		//pagingType: 'input',
 		processing: true,
 		serverSide: true,
 		searching: true,
 		searchDelay: 750,
 		ordering: false,
-		fixedColumns: { left: 2},
 		pageLength: 10,
 		lengthMenu: [10,20,50,100],
+		fixedHeader: true,
+        fixedColumns: {
+            left: 2
+        },
+        scrollY: '70vh',
+        scrollX: '100%',
+        scrollCollapse: true,
 		ajax: {
 			url: '/api/data/dayfile',
 			data: function (data) {
