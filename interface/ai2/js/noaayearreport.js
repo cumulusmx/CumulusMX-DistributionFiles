@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	noaayearreport.js	v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	2025/02/15 19:11:46
+ * 	Last Edit:	2025/02/16 11:47:05
  * 	Based on:
  * 		Marks script embedded in the
  * 		html file of the same name
@@ -13,7 +13,7 @@
 //$.fn.dataTable.ext.errMode = 'none';
 $(document).ready(function () {
 
-	$.ajax({
+	var dates = $.ajax({
 		url: '/api/tags/process.txt',
 		dataType: 'json',
 		type: 'POST',
@@ -52,7 +52,7 @@ $(document).ready(function () {
         }
     })
 
-	$.when(conf).done(function (a1) {
+	$.when(dates, conf).done(function (a1) {
 		load();
 	});
 
