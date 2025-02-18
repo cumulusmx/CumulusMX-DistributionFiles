@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:17:48
+// Last modified: 2025/02/18 11:12:12
 
 $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
     console.log(message);
@@ -39,7 +39,7 @@ $(document).ready(function() {
     }];
 
     var myTable = $('#sqlcache').DataTable({
-        pagingType: 'input',
+        //pagingType: 'input',
         processing: true,
         serverSide: true,
         searching: true,

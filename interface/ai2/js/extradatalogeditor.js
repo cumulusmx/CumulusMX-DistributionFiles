@@ -1,4 +1,4 @@
-// Last modified: 2025/02/15 19:29:53
+// Last modified: 2025/02/18 11:08:25
 
 var myTable;
 var currMonth;
@@ -118,7 +118,7 @@ $(document).ready(function () {
             title: "Time",
             readonly: true
         },
-        {title:"Temp X", className:"tempUnits"},
+        {title:"Temp 1", className:"tempUnits"},
         {title:"Temp 2", className:"tempUnits"},
         {title:"Temp 3", className:"tempUnits"},
         {title:"Temp 4", className:"tempUnits"},

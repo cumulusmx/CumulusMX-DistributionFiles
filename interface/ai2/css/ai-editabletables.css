@@ -4,7 +4,7 @@
  * Purpose:	Styles for pages using X-editable tables
  * Version:	4.0.0
  *	Author:	Neil Thomas
- * Edited:	21-02-2024
+ * Edited:	18-02-2025
  * Checked:
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -146,7 +146,9 @@ thead tr {background: var(--add4);}
 
 .modal-footer {min-height: 2em;border-radius: 0 0 1em 1em!important;}
 
+/*
 #datalog thead th {font-size: 12px;}
+*/
 
 /*	Reformat to support dark mode	*/
 .dataTables_info {
