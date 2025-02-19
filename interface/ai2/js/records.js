@@ -74,10 +74,10 @@ $(document).ready(function () {
 
 	$('#recPeriod').text('All-time');
 
-	$('.w3-btn').click( function() {
+	$('.ow-btn').click( function() {
 		//console.log('Button ckicked is: ' + this.name);
 		sessionStorage.setItem('CMXRecords', this.name);
-		$('.w3-btn').removeClass('ow-theme-sub3');
+		$('.ow-btn').removeClass('ow-theme-sub3');
 		$(this).addClass('ow-theme-sub3');
 		var urlPrefix ;
 		if( this.name === 'alltime' ) {
@@ -144,3 +144,4 @@ $(document).ready( function() {
 		console.log("Failed to get data");
 	})
 });
+
