@@ -1,4 +1,4 @@
-// Last modified: 2024/09/19 21:15:23
+// Last modified: 2025/02/20 14:03:54
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -529,7 +529,7 @@ let allStations = {
     'WeatherLink Live': 11,
     'WeatherLink Cloud (WLL/WLC)': 19,
     'WeatherLink Cloud (VP2)': 20,
-    'Local API (TCP)': 12,
+    'Binary Local API (Legacy)': 12,
     'Cloud': 18,
     'HTTP Sender': 14,
     'HTTP (Wunderground)': 13,
@@ -553,7 +553,7 @@ let oregonStations = {'Select Station Type...': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
 let oregonUsbStations = {'Select Station Type...': -1, 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'TCP Local API': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
+let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'Binary Local API (Legacy)': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
 let httpStations = {'HTTP Sender (WUnderground format)': 13};
 let ambientStations = {'HTTP Sender (Ambient format)': 15};
 let weatherflowStations = {'Tempest': 16};
