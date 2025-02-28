@@ -23,7 +23,15 @@ input[type="text"] {
 input[readonly] {
 	background-color: var(--add3)!important;
 	color: var(--theme)!important;
+	border:thin solid var(--sub5);
 }
+
+input[type="search"] {
+	background:var(--add5)!important;
+	margin-left: 1em!important;
+}
+
+.dt-search {margin: 0.4vh 0;}
 
 #dateFrom, #dateTo, #loadBtn {
 	background-color: var(--sub5);
@@ -100,10 +108,10 @@ thead th {
 	font-size: 12px;
 }
 
-.dtfc-fixed-left { background-color: var(--add5); }
+.dtfc-fixed-start { background: var(--add4)!important; z-index:0!important;}
 .dtfc-fixed-left:nth-of-type(3) { border-right:thin solid var(--add3); }
 
-thead .dtfc-fixed-left { background-color: var(--add4);}
+thead .dtfc-fixed-start { background-color: var(--add4);}
 
 
 .even .dtfc-fixed-left { background-color: var(--add4); }
