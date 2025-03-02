@@ -39,20 +39,23 @@
 
 		<!--	Local scripts & styles	-->
 		<style>
-			input[type=checkbox] { margin-top: -0.5em;}
-			input[type=number] { max-width: 8em; padding: 3px 0 3px 0.75em; border:none; border-bottom: 1px solid var(--sub5); border-radius: 8px;}
+			input[type=number] { 
+				padding: 0.2em 0 0.2em 0;
+				text-align:center;
+				border-radius:1em 0 0 1em;
+				border:thin solid var(--theme)
+			}
 			select {
-				border:none;
+				border:thin solid var(--theme);
 				padding:0.2em 0 0.2em 0.5em;
-				border-bottom:1px solid #ccc;
-				height: 1.8em;
+				border-radius:1em 0 0 1em;
 			}
 			.swatchGrid {
 				display:grid;
 				grid-template-columns: 1fr 1fr 1fr;
 				grid-template-rows:auto;
 				grid-auto-rows:auto;
-				gap:1vh 3px;
+				gap:0.5vh 3px;
 			}
 		</style>
 	</head>
@@ -85,15 +88,17 @@
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn" style="order:0;">
 						<h4>Page Geometry</h4>
 						<p>Configure the margins used between the header, page &amp; footer, the units used and whether or not the header &amp; footer are static.</p>
-						<div class="ow-titleBar ow-flex-center" style="margin-bottom:1vh;">
+						<div style="display:grid;grid-template-columns:repeat(2, 1fr 2em);grid-template-rows:auto;gap:0.5vh 1em ">
 							<label for="BannerState">Static Banner</label><input type="checkbox" class="w3-check" name="BannerState" id="BannerState" value="false" aria-label="Static or scrolling banner">
 							<label for="FooterState">Static Footer</label><input type="checkbox" class="w3-check" name="FooterState" id="FooterState" value="false" aria-label="Static or scrolling footer">
-						</div>
-						<div class="ow-btnBar ow-flex-center" style="row-gap: 1vh;">
-							<label for="paddingTop">Gap below banner</label><input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ow-theme-add3" aria-label="Gap below page">
-							<label for="paddingBottom">Gap above footer</label><input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ow-theme-add3" aria-label="Gap below page">
-							<label>Units to use</label>
-							<select id="unitSelect" class="ow-theme-add3" style="min-height: 1.8em;">
+
+							<label for="paddingTop" style="grid-column-start:span 2">Gap below banner</label>
+							<input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ow-theme-add3" style="grid-column-start:span 2;" aria-label="Gap below page">
+							<label for="paddingBottom" style="grid-column-start:span 2">Gap above footer</label>
+							<input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ow-theme-add3" style="grid-column-start:span 2;" aria-label="Gap below page">
+
+							<label style="grid-column-start:span 2;">Units to use</label>
+							<select id="unitSelect" style="grid-column-start:span 2;">
 								<option value="px" selected>Pixels</option>
 								<option value="em">Font height</option>
 								<option value="vh">% vertical height</option>
@@ -104,13 +109,12 @@
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn" style="order:0;">
 						<h4>Theme</h4>
 						<p>This version of the AI comes with 28 built-in themes.  Use the dropdown to select - this page will instantly change to show your choice.</p>
-						<div class="ow-titleBar ow-flex-center" style="margin-bottom: 1vh;">
+						<div class="" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;margin-bottom: 1vh;">
 							<label>Chosen theme</label>
-							<span id="ThemeSelector" style="flex-grow:1;"></span>
-							<select id="ThemeList" class="w3-select ow-theme-add3" style="flex-grow:1;"></select>
-						</div>
+							<select id="ThemeList" class="" ></select
+>						</div>
 
-						<p class="">This facility only works on browsers that support 'local storage'.  If you are using an old browser to view your Interface then please consider updating if possible. (You can also use the 'CMXConfi' settings below to manually change your theme.)</p>
+						<p>This facility only works on browsers that support 'local storage'.  If you are using an old browser to view your Interface then please consider updating if possible. (You can also use the 'CMXConfi' settings below to manually change your theme.)</p>
 					</div>
 					<div class="ow-card ow-theme-add4 ow-animate-fadeIn" style="order:0;">
 						<h4>The Seagull</h4>
@@ -118,19 +122,19 @@
 							The seagull at the bottom right of the page can be animated in different ways.  By setting to 'No animation' the seagull will
 							just appear in its current position.
 						</p>
-						<div class="ow-titleBar ow-flex-center" style="margin-bottom: 1vh">
+						<div style="display:grid;grid-template-columns:repeat(3, 1fr); grid-template-rows:auto;margin-bottom: 1vh;row-gap:0.5vh;">
 							<label>Animation</label>
-							<select id="animationSelect" class="w3-select ow-theme-add3" style="flex-grow:1;">
+							<select id="animationSelect" style="grid-column-start:span 2">
 								<option value="">None</option>
 								<option value="drop">Drop from top</option>
 								<option value="slide">Slide from left</option>
 							</select>
-						</div>
-						<div class="ow-titleBar ow-flex-center" style="margin-bottom: 1vh;">
-							<label>Animation speed (seconds)</label><input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ow-theme-add3" aria-label="Animation speed">
+							<label style="grid-column-start:span 2">Animation speed (secs)</label>
+							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" style="justify-self:right;align-self:center;max-width:5em;" aria-label="Animation speed">
 						</div>
 						<div class="ow-titleBar ow-flex-center" style="justify-content: center; margin-bottom:1vh;">
-							<label for="stayOnTop">Stay on top of all elements</label><input type="checkbox" class="w3-check w3-theme-add3" name="stayOnTop" id="stayOnTop" value="true" aria-label="Keep the seagull on top">
+							<label for="stayOnTop">Stay on top of all elements</label>
+							<input type="checkbox" class="w3-check" name="stayOnTop" id="stayOnTop" value="true" aria-label="Keep the seagull on top">
 						</div>
 						<p>In order to see changes dependant on numeric values, you need to click elsewhere on the page.</p>
 					</div>
@@ -140,17 +144,17 @@
 							<h3>Theme colours</h3>
 						</div>
 						<div class="swatchGrid">
-							<div class="ow-theme-add5 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add5</div>
-							<div class="ow-theme-add4 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add4</div>
-							<div class="ow-theme-add3 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add3</div>
-							<div class="ow-theme-add2 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-add2</div>
-							<div class="ow-theme-add1 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">ow-theme-add1</div>
-							<div class="ow-theme w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:1 / span 3;">ow-theme</div>
-							<div class="ow-theme-sub1 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub1</div>
-							<div class="ow-theme-sub2 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">ow-theme-sub2</div>
-							<div class="ow-theme-sub3 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub3</div>
-							<div class="ow-theme-sub4 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub4</div>
-							<div class="ow-theme-sub5 w3-center w3-border w3-theme-bdr w3-padding">ow-theme-sub5</div>
+							<div class="ow-theme-add5 w3-center w3-border w3-theme-bdr w3-padding">add5</div>
+							<div class="ow-theme-add4 w3-center w3-border w3-theme-bdr w3-padding">add4</div>
+							<div class="ow-theme-add3 w3-center w3-border w3-theme-bdr w3-padding">add3</div>
+							<div class="ow-theme-add2 w3-center w3-border w3-theme-bdr w3-padding">add2</div>
+							<div class="ow-theme-add1 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">add1</div>
+							<div class="ow-theme w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:1 / span 3;">theme</div>
+							<div class="ow-theme-sub1 w3-center w3-border w3-theme-bdr w3-padding">sub1</div>
+							<div class="ow-theme-sub2 w3-center w3-border w3-theme-bdr w3-padding" style="grid-column:3;">sub2</div>
+							<div class="ow-theme-sub3 w3-center w3-border w3-theme-bdr w3-padding">sub3</div>
+							<div class="ow-theme-sub4 w3-center w3-border w3-theme-bdr w3-padding">sub4</div>
+							<div class="ow-theme-sub5 w3-center w3-border w3-theme-bdr w3-padding">sub5</div>
 						</div>
 						<p>
 							The same colours are available as text only <span class="ow-codeSpan">ow-theme-xxxx-txt</span>,
@@ -159,12 +163,25 @@
 						</p>
 					</div>
 
+					<div class="ow-card ow-theme-add4">
+						<div class="ow-titleBar">
+							<h4>The Alarm LEDs</h4>
+						</div>
+						<p>You can now set the alarm LEDs to be different for the standard alarms and the user defined alarms</p>
+						<div style="display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:auto;row-gap:0.5vh">
+							<label for="AlarmDef">Default alarm LED<div class="ow-led " id="defaultLED"></div></label>
+							<select id="AlarmDef"><option value="ow-brick">Default</option></select>
+							<label for="AlarmUsr">User Alarm LED <div class="ow-led " id="userLED"></div></label>
+							<select id="AlarmUsr"><option value="ow-brick">Default</option></select>
+						</div>
+					</div>
+
 					<div class="ow-card ow-theme-add4" onClick="showConfig();">
 						<div class="ow-titleBar" style="margin:1vh 0;">
 							<h4>Changing themes</h4>
 						</div>
-						<div class="ow-btnBar" role="menubar">
-							<button class="ow-btn ow-theme-add3" onClick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use this Configuration</button>
+						<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;column-gap:1vw;">
+							<button class="ow-btn" onClick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use this Configuration</button>
 							<button class="ow-btn ow-theme-add3" onClick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore default</button>
 						</div>
 						<p>

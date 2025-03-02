@@ -399,7 +399,12 @@ $(document).ready(function () {
             alarmSettings[alarm.Id] = alarm;
             alarmState[alarm.Id] = false;
 
-            $('#alarms').append('<div class="led-block" style="order:0;"><div class="ow-led ow-brick" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            if(alarm.Id.startsWith('AlarmUser')) {
+                //console.log(alarm.Id);
+                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.userAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            } else {
+                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.defAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            }
 
             if (alarm.SoundEnabled) {
                 playSnd = true;

@@ -15,6 +15,10 @@ let CMXConfig = {
 	'Units':	'em',
 	'PaddingTop': 2,
 	'PaddingBottom': 1,
+	'LEDs': {
+		'userAlarm': 'ow-brick',
+		'defAlarm': 'ow-brick',
+	},
 	'Seagull': {
 		'Animation': 'none',
 		'Duration': 5,
@@ -23,7 +27,6 @@ let CMXConfig = {
 	'Version': '4.0.0'
 }
 
-let AIStore = 'CMXai4.0.0';
 //	Base storage name on port and parent folder of active interface
 //	Enables multiple interfaces to be configured separately.
 let url = document.baseURI.split('/');
@@ -31,7 +34,7 @@ var port = url[2].split(':')[1] || 'Website'; // differentiates between private 
 if (url.length < 5) {
     AIStore = port + 'Root';	// Default interface
 } else {
-    AIStore = port + url[url.length - 2]; // AI2 interface
+    AIStore = port + url[url.length - 2]; // AI2 (or other) interface
 }
 
 
@@ -44,7 +47,6 @@ let getConfig = function() {
 	if( typeof( Storage ) === "undefined" ) {
 		console.log('Storage unavailable; hardwired config being used');
 	} else {
-		//localStorage.clear();	// Temp
 		var storedConfig = JSON.parse( localStorage.getItem( AIStore ));
 		if( storedConfig === null ) {
 			console.log('First use;');
@@ -52,8 +54,13 @@ let getConfig = function() {
 	        localStorage.setItem( AIStore, JSON.stringify( CMXConfig ));
 		} else {
 			console.log('Configuration stored already; reading..');
+			console.log("Alarms: " + storedConfig.LEDs);
+			if(storedConfig.LEDs === undefined){
+				storedConfig.LEDs = {"userAlarm": 'ow-brick', "defAlarm": 'ow-brick'};
+				console.log("Stored now: " + JSON.stringify(storedConfig));
+				localStorage.setItem( AIStore, JSON.stringify( storedConfig ));
+			}
 			CMXConfig = storedConfig;
-			//console.log("Data:" + JSON.stringify( CMXConfig ).replaceAll(',',',\n'))
 		}
 	}
 };
@@ -62,7 +69,7 @@ let getConfig = function() {
     Get CMX & AI Version
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 let getVersion = function() {
-	//	Will always fail unless on CMX host machine
+	//	Mitigates having to include this in every page scriupt.
 	$.ajax({
 		url: '/api/info/version.json',
 		success: function( result ) {
@@ -82,7 +89,6 @@ let getVersion = function() {
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 let getMenu = function() {
     // Load AI Menues
-    //console.log("Loading AI menus.");
     $('#Menues').load("menues.html", function( response, status, xhr) {
         if( status == "error") {
             var msg = "Sorry but there was an error:  ";
@@ -95,7 +101,7 @@ let getMenu = function() {
     Get Extra data - inc dates in various formats
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 let getExtras = function() {
-	//	Gets the weather station Lat, Long & altitude
+	//	Gets the weather station Lat, Long, Altitude and other data values
 	var data = '{"Latitude": "<#latitude>", "Longitude": "<#longitude>", "Altitude": "<#altitude>", ' +
 			   '"CurrentDate": "<#shortdayname>, <#day> <#monthname> <#year>", ' +
 			   '"Yesterday":"<#yesterday format=\"ddd dd MMM yyyy\">"}';
@@ -106,7 +112,6 @@ let getExtras = function() {
         data: data
     })
     .done( function (result) {
-		//console.log('Returned ' + jQuery.params( result ));
 		$("[data-cmxdata='Latitude']").html( result.Latitude);
 		$("[data-cmxdata='Longitude']").html( result.Longitude );
 		$("[data-cmxdata='Altitude']").html( result.Altitude );
@@ -143,7 +148,6 @@ let configPage = function() {
 	if( CMXConfig.StaticHead ) {
 		elementHt = $('#PageBanner').outerHeight( true );
 		if( elementHt < 100) { elementHt = 124}
-		//console.log("Header height: " + elementHt);
 		$('#PageBanner').addClass('w3-top');
 		$('#content').css('margin-top', elementHt + 'px');
 	}
@@ -155,7 +159,6 @@ let configPage = function() {
 	}
 	//	Adjust content padding
 	var TopPadding = CMXConfig.PaddingTop + CMXConfig.Units
-	//console.log("Padding top set to: " + TopPadding);
 	$('#content').css('padding-top', 'calc(' + TopPadding + ')' );
 	$('#content').css('padding-bottom', 'calc(' + CMXConfig.PaddingBottom + CMXConfig.Units +')' );
 	//	Adjust content height
@@ -178,7 +181,6 @@ let configPage = function() {
 
 
 //	Temp development
-//localStorage.clear("CMXai4.0.0")
 getConfig();	//	Check to see if current CMXConfig has been set
 checkTheme();
 
@@ -218,11 +220,11 @@ let checkPanels = function() {
 };
 
 let toggleMobileMenu = function() {
-	//	Not used !!!!
+	//	Opens the mobile menu
 	$('#menuMobile').toggleClass('w3-show', 'w3-hide');
 	$('#Main_Menu_Mobile').toggleClass('w3-show', 'w3-hide');
 }
-
+/*
 let toggleMainMenu = function( menu ) {
 	//Alt menu script
 	var menuID = menu.id;
@@ -240,7 +242,7 @@ let toggleMainMenu = function( menu ) {
 		$('#' + menuID).attr('aria-expanded', true);
 	}
 }
-
+*/
 let toggleMenu = function( menu ) {
 	//Alt menu script - current
 	var menuID = menu.id;
@@ -256,26 +258,7 @@ let toggleMenu = function( menu ) {
 		$( '#' + menu.id ).attr('aria-expanded', true );
 	}
 }
-/*
-let toggleMainMenu = function( menu) {
-	//	Used to add accessibility to desktop menu
-	var menuID = menu.id;
-	if( $('#menu' + menuID).css('display') == 'block') {
-		$('#menu' + menuID).css('display', 'none');
-		$('#' + menuID).attr('aria-expanded', false);
-		console.log("Closing menu for " + menuID );
-	} else {
-		//	Clear other panels and aria labels
-		$('.w3-dropdown-content').css('display', 'none');
-		$('.w3-dropdown-hover button').attr('aria-expanded', false);
-		console.log("Closing all panels")
-		//	Now set the required button
-		$('#menu' + menuID).css('display', 'block');
-		$('#' + menuID).attr('aria-expanded', 'true');
-		console.log("Menu " + menuID + " should be open and aria label set")
-	}
-}
-*/
+
 let showModal = function(modal){
 	if( $('#M' + modal).css('display') == 'none') {
 		$('#M' + modal).css('display', 'block');
