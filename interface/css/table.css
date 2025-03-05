@@ -2,7 +2,7 @@
  *  File:         demo_table.css
  *  CVS:          $Id$
  *  Created:      Tue May 12 06:47:22 BST 2009
- *  Last modified: 2021/06/10 12:01:44
+ *  Last modified: 2025/03/05 11:57:55
  *  Description:  CSS descriptions for DataTables demo pages
  *  Author:       Allan Jardine
  *  Language:     CSS
@@ -49,6 +49,8 @@ table tbody {
 }
 table tr.odd { background-color: #4f4f4f; }
 table tr.even { background-color: #3f3f3f; }
+table.dataTable tbody tr:nth-child(odd) { background-color: #4f4f4f; }
+table.dataTable tbody tr:nth-child(even) { background-color: #3f3f3f; }
 table td { padding: 8px 10px; border-right: 1px solid #ccc; }
 table td:last-of-type { border-right: none; }
 table tbody tr:hover { background-color: #3071A9; }
