@@ -443,7 +443,7 @@ function createDataPage(result) {
     let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
     html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
     html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}</style></head>';
-    html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+    html += '<body class="ow-theme-add5"><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Daily Data Viewer</h3></div></div>';
 

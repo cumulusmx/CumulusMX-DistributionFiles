@@ -77,8 +77,8 @@ $(document).ready(function () {
 	$('.ow-btn').click( function() {
 		//console.log('Button ckicked is: ' + this.name);
 		sessionStorage.setItem('CMXRecords', this.name);
-		$('.ow-btn').removeClass('ow-theme-sub3');
-		$(this).addClass('ow-theme-sub3');
+		$('.ow-btn').removeClass('w3-disabled');
+		$(this).addClass('w3-disabled');
 		var urlPrefix ;
 		if( this.name === 'alltime' ) {
 			urlPrefix = '/api/records/alltime/';
@@ -122,17 +122,17 @@ $(document).ready( function() {
 			console.log("Need to hide some buttons");
 			for ( var btn = 0; btn < startDate.getMonth(); btn++) {
 				console.log("Button ID: " + btn + 1);
-				$('#btn' + ( btn + 1)).addClass('w3-hide');
+				$('#btn' + ( btn + 1)).remove();
 			}
 			for (var btn = 11; btn > dateNow.getMonth(); btn--) {
-				$('#btn' + (btn + 1)).addClass('w3-hide');
+				$('#btn' + (btn + 1)).remove();
 			}
 		}
 		if ( startDate.getFullYear() == (dateNow.getFullYear() - 1) && startDate.getMonth() > dateNow.getMonth()){
 			console.log("Need to remove middle buttons.")
 			for (var btn = dateNow.getMonth() + 1; btn < startDate.getMonth(); btn++) {
 				console.log("Button to hide: " + btn);
-				$('#btn' + (btn + 1)).addClass('w3-hide');
+				$('#btn' + (btn + 1)).remove();
 			}
 			var htmlX = '<span style="flex-grow:0;align-self:center;padding:0 3px;">';
         	htmlX += '<i class="fa-solid fa-diamond ow-theme-add3-txt ow-txt-small w3-hide-small"></i></span>';

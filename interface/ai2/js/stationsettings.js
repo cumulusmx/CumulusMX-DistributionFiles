@@ -158,7 +158,7 @@ $(document).ready(function () {
         "postRender": function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
-            onAccessChange(null, accessObj.getValue());
+            //onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
             if (!accessMode) {
