@@ -98,7 +98,7 @@
 							<input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ow-theme-add3" style="grid-column-start:span 2;" aria-label="Gap below page">
 
 							<label style="grid-column-start:span 2;">Units to use</label>
-							<select id="unitSelect" style="grid-column-start:span 2;">
+							<select id="unitSelect" class="ow-theme-add3" style="grid-column-start:span 2;">
 								<option value="px" selected>Pixels</option>
 								<option value="em">Font height</option>
 								<option value="vh">% vertical height</option>
@@ -111,7 +111,7 @@
 						<p>This version of the AI comes with 28 built-in themes.  Use the dropdown to select - this page will instantly change to show your choice.</p>
 						<div class="" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;margin-bottom: 1vh;">
 							<label>Chosen theme</label>
-							<select id="ThemeList" class="" ></select
+							<select id="ThemeList" class="ow-theme-add3" ></select
 >						</div>
 
 						<p>This facility only works on browsers that support 'local storage'.  If you are using an old browser to view your Interface then please consider updating if possible. (You can also use the 'CMXConfi' settings below to manually change your theme.)</p>
@@ -124,13 +124,13 @@
 						</p>
 						<div style="display:grid;grid-template-columns:repeat(3, 1fr); grid-template-rows:auto;margin-bottom: 1vh;row-gap:0.5vh;">
 							<label>Animation</label>
-							<select id="animationSelect" style="grid-column-start:span 2">
+							<select id="animationSelect" class="ow-theme-add3" style="grid-column-start:span 2">
 								<option value="">None</option>
 								<option value="drop">Drop from top</option>
 								<option value="slide">Slide from left</option>
 							</select>
 							<label style="grid-column-start:span 2">Animation speed (secs)</label>
-							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" style="justify-self:right;align-self:center;max-width:5em;" aria-label="Animation speed">
+							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ow-theme-add3" style="justify-self:right;align-self:center;max-width:5em;" aria-label="Animation speed">
 						</div>
 						<div class="ow-titleBar ow-flex-center" style="justify-content: center; margin-bottom:1vh;">
 							<label for="stayOnTop">Stay on top of all elements</label>
@@ -168,11 +168,11 @@
 							<h4>The Alarm LEDs</h4>
 						</div>
 						<p>You can now set the alarm LEDs to be different for the standard alarms and the user defined alarms</p>
-						<div style="display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:auto;row-gap:0.5vh">
+						<div style="display:grid;grid-template-columns:1fr 10em;grid-template-rows:auto;row-gap:0.5vh;align-items:flex-start;">
 							<label for="AlarmDef">Default alarm LED<div class="ow-led " id="defaultLED"></div></label>
-							<select id="AlarmDef"><option value="ow-brick">Default</option></select>
+							<select id="AlarmDef" class="ow-theme-add3"><option value="ow-brick">Default</option></select>
 							<label for="AlarmUsr">User Alarm LED <div class="ow-led " id="userLED"></div></label>
-							<select id="AlarmUsr"><option value="ow-brick">Default</option></select>
+							<select id="AlarmUsr" class="ow-theme-add3"><option value="ow-brick">Default</option></select>
 						</div>
 					</div>
 
@@ -181,7 +181,7 @@
 							<h4>Changing themes</h4>
 						</div>
 						<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;column-gap:1vw;">
-							<button class="ow-btn" onClick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use this Configuration</button>
+							<button class="ow-btn ow-theme-add3" onClick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use this Configuration</button>
 							<button class="ow-btn ow-theme-add3" onClick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore default</button>
 						</div>
 						<p>
