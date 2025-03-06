@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 	Theme:  Aurora Green        (#6ADC99)   v3.0.1
+ * 	Theme:  Aurora Green Dark   (#6ADC99)   v3.0.1
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  Designed for:   CMX AI                  v2.0.1
  *  &               CMX Default website		v3.0.0
@@ -16,7 +16,7 @@
     --sub3: #7ee1a7;
     --sub2: #57d78c;
     --sub1: #30cd71;
-    --theme: #31ce72;
+    --theme: #2AB262;
     --add1: #27a55b;
     --add2: #1d7e45;
     --add3: #14562f;
@@ -39,7 +39,7 @@
 .ow-theme-add3	{color: var(--sub5); background-color: var(--add3);}
 .ow-theme-add2	{color: var(--sub5); background-color: var(--add2);}
 .ow-theme-add1	{color: var(--sub5); background-color: var(--add1);}
-.ow-theme		{color: var(--add5); background-color: var(--theme);}
+.ow-theme		{color: var(--sub5); background-color: var(--theme);}
 .ow-theme-sub1	{color: var(--add5); background-color: var(--sub1);}
 .ow-theme-sub2	{color: var(--add5); background-color: var(--sub2);}
 .ow-theme-sub3	{color: var(--add5); background-color: var(--sub3);}
@@ -52,7 +52,7 @@
 .ow-theme-add5-hvr:hover	{color: var(--sub5); background-color: var(--add5);}
 .ow-theme-add4-hvr:hover	{color: var(--sub5); background-color: var(--add4);}
 .ow-theme-add3-hvr:hover	{color: var(--sub5); background-color: var(--add3);}
-.ow-theme-add2-hvr:hover	{color: var(--add5); background-color: var(--add2);}
+.ow-theme-add2-hvr:hover	{color: var(--sub5); background-color: var(--add2);}
 .ow-theme-add1-hvr:hover	{color: var(--add5); background-color: var(--add1);}
 .ow-theme-hvr:hover 		{color: var(--add5); background-color:var(--theme);}
 .ow-theme-sub1-hvr:hover	{color: var(--add5); background-color: var(--sub1);}
