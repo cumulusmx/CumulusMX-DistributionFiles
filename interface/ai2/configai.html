@@ -168,11 +168,13 @@
 							<h4>The Alarm LEDs</h4>
 						</div>
 						<p>You can now set the alarm LEDs to be different for the standard alarms and the user defined alarms</p>
-						<div style="display:grid;grid-template-columns:1fr 10em;grid-template-rows:auto;row-gap:0.5vh;align-items:flex-start;">
-							<label for="AlarmDef">Default alarm LED<div class="ow-led " id="defaultLED"></div></label>
+						<div style="display:grid;grid-template-columns:1fr 9em 2.2em;grid-template-rows:auto;row-gap:0.5vh;align-items:center;">
+							<label for="AlarmDef">Default alarm LED</label>
 							<select id="AlarmDef" class="ow-theme-add3"><option value="ow-brick">Default</option></select>
-							<label for="AlarmUsr">User Alarm LED <div class="ow-led " id="userLED"></div></label>
+							<div class="ow-led " id="defaultLED"></div>
+							<label for="AlarmUsr">User Alarm LED </label>
 							<select id="AlarmUsr" class="ow-theme-add3"><option value="ow-brick">Default</option></select>
+							<div class="ow-led " id="userLED"></div>
 						</div>
 					</div>
 

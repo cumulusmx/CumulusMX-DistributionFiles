@@ -144,12 +144,12 @@ let setupAlarms = function( ) {
 	$('#AlarmUsr').html( optionsUsr );
 	$('#AlarmDef').on('change', function(){
 		CMXConfig.LEDs.defAlarm = $('#AlarmDef').prop('value');
-		$('#defaultLED').addClass($('#AlarmDef').prop('value'));
+		$('#defaultLED').removeClass('ow-brick ow-lozenge ow-oval ow-round ow-small').addClass($('#AlarmDef').prop('value'));
 		showConfig()
 	});
 	$('#AlarmUsr').on('change', function() {
+		$('#userLED').removeClass('ow-brick ow-lozenge ow-oval ow-round ow-small').addClass($('#AlarmUsr').prop('value'));
 		CMXConfig.LEDs.userAlarm = $('#AlarmUsr').prop('value');
-		$('#userLED').addClass($('#AlarmUsr').prop('value'));
 		showConfig();
 	})
 
