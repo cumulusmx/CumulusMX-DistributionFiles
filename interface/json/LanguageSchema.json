@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2024/10/26 09:46:14",
+	"version": "Last modified: 2025/01/13 23:32:17",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -479,6 +479,13 @@
 				"snow24h": {
 					"type": "string"
 				}
+			}
+		},
+		"laser": {
+			"title": "Laser Sensors",
+			"type": "array",
+			"items": {
+				"type": "string"
 			}
 		}
 	}

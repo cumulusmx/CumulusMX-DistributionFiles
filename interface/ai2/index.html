@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Dashboard
-	File:	index.html				v4.0.0
-	Author:	D.N.C.Thomas		 Feb 2024
-	Last Edit:	2024/09/05 11:36:19
+	File:	index.html				v4.0.1
+	Author:	D.N.C.Thomas		 Feb 2025
+	Last Edit:	2025-02-06 17:00
 	Last Check: 2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -48,7 +48,7 @@
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
-		<style>
+		<style> 
 			#AlarmsPanel, #DavisPanel {
 				border: thin solid var(--theme);
 				margin: 1vh 0;
@@ -98,13 +98,13 @@
 				<!--	Alarms Panel	-->
 				<div id="AlarmsPanel" class="ow-container ow-animate-drop">
 					<h4>Alarms</h4>
-					<div id="alarms" class="ow-sixCol" style="row-gap: 0; margin-bottom: 1vh;">
+					<div id="alarms" class="ax-column5 ax-fixedwidth" style="row-gap: 0; margin-bottom: 1vh;">
 					</div>
 				</div>
 				<!--	Davis Station Data	-->
 				<div id="DavisPanel" class="ow-container ow-animate-drop">
 					<h4>Davis Weather Station Status</h4>
-					<div class="ow-threeCol" style="gap:0 3vw; margin-bottom:1vh;">
+					<div class="ax-column4" style="gap:0 3vw; margin-bottom:1vh;">
 						<div class="davisVP2">Packets Received: <span id="DavisPacketsReceived">not known</span></div>
 						<div class="davisVP2">Packets Missed: <span id="DavisPacketsMissed">not known</span></div>
 						<div class="davisVP2">Packet streak: <span id="DavisMaxInARow">not known</span></div>
@@ -112,7 +112,8 @@
 						<div class="davisVP2">CRC Errors: <span id="DavisCRCErrors">not known</span></div>
 						<div>Console Battery: <span id="ConsoleBattery">not known</span></div>
 					</div>
-					<div class="ow-fourCol" style="gap:0 2vw; margin-bottom:1vh;">
+					<div class="ow-divider" style="border:none;border-bottom:thin dashed var(--theme);margin-bottom:0.5em;"></div>
+					<div class="ax-column6 ax-fixedwidth" style="gap:0 2vw; margin-bottom:1vh;">
 						<div id="DavisXmt0">Xmt Batt 1: <span id="DavisTXBattery0">not known</span></div>
 						<div id="DavisXmt1">Xmt Batt 2: <span id="DavisTXBattery1">not known</span></div>
 						<div id="DavisXmt2">Xmt Batt 3: <span id="DavisTXBattery2">not known</span></div>
@@ -144,7 +145,7 @@
 					<h3>Weather Overview</h3>
 					<p>Date: <span data-OWData="Date"></span></p>
 				</div>
-				<div class="ow-fourCol">
+				<div class="ax-column4 ax-fixedwidth">
 					<div class="ow-card ow-theme-add4" style="order:1;">
 						<!--	Outdoor Temperature	-->
 						<div class="ow-titleBar" style="justify-content: center">
@@ -279,16 +280,16 @@
 							<p><span>Low&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ow-at" id="LowWindChillTodayTime">--:--</span></p>
 						</div>
 					</div>
-					<div class="ow-card ow-theme-add4" style="order:12;">
+					<div class="ow-card ow-theme-add4" style="order:12;" data-cmxData-Rad="">
 						<!--	Solar Radiation	-->
-						<div class="ow-titleBar" style="justify-content: center;">
+						<div class="ow-titleBar" style="justify-content: center;" >
 							<h3>Solar Radiation</h3>
 						</div>
 						<div class="w3-center">
-							<h4>Rad.&nbsp;<span id="SolarRad" class="ow-reading">---.-</span>&nbsp;W/m<sup>2</sup></h4>
-							<p><span>High&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ow-at" id="HighSolarRadTodayTime">--:--</span></p>
-							<h4>UV Index&nbsp;<span id="UVindex" class="ow-reading">--</span></h4>
-							<p><span>High&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ow-at" id="HighUVindexTodayTime">--:--</span></p>
+							<h4 data-cmxData-Solar="">Rad.&nbsp;<span id="SolarRad" class="ow-reading">---.-</span>&nbsp;W/m<sup>2</sup></h4>
+							<p data-cmxData-Solar=""><span>High&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ow-at" id="HighSolarRadTodayTime">--:--</span></p>
+							<h4 data-cmxData-UV="">UV Index&nbsp;<span id="UVindex" class="ow-reading">--</span></h4>
+							<p data-cmxData-UV=""><span>High&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ow-at" id="HighUVindexTodayTime">--:--</span></p>
 						</div>
 					</div>
 				</div>

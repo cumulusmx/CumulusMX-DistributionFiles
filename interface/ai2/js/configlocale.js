@@ -81,7 +81,7 @@ function addButtons() {
 
         let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            '" role="treeitem" aria-expanded="false" class="ow-btn collapsed">' +
             $(span).text() +
             '</button>');
         $(span).remove();

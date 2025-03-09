@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:11:16
+Last modified: 2025/01/24 16:37:22
 -->
 <!doctype html>
 <html lang="en">
@@ -30,9 +30,11 @@ Last modified: 2024/11/23 15:11:16
     <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
     <!-- Custom Files -->
-    <!-- <script src="js/noaareports.js"></script> -->
+    <script src="js/noaamonth.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/noaareports.css" rel="stylesheet">
+
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -42,141 +44,6 @@ Last modified: 2024/11/23 15:11:16
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
         .ui-datepicker-calendar {display: none;}
     </style>
-
-    <script>
-        var thisYear;
-        var thisMonth;
-        var startYear;
-        var startMonth;
-
-
-        $(document).ready(function () {
-            $.ajax({
-                url: 'api/info/version.json',
-                dataType: 'json'
-            })
-            .done(function (result) {
-                $('#Version').text(result.Version);
-                $('#Build').text(result.Build);
-            });
-
-            $.ajax({
-                url: '/api/tags/process.txt',
-                dataType: 'json',
-                type: 'POST',
-                data: '{"month": <#recordsbegandate format="%M">, "year": <#recordsbegandate format="yyyy">}'
-            })
-            .done(function (result) {
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                thisYear = now.getFullYear();
-                thisMonth = now.getMonth() + 1;
-                startMonth =  result.month;
-                startYear = result.year;
-
-                var startYear = parseInt(result.year);
-
-                for (var i = thisYear; i >= startYear; i--) {
-                    $('#selYear').append($('<option>', {
-                        value: i,
-                        text: i
-                    }));
-                }
-
-                changeYear();
-
-                load();
-            });
-
-            $('#selYear').on('change', function () {
-                changeYear();
-            });
-        });
-
-        function changeYear() {
-            var year = $('#selYear').val();
-            var firstMonth = 1;
-            var lastMonth = 12;
-            if (year == thisYear) {
-                lastMonth = thisMonth;
-            }
-            if (year == startYear) {
-                firstMonth = startMonth;
-            }
-
-            var now = new Date();
-            // subtract 1 day
-            now.setTime(now.getTime()-(1*24*3600000));
-            // and set to first of month
-            now.setDate(1);
-            $('#selMonth').empty();
-
-            for (var i = firstMonth; i <= lastMonth; i++) {
-                now.setMonth(i - 1);
-                $('#selMonth').append($('<option>', {
-                    value: i,
-                    text: now.toLocaleString('default', {month: "long"}),
-                    selected: year == thisYear && i === thisMonth
-                }));
-            }
-        }
-
-        function load() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/reports/noaamonth?year='+year+'&month='+month,
-            })
-            .done(function(data) {
-                $('#report').text(data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generate() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/genreports/noaamonth?year='+year+'&month='+month
-            })
-            .done(function(data) {
-                $('#report').text(data);
-                alert("Report (Re)generated");
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generateAll() {
-            $.ajax({
-                url: 'api/genreports/all'
-            })
-            .done(function(data) {
-                $('#report').text(data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function uploadRpt() {
-            var year = $('#selYear').val();
-            var month = $('#selMonth').val();
-            $.ajax({
-                url: 'api/uploadreport/noaamonth?year='+year+'&month='+month,
-            })
-            .done(function(data) {
-                alert("Report upload: " + data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-    </script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -196,7 +63,7 @@ Last modified: 2024/11/23 15:11:16
     </div>
     <!-- END NAVIGATION MENU -->
 
-    <div class="container">
+    <main class="container">
         <h1>NOAA Monthly Report</h1>
 
         <div class="row">
@@ -211,14 +78,12 @@ Last modified: 2024/11/23 15:11:16
             </div>
         </div>
 
-        <div class="row">
-                <pre id="report"></pre>
-            </div>
-    </div>
+        <div class="row report-container" id="report">
+        </div>
+    </main>
 
     <!-- FOOTER -->
-    <div id="footerwrap">
-        <footer class="clearfix"></footer>
+    <footer id="footerwrap">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
@@ -227,7 +92,7 @@ Last modified: 2024/11/23 15:11:16
                 </div>
             </div><!-- /row -->
         </div><!-- /container -->
-    </div><!-- /footerwrap -->
+    </footer><!-- /footerwrap -->
 
     <div id="dialog" title="Status Message">
         <p></p>

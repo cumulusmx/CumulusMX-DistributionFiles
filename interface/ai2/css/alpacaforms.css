@@ -1,11 +1,113 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	Alpaca Forms styles
- * 	File: alpacaforms.css			v2.0
+ * 	File: alpacaforms.css			v3.0
  * 	Author:	Neil Thomas
  * 	Created:		15/10/2023 10:52
- *  Last updated:	2024/09/26 19:34:52
+ *  Last updated:	06/03-2025 17:25
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
+
+ /*	~~~~	GLOBAL SETTINGS	~~~	*/
+ .radio {
+	display:inline-block;
+	padding-left:40px;
+	vertical-align: middle;
+	margin-top:10px;
+}
+
+.radio, .radio + .radio, 
+.checkbox, .checkbox + .checkbox {
+	margin-top: 0px!important;
+}
+
+.btn-default,
+.alpaca-form-button { 
+	border-radius:1em!important;
+	padding:0.3em 2em!important;
+	background: var(--BtnGradient);
+}
+.btn-default:hover,
+.alpaca-form-button:hover {
+	background: var(--BtnGradientHvr);
+}
+
+.alpaca-field > legend > .collapsed::before {
+	content: '\25B8';
+	padding-left: 0.5%;
+}
+
+.alpaca-field > legend > span::before {
+	content: '\25BE';
+	padding-left: 0.5%;
+}
+
+.alpaca-container-has-items {
+	margin-left: 1%;
+}
+
+.collapse.in {
+	margin-left: 1%;
+}
+
+.alpaca-form-buttons-container {
+	margin-bottom: 20px;
+	text-align: left;
+	font-size: 18px;
+}
+
+.alpaca-field-table table tr td .alpaca-field { min-width:2em;}
+
+legend {
+	color: inherit;
+}
+
+.hideme {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	display: flex;
+}
+
+.alpaca-form-buttons-container > button { border:thin solid var(--theme);}
+
+.alpaca-array-toolbar > button {
+	padding: 0.5em 2em!important;
+	border-radius:1.5em!important;
+	color: var(--sub5);
+}
+
+.alpaca-array-actionbar > .btn { border-radius: 1em 0 0 1em!important;}
+
+tbody td {border-color: var(--sub3)!important;}
+
+.dropdown-menu {z-index:1!important;}
+
+#filesForm,
+#alarmsForm ,
+#intvlForm,
+#dailyForm{
+	thead tr {background-color:var(--add3);}
+	thead th {border-color: var(--add3);}
+	thead th {color: var(--sub5);}
+	tbody tr {background: var(--sub5);}
+	tbody td {border:thin solid var(--sub5)!important;}
+	.alpaca-field-object { padding:0;}
+	.alpaca-container-has-items { margin-left:0;}	
+}
+
+#filesForm {
+	tbody td:first-of-type,
+	tbody td:nth-of-type(5){ width:5em;}
+	tbody td:nth-of-type(6){ width:7em;}
+	tbody td:nth-of-type(7){width:5rem;}
+	tbody td:last-of-type{ width:9.5rem;}
+}
+
+#intvlForm td:last-of-type { max-width:16rem!important; }
+#dailyForm td:last-of-type { max-width:14rem!important; }
+
+
+/*
 
 .radio {
 	display: inline-block;
@@ -118,7 +220,6 @@ checkbox.alpaca-control { padding: 0;}
 
 select.alpaca-control {
 	font-size: 100%;
-	/*height: 2.0em;*/
 	background: var(--add4);
 	color: var(--sub5);
 }
@@ -129,3 +230,4 @@ select.alpaca-control {
 	padding:0.3em!important;
 	color: var(--sub5);
 }
+*/

@@ -22,7 +22,7 @@ html {
 
 /*	Only change below if you are compentant using css	*/
 
-body, p, label {
+html, body, p, label {
 	font-family: Inter, serif;
 	font-size: clamp( 14px, 1.2vw, 16px );
 	font-size: clamp(0.875rem, 0.8125rem + 0.25vw, 1rem);
@@ -272,6 +272,7 @@ input[type=number]:hover {
 	align-items: center;
 }
 
+/*	~~~~~	OLD COLUMNS	~~~~~*/
 .ow-sixCol,
 .ow-fiveCol,
 .ow-fourCol,
@@ -345,6 +346,107 @@ input[type=number]:hover {
 @media only screen and (max-width: 412px) {
 	.ow-fiveCol > div { min-width: 100%!important;}
 }
+
+/*  ~~~~~~~  NEW COLUMNS  ~~~~~~~*/
+.ax-column6,
+.ax-column5,
+.ax-column4,
+.ax-column3,
+.ax-column2 {
+	display: flex;
+    justify-content: stretch;
+	flex-flow: row wrap;
+	gap: var(--rowGap) var(--columnGap );
+	margin-bottom: 2vh;
+}
+
+.ax-column6 > div {
+	/*	All child divs of six col flex	*/
+	min-width: calc( var(--siteWidth) * 1px / 7.5);
+	flex: 1;
+}
+
+.ax-column5 > div {
+	min-width: calc( var(--siteWidth) * 1px / 6);
+	flex: 1;
+}
+
+.ax-column4 > div {
+	min-width: calc( var(--siteWidth) * 1px / 5);
+	flex: 1;
+}
+
+.ax-column3 > div {
+	min-width: calc( var(--siteWidth) * 1px / 4);
+	flex: 1;
+}
+
+.ax-column2 > div {
+	min-width: calc( var(--siteWidth) * 1px / 3);
+	flex: 1;
+}
+
+.ax-column1 {
+	display: flex;
+	flex-direction: column;
+	gap: var(--rowGap) 0;
+	margin-bottom: 3vh;
+}
+.ax-column1 > div {
+	width:100%;
+}
+
+.ax-fixedwidth {
+    justify-content: space-evenly;
+	&.ax-column2 > div {
+		max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 2)) / 2 );
+	}
+    &.ax-column3 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 3)) / 3 );;
+    }
+    &.ax-column4 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 4)) / 4 );
+    }
+    &.ax-column5 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 5)) / 5 );
+    }
+    &.ax-column6 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 6)) / 6 );
+    }
+}
+
+.ax-column2.ax-fixedwidth .ax-grow{
+	max-width: calc( var(--siteWidth) * 1px )!important;
+}
+.ax-column3.ax-fixedwidth .ax-grow{
+	max-width: calc( var(--siteWidth) * 1px / 3 * 2 - var(--columnGap))!important;
+}
+.ax-column4.ax-fixedwidth .ax-grow{
+	max-width: calc( var(--siteWidth) * 1px / 2 - var(--columnGap))!important;
+}
+.ax-column4.ax-fixedwidth .ax-grow3{
+	max-width: calc( var(--siteWidth) * 1px / 4 * 3 - var(--columnGap));
+}
+
+.ax-column5.ax-fixedwidth .ax-grow{
+	max-width: calc( var(--siteWidth) * 1px / 5 * 2 - var(--columnGap))!important;
+}
+.ax-column6.ax-fixedwidth .ax-grow{
+	max-width: calc( var(--siteWidth) * 1px / 3 - var(--columnGap))!important;
+}
+
+
+@media only screen and (max-width: 500px) {
+	.ax-column6.ax-fixedwidth > div {min-width: 100%!important;}
+	.ax-column5.ax-fixedwidth > div {min-width: 100%!important;}
+
+}
+
+@media only screen and (max-width:840px) {
+	.ax-column2 > div {justify-content:stretch;min-width:100%!important;}
+}
+
+
 /*	MENUS	*/
 .ow-menu {
 	font-family: 'Red Rose', Inter, serif;
@@ -522,7 +624,7 @@ input[type=number]:hover {
 	width: 1em;
 	height:1em;
 	margin-bottom: -0.15em;
-
+	margin-right: calc(0.25vw + 0.5em);
 }
 
 /*	w3Pro Over-rides	*/

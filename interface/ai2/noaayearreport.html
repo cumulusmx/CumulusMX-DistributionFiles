@@ -3,7 +3,7 @@
 	Page:	NOAA Yearly Reports
 	File:	noaayearreport.html		v4.0.0
 	Author:	D.N.C.Thomas		  Feb 2024
-	Last Edit:	2024-02-23
+	Last Edit:	2025/02/15 19:12:35
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -36,13 +36,13 @@
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-pagemanager.js"></script>
 		<script src="js/noaayearreport.js"></script>
-
+		<link href="/css/noaareports.css" rel="stylesheet">
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
-			#datepicker { max-width:8em;}
-			select {border-radius: 6px; padding: 0.4em 0.5em!important;}
+			#datepicker { max-width:8em; border-radius: 1em 0 0 1em; text-align:center;}
+			select {padding: 0.4em 0.5em!important;}
 			#generate-button { background: linear-gradient( 0deg, #eaa74a 0, var(--add3) 50%)!important; flex-grow:0;}
 			#generate-button:hover { background: linear-gradient( 180deg, #eaa74a 0, var(--add3) 50%)!important;}
 			#generateAll-button	{ background: linear-gradient( 0deg, #47bbde 0, var(--add3) 50%)!important; flex-grow:0;}
@@ -78,17 +78,16 @@
 
 				<div class="ow-btnBar ow-flex-center" style="justify-content: flex-start;row-gap: 0.5vh; column-gap: 0.5vw;">
 					<span style="min-width: 14em;">Select year:&nbsp;<select id="datepicker" aria-label="select year" class="w3-select ow-theme-add3"></select></span>
-					<button type="button" class="ow-btn ow-thin" id="load-button" onclick="load()" style="flex-grow:0;">Load Report</button>
-					<button type="button" class="ow-btn ow-thin btn-warning" id="generate-button" onclick="generate()">(Re)Generate this Report</button>
-					<button type="button" class="ow-btn ow-thin btn-info" id="generateAll-button" onclick="generateAll()">(Re)Generate all missing</button>
-					<button type="button" class="ow-btn ow-thin" id="upload-button" onClick="uploadRpt();">Re-upload Report</button>
+					<button type="button" class="ow-btn ow-thin ow-theme-add3" id="load-button" onclick="load()" style="flex-grow:0;">Load Report</button>
+					<button type="button" class="ow-btn ow-thin ow-theme-add3" id="generate-button" onclick="generate()">(Re)Generate this Report</button>
+					<button type="button" class="ow-btn ow-thin ow-theme-add3" id="generateAll-button" onclick="generateAll()">(Re)Generate all missing</button>
+					<button type="button" class="ow-btn ow-thin ow-theme-add3" id="upload-button" onClick="uploadRpt();">Re-upload Report</button>
 				</div>
 
 				<p>Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly</p>
 
 				<div class="ow-titleBar" style="justify-content: center;">
-					<div  class="ow-theme-add4 w3-responsive ow-card" style="padding: 1vh 1vw; border: thin solid var(--add3); max-width: 820px;">
-						<pre id="report" class="w3-responsiveZ"></pre>
+					<div  class="ow-theme-add4 w3-responsive ow-card report-container" id="report" style="padding: 1vh 1vw; border: thin solid var(--add3);">
 					</div>
 				</div>
 

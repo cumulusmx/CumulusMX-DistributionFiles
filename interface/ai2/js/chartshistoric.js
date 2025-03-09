@@ -1,4 +1,4 @@
-// Last modified: 2024/12/04 11:22:40
+// Last modified: 2025/03/09 10:19:50
 
 var chart, config, available;
 
@@ -11,6 +11,41 @@ beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate bree
 
 
 $(document).ready(function () {
+	/*
+	$('.btn').change(function () {
+
+		var myRadio = $('input[name=options]');
+		var checkedValue = myRadio.filter(':checked').val();
+
+		doGraph(checkedValue);
+	});
+	*/
+   	$('.selectGraph').click( function() {
+		sessionStorage.setItem('CMXDaily', this.id );
+		doGraph( this.id );
+	});
+
+
+	var doGraph = function (value) {
+		sessionStorage.setItem('CMXDaily', value );
+		$('.selectGraph').removeClass('ow-theme-sub3');
+		$('#' + value).addClass('ow-theme-sub3');
+		switch (value) {
+			case 'temp':	doTemp();		break;
+			case 'press':	doPress();		break;
+			case 'wind':	doWind();		break;
+			case 'windDir':	doWindDir();	break;
+			case 'rain':	doRain();		break;
+		    case 'humidity':	doHum();	break;
+			case 'solar':	doSolar();		break;
+			case 'degdays':	doDegDays();	break;
+			case 'tempsum':	doTempSum();	break;
+			case 'chillhrs':	doChillHrs();	break;
+			case 'snow':	doSnow();	break;
+			default:		doTemp();		break;
+		}
+//        parent.location.hash = value;
+	};
 
 	$.ajax({
 		url: "/api/graphdata/availabledata.json",

@@ -4,7 +4,7 @@
  * Purpose:	Styles for pages using X-editable tables
  * Version:	4.0.0
  *	Author:	Neil Thomas
- * Edited:	21-02-2024
+ * Edited:	18-02-2025
  * Checked:
  *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -23,11 +23,21 @@ input[type="text"] {
 input[readonly] {
 	background-color: var(--add3)!important;
 	color: var(--theme)!important;
+	border:thin solid var(--sub5);
 }
 
-#dateFrom, #dateTo {
+input[type="search"] {
+	background:var(--add5)!important;
+	margin-left: 1em!important;
+}
+
+.dt-search {margin: 0.4vh 0;}
+
+#dateFrom, #dateTo, #loadBtn {
 	background-color: var(--sub5);
 	color: var(--add5)!important;
+	border-radius: 1em;
+	padding:0.4em;
 }
 
 .paginate_input{
@@ -98,10 +108,10 @@ thead th {
 	font-size: 12px;
 }
 
-.dtfc-fixed-left { background-color: var(--add5); }
+.dtfc-fixed-start { background: var(--add4)!important; z-index:0!important;}
 .dtfc-fixed-left:nth-of-type(3) { border-right:thin solid var(--add3); }
 
-thead .dtfc-fixed-left { background-color: var(--add4);}
+thead .dtfc-fixed-start { background-color: var(--add4);}
 
 
 .even .dtfc-fixed-left { background-color: var(--add4); }
@@ -144,7 +154,9 @@ thead tr {background: var(--add4);}
 
 .modal-footer {min-height: 2em;border-radius: 0 0 1em 1em!important;}
 
+/*
 #datalog thead th {font-size: 12px;}
+*/
 
 /*	Reformat to support dark mode	*/
 .dataTables_info {

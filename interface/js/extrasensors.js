@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:42:12
+// Last modified: 2025/02/11 16:13:48
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -67,6 +67,22 @@ $(document).ready(function () {
         ajax: '/api/extra/usertemp.json'
     });
 
+    var laserDepthTable = $('#LaserDepthTable').DataTable({
+        ajax: '/api/extra/laserdepth.json'
+    });
+
+    var laserDistTable = $('#LaserDistTable').DataTable({
+        ajax: '/api/extra/laserdistance.json'
+    });
+
+    var snow24hTable = $('#Snow24hTable').DataTable({
+        ajax: '/api/extra/snow24h.json'
+    });
+
+    var snowSeasonTable = $('#SnowSeasonTable').DataTable({
+        ajax: '/api/extra/snowseason.json'
+    });
+
     setInterval(function () {
         tempTable.ajax.url('/api/extra/temp.json').load();
         humTable.ajax.url('/api/extra/hum.json').load();
@@ -78,6 +94,10 @@ $(document).ready(function () {
         co2Table.ajax.url('/api/extra/co2sensor.json').load();
         lightningTable.ajax.url('/api/extra/lightning.json').load();
         userTempTable.ajax.url('/api/extra/usertemp.json').load();
+        laserDepthTable.ajax.url('/api/extra/laserdepth.json').load();
+        laserDistTable.ajax.url('/api/extra/laserdistance.json').load();
+        snow24hTable.ajax.url('/api/extra/snow24h.json').load();
+        snowSeasonTable.ajax.url('/api/extra/snowseason.json').load();
     }, 10000);
 
 });

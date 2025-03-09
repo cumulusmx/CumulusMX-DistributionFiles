@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/11/11 23:28:55",
+	"version": "Last Modified: 2025/01/28 21:01:43",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -139,8 +139,7 @@
 							"type": "boolean"
 						},
 						"useCamera": {
-							"type": "boolean",
-							"dependencies": ["stationid"]
+							"type": "boolean"
 						},
 						"setcustom": {
 							"type": "boolean",
@@ -300,6 +299,11 @@
 									"minimum": 0,
 									"dependencies": "conntype"
 								},
+								"fileignore": {
+									"type": "integer",
+									"minimum": 0,
+									"dependencies": "conntype"
+								},
 								"mqtttls": {
 									"type": "boolean",
 									"dependencies": "conntype"
@@ -352,6 +356,52 @@
 			"properties": {
 				"enabled": {
 					"type": "boolean"
+				}
+			}
+		},
+		"laser": {
+			"title": "Laser Sensor Options",
+			"type": "object",
+			"properties": {
+				"sensor1": {
+					"title": "Sensor 1",
+					"type": "object",
+					"properties": {
+						"depth": {
+							"type": "number",
+							"minimum": -1
+						}
+					}
+				},
+				"sensor2": {
+					"title": "Sensor 2",
+					"type": "object",
+					"properties": {
+						"depth": {
+							"type": "number",
+							"minimum": -1
+						}
+					}
+				},
+				"sensor3": {
+					"title": "Sensor 3",
+					"type": "object",
+					"properties": {
+						"depth": {
+							"type": "number",
+							"minimum": -1
+						}
+					}
+				},
+				"sensor4": {
+					"title": "Sensor 4",
+					"type": "object",
+					"properties": {
+						"depth": {
+							"type": "number",
+							"minimum": -1
+						}
+					}
 				}
 			}
 		},

@@ -20,7 +20,8 @@ $(document).ready(function () {
             // construct the checkboxes
             // the checkbox id's are the field offset in the monthly log file - add 1000 to fields if they are in the extra log file
             // No need to compute rows - flexbox deals with it.
-            cards = $('<div>', { class: 'ow-fourCol' });
+            // If you prefer the last two panels to be smaller add the class 'ax-fixedwidth' below.
+            cards = $('<div>', { class: 'ax-column4' });
 
             // temperature Data
             let tempBoxes = $('<div>');
@@ -72,7 +73,7 @@ $(document).ready(function () {
                 let tempBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Temperature</h4>' }))
                     .append(tempBoxes);
-                cards.append($('<div>', { class: 'ow-card' }).append(tempBlock));
+                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(tempBlock));
             }
 
             // humidity Data
@@ -93,7 +94,7 @@ $(document).ready(function () {
                 let humBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Humidity</h4>' }))
                     .append(humBoxes);
-                cards.append($('<div>', {class: 'ow-card'}).append(humBlock));
+                cards.append($('<div>', {class: 'ow-card ow-theme-add4', style:'order:0;'}).append(humBlock));
             }
 
             // pressure
@@ -102,7 +103,7 @@ $(document).ready(function () {
                 .append($('<div>'))
                 .append($('<input>', { type: 'checkbox', id: '10' }))
                 .append($('<label>', { for: '10', class: 'mylabel', html: 'Sea Level Pressure' }))
-            cards.append($('<div>', { class: 'ow-card' }).append(pressBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0;' }).append(pressBlock));
 
             // wind data
             let windBlock = $('<div>', { class: 'my-unit' })
@@ -116,7 +117,7 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '7' }))
                 .append($('<label>', { for: '7', class: 'mylabel', html: 'Wind Direction' }));
-            cards.append($('<div>', { class: 'ow-card'}).append(windBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:1;'}).append(windBlock));
 
             // rainfall
             let rainBlock = $('<div>', { class: 'my-unit' })
@@ -127,7 +128,7 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '8' }))
                 .append($('<label>', { for: '8', class: 'mylabel', html: 'Rainfall Rate' }));
-            cards.append($('<div>', { class: 'ow-card'}).append(rainBlock));
+            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0'}).append(rainBlock));
 
             // solar
             let solarBoxes = $('<div>');
@@ -150,7 +151,7 @@ $(document).ready(function () {
                 let solarBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ow-titleBar', html: '<h4>Solar</h4>' }))
                     .append(solarBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(solarBlock));
+                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:2'}).append(solarBlock));
             }
 
             // values from the Extras file have 1000 added to the field offset
@@ -563,12 +564,13 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><title>Interval Data Viewer</title></head>';
+    let html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Interval Data Viewer</title><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>';
     html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
-    html += '<link rel="stylesheet" href="css/main.css"><style>td:first-of-type{white-space:nowrap;}</style></head>';
+    html += '<link rel="stylesheet" href="css/main.css"><style>td:first-of-type{white-space:nowrap;tbody td{text-align:center;}}</style></head>';
     html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Interval Data Viewer</h3></div></div>';
+
     if (format == 'CSV') {
         html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
     } else {

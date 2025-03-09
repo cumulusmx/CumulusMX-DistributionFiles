@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:10:40
+// Last modified: 2025/02/06 16:11:01
 
 let accessMode;
 
@@ -102,6 +102,9 @@ $(document).ready(function() {
                     setlabel(form.getControlByPath('dewpt/limitmax'), tempStr);
 
                     setlabel(form.getControlByPath('wetbulb/offset'), tempStr);
+
+                    setlabel(form.getControlByPath('snow/mininc'), units.laser);
+                    setlabel(form.getControlByPath('snow/spike'), units.laser);
                 }
             });
         }

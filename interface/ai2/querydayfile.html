@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Query Dayfile
-	File:	querydayfile.html		v4.0.0
-	Author:	D.N.C.Thomas		 Sept 2024
-	Last Edit:	2024/10/05 15:56:24
+	File:	querydayfile.html		v4.0.1
+	Author:	D.N.C.Thomas		 Sept 2025
+	Last Edit:	2025-02-07
 	Last Check:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -58,7 +58,7 @@
 		<script>
 		</script>
 		<style>
-			input[type="text"], select { width: 20em!important; }
+			input[type="text"], select { width: 20em!important; border-radius: 1em 0 0 1em!important; }
 			.ow-grid {
 				display:grid;
 				grid-template-columns: 1fr  2fr;
@@ -66,6 +66,10 @@
 				font-size:120%;
 				font-weight: 700;
 			}
+			#ui-datepicker-div {min-width:340px; max-width:370px;}
+			#ui-datepicker-div > table{ min-width: 340px;max-width:370px;}
+			#ui-datepicker-div > div > div > select.ui-datepicker-month{ max-width:300px!important;}
+			#ui-datepicker-div > div > div > select.ui-datepicker-year{max-width:300px!important;}
 		</style>
 	</head>
 	<body class=ow-theme-add5>
@@ -92,17 +96,17 @@
 					<h1>Query the Day File</h1>
 				</div>
 
-				<div class="ow-oneCol">
+				<div class="ax-column1">
 					<div class="ow-theme-add5 ow-container ow-animate-drop" style="order:0;">
 
 						<form></form>
 					</div>
 				</div>
 				<!--	End of three column section	-->
-				<div class="ow-threeCol" style="margin-bottom:0;">
+				<div class="ax-column3 ax-fixedwidth">
 					<h4>Results</h4>
 				</div>
-				<div class="ow-threeCol">
+				<div class="ax-column3 ax-fixedwidth">
 					<div class="ow-card ow-theme-sub3 ow-grid" >
 						<div>Value:</div>
 						<div><span id="resultValue"></span></div>

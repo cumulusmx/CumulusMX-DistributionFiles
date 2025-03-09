@@ -10,7 +10,7 @@
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 //	Configure 'thems' for drop down
-let ThemeNames = ["Arcadia",		"Arcadia Dark", 	"Cherry Tomato",	"Cherry Tomato Dark",
+let ThemeNames = ["Arcadia",		"Arcadia Dark", 	"Aurora Green","Aurora Green Dark","Cherry Tomato",	"Cherry Tomato Dark",
 				  "Chili Oil",		"Chili Oil Dark",	"Crocus Petal",		"Crocus Petal Dark",
 				  "Cylon Yellow",	"Cylon Yellow Dark","Emporador",	"Emporador Dark",
 				  "Grey",   		"Dark Grey",		"High Contrast", "Lime Punch",		"Lime Punch Dark",
@@ -27,6 +27,7 @@ $( function () {
 		$('#ThemeSelector').remove();
 		setupTheme( CMXConfig.Theme );
 		setUpUnits( CMXConfig.Units );
+		setupAlarms( CMXConfig.LEDs );
 		setUpAnimation( CMXConfig.Seagull.Animation )
 	}
 	displayCurrent();
@@ -76,6 +77,8 @@ let displayCurrent = function() {
 		showConfig();
 	});
 	//$('#CMXInfo').html( JSON.stringify( CMXConfig, null, ' ' ));
+	$('#defaultLED').addClass(CMXConfig.LEDs.defAlarm);
+	$('#userLED').addClass(CMXConfig.LEDs.userAlarm);
 };
 
 let setupTheme = function( activeTheme ) {
@@ -128,6 +131,29 @@ let setUpAnimation = function( animation ) {
 	});
 };
 
+let setupAlarms = function( ) {
+	var opt = { Brick:'ow-brick', Lozenge:'ow-lozenge', Oval:'ow-oval', Round: 'ow-round', Small_Round:'ow-round ow-small',Square:'', Small_Square:'ow-small'};
+	var optionsUsr = '';
+	var optionsDef = '';
+	for( key in opt){
+		optionsUsr += '<option value="' + opt[key] + '" ' + (CMXConfig.LEDs.userAlarm == opt[key] ? "selected" : "") + '>' + key.replace('_',' ') + '</option>\n';
+		optionsDef += '<option value="' + opt[key] + '" ' + (CMXConfig.LEDs.defAlarm == opt[key] ? "selected" : "") + '>' + key.replace('_',' ') + '</option>\n';
+	}
+
+	$('#AlarmDef').html( optionsDef );
+	$('#AlarmUsr').html( optionsUsr );
+	$('#AlarmDef').on('change', function(){
+		CMXConfig.LEDs.defAlarm = $('#AlarmDef').prop('value');
+		$('#defaultLED').removeClass('ow-brick ow-lozenge ow-oval ow-round ow-small').addClass($('#AlarmDef').prop('value'));
+		showConfig()
+	});
+	$('#AlarmUsr').on('change', function() {
+		$('#userLED').removeClass('ow-brick ow-lozenge ow-oval ow-round ow-small').addClass($('#AlarmUsr').prop('value'));
+		CMXConfig.LEDs.userAlarm = $('#AlarmUsr').prop('value');
+		showConfig();
+	})
+
+};
 var clearScheme = function() {
     //localStorage.removeItem( AIStore );
 	//localStorage.clear();

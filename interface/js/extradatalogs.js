@@ -1,4 +1,4 @@
-// Last modified: 2024/10/28 19:59:46
+// Last modified: 2025/02/14 11:48:33
 
 var myTable;
 var currMonth;
@@ -124,6 +124,8 @@ $(document).ready(function () {
         var pressStep = decimalToStep[a4[0].press.decimals];
         var rainStep = decimalToStep[a4[0].rain.decimals];
         var etStep = decimalToStep[a4[0].rain.decimals + 1];
+        var laserStep = decimalToStep[a4[0].laser.decimals];
+        var snowStep = decimalToStep[a4[0].snow.decimals];
 
 
         var columnDefs = [
@@ -229,10 +231,19 @@ $(document).ready(function () {
             {title:"CO₂ PM10 Avg", type: 'number', min: 0, step: 0.1},
             {title:"CO₂ Temp", type: 'number', step: tempStep},
             {title:"CO₂ Hum", type: 'number', min: 0, max: 100},
+            {title:"Laser Dist 1", type: 'number', min: 0, step: laserStep},
+            {title:"Laser Dist 2", type: 'number', min: 0, step: laserStep},
+            {title:"Laser Dist 3", type: 'number', min: 0, step: laserStep},
+            {title:"Laser Dist 4", type: 'number', min: 0, step: laserStep},
+            {title:"Laser Depth 1", type: 'number', step: laserStep},
+            {title:"Laser Depth 2", type: 'number', step: laserStep},
+            {title:"Laser Depth 3", type: 'number', step: laserStep},
+            {title:"Laser Depth 4", type: 'number', step: laserStep},
+            {title:"Snow 24h", type: 'number', min: 0, step: snowStep},
         ];
 
         myTable = $('#datalog').dataTable({
-            pagingType: "input",
+            //pagingType: "input",
             processing: true,
             serverSide: true,
             searching: true,
@@ -240,6 +251,13 @@ $(document).ready(function () {
             ordering: false,
             pageLength: 10,
             lengthMenu: [10,20,50,100],
+            fixedHeader: true,
+            fixedColumns: {
+                left: 3
+            },
+            scrollY: '70vh',
+            scrollX: '100%',
+            scrollCollapse: true,
             ajax: {
                 url: "/api/data/extralogfile?from="+formatDateStr(now)+"&to="+formatDateStr(now),
                 data: function (data) {

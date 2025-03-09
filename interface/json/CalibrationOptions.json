@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/02/06 16:54:24",
 	"definitions": {
 		"calibnospike": {
 			"fields": {
@@ -242,6 +243,26 @@
 				"multiplier2": {
 					"label": "Multiplier ^2:",
 					"helper": "The Multiplier ^2 affects the curve of the correction"
+				}
+			}
+		},
+		"snow": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"mininc": {
+					"label": "Minimum increment",
+					"helpers" : [
+						"The minimum increase in the laser depth value between consecutive readings for the value to added to the daily snowfall accumulation",
+						"NOTE: This is set in laser measurement units, not snow depth units"
+					]
+				},
+				"spike": {
+					"label": "Spike removal",
+					"helpers" : [
+						"If the change in the laser depth value between consecutive readings is greater than this value it will be ignored and not added to the daily snow accumulation",
+						"NOTE: This is set in laser measurement units, not snow depth units"
+					]
 				}
 			}
 		}

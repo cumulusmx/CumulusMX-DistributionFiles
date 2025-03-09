@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/01/23 15:00:49",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -41,8 +42,20 @@
 			"collapsible": true,
 			"collapsed": true,
 			"fields": {
+				"outputtext": {
+					"label": "Report format:",
+					"type": "select",
+					"removeDefaultNone": "true",
+					"optionLabels": [
+						"HTML",
+						"Plain Text"
+					],
+					"sort": false,
+					"helper": "Create the report files as traditional plain text, or formatted HTML. Default = Plain Text"
+				},
 				"timeformat": {
 					"label": "Time format:",
+					"type": "select",
 					"removeDefaultNone": "true",
 					"optionLabels": [
 						"24 Hour",

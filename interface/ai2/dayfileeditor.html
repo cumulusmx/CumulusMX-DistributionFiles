@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Day File Editor
-	File:	dayfileeditor.html		v4.0.0
-	Author:	D.N.C.Thomas		  Feb 2024
+	File:	dayfileeditor.html		v4.0.1
+	Author:	D.N.C.Thomas		  Feb 2025
 	Note:	This is a new file name
-	Last Edit:	2024-02-24
+	Last Edit:	2025/02/18 11:09:24
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -37,7 +37,7 @@
 		<!--	Data Tables	-->
 		<link href="/lib/datatables/datatables.min.css" rel="stylesheet">
 		<script src="/lib/datatables/datatables.min.js"></script>
-		<script src="/lib/datatables/pagination_input.js"></script>
+		<!--<script src="/lib/datatables/pagination_input.js"></script>-->
 		<script src="lib/datatables/fixedColumns4-3-0.js"></script>
 		<script src="lib/datatables/dataTables.altEditor.free.js"></script>
 
@@ -80,7 +80,7 @@
 			#datalog tbody .hours:after,
 			#datalog tbody .ETUnits:after,
 			#datalog tbody .solarUnits:after	{ font-size: 0.6em; padding-left: 0.3em; vertical-align: baseline;}
-			
+
 			/*	You MAY need to manually edit the following styles to match your units	*/
 			#datalog tbody .percent:after   	{ content:"%"; }
 			#datalog tbody .bearing:after    	{ content:"°"; }
@@ -116,8 +116,8 @@
 					<p class="w3-right-align">Display (and edit) your dayfile log<br>You can scroll the table sideways to reveal other readings.</p>
 				</div>
 
-				<div class="ow-oneCol ow-card ow-theme-add4" style="padding: 0.5vh 0.5vw;">
-					<table id="datalog" class="w3-table  w3-hoverable w3-responsive" style="width:100%; overflow: scroll;"></table>
+				<div class="ax-column1 ow-card ow-theme-add4" style="padding: 0.5vh 0.5vw;">
+					<table id="datalog" class="w3-table  w3-hoverable" style="width:100%; overflow: scroll;"></table>
 				</div>
 			</div>
 		</div>

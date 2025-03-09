@@ -1,4 +1,4 @@
-// Last modified: 2024/12/12 11:45:36
+// Last modified: 2025/02/17 10:54:18
 
 let StashedStationId;
 let accessMode;
@@ -239,6 +239,38 @@ $(document).ready(function () {
             // Set the initial value of Davis advanced conntype
             let conntype = form.getControlByPath('davisvp2/davisconn/conntype').getValue();
             form.getControlByPath('davisvp2/advanced/conntype').setValue(+conntype);
+
+
+            // Some ecowit api control
+            let ecowittapi = form.getControlByPath('ecowittapi');
+            let sdcard = form.getControlByPath('ecowitthttpapi/usesdcard');
+
+            // Set the initial value of the ecowitt api
+            if (stationid == 22 && sdcard.getValue()) {
+                ecowittapi.hide();
+            }
+            // set the ecowitt api to listen to the ecowitt http local api SD card setting
+            ecowittapi.subscribe(sdcard, function(val) {
+                if (val) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
+            });
+            ecowittapi.subscribe(stationid, function(val) {
+                if (val != 22) {
+                    this.show();
+                } else {
+                    let form = $('form').alpaca('get');
+                    let sdcard = form.getControlByPath('ecowitthttpapi/usesdcard').getValue();
+                    if (sdcard) {
+                        this.hide();
+                    } else {
+                        this.show();
+                    }
+                }
+            });
+
         }
     });
 });
@@ -401,7 +433,7 @@ let allStations = {
     'WeatherLink Live': 11,
     'WeatherLink Cloud (WLL/WLC)': 19,
     'WeatherLink Cloud (VP2)': 20,
-    'Local API (TCP)': 12,
+    'Binary Local API (Legacy)': 12,
     'Cloud': 18,
     'HTTP Sender': 14,
     'HTTP (Wunderground)': 13,
@@ -426,7 +458,7 @@ let oregonStations = {'Select Station Type...': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
 let oregonUsbStations = {'Select Station Type...': -1 , 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'TCP Local API': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
+let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'Binary Local API (Legacy)': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
 let httpStations = {'HTTP Sender (WUnderground format)': 13};
 let ambientStations = {'HTTP Sender (Ambient format)': 15};
 let weatherflowStations = {'Tempest': 16};

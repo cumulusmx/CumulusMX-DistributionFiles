@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/11/23 15:11:00
+Last modified: 2025/01/24 16:39:50
 -->
 <!doctype html>
 <html lang="en">
@@ -24,9 +24,10 @@ Last modified: 2024/11/23 15:11:00
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Custom Files -->
-    <!-- <script src="js/noaareports.js"></script> -->
+    <script src="js/noaayear.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/noaareports.css" rel="stylesheet">
 
     <style type="text/css">
         body {
@@ -36,95 +37,6 @@ Last modified: 2024/11/23 15:11:00
         .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
         .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
     </style>
-
-    <script>
-        //$.fn.dataTable.ext.errMode = 'none';
-        $(document).ready(function () {
-            $.ajax({
-                url: "api/info/version.json",
-                dataType:"json"
-            })
-            .done(function (result) {
-                $('#Version').text(result.Version);
-                $('#Build').text(result.Build);
-            });
-
-            $.ajax({
-                url: '/api/tags/process.txt',
-                dataType: 'json',
-                type: 'POST',
-                data: '<#recordsbegandate format="yyyy">'
-            })
-            .done(function (result) {
-                var now = new Date();
-                // subtract 1 day
-                now.setTime(now.getTime()-(1*24*3600000));
-                var yr = now.getFullYear();
-                var start = parseInt(result);
-
-                for (var i = yr; i >= start; i--) {
-                    $('#datepicker').append($('<option>', {
-                        value: i,
-                        text: i
-                    }));
-                }
-
-                load();
-            });
-        });
-
-        function load() {
-            var year = $('#datepicker').val();
-            $.ajax({
-                url: 'api/reports/noaayear?year='+year
-            })
-            .done(function(data) {
-                $('#report').text(data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generate() {
-            var year = $('#datepicker').val();
-            $.ajax({
-                url: 'api/genreports/noaayear?year='+year
-            })
-            .done(function(data) {
-                $('#report').text(data);
-                alert("Report (Re)generated");
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function generateAll() {
-            $.ajax({
-                url: 'api/genreports/all'
-            })
-            .done(function(data) {
-                $('#report').text(data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-
-        function uploadRpt() {
-            var year = $('#datepicker').val();
-            $.ajax({
-                url: 'api/uploadreport/noaayear?year='+year
-            })
-            .done(function(data) {
-                alert("Report upload: " + data);
-            })
-            .fail(function(jqXHR, textStatus) {
-                $('#report').text('Something went wrong! (' + jqXHR.responseText + ')');
-            });
-        }
-    </script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -144,7 +56,7 @@ Last modified: 2024/11/23 15:11:00
     </div>
     <!-- END NAVIGATION MENU -->
 
-    <div class="container">
+    <main class="container">
         <h1>NOAA Yearly Report</h1>
         <div class="row">
             <div style="margin-bottom:10px">
@@ -158,14 +70,13 @@ Last modified: 2024/11/23 15:11:00
             </div>
         </div>
 
-        <div class="row">
-            <pre id="report"></pre>
+        <div class="row report-container" id="report">
         </div>
 
-    </div>
+    </main>
+
     <!-- FOOTER -->
-    <div id="footerwrap">
-        <footer class="clearfix"></footer>
+    <footer id="footerwrap">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
@@ -174,6 +85,6 @@ Last modified: 2024/11/23 15:11:00
                 </div>
             </div><!-- /row -->
         </div><!-- /container -->
-    </div><!-- /footerwrap -->
+    </footer><!-- /footerwrap -->
 </body>
 </html>

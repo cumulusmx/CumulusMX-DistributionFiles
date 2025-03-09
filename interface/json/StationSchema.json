@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/11/10 14:13:43",
+	"version": "Last Modified: 2025/02/16 14:12:32",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -13,21 +13,7 @@
 			"type": "object",
 			"properties": {
 				"manufacturer": {
-					"enum": [
-						-1,
-						0,
-						6,
-						2,
-						9,
-						7,
-						8,
-						11,
-						1,
-						4,
-						5,
-						3,
-						10
-					],
+					"enum": [-1,0,6,2,9,7,8,11,1,4,5,3,10],
 					"required": true
 				},
 				"stationtype": {
@@ -37,14 +23,7 @@
 					"type": "string"
 				},
 				"loginterval": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5
-					],
+					"enum": [0,1,2,3,4,5],
 					"required": true
 				},
 				"logrollover": {
@@ -69,49 +48,30 @@
 					"type": "object",
 					"properties": {
 						"wind": {
-							"enum": [
-								0,
-								1,
-								2,
-								3
-							],
+							"enum": [0,1,2,3],
 							"required": true
 						},
 						"pressure": {
-							"enum": [
-								0,
-								1,
-								2,
-								3
-							],
+							"enum": [0,1,2,3],
 							"required": true
 						},
 						"temp": {
 							"title": "Temperature",
-							"enum": [
-								0,
-								1
-							],
+							"enum": [0,1],
 							"required": true
 						},
 						"rain": {
 							"title": "Rain",
-							"enum": [
-								0,
-								1
-							],
+							"enum": [0,1],
 							"required": true
 						},
 						"snow": {
 							"title": "Snow Depth",
-							"enum": [
-								0,
-								1
-							]
+							"enum": [0,1]
 						},
 						"laser": {
 							"title": "Laser Distance",
-							"enum": [0,1]
+							"enum": [0,1,2]
 						},
 						"cloudbaseft": {
 							"type": "boolean"
@@ -315,32 +275,7 @@
 							"type": "boolean"
 						},
 						"syncclockhour": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8,
-								9,
-								10,
-								11,
-								12,
-								13,
-								14,
-								15,
-								16,
-								17,
-								18,
-								19,
-								20,
-								21,
-								22,
-								23
-							]
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"readreceptionstats": {
 							"type": "boolean"
@@ -355,11 +290,7 @@
 							"type": "boolean"
 						},
 						"raingaugetype": {
-							"enum": [
-								-1,
-								0,
-								1
-							]
+							"enum": [-1,0,1]
 						},
 						"initwaittime": {
 							"type": "integer",
@@ -377,14 +308,7 @@
 							"maximum": 65536
 						},
 						"baudrate": {
-							"enum": [
-								1200,
-								2400,
-								4800,
-								9600,
-								14400,
-								19200
-							]
+							"enum": [1200,2400,4800,9600,14400,19200]
 						}
 					},
 					"dependencies": {
@@ -443,66 +367,19 @@
 					"type": "object",
 					"properties": {
 						"wind": {
-							"enum": [
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"temphum": {
-							"enum": [
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"rain": {
-							"enum": [
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"solar": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"uv": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						}
 					},
 					"dependencies": [
@@ -518,88 +395,28 @@
 							"type": "object",
 							"properties": {
 								"soilTempTx1": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilTempIdx1": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilTempTx2": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilTempIdx2": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilTempTx3": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilTempIdx3": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilTempTx4": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilTempIdx4": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								}
 							},
 							"dependencies": {
@@ -622,88 +439,28 @@
 							"type": "object",
 							"properties": {
 								"soilMoistTx1": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilMoistIdx1": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilMoistTx2": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilMoistIdx2": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilMoistTx3": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilMoistIdx3": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								},
 								"soilMoistTx4": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"soilMoistIdx4": {
-									"enum": [
-										1,
-										2,
-										3,
-										4
-									]
+									"enum": [1,2,3,4]
 								}
 							},
 							"dependencies": {
@@ -726,42 +483,16 @@
 							"type": "object",
 							"properties": {
 								"leafTx1": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"leafIdx1": {
-									"enum": [
-										1,
-										2
-									]
+									"enum": [1,2]
 								},
 								"leafTx2": {
-									"enum": [
-										0,
-										1,
-										2,
-										3,
-										4,
-										5,
-										6,
-										7,
-										8
-									]
+									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"leafIdx2": {
-									"enum": [
-										1,
-										2
-									]
+									"enum": [1,2]
 								}
 							},
 							"dependencies": {
@@ -783,129 +514,49 @@
 					"type": "object",
 					"properties": {
 						"extraTempTx1": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx1": {
 							"type": "boolean"
 						},
 						"extraTempTx2": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx2": {
 							"type": "boolean"
 						},
 						"extraTempTx3": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx3": {
 							"type": "boolean"
 						},
 						"extraTempTx4": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx4": {
 							"type": "boolean"
 						},
 						"extraTempTx5": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx5": {
 							"type": "boolean"
 						},
 						"extraTempTx6": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx6": {
 							"type": "boolean"
 						},
 						"extraTempTx7": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx7": {
 							"type": "boolean"
 						},
 						"extraTempTx8": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8
-							]
+							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"extraHumTx8": {
 							"type": "boolean"
@@ -920,13 +571,7 @@
 					"type": "object",
 					"properties": {
 						"raingaugetype": {
-							"enum": [
-								-1,
-								0,
-								1,
-								2,
-								3
-							]
+							"enum": [-1,0,1,2,3]
 						},
 						"tcpport": {
 							"type": "integer",
@@ -958,7 +603,7 @@
 			]
 		},
 		"gw1000": {
-			"title": "Ecowitt TCP Local API Settings",
+			"title": "Ecowitt Binary Local API (Legacy) Settings",
 			"type": "object",
 			"properties": {
 				"autoDiscover": {
@@ -997,7 +642,7 @@
 			]
 		},
 		"fineoffset": {
-			"title": "Fine Offset Settings",
+			"title": "Fine Offset (legacy) Settings",
 			"type": "object",
 			"properties": {
 				"syncreads": {
@@ -1079,10 +724,7 @@
 					"type": "string"
 				},
 				"baudrate": {
-					"enum": [
-						19200,
-						115200
-					]
+					"enum": [19200,115200]
 				},
 				"advanced": {
 					"title": "Instromet Advanced Options",
@@ -1092,32 +734,7 @@
 							"type": "boolean"
 						},
 						"syncclockhour": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8,
-								9,
-								10,
-								11,
-								12,
-								13,
-								14,
-								15,
-								16,
-								17,
-								18,
-								19,
-								20,
-								21,
-								22,
-								23
-							]
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"updatelogpointer": {
 							"type": "boolean"
@@ -1212,6 +829,9 @@
 			"properties": {
 				"ipaddress": {
 					"format": "ip-address"
+				},
+				"usesdcard": {
+					"type": "boolean"
 				}
 			},
 			"dependencies": [
@@ -1223,24 +843,10 @@
 			"type": "object",
 			"properties": {
 				"primaryTHsensor": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8,
-						99
-					]
+					"enum": [0,1,2,3,4,5,6,7,8,99]
 				},
 				"primaryRainSensor": {
-					"enum": [
-						0,
-						1
-					]
+					"enum": [0,1]
 				},
 				"piezosrain": {
 					"type": "boolean",
@@ -1249,108 +855,28 @@
 					]
 				},
 				"wn34chan1": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan2": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan3": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan4": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan5": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan6": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan7": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan8": {
-					"enum": [
-						0,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"stationid": {
 					"type": "integer"
@@ -1391,11 +917,7 @@
 			"type": "object",
 			"properties": {
 				"conntype": {
-					"enum": [
-						0,
-						1,
-						2
-					]
+					"enum": [0,1,2]
 				},
 				"filename": {
 					"type": "string",
@@ -1434,6 +956,11 @@
 							"type": "integer"
 						},
 						"filedelay": {
+							"type": "integer",
+							"minimum": 0,
+							"dependencies": "conntype"
+						},
+						"fileignore": {
 							"type": "integer",
 							"minimum": 0,
 							"dependencies": "conntype"
@@ -1493,28 +1020,17 @@
 					"type": "boolean"
 				},
 				"userainforisraining": {
-					"enum": [
-						0,
-						1,
-						2
-					]
+					"enum": [0,1,2]
 				},
 				"leafwetisrainingidx": {
-					"enum": [
-						-1,
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8
-					]
+					"enum": [-1,1,2,3,4,5,6,7,8]
 				},
 				"leafwetisrainingthrsh": {
 					"minimum": 0,
 					"type": "number"
+				},
+				"snowseasonstart": {
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"advanced": {
 					"title": "Advanced Options",
@@ -1549,32 +1065,7 @@
 							"maximum": 999
 						},
 						"snowdepthhour": {
-							"enum": [
-								0,
-								1,
-								2,
-								3,
-								4,
-								5,
-								6,
-								7,
-								8,
-								9,
-								10,
-								11,
-								12,
-								13,
-								14,
-								15,
-								16,
-								17,
-								18,
-								19,
-								20,
-								21,
-								22,
-								23
-							]
+							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"raindaythreshold": {
 							"type": "number",
@@ -1705,23 +1196,10 @@
 					"maximum": 2050
 				},
 				"rainseasonstart": {
-					"enum": [
-						1,
-						2,
-						3,
-						4,
-						5,
-						6,
-						7,
-						8,
-						9,
-						10,
-						11,
-						12
-					]
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"rainweekstart": {
-					"enum": [0, 1]
+					"enum": [0,1]
 				}
 			}
 		},
@@ -1730,9 +1208,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
 					"type": "number",
@@ -1754,9 +1230,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
 					"type": "number",
@@ -1781,9 +1255,7 @@
 					"type": "number"
 				},
 				"month": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 12
+					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				}
 			}
 		}

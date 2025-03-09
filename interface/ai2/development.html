@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	development
-	File:	development.html		v4.0.0
-	Author:	D.N.C.Thomas		Feb 2024
-	Last Edit:	2024-04-05
+	File:	development.html		v4.0.1
+	Author:	D.N.C.Thomas		Feb 2025
+	Last Edit:	2025-04-07
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -67,37 +67,44 @@
 					<p onClick="showModal('Xmodal');" class="ow-clickable">Click me</p>
 				</div>
 
-				<div class="oneCol" style="margin-bottom: 2vh;">
-					<div class="ow-card ow-theme-sub4">
+				<div class="ax-column1">
+					<div class="ow-card ow-theme-add4">
 						<div class="ow-titleBar" style="margin: 1vh 0;">
-							<h2>Current Available Data</h2>
+							<h2>Single Column Layout</h2>
 						</div>
 						<p>
-							Below is a two column flex box (style: &quot;ow-twoCol&quot;) containing 4 cards.  Each row is forced to be equal
+							Single column layouts always span the full page and have a gap between each panel.  Panels can be either 
+							'ow-card's or 'ow-container's.  Cards have a drop shadow.  This is therefore an ow-card.
+						</p>
+					</div>
+					<div class="ow-container ow-theme-add3">
+						<p>This is an 'ow-container' so has no shadow but this one has a different colour to make it stand out.</p>
+						<p>
+							Below is a two column flex box (style: &quot;ax-column2&quot;) containing 4 cards.  Each row is forced to be equal
 							height unless you by add the class <span class="ow-codeSpan">ow-flex-top</span> or
 							<span class="ow-codeSpan">ow-flex-center</span> or <span class="ow-codeSpan">ow-flex-bottom</span> to the div containing 
 							the <strong>xxxCol</strong> class.&nbsp;
 							Children have to be &quot;div&quot; elements.
 						</p>
-						<p>You do need to add a margin to the bottom of one column panels.</p>
 					</div>
 				</div>
-
-				<div class="ow-twoCol">
+				<div class="ow-titleBar">
+					<h2>Two column layouts</h2>
+				</div>
+				<div class="ax-column2">
 					<div class="ow-card" style="order:0;">
 						<div class="ow-titleBar">
 							<h3>Card title</h3>
 							<p ><i class="fa-solid fa-cloud ow-theme-txt"></i> Aside</p>
 						</div>
 						<p>
-							This is an <strong>ow-card</strong>.  It adds padding and a box shadow but no colour (it uses the colour 
-							of the page).&nbsp; Colour can be added using <strong>'class="ow-theme-aaaX"'</strong>, where 'aaa' is 
-							replaced with 'add' or 'sub' followed by a number 1 - 5.
+							This 'card' has a <strong>ow-titleBar</strong> that takes any html elements and spaces it across the available width. 
+							It will <strong>NOT</strong> wrap sp excess content will overflow or overlap.
 						</p>
 						<p>
-							The first three card use a style '<strong>ow-titleBar</strong>' which allows more than one element to 
-							appear on the line.&nbsp; They spread evenly across the available space and are set to align items on 
-							their baseline.&nbsp; Hence the button in the next card overlaps the bottom edge.
+							There are <strong>FIVE</strong> cards in this section with the last card automatically stretching to fit the availabel space. 
+							If this is not required, the class 'ax-fixedwidth' can be applied to the parent container; this will make it the same width 
+							as the other cards in the set.
 						</p>
 					</div>
 					<div class="ow-card ow-Gradient1" style="order:0;">
@@ -162,7 +169,7 @@
 				</div>
 				<!--	End of two column section	-->
 				<h3>Three columns panel</h3>
-				<div class="ow-threeCol">
+				<div class="ax-column3">
 					<div class="ow-theme-add5 ow-container ow-animate-drop" style="order:0;">
 						<h4>h4 title</h4>
 						<p>Colour: ow-theme-add5 (Same as page)</p>
@@ -215,7 +222,7 @@
 				</div>
 				<!--	End of three column section	-->
 				<h2>Four Column panels</h2>
-				<div class="ow-fourCol">
+				<div class="ax-column4">
 					<div class="ow-theme-add5 ow-card">
 						<h5>h5 Title</h5>
 						<div>Basic LED: <div class="ow-led ow-LED-on"></div><div class="ow-led"></div></div>
@@ -241,7 +248,7 @@
 					</div>
 				</div>
 				<h2>Five column panels</h2>
-				<div class="ow-fiveCol">
+				<div class="ax-column5">
 					<div class="ow-card ow-clickable" onClick="showModal('Xmodal')">
 						<p>One</p><p>You can click this panel to show the modal popup.</p>
 					</div>
@@ -253,7 +260,7 @@
 					<div class="ow-card"><p>Five</p></div>
 				</div>
 				<h3>Six column panels</h3>
-				<div class="ow-sixCol">
+				<div class="ax-column6">
 					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
 					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>
 					<div class="ow-theme-add2 ow-card">ow-theme-add2</div>

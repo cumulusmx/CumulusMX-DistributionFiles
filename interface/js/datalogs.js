@@ -1,4 +1,4 @@
-// Last modified: 2024/12/05 17:48:02
+// Last modified: 2025/02/14 11:47:56
 
 var myTable;
 var currMonth;
@@ -168,7 +168,7 @@ $(document).ready(function () {
         ];
 
         myTable = $('#datalog').dataTable({
-            pagingType: 'input',
+            //pagingType: 'input',
             processing: true,
             serverSide: true,
             searching: true,
@@ -176,6 +176,13 @@ $(document).ready(function () {
             ordering: false,
             pageLength: 10,
             lengthMenu: [10,20,50,100],
+            fixedHeader: true,
+            fixedColumns: {
+                left: 3
+            },
+            scrollY: '70vh',
+            scrollX: '100%',
+            scrollCollapse: true,
             ajax: {
                 url: '/api/data/logfile?from='+formatDateStr(now)+'&to='+formatDateStr(now),
                 data: function (data) {

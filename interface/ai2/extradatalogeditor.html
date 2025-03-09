@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Extra Data Log Editor
-	File:	extradatalogeditor.html		v4.0.0
-	Author:	D.N.C.Thomas			  Feb 2024
+	File:	extradatalogeditor.html		v4.0.1
+	Author:	D.N.C.Thomas			  Feb 2025
 	Note:
 		This is a new file name
-	Last Edit:	2023/12/15 16:29:47
+	Last Edit:	2025/02/18 11:07:54
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -38,7 +38,7 @@
 		<!--	Data Tables	-->
 		<link href="/lib/datatables/datatables.min.css" rel="stylesheet">
 		<script src="/lib/datatables/datatables.min.js"></script>
-		<script src="/lib/datatables/pagination_input.js"></script>
+		<!--<script src="/lib/datatables/pagination_input.js"></script>-->
 		<script src="lib/datatables/fixedColumns4-3-0.js"></script>
 		<script src="lib/datatables/dataTables.altEditor.free.js"></script>
 
@@ -72,17 +72,19 @@
 			/*	Adjust size of units	*/
 			#datalog tbody .tempUnits:after,
 			#datalog tbody .percent:after,
+			#datalog tbody .laserUnits:after,
 			#datalog tbody .bearing:after		{ font-size: 0.6em; padding-left: 0.3em; vertical-align: top;}
 			#datalog tbody .soilMUnits:after,
 			#datalog tbody .leafWUnits:after,
 			#datalog tbody .airQual1Units:after,
 			#datalog tbody .airQual2Units:after,
 			#datalog tbody .airQual3Units:after,
+			#datalog tbody .snowUnits:after,
 			#datalog tbody .airQual4:after,
 			#datalog tbody .CO2Units:after,
 			#datalog tbody .CO2_5Units:after,
 			#datalog tbody .CO2_10Units:after	{ font-size: 0.6em; padding-left: 0.3em; vertical-align: baseline;}
-			
+
 			/*	You MAY need to manually edit the following styles if you have extra sensors	*/
 			#datalog tbody .percent:after   	{ content: "%"; }
 			#datalog tbody .soilMUnits:after   	{ content: "-"; }
@@ -94,6 +96,8 @@
 			#datalog tbody .CO2Units:after		{ content: "-"; }
 			#datalog tbody .CO2_5Units:after	{ content: "-"; }
 			#datalog tbody .CO2_10Units:after		{ content: "-"; }
+			#datalog tbody .LaserUnits:after { content:"-";}
+			#datalog tbody .SnowUnits:after {content: "-";}
 
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
 		</style>
@@ -124,7 +128,7 @@
 				</div>
 
 				<div class="ow-btnBar ow-flex-center" style="justify-content: flex-start; margin-bottom: 2vh;">
-					<p style="margin:0; padding:0;">Start Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
+					<p style="margin:0; padding:0;">Start Date:&nbsp;<input type="text" class="ow-theme-add4 w3-border ow-theme-bdr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
 					<p style="margin:0; padding:0;">End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo"></p>
 					<button id="loadBtn" type="button" class="w3-btn" onclick="load()" style="max-width: 8em;">Load</button>
 					<span class="ow-txt-small w3-right-align">
@@ -132,8 +136,8 @@
 						If you have no extra sensors clicking 'load' will raise an error</span>
 				</div>
 
-				<div class="ow-oneCol ow-card ow-theme-add4" style="padding: 0.5vh 0.5vw;">
-					<table id="datalog" class="w3-table w3-hoverable w3-responsive" ></table>
+				<div class="ax-column1 ow-card ow-theme-add4" style="padding: 0.5vh 0.5vw;">
+					<table id="datalog" class="w3-table w3-hoverable" ></table>
 				</div>
 			</div>
 		</div>

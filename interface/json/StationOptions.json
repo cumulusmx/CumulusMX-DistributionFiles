@@ -1,5 +1,23 @@
 {
-	"version": "Last Modified: 2024/11/10 14:13:49",
+	"version": "Last Modified: 2025/02/11 15:11:55",
+	"definitions": {
+		"months": {
+			"optionLabels": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December"
+			]
+		}
+	},
 	"fields": {
 		"stationid": {
 			"type": "integer",
@@ -20,8 +38,8 @@
 					"optionLabels": [
 						" Select Manufacturer",
 						"Davis",
-						"Ecowitt (and clones)",
-						"Fine Offset (and clones)",
+						"Ecowitt and clones",
+						"Fine Offset (legacy) and clones",
 						"WeatherFlow",
 						"Weather Underground",
 						"Ambient",
@@ -141,7 +159,8 @@
 							"sort": false,
 							"optionLabels": [
 								"Centimetres",
-								"Inches"
+								"Inches",
+								"Millimetres"
 							]
 						},
 						"cloudbaseft": {
@@ -1197,6 +1216,14 @@
 					"helpers": [
 						"The IPv4 address of your station or gateway device"
 					]
+				},
+				"usesdcard": {
+					"label": "SD Card:",
+					"rightLabel": "Use the SD card data",
+					"helpers": [
+						"Use the data from the SD card in the station or gateway device for historical data",
+						"NOTE: This feature is only supported by some devices"
+					]
 				}
 			},
 			"dependencies": {
@@ -1448,6 +1475,13 @@
 								"conntype": 0
 							}
 						},
+						"fileignore": {
+							"label": "File Change Ignore (ms):",
+							"helper": "Period of time after a change that further changes are ignored. Default = 600ms",
+							"dependencies": {
+								"conntype": 0
+							}
+						},
 						"mqtttls": {
 							"label": "Use TLS:",
 							"rightLabel": "MQTT Server requires TLS for encryption",
@@ -1585,6 +1619,17 @@
 					"dependencies": {
 						"leafwetisrainingidx": [1,2,3,4,5,6,7,8]
 					}
+				},
+				"snowseasonstart": {
+					"label": "Snowfall Season Starts:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
+					"helpers": [
+						"The month of the year to start the total snowfall accumulation season",
+						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
+					]
 				},
 				"advanced": {
 					"collapsible": true,
@@ -1759,20 +1804,7 @@
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
-					"optionLabels": [
-						"January",
-						"February",
-						"March",
-						"April",
-						"May",
-						"June",
-						"July",
-						"August",
-						"September",
-						"October",
-						"November",
-						"December"
-					]
+					"$ref": "#/definitions/months"
 				},
 				"rainweekstart": {
 					"label": "Start of rainfall week:",
@@ -1793,9 +1825,13 @@
 			"fields": {
 				"starts": {
 					"label": "Growing season starting month:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month you want the growing season year to start",
-						"Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
+						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
 					]
 				},
 				"basetemp1": {
@@ -1825,9 +1861,13 @@
 			"fields": {
 				"starts": {
 					"label": "Year summation starting month:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month you want the year summing to start",
-						"Default: 1 (January), in Northern hemisphere / 7 (July), in Southern hemisphere"
+						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
 					]
 				},
 				"basetemp1": {
@@ -1866,9 +1906,13 @@
 				},
 				"month": {
 					"label": "Chill Season Starts:",
+					"removeDefaultNone": true,
+					"sort": false,
+					"type": "select",
+					"$ref": "#/definitions/months",
 					"helpers": [
 						"The month of the year to start the chill hours season",
-						"Default: 10 (October), in Northern hemisphere / 4 (April), in Southern hemisphere"
+						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
 					]
 				}
 			}

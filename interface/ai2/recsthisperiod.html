@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	This period highs & lows
-	File:	recsthisperiod.html		v4.0.0
-	Author:	D.N.C.Thomas		  Feb 2024
+	File:	recsthisperiod.html		v4.0.1
+	Author:	D.N.C.Thomas		  Feb 2025
 	Note:	This is a new file name
-	Last Edit:	2024-04-05
+	Last Edit:	2024-02-06
 	Last Check:	2024-04-05
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
@@ -55,8 +55,8 @@
 			input[type=text] {
 				max-width: 10em;
 				text-align: center;
-				border:none;
-				border-bottom: 1px solid var(--theme);
+				border-radius: 1em;
+				padding: 0.4em;
 			}
 			.ow-tableRow:hover {
 				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
@@ -91,13 +91,13 @@
 				</div>
 
 				<div class="ow-btnBar" style="justify-content: center; margin-bottom: 1vh; align-items:baseline;">
-					<div>Start Date:&nbsp;<input type="text" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
-					<div>End Date:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo"></div>
+					<div>Start Date:&nbsp;<input type="text" class="w3-border ow-theme-bdr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
+					<div>End Date:&nbsp;<input type="text" class="w3-border ow-theme-bdr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
 					<button type="button" class="ow-btn ow-thin" onclick="load()">Load</button>
 				</div>
 
 				<!--	You can change the class to 'ow-oneCol' if you prefer but you will need to adjust the width 's4' for titles	-->
-				<div class="ow-twoCol" style="row-gap: var(--rowGap);"><!--	Add style ow-flex-top' to have unequal columns	-->
+				<div class="ax-column2 ax-fixedwidth"><!--	Add style ow-flex-top' to have unequal columns	-->
 					<div class="ow-card ow-theme-add4" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h3>Temperatures</h3>

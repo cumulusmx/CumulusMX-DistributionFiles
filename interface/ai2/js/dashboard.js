@@ -17,6 +17,22 @@ $(document).ready(function () {
 
     let audioElement = document.createElement('audio');
 
+    //	Added by NEIL
+	$.ajax({
+		url: '/api/settings/displayoptions.json',
+		dataType: 'json',
+		success: function (results) {
+			var dataVisible = results.DataVisibility;
+            if( dataVisible.solar.Solar == 0 && dataVisible.solar.UV == 0 ){
+                //  Hide ethe panel
+                $('[data-cmxData-Rad]').addClass('w3-hide');
+            } else {
+                if( dataVisible.solar.Solar == 0 ) { $('[data-cmxData-Solar]').addClass('w3-hide');}
+                if( dataVisible.solar.UV == 0)  { $('[data-cmxData-UV]').addClass('w3-hide');}
+            }
+        }
+    })
+
     function playSnd() {
         if (playList.length) {
             playList[0].addEventListener('ended', function () {
@@ -383,7 +399,12 @@ $(document).ready(function () {
             alarmSettings[alarm.Id] = alarm;
             alarmState[alarm.Id] = false;
 
-            $('#alarms').append('<div class="led-block" style="order:0;"><div class="ow-led ow-brick" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            if(alarm.Id.startsWith('AlarmUser')) {
+                //console.log(alarm.Id);
+                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.userAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            } else {
+                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.defAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+            }
 
             if (alarm.SoundEnabled) {
                 playSnd = true;

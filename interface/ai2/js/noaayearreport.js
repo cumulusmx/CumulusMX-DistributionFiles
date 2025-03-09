@@ -1,11 +1,11 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	noaayearreport.js	v3.0.1
  * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	10/10/2023 12:56
- * 	Based on:	
- * 		Marks script embedded in the 
+ * 	Last Edit:	2025/02/16 11:47:05
+ * 	Based on:
+ * 		Marks script embedded in the
  * 		html file of the same name
- * 	Last Mod:	
+ * 	Last Mod:
  * 	Role:
  * 		Draw charts based on readings
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -13,7 +13,7 @@
 //$.fn.dataTable.ext.errMode = 'none';
 $(document).ready(function () {
 
-	$.ajax({
+	var dates = $.ajax({
 		url: '/api/tags/process.txt',
 		dataType: 'json',
 		type: 'POST',
@@ -32,10 +32,30 @@ $(document).ready(function () {
 				text: i
 			}));
 		}
+	});
 
+	var conf = $.ajax({
+        url: '/api/settings/noaadata.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        outputText = result.options.outputtext;
+        if (outputText) {
+            $('#report')
+            .css('display', 'flex')
+            .css('width', '100%');
+        } else {
+            $('#report')
+            .css('text-align', 'center')
+            .css('width', '940px')
+            .css('display', 'block !important');
+        }
+    })
+
+	$.when(dates, conf).done(function (a1) {
 		load();
 	});
-	
+
 	$('#datepicker').on('change', function() {
 		load();
 	});
@@ -47,7 +67,12 @@ function load() {
 		url: '/api/reports/noaayear?year='+year
 	})
 	.done(function(data) {
-		$('#report').text(data);
+		if (outputText) {
+            $('#report').empty();
+            $('#report').append('<pre>' + data + '</pre>');
+        } else {
+            $('#report').html(data);
+        }
 	})
 	.fail(function(jqXHR, textStatus) {
 		$('#report').text('Something went wrong! (' + textStatus + ')');

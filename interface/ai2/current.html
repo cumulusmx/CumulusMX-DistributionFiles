@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Current Readings
-	File:	current.html			v4.0.0
-	Author:	D.N.C.Thomas		  Feb 2024
+	File:	current.html			v4.0.1
+	Author:	D.N.C.Thomas		  Feb 2025
 	Note:	New filename for now.html
-	Last Edit:	2024-02-21
-	Last Check:	2024-04-05
+	Last Edit:	2025-02-06
+	Last Check:	2024-04-05 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -->
 <html lang="en">
@@ -75,41 +75,45 @@
 					<p>Last update: <span data-OWData="Date"></span> @ <span id="lastupdatetime">00:00:00</span><img id="LastUpdateImg" src="img/green.png" class="ow-icon-small" alt="Update Image"></p>
 				</div>
 
-				<div class="ow-threeCol">
+				<div class="ax-column3">
 					<div class="ow-card ow-theme-add4" style="order:0;">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h3>Temperatures</h3>
 							<i class="fa-solid fa-temperature-half"></i>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Temp">
 							<p>Outdoor temperature</p>
 							<p><img id="TempTrendImg" class="ow-icon-small" alt="trend" src="img/up.png"> <span id="OutdoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ow-titleBar ow-tableRow">
+							<p>Today's Average Temp.</p>
+							<p><span id="AvgTempToday"></span><span class="TempUnit"></span></p>
+						</div>
+						<div class="ow-titleBar ow-tableRow" data-cmxData="DewPoint">
 							<p>Dew Point</p>
 							<p><span id="OutdoorDewpoint">--</span><span class="TempUnit"></span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow ">
+						<div class="ow-titleBar ow-tableRow " data-cmxData="WindChill">
 							<p>Wind Chill</p>
 							<p><span id="WindChill">--</span><span class="TempUnit"></span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow ">
+						<div class="ow-titleBar ow-tableRow " data-cmxData="AppTemp">
 							<p>Apparent temperature</p>
 							<p><span id="AppTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow ">
+						<div class="ow-titleBar ow-tableRow " data-cmxData="FeelsLike">
 							<p>Feels like</p>
 							<p><span id="FeelsLike">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow ">
+						<div class="ow-titleBar ow-tableRow " data-cmxData="HeatIndex">
 							<p>Heat Index</p>
 							<p><span id="HeatIndex">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Humidex">
 							<p>Humidex</p>
 							<p><span id="Humidex">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="InTemp">
 							<p>Indoor Temperature</p>
 							<p><span id="IndoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
@@ -135,9 +139,13 @@
 							<p>Rain last 24 hours</p>
 							<p><span id="RainLast24Hour">--</span><span class="RainUnit">--</span></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow w3-hide" data-cmxData="Last24h">
 							<p>Snow last 24 hours</p>
 							<p><span id="snow24h">--.-</span></p>
+						</div>
+						<div class="ow-titleBar ow-tableRow w3-hide" data-cmxData="Depth">
+							<p>Snow depth</p>
+							<p><span id="depth">---</span></p>
 						</div>
 						<div class="ow-titleBar ow-tableRow">
 							<p>Rain yesterday</p>
@@ -194,17 +202,21 @@
 							<p>Current windrun</p>
 							<p><span id="WindRunToday">??</span> <span class="WindRunUnit"></span></p>
 						</div>
+						<div class="ow-titleBar ow-tableRow">
+							<p>Cloudbase</p>
+							<p><span id="Cloudbase"></span> <span id="CloudbaseUnit"></span></p>
+						</div>
 					</div>
-					<div class="ow-card ow-theme-add4" style="order:0;">
+					<div class="ow-card ow-theme-add4" style="order:0;" data-cmxData="humidity">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h3>Humidity</h3>
 							<i class="fa-solid fa-cloud-rain" style="color: #0061ff;"></i>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Hum">
 							<p>Outdoor</p>
 							<p><span id="OutdoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="InHum">
 							<p>Indoor</p>
 							<p><span id="IndoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
@@ -223,27 +235,27 @@
 							<p><img id="PressTrendImg" src="img/up.png" alt="trend" class="ow-icon-small"> <span id="PressTrend">--</span><span class="PressUnit">--</span>/hr</p>
 						</div>
 					</div>
-					<div class="ow-card ow-theme-add4" style="order:0;">
+					<div class="ow-card ow-theme-add4" style="order:0;" data-cmxData="solar">
 						<div class="ow-titleBar" style="margin: 1vh 0">
 							<h3>Solar</h3>
 							<i class="fa-solid fa-sun-plant-wilt" style="color: #fec700;"></i>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Solar">
 							<p>Solar radiation</p>
 							<p><span id="SolarRad">--</span>&nbsp;W/m<sup>2</sup></p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Sunshine">
 							<p>Sunshine Hours</p>
 							<p><span id="SunshineHours">--</span>&nbsp;hours</p>
 						</div>
-						<div class="ow-titleBar ow-tableRow">
+						<div class="ow-titleBar ow-tableRow" data-cmxData="Solar">
 							<p>UV radiation</p>
 							<p><span id="UVindex">--</span></p>
 						</div>
 					</div>
 				</div>
 
-				<div class="ow-oneCol ow-container w3-hide" id="availableData"></div>
+				<div class="ax-column1 ow-container w3-hide" id="availableData"></div>
 
 			</div>
 		</div>

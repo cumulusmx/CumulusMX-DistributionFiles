@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/12/16 16:51:49",
+	"version": "Last Modified: 2025/02/09 13:56:23",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -223,10 +223,7 @@
 						},
 						"useCamera": {
 							"label": "Camera",
-							"rightLabel": "Use the web cam URL for your Ecowitt camera",
-							"dependencies": {
-								"stationid": 2
-							}
+							"rightLabel": "Use the web cam URL for your Ecowitt camera"
 						},
 						"setcustom": {
 							"label": "Enable Gateway Config:",
@@ -520,6 +517,14 @@
 										"conntype": 0
 									}
 								},
+								"fileignore": {
+									"label": "File Change Ignore (ms):",
+									"helper": "Period of time after a change that further changes are ignored. Default = 600ms",
+									"dependencies": {
+										"conntype": 0
+									}
+								},
+
 								"mqtttls": {
 									"label": "Use TLS:",
 									"rightLabel": "MQTT Server requires TLS for encryption",
@@ -583,6 +588,47 @@
 				"enabled": {
 					"rightLabel": "Use a Blake-Larsen sunshine recorder for sunshine hours",
 					"helper": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine - reads the SRsunshine.dat file"
+				}
+			}
+		},
+		"laser": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"sensor1": {
+					"fields": {
+						"depth": {
+							"label": "Calculate depth:",
+							"helpers": [
+								"Cumulus calculates the depth - used for simple laser distance sensors",
+								"This is not required for Ecowitt LDS01 sensors, if you enter a value Cumulus will calculate the depth from the Laser Distance value",
+								"Enter the basline distance from the sensor to bottom of the depth to be measured, use the same units as the sensor",
+								"Set to -1 (default) to disable the calculation",
+								"Depth = Baseline - Sensor_Distance_Reading"
+							]
+						}
+					}
+				},
+				"sensor2": {
+					"fields": {
+						"depth": {
+							"label": "Calculate depth:"
+						}
+					}
+				},
+				"sensor3": {
+					"fields": {
+						"depth": {
+							"label": "Calculate depth:"
+						}
+					}
+				},
+				"sensor4": {
+					"fields": {
+						"depth": {
+							"label": "Calculate depth:"
+						}
+					}
 				}
 			}
 		},

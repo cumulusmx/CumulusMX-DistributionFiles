@@ -1,4 +1,4 @@
-// Last modified: 2022/11/23 17:03:17
+// Last modified: 2025/02/18 11:18:22
 
 $(document).ready(function() {
 
@@ -28,7 +28,7 @@ $(document).ready(function() {
 	}];
 
 	var myTable = $('#sqlcache').DataTable({
-		pagingType: 'input',
+		//pagingType: 'input',
 		processing: true,
 		serverSide: true,
 		searching: true,

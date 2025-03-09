@@ -1,0 +1,43 @@
+<article class="report-container">
+  <header>
+    <h2>Monthly Climatological Summary for [#MONTH#] [#YEAR#]</h2>
+    <p>Name: <b>[#NAME#]</b> City: <b>[#CITY#]</b> State: <b>[#STATE#]</b></p>
+    <p>Elevation: <b>[#ELEV#]</b> Latitude: <b>[#LAT#]</b> Longitude: <b>[#LONG#]</b></p>
+    <p>Temperature (&deg;[#TEMPUNIT#]), Rain ([#RAINUNIT#]), Wind Speed ([#WINDUNIT#])</p>
+    <p>Heat Base: [#HEATBASE#]&deg;[#TEMPUNIT#] Cool Base: [#COOLBASE#]&deg;[#TEMPUNIT#] Method: Integration</p>
+  </header>
+  <section>
+    <table class="report-table">
+      <tr class="underline">
+        <th>Day</th>
+        <th>Mean<br>Temp</th>
+        <th>High<br>Temp</th>
+        <th>High<br>Temp<br>Time</th>
+        <th>Low<br>Temp</th>
+        <th>Low<br>Temp<br>Time</th>
+        <th>Heating<br>Degree<br>Days</th>
+        <th>Cooling<br>Degree<br>Days</th>
+        <th>Rain</th>
+        <th>Avg<br>Wind<br>Speed</th>
+        <th>High<br>Wind<br>Speed</th>
+        <th>High<br>Wind<br>Time</th>
+        <th>Dominant<br>Wind<br>Dir</th>
+      </tr>
+[#TABLECONTENT#]
+      <tr class="totals">
+        <td>Monthly</td>
+[#TABLESUMMARY#]
+      </tr>
+    </table>
+  </section>
+  <section id="report-summary">
+    <p><b>Max Temp</b> &gt;= [#MAXTEMPCOMP1#]&deg;[#TEMPUNIT#] = <b>[#MAXTEMPCOUNT1#]</b> days</p>
+    <p><b>Max Temp</b> &lt;= [#MAXTEMPCOMP2#]&deg;[#TEMPUNIT#] = <b>[#MAXTEMPCOUNT2#]</b> days</p>
+    <p><b>Min Temp</b> &lt;= [#MINTEMPCOMP1#]&deg;[#TEMPUNIT#] = <b>[#MINTEMPCOUNT1#]</b> days</p>
+    <p><b>Min Temp</b> &lt;= [#MINTEMPCOMP2#]&deg;[#TEMPUNIT#] = <b>[#MINTEMPCOUNT2#]</b> days</p>
+    <p><b>Max Rain: [#MAXRAIN#][#RAINUNIT#]</b> on day [#MAXRAINDAY#]</p>
+    <p><b>Days of Rain:</b> &gt;= [#RAINCOMP1#][#RAINUNIT#] = <b>[#RAINDAYS1#]</b> days</p>
+    <p><b>Days of Rain:</b> &gt;= [#RAINCOMP2#][#RAINUNIT#] = <b>[#RAINDAYS2#]</b> days</p>
+    <p><b>Days of Rain:</b> &gt;= [#RAINCOMP3#][#RAINUNIT#] = <b>[#RAINDAYS3#]</b> days</p>
+  </section>
+</article>
