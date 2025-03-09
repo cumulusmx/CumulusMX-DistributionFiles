@@ -2,7 +2,8 @@
 "options":{
   "useApparent":"<#Option_useApparent>",
   "showSolar":"<#Option_showSolar>",
-  "showUV":"<#Option_showUV>"
+  "showUV":"<#Option_showUV>",
+  "noaaFormat":"<#Option_noaaFormat>"
 },
 
 "location":"<#locationJsEnc>",
