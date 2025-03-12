@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/12/11 11:25:45
+Last modified: 2025/03/12 10:42:35
 -->
 <!doctype html>
 <html lang="en">
@@ -72,9 +72,11 @@ Last modified: 2024/12/11 11:25:45
       padding-right: 10px;
     }
 
-    tr:nth-child(even) {
-        background-color: #eef4f9;
-        cursor: default !important;
+    table.dataTable tbody tr:nth-child(even) {
+        background-color: #eef4f9
+    }
+    table.dataTable tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .editorContent {

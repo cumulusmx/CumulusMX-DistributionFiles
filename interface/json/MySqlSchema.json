@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/03/12 10:47:03",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -140,6 +141,9 @@
 								"enum": [0,1,2,3,4,5,6,7,8,9,10,11],
 								"removeDefaultNone": true,
 								"sort": false
+							},
+							"catchup": {
+								"type": "boolean"
 							}
 						}
 					}

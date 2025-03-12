@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/03/12 10:47:10",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -125,7 +126,10 @@
 		"customseconds": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "A custom SQL command to be executed at an interval in seconds - can include webtags",
+			"helpers": [
+				"A custom SQL command to be executed at an interval in seconds - can include webtags",
+				"For the logging date & time, use the web tag <#DataDateTime>"
+			],
 			"fields": {
 				"enabled": {
 					"rightLabel": "Custom Seconds Enabled"
@@ -149,7 +153,10 @@
 		"customminutes": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "A custom SQL command to be executed at an interval in minutes - can include webtags",
+			"helpers": [
+				"A custom SQL command to be executed at an interval in minutes - can include webtags",
+				"For the logging date & time, use the web tag <#DataDateTime>"
+			],
 			"fields": {
 				"enabled": {
 					"rightLabel": "Custom Minutes Enabled"
@@ -169,6 +176,10 @@
 									"optionLabels": ["1 min","2 mins","3 mins","4 mins","5 mins","6 mins","10 mins","12 mins","15 mins","20 mins","30 mins","60 mins"],
 									"removeDefaultNone": true,
 									"sort": false
+								},
+								"catchup": {
+									"label": "Catch up:",
+									"rightLabel": "Fill in historic data on catch up"
 								}
 							}
 						},
@@ -182,7 +193,10 @@
 		"customrollover": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "A custom SQL command to be executed just before end of day rollover - can include webtags",
+			"helper": [
+				"A custom SQL command to be executed just before end of day rollover - can include webtags",
+				"For the logging date & time, use the web tag <#DataDateTime>"
+			],
 			"fields": {
 				"enabled": {
 					"rightLabel": "Custom Rollover Enabled"
@@ -200,7 +214,10 @@
 		"customtimed": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "A custom SQL command to be executed at a set time of day - can include webtags, and can be repeated at intervals",
+			"helper": [
+				"A custom SQL command to be executed at a set time of day - can include webtags, and can be repeated at intervals",
+				"For the logging date & time, use the web tag <#DataDateTime>"
+			],
 			"fields": {
 				"enabled": {
 					"rightLabel": "Custom Timed Enabled"
