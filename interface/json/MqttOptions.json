@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/12/10 22:33:58",
+	"version": "Last Modified: 2025/03/13 22:48:39",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -12,11 +12,6 @@
 			"label": "Server port:",
 			"helper": "Your MQTT server port (default 1883)"
 		},
-		"useTls": {
-			"label": "TLS:",
-			"rightLabel": "Enable TLS",
-			"helper": "Enable TLS support, currently special certificates are not supported"
-		},
 		"username": {
 			"label": "Username:",
 			"helper": "Enter your MQTT server username - if required"
@@ -25,8 +20,43 @@
 			"label": "Password:",
 			"helper": "Enter your MQTT server password - if required"
 		},
-		"dataUpdate": {
+		"advanced": {
+			"collapsible": true,
 			"collapsed": true,
+			"fields": {
+				"useTls": {
+					"label": "TLS:",
+					"rightLabel": "Enable TLS",
+					"helper": "Enable TLS support, currently special certificates are not supported"
+				},
+				"ipVersion": {
+					"label": "IP Version:",
+					"helper": "Select the IP version to use for the connection",
+					"type": "select",
+                    "sort": false,
+					"optionLabels": [
+						"Auto - attempt to detect the correct version",
+						"Force IPv4",
+						"Force IPv6"
+					],
+					"removeDefaultNone": true
+				},
+				"protocolVersion": {
+					"label": "Protocol Version:",
+					"helper": "Select the MQTT protocol version to use for the connection",
+					"type": "select",
+                    "sort": false,
+					"optionLabels": [
+						"Auto - attempt to use the latest version",
+						"v3.1.0",
+						"v3.1.1",
+						"v5.0.0"
+					],
+					"removeDefaultNone": true
+				}
+			}
+		},
+		"dataUpdate": {
 			"fields": {
 				"enabled": {
 					"rightLabel": "Enable message sent when the data updates"
@@ -41,7 +71,6 @@
 			}
 		},
 		"interval": {
-			"collapsed": true,
 			"fields": {
 				"enabled": {
 					"rightLabel": "Enable messages sent at fixed intervals"

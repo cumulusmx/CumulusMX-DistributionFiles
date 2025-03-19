@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2023/12/10 22:34:22",
+	"version": "Last Modified: 2025/03/13 22:46:25",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -12,12 +12,24 @@
 			"minimum": 1,
 			"maximum": 65536
 		},
-		"useTls": {
-			"type": "boolean"
-		},
 		"username": {
 		},
 		"password": {
+		},
+		"advanced": {
+			"title": "Advanced Settings",
+			"type": "object",
+			"properties": {
+				"useTls": {
+					"type": "boolean"
+				},
+				"ipVersion": {
+					"enum": [0, 4, 6]
+				},
+				"protocolVersion": {
+					"enum": [0, 3, 4, 5]
+				}
+			}
 		},
 		"dataUpdate": {
 			"title": "Send message on data update",
