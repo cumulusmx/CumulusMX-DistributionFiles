@@ -1,4 +1,4 @@
-// Last modified: 2025/01/14 15:31:21
+// Last modified: 2025/03/29 15:39:22
 
 let accessMode;
 
@@ -68,8 +68,7 @@ $(document).ready(function () {
             setSensorLabels(form, 'leafWet');
             setSensorLabels(form, 'airQuality/sensor');
             setAvgSensorLabels(form, 'airQuality/sensorAvg');
-            setSensorLabels(form, 'laser/depth');
-            setSensorLabels(form, 'laser/dist');
+            setSensorLabels(form, 'laser');
         }
     });
 });
