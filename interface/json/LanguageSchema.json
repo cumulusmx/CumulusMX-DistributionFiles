@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/01/13 23:32:17",
+	"version": "Last modified: 2025/03/29 15:37:30",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -456,6 +456,9 @@
 			"type": "object",
 			"properties": {
 				"gentimedate": {
+					"type": "string"
+				},
+				"gendate": {
 					"type": "string"
 				},
 				"recdate": {

@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/01/13 23:31:37",
+	"version": "Last modified: 2025/03/29 15:37:28",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -528,6 +528,11 @@
 					"label": "General time & date",
 					"type": "text",
 					"helper": "Text displayed for general time & date web tags"
+				},
+				"gendate": {
+					"label": "General date",
+					"type": "text",
+					"helper": "Text displayed for general date web tags"
 				},
 				"recdate": {
 					"label": "Record date",
