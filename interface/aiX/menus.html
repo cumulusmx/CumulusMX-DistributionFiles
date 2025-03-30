@@ -1,0 +1,220 @@
+<!--
+	MENU	Last modified 30/03/2025 
+-->
+<a href="index.html" class="w3-bar-item w3-btn ax-theme6-hvr">Dashboard</a>
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Weather" class="w3-btn ax-theme5 ax-theme6-hvr" aria-label="Weather data" onClick="toggleDropDown( this)" aria-controls="mnuWeather">Weather data <i class="fa-solid fa-caret-down fa-xs"></i></button>
+	<div id="mnuWeather" class="w3-dropdown-content w3-bar-block w3-card ax-theme6 ax-animate-menu">
+		<a href="current.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Readings now">Current readings<i></i></a>
+		<a href="gauges.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Gauges"><i class="fa-solid fa-gauge-high"></i>Gauges</a>
+		<a href="charts.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Recent Charts"><i class="fa-solid fa-chart-column"></i><i class="fa-solid fa-chart-line"></i>Recent charts</a>
+		<a href="chartscompare.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Custom charts"><i class="fa-solid fa-chart-line"></i>Select-a-Chart</a>
+		<a href="chartsperiod.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Select a Chart"><i class="fa-solid fa-chart-line"></i>Select a period</a>
+		<a href="chartshistoric.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Historic charts"><i class="fa-solid fa-chart-column"></i><i class="fa-solid fa-chart-line"></i>Historic charts</a>
+		<a href="todayVyesterday.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Today verses yesterday">Today v Yesterday<i></i></a>
+		<a href="records.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Weather records">Weather records<i></i></a>
+		<a href="recsthisperiod.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Records for any period">Records this period<i></i></a>
+		<a href="querydayfile.html" class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Query specific data in the Day File"><i class="fa-solid fa-question"></i>Daily Data Query</a>
+	</div>
+</div>
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Extra" class="w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-label="Your extra sensors" aria-controls="mnuExtra">Extra sensors <i class="fa-solid fa-caret-down fa-xs"></i></button>
+	<div id="mnuExtra" class="w3-dropdown-content w3-bar-block w3-card ax-theme6 ax-animate-menu">
+		<a href="extrasensors.html"			class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Your additional sensors"><i class="fa-solid fa-wand-magic-sparkles"></i>Additional sensors</a>
+		<a href="airlinksensors.html"		class="w3-bar-item w3-btn ax-theme4-hvr" role="menuitem" aria-label="Airlink sensors"><i class="fa-solid fa-tower-cell"></i>AirLink sensors</a>
+	</div>
+</div>
+<span class="w3-bar-item" ><i class="fa-solid fa-diamond ax-theme2-txt ax-diamond w3-hide-medium w3-hide-small w3-tiny"></i></span>
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="NOAA" class="w3-btn ax-theme5 ax-theme4-hvr" onClick="toggleDropDown(this);" aria-label="Your NOAA Reports"  aria-controls="mnuNOAA">Reports<i class="fas-solid fas-caret-down fa-xs"></i></button>
+	<div id="mnuNOAA" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+		<a href="noaamonthreport.html" 	class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Monthly NOAA reports"><i class="fa-regular fa-clipboard"></i>Monthly NOAA report</a>
+		<a href="noaayearreport.html" 	class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Yearly NOAA reports"><i class="fa-regular fa-clipboard"></i>Yearly NOAA report</a>
+	</div>
+</div>
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Logs" class="w3-btn ax-theme5 ax-theme4-hvr" onClick="toggleDropDown(this)" aria-label="Edit Logs" aria-controls="mnuLogs">Logs <i class="fa-solid fa-caret-down fa-xs"></i></button>
+	<div id="mnuLogs" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+		<a href="datalogeditor.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit the readings logs"><i class="fa-regular fa-pen-to-square"></i>Edit the Readings logs</a>
+		<a href="extradatalogeditor.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit any extra data logs"><i class="fa-regular fa-pen-to-square"></i>Edit the extra data logs</a>
+		<a href="dayfileeditor.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit the day file"><i class="fa-regular fa-pen-to-square"></i>Edit the dayfile</a>
+		<div class="ax-menu-line"></div>
+		<a href="intervaldata.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Select and view interval data"><i class="fa-solid fa-clipboard-question"></i>Interval Data Viewer</a>
+		<a href="dailydata.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Select and view day-file data"><i class="fa-solid fa-clipboard-question"></i>Dayfile Data Viewer</a>
+	</div>
+</div>
+
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium" >
+	<button id="Settings" class="w3-btn ax-theme5 ax-them4-hvr" onClick="toggleDropDown(this)" aria-label="Edit Logs" aria-controls="mnuSettings">Settings<i class="fas-colid fas-caret-down"></i></button>
+	<div id="mnuSettings" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu" style="width:800px;margin-left:-450px;">
+		
+		<div class="ax-menuCol3" >
+			<div class="">
+				<p class="w3-bar-item w3-center ax-theme9-txt" style="margin:0; padding: 0; font-size: 120%;">Primary settings</p>
+				<div class="ax-menu-line"></div>
+				<a href="wizard.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Configuration wizard"><i class="fa-solid fa-list-check"></i>Configuration Wizard</a>
+				<div class="ax-menu-line"></div>
+				<a href="programsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Program settings"><i class="fa-solid fa-list-check"></i>Program settings</a>
+				<a href="stationsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Station settings"><i class="fa-solid fa-list-check"></i>Station settings</a>
+				<a href="internetsettings.html"	class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Internet settings"><i class="fa-solid fa-list-check"></i>Internet Settings</a>
+				<div class="ax-menu-line"></div>
+			</div>
+			<div class="">
+				<div class="ax-menu-line w3-hide"></div>
+				<a href="thirdpartysettings.html" class="w3-bar-item w3-btn ax-theme6-hvr"  role="menuitem" aria-label="Third party uploads"><i class="fa-solid fa-list-check"></i>Third party settings</a>
+				<a href="extrasensorsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Configure your extra sensors"><i class="fa-solid fa-arrow-up-from-bracket"></i>Extra sensor settings</a>
+				<a href="extrawebfiles.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Upload additional files"><i class="fa-solid fa-arrow-up-from-bracket"></i>Extra web files</a>
+				<a href="confighttpfiles.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="HTTP File download"><i class="fa-solid fa-download"></i>HTTP download</a>
+				<a href="calibrationsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Calibration settings"><i class="fa-solid fa-sliders"></i>Calibration settings</a>
+				<a href="noaareportsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="NOAA settings">NOAA settings<i class="fa-solid fa-list-check"></i></a>
+			</div>
+			<div style="margin-top: 0.5em;">
+				<div class="ax-menu-line w3-hide"></div>
+				<a href="mysqlsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="MySQL settings"><i class="fa-solid fa-database"></i>MySQL settings</a>
+				<a href="mqttsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="MQTT settings">MQTT Settings<i class="fa-solid fa-list-check"></i></a>
+				<a href="alarmsettings.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Alarm settings"><i class="fa-regular fa-bell"></i>Alarm settings</a>
+				<a href="useralarms.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="User defined Alarms"><i class="fa-regular fa-bell"></i>User defined Alarms</a>
+				<a href="customlogs.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Custom logs"><i class="fa-solid fa-xmarks-lines"></i>Custom Logs</a>
+				<a href="configdisplay.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Display options"><i class="fa-solid fa-display"></i>Display Options</a>
+				<a href="configlocale.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Locale settings"><i class="fa-solid fa-globe"></i>Locale Settings</a>
+			</div>
+		</div>		
+	</div>
+</div>
+
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Records" onClick="toggleDropDown(this);" class="w3-btn ax-theme5 ax-theme4-hvr" aria-label="Edit records" aria-controls="mnuRecords">Edit <i class="fas-solid fas-caret-down"></i></button>
+	<div id="mnuRecords" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+		<a href="raintodayeditor.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit today's rain"><i class="fa-solid fa-droplet-slash" style="color:#88f"></i>Edit today's rain</a>
+		<a href="weatherdiary.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Weather conditions editor"><i class="fa-solid fa-cloud-sun-rain"></i>Weather conditions editor</a>
+		<div class="ax-menu-line"></div>
+		<a href="editalltimerecs.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit all-time records">Edit All-time records<i class="fa-solid fa-pen-to-square"></i></a>
+		<a href="editmonthlyrecs.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit monthly records">Edit Monthly records<i class="fa-solid fa-pen-to-square"></i></a>
+		<a href="editthismonthrecs.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit 'this months' records">Edit This month's records<i class="fa-solid fa-pen-to-square"></i></a>
+		<a href="editthisyearrecs.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Edit 'this years' records">Edit This year's records<i class="fa-solid fa-pen-to-square"></i></a>
+	</div>
+</div>
+
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Utils" onClick="toggleDropDown(this);" class="w3-btn ax-theme5 ax-theme4-hvr" aria-label="Utilities" aria-controls="mnuUtils">Utilities <i class="fas-solid fas-caret-down"></i></button>
+	<div id="mnuUtils" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+		<a href="utilities.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="FTP/Copy and Dayfile"><i class="fa-solid fa-copy"></i>FTP/Copy &amp; Dayfile</a>
+		<a href="utilities.html#day-anchor" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Reload the day file"><i class="fa-solid fa-retweet"></i>Reload Dayfile</a>
+		<a href="utilities.html#purge-anchor" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Purge MySQL"><i class="fa-solid fa-server"></i>Purge MySQL</a>
+		<a href="utilerrorslog.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Show latest errors"><i class="fa-solid fa-triangle-exclamation" style="color:#f88;"></i>Latest errors</a>
+		<div class="ax-menu-line"></div>
+		<a href="ai-config.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="AI Settings"><i class="fa-solid fa-gears"></i>AI Settings</a>
+		<div class="ax-menu-line"></div>
+		<a href="/index.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="The Default Interface"><i class="fa-solid fa-gears"></i>Default Interface</a>
+	</div>
+</div>
+<button  class="w3-bar-item w3-btn ax-theme5 ax-theme3-hvr w3-right w3-hide-large" onClick="toggleMenus();" role="menuitem" aria-label="Mobile menu toggle">Menu:&nbsp;<strong><i class="fa-solid fa-bars"></i></strong></button>
+
+<div id="menuMobile" class="siteWidth w3-hide-large w3-hide" role="menubar">
+	<div class="w3-bar-block ax-theme5" role="menubar" aria-label="Main menu">
+		<a href="index.html" class="w3-bar-item w3-btn ax-theme6-hvr w3-hide w3-hide-medium" role="menuitem" aria-label="The Dashboard">The Dashboard</a>
+		<div class="w3-dropdown-click">
+			<button id="PagesMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);"  aria-controls="mnuPagesMob" aria-label="Standard information pages">Standard information pages...</button>
+			<div id="mnuPagesMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme7 ax-animate-menu" style="margin-right:1vw;">
+				<a href="current.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="The current weather readings">The current weather readings</a>
+				<a href="gauges.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Steelseries gauges"><i class="fa-solid fa-gauge-high"></i>Current readings as gauges</a>
+				<a href="charts.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Recent charts"><i class="fa-solid fa-chart-column"></i>Recent charts - based on readings</a>
+				<a href="chartscompare.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Custom charts"><i class="fa-solid fa-chart-column"></i>Select-a-Chart based on readings</a>
+				<a href="chartsperiod.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Select a Chart"><i class="fa-solid fa-chart-column"></i><i class="fa-solid fa-chart-line"></i>Select a period</a>
+				<a href="chartshistoric.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Historic charts"><i class="fa-solid fa-chart-column"></i>Historic charts - based on summaries</a>
+				<a href="todayVyesterday.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Today verses yesterday">Today compared with Yesterday</a>
+				<a href="records.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Your weather records">View your weather records</a>
+				<a href="recsthisperiod.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Records this period">View records for a chosen period</a>
+				<a href="querydayfile.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Query specific data in the Day File"><i class="fa-solid fa-question"></i>Query the Daily Data file for specif data</a>
+			</div>
+		</div>
+		<div class="w3-dropdown-click">
+			<button id="ExtraMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuExtraMob" aria-label="Extra sensor readings">Extra sensor readings...</button>
+			<div id="mnuExtraMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme7 ax-animate-menu">
+				<a href="extrasensors.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Extra sensors"><i class="fa-solid fa-wand-magic-sparkles"></i>View any additional configured sensors data</a>
+				<a href="airlinksensors.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Airlink sensors"><i class="fa-solid fa-tower-cell"></i>View your AirLink sensors data</a>
+			</div>
+			<div class="ax-menu-line"></div>
+		</div>
+	
+		<div class="w3-dropdown-click">
+			<button id="NOAAMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuNOAAMob" aria-label="Edit data logs">Data logs...</button>
+			<div id="mnuNOAAMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+				<a href="noaamonthreport.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Monthly NOAA reports"><i class="fa-regular fa-clipboard"></i>Your monthly NOAA reports</a>
+				<a href="noaayearreport.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Yearly NOAA reports"><i class="fa-regular fa-clipboard"></i>Your yearly NOAA reports</a>
+			</div>
+		</div>
+		<div class="w3-dropdown-click">
+			<button id="LogsMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuLogsMob" aria-label="Edit NOAA Reports">NOAA Reports</button>
+			<div id="mnuLogsMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+				<a href="datalogeditor.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit reading logs"><i class="fa-regular fa-pen-to-square"></i>Manage your readings logs</a>
+				<a href="extradatalogeditor.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit extra data logs"><i class="fa-regular fa-pen-to-square"></i>Manage the extra data logs</a>
+				<a href="dayfileeditor.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit the Day File"><i class="fa-regular fa-pen-to-square"></i>Manage the dayfile</a>
+				<a href="intervaldata.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Select and view interval data"><i class="fa-solid fa-clipboard-question"></i>Select and view Interval Data</a>
+				<a href="dailydata.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Select and view day-file data"><i class="fa-solid fa-clipboard-question"></i>Select and view Dayfile Data</a>
+			</div>
+		</div>
+
+		<div class="w3-dropdown-click">
+			<button id="SettingsMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuSettingsMob" aria-label="Cumulus MX settings">Settings...</button>
+			<div id="mnuSettingsMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu" style="overflow: scroll!important;">
+				<div class="ax-btnBar">
+					<div>
+						<h4 class="w3-center">Primary Settings</h4>
+						<a href="wizard.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Setup Wizard"><i class="fa-solid fa-list-check"></i>Configuration Wizard</a>
+						<div class="ax-menu-line"></div>
+						<a href="programsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Configure CMX settings"><i class="fa-solid fa-list-check"></i>CumulusMX settings</a>
+						<a href="stationsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit station settings"><i class="fa-solid fa-list-check"></i>>Station settings</a>
+						<a href="internetsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit Internet settings"><i class="fa-solid fa-list-check"></i>Internet settings</a>
+						<div class="ax-menu-line"></div>
+					</div>
+					<div>
+						<a href="thirdpartysettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Third party uploads"><i class="fa-solid fa-arrow-up-from-bracket"></i>Third party uploads</a>
+						<a href="extrasensorsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Configure extra sensors"><i class="fa-solid fa-list-check"></i>Extra sensor settings</a>
+						<a href="extrawebfiles.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Extra web files"><i class="fa-solid fa-arrow-up-from-bracket"></i>Extra file uploads</a>
+						<a href="confighttpfiles.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="HTTP Files"><i class="fa-solid fa-download"></i>HTTP Files</a>
+						<a href="calibrationsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Calibration settings"><i class="fa-solid fa-list-check"></i>Calibration settings</a>
+						<a href="noaareportsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="NOAA settings"><i class="fa-solid fa-list-check"></i>NOAA settings</a>
+						<div class="ax-menu-line"></div>
+					</div>
+					<div>
+						<a href="mysqlsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="MySQL settings"><i class="fa-solid fa-database"></i>MySQL settings</a>
+						<a href="mqttsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="MQTT settings"><i class="fa-solid fa-list-check"></i>MQTT Settings</a>
+						<a href="alarmsettings.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Alarm settings"><i class="fa-regular fa-bell"></i>Alarm settings</a>
+						<a href="useralarms.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Custom Alarms"><i class="fa-regular fa-bell"></i>Configure Custom Alarms</a>
+						<a href="customlogs.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Custom logs"><i class="fa-solid fa-xmarks-lines"></i>Custom data logs</a>
+						<a href="configdisplay.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Display options"><i class="fa-solid fa-display"></i>Display options</a>
+						<a href="configlocale.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Locale settings"><i class="fa-solid fa-globe"></i>Locale settings</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="w3-dropdown-click">
+			<button id="EditMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuEditMob" aria-label="Edit...">Edit...</button>
+			<div id="mnuEditMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+				<a href="raintodayeditor.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit today's rainfall"><i class="fa-solid fa-droplet-slash" style="color:#88f"></i>Edit today's rainfall total</a>
+				<a href="weatherdiary.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Weather information editor"><i class="fa-solid fa-cloud-sun-rain"></i>Weather Information Editor</a>
+				<div class="ax-menu-line"></div>
+				<a href="editalltimerecs.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit 'All-time' records"><i class="fa-regular fa-pen-to-square"></i>Edit the all time records</a>
+				<a href="editmonthlyrecs.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit 'Monthly' records"><i class="fa-regular fa-pen-to-square"></i>Edit the monthly records</a>
+				<a href="editthismonthrecs.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit 'this months' records"><i class="fa-regular fa-pen-to-square"></i>Edit this month's records</a>
+				<a href="editthisyearrecs.html"	class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Edit 'this years' records"><i class="fa-regular fa-pen-to-square"></i>Edit this year's records</a>
+			</div>
+		</div>
+
+		<div class="w3-dropdown-click">
+			<button id="UtilsMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuUtilsMob" aria-label="Utilities">Utilities...</button>
+			<div id="mnuUtilsMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+				<a href="utilities.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="FTP/Copy and Dayfile"><i class="fa-solid fa-copy"></i>Manually initiate the FTP process</a>
+				<a href="utilities.html#day" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Reload the Day File"><i class="fa-solid fa-retweet"></i>Reload the Dayfile</a>
+				<a href="utilities.html#purge" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Purge MySQL"><i class="fa-solid fa-server"></i>Purge MySQL Command Queue</a>
+				<a href="utilerrorslog.html" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="List latest errors in reverse order"><i class="fa-solid fa-triangle-exclamation" style="color:#f88;"></i>List latest errors</a>
+				<div class="ax-menu-line"></div>
+				<a href="ai-config.html"	class="w3-bar-item w3-btn theme ax-theme5-hvr" role="menuitem" aria-label="AI Settings"><i class="fa-solid fa-gears"></i>Alternative Interface Settings</a>
+				<div class="ax-menu-line"></div>
+				<a href="/index.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="The Default Interface"><i class="fa-solid fa-gears"></i>Use the Default Interface</a>
+			</div>
+		</div>
+	</div>
+</div>

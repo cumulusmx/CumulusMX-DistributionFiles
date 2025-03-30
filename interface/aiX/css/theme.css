@@ -1,0 +1,124 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Theme:  theme             (#00332C)   v3.0
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  For:   a?x websites
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Author:     DNC THomas
+ *  Last edit:  29/11/2024
+ *  ****   DO NOT EDIT THIS THEME   ****
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*  Theme colour variables */
+:root {
+    --baseR: 127; --baseG: 127; --baseB:127;
+    --color1: #191919;
+    --color2: #333333;
+    --color3: #4c4c4c;
+    --color4: #666666;
+    --color5: #7f7f7f;
+    --color6: #999999;
+    --color7: #b2b2b2;
+    --color8: #cccccc;
+    --color9: #e5e5e5;
+    --modal: rgba(var(--baseR), var(--baseG), var(--baseB), 0.3);
+    --gradient-down: linear-gradient(         var(--color7), var(--color6));
+	--gradient-up: linear-gradient( var(--color6), var(--color7));
+    --gradient-left: linear-gradient( to right,  var(--color7), var(--color6));
+	--gradient-right: linear-gradient( to left, var(--color7), var(--color6));
+
+    --gradientBar: linear-gradient(var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
+    --shadow:   0 0.15em 0.3em -0.1em var(--color1);
+    --shadows: 0 0.1em 0.3em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.3),0 0.1em 0.7em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.4);
+}
+
+/*	Theme colour combinations (Foreground / Background)	*/
+.ax-theme1	{color: var(--color9); background-color: var(--color1)!important;}
+.ax-theme2	{color: var(--color9); background-color: var(--color2);}
+.ax-theme3	{color: var(--color9); background-color: var(--color3);}
+.ax-theme4	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5	{color: var(--color9); background: var(--color5);}
+.ax-theme6	{color: var(--color1); background-color: var(--color6);}
+.ax-theme7	{color: var(--color1); background-color: var(--color7);}
+.ax-theme8	{color: var(--color1); background-color: var(--color8);}
+.ax-theme9	{color: var(--color1); background-color: var(--color9);}
+
+/*	Theme colour combinations for HOVER effects (Foreground / Background)	*/
+.ax-theme1-hvr:hover	{color: var(--color9); background-color: var(--color1);}
+.ax-theme2-hvr:hover	{color: var(--color9); background-color: var(--color2);}
+.ax-theme3-hvr:hover	{color: var(--color9); background-color: var(--color3);}
+.ax-theme4-hvr:hover	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5-hvr:hover	{color: var(--color1); background-color: var(--color5);}
+.ax-theme6-hvr:hover 	{color: var(--color1); background-color: var(--color6);}
+.ax-theme7-hvr:hover	{color: var(--color1); background-color: var(--color7);}
+.ax-theme8-hvr:hover	{color: var(--color1); background-color: var(--color8);}
+.ax-theme9-hvr:hover	{color: var(--color1); background-color: var(--color9);}
+
+/*	Theme TEXT only colours	*/
+.ax-theme1-txt	{color: var(--color1);}
+.ax-theme2-txt	{color: var(--color2);}
+.ax-theme3-txt	{color: var(--color3);}
+.ax-theme4-txt	{color: var(--color4);}
+.ax-theme5-txt	{color: var(--color5);}
+.ax-theme6-txt	{color: var(--color6);}
+.ax-theme7-txt	{color: var(--color7);}
+.ax-theme8-txt	{color: var(--color8);}
+.ax-theme9-txt	{color: var(--color9);}
+
+/*	Theme TEXT only HOVER colours	*/
+.ax-theme1-txt-hvr:hover	{color: var(--theme1);}
+.ax-theme2-txt-hvr:hover    {color: var(--theme2);}
+.ax-theme3-txt-hvr:hover    {color: var(--theme3);}
+.ax-theme4-txt-hvr:hover    {color: var(--theme4);}
+.ax-theme5-txt-hvr:hover 	{color: var(--theme5);}
+.ax-theme6-txt-hvr:hover    {color: var(--theme6);}
+.ax-theme7-txt-hvr:hover    {color: var(--theme7);}
+.ax-theme8-txt-hvr:hover    {color: var(--theme8);}
+.ax-theme9-txt-hvr:hover	{color: var(--theme9);}
+
+/*  Theme BACKGROUND only colours */
+.ax-theme1-bak	{background-color: var(--color1);}
+.ax-theme2-bak	{background-color: var(--color2);}
+.ax-theme3-bak	{background-color: var(--color3);}
+.ax-theme4-bak	{background-color: var(--color4);}
+.ax-theme5-bak	{background: var(--color5);}
+.ax-theme6-bak	{background-color: var(--color6);}
+.ax-theme7-bak	{background-color: var(--color7);}
+.ax-theme8-bak	{background-color: var(--color8);}
+.ax-theme9-bak	{background-color: var(--color9);}
+
+/*	Theme BORDER only colours	*/
+.ax-theme1-bdr	{border-color: var(--color1)!important;}
+.ax-theme2-bdr	{border-color: var(--color2)!important;}
+.ax-theme3-bdr	{border-color: var(--color3)!important;}
+.ax-theme4-bdr	{border-color: var(--color4)!important;}
+.ax-theme5-bdr	{border-color: var(--color5)!important;}
+.ax-theme6-bdr	{border-color: var(--color6)!important;}
+.ax-theme7-bdr	{border-color: var(--color7)!important;}
+.ax-theme8-bdr	{border-color: var(--color8)!important;}
+.ax-theme9-bdr	{border-color: var(--color9)!important;}
+
+/*	Theme BORDER only HOVER colours	*/
+.ax-theme1-bdr-hvr:hover 	{border-color: var(--color1)!important;}
+.ax-theme5-bdr-hvr:hover	{border-color: var(--color5)!important;}
+.ax-theme9-bdr-hvr:hover	{border-color: var(--color9)!important;}
+
+/*  Theme modal background colour	*/
+.ax-theme-modal {
+	background-color: var(--theme);
+	background-color: var(--modal);
+}
+
+/*  ~~~~~~  Gradients  ~~~~~~*/
+.ax-gradient-left { background: var(--gradient-left);}
+.ax-btn-gradient-left { background: var(--gradient-left); border: thin solid var(--color5)!important;}
+.ax-btn-gradient-left:hover {background: var(--gradient-right);}
+.ax-gradient-right { background: var(--gradient-right);}
+.ax-btn-gradient-right { background: var(--gradient-right);border:thin solid var(--color5)!important;}
+.ax-btn-gradient-right:hover{background: var(--gradient-left);}
+.ax-gradient-down { background: var(--gradient-down);}
+.ax-btn-gradient-down { background: var(--gradient-down); border: thin solid var(--color5)!important;}
+.ax-btn-gradient-down:hover{ background: var(--gradient-up);}
+.ax-gradient-up { background: var(--gradient-up);}
+.ax-btn-gradient-up { background: var(--gradient-up);border:thin solid var(--color5)!important;}
+.ax-btn-gradient-up:hover { background: var(--gradient-down);}

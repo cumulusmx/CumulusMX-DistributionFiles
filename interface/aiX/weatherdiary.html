@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Weather Diary and Conditions
+	File:	weatherdiary.html			Ver: aiX-1.0
+	Author:	D.N.C.Thomas			    	Mar 2025
+	Last Edit:	2025/03/22 10:32
+	Last Check:	2025/03/28
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Diary and Conditions Editor</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2025">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<!--	FontAwsome CDN	-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+		
+		<!--	jQuery CDN	-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
+		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+
+		<!-- Bootstrap -->
+		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" >
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- datepicker -->
+		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/theme.css">
+		<link rel="stylesheet" href="css/axPro.css">
+		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/main.css">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/ai-page-manager.js"></script>
+		<script src="js/weatherconditions.js"></script>
+		<script src="/js/diaryeditor.js"></script>	<!--	Uses DEFAULT script	-->
+
+		<!--	Local scripts & styles	-->
+		<script>
+		</script>
+		<style>
+			.ax-grid {display:grid;grid-template-rows:auto;gap: 0.25vh 1em;}
+			.ax-grid p {margin:0.2vh 0;padding:0.2vh;}
+			.ax-grid button {border-radius: 1em; }
+			.ax-grid select, .ax-grid input[type="time"],
+			.ax-grid input[type="number"] { padding:0.4vh; border-radius:1em 0 0 1em;}
+			.ax-statusBar:before {
+				content: "Status: ";
+				color: var(--color6);
+				padding-left: 0.5em;
+			}
+			.ax-diaryEntry:before {
+				content:"Entry: ";
+				color: var(--color6);
+			}
+			.hasData {
+				outline: 1px solid var(--color5);
+				outline-offset: -1px;
+			}
+			.noData {
+				outline: 0;
+			}
+
+/*			.w3-btn{border-radius:1em;padding:0.25em 1em;}*/
+		</style>
+	</head>
+	<body class="ax-theme9">
+		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
+			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
+			<div class="siteWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
+				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				
+				<div class="ax-theme7-bak" style="z-index:5">
+					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
+					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
+					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
+					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
+				</div>
+			</div>
+
+			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
+				<div id="Menus" class="siteWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
+			</div>
+		</header>
+
+		<div id="content">
+			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
+			<div class="siteWidth">
+				<!--	This is the page title - you probably want to keep this	-->
+				<div class="ax-titleBar">
+					<h1>Weather Diary &amp; Conditions Editor</h1>
+					<p>Update your Diary and publish the current conditions</p>
+				</div>
+
+				<div class="ax-column3 ax-fixedwidth" style="align-items:flex-end;">
+					<div class="w3-card ax-theme8">
+						<h4 class="w3-center">Calendar</h4>
+						<div id="datepicker" style="width:274px;margin:auto;" aria-label="Date picker"></div>
+						<input type="hidden" id="date_hidden_input">
+					</div>
+					<div class="w3-card ax-theme8 ax-growX2">
+						<h4>Diary Entry</h4>
+						<div class="ax-grid" style="grid-template-columns:17em 3em 7em 1fr;align-items:center;margin-bottom:1vh;">
+							<p>Selected date: <strong><span id="selectedDate"></span></strong></p>
+							<label for="inputTime">Time:</label>
+							<input type="time" class="w3-btn ax-btn-gradient-up" role="button" aria-label="Set the time" id="inputTime">
+						</div>
+						<div class="ax-grid" style="grid-template-columns:auto 1fr;align-items:center;">
+							<p>Entry:</p>
+							<input type="text" class="w3-input ax-theme9 w3-border ax-theme5-bdr" id="inputComment" aria-label="Your diary entry">
+						</div>
+						
+						<h4>Snowfall!</h4>
+						<div class="ax-grid" style="grid-template-columns:repeat(2,2fr 8em);align-items:center;">
+							<label for="inputSnow24h">Last 24 hrs snowfall (cm):</label>
+							<input type="number" class="form-control ax-btn-gradient-up" id="inputSnow24h" min="0" step="0.1" placeholder="null">
+							<label for="inputSnowDepth" class="w3-right-align">Snow depth (cm):</label>
+							<input type="number" class="ax-btn-gradient-up" id="inputSnowDepth" min="0" step="0.1" placeholder="null">
+						</div>
+						<h5>Automated Readings</h5>
+						<div class="ax-grid" style="grid-template-columns: auto 1fr; align-items:start">
+							<select class="form-control ax-theme7" id="automated"  aria-label="Choose sensor to triger auto updates">
+								<option value="0">Disabled</option>
+								<option value="1">Laser Distance #1</option>
+								<option value="2">Laser Distance #2</option>
+								<option value="3">Laser Distance #3</option>
+								<option value="4">Laser Distance #4</option>
+							</select>
+							<p>
+								Adds an automated reading to the database from the selected sensor at the snow 
+								reading time. This only creates the record if a manual record has not already been created.
+							</p>
+						</div>
+						<div class="ax-menu-line" style="margin-top:1vh"></div>
+						
+						<div class="ax-btnBar" style="margin-top:1vh;margin-bottom:1vh;row-gap:1vh;">
+							
+							<button class="w3-btn ax-btn-gradient-up" aria-label="Clear the current diary entry" onclick="deleteEntry()">Delete</button>
+							<a href="/api/data/diaryexport.txt" class="w3-btn" download=""><div class="w3-btn ax-btn-gradient-up" style="border-radius:1em;padding:0.3em 1em;" form="diaryform" aria-label="Export your diary entries">Export All</div></a>
+							<button type="submit" class="w3-btn ax-btn-gradient-up" form="diaryform" aria-label="Upload diary entries" onclick="uploadFile()">Upload File</button>
+							<input type="file" class="w3-btn" style="display: inline-block;" id="upFile" aria-label="Select your file" >
+						</div>
+						<div class="ax-grid" style="grid-template-columns:auto 1fr;gap:0.5vw;">
+							<button class="w3-btn ax-btn-gradient-up" aria-label="Submit your diary entry" onclick="applyEntry();timeOut('status');">Apply</button>
+							<p id="status" class="ax-theme9 w3-border ax-theme3-bdr ax-statusBar"></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="ax-column3 ax-fixedwidth">
+					<div class="w3-card ax-theme8 ax-growX2">
+						<h4>Current Conditions</h4>
+						<p>
+							The current conditions editor allows you to place your own observations on your website home page.  The observations
+							are uploaded with the next update cycle.
+						</p>
+						<p>Only plain text is supported and any 'newline' characters are converted to spaces.</p>
+						<p><textarea wrap="hard" cols="80" id="inputCurrCond" class="ax-theme9 " style="padding:8px; width:100%; max-width:100%; height: 100px;"></textarea></p>
+						<div class="ax-grid" style="grid-template-columns:auto 1fr;grid-template-rows:auto;gap:0.5vw">
+							<button class="w3-btn ax-btn-gradient-up" id="apply-button" onClick="applyCCEntry()" aria-label="Apply your comment">Apply</button>
+							<p id="CCstatus" style="min-height:1em; width:100%;" class="ax-theme9 ax-statusBar"></p>
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>
+
+		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme8-bdr">
+			<div class="siteWidth">
+				<div class="ax-titleBar">
+					<h6 class="w3-small ax-theme7-txt"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h5 class="w3-right-align ax-theme7-txt" style="padding:0.5vh 0;">
+						Powered by <span class="ax-theme9-txt">CumulusMX</span>
+						V<span data-cmxData="Version">X.YY.Z</span>
+						(b:<span data-cmxData="Build">xxxx</span>)
+					</h5>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</html>

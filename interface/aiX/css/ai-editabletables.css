@@ -1,0 +1,192 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Script:	ai-editable-tables.css
+ * Purpose:	Styles for pages using X-editable tables
+ * Version:	4.0.0
+ *	Author:	Neil Thomas
+ * Edited:	18-02-2025
+ * Checked:
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+input[type="text"] {
+	background-color: var(--gradient-up);
+	border: none;
+	color: var(--color9);
+	/*font-size: 14px;*/
+	max-width:8em;
+	padding: 0.5em 1em;
+	border-radius: 0.5em;
+	text-align: center;
+	margin-left:5px;
+}
+
+input[type="search"] { 
+	background:var(--gradient-up)!important;
+	color: var(--color1)!important; 
+	margin-left:2em!important;
+	border-radius:1em!important;
+	border:thin solid var(--color5)!important;
+	text-align:center;
+}
+
+#dateFrom, #dateTo, #loadBtn {
+	background-color: var(--gradient-up);
+	color: var(--color9)!important;
+	border-radius: 1em;
+	padding:0.4em;
+}
+
+.datepicker-dropdown {
+	background-color: var(--gradient-up);
+	color: var(--color9);
+}
+
+.dt-search {
+	/*	The div containing the search facility */
+	margin:1vh 0;
+}
+
+.dt-info { margin:1vh 0;font-weight:700;}
+
+.dt-paging {text-align:center; margin-bottom:0.5vh;}
+
+.dt-paging .dt-paging-button {
+	background : var(--gradient-up)!important;
+	margin:0.1vh;
+	border-radius:1em!important;
+}
+
+.dt-paging .dt-paging-button.first,
+.dt-paging .dt-paging-button.next,
+.dt-paging .dt-paging-button.previous,
+.dt-paging .dt-paging-button.last { 
+	background:var(--color8)!important;
+	/*border:thin solid var(--color7);*/
+}
+
+.dt-buttons>.dt-button {
+	background:var(--gradient-up)!important;
+	border:thin solid var(--color5)!important;
+	border-radius: 1em!important;
+	padding:0.4em 1em!important;
+}
+
+.dt-paging .dt-paging-button.current {background:var(--gradient-down)!important;}
+
+#datalog tbody>tr.selected {mix-blend-mode: normal!important;}
+
+.dtfc-fixed-start { background-color: var(--color8)!important; z-index:0!important;}
+.dtfc-fixed-start:nth-of-type(3) { border-right:thin solid var(--color5); }
+
+thead .dtfc-fixed-left { background-color: var(--color6)!important;}
+
+
+.even .dtfc-fixed-left { background-color: var(--color7); }
+
+/*	~~~~~	Drop down button collection (show rows dropdown)	~~~~ */
+.dt-button-collection {background: var(--color1)!important;color: var(--color9)!important}
+
+
+thead th {
+	vertical-align: bottom!important;
+	text-align: center!important;
+	padding-top:0!important;
+}
+
+#datalog td {
+	text-align:center!important;
+	font-size: 12px;
+}
+
+
+
+.dataTables_filter { margin-top: 1vh;}
+thead tr {background: var(--color6);}
+
+/*		~~~~~   MODAL POPUP		~~~~~ */
+
+.modal-header {
+	background: var(--color5);
+	border-radius: 1em 1em 0 0;
+	border-bottom:3px solid var(--color1);}
+
+.modal-header h4 {
+	/*margin: 1em!important;*/
+	max-width:80%;
+	padding:0!important;
+	display:inline-block;
+}
+
+.modal-header button {
+	border-radius: 1em;
+	padding: 0.25em!important;
+	color: var(--color1)!important;
+	opacity: 0.5;
+}
+
+.modal input[readonly] {
+	background-color: var(--color3)!important;
+	color: var(--color7)!important;
+	border: 1px solid var(--color1);
+}
+
+.modal-body input[type=text],
+.modal-body input[type='number']{
+	background-color: var(--color1);
+	color: var(--color9);
+	margin:0 0.5em;
+	border-radius: 0.5em;
+	min-width:100%;
+	text-align:center;
+}
+
+.modal-content {
+	min-width: 400px;
+	border-radius: 1em!important;
+}
+
+/*	Re-configure bootstrap column widths	*/
+.modal-content .col-lg-3 {width:40%}
+.modal-content .col-lg-8 {width:50%}
+.modal-content .form-group .row {margin: 2px 0;}
+
+
+.modal-body {
+	min-height: 30vh;
+	max-height: 80vh;
+	overflow: scroll;
+	margin-top:0;
+	background: var(--color3);
+	color: var(--color8);
+}
+
+.modal-body div.form-group { margin:0;padding:0;}
+
+.modal-footer {min-height: 2em;border-radius: 0 0 1em 1em!important; background:var(--color5)}
+
+.modal-footer button { border-radius: 2em!important; padding: 0.2em 2em; }
+.modal-footer .btn-primary {
+	background: var(--gradient-up);
+	color: var(--color1);
+	border-color: var(--color9);
+}
+/*
+#datalog thead th {font-size: 12px;}
+*/
+
+/*	Reformat to support dark mode	*/
+.dataTables_info {
+	color: var(--sub4)!important;
+}
+
+td.dataTables_empty { text-align: left!important;}
+
+#datalog tbody>tr.selected { mix-blend-mode: multiply; }
+#datalog thead th {vertical-align: bottom;}
+#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
+#datalog tbody tr:hover { background-color: var(--add3)!important; font-weight:600;}
+
+#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
+#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
+#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}

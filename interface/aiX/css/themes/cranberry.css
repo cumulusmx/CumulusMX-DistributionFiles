@@ -1,0 +1,48 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Theme:  Cranberry         (#AF544F)   v3.0
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  For:   a?x websites
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Author:     DNC THomas
+ *  Last edit:  29/11/2024
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*  Theme colour variables */
+:root {
+    --baseR: 175; --baseG: 84; --baseB: 69;
+    --color1: #23100F;
+    --color2: #46211F;
+    --color3: #69322f;
+    --color4: #8c433F;
+    --color5: #af544f;
+    --color6: #bf7672;
+    --color7: #cf9895;
+    --color8: #efdcdb;
+    --color9: #feffff;
+    --modal: rgba(var(--baseR),var(--baseG),var(--baseB),0.3);
+    --gradient-down: linear-gradient( var(--color7), var(--color6));
+	--gradient-up: linear-gradient( var(--color6), var(--color7));
+    --gradient-left: linear-gradient( to right,  var(--color7), var(--color6));
+	--gradient-right: linear-gradient( to left, var(--color7), var(--color6));
+
+    --gradientBar: linear-gradient(var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
+    --shadow:   0 0.15em 0.3em -0.1em var(--color1);
+    --shadows: 0 0.1em 0.3em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.3),0 0.1em 0.7em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.4);
+}
+
+/*	Theme colour combinations (Foreground / Background)	
+    You may wish to tweek these to improve contrast; you
+    should start by changing color1 to color9 and vica-versa */
+.ax-theme4	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5	{color: var(--color9); background: var(--color5);}
+.ax-theme6	{color: var(--color1); background-color: var(--color6);}
+
+.ax-theme4-hvr:hover	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5-hvr:hover	{color: var(--color1); background-color: var(--color5);}
+.ax-theme6-hvr:hover 	{color: var(--color1); background-color: var(--color6);}
+
+.ax-btn-gradient-left { color:var(--color1); background: var(--gradient-left); border: thin solid var(--color5)!important;}
+.ax-btn-gradient-right { color:var(--color1); background: var(--gradient-right);border:thin solid var(--color5)!important;}
+.ax-btn-gradient-down { color:var(--color1); background: var(--gradient-down); border: thin solid var(--color5)!important;}
+.ax-btn-gradient-up { color:var(--color1); background: var(--gradient-up);border:thin solid var(--color5)!important;}

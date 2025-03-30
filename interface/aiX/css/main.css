@@ -1,0 +1,409 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Resource:	main.css			v:1.0
+ * 	Author:		Neil Thomas
+ * 	Last Edit:
+ *	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Role:	Provide all site specific styles
+ * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+ /*	Variables
+ * 	Generally you chould only change values here to affect the whole site	*/
+
+html {
+	--siteWidth: 1200;
+	--rowGap:    2em;
+	--columnGap: 1em;
+}
+
+/*	Only change below if you are compentant using css	*/
+
+html, body, p, label, td, li {
+	font-family: Inter, serif;
+	/*	Comment out the font size you DON'T want - they get increasingly smaller */
+	font-size: clamp( 0.9rem, 0.8rem + 0.3vw, 1.05rem );
+	font-size: clamp( 0.875rem, 0.8175rem + 0.25vw, 1rem );
+	font-size: clamp( 0.875rem, 0.8125rem + 0.25vw, 1rem );		/* min 14pt / max 16pt */
+/*	font-size: clamp( 0.8125rem, 0.75rem + 0.25vw, 0.9375rem ); /* Min 13pt / max 15pt */
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Red Rose', Inter, serif;
+	margin: 1vh 0 ;
+}
+
+h1 { font-size: clamp( 1.75rem,  1.5625rem + 0.75vw,  2.125rem  ); }
+h2 { font-size: clamp( 1.375rem, 1.2188rem + 0.625vw, 1.6875rem ); }
+h3 { font-size: clamp( 1.25rem,  1.125rem + 0.5vw,    1.5rem    ); }
+h4 { font-size: clamp( 1.125rem, 1.0625rem + 0.25vw,  1.25rem   ); font-weight: 600; }
+h5 { font-size: clamp( 0.9rem,   0.8rem + 0.3vw,      1.05rem   ); font-weight: 700; }
+h6 { font-size: clamp( 0.85rem,  0.8rem + 0.2vw,      0.95rem   ); font-weight: 600; font-style: italic; }
+
+.siteWidth {
+	max-width: calc( var(--siteWidth) * 1px );
+	margin: auto;
+	padding: 0 1vw;
+}
+
+#siteLogo {
+	margin: 0.5vh 0 1vh 0;
+	width: 25vw;
+	max-width: 335px;
+	min-width: 200px;
+}
+
+#content {
+	padding: 1vh 0;
+	position: relative;
+}
+
+#PageHead h5 { 
+	margin:0;
+	padding:0
+}
+
+tr > td { border-bottom: thin solid var(--color5);}
+
+.ax-shadow {
+    box-shadow: var(--shadows); 
+}
+
+.ax-at:before {
+	content: 'at';
+	font-size: 70%;
+	vertical-align:20%;
+	padding: 0 0.5em;
+}
+
+.ax-clickable {
+	cursor: pointer;
+}
+
+/*	~~~~~~   Menus   ~~~~~~*/
+.w3-dropdown-content,
+.ax-dropdow-content {
+	border-radius: 0 0 0.6em 0.6em;
+	min-width: 13em;
+}
+
+.w3-dropdown-content i,
+.ax-dropdown-content i {
+	float: right;
+	padding-left: 1em;
+}
+
+.ax-menu-line {
+	height:1px;
+	background: var(--color1);
+	margin: 0.2em 0;
+}
+
+#menuMobile .w3-dropdown-content i,
+#menuMobile .ax-dropdown-content i {
+	float: right;
+	padding-right: 1em;
+}
+
+.w3-bar-item a,
+.ax-bar-item a,
+.w3-bar-item button,
+.ax-bar-item button {
+	font-size: 120%;
+}
+
+.ax-diamond { padding: 1em 0.7em 0 0.7em;}
+
+.ax-menuCol3{
+	display:flex;
+	min-width: calc( 800 * 1px / 4);
+	justify-content:stretch;
+	align-items:baseliine;
+	gap: var(--rowGap) var(--columnGap );
+	margin-bottom: 2vh;
+}
+
+.w3-dropdown-click > div > a:before,
+.ax-dropdown-click > div > a:before { 
+	content:">>"; 
+	padding-right:0.5em; 
+}
+
+/*	~~~~~~~ Images	~~~~~~~~*/
+.ax-img-small {
+	width: 1em;
+	height:auto;
+}
+
+/*  ~~~~~~~  GULL  ~~~~~~~~~~ */
+/*	Used for the seagull	*/
+#ax-gull {
+	position: fixed;
+	bottom: 0px;
+    right: 3%;
+	width: 9vw;
+	min-width: 70px;
+	max-width: 130px;
+	height: auto;
+	z-index: -200;
+	transform-origin: bottom center;
+    animation: 10s fadeIn;
+}
+
+.gull2 {
+	max-height: 5em;
+	width:auto;
+}
+
+/*  ~~~~~~~  COLUMNS  ~~~~~~~*/
+.ax-column6,
+.ax-column5,
+.ax-column4,
+.ax-column3,
+.ax-column2 {
+	display: flex;
+    justify-content: stretch;
+	flex-flow: row wrap;
+	gap: var(--rowGap) var(--columnGap );
+	margin-bottom: 2vh;
+}
+
+.ax-column6 > div {
+	/*	All child divs of six col flex	*/
+	min-width: calc( var(--siteWidth) * 1px / 7.5);
+	flex: 1;
+}
+
+.ax-column5 > div {
+	min-width: calc( var(--siteWidth) * 1px / 6);
+	flex: 1;
+}
+
+.ax-column4 > div {
+	min-width: calc( var(--siteWidth) * 1px / 5);
+	flex: 1;
+}
+
+.ax-column3 > div {
+	min-width: calc( var(--siteWidth) * 1px / 4);
+	flex: 1;
+}
+
+.ax-column2 > div {
+	min-width: calc( var(--siteWidth) * 1px / 3);
+	flex: 1;
+}
+
+.ax-column1 {
+	display: flex;
+	flex-direction: column;
+	gap: var(--rowGap) 0;
+	margin-bottom: 3vh;
+}
+
+.ax-column1 > div {
+	width:100%;
+}
+
+.ax-fixedwidth {
+    justify-content: space-evenly;
+	&.ax-column2 > div {
+		max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 2)) / 2 );
+	}
+    &.ax-column3 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 3)) / 3 );;
+    }
+    &.ax-column4 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 4)) / 4 );
+    }
+    &.ax-column5 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 5)) / 5 );
+    }
+    &.ax-column6 > div {
+        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 6)) / 6 );
+    }
+}
+
+.ax-column2.ax-fixedwidth .ax-growX2{
+	max-width: calc( var(--siteWidth) * 1px )!important;
+}
+.ax-column3.ax-fixedwidth .ax-growX2,
+.ax-column5.ax-fixedwidth .ax-growX3{
+	max-width: calc( var(--siteWidth) * 1px / 3 * 2 - var(--columnGap))!important;
+}
+.ax-column4.ax-fixedwidth .ax-growX2,
+.ax-column6.ax-fixedwidth .ax-growX3{
+	max-width: calc( var(--siteWidth) * 1px / 2 - var(--columnGap))!important;
+}
+.ax-column4.ax-fixedwidth .ax-growX3{
+	max-width: calc( var(--siteWidth) * 1px / 4 * 3 - var(--columnGap));
+}
+.ax-column5.ax-fixedwidth .ax-growX2{
+	max-width: calc( var(--siteWidth) * 1px / 5 * 2 - var(--columnGap))!important;
+}
+.ax-column6.ax-fixedwidth .ax-growX2{
+	max-width: calc( var(--siteWidth) * 1px / 3 - var(--columnGap))!important;
+}
+.ax-column5.ax-fixedwidth .ax-growX4{
+	max-width: calc( var(--siteWidth) * 1px / 5 * 4 - var(--columnGap));
+}
+
+@media only screen and (max-width: 500px) {
+	.ax-column6.ax-fixedwidth > div {min-width: 100%!important;}
+	.ax-column5.ax-fixedwidth > div {min-width: 100%!important;}
+}
+
+@media only screen and (max-width:840px) {
+	.ax-column2 > div {justify-content:stretch;min-width:100%!important;}
+}
+
+/*  ~~~~~~~  BARS  ~~~~~~~~~*/
+.ax-titleBar,
+.ax-dataBar,
+.ax-btnBar,
+.ax-dataTitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-flow: row;
+	gap: var(--columnGap) var(--rowGap);
+}
+
+.ax-titleBar > * {
+    margin: 0; padding: 0; 
+}
+
+.ax-titleBar > button {
+	/*	Buttons used in chart & record navigation	*/
+	flex: 1 0 auto;
+	border: thin solid var(--color5);
+}
+
+.ax-dataBar {
+    margin:0 0.5em;
+}
+
+.ax-dataBar > *,
+.ax-dataTitle > * {
+    margin: 0 0.25em;
+    padding: 0.25em 0;
+}
+
+.ax-titleTop { margin-top:-0.5em!important;}
+
+@media only screen and (hover: hover){
+	.ax-dataBar { 
+		border-bottom:thin solid var(--color5);
+	}
+	.ax-dataBar:hover {
+    	background: var(--gradientBar);
+	}
+}
+/*
+.w3-card div:nth-of-type(2) { margin-top:0.5em;}
+*/
+.ax-btnBar {
+    flex-flow: row wrap;
+    justify-content:space-between;
+    align-items:baseline;
+    gap: calc(var(--columnGap) / 8 ) calc(var(--rowGap) / 6 );
+}
+
+.ax-btnBar > button,
+.ax-titleBar > button {
+    flex: 1 0 auto;
+	border-radius: 1em; 
+	border: thin solid var(--color5);
+	padding: 0.2em 1em;
+}
+
+.ax-titleBar{
+	&.ax-expand {
+		margin: 0 -1em ;
+		padding: 0 1em;
+	}
+}
+
+/*  ~~~~~~  LEDs  ~~~~~~*/
+.ax-led {
+	display:inline-block;
+	background-color: green;
+	box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+	/*border: thin solid var(--sub5);*/
+	width: 1.4em;
+	height: 1.4em;
+	margin: 0 0.25vw -0.3em 0.25vw;
+    &.ax-brick   { width:1.6em;  height:0.8em; margin-bottom:0;    }
+    &.ax-oval    { width:1.6em;  height:0.8em; margin-bottom:0; border-radius: 0.4em; }
+    &.ax-lozenge { width: 1.6em; height:0.8em; margin-bottom:0; border-radius: 50%; }
+    &.ax-round   { border-radius:50%; }
+    &.ax-small   { width:1em; height:1em; margin-bottom: -0.15em; margin-right: 1em; }
+}
+
+.ax-led-on {
+	animation: pulseRed 1.5s infinite;
+}
+
+.ax-led-off {
+	background-color: green;
+}
+
+@keyframes pulseRed {
+	0%, 100% { background-color: #000; }
+	20%, 70% { background-color: #F44; }
+/*    70%  { background-color: #F44; }
+	100% { background-color: #000; }*/
+}
+
+/*  ~~~~~~  ANIMATIONS  ~~~~~~*/
+.ax-animate-fadeIn {
+    animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity:0;}
+    100% { opacity: 100%; }
+}
+
+@keyframes growUp {
+	0% { opacity: 0; transform: scale(0);}
+	100% { opacity: 1; transform: scale(1);}
+}
+
+.ax-animate-fadeDown {
+    transform-origin: top left;
+    animation: 2s fadeDown ease-in-out;
+}
+
+.ax-animate-menu {
+    transform-origin: top center;
+    animation: fadeDown 1s ease-in-out;
+}
+
+@keyframes fadeDown {
+    0%	 { opacity: 0.1; transform: scaleY(0);}
+    80%  { opacity: 1;}
+	100%  { transform: scale(1);}
+}
+
+.ax-animate-fadeAcrossDown {
+    transform-origin: top left;
+    animation: 2s fadeAcrossDown ;
+}
+
+@keyframes fadeAcrossDown  {
+    0%  { opacity: 0; transform: scale(0);}
+    100%{ opacity: 1; transform: scale(1);}
+}
+
+.ax-animate-expand {
+    transform-origin: center center;
+    animation: expand 1s ease-in-out;
+}
+
+@keyframes expand {
+    0%   { opacity: 0.4; transform: scale(0);}
+    90%  { opacity: 1;transform: scale(1.05);}
+    100% { transform: scale(1); }
+}
+
