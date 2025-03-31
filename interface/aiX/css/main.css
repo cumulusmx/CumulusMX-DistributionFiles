@@ -81,6 +81,8 @@ tr > td { border-bottom: thin solid var(--color5);}
 }
 
 /*	~~~~~~   Menus   ~~~~~~*/
+#Menus { min-height: 33px;}
+
 .w3-dropdown-content,
 .ax-dropdow-content {
 	border-radius: 0 0 0.6em 0.6em;

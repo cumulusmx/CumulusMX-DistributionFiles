@@ -32,16 +32,24 @@
 }
 
 .alpaca-field > legend > .collapsed::before {
+	/*  Symol used for expanding panels  */
 	content: '\25B8';
 	padding-left: 0.5%;
 }
 
+.helper-block {
+	/*	Changes colour of the info text on forms  */
+	color: var(--color3);
+}
+
 .alpaca-field > legend > span::before {
+	/* Symbol used for collapsing panels */
 	content: '\25BE';
 	padding-left: 0.5%;
 }
 
 .alpaca-container-has-items {
+	/* Default indedt for stacked panesl */
 	margin-left: 1%;
 }
 

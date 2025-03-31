@@ -88,69 +88,63 @@ let checkTheme = function() {
 }
 
 let configPage = function() {
-    //  Configure the loaded page
-    var headerHt, footerHt;
-    headerHt = $('#PageHead').outerHeight(  );
-    footerHt = $('#PageFoot').outerHeight( true);
-    if( CMXConfig.StaticHead ) {
-        console.log('Static header');
-        $('#PageHead').css('position','').addClass('w3-top');
-        $('#content').css('margin-top', headerHt + 'px');
-    } else {
-        console.log('Scrolling header');
-        $('#PageHead').css('position', 'relative').removeClass('w3-top');
+    //  Show/Hide panels
+    if( !CMXConfig.ShowAlarms){
+        $('#AlarmsPanel').addClass('w3-hide');
+        $('#Alarms').text('Show Alarms');
     }
-    if( CMXConfig.StaticFoot) {
-        if( $(window).height() > 920 ){
+    if( !CMXConfig.ShowDavis){
+        $('#DavisPanel').addClass('w3-hide');
+        $('#Davis').text('Show Davis');
+    }
+    //  Get the height of the header & footer
+    var headHeight = $('#PageHead').outerHeight( true ) ;
+    var footHeight = $('#PageFoot').outerHeight( true );
+    var contentHeight = $(window).height() - (headHeight + footHeight);
+    $('#content').css('min-height', contentHeight  + 'px');
+    if( CMXConfig.StaticHead ) {
+        //  Header is fixed - need to add marging to content
+        $('#PageHead').addClass('w3-top');
+        $('#content').css('margin-top', headHeight + 'px');
+    } else {
+        //  Header scrolls
+        $('#PageHead').removeClass('w3-top').css('position','relative');
+        $('#content').css('margin-top','0px');
+    }
+    if( CMXConfig.StaticFoot ) {
+        if( $(window).height() > 920 ) {
+            //  Tall screen orientation
             $('#PageFoot').addClass('w3-bottom');
-            $('#content').css('margin-bottom', footerHt + 'px');
-            //  Position the gull
-            $('#ax-gull').css('bottom', footerHt + 'px');
+            $('#content').css('margin-bottom', footHeight + 'px');
+            $('#ax-gull').css('bottom', footHeight + 'px'); // Gull sits ON footer
         } else {
-            $('#ax-gull').css('position','absolute');
+            $('#ax-gull').css('position','absolute'); // Gull on bottom of page
+            $('#PageFoot').removeClass('w3-bottom');
         }
     } else {
-        $('#ax-gull').css('position', 'absolute');
+        $('#ax-gull').css('position', 'absolute');  // Gull on bottom of page
     }
-    //  Adjust content padding
-    switch( CMXConfig.PaddingUnits ){
-        case 'em': tAdjust = CMXConfig.PaddingTop * 15; break;
-        case 'vh': tAdjust = CMXConfig.PaddingTop * ($(window).height() / 100) ; break;
-        default: tAdjust = CMXConfig.PaddingTop;
-    }
-    if(CMXConfig.StaticHead){
-        $('#content').css('margin-top', (headerHt + tAdjust) + 'px' );
-    } else {
-        $('#content').css('margin-top', '0px');
-    }
-    $('#content').css('padding-bottom', CMXConfig.paddingBottom + CMXConfig.paddingUnits)
-    //  Configure main seagull
-    //  Adjust gull z-index
+    //  Top Padding
+    $('#content').css('padding-top', CMXConfig.PaddingTop + CMXConfig.PaddingUnits);
+    //  Bottom padding
+    $('#content').css('padding-bottom', CMXConfig.PaddingBottom + CMXConfig.PaddingUnits);
+    //  Seagull
     if( CMXConfig.Seagull.OnTop) {
-        $('#ax-gull').css('z-index', '200');
+        $('#ax-gull').css( 'z-index','200');
     } else {
-        $('#ax-gull').css('z-index', '-200');
+        $('#ax-gull').css( 'z-index','-200');
     }
-    //  Adjust animation
-    if( CMXConfig.Seagull.Animation == '') {
-        //  default animation
-        $('#ax-gull').css('animation', 'fadeIn ' + CMXConfig.Seagull.Speed + 's');
+    //  Animation
+    if( CMXConfig.Seagull.Animation =='') {
+        $('#ax-gull').css('aniation', 'fadeIn ' + CMXConfig.Seagull.Speed + 's' );  // Default animation
     } else {
-        switch(CMXConfig.Seagull.Animation){
+        switch( CMXConfig.Seagull.Animation){
             case 'fadeDown':;
-            case 'fadeAcrossDown': $('#ax-gull').css('transform-origin', 'top left'); break;
-            default: $('#ax-gull').css('transform-origin', 'bottom center')
+            case 'fadeAcrossDown': $('#ax-gull').css('transform-origin', 'top left');break;
+            default: $('#ax-gull').css('transform-origin', 'bottom center');
         }
         $('#ax-gull').css('animation', CMXConfig.Seagull.Animation + ' ' + CMXConfig.Seagull.Speed + 's');
     }
-    //  Show/Hide Davis/Alarms Panel
-    if(!CMXConfig.ShowAlarms) { $('#AlarmsPanel').addClass('w3-hide');$('#Alarms').text('Show Alarms');}
-    if(!CMXConfig.ShowDavis) {$('#DavisPanel').addClass('w3-hide');$('#Davis').text('Show Davis');}
-    //  Need to force minimum content height to make seagull sit at bottom of page
-    headerHt2 = parseFloat(headerHt);
-    footerHr = parseFloat(footerHt);
-    var contentHt = $(window).height() - (headerHt2 + footerHt) + 'px';
-   $('#content').css('min-height', contentHt );
 }
 
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

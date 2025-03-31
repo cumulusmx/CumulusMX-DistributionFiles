@@ -51,6 +51,10 @@
 	font-size: 18px;
 }
 
+.help-block {
+	color: var(--color3);
+}
+
 .alpaca-field-table table tr td .alpaca-field { min-width:2em;}
 
 legend {

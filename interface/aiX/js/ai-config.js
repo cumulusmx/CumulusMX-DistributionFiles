@@ -34,8 +34,17 @@ let displayCurrent = function() {
 	$('#BannerState').prop('checked' , (CMXConfig.StaticHead ? ' checked' : '' ));
 	$('#BannerState').on('change', function() {
 		CMXConfig.StaticHead = $('#BannerState').prop('checked');
-		configPage();
 		showConfig();
+		var headHeight = $('#PageHead').outerHeight( true ) ;
+		if( CMXConfig.StaticHead ) {
+			//  Header is fixed - need to add marging to content
+			$('#PageHead').addClass('w3-top').css('position','fixed');
+			$('#content').css('margin-top', headHeight + 'px');
+		} else {
+			//  Header scrolls
+			$('#PageHead').removeClass('w3-top').css('position','relative');
+			$('#content').css('margin-top','0px');
+		}
 	});
 	$('#FooterState').prop('checked', (CMXConfig.StaticFoot ? ' selected' : '' ));
 	$('#FooterState').on('change', function() {
@@ -54,7 +63,7 @@ let displayCurrent = function() {
 	$('#paddingBottom').prop('value', parseInt(CMXConfig.PaddingBottom ));
 	$('#paddingBottom').on('blur', function(){
 		CMXConfig.PaddingBottom = $('#paddingBottom').val();
-		console.log("Padding bottom: " + CMXConfig.PaddingBottom + CMXConfig.Units);
+		console.log("Padding bottom: " + CMXConfig.PaddingBottom + CMXConfig.PaddingUnits);
 		configPage();
 		showConfig();
 	});
