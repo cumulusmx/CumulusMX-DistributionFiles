@@ -128,17 +128,16 @@ $().ready(function () {
 			case 'co2':			doCO2();		break;
 			default:
 				doTemp();
-				CMXSession.Charts.Trends = 'temp';
-				sessionStorage.setItem(axStore, JSON.stringify(CMXSession));
 				$('#temp').addClass('w3-disabled');
 				break;
 		}
+
 	};
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
-
-//	New
+	
+		//	New
 		switch(config.wind.units){
 			case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
 			case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
@@ -149,9 +148,12 @@ $().ready(function () {
 		}
 		freezing = config.temp.units === 'C' ? 0 : 32;
 		frostTemp = config.temp.units === 'C' ? 4 : 39;
-
+		
+		console.log("Storage: " + CMXSession.Charts.Trends)
 		if( CMXSession.Charts.Trends == null || CMXSession.Charts.Trends == '') {
 			chart = 'temp';
+		} else {
+			chart = CMXSession.Charts.Trends;
 		}
 
 		doSelect( chart );
@@ -786,6 +788,9 @@ var doRain = function () {
 				}
 			}],
 		legend: {enabled: true},
+		navigator: {
+			yAxis: { min:0, softMax:4}
+		},
 		plotOptions: {
 			series: {
 				boostThreshold: 0,
