@@ -133,8 +133,8 @@ thead tr {background: var(--color6);}
 
 .modal-body input[type=text],
 .modal-body input[type='number']{
-	background-color: var(--color1);
-	color: var(--color9);
+	background-color: var(--color9);
+	color: var(--color1);
 	margin:0 0.5em;
 	border-radius: 0.5em;
 	min-width:100%;
@@ -177,7 +177,7 @@ thead tr {background: var(--color6);}
 
 /*	Reformat to support dark mode	*/
 .dataTables_info {
-	color: var(--sub4)!important;
+	color: var(--color4)!important;
 }
 
 td.dataTables_empty { text-align: left!important;}
