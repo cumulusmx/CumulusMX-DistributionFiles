@@ -82,7 +82,7 @@ label {
   position: absolute;
   border: 3px ridge var(--color1)!important;
   background: var(--color9)!important;
-  color: var(--color1);
+  color: var(--color1)!important;
   padding: 0 7px 3px 7px;
   /*font-family: sans-serif;*/
   font-size: 82%;

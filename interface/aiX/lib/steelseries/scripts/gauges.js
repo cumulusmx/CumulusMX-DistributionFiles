@@ -1,4 +1,4 @@
-/*!
+/*!tooltip
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
  * Last Modified: 2022/05/06 11:36:44
  *
@@ -1052,9 +1052,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 0;
 						tip = '<h5>' + strings.dew_info + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowest_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTH + '</span></div>';
 						break;
 					case 'app': // apparent temperature
 						cache.low = extractDecimal(data.apptempTL);
@@ -1066,9 +1066,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 1;
 						tip  = '<h5>' + strings.apptemp_info.replace(')',')<br>') + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH + '</span></div>';
 						break;
 					case 'feel': // feels like
 						cache.low = extractDecimal(data.feelslikeTL);
@@ -1080,9 +1080,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 1;
 						tip = '<h5>' + strings.feel_info + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH + '</span></div>';
 						break;
 					case 'wnd': // wind chill
 						cache.low = extractDecimal(data.wchillTL);
@@ -1094,7 +1094,7 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 2;
 						tip = '<h5>' + strings.chill_info + '</h5>' +
-							'<div class="ow-titleBar">' +
+							'<div class="ax-titleBar">' +
 							'<span>' + strings.lowest_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TwchillTL + '</span></div>';
 						break;
 					case 'hea': // heat index
@@ -1107,7 +1107,7 @@ gauges = (function () {
 						cache.maxMeasuredVisible = true;
 						cache.popupImg = 3;
 						tip = '<h5>' + strings.heat_info + '</h5>' +
-							'<div class="ow-titleBar">' +
+							'<div class="ax-titleBar">' +
 							'<span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TheatindexTH + '</span></div>';
 						break;
 					case 'hum': // humidex
@@ -1119,7 +1119,7 @@ gauges = (function () {
 						cache.minMeasuredVisible = false;
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 4;
-						tip = '<div class="ow-titleBar"><span>' + strings.humdx_info + ':</span><span>' + cache.value + data.tempunit + '</span></div>';
+						tip = '<div class="ax-titleBar"><span>' + strings.humdx_info + ':</span><span>' + cache.value + data.tempunit + '</span></div>';
 						break;
 					// no default
 					}
