@@ -2481,7 +2481,7 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<div class="ax-titleBar" style="max-width:10em;"><h5>' + strings.uv_title + ':</h5><span>' + cache.value + '</span></div>' + 
-							  '<div class="ax-titleBar ow-tableRow"><span><i>' + strings.solar_maxToday + ':</span><span>' + data.UVTH + '</i></span></div>';
+							  '<div class="ax-titleBar ax-tableRow"><span><i>' + strings.solar_maxToday + ':</span><span>' + data.UVTH + '</i></span></div>';
 						tip += '<i>' + cache.headLine + '</i><br>';
 						tip += '<div style="max-width: 20em">' + cache.detail.replace('<br>', ' ') + '</div>' ;
 						$('#imgtip8_txt').html(tip);
