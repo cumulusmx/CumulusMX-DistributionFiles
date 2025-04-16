@@ -32,7 +32,7 @@ input[type="search"] {
 
 #dateFrom, #dateTo, #loadBtn {
 	background-color: var(--gradient-up);
-	color: var(--color9)!important;
+	color: var(--color1)!important;
 	border-radius: 1em;
 	padding:0.4em;
 }

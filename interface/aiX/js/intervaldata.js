@@ -176,7 +176,7 @@ $(document).ready(function () {
                 let extraTempBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Temperature</h4>' }))
                     .append(extraTempBoxes);
-                cards.append($('<div>', { class: 'w3-card'}).append(extraTempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(extraTempBlock));
             }
 
             // extra humidity
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 let extraHumBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Humidity</h4>' }))
                     .append(extraHumBoxes);
-                cards.append($('<div>', {class: 'w3-card'}).append(extraHumBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(extraHumBlock));
             }
 
             // extra dewpoint
@@ -212,7 +212,7 @@ $(document).ready(function () {
                 let extraDewBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Dewpoint</h4>' }))
                     .append(extraDewBoxes);
-                cards.append($('<div>', {class: 'w3-card'}).append(extraDewBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(extraDewBlock));
             }
 
             // soil temp
@@ -237,7 +237,7 @@ $(document).ready(function () {
                 let soilTempBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Soil Temperature</h4>' }))
                     .append(soilTempBoxes);
-                cards.append($('<div>', { class: 'w3-card'}).append(soilTempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(soilTempBlock));
             }
 
             // soil moisture
@@ -263,7 +263,7 @@ $(document).ready(function () {
                 let soilMoistBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Soil Moisture</h4>' }))
                     .append(soilMoistBoxes);
-                cards.append($('<div>', {class: 'w3-card'}).append(soilMoistBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(soilMoistBlock));
             }
 
             // leaf wetness
@@ -281,7 +281,7 @@ $(document).ready(function () {
                 let leafwetBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Leaf Wetness</h4>' }))
                     .append(leafWetBoxes);
-                cards.append($('<div>', { class: 'w3-card'}).append(leafwetBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(leafwetBlock));
             }
 
             // user temperature
@@ -299,7 +299,7 @@ $(document).ready(function () {
                 let usertempBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>User Temperature</h4>' }))
                     .append(userTempBoxes);
-                cards.append($('<div>', { class: 'w3-card'}).append(usertempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(usertempBlock));
             }
 
             // air quality
@@ -327,7 +327,7 @@ $(document).ready(function () {
                 let aqBlock = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>Air Quality</h4>' }))
                     .append(aqSensors);
-                cards.append($('<div>', { class: 'w3-card'}).append(aqBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(aqBlock));
             }
 
             // co2
@@ -377,7 +377,7 @@ $(document).ready(function () {
                 let co2Block = $('<div>', { class: 'my-unit' })
                     .append($('<div>', { class: 'ax-titleBar', html: '<h4>CO₂</h4>' }))
                     .append(co2Boxes);
-                cards.append($('<div>', { class: 'w3-card'}).append(co2Block));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(co2Block));
             }
 
             $('#container').append(cards);
