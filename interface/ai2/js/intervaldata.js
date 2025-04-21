@@ -1,6 +1,11 @@
-// Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/24 15:30:39
-
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: intervaldata.js        	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/09/24 15:30:39
+    Last Edit (NT): 2025/03/21 (changes just for styling)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for intervaldata.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var fromDate, toDate;
 
@@ -21,7 +26,7 @@ $(document).ready(function () {
             // the checkbox id's are the field offset in the monthly log file - add 1000 to fields if they are in the extra log file
             // No need to compute rows - flexbox deals with it.
             // If you prefer the last two panels to be smaller add the class 'ax-fixedwidth' below.
-            cards = $('<div>', { class: 'ax-column4' });
+            cards = $('<div>', { class: 'ax-column4 ax-fixedwidth' });
 
             // temperature Data
             let tempBoxes = $('<div>');
@@ -71,9 +76,9 @@ $(document).ready(function () {
 
             if (tempBoxes.children().length > 0) {
                 let tempBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Temperature</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Temperature</h4>' }))
                     .append(tempBoxes);
-                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(tempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(tempBlock));
             }
 
             // humidity Data
@@ -92,22 +97,22 @@ $(document).ready(function () {
 
             if (humBoxes.children().length > 0) {
                 let humBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Humidity</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Humidity</h4>' }))
                     .append(humBoxes);
-                cards.append($('<div>', {class: 'ow-card ow-theme-add4', style:'order:0;'}).append(humBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme8', style:'order:0;'}).append(humBlock));
             }
 
             // pressure
             let pressBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Atmospheric Pressure</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Atmospheric Pressure</h4>' }))
                 .append($('<div>'))
                 .append($('<input>', { type: 'checkbox', id: '10' }))
                 .append($('<label>', { for: '10', class: 'mylabel', html: 'Sea Level Pressure' }))
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0;' }).append(pressBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0;' }).append(pressBlock));
 
             // wind data
             let windBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Wind</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Wind</h4>' }))
                 .append($('<div>'))
                 .append($('<input>', { type: 'checkbox', id: '5' }))
                 .append($('<label>', { for: '5', class: 'mylabel', html: 'Wind Speed' }))
@@ -117,18 +122,18 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '7' }))
                 .append($('<label>', { for: '7', class: 'mylabel', html: 'Wind Direction' }));
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:1;'}).append(windBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:1;'}).append(windBlock));
 
             // rainfall
             let rainBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Rainfall</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Rainfall</h4>' }))
                 .append($('<div>'))
                 .append($('<input>', { type: 'checkbox', id: '9' }))
                 .append($('<label>', { for: '9', class: 'mylabel', html: 'Rainfall' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '8' }))
                 .append($('<label>', { for: '8', class: 'mylabel', html: 'Rainfall Rate' }));
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0'}).append(rainBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0'}).append(rainBlock));
 
             // solar
             let solarBoxes = $('<div>');
@@ -149,9 +154,9 @@ $(document).ready(function () {
 
             if (solarBoxes.children().length > 0) {
                 let solarBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Solar</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Solar</h4>' }))
                     .append(solarBoxes);
-                cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:2'}).append(solarBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:2'}).append(solarBlock));
             }
 
             // values from the Extras file have 1000 added to the field offset
@@ -169,9 +174,9 @@ $(document).ready(function () {
 
             if (extraTempBoxes.children().length > 0) {
                 let extraTempBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Extra Temperature</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Temperature</h4>' }))
                     .append(extraTempBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(extraTempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(extraTempBlock));
             }
 
             // extra humidity
@@ -187,9 +192,9 @@ $(document).ready(function () {
 
             if (extraHumBoxes.children().length > 0) {
                 let extraHumBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Extra Humidity</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Humidity</h4>' }))
                     .append(extraHumBoxes);
-                cards.append($('<div>', {class: 'ow-card'}).append(extraHumBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(extraHumBlock));
             }
 
             // extra dewpoint
@@ -205,9 +210,9 @@ $(document).ready(function () {
 
             if (extraDewBoxes.children().length > 0) {
                 let extraDewBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Extra Dewpoint</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Extra Dewpoint</h4>' }))
                     .append(extraDewBoxes);
-                cards.append($('<div>', {class: 'ow-card'}).append(extraDewBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(extraDewBlock));
             }
 
             // soil temp
@@ -230,9 +235,9 @@ $(document).ready(function () {
 
             if (soilTempBoxes.children().length > 0) {
                 let soilTempBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Soil Temperature</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Soil Temperature</h4>' }))
                     .append(soilTempBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(soilTempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(soilTempBlock));
             }
 
             // soil moisture
@@ -256,9 +261,9 @@ $(document).ready(function () {
 
             if (soilMoistBoxes.children().length > 0) {
                 let soilMoistBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Soil Moisture</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Soil Moisture</h4>' }))
                     .append(soilMoistBoxes);
-                cards.append($('<div>', {class: 'ow-card'}).append(soilMoistBlock));
+                cards.append($('<div>', {class: 'w3-card ax-theme7'}).append(soilMoistBlock));
             }
 
             // leaf wetness
@@ -274,9 +279,9 @@ $(document).ready(function () {
 
             if (leafWetBoxes.children().length > 0) {
                 let leafwetBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Leaf Wetness</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Leaf Wetness</h4>' }))
                     .append(leafWetBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(leafwetBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(leafwetBlock));
             }
 
             // user temperature
@@ -292,9 +297,9 @@ $(document).ready(function () {
 
             if (userTempBoxes.children().length > 0) {
                 let usertempBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>User Temperature</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>User Temperature</h4>' }))
                     .append(userTempBoxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(usertempBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(usertempBlock));
             }
 
             // air quality
@@ -320,9 +325,9 @@ $(document).ready(function () {
 
             if (aqSensors.children().length > 0) {
                 let aqBlock = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>Air Quality</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>Air Quality</h4>' }))
                     .append(aqSensors);
-                cards.append($('<div>', { class: 'ow-card'}).append(aqBlock));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(aqBlock));
             }
 
             // co2
@@ -370,9 +375,9 @@ $(document).ready(function () {
 
             if (co2Boxes.children().length > 0) {
                 let co2Block = $('<div>', { class: 'my-unit' })
-                    .append($('<div>', { class: 'ow-titleBar', html: '<h4>CO₂</h4>' }))
+                    .append($('<div>', { class: 'ax-titleBar', html: '<h4>CO₂</h4>' }))
                     .append(co2Boxes);
-                cards.append($('<div>', { class: 'ow-card'}).append(co2Block));
+                cards.append($('<div>', { class: 'w3-card ax-theme7'}).append(co2Block));
             }
 
             $('#container').append(cards);
@@ -448,7 +453,7 @@ $(document).ready(function () {
 
 function makeTable(D) {
     var a = '';
-    a += '<table class="w3-table w3-hoverable"><thead><tr>';
+    a += '<table class="w3-table w3-responsive"><thead><tr>';
 
     for (j = 0; j < D[0].length; j++) {
         a += '<th>' + D[0][j] + '</th>';
@@ -564,17 +569,19 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Interval Data Viewer</title><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>';
-    html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
-    html += '<link rel="stylesheet" href="css/main.css"><style>td:first-of-type{white-space:nowrap;tbody td{text-align:center;}}</style></head>';
-    html += '<body><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
-	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
+    let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
+    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/axPro.css">';
+    if(CMXConfig.Theme != ''){html +='<link rel="stylesheet" href="css/themes/' + CMXConfig.Theme + '.css">';}
+    html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
+    html += 'tr:hover>td{background: var(--gradientBar);}tbody td:first-of-type{white-space:nowrap;}thead th{text-align:center;}</style></head>';
+    html += '<body class="ax-theme9"><div class="ax-titleBar ax-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+	html += '<div><img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Interval Data Viewer</h3></div></div>';
 
     if (format == 'CSV') {
-        html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
+        html += '<div class="ax-container w3-responsive">' + convertToCSV(result, true) + '</div></body></html>';
     } else {
-        html += '<div class="ow-container">' + makeTable(result) + '</div></body></html>';
+        html += '<div class="ax-container">' + makeTable(result) + '</div></body></html>';
     }
     w.document.open().write(html);
     w.focus();

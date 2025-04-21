@@ -1,57 +1,57 @@
-// Last modified: 2024/09/27 10:22:13
+// Last modified: 2024/10/29 11:13:44
 
 let accessMode;
 
 $(document).ready(function() {
 
-    $("form").alpaca({
-        "dataSource": "/api/settings/noaadata.json",
-        "optionsSource": "/json/NoaaOptions.json",
-        "schemaSource": "/json/NoaaSchema.json",
-        "ui": "bootstrap",
-        "view": "bootstrap-edit-horizontal",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        dataSource: '/api/settings/noaadata.json',
+        optionsSource: '/json/NoaaOptions.json',
+        schemaSource: '/json/NoaaSchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit-horizontal',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "/api/setsettings/updatenoaaconfig.json",
+                                    type: 'POST',
+                                    url: '/api/setsettings/updatenoaaconfig.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert("Settings updated");
+                                    alert('Settings updated');
                                 })
                                 .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
+            let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
@@ -60,27 +60,27 @@ $(document).ready(function() {
             }
 
             // Trigger changes is the accessibility mode is changed
-            //accessObj.on("change", function() {onAccessChange(this)});
+            //accessObj.on('change', function() {onAccessChange(this)});
 
-            if (form.getControlByPath("options/noaacoolheat").getValue() == true) {
-                let mean = form.getControlByPath("options/minmaxavg");
+            if (form.getControlByPath('options/noaacoolheat').getValue() == true) {
+                let mean = form.getControlByPath('options/minmaxavg');
                 mean.options.disabled = true;
                 mean.refresh();
 
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
+                let heat = form.getControlByPath('thresholds/heatingthreshold');
                 heat.options.disabled = true;
                 heat.refresh();
 
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
+                let cool = form.getControlByPath('thresholds/coolingthreshold');
                 cool.options.disabled = true;
                 cool.refresh();
             }
 
 
-            form.getControlByPath("options/noaacoolheat")
-            .on("change", function () {
+            form.getControlByPath('options/noaacoolheat')
+            .on('change', function () {
                 let val = this.getValue();
-                let mean = form.getControlByPath("options/minmaxavg");
+                let mean = form.getControlByPath('options/minmaxavg');
 
                 if (val === true) {
                     mean.setValue(true);
@@ -89,11 +89,11 @@ $(document).ready(function() {
                 mean.options.disabled = val;
                 mean.refresh();
 
-                let heat = form.getControlByPath("thresholds/heatingthreshold");
+                let heat = form.getControlByPath('thresholds/heatingthreshold');
                 heat.options.disabled = val;
                 heat.refresh();
 
-                let cool = form.getControlByPath("thresholds/coolingthreshold");
+                let cool = form.getControlByPath('thresholds/coolingthreshold');
                 cool.options.disabled = val;
                 cool.refresh();
             });
@@ -107,9 +107,9 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-            let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="ow-btn collapsed">' +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
             '</button>');
         $(span).remove();
@@ -123,7 +123,7 @@ function removeButtons() {
         if (butt.length === 0)
             return;
 
-            let span = $('<span data-toggle="collapse" data-target="' +
+        let span = $('<span data-toggle="collapse" data-target="' +
             $(butt).attr('data-target') +
             '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(butt).text() +

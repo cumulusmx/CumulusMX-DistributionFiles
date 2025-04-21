@@ -1,56 +1,63 @@
-// Last modified: 2023/12/17 22:29:46
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: programsettings.js      Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/10/29 11:11:17
+    Last Edit (NT): 2025/03/21 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for programsettings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 
 $(document).ready(function () {
-    $("form").alpaca({
-        "dataSource": "/api/settings/programdata.json",
-        "optionsSource": "/json/ProgramOptions.json",
-        "schemaSource": "/json/ProgramSchema.json",
-        //"view": "bootstrap-edit",
-        "ui": "bootstrap",
-        "options": {
-            "form": {
-                "buttons": {
+    $('form').alpaca({
+        dataSource: '/api/settings/programdata.json',
+        optionsSource: '/json/ProgramOptions.json',
+        schemaSource: '/json/ProgramSchema.json',
+        //view: 'bootstrap-edit',
+        ui: 'bootstrap',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    "validate": {
-                        "title": "Save Settings",
-                        "click": function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
 
                                 $.ajax({
-                                    type: "POST",
-                                    url: "/api/setsettings/updateprogramconfig.json",
+                                    type: 'POST',
+                                    url: '/api/setsettings/updateprogramconfig.json',
                                     data: {json: JSON.stringify(json)},
-                                    dataType: "text"
+                                    dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert("Settings updated");
+                                    alert('Settings updated');
                                 })
                                 .fail(function (jqXHR, textStatus) {
-                                    alert("Error: " + jqXHR.status + "(" + textStatus + ") - " + jqXHR.responseText);
+                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
                                 });
                             } else {
-                                let firstErr = $('form').find(".has-error:first")
+                                let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert("Invalid value in the form: " + path + msg);
-                                if ($(firstErr).is(":visible")) {
+                                alert('Invalid value in the form: ' + path + msg);
+                                if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
                                 }
                             }
                         },
-                        "styles": "alpaca-form-button-submit"
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             }
         },
-        "postRender": function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
-            let accessObj = form.childrenByPropertyId["accessible"];
+            let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
@@ -59,7 +66,7 @@ $(document).ready(function () {
             }
 
             // Trigger changes is the accessibility mode is changed
-            accessObj.on("change", function() {onAccessChange(this)});
+            accessObj.on('change', function() {onAccessChange(this)});
         }
     });
 });
@@ -71,11 +78,12 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
-            $(span).text() +'</button>');
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+            $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(span).text() +
+            '</button>');
         $(span).remove();
-        $(this).addClass('ow-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -92,7 +100,6 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ow-btnBar');
         $(this).prepend(span);
     });
 }
@@ -124,6 +131,7 @@ function getCSSRule(search) {
     }
     return null;
 }
+
 
 function onAccessChange(that, val) {
     let mode = val == null ? that.getValue() : val;

@@ -1,5 +1,11 @@
-// Created: 2021/01/21 17:10:29
-// Last modified: 2024/12/01 16:30:19
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: chartscompare.js        Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/12/01 16:30:19
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Charts for chartscompare.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var chart, avail, config, options;
 var settings = {
@@ -7,7 +13,7 @@ var settings = {
     colours: []
 }
 
-var freezing;
+var freezing, frostTemp;
 var txtSelect = 'Select Series';
 var txtClear = 'Clear Series';
 
@@ -43,7 +49,7 @@ var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond" style="color:{serie
 var beaufortScale, beaufortDesc, frostTemp;
 beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate breeze','Fresh breeze','Strong breeze','Near gale','Gale','Strong gale','Storm','Violent storm','Hurricane'];
 
-$(document).ready(function () {
+$().ready(function () {
 
     // get all the required config data before we start using it
     $.ajax({url: '/api/graphdata/availabledata.json', success: function (result1) {
@@ -62,6 +68,7 @@ $(document).ready(function () {
                     // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
                 }
 
+                
                 // add the default select option
                 var option = $('<option />');
                 option.html(txtSelect);
@@ -118,7 +125,7 @@ $(document).ready(function () {
                     chart: {
                         renderTo: 'chartcontainer',
                         type: 'spline',
-                        //zooming:{type:'x'},
+                        zoomType: 'x',
                         alignTicks: true
                     },
                     title: {text: 'Recent Data Select-a-Chart'},
@@ -165,6 +172,7 @@ $(document).ready(function () {
                         shared: true,
                         split: false,
                         useHTML: true,
+                        className:'cmxToolTip',
                         headerFormat: myTooltipHead,
                         pointFormat: myTooltipPoint,
                         footerFormat: '</table>',
@@ -453,17 +461,19 @@ var addTemperatureAxis = function (idx) {
                 return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
             },
             align: idx < settings.series.length / 2 ? 'right' : 'left',
+            x: idx < settings.series.length / 2 ? 15 : -15,
         },
         plotLines: [{
             // freezing line
             value: freezing,
             color: 'rgb(0, 0, 180)',
             width: 1,
-            zIndex: 2
+            zIndex: 2,
+            label: {text:'Freezing', align:'center'}
         },{
 			value: frostTemp,
 			color: 'rgb(128,128,255)', width: 1, zIndex: 2,
-			label: {text: 'Frost possible',y:12}
+			label: {text: 'Frost possible',y:12, align:'center'}
 		}],
         minRange: config.temp.units == 'C' ? 5 : 10,
         allowDecimals: false

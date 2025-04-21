@@ -8,7 +8,7 @@
  */
 
  /*	~~~~	GLOBAL SETTINGS	~~~	*/
- .radio {
+.radio {
 	display:inline-block;
 	padding-left:40px;
 	vertical-align: middle;
@@ -24,32 +24,20 @@
 .alpaca-form-button { 
 	border-radius:1em!important;
 	padding:0.3em 2em!important;
-	background: var(--BtnGradient);
-}
-.btn-default:hover,
-.alpaca-form-button:hover {
-	background: var(--BtnGradientHvr);
+	background: var(--gradient-up);
 }
 
 .alpaca-field > legend > .collapsed::before {
-	/*  Symol used for expanding panels  */
 	content: '\25B8';
 	padding-left: 0.5%;
 }
 
-.helper-block {
-	/*	Changes colour of the info text on forms  */
-	color: var(--color3);
-}
-
 .alpaca-field > legend > span::before {
-	/* Symbol used for collapsing panels */
 	content: '\25BE';
 	padding-left: 0.5%;
 }
 
 .alpaca-container-has-items {
-	/* Default indedt for stacked panesl */
 	margin-left: 1%;
 }
 
@@ -61,6 +49,10 @@
 	margin-bottom: 20px;
 	text-align: left;
 	font-size: 18px;
+}
+
+.help-block {
+	color: var(--color3);
 }
 
 .alpaca-field-table table tr td .alpaca-field { min-width:2em;}
@@ -76,17 +68,16 @@ legend {
 	display: flex;
 }
 
-.alpaca-form-buttons-container > button { border:thin solid var(--theme);}
+.alpaca-form-buttons-container > button { border:thin solid var(--color5);}
 
 .alpaca-array-toolbar > button {
 	padding: 0.5em 2em!important;
 	border-radius:1.5em!important;
-	color: var(--sub5);
 }
 
 .alpaca-array-actionbar > .btn { border-radius: 1em 0 0 1em!important;}
 
-tbody td {border-color: var(--sub3)!important;}
+tbody td {border-color: var(--color7)!important;}
 
 .dropdown-menu {z-index:1!important;}
 
@@ -94,11 +85,10 @@ tbody td {border-color: var(--sub3)!important;}
 #alarmsForm ,
 #intvlForm,
 #dailyForm{
-	thead tr {background-color:var(--add3);}
-	thead th {border-color: var(--add3);}
-	thead th {color: var(--sub5);}
-	tbody tr {background: var(--sub5);}
-	tbody td {border:thin solid var(--sub5)!important;}
+	thead tr {background-color:var(--color7);}
+	thead th {border-color: var(--color7);}
+	tbody tr {background: var(--color9);}
+	tbody td {border:thin solid var(--color8)!important;}
 	.alpaca-field-object { padding:0;}
 	.alpaca-container-has-items { margin-left:0;}	
 }
@@ -113,129 +103,3 @@ tbody td {border-color: var(--sub3)!important;}
 
 #intvlForm td:last-of-type { max-width:16rem!important; }
 #dailyForm td:last-of-type { max-width:14rem!important; }
-
-
-/*
-
-.radio {
-	display: inline-block;
-	padding-left: 40px;
-	vertical-align: middle;
-	margin-top: 10px;
-}
-.radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-
-.alpaca-field > legend > .collapsed::before {
-	content: '\25B8';
-	padding-left: 0.5%;
-	color: var(--sub5);
-}
-
-.alpaca-field > legend > span::before {
-	content: "\25BE";
-	padding-left: 0.5%;
-}
-
-.alpaca-container-has-items {
-	margin-left: 0;
-}
-
-.alpaca-form-buttons-container {
-	margin-bottom: 20px;
-	text-align: left;
-	font-size: 18px;
-}
-
-.hideme {
-	visibility: hidden;
-	width: 0px;
-	height: 0px;
-	display: flex;
-}
-
-.form-control {
-	font-size: 100%;
-}
-
-table {
-	width: 100%!important;
-	border: thin solid var(--add5);
-	margin: 1vh 0;
-	min-width: 60em;
-	border-collapse: collapse;
-}
-
-td {
-	padding: 0.3em 0.5em;
-	border: thin solid var(--add4);
-	background: var(--add5);
-	color: var(--sub5);
-	vertical-align: center;
-	text-align:center;
-}
-
-th {
-	padding: 0.4em 0.1em;
-	border: thin solid var(--add5);
-	background: var(--add3);
-	color: var(--sub5);
-	vertical-align: bottom;
-}
-
-legend {
-	color: inherit;
-}
-
-.alpaca-form-buttons-container {
-	text-align: center;
-}
-
-.alpaca-container-has-items {
-	margin-left: 1%;
-}
-
-.collapse.in {
-	margin-left: 1%;
-}
-
-.alpaca-form-buttons-container > button,
-.alpaca-array-toolbar > button {
-	background-image: var(--BtnGradient)!important;
-	color: var(--sub5)!important;
-	border-radius: 2em;
-	border:thin solid var(--theme);
-	padding: 0.2em 3em;
-}
-
-.alpaca-form-buttons-container > button:hover,
-.alpaca-array-toolbar > button:hover {
-	background-image: var(--BtnGradientHvr)!important;
-	color: var(--sub5)!important;
-}
-
-
-.alpaca-array-toolbar > button  {
-	padding: 0.8em 3em;
-	text-shadow: 0 0 0 0 var(--add5)!important;
-}
-
-input[type=text] {
-	background: var(--add4);
-	color: var(--sub5)!important;
-}
-
-checkbox.alpaca-control { padding: 0;}
-
-select.alpaca-control {
-	font-size: 100%;
-	background: var(--add4);
-	color: var(--sub5);
-}
-
-.alpaca-array-actionbar.btn-group > button {
-	background-color: var(--add3);
-	border:none;
-	padding:0.3em!important;
-	color: var(--sub5);
-}
-*/

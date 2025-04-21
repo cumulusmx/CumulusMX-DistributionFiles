@@ -1,22 +1,29 @@
-// Last modified: 2023/12/17 23:02:29
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: useralarms.js      Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/10/29 11:45:49
+    Last Edit (NT): 2025/03/21 - Modified getCSSRule()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for useralarms.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 let csvChar;
 
 $(document).ready(function () {
     $('#alarmsForm').alpaca({
-        'dataSource': '/api/settings/useralarms.json',
-        'optionsSource': '/json/UserAlarmsOptions.json',
-        'schemaSource': '/json/UserAlarmsSchema.json',
-        'ui': 'bootstrap',
-        'view': 'bootstrap-edit',
-        'options': {
-            'form': {
-                'buttons': {
+        dataSource: '/api/settings/useralarms.json',
+        optionsSource: '/json/UserAlarmsOptions.json',
+        schemaSource: '/json/UserAlarmsSchema.json',
+        ui: 'bootstrap',
+        view: 'bootstrap-edit',
+        options: {
+            form: {
+                buttons: {
                     // don't use the Submit button because that is disabled on validation errors
-                    'validate': {
-                        'title': 'Save Settings',
-                        'click': function() {
+                    validate: {
+                        title: 'Save Settings',
+                        click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
                                 let json = this.getValue();
@@ -44,12 +51,12 @@ $(document).ready(function () {
                                 }
                             }
                         },
-                        'styles': 'alpaca-form-button-submit'
+                        styles: 'alpaca-form-button-submit'
                     }
                 }
             }
         },
-        'postRender': function (form) {
+        postRender: function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
@@ -71,11 +78,12 @@ function addButtons() {
         if (span.length === 0)
             return;
 
-        let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
-            $(span).text() +'</button>');
+        let butt = $('<button type="button" data-toggle="collapse" data-target="' +
+            $(span).attr('data-target') +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
+            $(span).text() +
+            '</button>');
         $(span).remove();
-        $(this).addClass('ow-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -92,22 +100,7 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ow-btnBar');
         $(this).prepend(span);
-    });
-}
-
-function setCollapsed() {
-    $('form div.alpaca-container.collapse').each(function () {
-        let span = $(this).siblings('legend:first').children('span:first');
-        if ($(this).hasClass('in')) {
-            span.attr('role', 'treeitem');
-            span.attr('aria-expanded', true);
-        } else {
-            span.attr('role', 'treeitem');
-            span.attr('aria-expanded', false);
-            span.addClass('collapsed')
-        }
     });
 }
 
@@ -123,6 +116,20 @@ function getCSSRule(search) {
         }
     }
     return null;
+}
+
+function setCollapsed() {
+    $('form div.alpaca-container.collapse').each(function () {
+        let span = $(this).siblings('legend:first').children('span:first');
+        if ($(this).hasClass('in')) {
+            span.attr('role', 'treeitem');
+            span.attr('aria-expanded', true);
+        } else {
+            span.attr('role', 'treeitem');
+            span.attr('aria-expanded', false);
+            span.addClass('collapsed')
+        }
+    });
 }
 
 function onAccessChange(that, val) {

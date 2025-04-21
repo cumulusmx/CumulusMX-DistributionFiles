@@ -1,4 +1,11 @@
-// Last modified: 2024/09/28 12:09:33
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: dashboard.js        	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/11/29 17:11:31
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for index.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
@@ -24,26 +31,28 @@ $(document).ready(function () {
 		success: function (results) {
 			var dataVisible = results.DataVisibility;
             if( dataVisible.solar.Solar == 0 && dataVisible.solar.UV == 0 ){
-                //  Hide ethe panel
+                //  Hide the panel
                 $('[data-cmxData-Rad]').addClass('w3-hide');
             } else {
+                //  Hide selective readings
                 if( dataVisible.solar.Solar == 0 ) { $('[data-cmxData-Solar]').addClass('w3-hide');}
                 if( dataVisible.solar.UV == 0)  { $('[data-cmxData-UV]').addClass('w3-hide');}
             }
         }
     })
 
-    function playSnd() {
+    function playSound() {
         if (playList.length) {
             playList[0].addEventListener('ended', function () {
                 playList.shift();
-                playSnd()
+                playSound()
             });
             let promise = playList[0].play();
             if (promise !== undefined) {
+                log('Playing sound');
                 promise.then(function(_){}).catch(function(_error) {
                     // Autoplay prevented, ask user to enable it
-                    //alert("hi");
+                    //alert('hi');
                     $('#bt').addClass('show').click(function () {
                         //audioElement.play();
                         $('#bt').removeClass('show');
@@ -62,18 +71,18 @@ $(document).ready(function () {
             title += 's';
         }
 
-        if (!("Notification" in window)) {
+        if (!('Notification' in window)) {
             // Check if the browser supports notifications
             alert(text);
-        } else if (Notification.permission === "granted") {
+        } else if (Notification.permission === 'granted') {
             // Check whether notification permissions have already been granted;
             // if so, create a notification
             let notification = new Notification(title, { body: text, icon: img });
-        } else if (Notification.permission !== "denied") {
+        } else if (Notification.permission !== 'denied') {
             // We need to ask the user for permission
             Notification.requestPermission().then((permission) => {
                 // If the user accepts, let's create a notification
-                if (permission === "granted") {
+                if (permission === 'granted') {
                     let notification = new Notification(title, { body: text, icon: img });
                 }
             });
@@ -110,7 +119,7 @@ $(document).ready(function () {
 
     function updateTimeout() {
         // Change the icon on the last update to show that there has been no update for a while
-        $('#LastUpdateIcon').attr('src', 'img/red.png');
+        $('#LastUpdateIcon').attr('src', 'img/down.png');
     }
 
     function onMessage(evt) {
@@ -142,22 +151,22 @@ $(document).ready(function () {
         window.clearTimeout(lastUpdateTimer);
         lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
-        if ($('#LastUpdateIcon').attr('src') != 'img/green.png') {
-            $('#LastUpdateIcon').attr('src', 'img/green.png');
-        }
+        if ($('#LastUpdateIcon').attr('src') != 'img/up.png') {
+            $('#LastUpdateIcon').attr('src', 'img/up.png');
+}
 
 
         if (data.DataStopped) {
-            if ($('#DataStoppedIcon').attr('src') != 'img/red.png') {
-                $('#DataStoppedIcon').attr('src', 'img/red.png');
+            if ($('#DataStoppedIcon').attr('src') != 'img/down.png') {
+                $('#DataStoppedIcon').attr('src', 'img/down.png');
             }
-        } else if ($('#DataStoppedIcon').attr('src') != 'img/green.png'){
-            $('#DataStoppedIcon').attr('src', 'img/green.png');
+        } else if ($('#DataStoppedIcon').attr('src') != 'img/up.png'){
+            $('#DataStoppedIcon').attr('src', 'img/up.png');
         }
 
         // Firefox gets arsy about multiple notifications so roll them up into one
         let sendNotification = false;
-        let notificationMessage = "";
+        let notificationMessage = '';
 
         // Get the keys from the object and set
         // the element with the same id to the value
@@ -169,15 +178,18 @@ $(document).ready(function () {
 
                     // set the indicator state
                     if (alarm.triggered && alarmState[alarm.id] == false) {
+                        log(alarm.id + ' Triggered');
+
                         alarmState[alarm.id] = true;
 
                         // set the indicator
-                        $(id).removeClass('indicatorOff ow-LED-off').addClass('indicatorOn ow-LED-on');
+                        $(id).removeClass('indicatorOff ax-led-off').addClass('indicatorOn ax-led-on');
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
-                            let sndFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
-                            playList.push(new Audio(sndFile));
+                            log(alarm.id + ' Queueing sound')
+                            let soundFile = 'sounds/'+ alarmSettings[alarm.id].Sound;
+                            playList.push(new Audio(soundFile));
                         }
 
                         // notify?
@@ -185,7 +197,7 @@ $(document).ready(function () {
                             sendNotification = true;
                             let message = '‣ ' + alarmSettings[alarm.id].Name;
 
-                            console.log('Notify: ' + message);
+                            log(alarm.id + ' Notify: ' + message);
                             notificationMessage += message + "\n";
                         }
 
@@ -194,8 +206,9 @@ $(document).ready(function () {
                             $('#' + alarm.Id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
-                        alarmState[key] = false;
-                        $(id).removeClass('indicatorOn ow-LED-on').addClass('indicatorOff ow-LED-off');
+                        log(alarm.id + ' Cleared');
+                        alarmState[alarm.id] = false;
+                        $(id).removeClass('indicatorOn ax-led-on').addClass('indicatorOff ax-led-on');
                     }
                 });
             } else {
@@ -209,45 +222,29 @@ $(document).ready(function () {
             createNotification(notificationMessage);
         }
 
-        playSnd();
+        playSound();
 
         $('.WindUnit').text(data.WindUnit);
-        $('.WindRunUnit').text(data.WindRunUnit);
         $('.PressUnit').text(data.PressUnit);
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
 
-        //Modified by Neil
         var tmpTrend = Number(data.TempTrend.replace(',','.'));
-        if (tmpTrend === 0 && $('#TempTrendImg').attr('src') != 'img/steady.png') {
-            $('#TempTrendImg').attr('src', 'img/steady.png');
+        if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
+            $('#TempTrendImg').attr('src', 'img/down.png');
         } else if (tmpTrend > 0 && $('#TempTrendImg').attr('src') != 'img/up.png') {
             $('#TempTrendImg').attr('src', 'img/up.png');
-        } else if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
-            $('#TempTrendImg').attr('src', 'img/down.png');
+        } else if (tmpTrend == 0 && $('#TempTrendImg').attr('src') != 'img/nochange.png') {
+            $('#TempTrendImg').attr('src', 'img/nochange.png');
         }
 
         tmpTrend = Number(data.PressTrend.replace(',','.'));
-        if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/steady.png') {
-            $('#PressTrendImg').attr('src', 'img/steady.png');
+        if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
+            $('#PressTrendImg').attr('src', 'img/down.png');
         } else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
             $('#PressTrendImg').attr('src', 'img/up.png');
-        } else if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
-            $('#PressTrendImg').attr('src', 'img/down.png');
-        }
-
-        //	Added by Neil
-        var curRainRate = Number(data.RainRate.replace(',','.'));
-        if (curRainRate > 0) {
-            if (curRainRate < 5 && $('#RainRateImg').attr('src') != 'img/rain1.png') {
-                $('#RainRateImg').attr('src', 'img/rain1.png');
-            } else if (curRainRate < 10 && $('#RainRateImg').attr('src') != 'img/rain2.png') {
-                $('#RainRateImg').attr('src', 'img/rain2.png');
-            } else if (curRainRate >= 10 && $('#RainRateImg').attr('src') != 'img/rain3.png') {
-                $('#RainRateImg').attr('src', 'img/rain3.png');
-            }
-        }  else if ($('#RainRateImg').attr('src') != 'img/rain0.png') {
-            $('#RainRateImg').attr('src', 'img/rain0.png');
+        } else if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/nochange.png') {
+            $('#PressTrendImg').attr('src', 'img/nochange.png');
         }
 
         wrData = data.WindRoseData.split(',');
@@ -266,6 +263,10 @@ $(document).ready(function () {
     let pad = function (x) {
         return x < 10 ? '0' + x : x;
     };
+
+    let log = function (x) {
+        console.log(new Date().toISOString().slice(11,23) + ' ' + x);
+    }
 
     let ticktock = function () {
         let d = new Date();
@@ -308,8 +309,8 @@ $(document).ready(function () {
             humTL: inp.LowHumToday.toString(),
             humTH: inp.HighHumToday.toString(),
             inhum: inp.IndoorHum.toString(),
-            SensorContactLost: "0",
-            forecast: (inp.Forecast || "n/a").toString(),
+            SensorContactLost: '0',
+            forecast: (inp.Forecast || 'n/a').toString(),
             tempunit: inp.TempUnit.substr(inp.TempUnit.length - 1),
             windunit: inp.WindUnit,
             pressunit: inp.PressUnit,
@@ -336,7 +337,7 @@ $(document).ready(function () {
             TwgustTM: inp.HighGustTodayTime,
             windTM: inp.HighWindToday.toString(),
             bearingTM: inp.HighGustBearingToday.toString(),
-            timeUTC: "",
+            timeUTC: '',
             BearingRangeFrom10: inp.BearingRangeFrom10.toString(),
             BearingRangeTo10: inp.BearingRangeTo10.toString(),
             UV: inp.UVindex.toString(),
@@ -347,21 +348,21 @@ $(document).ready(function () {
             domwinddir: inp.DominantWindDirection.toString(),
             WindRoseData: inp.WindRoseData,
             windrun: inp.WindRunToday.toString(),
-            cloudbasevalue: "",
-            cloudbaseunit: "",
-            version: "",
-            build: "",
-            ver: "12"
+            cloudbasevalue: '',
+            cloudbaseunit: '',
+            version: '',
+            build: '',
+            ver: '12'
         };
     }
 
     function doAjaxUpdate() {
         $.ajax({
-            url: "/api/data/currentdata",
-            dataType: "json"
-        })
-         .done(function (data) {
-            updateDisplay(data);
+            url: '/api/data/currentdata',
+            dataType: 'json',
+            success: function (data) {
+                updateDisplay(data);
+            }
         });
     }
 
@@ -369,10 +370,10 @@ $(document).ready(function () {
         // Obtain the websockets port and open the connection
         $.ajax({
             url: '/api/info/wsport.json',
-            dataType: 'json'
-        })
-        .done(function (result) {
-            OpenWebSocket(result.wsport);
+            dataType: 'json',
+            success: function (result) {
+                OpenWebSocket(result.wsport);
+            }
         });
     } else {
         // use Ajax
@@ -388,65 +389,66 @@ $(document).ready(function () {
     // Get the alarm settings - only do this on page load
     $.ajax({
         url: '/api/info/alarms.json',
-        dataType: 'json'
-    })
-    .done(function (result) {
-        let playSnd = false;
-        let notify = false;
+        dataType: 'json',
+        success: function (result) {
+            let playSnd = false;
+            let notify = false;
 
-        result.forEach(function (alarm) {
-            // save the setting for later
-            alarmSettings[alarm.Id] = alarm;
-            alarmState[alarm.Id] = false;
 
-            if(alarm.Id.startsWith('AlarmUser')) {
-                //console.log(alarm.Id);
-                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.userAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
-            } else {
-                $('#alarms').append('<div ><div class="ow-led ' + CMXConfig.LEDs.defAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
-            }
+            result.forEach(function (alarm) {
+                // save the setting for later
+                alarmSettings[alarm.Id] = alarm;
+                alarmState[alarm.Id] = false;
 
-            if (alarm.SoundEnabled) {
-                playSnd = true;
-            }
-            if (alarm.Notify) {
-                notify = true;
-            }
-        });
-
-        if (playSnd) {
-        }
-
-        if (notify) {
-            // Request notification permission
-            function handlePermission(permission) {
-                // Whatever the user answers, we make sure Chrome stores the information
-                if (!('permission' in Notification)) {
-                    Notification.permission = permission;
-                }
-            }
-
-            function checkNotificationPromise() {
-                try {
-                    Notification.requestPermission().then();
-                } catch(e) {
-                    return false;
-                }
-                return true;
-            }
-
-            if (!('Notification' in window)) {
-                console.log("This browser does not support notifications.");
+                if(alarm.Id.startsWith('AlarmUser')) {
+                    //console.log(alarm.Id);
+                    $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDUserAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
                 } else {
-                    if (checkNotificationPromise()) {
-                        Notification.requestPermission()
-                        .then((permission) => {
-                            handlePermission(permission);
-                        })
+                    $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
+                }
+
+                if (alarm.SoundEnabled) {
+                    playSnd = true;
+                }
+                if (alarm.Notify) {
+                    notify = true;
+                }
+            });
+
+            if (playSnd) {
+            }
+
+            if (notify) {
+                // Request notification permission
+                function handlePermission(permission) {
+                    // Whatever the user answers, we make sure Chrome stores the information
+                    if (!('permission' in Notification)) {
+                        Notification.permission = permission;
+                    }
+                }
+
+                function checkNotificationPromise() {
+                    try {
+                        Notification.requestPermission().then();
+                    } catch(e) {
+                        return false;
+                    }
+                    return true;
+                }
+
+                if (!('Notification' in window)) {
+                    log('This browser does not support notifications.');
                     } else {
-                        Notification.requestPermission(function(permission) {
-                        handlePermission(permission);
-                    });
+                        if (checkNotificationPromise()) {
+                            Notification.requestPermission()
+                            .then((permission) => {
+                                handlePermission(permission);
+                            })
+                        } else {
+                            Notification.requestPermission(function(permission) {
+                            handlePermission(permission);
+                        });
+                    }
                 }
             }
         }
@@ -455,10 +457,10 @@ $(document).ready(function () {
     // Get the station name - only do this on page load
     $.ajax({
         url: '/api/tags/process.json?locationJsEnc',
-        dataType: 'json'
-    })
-    .done(function (result) {
-        $('#StationName').html(result.locationJsEnc);
+        dataType: 'json',
+        success: function (result) {
+            $('#StationName').html(result.locationJsEnc);
+        }
     });
 
     ticktock();
@@ -466,11 +468,30 @@ $(document).ready(function () {
     // Calling ticktock() every 1 second
     setInterval(ticktock, 1000);
 
-    //	Calling DavisStats every minute
+    //	Check Station & set up Davis Stats fetch
     getStation();
 });
 
-//	Added by Neil
+let getStation = function() {
+    var reqData = 'stationId';
+    $.ajax({
+        url: '/api/tags/process.json?' + reqData,
+        //dataType: 'json'
+    })
+    .done(function(result) {
+        switch( result.stationId){
+            case '1':
+            case '11':
+                //$('#Davis').removeClass('w3-hide');
+                DavisStats();
+                break;
+            default:
+                $('#Davis').addClass('w3-hide');
+                $('#DavisPanel').addClass('w3-hide')
+        }
+    })
+}
+
 let DavisStats = function() {
     $.ajax({
         url: '/api/tags/process.txt',
@@ -512,51 +533,27 @@ let DavisStats = function() {
     });
 }
 
-let getStation = function() {
-    var reqData = 'stationId';
-    $.ajax({
-        url: '/api/tags/process.json?' + reqData,
-        //dataType: 'json'
-    })
-    .done(function(result) {
-        if (result.stationId == 1 || result.stationId == 11) {
-            if (result.stationId == 1) {
-                $('.davisWLL').addClass('w3-hide');
-
-            } else { // WLL = 11
-                $('.davisVP2').addClass('w3-hide');
-            }
-
-            DavisStats();
-        } else {
-            //	Need to unhide pane, button
-            $('#Davis').addClass('w3-hide');
-            $('#DavisPanel').addClass('w3-hide');
-        }
-    })
-}
-
 const DavisData = '{' +
-    '"DavisTotalPacketsReceived": <#DavisTotalPacketsReceived>, ' +
-    '"DavisTotalPacketsMissed": <#DavisTotalPacketsMissed>, ' +
-    '"DavisMaxInARow": <#DavisMaxInARow>, ' +
-    '"DavisNumCRCerrors": <#DavisNumCRCerrors>, ' +
-    '"txbattery": "<#txbattery>", ' +
-    '"battery": "<#battery rc=y>", ' +
-    '"DavisPercentReceived0": <#DavisReceptionPercent tx=1>, ' +
-    '"DavisPercentReceived1": <#DavisReceptionPercent tx=2>, ' +
-    '"DavisPercentReceived2": <#DavisReceptionPercent tx=3>, ' +
-    '"DavisPercentReceived3": <#DavisReceptionPercent tx=4>, ' +
-    '"DavisPercentReceived4": <#DavisReceptionPercent tx=5>, ' +
-    '"DavisPercentReceived5": <#DavisReceptionPercent tx=6>, ' +
-    '"DavisPercentReceived6": <#DavisReceptionPercent tx=7>, ' +
-    '"DavisPercentReceived7": <#DavisReceptionPercent tx=8>, ' +
-    '"DavisTxRssi0": <#DavisTxRssi tx=1>, ' +
-    '"DavisTxRssi1": <#DavisTxRssi tx=2>, ' +
-    '"DavisTxRssi2": <#DavisTxRssi tx=3>, ' +
-    '"DavisTxRssi3": <#DavisTxRssi tx=4>, ' +
-    '"DavisTxRssi4": <#DavisTxRssi tx=5>, ' +
-    '"DavisTxRssi5": <#DavisTxRssi tx=6>, ' +
-    '"DavisTxRssi6": <#DavisTxRssi tx=7>, ' +
-    '"DavisTxRssi7": <#DavisTxRssi tx=8>' +
-    '}';
+'"DavisTotalPacketsReceived": <#DavisTotalPacketsReceived>, ' +
+'"DavisTotalPacketsMissed": <#DavisTotalPacketsMissed>, ' +
+'"DavisMaxInARow": <#DavisMaxInARow>, ' +
+'"DavisNumCRCerrors": <#DavisNumCRCerrors>, ' +
+'"txbattery": "<#txbattery>", ' +
+'"battery": "<#battery rc=y>", ' +
+'"DavisPercentReceived0": <#DavisReceptionPercent tx=1>, ' +
+'"DavisPercentReceived1": <#DavisReceptionPercent tx=2>, ' +
+'"DavisPercentReceived2": <#DavisReceptionPercent tx=3>, ' +
+'"DavisPercentReceived3": <#DavisReceptionPercent tx=4>, ' +
+'"DavisPercentReceived4": <#DavisReceptionPercent tx=5>, ' +
+'"DavisPercentReceived5": <#DavisReceptionPercent tx=6>, ' +
+'"DavisPercentReceived6": <#DavisReceptionPercent tx=7>, ' +
+'"DavisPercentReceived7": <#DavisReceptionPercent tx=8>, ' +
+'"DavisTxRssi0": <#DavisTxRssi tx=1>, ' +
+'"DavisTxRssi1": <#DavisTxRssi tx=2>, ' +
+'"DavisTxRssi2": <#DavisTxRssi tx=3>, ' +
+'"DavisTxRssi3": <#DavisTxRssi tx=4>, ' +
+'"DavisTxRssi4": <#DavisTxRssi tx=5>, ' +
+'"DavisTxRssi5": <#DavisTxRssi tx=6>, ' +
+'"DavisTxRssi6": <#DavisTxRssi tx=7>, ' +
+'"DavisTxRssi7": <#DavisTxRssi tx=8>' +
+'}';

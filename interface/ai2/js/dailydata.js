@@ -1,5 +1,11 @@
-// Created: 2021/01/21 17:10:29
-// Last modified: 2024/09/20 17:11:31
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: dailydata.js        	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/09/20 17:11:31
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for dailydata.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var fromDate, toDate;
 
@@ -43,9 +49,9 @@ $(document).ready(function () {
 
         if (tempBoxes.children().length > 0) {
             let tempBlock = $('<div>')
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Temperature</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Temperature</h4>' }))
                 .append(tempBoxes)
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style: 'order:0;' }).append(tempBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style: 'order:0;' }).append(tempBlock));
         }
 
         // humidity Data
@@ -66,14 +72,14 @@ $(document).ready(function () {
 
         if (humBoxes.children().length > 0) {
             let humBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Humidity</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Humidity</h4>' }))
                 .append(humBoxes);
-            cards.append($('<div>', {class: 'ow-card ow-theme-add4', style: 'order:0' }).append(humBlock));
+            cards.append($('<div>', {class: 'w3-card ax-theme8', style: 'order:0' }).append(humBlock));
         }
 
         // pressure
         let pressBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'ow-titleBar', html: '<h4>Atmospheric Pressure</h4>' }))
+            .append($('<div>', { class: 'ax-titleBar', html: '<h4>Atmospheric Pressure</h4>' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '10' }))
             .append($('<label>', { for: '10', class: 'mylabel', html: 'Max Pressure' }))
@@ -86,11 +92,11 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
             .append($('<label>', { for: '9', class: 'mylabel', html: 'Min Pressure Time' }));
-        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(pressBlock));
+        cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(pressBlock));
 
         // wind data
         let windBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'ow-titleBar', html: '<h4>Wind</h4>' }))
+            .append($('<div>', { class: 'ax-titleBar', html: '<h4>Wind</h4>' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '1' }))
             .append($('<label>', { for: '1', class: 'mylabel', html: 'High Gust' }))
@@ -112,11 +118,11 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
             .append($('<label>', { for: '16', class: 'mylabel', html: 'Wind Run' }));
-        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style: 'order:0' }).append(windBlock));
+        cards.append($('<div>', { class: 'w3-card ax-theme8', style: 'order:0' }).append(windBlock));
 
         // rainfall
         let rainBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'ow-titleBar', html: '<h4>Rainfall</h4>' }))
+            .append($('<div>', { class: 'ax-titleBar', html: '<h4>Rainfall</h4>' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '12' }))
             .append($('<label>', { for: '12', class: 'mylabel', html: 'Max Rainfall Rate' }))
@@ -138,7 +144,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
             .append($('<label>', { for: '54', class: 'mylabel', html: 'High Rainfall 24 Hours Time' }));
-        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(rainBlock));
+        cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(rainBlock));
 
         // solar
         let solarBoxes = $('<div>');
@@ -168,15 +174,15 @@ $(document).ready(function () {
 
         if (solarBoxes.children().length > 0) {
             let solarBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Solar<h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Solar<h4>' }))
                 .append(solarBoxes);
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(solarBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(solarBlock));
         }
 
         // derived temperatures
         if (dataVisibility.temperature.DewPoint > 0 || dataVisibility.temperature.FeelsLike > 0 || dataVisibility.temperature.HeatIndex > 0 || dataVisibility.temperature.Humidex > 0 || dataVisibility.temperature.WindChill > 0) {
             let derivedTempBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'ow-titleBar', html: '<h4>Derived Temperature</h4>' }))
+                .append($('<div>', { class: 'ax-titleBar', html: '<h4>Derived Temperature</h4>' }))
                 .append($('<div>'));
             if (dataVisibility.temperature.DewPoint > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '35' }))
@@ -244,12 +250,12 @@ $(document).ready(function () {
                     .append($('<label>', { for: '30', class: 'mylabel', html: 'Low Apparent Time' }))
             }
 
-            cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(derivedTempBlock));
+            cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(derivedTempBlock));
         }
 
         // degree days
         let degreeDayBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'ow-titleBar', html: '<h4>Degree Days</h4>' }))
+            .append($('<div>', { class: 'ax-titleBar', html: '<h4>Degree Days</h4>' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '40' }))
             .append($('<label>', { for: '40', class: 'mylabel', html: 'Heating Degree Days' }))
@@ -257,7 +263,7 @@ $(document).ready(function () {
             .append($('<input>', { type: 'checkbox', id: '41' }))
             .append($('<label>', { for: '41', class: 'mylabel', html: 'Cooling Degree Days' }));
 
-        cards.append($('<div>', { class: 'ow-card ow-theme-add4', style:'order:0' }).append(degreeDayBlock));
+        cards.append($('<div>', { class: 'w3-card ax-theme8', style:'order:0' }).append(degreeDayBlock));
 
 
         $('#container').append(cards);
@@ -342,7 +348,7 @@ $(document).ready(function () {
 
 function makeTable(D) {
     var a = '';
-    a += '<table class="w3-table w3-hoverable"><thead><tr>';
+    a += '<table class="w3-table w3-responsive"><thead><tr>';
 
     for (j = 0; j < D[0].length; j++) {
         a += '<th>' + D[0][j] + '</th>';
@@ -440,17 +446,19 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'DailyData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
-    html += '<link rel="stylesheet" href="css/w3Pro+.css"><link rel="stylesheet" href="themes/' + CMXConfig.Theme + '.css">';
-    html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}</style></head>';
-    html += '<body class="ow-theme-add5"><div class="ow-titleBar ow-theme" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
-	html += '<div><img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
+    let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title>';
+    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/axPro.css">';
+    if(CMXConfig.Theme!='') { html += '<link rel="stylesheet" href="css/themes/' + CMXConfig.Theme + '.css">';}
+    html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
+    html += 'tr:hover>td{background: var(--gradientBar);</style></head>';
+    html += '<body class="ax-theme9"><div class="ax-titleBar ax-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+	html += '<div><img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Daily Data Viewer</h3></div></div>';
 
     if (format == 'CSV') {
-        html += '<div class="ow-container">' + convertToCSV(result, true) + '</div></body></html>';
+        html += '<div class="ax-container w3-responsive">' + convertToCSV(result, true) + '</div></body></html>';
     } else {
-        html += '<div class="ow-container ow-theme-add5">' + makeTable(result) + '</div></body></html>';
+        html += '<div class="ax-container">' + makeTable(result) + '</div></body></html>';
     }
     w.document.open().write(html);
     w.focus();

@@ -1,4 +1,11 @@
-// Last modified: 2023/12/14 17:29:32
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: records.js      Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/10/29 11:27:28
+    Last Edit (NT): 2025/03/21 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for records.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // set dataTbales defaults
 $.extend($.fn.dataTable.defaults, {
@@ -6,7 +13,17 @@ $.extend($.fn.dataTable.defaults, {
 });
 
 
-$(document).ready(function () {
+$().ready(function () {
+	var lastGroup = CMXSession.Records.All;
+	switch( CMXSession.Records.All){
+		case '':			urlPrefix = '/api/records/alltime/';break;
+		case 'alltime': 	urlPrefex='/api/records/alltime/';	break;
+		case 'thisyear':	urlPrefix = '/api/records/thisyear/';	break;
+		case 'thismonth':	urlPrefix = '/api/records/thismonth/';	break;
+		default:	urlPrefix = '/api/records/month/'+CMXSession.Records.All + '/';
+	}
+	console.log("Last record block url: " + urlPrefix + "(" + period[CMXSession.Records.All] + ")");
+
 	var tempTable=$('#temperature').dataTable({
 		"paging": false,
 		"searching": false,
@@ -17,7 +34,7 @@ $(document).ready(function () {
 			{"className": "left", "targets": [0,2]},
 			{"className": "w3-right-align", "targets": [1]}
 		],
-		"ajax": '/api/records/alltime/temperature.json'
+		"ajax": urlPrefix + 'temperature.json'
 	});
 
 	var humTable=$('#humidity').dataTable({
@@ -30,7 +47,7 @@ $(document).ready(function () {
 			{"className": "left", "targets": [0,2]},
 			{"className": "w3-right-align", "targets": [1]}
 		],
-		"ajax": '/api/records/alltime/humidity.json'
+		"ajax": urlPrefix + 'humidity.json'
 	});
 
 	var pressTable=$('#pressure').dataTable({
@@ -43,7 +60,7 @@ $(document).ready(function () {
 			{"className": "left", "targets": [0,2]},
 			{"className": "w3-right-align", "targets": [1]}
 		],
-		"ajax": '/api/records/alltime/pressure.json'
+		"ajax": urlPrefix + 'pressure.json'
 	});
 
 	var windTable=$('#wind').dataTable({
@@ -56,7 +73,7 @@ $(document).ready(function () {
 			{"className": "left", "targets": [0,2]},
 			{"className": "w3-right-align", "targets": [1]}
 		],
-		"ajax": '/api/records/alltime/wind.json'
+		"ajax": urlPrefix + 'wind.json'
 	});
 
 	var rainTable=$('#rain').dataTable({
@@ -69,15 +86,16 @@ $(document).ready(function () {
 			{"className": "left", "targets": [0,2]},
 			{"className": "w3-right-align", "targets": [1]}
 		],
-		"ajax": '/api/records/alltime/rain.json'
+		"ajax": urlPrefix + 'rain.json'
 	});
 
 	$('#recPeriod').text('All-time');
 
-	$('.ow-btn').click( function() {
+	$('.w3-btn').click( function() {
 		//console.log('Button ckicked is: ' + this.name);
-		sessionStorage.setItem('CMXRecords', this.name);
-		$('.ow-btn').removeClass('w3-disabled');
+		CMXSession.Records.All = this.name;
+		sessionStorage.setItem(axStore, JSON.stringify(CMXSession));
+		$('.w3-btn').removeClass('w3-disabled');
 		$(this).addClass('w3-disabled');
 		var urlPrefix ;
 		if( this.name === 'alltime' ) {
@@ -104,7 +122,7 @@ $(document).ready(function () {
 
 var period = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
 
-$(document).ready( function() {
+$().ready( function() {
 
 	var dateNow = new Date();
 	var dataReq = '{"startDate":"<#recordsbegandate>"}';
@@ -135,7 +153,7 @@ $(document).ready( function() {
 				$('#btn' + (btn + 1)).remove();
 			}
 			var htmlX = '<span style="flex-grow:0;align-self:center;padding:0 3px;">';
-        	htmlX += '<i class="fa-solid fa-diamond ow-theme-add3-txt ow-txt-small w3-hide-small"></i></span>';
+        	htmlX += '<i class="fa-solid fa-diamond ax-theme3-txt w3-small w3-hide-small"></i></span>';
 			//console.log("Insert after: " + parseInt(dateNow.getMonth() + 1));
         	$('#btn' + parseInt(dateNow.getMonth() + 1)).after(htmlX)
 		}

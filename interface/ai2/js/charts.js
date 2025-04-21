@@ -1,22 +1,22 @@
-/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 	Script:	charts.js			v3.0.1
- * 	Author:	Neil Thomas		 Sept 2023
- * 	Last Edit:	2024/10/04 12:52:06
- * 	Based on:	Marks script of the same name
- * 	Last Mod:	2024/10/27
- * 	Role:
- * 		Draw charts based on readings
- * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Script:	charts.js				Ver: aiX-1.0
+ * 	Author:	M Crossley & N Thomas
+ * 	Last Edit (MC):	2024/10/04 12:52:06
+ * 	Last Edit (NT):	2025/03/20 17:35
+ * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Role: Draw charts based on readings
+ * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-var chart, config, doSelect;
+var chart, config, doSelect, freezing, frostTemp;
 //	Added by Neil
 var myTooltipHead = '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>';
-var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond w3-small" style="color:{series.color}"></i>&nbsp;{series.name}</td>' +
+var myTooltipPoint = '<tr><td><i class="fa-solid fa-diamond" style="color:{series.color}"></i>&nbsp;{series.name}</td>' +
 					 '<td><strong>{point.y}</strong></td></tr>';
 var beaufortScale, beaufortDesc, frostTemp;
 
 beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate breeze','Fresh breeze','Strong breeze','Near gale','Gale','Strong gale','Storm','Violent storm','Hurricane'];
 //	End New content
+
 var myRanges = {
 	buttons: [{
 		count: 12,
@@ -41,18 +41,21 @@ var myRanges = {
 var myBackground = {
 	linearGradient: [0, 0, 300, 600],
 	stops: [
-		[0.3, 'var(--add5)'],
-		[1, 'var(--add4)']
+		[0.3, 'var(--color5)'],
+		[1, 'var(--color4)']
 	]
 }
 
-$(document).ready(function () {
+$().ready(function () {
+
+	$('.selectGraph').click( function() {
+		doSelect( this.id );
+	});
 
 	$.ajax({
 		url: '/api/graphdata/availabledata.json',
 		dataType: 'json',
 		success: function (result) {
-			//	Remove unwanted buttons
 			if (result.Temperature === undefined || result.Temperature.Count == 0) {
 				$('#temp').remove();
 			}
@@ -98,15 +101,9 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.selectGraph').click( function() {
-		//	Allocate 'click()' function to those that are left
-		sessionStorage.setItem('CMXTrends', this.id );
-		doSelect( this.id );
-	});
-
-
 	doSelect = function (sel) {
-		sessionStorage.setItem('CMXTrends', sel );
+		CMXSession.Charts.Trends = sel;
+		sessionStorage.setItem(axStore, JSON.stringify(CMXSession) );
 		$('.selectGraph').removeClass('w3-disabled');
 		$('#' + sel).addClass('w3-disabled');
 		switch (sel) {
@@ -131,16 +128,16 @@ $(document).ready(function () {
 			case 'co2':			doCO2();		break;
 			default:
 				doTemp();
-				sessionStorage.setItem('CMXTrends','temp');
-				$('#temp').addClass('ow-disabled');
+				$('#temp').addClass('w3-disabled');
 				break;
 		}
+
 	};
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
-
-//	New
+	
+		//	New
 		switch(config.wind.units){
 			case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
 			case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
@@ -148,11 +145,15 @@ $(document).ready(function () {
 			case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
 			default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
 			// NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-		}	
-
-		var chart = sessionStorage.getItem('CMXTrends');
-		if( chart === null ) {
+		}
+		freezing = config.temp.units === 'C' ? 0 : 32;
+		frostTemp = config.temp.units === 'C' ? 4 : 39;
+		
+		console.log("Storage: " + CMXSession.Charts.Trends)
+		if( CMXSession.Charts.Trends == null || CMXSession.Charts.Trends == '') {
 			chart = 'temp';
+		} else {
+			chart = CMXSession.Charts.Trends;
 		}
 
 		doSelect( chart );
@@ -160,15 +161,12 @@ $(document).ready(function () {
 });
 
 var doTemp = function () {
-	var freezing = config.temp.units === 'C' ? 0 : 32;
-	frostTemp = config.temp.units === 'C' ? 4 : 39;		//	Added by Neil
 	$('#chartdescription').text('Line chart showing recent temperature and various derived temperature values at a one minute resolution.');
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming: {type:'x'},
-
+			zoomType: 'x',
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -192,7 +190,7 @@ var doTemp = function () {
 				accessibility: { enabled: true, description: 'Temperature'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -202,11 +200,12 @@ var doTemp = function () {
 						value: freezing,
 						color: 'rgb(0, 0, 180)',
 						width: 1,
-						zIndex: 2
+						zIndex: 2,
+						label: {text:'Freezing', align:'center'}
 					},{
 						value: frostTemp,
 						color: 'rgb(128,128,255)', width: 1, zIndex: 2,
-						label: {text: 'Frost possible',y:12}
+						label: {text: 'Frost possible',y:12,align:'center'}
 					}]
 			}, {
 				// right
@@ -215,7 +214,7 @@ var doTemp = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -252,6 +251,7 @@ var doTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -335,7 +335,7 @@ var doPress = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -346,7 +346,7 @@ var doPress = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -403,6 +403,7 @@ var doPress = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -441,7 +442,7 @@ var doWindDir = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'scatter',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth: 0,
 			alignTicks: false
 		},
@@ -472,7 +473,7 @@ var doWindDir = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -531,6 +532,7 @@ var doWindDir = function () {
 			enabled: true,
 			split: true,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -587,7 +589,7 @@ var doWind = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -598,7 +600,7 @@ var doWind = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -706,6 +708,7 @@ var doWind = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -744,9 +747,9 @@ var doRain = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			backgroundColor: myBackground,
+			//backgroundColor: myBackground,
 			plotBackgroundColor: '#fff',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: true
 		},
@@ -757,7 +760,7 @@ var doRain = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -785,6 +788,9 @@ var doRain = function () {
 				}
 			}],
 		legend: {enabled: true},
+		navigator: {
+			yAxis: { min:0, softMax:4}
+		},
 		plotOptions: {
 			series: {
 				boostThreshold: 0,
@@ -817,6 +823,7 @@ var doRain = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -860,7 +867,7 @@ var doHum = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -871,7 +878,7 @@ var doHum = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -933,6 +940,7 @@ var doHum = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -981,7 +989,7 @@ var doSolar = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: true
 		},
@@ -992,7 +1000,7 @@ var doSolar = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1033,6 +1041,7 @@ var doSolar = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -1134,7 +1143,7 @@ var doSunHours = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'column',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1145,7 +1154,7 @@ var doSunHours = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1204,6 +1213,7 @@ var doSunHours = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -1238,7 +1248,7 @@ var doDailyRain = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'column',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1249,7 +1259,7 @@ var doDailyRain = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1309,6 +1319,7 @@ var doDailyRain = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -1339,13 +1350,11 @@ var doDailyRain = function () {
 
 var doDailyTemp = function () {
 	$('#chartdescription').text('Line chart showing recent daily temperature values. Shown are the maximum, minimum, and average temperatures for each day. The site owner may choose to not display all these values');
-	var freezing = config.temp.units === 'C' ? 0 : 32;
-	var frostTemp = config.temp.units === 'C' ? 4 : 39;
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'spline',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1356,7 +1365,7 @@ var doDailyTemp = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1379,13 +1388,14 @@ var doDailyTemp = function () {
 					value: freezing,
 					color: 'rgb(0, 0, 180)',
 					width: 1,
-					zIndex: 2
+					zIndex: 2,
+					label:{text:'Frezzing', align:'center'}
 				},{
 					value: frostTemp,
 					color: 'rgb(128,128,255)',
 					width: 1,
 					zIndex: 2,
-					label: {text: 'Frost possible',y:12}
+					label: {text: 'Frost possible',y:12, align:'center'}
 				}]
 			}, {
 				// right
@@ -1433,6 +1443,7 @@ var doDailyTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -1482,7 +1493,7 @@ var doAirQuality = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1496,7 +1507,7 @@ var doAirQuality = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1556,6 +1567,7 @@ var doAirQuality = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
@@ -1598,14 +1610,13 @@ var doAirQuality = function () {
 
 var doExtraTemp = function () {
 	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at the logging interval resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
-	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
 			backgroundColor: myBackground,
 			plotBackgroundColor: '#fff',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1616,7 +1627,7 @@ var doExtraTemp = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1690,9 +1701,9 @@ var doExtraTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' °' + config.temp.units,
 			valueDecimals: config.temp.decimals,
@@ -1730,7 +1741,7 @@ var doExtraHum = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1741,7 +1752,7 @@ var doExtraHum = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1803,9 +1814,9 @@ var doExtraHum = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' %',
 			valueDecimals: config.hum.decimals,
@@ -1844,7 +1855,7 @@ var doExtraDew = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1855,7 +1866,7 @@ var doExtraDew = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -1925,9 +1936,9 @@ var doExtraDew = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' °' + config.temp.units,
 			valueDecimals: config.temp.decimals,
@@ -1961,12 +1972,11 @@ var doExtraDew = function () {
 
 var doSoilTemp = function () {
 	$('#chartdescription').text('Line chart showing recent soil tempertaure sensor values at the logging interval resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
-	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -1977,7 +1987,7 @@ var doSoilTemp = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -2051,9 +2061,9 @@ var doSoilTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' °' + config.temp.units,
 			valueDecimals: config.temp.decimals,
@@ -2091,7 +2101,7 @@ var doSoilMoist = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2102,7 +2112,7 @@ var doSoilMoist = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -2159,9 +2169,9 @@ var doSoilMoist = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			//valueSuffix: ' ' + config.soilmoisture.units,
 			valueDecimals: 0,
@@ -2200,7 +2210,7 @@ var doLeafWet = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2211,7 +2221,7 @@ var doLeafWet = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -2270,9 +2280,9 @@ var doLeafWet = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' ' + config.leafwet.units,
 			valueDecimals: config.leafwet.decimals,
@@ -2306,12 +2316,11 @@ var doLeafWet = function () {
 
 var doUserTemp = function () {
 	$('#chartdescription').text('Line chart showing recent additional temperature sensor values at the logging interval resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
-	var freezing = config.temp.units === 'C' ? 0 : 32;
 	var options = {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2322,7 +2331,7 @@ var doUserTemp = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -2396,9 +2405,9 @@ var doUserTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			valueSuffix: ' °' + config.temp.units,
 			valueDecimals: config.temp.decimals,
@@ -2436,7 +2445,7 @@ var doCO2 = function () {
 		chart: {
 			renderTo: 'chartcontainer',
 			type: 'line',
-			zooming:{type:'x'},
+			zoomType: 'x',
 			borderWidth:0,
 			alignTicks: false
 		},
@@ -2447,7 +2456,7 @@ var doCO2 = function () {
 			ordinal: false,
 			accessibility: { enabled: true, description: 'Date of reading'},
 			dateTimeLabelFormats: {
-				day: '%e %b',
+				day: '<b>%e %b</b>',
 				week: '%e %b %y',
 				month: '%b %y',
 				year: '%Y'
@@ -2500,9 +2509,9 @@ var doCO2 = function () {
 			shared: true,
 			split: true,
 			useHTML: true,
-			headerFormat: '<table><tr><td colspan="2"><h5>{point.key}</h5></td></tr>',
-			pointFormat:  '<tr><td><i class="fa-solid fa-diamond" style="color: {series.color}"></i>&nbsp;{series.name}</td>' +
-						  '<td><b>{point.y}</b></td></tr>',
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
 			footerFormat: '</table>',
 			xDateFormat: "%A, %b %e, %H:%M"
 		},

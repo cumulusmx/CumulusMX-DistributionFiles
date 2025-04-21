@@ -1,4 +1,11 @@
-// Last modified: 2025/03/09 10:19:50
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: chartshistoric.js        Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/12/28 12:09:59
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Charts for chartshistoric.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var chart, config, available;
 
@@ -10,7 +17,7 @@ var beaufortScale, beaufortDesc, frostTemp;
 beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate breeze','Fresh breeze','Strong breeze','Near gale','Gale','Strong gale','Storm','Violent storm','Hurricane'];
 
 
-$(document).ready(function () {
+$().ready(function () {
 	/*
 	$('.btn').change(function () {
 
@@ -21,32 +28,11 @@ $(document).ready(function () {
 	});
 	*/
    	$('.selectGraph').click( function() {
-		sessionStorage.setItem('CMXDaily', this.id );
+		CMXSession.Charts.Historic = this.id
+		sessionStorage.setItem(CMXSession, JSON.stringify(CMXSession));
 		doGraph( this.id );
 	});
-
-
-	var doGraph = function (value) {
-		sessionStorage.setItem('CMXDaily', value );
-		$('.selectGraph').removeClass('ow-theme-sub3');
-		$('#' + value).addClass('ow-theme-sub3');
-		switch (value) {
-			case 'temp':	doTemp();		break;
-			case 'press':	doPress();		break;
-			case 'wind':	doWind();		break;
-			case 'windDir':	doWindDir();	break;
-			case 'rain':	doRain();		break;
-		    case 'humidity':	doHum();	break;
-			case 'solar':	doSolar();		break;
-			case 'degdays':	doDegDays();	break;
-			case 'tempsum':	doTempSum();	break;
-			case 'chillhrs':	doChillHrs();	break;
-			case 'snow':	doSnow();	break;
-			default:		doTemp();		break;
-		}
-//        parent.location.hash = value;
-	};
-
+	
 	$.ajax({
 		url: "/api/graphdata/availabledata.json",
 		dataType: "json",
@@ -77,15 +63,9 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.selectGraph').click( function() {
-		//	Allocate 'click()' funtion to remaining buttons
-		sessionStorage.setItem('CMXDaily', this.id );
-		doGraph( this.id );
-	});
-
-
 	var doGraph = function (value) {
-		sessionStorage.setItem('CMXDaily', value );
+		CMXSession.Charts.Historic = value;
+		sessionStorage.setItem(axStore, JSON.stringify(CMXSession) );
 		$('.selectGraph').removeClass('w3-disabled');
 		$('#' + value).addClass('w3-disabled');
 		switch (value) {
@@ -101,6 +81,7 @@ $(document).ready(function () {
 			case 'snow':		doSnow();		break;
 			default:			doTemp();		$('#temp').addClass('w3-disabled');	break;
 		}
+		
 //        parent.location.hash = value;
 	};
 
@@ -108,8 +89,8 @@ $(document).ready(function () {
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
 
-		var chart = sessionStorage.getItem('CMXDaily');
-		if( chart === null ) {
+		var chart = CMXSession.Charts.Historic;
+		if( chart === null || chart =='') {
 			chart = 'temp';
 		}
 //	New
@@ -128,7 +109,7 @@ $(document).ready(function () {
 
 var doTemp = function () {
 	$('#chartdescription').text('Curved line chart showing daily temperature values. Shown are the maximum, minimum, and average temperatures for each day along with many possible derived temperature values.');
-	var freezing = config.temp.units === 'C' ? 0 : 32;
+	freezing = config.temp.units === 'C' ? 0 : 32;
 	frostTemp = config.temp.units === 'C' ? 4 : 39;		//	Added by Neil
 	var options = {
 		chart: {
@@ -165,13 +146,14 @@ var doTemp = function () {
 					value: freezing,
 					color: 'rgb(0, 0, 180)',
 					width: 1,
-					zIndex: 2
+					zIndex: 2,
+					label:{text:'Freezing', align:'center'}
 				},{
 					value: frostTemp,
 					color: 'rgb(128,128,255)',
 					width: 1,
 					zIndex: 2,
-					label: {text: 'Frost possible',y:12}
+					label: {text: 'Frost possible',y:12, align:'center'}
 				}]
 			}, {
 				// right
@@ -217,6 +199,7 @@ var doTemp = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -390,6 +373,7 @@ var doPress = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -554,6 +538,7 @@ var doWind = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -677,6 +662,7 @@ var doRain = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -793,6 +779,7 @@ var doHum = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -895,6 +882,7 @@ var doSolar = function () {
 			shared: true,
 			split: false,
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>',
@@ -1103,6 +1091,7 @@ var doDegDays = function () {
 			split: false,
 			xDateFormat: '%A %e %B',
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>'
@@ -1223,6 +1212,7 @@ var doTempSum = function () {
 			split: false,
 			xDateFormat: '%A %e %B',
 			useHTML: true,
+			className: 'cmxToolTip',
 			headerFormat: myTooltipHead,
 			pointFormat: myTooltipPoint,
 			footerFormat: '</table>'
@@ -1349,9 +1339,9 @@ var doChillHrs = function () {
             split: false,
             xDateFormat: '%e %B',
             useHTML: true,
-            headerFormat: '{point.key}<table>',
-            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
-            '<td style="text-align: right; font-weight: bold;">{point.y:0f} hrs</td></tr>',
+            className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat: myTooltipPoint,
             footerFormat: '</table>'
         },
         series: []
@@ -1424,7 +1414,7 @@ var doSnow = function () {
                 }
             },
             series: {
-                grouping: true,
+                grouping: false,
                 pointPadding: 0.05,
                 groupPadding: 0.05,
                 states: {
@@ -1451,6 +1441,11 @@ var doSnow = function () {
         tooltip: {
             shared: true,
             split: false,
+			useHTML: true,
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat: myTooltipPoint,
+			footerFormat: '</table>',
             valueDecimals: 1,
             xDateFormat: '%e %b %y'
         },

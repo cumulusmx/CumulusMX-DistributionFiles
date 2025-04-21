@@ -1,4 +1,11 @@
-// Last modified: 2025/02/20 14:06:15
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: stationsettings.js      Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2025/02/17 10:54:18
+    Last Edit (NT): 2025/03/21 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for stationsettings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let StashedStationId;
 let accessMode;
@@ -158,7 +165,7 @@ $(document).ready(function () {
         "postRender": function (form) {
             // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId["accessible"];
-            //onAccessChange(null, accessObj.getValue());
+            onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
 
             if (!accessMode) {
@@ -310,11 +317,11 @@ function addButtons() {
 
         let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
+            '" role="treeitem" aria-expanded="false" class="w3-btn ax-btn-gradient-up collapsed" style="flex: none">' +
             $(span).text() +
             '</button>');
         $(span).remove();
-        $(this).addClass('ow-btnBar');
+        $(this).addClass('ax-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -331,7 +338,7 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ow-btnBar');
+        $(this).removeClass('ax-btnBar');
         $(this).prepend(span);
     });
 }

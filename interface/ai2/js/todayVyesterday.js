@@ -1,11 +1,14 @@
-// Last modified: 2021/05/16 20:55:48
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: todayVyesterday.js      Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2021/05/16 20:55:48
+    Last Edit (NT): 2025/03/21 - Modified classNames
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for todayVyesterday.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-$(document).ready(function () {
-/*	$.ajax({url: "/api/settings/version.json", dataType:"json", success: function (result) {
-		$('#Version').text(result.Version);
-		$('#Build').text(result.Build);
-	}});
-*/
+$().ready(function () {
+
 	var tempTable = $('#TempTable').DataTable({
 		"paging": false,
 		"searching": false,

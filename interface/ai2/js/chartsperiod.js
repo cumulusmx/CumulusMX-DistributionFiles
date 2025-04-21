@@ -1,5 +1,11 @@
-// Created: 2023/09/22 19:07:25
-// Last modified: 2024/12/01 16:21:26
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: chartsperiod.js        	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/12/17 10:44:04
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Charts for chartsperiod.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var chart, avail, config, options;
 var cache = {};
@@ -169,7 +175,7 @@ $(document).ready(function () {
 					chart: {
 						renderTo: 'chartcontainer',
 						type: 'spline',
-						zooming:{type:'x'},
+						zoomType: 'x',
 						alignTicks: true
 					},
 					title: {text: 'All Data Select-a-Chart'},
@@ -216,6 +222,7 @@ $(document).ready(function () {
 						shared: true,
 						split: false,
 						useHTML: true,
+						className: 'cmxToolTip',
 						headerFormat: myTooltipHead,
 						pointFormat: myTooltipPoint,
 						footerFormat: '</table>',
@@ -521,16 +528,17 @@ var addTemperatureAxis = function (idx) {
 				return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 			},
 			align: idx < settings.series.length / 2 ? 'right' : 'left',
+			x: idx < settings.series.length / 2 ? 15 : -15,
 		},
 		plotLines: [{
 			// freezing line
 			value: freezing,
 			color: 'rgb(0, 0, 180)', width: 1, zIndex: 2,
-			label: { text:'Freezing'}
+			label: { text:'Freezing', align: 'center'}
 		},{
 			value: frostTemp,
 			color: 'rgb(64,64,255)', width:1, zIndex: 2,
-			label: {text:'Frost possible', y:12}
+			label: {text:'Frost possible', y:12, align:'center'}
 		}],
 		minRange: config.temp.units == 'C' ? 5 : 10,
 		allowDecimals: false

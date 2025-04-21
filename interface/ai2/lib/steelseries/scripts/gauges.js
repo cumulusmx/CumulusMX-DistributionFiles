@@ -1,4 +1,4 @@
-/*!
+/*!tooltip
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
  * Last Modified: 2022/05/06 11:36:44
  *
@@ -891,24 +891,24 @@ gauges = (function () {
 						// update tooltip
 						if (cache.selected === 'out') {
 							tip = '<h5>' + cache.loc + '</h5>' + 
-								  '<div class="ow-titleBar">' +
+								  '<div class="ax-titleBar">' +
 								  '<span>' + strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TtempTL + '</span>' +
 								  '</div>' +
-								  '<div class="ow-titleBar">' +
+								  '<div class="ax-titleBar">' +
 								  '<span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TtempTH + '</span></div>';
 							if (cache.trendVal !== -9999) {
-								tip += '<div class="ow-titleBar"><span>' +
+								tip += '<div class="ax-titleBar"><span>' +
 									strings.temp_trend_info + ':</span><span>' + tempTrend(cache.trendVal, data.tempunit, true) +
 									' ' + cache.trendVal + data.tempunit + '/h</span></div>';
 							}
 						} else if (data.TintempTL && data.TintempTH) {
 							// Indoor and min/max available
 							tip = '<h5>' + cache.loc + '</h5>' + 
-								  '<div class="ow-titleBar"><span>' +strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TintempTL + '>/span></div>' +
-							'<div class="ow-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TintempTH + '</span></div>';
+								  '<div class="ax-titleBar"><span>' +strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TintempTL + '>/span></div>' +
+							'<div class="ax-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TintempTH + '</span></div>';
 						} else {
 							// Indoor no min/max
-							tip = '<div class="ow-titleBar"><span>' + cache.loc + '</span><span>' + data.intemp + data.tempunit + '</span></div>';
+							tip = '<div class="ax-titleBar"><span>' + cache.loc + '</span><span>' + data.intemp + data.tempunit + '</span></div>';
 						}
 						$('#imgtip0_txt').html(tip);
 					}
@@ -1052,9 +1052,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 0;
 						tip = '<h5>' + strings.dew_info + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowest_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TdewpointTH + '</span></div>';
 						break;
 					case 'app': // apparent temperature
 						cache.low = extractDecimal(data.apptempTL);
@@ -1066,9 +1066,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 1;
 						tip  = '<h5>' + strings.apptemp_info.replace(')',')<br>') + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TapptempTH + '</span></div>';
 						break;
 					case 'feel': // feels like
 						cache.low = extractDecimal(data.feelslikeTL);
@@ -1080,9 +1080,9 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 1;
 						tip = '<h5>' + strings.feel_info + '</h5>' +
-							 '<div class="ow-titleBar">' +
+							 '<div class="ax-titleBar">' +
 							 '<span>' + strings.lowestF_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTL + '</span></div>' +
-							 '<div class="ow-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH + '</span></div>';
+							 '<div class="ax-titleBar"><span>' + strings.highestF_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TfeelslikeTH + '</span></div>';
 						break;
 					case 'wnd': // wind chill
 						cache.low = extractDecimal(data.wchillTL);
@@ -1094,7 +1094,7 @@ gauges = (function () {
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 2;
 						tip = '<h5>' + strings.chill_info + '</h5>' +
-							'<div class="ow-titleBar">' +
+							'<div class="ax-titleBar">' +
 							'<span>' + strings.lowest_info + ':</span><span>' + cache.low + data.tempunit + ' ' + strings.at + ' ' + data.TwchillTL + '</span></div>';
 						break;
 					case 'hea': // heat index
@@ -1107,7 +1107,7 @@ gauges = (function () {
 						cache.maxMeasuredVisible = true;
 						cache.popupImg = 3;
 						tip = '<h5>' + strings.heat_info + '</h5>' +
-							'<div class="ow-titleBar">' +
+							'<div class="ax-titleBar">' +
 							'<span>' + strings.highest_info + ':</span><span>' + cache.high + data.tempunit + ' ' + strings.at + ' ' + data.TheatindexTH + '</span></div>';
 						break;
 					case 'hum': // humidex
@@ -1119,7 +1119,7 @@ gauges = (function () {
 						cache.minMeasuredVisible = false;
 						cache.maxMeasuredVisible = false;
 						cache.popupImg = 4;
-						tip = '<div class="ow-titleBar"><span>' + strings.humdx_info + ':</span><span>' + cache.value + data.tempunit + '</span></div>';
+						tip = '<div class="ax-titleBar"><span>' + strings.humdx_info + ':</span><span>' + cache.value + data.tempunit + '</span></div>';
 						break;
 					// no default
 					}
@@ -1279,7 +1279,7 @@ gauges = (function () {
 
 					if (ddimgtooltip.showTips) {
 						// update tooltip
-						$('#imgtip2_txt').html('<div class="ow-titleBar"><span>' + strings.LastRain_info + ':</span><span>' + data.LastRained + '</span></div>');
+						$('#imgtip2_txt').html('<div class="ax-titleBar"><span>' + strings.LastRain_info + ':</span><span>' + data.LastRained + '</span></div>');
 					}
 				} // End of update()
 
@@ -1398,9 +1398,9 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<h5>' + strings.rrate_info + '</h5>' +
-							'<div class="ow-titleBar"><span>' + 
+							'<div class="ax-titleBar"><span>' + 
 							strings.maximum_info + ':</span><span>' + data.rrateTM + ' ' + data.rainunit + '/h ' + strings.at + ' ' + data.TrrateTM +
-							'</div><div class="ow-titleBar"><span>' + strings.max_hour_info + ':</span><span>' + extractDecimal(data.hourlyrainTH) + ' ' + data.rainunit + ' ' +
+							'</div><div class="ax-titleBar"><span>' + strings.max_hour_info + ':</span><span>' + extractDecimal(data.hourlyrainTH) + ' ' + data.rainunit + ' ' +
 							strings.at + ' ' + data.ThourlyrainTH + '</span></div>';
 						$('#imgtip3_txt').html(tip);
 					}
@@ -1526,20 +1526,20 @@ gauges = (function () {
 						// update tooltip
 						if (cache.selected === 'out') {
 							tip = '<h5>' + strings.hum_out_info + '</h5>' +
-								'<div class="ow-titleBar">' +
+								'<div class="ax-titleBar">' +
 								'<span>' + strings.minimum_info + ':</span><span>' + extractDecimal(data.humTL) + '% ' + strings.at + ' ' + data.ThumTL + '</span>' +
-								'</div><div class="ow-titleBar">' + 
+								'</div><div class="ax-titleBar">' + 
 								'<span>' + strings.maximum_info + ':</span><span>' + extractDecimal(data.humTH) + '% ' + strings.at + ' ' + data.ThumTH + '</span></div>';
 						} else if (data.inhumTL && data.inhumTH) {
 							// we have indoor high/low data
 							tip = '<h5>' + strings.hum_in_info + '</h5>' +
-								  '<<div class="ow-titleBar">' +
+								  '<<div class="ax-titleBar">' +
 								  '<span>' + strings.minimum_info + ':</span><span>' + extractDecimal(data.inhumTL) + '% ' + strings.at + ' ' + data.TinhumTL + '</span>' +
-								  '</div><div class="ow-titleBar">' +
+								  '</div><div class="ax-titleBar">' +
 								  '<span>' + strings.maximum_info + ':</span><span>' + extractDecimal(data.inhumTH) + '% ' + strings.at + ' ' + data.TinhumTH + '</span></div>';
 						} else {
 							// no indoor high/low data
-							tip = '<div class="ow-titleBar"><span>' + strings.hum_in_info + ':</span><span>' + extractDecimal(data.inhum) + '%</span></div>';
+							tip = '<div class="ax-titleBar"><span>' + strings.hum_in_info + ':</span><span>' + extractDecimal(data.inhum) + '%</span></div>';
 						}
 						$('#imgtip4_txt').html(tip);
 					}
@@ -1704,12 +1704,12 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<h5>' + strings.baro_info + '</h5>' +
-							'<div class="ow-titleBar">' +
+							'<div class="ax-titleBar">' +
 							'<span>' + strings.minimum_info + ':</span><span>' + cache.todayLowRnd + ' ' + data.pressunit + ' ' + strings.at + ' ' + data.TpressTL + '</span>' +
-							'</div><div class="ow-titleBar">' +
+							'</div><div class="ax-titleBar">' +
 							'<span>' + strings.maximum_info + ':</span><span>' + cache.todayHighRnd + ' ' + data.pressunit + ' ' + strings.at + ' ' + data.TpressTH + '</span></div>';
 						if (cache.trendVal !== -9999) {
-							tip += '<div class="ow-titleBar">' +
+							tip += '<div class="ax-titleBar">' +
 								'<span>' + strings.baro_trend_info + ':</span><span>' + baroTrend(cache.trendVal, data.pressunit, true) + ' ' +
 								(cache.trendValRnd > 0 ? '+' : '') + cache.trendValRnd + ' ' + data.pressunit + '/h</span></div>';
 						}
@@ -1829,15 +1829,15 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<h5>Winds</h5>' +
-							  '<div class="ow-titleBar">' +
+							  '<div class="ax-titleBar">' +
 							  '<span>' + strings.tenminavgwind_info + ':</span><span>' + cache.average + ' ' + data.windunit + '</span></div>' +
-							  '<div class="ow-titleBar">' + 
+							  '<div class="ax-titleBar">' + 
 							  '<span>' + strings.maxavgwind_info + ':</span><span>' + cache.maxAvgToday + ' ' + data.windunit + '</span></div>' +
-							  '<div class="ow-titleBar">' + 
+							  '<div class="ax-titleBar">' + 
 							  '<span>'+ strings.tenmingust_info + ':</span><span>' + cache.gust + ' ' + data.windunit + '</span></div>' +
-							  '<div class="ow-titleBar">' +
+							  '<div class="ax-titleBar">' +
 							  '<span>' + strings.maxgust_info + ':</span><span>' + cache.maxGustToday + ' ' + data.windunit + ' ' + strings.at + ' ' + data.TwgustTM + '</span></div>' + 
-							  '<div class="ow-titleBar"><span>' + strings.bearing_info + ':</span><span>' + data.bearingTM +
+							  '<div class="ax-titleBar"><span>' + strings.bearing_info + ':</span><span>' + data.bearingTM +
 							  (isNaN(parseFloat(data.bearingTM)) ? '' : '° (' + getord(+data.bearingTM) + ')</span></div>');
 						$('#imgtip6_txt').html(tip);
 					}
@@ -2035,15 +2035,15 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<h5>Wind Direction</h5>' + 
-							  '<div class="ow-titleBar"><span>' + 
+							  '<div class="ax-titleBar"><span>' + 
 							  strings.latest_title + ' ' + strings.bearing_info + ':</span><span>' + cache.valueLatest + '° (' + getord(+cache.valueLatest) + ')</span></div>' +
-							  '<div class="ow-titleBar"><span>' + ssGauge.VRB + '</div>' + 
-							  '<div class="ow-titleBar"><span>' + strings.tenminavg_web + ' ' + 
+							  '<div class="ax-titleBar"><span>' + ssGauge.VRB + '</div>' + 
+							  '<div class="ax-titleBar"><span>' + strings.tenminavg_web + ' ' + 
 							  strings.bearing_info + ':</span><span>' + cache.valueAverage + '° (' + getord(+cache.valueAverage) + ')</span></div>' + 
-							  '<div class="ow-titleBar"><span>' + strings.dominant_bearing + ':</span><span>' + data.domwinddir + '</span></div>';
+							  '<div class="ax-titleBar"><span>' + strings.dominant_bearing + ':</span><span>' + data.domwinddir + '</span></div>';
 						if (!config.showRoseGauge) {
 							// Wind run is shown on the wind rose if it is available
-							tip += '<div class="ow-titleBar"><span>' + strings.windruntoday + ':</span><span>' + data.windrun + ' ' + displayUnits.windrun + '</span></div>';
+							tip += '<div class="ax-titleBar"><span>' + strings.windruntoday + ':</span><span>' + data.windrun + ' ' + displayUnits.windrun + '</span></div>';
 						}
 						$('#imgtip7_txt').html(tip);
 					}
@@ -2283,8 +2283,8 @@ gauges = (function () {
 						// update tooltip
 						if (ddimgtooltip.showTips) {
 							$('#imgtip10_txt').html(
-								'<div class="ow-titleBar"><span>' + strings.dominant_bearing + ':</span><span>' + data.domwinddir + '</span></div>' +
-								'<div class="ow-titleBar"><span>' + strings.windruntoday + ':</span><span>' + data.windrun + ' ' + displayUnits.windrun + '</span></div>'
+								'<div class="ax-titleBar"><span>' + strings.dominant_bearing + ':</span><span>' + data.domwinddir + '</span></div>' +
+								'<div class="ax-titleBar"><span>' + strings.windruntoday + ':</span><span>' + data.windrun + ' ' + displayUnits.windrun + '</span></div>'
 							);
 						}
 					}
@@ -2480,8 +2480,8 @@ gauges = (function () {
 
 					if (ddimgtooltip.showTips) {
 						// update tooltip
-						tip = '<div class="ow-titleBar" style="max-width:10em;"><h5>' + strings.uv_title + ':</h5><span>' + cache.value + '</span></div>' + 
-							  '<div class="ow-titleBar ow-tableRow"><span><i>' + strings.solar_maxToday + ':</span><span>' + data.UVTH + '</i></span></div>';
+						tip = '<div class="ax-titleBar" style="max-width:10em;"><h5>' + strings.uv_title + ':</h5><span>' + cache.value + '</span></div>' + 
+							  '<div class="ax-titleBar ax-tableRow"><span><i>' + strings.solar_maxToday + ':</span><span>' + data.UVTH + '</i></span></div>';
 						tip += '<i>' + cache.headLine + '</i><br>';
 						tip += '<div style="max-width: 20em">' + cache.detail.replace('<br>', ' ') + '</div>' ;
 						$('#imgtip8_txt').html(tip);
@@ -2617,11 +2617,11 @@ gauges = (function () {
 					if (ddimgtooltip.showTips) {
 						// update tooltip
 						tip = '<h5>' + strings.solar_title + '</h5>' + 
-							  '<div class="ow-titleBar"><span>Reading:</span><span>' + cache.value + ' W/m²</span>' +
+							  '<div class="ax-titleBar"><span>Reading:</span><span>' + cache.value + ' W/m²</span>' +
 							  '<span><i>' + percent + '% ' + strings.solar_ofMax + '</i></span></div>' +
-							  '<div class="ow-titleBar"><span>' + strings.solar_currentMax + ':</span><span>' + cache.currMaxValue + ' W/m²</span></div>';
+							  '<div class="ax-titleBar"><span>' + strings.solar_currentMax + ':</span><span>' + cache.currMaxValue + ' W/m²</span></div>';
 						if (typeof data.SolarTM !== 'undefined') {
-							tip += '<div class="ow-titleBar"><span>' + strings.solar_maxToday + ':</span><span>' + cache.maxToday + ' W/m²</span></div>';
+							tip += '<div class="ax-titleBar"><span>' + strings.solar_maxToday + ':</span><span>' + cache.maxToday + ' W/m²</span></div>';
 						}
 						$('#imgtip9_txt').html(tip);
 					}
@@ -2739,7 +2739,7 @@ gauges = (function () {
 					if (config.showPopupData) {
 						// static tooltip on cloud gauge
 						$('#imgtip11_txt').html(
-							'<div class="ow-titleBar"><span><h5>' + strings.cloudbase_popup_title + ':</h5></span>' +
+							'<div class="ax-titleBar"><span><h5>' + strings.cloudbase_popup_title + ':</h5></span>' +
 							'<span>' + cache.value + data.cloudbaseunit + '</span></div>' + 
 							'<div style="max-width:25em;">' + strings.cloudbase_popup_text.replaceAll('<br>',' ') + '</div>'
 						);

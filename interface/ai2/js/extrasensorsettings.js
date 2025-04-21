@@ -1,4 +1,11 @@
-// Last modified: 2023/12/17 22:40:18
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: extrasensorsettings.js 	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/11/12 10:27:01
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for extrasensorsettings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 
@@ -72,10 +79,10 @@ function addButtons() {
 			return;
 
 			let butt = $('<button type="button" data-toggle="collapse" data-target="' + $(span).attr('data-target') +
-			'" role="treeitem" aria-expanded="false" class="w3-btn ow-theme-add3 ow-theme-hvr collapsed" style="flex: none">' +
+			'" role="treeitem" aria-expanded="false" class="w3-btn ax-btn-gradient-up collapsed" style="flex: none">' +
 			$(span).text() +'</button>');
 		$(span).remove();
-		$(this).addClass('ow-btnBar');
+		$(this).addClass('ax-btnBar');
 		$(this).prepend(butt);
 	});
 }
@@ -92,7 +99,7 @@ function removeButtons() {
 			$(butt).text() +
 			'</span>');
 		$(butt).remove();
-		$(this).removeClass('ow-btnBar');
+		$(this).removeClass('ax-btnBar');
 		$(this).prepend(span);
 	});
 }

@@ -116,10 +116,11 @@ function addButtons() {
 
             let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="ow-btn collapsed">' +
+            '" role="treeitem" aria-expanded="false" class="w3-btn ax-btn-gradient-up collapsed" style="flex:none;">' +
             $(span).text() +
             '</button>');
         $(span).remove();
+        $(this).addClass('ax-btnBar')
         $(this).prepend(butt);
     });
 }
@@ -136,6 +137,7 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
+        $(this).removeClass('ax-btnBar')
         $(this).prepend(span);
     });
 }
@@ -155,17 +157,17 @@ function setCollapsed() {
 }
 
 function getCSSRule(search) {
-	for (let sheet of document.styleSheets) {
-		if (sheet.href != null && sheet.href.includes('alpaca')) {
-			let rules = sheet.cssRules || sheet.rules;
-			for (let rule of rules) {
-				if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-					return rule;
-				}
-			}
-		}
-	}
-	return null;
+    for (let sheet of document.styleSheets) {
+        if (sheet.href != null && sheet.href.includes('alpaca')) {
+            let rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+                    return rule;
+                }
+            }
+        }
+    }
+    return null;
 }
 
 function onAccessChange(that, val) {

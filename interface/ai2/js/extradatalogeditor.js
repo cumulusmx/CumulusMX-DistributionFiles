@@ -1,15 +1,38 @@
-// Last modified: 2025/02/14 11:48:33
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: extradatalogeditor.js  	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2025/02/14 11:48:33
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for extradatalogeditor.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var myTable;
 var currMonth;
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
 $(document).ready(function () {
-/*    $.ajax({url: "/api/info/version.json", dataType:"json", success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
-*/
+
+    //Added by Neil
+    var styles = "<style>\n";
+    var data = '{"TempUnit": "<#tempunitnodeg>"}';
+    $.ajax({ 
+        url:  '/api/tags/process.txt',
+        dataType: 'json',
+        type: 'POST',
+        data: data
+    })
+    .done( function( result ) {
+        console.log('Processing units' + JSON.stringify(result));
+        styles = "<style>\n";
+        styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
+        styles == "</styles>\n";
+        $('head').append( styles );
+    })
+    .fail( function() {
+        console.log('Failed to load units');
+    });
+
     $.fn.dataTable.ext.errMode = 'none';
 
     function ajaxRollover() {
@@ -141,105 +164,105 @@ $(document).ready(function () {
                 title: "Time",
                 readonly: true
             },
-            {title:"Temp 1", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 2", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 3", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 4", type: 'number', step: tempStep,  className:"tempUnits"},
-            {title:"Temp 5", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 6", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 7", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 8", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 9", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Temp 10", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Hum 1", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 2", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 3", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 4", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 5", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 6", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 7", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 8", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 9", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Hum 10", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Dew point 1", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 2", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 3", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 4", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 5", type: 'number', step: tempStep,  className:"tempUnits"},
-            {title:"Dew point 6", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 7", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 8", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 9", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Dew point 10", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 1", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 2", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 3", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 4", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Moist 1", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 2", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 3", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 4", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Leaf Temp 1", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Leaf Temp 2", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Leaf Wetness 1", type: 'number', min: 0, max: 100, className:"leafWUnits"},
-            {title:"Leaf Wetness 2", type: 'number', min: 0, max: 100, className:"leafWUnits"},
-            {title:"Soil Temp 5", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 6", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 7", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 8", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 9", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 10", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 11", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 12", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 13", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 14", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 15", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Temp 16", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"Soil Moist 5", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 6", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 7", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 8", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 9", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 10", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 11", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 12", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 13", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 14", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 15", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Soil Moist 16", type: 'number', min: 0, max: 100, className:"soilMUnits"},
-            {title:"Air Quality 1", type: 'number', min: 0, step: 0.1, className:"airQual1Units"},
-            {title:"Air Quality 2", type: 'number', min: 0, step: 0.1, className:"airQual2Units"},
-            {title:"Air Quality 3", type: 'number', min: 0, step: 0.1, className:"airQual3Units"},
-            {title:"Air Quality 4", type: 'number', min: 0, step: 0.1, className:"airQual4Units"},
-            {title:"Air Qual Avg 1", type: 'number', min: 0, step: 0.1, className:"airQual1Units"},
-            {title:"Air Qual Avg 2", type: 'number', min: 0, step: 0.1, className:"airQual2Units"},
-            {title:"Air Qual Avg 3", type: 'number', min: 0, step: 0.1, className:"airQual3Units"},
-            {title:"Air Qual Avg 4", type: 'number', min: 0, step: 0.1, className:"airQual4Units"},
-            {title:"User Temp 1", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 2", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 3", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 4", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 5", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 6", type: 'number', step: tempStep,  className:"tempUnits"},
-            {title:"User Temp 7", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"User Temp 8", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"CO<sub>2</sub>", type: 'number', min: 300, step: 0.1, className:"CO2Units"},
-            {title:"CO<sub>2</sub> Avg", type: 'number', min: 300, step: 0.1, className:"CO2Units"},
-            {title:"CO<sub>2</sub> PM2.5",type: 'number', min: 0, step: 0.1, className:"CO22_5Units"},
-            {title:"CO<sub>2</sub> PM2.5 Avg", type: 'number', min: 0, step: 0.1, className:"CO22_5Units"},
-            {title:"CO<sub>2</sub> PM10", type: 'number', min: 0, step: 0.1, className:"CO2_10Units"},
-            {title:"CO<sub>2</sub> PM10 Avg", type: 'number', min: 0, step: 0.1, className:"CO2_10Units"},
-            {title:"CO<sub>2</sub> Temp", type: 'number', step: tempStep, className:"tempUnits"},
-            {title:"CO<sub>2</sub> Hum", type: 'number', min: 0, max: 100, className:"percent"},
-            {title:"Laser Dist 1", type: 'number', min: 0, step: laserStep, className:"LaserUnits"},
-            {title:"Laser Dist 2", type: 'number', min: 0, step: laserStep, className:"LaserUnits"},
-            {title:"Laser Dist 3", type: 'number', min: 0, step: laserStep, className:"LaserUnits"},
-            {title:"Laser Dist 4", type: 'number', min: 0, step: laserStep, className:"LaserUnits"},
-            {title:"Laser Depth 1", type: 'number', step: laserStep, className:"LaserUnits"},
-            {title:"Laser Depth 2", type: 'number', step: laserStep, className:"LaserUnits"},
-            {title:"Laser Depth 3", type: 'number', step: laserStep, className:"LaserUnits"},
-            {title:"Laser Depth 4", type: 'number', step: laserStep, className:"LaserUnits"},
-            {title:"Snow 24h", type: 'number', min: 0, step: snowStep, className:"SnowUnits"},
+            {title:"Temp 1", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 2", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 3", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 4", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 5", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 6", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 7", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 8", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 9", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Temp 10", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Hum 1", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 2", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 3", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 4", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 5", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 6", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 7", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 8", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 9", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Hum 10", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Dew point 1", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 2", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 3", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 4", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 5", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 6", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 7", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 8", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 9", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Dew point 10", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 1", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 2", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 3", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 4", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Moist 1", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 2", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 3", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 4", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Leaf Temp 1", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Leaf Temp 2", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Leaf Wetness 1", type: 'number', min: 0, max: 100, className:'LeafWetUnits'},
+            {title:"Leaf Wetness 2", type: 'number', min: 0, max: 100, className:'LeafWetUnits'},
+            {title:"Soil Temp 5", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 6", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 7", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 8", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 9", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 10", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 11", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 12", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 13", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 14", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 15", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Temp 16", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"Soil Moist 5", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 6", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 7", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 8", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 9", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 10", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 11", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 12", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 13", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 14", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 15", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Soil Moist 16", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
+            {title:"Air Quality 1", type: 'number', min: 0, step: 0.1, className:'AirQualUnits'},
+            {title:"Air Quality 2", type: 'number', min: 0, step: 0.1, className:'AirQualUnits'},
+            {title:"Air Quality 3", type: 'number', min: 0, step: 0.1, className:'AirQualUnits'},
+            {title:"Air Quality 4", type: 'number', min: 0, step: 0.1, className:'AirQualUnits'},
+            {title:"Air Qual Avg 1", type: 'number', min: 0, step: 0.1, className:'AirQualAvgUnits'},
+            {title:"Air Qual Avg 2", type: 'number', min: 0, step: 0.1, className:'AirQualAvgUnits'},
+            {title:"Air Qual Avg 3", type: 'number', min: 0, step: 0.1, className:'AirQualAvgUnits'},
+            {title:"Air Qual Avg 4", type: 'number', min: 0, step: 0.1, className:'AirQualAvgUnits'},
+            {title:"User Temp 1", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 2", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 3", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 4", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 5", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 6", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 7", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"User Temp 8", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"CO₂", type: 'number', min: 300, step: 0.1, className:'CO2Units'},
+            {title:"CO₂ Avg", type: 'number', min: 300, step: 0.1, className:'CO2Units'},
+            {title:"CO₂ PM2.5", type: 'number', min: 0, step: 0.1, className:'PM02-5Units'},
+            {title:"CO₂ PM2.5 Avg", type: 'number', min: 0, step: 0.1, className:'PM02-5Units'},
+            {title:"CO₂ PM10", type: 'number', min: 0, step: 0.1, className:'PM10Units'},
+            {title:"CO₂ PM10 Avg", type: 'number', min: 0, step: 0.1, className:'PM10Units'},
+            {title:"CO₂ Temp", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"CO₂ Hum", type: 'number', min: 0, max: 100, className:'percent'},
+            {title:"Laser Dist 1", type: 'number', min: 0, step: laserStep, className:'LaserDistUnits'},
+            {title:"Laser Dist 2", type: 'number', min: 0, step: laserStep, className:'LaserDistUnits'},
+            {title:"Laser Dist 3", type: 'number', min: 0, step: laserStep, className:'LaserDistUnits'},
+            {title:"Laser Dist 4", type: 'number', min: 0, step: laserStep, className:'LaserDistUnits'},
+            {title:"Laser Depth 1", type: 'number', step: laserStep, className:'LaserDepthUnits'},
+            {title:"Laser Depth 2", type: 'number', step: laserStep, className:'LaserDepthUnits'},
+            {title:"Laser Depth 3", type: 'number', step: laserStep, className:'LaserDepthUnits'},
+            {title:"Laser Depth 4", type: 'number', step: laserStep, className:'LaserDepthUnits'},
+            {title:"Snow 24h", type: 'number', min: 0, step: snowStep, className:'SnowDepthUnits'},
         ];
 
         myTable = $('#datalog').dataTable({
@@ -412,4 +435,3 @@ function formatUserDateStr(inDate) {
 function addLeadingZeros(n) {
     return n <= 9 ? '0' + n : n;
 }
-

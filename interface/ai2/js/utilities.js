@@ -1,14 +1,11 @@
-/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 	Script:		utilities.js
- * 	Author:		Neil Thomas
- * 	Last Edit:	2024/12/04 11:23:35
- * 	Based on:	/js/utilFTPnow.html &
- *              /util_reloaddayfile.html
- * 			By:	Mark Crossley
- *		Edited:	2022/07/28 20:43:08 &
- *              2022/07/28 20:44:09
- * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: utilities.js		      Ver: aiX-1.0
+    Author: N Thomas (taken from all utility html files)
+    Last Edit (MC):	
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for utilities.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var prompt = '';
 
@@ -46,7 +43,6 @@ $( function () {
 		});
 		timeOut( 'ftpStatus' );
 	});
-
 });
 
 //  --  Timout for status messages

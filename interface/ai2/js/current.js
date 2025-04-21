@@ -1,5 +1,12 @@
-// Last modified:  2024/07/12 10:54:15
-//
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: current.js        		Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/09/27 10:21:36
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for current.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 // Configuration section
 let useWebSockets = true; // set to false to use Ajax updating
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -19,7 +26,6 @@ $(document).ready(function () {
 		dataType: 'json',
 		success: function (results) {
 			var dataVisible = results.DataVisibility;
-			//$('#availableData').html(JSON.stringify( dataVisible));
 			if( dataVisible.temperature.Temp      == 0 ) { $('[data-cmxData="Temp"]').addClass('w3-hide');}
 			if( dataVisible.temperature.InTemp    == 0 ) { $('[data-cmxData="InTemp"]').addClass('w3-hide');}
 			if( dataVisible.temperature.DewPoint  == 0 ) { $('[data-cmxData="DewPoint"]').addClass('w3-hide');}

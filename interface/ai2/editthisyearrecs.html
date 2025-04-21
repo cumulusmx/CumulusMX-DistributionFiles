@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	This Years Records Editor
-	File:	editalltimerecs.html	v4.0.1
-	Author:	D.N.C.Thomas		  Feb 2025
-	Note:	This is new filename
-	Last Edit:	2025-02-07
-	Last Check:	2024-04-05
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Edit This Years Records
+	File:	editthisyearrecs.html		Ver: aiX-1.0
+	Author:	D.N.C.Thomas			    	Mar 2025
+	Last Edit:	2025/03/22 10:15
+	Last Check:	2025/03/28
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CumulusMX This Years Records Editor</title>
+		<title>Edit This Year Records</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2023">
+		<meta name="author" content="Neil Thomas 2025">
 
 		<!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-		<!--	jQuery CDN	(Use for public website)	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery Local	(Use for AI unless you have a reliable internet connection)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>
+		<!--	FontAwsome CDN	-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+		
+		<!--	jQuery CDN	-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
+		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
 
 		<!-- Bootstrap -->
 		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,69 +42,68 @@
 		<script src="/lib/popupoverlay/jquery.popupoverlay.js"></script>
 
 		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/w3Pro+.css">
-		<link rel="stylesheet" href="themes/Martini-Olive.css" id="theme">
-		<link rel="stylesheet" href="css/main.css?v1.2">
+		<link rel="stylesheet" href="css/theme.css">
+		<link rel="stylesheet" href="css/axPro.css">
+		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/main.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/ai-pagemanager.js"></script>
-		<script src="js/editthisyearrecs.js"></script>
-
+		<script src="js/ai-page-manager.js"></script>
+		<script src="/js/thisyearrecseditor.js"></script>	<!--Uses DEFAULT script	-->
 		<!--	Local scripts & styles	-->
 		<script>
+
 		</script>
 		<style>
-			table { background: var(--add5); color: var(--sub5); border-collapse: collapse;}
-			th { border: thin solid var(--add5); vertical-align: bottom;}
-			th:nth-of-type(2), th:nth-of-type(4), th:nth-of-type(6),
-			td:nth-of-type(2), td:nth-of-type(4), td:nth-of-type(6) { text-align: center;}
-			td { border: thin solid var(--add3);}
-			.dialog button,
-			.alertdialog button { max-width: 8em;}
-			.ow-fontFix { color: var(--sub5)!important;}
-			.ow-fontFix:hover{ color: var(--sub3)!important;}
-			/*	This block adjusts the hover highlight.  Just delete if not wanted	*/
-			tr:hover > td {
-				background: linear-gradient(0deg, var(--add3) 0%, var(--add4) 20%, var(--add4) 80%, var(--add3) 100%);
-				border-top: thin solid var(--add2);
-				border-bottom: thin solid var(--add2);
-			}
+			tbody td {border-right:thin solid var(--color7);}
+			tbody td:last-of-type {border-right:none;}
+			tbody td:nth-of-type(even) {text-align:center;}
+			tbody tr:nth-of-type(odd){ background:var(--color7);}
+			tbody tr:hover td {background:var(--gradientBar);}
 		</style>
 	</head>
-	<body class="ow-theme-add5">
-		<header id="PageBanner" class="ow-theme w3-bottombar ow-theme-sub5-bdr">
-			<div class="siteWidth ow-titleBar" style=" margin:auto;">
-				<img src="img/Interface-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-					<h5 class="w3-align-right">
-					Latitude:&nbsp;<span data-cmxData="Latitude">xx.xxxx</span><span class="VBar"></span>
-					Longitude:&nbsp;<span data-cmxData="Longitude">±yy.yyyy</span><span class="VBar"></span>
-					Altitude:&nbsp;<span data-cmxData="Altitude">xxm</span>
-				</h5>
+	<body class="ax-theme9">
+		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
+			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
+			<div class="siteWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
+				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				
+				<div class="ax-theme7-bak" style="z-index:5">
+					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
+					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
+					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
+					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
+				</div>
 			</div>
 
-			<div id="Menues" class="ow-theme-add3" style="border-top: 1px solid var(--sub3); min-height: 33px;">
+			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
+				<div id="Menus" class="siteWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
 			</div>
 		</header>
 
 		<div id="content">
-			<img src="img/seagull-LF.png" id="ow-gullRight" alt="seagull" class="">
+			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
 			<div class="siteWidth">
-				<div class="ow-titleBar">
+				<!--	This is the page title - you probably want to keep this	-->
+				<div class="ax-titleBar">
 					<h1>This Year's Records Editor</h1>
-					<p>Check &amp; correct this year's records</p>
-					<div class="ow-btnBar">
-						<button class="ow-btn ow-theme-add5 ow-theme-sub3-hvr" aria-label="Fetch all monthly log data" onClick="getMonthlyLogs()">Fetch Monthly Log Data</button>
-					</div>
-
+					<p>Check &amp; correct your records for this year</p>
+					<button class="w3-btn ax-btn-gradient-up" aria-label="Fetch all monthly log data" onClick="getMonthlyLogs()">Fetch Monthly Log Data</button>
 				</div>
-				<div class="ow-txt-small w3-right-align"><strong>Caution</strong>: this can be lengthy process<br>towards the end of the year</div>
-
-				<div class="ax-column1" style="margin-top:1vh;">
-					<div class="ow-card ow-theme-add4">
-						<p><strong>Note</strong>: You can click on the Dayfile/Logfile values/timestamps to copy the value to your record fields</p>
+				<!--	This is a sub title on a new line - delete if not required.	-->
+				<div class="ax-titleBar" style="justify-content: flex-end; margin-bottom:1vh;">
+					<p class="w3-small"><strong>Caution</strong>: This can be a length process if you have lots of data</p>
+				</div>
+				<!--	This is the section of one column layouts	-->
+				<div class="ax-column1">
+					<!--	Panel 1	-->
+					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="justify-content:flex-end;order:1;">
+						<div class="ax-titleBar">
+							<p><strong>Note</strong>: You can click on the Dayfile/Logfile values/timestamps to copy the value to your record fields</p>
+						</div>
 						<table id="alltime" class="w3-table w3-striped w3-hoverable" role="grid" style="width: 100%;">
 							<thead>
-								<tr class="ow-theme-add3">
+								<tr class="ax-theme6">
 									<th>Record</th>
 									<th>Record Value</th>
 									<th>Record Timestamp</th>
@@ -379,71 +378,74 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
-
+				</div>	<!--	End of one column layout	-->
 			</div>
-
 		</div>
-		<footer class="ow-theme w3-topbar ow-theme-sub5-bdr" style="min-height: 3em; z-index:300;">
+		
+		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
 			<div class="siteWidth">
-				<div class="" style="display: flex; justify-content: space-between; flex-flow: row wrap;">
-					<h6 class="w3-theme-add4-txt ow-txt-small"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h6 class="w3-right-align">
-						Powered by <span class="ow-theme-add3-txt">CumulusMX</span>
-						V<span data-cmxdata="Version">X.YY.Z</span>
-						(b:<span data-cmxdata="Build">xxxx</span>)
-					</h6>
+				<div class="ax-titleBar ax-padding-small" >
+					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
+					<h5 class="w3-right-align ax-theme7-txt">
+						Powered by <span class="ax-theme9-txt">CumulusMX</span>
+						V<span data-cmxData="Version">X.YY.Z</span>
+						(b:<span data-cmxData="Build">xxxx</span>)
+					</h5>
 				</div>
 			</div>
 		</footer>
 
 		<!--	Loading Overley	-->
-		<div class="loading-overlay">
-			<div class="loading-overlay-image-container w3-center ow-card ow-theme" style="border-radius: 1em; padding: 2vh 1vw;">
-				<img src="img/CMX-Interface-Logo.png" class="w3-image ow-logo" alt="CumulusMX Logo" style="width:250px;">
+
+		<div class="loading-overlay ax-theme-modal" style="position:fixed; top:0; left:0; z-index:1000; width:100%;">
+			<div class="w3-center w3-card ax-theme6" style="position:relative; top:35vh; left: 40vw; width:20vw; min-width:200px; border-radius: 1em; padding: 1vh 1vw;">
+				<img src="img/AI-Logo.png" class="w3-image" alt="CumulusMX Logo" style="width:100%;">
 				<h3>Loading the monthly log data</h3>
-				<img src="/img/loading.gif" alt="loading" class="w3-image loading-overlay-img">
+				<img src="/img/loading.gif" alt="loading" class="w3-center">
 			</div>
 		</div>
 		<!--	Updater Dialog	-->
 		<div id="recUpdater" role="dialog">
-            <div class="editor_Content ow-theme-add5" style="border-radius: 0.5em;">
-				<div class="ow-titleBar ow-theme-sub4" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
+			<div class="editor_Content ax-theme9" style="border-radius: 0.5em;">
+				<div class="ax-titleBar ax-theme2" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
 					<h4>Update record</h4>
 				</div>
 
 				<div class="w3-center w3-padding">
-					<p>Change <span id="editName" style="border-bottom:2px solid var(--theme);"></span> record <em><span id="editType"></span></em> from</p>
-					<div class="ow-titleBar" style="justify-content:center;">
-						<span id="editOldVal" style="font-family: monospace;"></span> -
-						<span id="editOldTime" style="font-family: monospace;"></span>
+					<p>Change <span id="editName" style="border-bottom:2px solid var(--color5);"></span> record <em><span id="editType"></span></em> from</p>
+					<div class="ax-titleBar" style="justify-content: center;">
+						<p><strong><span id="editOldVal" style="font-family: monospace;"></span></strong></p>
+						<i class="fa-solid fa-left-right"></i>
+						<p><strong><span id="editOldTime" style="font-family: monospace;"></span></strong></p>
 					</div>
 					<p>to</p>
-					<div class="ow-titleBar" style="justify-content:center;">
-						<span id="editNewVal" style="font-family: monospace;"></span> -
-						<span id="editNewTime" style="font-family: monospace;"></span>
+					<div class="ax-titleBar" style="justify-content: center;">
+						<p><strong><span id="editNewVal" style="font-family: monospace;"></span></strong></p>
+						<i class="fa-solid fa-left-right"></i>
+						<p><strong><span id="editNewTime" style="font-family: monospace;"></span></strong></p>
 					</div>
-					<div class="ow-btnBar" style="margin: 1vh 0;">
-						<button class="ow-btn ow-theme-add5 ow-fontFix" onClick="updateRec()" aria-label="Yes">Yes</button>
-						<button class="ow-btn ow-theme-add5 ow-fontFix recUpdater_close" aria-label="No">No</button>
+					<div class="ax-btnBar" style="margin: 1vh 0;">
+						<button class="w3-btn ax-btn-gradient-up" onClick="updateRec()" aria-label="Yes">Yes</button>
+						<button class="w3-btn ax-btn-gradient-up recUpdater_close" aria-label="No">No</button>
 					</div>
 				</div>
-            </div>
-        </div>
-        <!--	Update Error Dialog	-->
-        <div id="updaterError" role="alertdialog">
-            <div class="editor_Content ow-theme-add4" style="border-radius: 0.5em;">
-				<div class="ow-titleBar ow-theme-sub4" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
+			</div>
+		</div>
+		<!--	Update Error Dialog	-->
+		<div id="updaterError" role="alertdialog">
+			<div class="editor_Content ax-theme4" style="border-radius: 0.5em;">
+				<div class="ax-titleBar ax-theme2" style="padding: 1vh 1vw; border-radius: 0.5em 0.5em 0 0;">
 					<h4>Error</h4>
-					<i class="fa-solid fa-triangle-exclamation" style="color: #B00;"></i>
+					<i class="fa-solid fa-triangle-exclamation" style="color:#B00;"></i>
 				</div>
 				<div class="w3-center w3-padding">
 					<p id="errorContent"></p>
-					<div class="ow-btnBar" style="justify-content: center; margin-bottom: 1vh;">
-						<button class="ow-btn ow-theme-add5 ow-fontFix updaterError_close" aria-label="Close">Close</button>
+					<div class="ax-btnBar" style="justify-content: center; margin-bottom: 1vh;">
+						<button class="w3-btn ax-btn-gradient-up updaterError_close" aria-label="Close">Close</button>
 					</div>
 				</div>
-            </div>
-        </div>
+			</div>
+		</div>
+		
 	</body>
 </html>

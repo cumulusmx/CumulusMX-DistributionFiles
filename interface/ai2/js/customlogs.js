@@ -1,10 +1,17 @@
-// Last modified: 2024/09/27 10:20:45
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: customlogs.js        	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/09/27 10:20:45
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Form for customlogs.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 let csvChar;
 
 $(document).ready(function () {
-    $('#intvlform').alpaca({
+    $('#intvlForm').alpaca({
         'dataSource': '/api/settings/customlogsintvl.json',
         'optionsSource': '/json/CustomLogsIntvlOptions.json',
         'schemaSource': '/json/CustomLogsIntvlSchema.json',
@@ -75,7 +82,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#dailyform').alpaca({
+    $('#dailyForm').alpaca({
         'dataSource': '/api/settings/customlogsdaily.json',
         'optionsSource': '/json/CustomLogsDailyOptions.json',
         'schemaSource': '/json/CustomLogsDailySchema.json',

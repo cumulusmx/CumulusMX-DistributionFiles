@@ -1,4 +1,11 @@
-// Last modified: 2024/09/27 10:21:19
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: internetsettings.js    	Ver: aiX-1.0
+    Author: M Crossley & N Thomas
+    Last Edit (MC): 2024/10/29 10:59:31
+    Last Edit (NT): 2025/03/21
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Role:   Data for internetsettings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 
@@ -425,10 +432,11 @@ function addButtons() {
 
             let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ow-btn w3-theme-add3 collapsed">' +
+            '" role="treeitem" aria-expanded="false" class="w3-btn ax-btn-gradient-up collapsed" style="flex:none;">' +
             $(span).text() +
             '</button>');
         $(span).remove();
+        $(this).addClass('ax-btnBar');
         $(this).prepend(butt);
     });
 }
@@ -445,6 +453,7 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
+        $(this).removeClass('ax-btnBar');
         $(this).prepend(span);
     });
 }
