@@ -14,15 +14,31 @@ $.extend($.fn.dataTable.defaults, {
 
 
 $().ready(function () {
-	var lastGroup = CMXSession.Records.All;
+	$('.ax-btnBar').children('button').removeClass('w3-disabled');
 	switch( CMXSession.Records.All){
-		case '':			urlPrefix = '/api/records/alltime/';break;
-		case 'alltime': 	urlPrefex='/api/records/alltime/';	break;
-		case 'thisyear':	urlPrefix = '/api/records/thisyear/';	break;
-		case 'thismonth':	urlPrefix = '/api/records/thismonth/';	break;
-		default:	urlPrefix = '/api/records/month/'+CMXSession.Records.All + '/';
+		case '':
+			$('[name="alltime"]').addClass('w3-disabled');
+		case 'alltime':
+			urlPrefix = '/api/records/alltime/';
+			$('#recPeriod').text('All-time');
+			break;
+		case 'thisyear':
+			urlPrefix = '/api/records/thisyear/';
+			$('#recPeriod').text('This year\'s');
+			break;
+		case 'thismonth':
+			urlPrefix = '/api/records/thismonth/';
+			$('#recPeriod').text('This month\'s'); 
+			break;
+		default:
+			urlPrefix = '/api/records/month/'+CMXSession.Records.All + '/';
+			console.log('Month: ' + period[CMXSession.Records.All]);
+			//Doesn't work properly for some reason!
+			$('#recPeriod').html(period[CMXSession.Records.All]);
+			break;
 	}
 	console.log("Last record block url: " + urlPrefix + "(" + period[CMXSession.Records.All] + ")");
+	$('[name="' + CMXSession.Records.All + '"]').addClass('w3-disabled');
 
 	var tempTable=$('#temperature').dataTable({
 		"paging": false,
