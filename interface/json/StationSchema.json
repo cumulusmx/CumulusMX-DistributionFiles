@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/02/16 14:12:32",
+	"version": "Last Modified: 2025/05/02 22:24:30",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -391,117 +391,66 @@
 					"type": "object",
 					"properties": {
 						"extraSoilTemp": {
-							"title": "Extra Soil Temperature Sensors",
-							"type": "object",
-							"properties": {
-								"soilTempTx1": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilTempIdx1": {
-									"enum": [1,2,3,4]
-								},
-								"soilTempTx2": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilTempIdx2": {
-									"enum": [1,2,3,4]
-								},
-								"soilTempTx3": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilTempIdx3": {
-									"enum": [1,2,3,4]
-								},
-								"soilTempTx4": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilTempIdx4": {
-									"enum": [1,2,3,4]
+							"title": "Soil Temperature Sensors",
+							"type": "array",
+							"maxItems": 16,
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"readonly": true
+									},
+									"tx": {
+										"type": "number",
+										"enum": [0,1,2,3,4,5,6,7,8]
+									},
+									"idx": {
+										"type": "number",
+										"enum": [1,2,3,4]
+									}
 								}
-							},
-							"dependencies": {
-								"soilTempIdx1": [
-									"soilTempTx1"
-								],
-								"soilTempIdx2": [
-									"soilTempTx2"
-								],
-								"soilTempIdx3": [
-									"soilTempTx3"
-								],
-								"soilTempIdx4": [
-									"soilTempTx4"
-								]
 							}
 						},
 						"extraSoilMoist": {
-							"title": "Extra Soil Moisture Sensors",
-							"type": "object",
-							"properties": {
-								"soilMoistTx1": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilMoistIdx1": {
-									"enum": [1,2,3,4]
-								},
-								"soilMoistTx2": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilMoistIdx2": {
-									"enum": [1,2,3,4]
-								},
-								"soilMoistTx3": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilMoistIdx3": {
-									"enum": [1,2,3,4]
-								},
-								"soilMoistTx4": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"soilMoistIdx4": {
-									"enum": [1,2,3,4]
+							"title": "Soil Moisture Sensors",
+							"type": "array",
+							"maxItems": 16,
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"readonly": true
+									},
+									"tx": {
+										"type": "number",
+										"enum": [0,1,2,3,4,5,6,7,8]
+									},
+									"idx": {
+										"type": "number",
+										"enum": [1,2,3,4]
+									}
 								}
-							},
-							"dependencies": {
-								"soilMoistIdx1": [
-									"soilMoistTx1"
-								],
-								"soilMoistIdx2": [
-									"soilMoistTx2"
-								],
-								"soilMoistIdx3": [
-									"soilMoistTx3"
-								],
-								"soilMoistIdx4": [
-									"soilMoistTx4"
-								]
 							}
 						},
 						"extraLeaf": {
-							"title": "Extra Leaf Wetness Sensors",
-							"type": "object",
-							"properties": {
-								"leafTx1": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"leafIdx1": {
-									"enum": [1,2]
-								},
-								"leafTx2": {
-									"enum": [0,1,2,3,4,5,6,7,8]
-								},
-								"leafIdx2": {
-									"enum": [1,2]
+							"title": "Leaf Wetness Sensors",
+							"type": "array",
+							"maxItems": 8,
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"readonly": true
+									},
+									"tx": {
+										"type": "number",
+										"enum": [0,1,2,3,4,5,6,7,8]
+									},
+									"idx": {
+										"type": "number",
+										"enum": [1,2]
+									}
 								}
-							},
-							"dependencies": {
-								"leafIdx1": [
-									"leafTx1"
-								],
-								"leafIdx2": [
-									"leafTx2"
-								]
 							}
 						}
 					},
@@ -511,55 +460,22 @@
 				},
 				"extraTemp": {
 					"title": "Extra Temperature (Temp/Humidity) Sensors",
-					"type": "object",
-					"properties": {
-						"extraTempTx1": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx1": {
-							"type": "boolean"
-						},
-						"extraTempTx2": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx2": {
-							"type": "boolean"
-						},
-						"extraTempTx3": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx3": {
-							"type": "boolean"
-						},
-						"extraTempTx4": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx4": {
-							"type": "boolean"
-						},
-						"extraTempTx5": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx5": {
-							"type": "boolean"
-						},
-						"extraTempTx6": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx6": {
-							"type": "boolean"
-						},
-						"extraTempTx7": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx7": {
-							"type": "boolean"
-						},
-						"extraTempTx8": {
-							"enum": [0,1,2,3,4,5,6,7,8]
-						},
-						"extraHumTx8": {
-							"type": "boolean"
+					"type": "array",
+					"maxItems": 16,
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"readonly": true
+							},
+							"tx": {
+								"type": "number",
+								"enum": [0,1,2,3,4,5,6,7,8]
+							},
+							"idx": {
+								"type": "number",
+								"enum": [1,2,3,4]
+							}
 						}
 					},
 					"dependencies": [
@@ -853,6 +769,9 @@
 					"dependencies": [
 						"stationid"
 					]
+				},
+				"primaryIndoorTHsensor": {
+					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan1": {
 					"enum": [0,1,2,3,4,5,6,7,8]

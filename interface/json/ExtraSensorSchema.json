@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/28 21:01:43",
+	"version": "Last Modified: 2025/04/15 12:05:13",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -165,6 +165,9 @@
 							"type": "object",
 							"properties": {
 								"primaryTHsensor": {
+									"enum": [0,1,2,3,4,5,6,7,8]
+								},
+								"primaryIndoorTHsensor": {
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan1": {

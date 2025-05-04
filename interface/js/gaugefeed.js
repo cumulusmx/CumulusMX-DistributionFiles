@@ -1,9 +1,11 @@
-// Last modified: 2024/10/29 10:52:04
+// Last modified: 2025/04/22 16:33:06
 
 // Configuration section
-var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
+
+
+var useWebSockets = true;
 
 window.addEventListener('load', function () {
 
@@ -101,6 +103,8 @@ window.addEventListener('load', function () {
             TdewpointTH: inp.HighDewpointTodayTime,
             TapptempTL: inp.LowAppTempTodayTime,
             TapptempTH: inp.HighAppTempTodayTime,
+            TfeelslikeTL: inp.LowFeelsLikeTodayTime,
+            TfeelslikeTH: inp.HighFeelsLikeTodayTime,
             TwchillTL: inp.LowWindChillTodayTime,
             TheatindexTH: inp.HighHeatIndexTodayTime,
             TrrateTM: inp.HighRainRateTodayTime,
@@ -138,27 +142,27 @@ window.addEventListener('load', function () {
     function doAjaxUpdate() {
         $.ajax({
             url: '/api/data/currentdata',
-            dataType: 'json',
-            success: function (data) {
-                updateDisplay(data);
-            }
+            dataType: 'json'
+        })
+        .done(function (data) {
+            updateDisplay(data);
         });
     }
 
-    if (useWebSockets) {
-        // Obtain the websockets port and open the connection
-        $.ajax({
-            url: '/api/info/wsport.json',
-            dataType: 'json',
-            success: function (result) {
-                OpenWebSocket(result.wsport);
-            }
-        });
-    } else {
-        // use Ajax
-        doAjaxUpdate();
+    $.ajax({
+        url: '/api/info/wsport.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        if (result.UseWebSockets) {
+            OpenWebSocket(result.wsport);
+        } else {
+            // use Ajax
+            doAjaxUpdate();
 
-        // start the timer for the display updates
-        setInterval(doAjaxUpdate, updateInterval * 1000);
-    }
+            // start the timer for the display updates
+            setInterval(doAjaxUpdate, updateInterval * 1000);
+        }
+    });
+
 });

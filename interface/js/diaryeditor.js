@@ -1,4 +1,4 @@
-// Last modified: 2024/11/27 14:40:28
+// Last modified: 2025/04/12 11:24:02
 
 var activeDates;
 var defaultSnowHour;
@@ -91,6 +91,10 @@ $(document).ready(function () {
                 $('#inputSnow24h').val(result.Snow24h);
                 $('#inputTime').val(result.Time);
                 $('#inputSnowDepth').val(result.SnowDepth);
+                $('#inputThunder').prop('checked', result.Thunder);
+                $('#inputHail').prop('checked', result.Hail);
+                $('#inputFog').prop('checked', result.Fog);
+                $('#inputGales').prop('checked', result.Gales);
                 $('#status').text('');
                 $('#selectedDate').text(selDate.toDateString());
                 $('#status').text('');
@@ -155,6 +159,10 @@ function deleteEntry() {
                 $('#inputComment').val(null);
                 $('#inputSnow24h').val(null);
                 $('#inputSnowDepth').val(null);
+                $('#inputThunder').prop('indeterminate', true);
+                $('#inputHail').prop('indeterminate', true);
+                $('#inputFog').prop('indeterminate', true);
+                $('#inputGales').prop('indeterminate', true);
                 $('#status').text('Entry deleted.');
             } else {
                 $('#status').text('Error: ' + result.result);
@@ -179,8 +187,13 @@ function applyEntry() {
         var body = '{"Date":"' + getDateString(date) + '",' +
             '"Time":"' + $('#inputTime').val() + '",' +
             '"Entry":"' + $('#inputComment').val() + '",' +
-            '"Snow24h":"' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : "NULL") + '",' +
-            '"SnowDepth":"' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : "NULL") + '"}';
+            '"Snow24h":' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : '"NULL"') + ',' +
+            '"SnowDepth":' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : '"NULL"') + ',' +
+            '"Thunder":' + $('#inputThunder').prop('checked') + ',' +
+            '"Hail":' + $('#inputHail').prop('checked') + ',' +
+            '"Fog":' + $('#inputFog').prop('checked') + ',' +
+            '"Gales":' + $('#inputGales').prop('checked') +
+            '}';
 
         $.ajax({
             url: '/api/edit/diarydata',

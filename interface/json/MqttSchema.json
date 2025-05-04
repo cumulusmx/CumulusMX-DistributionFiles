@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/03/13 22:46:25",
+	"version": "Last Modified: 2025/04/29 20:01:57",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -27,7 +27,7 @@
 					"enum": [0, 4, 6]
 				},
 				"protocolVersion": {
-					"enum": [0, 3, 4, 5]
+					"enum": [3, 4, 5]
 				}
 			}
 		},

@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2024/02/07 17:57:10",
+    "version": "Last Modified: 2025/04/22 16:03:19",
     "type": "object",
     "properties": {
         "accessible": {
@@ -117,6 +117,9 @@
                     "type": "boolean"
                 },
                 "listwebtags": {
+                    "type": "boolean"
+                },
+                "usewebsockets": {
                     "type": "boolean"
                 }
             }

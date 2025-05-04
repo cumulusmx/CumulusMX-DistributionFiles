@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2024/05/11 12:24:59",
+    "version": "Last Modified: 2025/04/22 16:03:25",
     "fields": {
         "accessible": {
             "rightLabel": "Enable accessibility features",
@@ -146,6 +146,10 @@
                 "listwebtags": {
                     "rightLabel": "List web tags",
                     "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
+                },
+                "usewebsockets": {
+                    "rightLabel": "Use WebSockets",
+                    "helper": "Disable the use of WebSockets for real-time data updates. This will make the dashboard use regular HTTP polling instead."
                 }
             }
         },

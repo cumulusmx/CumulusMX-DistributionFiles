@@ -1,4 +1,4 @@
-// Last modified: 2025/02/17 10:54:18
+// Last modified: 2025/05/02 20:21:58
 
 let StashedStationId;
 let accessMode;
@@ -10,7 +10,7 @@ $(document).ready(function () {
         optionsSource: '/json/StationOptions.json',
         schemaSource: '/json/StationSchema.json',
         ui: 'bootstrap',
-        view: 'bootstrap-edit-horizontal',
+        view: 'bootstrap-edit',
         options: {
             form: {
                 buttons: {
@@ -93,7 +93,8 @@ $(document).ready(function () {
                                 if (value != '')
                                 {
                                     // check for IMEI format - 15 or 16 digits
-                                    if (Number.isInteger(value)) {
+                                    var val = Number.parseInt(value)
+                                    if (!isNaN(val)) {
                                         if (value.length == 15 || value.length == 16) {
                                             callback({
                                                 status: true

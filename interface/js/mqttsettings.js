@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:08:00
+// Last modified: 2025/04/02 17:17:13
 
 let accessMode;
 
@@ -73,6 +73,15 @@ $(document).ready(function() {
                 let text = $(this).closest('.form-group').find('label').html();
                 let file = $(this).closest('tr').find('input').val();
                 $(this).attr('aria-label', text + ' file ' + file);
+            });
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+            .focusout(function() {
+                $(this).attr('type', 'password');
+            })
+            .focusin(function() {
+                $(this).attr('type', 'text');
             });
         }
     });

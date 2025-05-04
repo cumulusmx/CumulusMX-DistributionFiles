@@ -1,9 +1,9 @@
-// Last modified: 2024/10/29 11:14:31
+// Last modified: 2025/04/22 16:33:18
 
 // Configuration section
-var useWebSockets = true; // set to false to use Ajax updating
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
+
 
 window.addEventListener('load', function() {
     var lastUpdateTimer, keepAliveTimer, ws;
@@ -117,30 +117,29 @@ window.addEventListener('load', function() {
     function doAjaxUpdate() {
         $.ajax({
             url: '/api/data/currentdata',
-            dataType: 'json',
-            success: function (data) {
-                updateDisplay(data);
-            }
+            dataType: 'json'
+        })
+        .done(function (data) {
+            updateDisplay(data);
         });
     }
 
-    if (useWebSockets) {
-        // Obtain the websockets port and open the connection
-        $.ajax({
-            url: '/api/info/wsport.json',
-            dataType: 'json',
-            success: function (result) {
-                OpenWebSocket(result.wsport);
-            }
-        });
-    } else {
-        // use Ajax
-        doAjaxUpdate();
+    $.ajax({
+        url: '/api/info/wsport.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        if (result.UseWebSockets) {
+            OpenWebSocket(result.wsport);
+        } else {
+            // use Ajax
+            doAjaxUpdate();
 
-        // start the timer that checks for the last update
-        lastUpdateTimer = setTimeout(updateTimeout, 60000);
+            // start the timer that checks for the last update
+            lastUpdateTimer = setTimeout(updateTimeout, 60000);
 
-        // start the timer for the display updates
-        setInterval(doAjaxUpdate, updateInterval * 1000);
-    }
+            // start the timer for the display updates
+            setInterval(doAjaxUpdate, updateInterval * 1000);
+        }
+    });
 });

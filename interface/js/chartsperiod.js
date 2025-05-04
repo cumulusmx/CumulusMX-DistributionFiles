@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2024/12/17 10:44:04
+// Last modified: 2025/04/23 16:02:06
 
 var chart, avail, config, options;
 var cache = {};
@@ -1524,7 +1524,7 @@ var doPm2p5 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: '/api/graphdata/airqualitydata.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+        url: '/api/graphdata/intvairquality.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();

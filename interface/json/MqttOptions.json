@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/03/13 22:48:39",
+	"version": "Last Modified: 2025/04/29 20:02:10",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -17,6 +17,7 @@
 			"helper": "Enter your MQTT server username - if required"
 		},
 		"password": {
+			"type": "password",
 			"label": "Password:",
 			"helper": "Enter your MQTT server password - if required"
 		},
@@ -47,7 +48,6 @@
 					"type": "select",
                     "sort": false,
 					"optionLabels": [
-						"Auto - attempt to use the latest version",
 						"v3.1.0",
 						"v3.1.1",
 						"v5.0.0"

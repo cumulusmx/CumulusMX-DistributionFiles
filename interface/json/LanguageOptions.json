@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/03/29 15:37:28",
+	"version": "Last modified: 2025/04/22 13:49:43",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -527,27 +527,60 @@
 				"gentimedate": {
 					"label": "General time & date",
 					"type": "text",
-					"helper": "Text displayed for general time & date web tags"
+					"helpers": [
+						"Text displayed for general time & date web tags",
+						"Default: HH:mm 'on' dd MMMM yyyy"
+					]
 				},
 				"gendate": {
 					"label": "General date",
 					"type": "text",
-					"helper": "Text displayed for general date web tags"
+					"helpers": [
+						"Text displayed for general date web tags",
+						"Default: dd MMMM yyyy"
+					]
+				},
+				"gentime": {
+					"label": "General time",
+					"type": "text",
+					"helpers": [
+						"Text displayed for general time web tags",
+						"Default: HH:mm",
+						"For 12-hr format use: hh:mm tt or h:mm tt"
+					]
 				},
 				"recdate": {
 					"label": "Record date",
 					"type": "text",
-					"helper": "Text displayed for record web tags that are date only"
+					"helpers": [
+						"Text displayed for record web tags that are date only",
+						"Default: 'on' dd MMMM yyyy"
+					]
 				},
 				"rectimedate": {
 					"label": "Record time & date",
 					"type": "text",
-					"helper": "Text displayed for record web tags that have a time and date"
+					"helpers": [
+						"Text displayed for record web tags that have a time and date",
+						"Default: 'at' HH:mm 'on' dd MMMM yyyy"
+					]
 				},
 				"recwetdrytimedate": {
 					"label": "Record dry/wet days",
 					"type": "text",
-					"helper": "Text displayed for record dry wet periods"
+					"helpers": [
+						"Text displayed for record dry wet periods",
+						"Default: 'to' dd MMMM yyyy"
+					]
+				},
+				"elapsedtime": {
+					"label": "Elapsed time",
+					"type": "text",
+					"helpers": [
+						"Text displayed for elapsed time web tags",
+						"Default: {0:%d} days {0:%h} hours",
+						"Note: This is a TimeSpan format string not the usual DateTime format string"
+					]
 				}
 			}
 		},

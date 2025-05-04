@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:11:17
+// Last modified: 2025/04/02 17:16:26
 
 let accessMode;
 
@@ -60,6 +60,15 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             //accessObj.on('change', function() {onAccessChange(this)});
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+            .focusout(function() {
+                $(this).attr('type', 'password');
+            })
+            .focusin(function() {
+                $(this).attr('type', 'text');
+            });
         }
     });
 

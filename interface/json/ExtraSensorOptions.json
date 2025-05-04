@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/02/09 13:56:23",
+	"version": "Last Modified: 2025/04/15 12:06:07",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -289,6 +289,27 @@
 									"removeDefaultNone": true,
 									"helpers": [
 										"You can over-ride the default outdoor temperature and humidity sensor by specifying a WH31 T/H sensor channel",
+										"This over-ride only works if your primary station is an Ecowitt as well as your extra sensors"
+									]
+								},
+								"primaryIndoorTHsensor": {
+									"label": "Primary Indoor Temp/Humidity sensor:",
+									"type": "select",
+									"sort": false,
+									"optionLabels": [
+										"Default",
+										"Extra TH chan 1",
+										"Extra TH chan 2",
+										"Extra TH chan 3",
+										"Extra TH chan 4",
+										"Extra TH chan 5",
+										"Extra TH chan 6",
+										"Extra TH chan 7",
+										"Extra TH chan 8"
+									],
+									"removeDefaultNone": true,
+									"helpers": [
+										"You can over-ride the default indoor temperature and humidity sensor by specifying a WH31 T/H sensor channel",
 										"This over-ride only works if your primary station is an Ecowitt as well as your extra sensors"
 									]
 								},

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/03/12 10:47:10",
+	"version": "Last Modified: 2025/04/02 17:15:18",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -18,6 +18,7 @@
 					"label": "User name:"
 				},
 				"pass": {
+					"type": "password",
 					"label": "Password:"
 				},
 				"database": {
