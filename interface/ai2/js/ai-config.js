@@ -135,12 +135,12 @@ let setupAlarms = function( led, userLed ) {
 	var opt = { Brick:'ax-brick', Lozenge:'ax-lozenge', Oval:'ax-oval', Round: 'ax-round', Small_Round:'ax-round ax-small',Square:'', Small_Square:'ax-small'};
 	var options = '';
 	for( key in opt){
-		options += '<option value="' + opt[key] + '" ' + (led == opt[key] ? "selected" : "") + '>' + key + '</option>\n';
+		options += '<option value="' + opt[key] + '" ' + (led == opt[key] ? "selected" : "") + '>' + key.replace('_',' ') + '</option>\n';
 	}
 	$('#AlarmDef').html( options );
 	options = '';
 	for( key in opt){
-		options += '<option value="' + opt[key] + '" ' + (userLed == opt[key] ? "selected" : "") + '>' + key + '</option>\n';
+		options += '<option value="' + opt[key] + '" ' + (userLed == opt[key] ? "selected" : "") + '>' + key.replace('_',' ') + '</option>\n';
 	}
 	$('#AlarmUsr').html( options );
 	$('#AlarmDef').on('change', function(){
