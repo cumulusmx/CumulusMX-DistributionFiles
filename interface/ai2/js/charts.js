@@ -2,7 +2,7 @@
  * 	Script:	charts.js				Ver: aiX-1.0
  * 	Author:	M Crossley & N Thomas
  * 	Last Edit (MC):	2024/10/04 12:52:06
- * 	Last Edit (NT):	2025/03/20 17:35
+ * 	Last Edit (NT):	2025/05/05
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Role: Draw charts based on readings
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -185,7 +185,7 @@ var doTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Temperature (°' + config.temp.units + ')'},
+				title: {margin: 40, text: 'Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Temperature'},
 				labels: {
@@ -618,51 +618,51 @@ var doWind = function () {
 				},
 				plotLines: [{
 					value: beaufortScale[1],
-					color: 'rgb(255,220,0)', width: 1, zIndex:12,
+					color: 'rgb(255,220,0)', width: 1,zIndex:1,
 					label: { text: beaufortDesc[1], y:12}
 				},{
 					value: beaufortScale[2],
-					color: 'rgb(255,200,0)', width:1, zIndex:12,
+					color: 'rgb(255,200,0)', width:1,zIndex:1,
 					label: {text: beaufortDesc[2], y:12}
 				},{
 					value: beaufortScale[3],
-					color: 'rgb(255,180,0)', width:1, zIndex:12,
+					color: 'rgb(255,180,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[3], y:12}
 				},{
 					value: beaufortScale[4],
-					color: 'rgb(255,160,0)', width:1, zIndex:12,
+					color: 'rgb(255,160,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[4], y:12}
 				},{
 					value: beaufortScale[5],
-					color: 'rgb(255,140,0)', width:1, zIndex:12,
+					color: 'rgb(255,140,0)', width:1, zIndex:1,
 					label: {text:beaufortDesc[5], y:12}
 				},{
 					value: beaufortScale[6],
-					color: 'rgb(255,120,0)', width:1, zIndex:12,
+					color: 'rgb(255,120,0)', width:1, zIndex:1,
 					label: { text: beaufortDesc[6], y:12}
 				},{
 					value: beaufortScale[7],
-					color: 'rgb(255,100,0)', width:1, zIndex:12,
+					color: 'rgb(255,100,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[7], y:12}
 				},{
 					value: beaufortScale[8],
-					color: 'rgb(255,80,0)', width:1, zIndex:12,
+					color: 'rgb(255,80,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[8], y:12}
 				},{
 					value: beaufortScale[9],
-					color: 'rgb(255,60,0)', width:1, zIndex:12,
+					color: 'rgb(255,60,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[9], y:12}
 				},{
 					value: beaufortScale[10],
-					color: 'rgb(255,40,0)', width:1, zIndex:12,
+					color: 'rgb(255,40,0)', width:1, zIndex:1,
 					label: {text:beaufortDesc[10], y:12}
 				},{
 					value: beaufortScale[11],
-					color: 'rgb(255,20,0)', width:1, zIndex:12,
+					color: 'rgb(255,20,0)', width:1, zIndex:1,
 					label: { text: beaufortDesc[11], y:12}
 				},{
 					value: beaufortScale[11],// Note use of previous line
-					//color: 'rgb(255,0,0)', width:1, zIndex:12,
+					//color: 'rgb(255,0,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[12]}
 				}]
 			}, {
@@ -1373,12 +1373,12 @@ var doDailyTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Daily Temperature (°' + config.temp.units + ')'},
+				title: {margin: 40, text: 'Daily Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Daily Temperature'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1389,7 +1389,7 @@ var doDailyTemp = function () {
 					color: 'rgb(0, 0, 180)',
 					width: 1,
 					zIndex: 2,
-					label:{text:'Frezzing', align:'center'}
+					label:{text:'Freezing', align:'center'}
 				},{
 					value: frostTemp,
 					color: 'rgb(128,128,255)',
@@ -1405,7 +1405,7 @@ var doDailyTemp = function () {
 				title: {text: null},
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1635,12 +1635,12 @@ var doExtraTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Temperature (°' + config.temp.units + ')'},
+				title: {margin:40,text: 'Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Temperature'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1663,7 +1663,7 @@ var doExtraTemp = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1874,12 +1874,12 @@ var doExtraDew = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Dew Point (°' + config.temp.units + ')'},
+				title: {margin:40, text: 'Dew Point (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Dew Point'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1898,7 +1898,7 @@ var doExtraDew = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -1995,12 +1995,12 @@ var doSoilTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Temperature (°' + config.temp.units + ')'},
+				title: {margin: 40, text: 'Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Temperature'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -2023,7 +2023,7 @@ var doSoilTemp = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -2339,12 +2339,12 @@ var doUserTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Temperature (°' + config.temp.units + ')'},
+				title: {margin:40, text: 'Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				accessibility: { enabled: true, description: 'Temperature'},
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -2367,7 +2367,7 @@ var doUserTemp = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}

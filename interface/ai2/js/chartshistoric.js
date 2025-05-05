@@ -132,11 +132,11 @@ var doTemp = function () {
 		},
 		yAxis: [{
 				// left
-				title: {text: 'Temperature (°' + config.temp.units + ')'},
+				title: {margin: 40, text: 'Temperature (°' + config.temp.units + ')'},
 				opposite: false,
 				labels: {
 					align: 'right',
-					x: -5,
+					x: 15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}
@@ -162,7 +162,7 @@ var doTemp = function () {
 				linkedTo: 0,
 				labels: {
 					align: 'left',
-					x: 5,
+					x: -15,
 					formatter: function () {
 						return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
 					}

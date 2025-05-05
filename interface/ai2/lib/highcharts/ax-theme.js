@@ -12,12 +12,14 @@ Highcharts.theme = {
 			linearGradient: {
 				x1: 0,
 				y1: 0,
-				x2: 1,
-				y2: 3
+				x2: 0,
+				y2: 1
 			},
 			stops: [
-				[0, 'var(--color4)'],
-				[1, 'var(--color2)']
+				[0, 'var(--color3)'],
+				[0.83, 'var(--color5)'],
+				[0.85, 'var(--color1'],
+				[1, 'var(--color3)']
 				]
 			},
 			borderWidth: 0,
@@ -25,7 +27,19 @@ Highcharts.theme = {
 		},
 		navigator: {
 			maskFill: 'var(--modal)',
-			xAxis: {labels: { style: { color: 'var(--color9)'}}}
+			margin: 30,
+			handles: {
+				backgroundColor: 'var(--color7)',
+				borderColor: 'var(--color1)'
+			},
+			outlineColor: 'var(--color5)',
+			xAxis: {
+				labels: { 
+					y: -45,
+					align:'center',
+					style: { color: 'var(--color7)'}
+				}
+			}
 		},
 		title: {
 			style: {
