@@ -1,14 +1,13 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: dashboard.js        	Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit (MC): 2024/11/29 17:11:31
-    Last Edit (NT): 2025/03/21
+    Last Edit (MC): 2025/04/24 11:27:47
+    Last Edit (NT): 2025/05/05
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for index.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // Configuration section
-let useWebSockets = true; // set to false to use Ajax updating
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
@@ -153,7 +152,7 @@ $(document).ready(function () {
 
         if ($('#LastUpdateIcon').attr('src') != 'img/up.png') {
             $('#LastUpdateIcon').attr('src', 'img/up.png');
-}
+        }
 
 
         if (data.DataStopped) {
@@ -174,7 +173,7 @@ $(document).ready(function () {
             let id = '#' + key;
             if (key == 'Alarms') {
                 data[key].forEach(function (alarm) {
-                    let id = '#' + alarm.id;
+                    let alarmtag = '#' + alarm.id;
 
                     // set the indicator state
                     if (alarm.triggered && alarmState[alarm.id] == false) {
@@ -183,7 +182,7 @@ $(document).ready(function () {
                         alarmState[alarm.id] = true;
 
                         // set the indicator
-                        $(id).removeClass('indicatorOff ax-led-off').addClass('indicatorOn ax-led-on');
+                        $(alarmtag).removeClass('indicatorOff ax-led-off').addClass('indicatorOn ax-led-on');
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
@@ -203,12 +202,12 @@ $(document).ready(function () {
 
                         // upgrade?
                         if (alarm.Id == 'AlarmUpgrade') {
-                            $('#' + alarm.Id).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+                            $(alarmtag).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
-                        $(id).removeClass('indicatorOn ax-led-on').addClass('indicatorOff ax-led-on');
+                        $(alarmtag).removeClass('indicatorOn ax-led-on').addClass('indicatorOff ax-led-off');
                     }
                 });
             } else {
@@ -359,96 +358,76 @@ $(document).ready(function () {
     function doAjaxUpdate() {
         $.ajax({
             url: '/api/data/currentdata',
-            dataType: 'json',
-            success: function (data) {
-                updateDisplay(data);
-            }
+            dataType: 'json'
+        })
+        .done(function (data) {
+            updateDisplay(data);
         });
-    }
-
-    if (useWebSockets) {
-        // Obtain the websockets port and open the connection
-        $.ajax({
-            url: '/api/info/wsport.json',
-            dataType: 'json',
-            success: function (result) {
-                OpenWebSocket(result.wsport);
-            }
-        });
-    } else {
-        // use Ajax
-        doAjaxUpdate();
-
-        // start the timer that checks for the last update
-        lastUpdateTimer = setTimeout(updateTimeout, 60000);
-
-        // start the timer for the display updates
-        setInterval(doAjaxUpdate, updateInterval * 1000);
     }
 
     // Get the alarm settings - only do this on page load
     $.ajax({
         url: '/api/info/alarms.json',
-        dataType: 'json',
-        success: function (result) {
-            let playSnd = false;
-            let notify = false;
+        dataType: 'json'
+    })
+    .done(function (result) {
+        let playSnd = false;
+        let notify = false;
 
+        result.forEach(function (alarm) {
+            // save the setting for later
+            let alarmTag = 'Alarm' + alarm.Id;
 
-            result.forEach(function (alarm) {
-                // save the setting for later
-                alarmSettings[alarm.Id] = alarm;
-                alarmState[alarm.Id] = false;
+            alarmSettings[alarmTag] = alarm;
+            alarmState[alarmTag] = false;
 
-                if(alarm.Id.startsWith('AlarmUser')) {
-                    //console.log(alarm.Id);
-                    $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDUserAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
-                } else {
-                    $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDAlarm + '" id="' + alarm.Id + '"></div>' + alarm.Name + '</div>');
-                }
-
-                if (alarm.SoundEnabled) {
-                    playSnd = true;
-                }
-                if (alarm.Notify) {
-                    notify = true;
-                }
-            });
-
-            if (playSnd) {
+            if(!alarm.Id.search('User')) {
+                $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDUserAlarm + '" id="' + alarmTag + '"></div>' + alarm.Name + '</div>');
+            } else {
+                $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDAlarm + '" id="' + alarmTag + '"></div>' + alarm.Name + '</div>');
             }
 
-            if (notify) {
-                // Request notification permission
-                function handlePermission(permission) {
-                    // Whatever the user answers, we make sure Chrome stores the information
-                    if (!('permission' in Notification)) {
-                        Notification.permission = permission;
-                    }
-                }
+            if (alarm.SoundEnabled) {
+                playSnd = true;
+            }
+            if (alarm.Notify) {
+                notify = true;
+            }
+        });
 
-                function checkNotificationPromise() {
-                    try {
-                        Notification.requestPermission().then();
-                    } catch(e) {
-                        return false;
-                    }
-                    return true;
-                }
+        if (playSnd) {
+        }
 
-                if (!('Notification' in window)) {
-                    log('This browser does not support notifications.');
-                    } else {
-                        if (checkNotificationPromise()) {
-                            Notification.requestPermission()
-                            .then((permission) => {
-                                handlePermission(permission);
-                            })
-                        } else {
-                            Notification.requestPermission(function(permission) {
+        if (notify) {
+            // Request notification permission
+            function handlePermission(permission) {
+                // Whatever the user answers, we make sure Chrome stores the information
+                if (!('permission' in Notification)) {
+                    Notification.permission = permission;
+                }
+            }
+
+            function checkNotificationPromise() {
+                try {
+                    Notification.requestPermission().then();
+                } catch(e) {
+                    return false;
+                }
+                return true;
+            }
+
+            if (!('Notification' in window)) {
+                log('This browser does not support notifications.');
+                } else {
+                    if (checkNotificationPromise()) {
+                        Notification.requestPermission()
+                        .then((permission) => {
                             handlePermission(permission);
-                        });
-                    }
+                        })
+                    } else {
+                        Notification.requestPermission(function(permission) {
+                        handlePermission(permission);
+                    });
                 }
             }
         }
@@ -457,9 +436,31 @@ $(document).ready(function () {
     // Get the station name - only do this on page load
     $.ajax({
         url: '/api/tags/process.json?locationJsEnc',
-        dataType: 'json',
-        success: function (result) {
-            $('#StationName').html(result.locationJsEnc);
+        dataType: 'json'
+    })
+   .done(function (result) {
+        $('#StationName').html(result.locationJsEnc);
+    });
+
+
+    // Obtain the websockets port and open the connection
+    $.ajax({
+        url: '/api/info/wsport.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        if (result.UseWebSockets)
+        {
+            OpenWebSocket(result.wsport);
+        } else {
+            // use Ajax
+            doAjaxUpdate();
+
+            // start the timer that checks for the last update
+            lastUpdateTimer = setTimeout(updateTimeout, 60000);
+
+            // start the timer for the display updates
+            setInterval(doAjaxUpdate, updateInterval * 1000);
         }
     });
 

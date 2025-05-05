@@ -332,14 +332,15 @@ tr > td { border-bottom: thin solid var(--color5);}
 	background-color: green;
 	box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
 	/*border: thin solid var(--sub5);*/
-	width: 1.4em;
-	height: 1.4em;
-	margin: 0 0.25vw -0.3em 0.25vw;
-    &.ax-brick   { width:1.6em;  height:0.8em; margin-bottom:0;    }
-    &.ax-oval    { width:1.6em;  height:0.8em; margin-bottom:0; border-radius: 0.4em; }
-    &.ax-lozenge { width: 1.6em; height:0.8em; margin-bottom:0; border-radius: 50%; }
+	width: 1.6rem;
+	height: 1.6rem;
+	margin: 0 0.5vw -0.3em 0.25vw;
+	
+    &.ax-brick   { width:1.6rem;  height:0.8rem; margin-bottom:0;    }
+    &.ax-oval    { width:1.6rem;  height:0.8rem; margin-bottom:0; border-radius: 0.4rem; }
+    &.ax-lozenge { width: 1.6rem; height:0.8rem; margin-bottom:0; border-radius: 50%; }
     &.ax-round   { border-radius:50%; }
-    &.ax-small   { width:1em; height:1em; margin-bottom: -0.15em; margin-right: 1em; }
+    &.ax-small   { width:1rem; height:1rem; margin-bottom: -0.15rem; margin-right: 1rem; }
 }
 
 .ax-led-on {
