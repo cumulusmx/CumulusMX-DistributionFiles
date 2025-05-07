@@ -195,6 +195,15 @@ var doTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No temperature data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -215,6 +224,7 @@ var doTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -369,6 +379,16 @@ var doPress = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No pressure data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -397,6 +417,7 @@ var doPress = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -447,52 +468,52 @@ var doWind = function () {
 				},
 				plotLines: [{
 					value: beaufortScale[1],
-					color: 'rgb(255,220,0)', width: 1, zIndex:12,
+					color: 'rgb(255,220,0)', width: 1, zIndex:1,
 					label: { text: beaufortDesc[1], y:12}
 				},{
 					value: beaufortScale[2],
-					color: 'rgb(255,200,0)', width:1, zIndex:12,
+					color: 'rgb(255,200,0)', width:1, zIndex:1,
 					label: {text: beaufortDesc[2], y:12}
 				},{
 					value: beaufortScale[3],
-					color: 'rgb(255,180,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[3], y:12}
+					color: 'rgb(255,180,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[3], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[4],
-					color: 'rgb(255,160,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[4], y:12}
+					color: 'rgb(255,160,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[4], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[5],
-					color: 'rgb(255,140,0)', width:1, zIndex:12,
-					label: {text:beaufortDesc[5], y:12}
+					color: 'rgb(255,140,0)', width:1, zIndex:1,
+					label: {text:beaufortDesc[5], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[6],
-					color: 'rgb(255,120,0)', width:1, zIndex:12,
-					label: { text: beaufortDesc[6], y:12}
+					color: 'rgb(255,120,0)', width:1, zIndex:1,
+					label: { text: beaufortDesc[6], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[7],
-					color: 'rgb(255,100,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[7], y:12}
+					color: 'rgb(255,100,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[7], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[8],
-					color: 'rgb(255,80,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[8], y:12}
+					color: 'rgb(255,80,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[8], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[9],
-					color: 'rgb(255,60,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[9], y:12}
+					color: 'rgb(255,60,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[9], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[10],
-					color: 'rgb(255,40,0)', width:1, zIndex:12,
-					label: {text:beaufortDesc[10], y:12}
+					color: 'rgb(255,40,0)', width:1, zIndex:1,
+					label: {text:beaufortDesc[10], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[11],
-					color: 'rgb(255,20,0)', width:1, zIndex:12,
-					label: { text: beaufortDesc[11], y:12}
+					color: 'rgb(255,20,0)', width:1, zIndex:1,
+					label: { text: beaufortDesc[11], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[11],
-					//color: 'rgb(255,0,0)', width:1, zIndex:12,
-					label: {text: beaufortDesc[12]}
+					//color: 'rgb(255,0,0)', width:1, zIndex:1,
+					label: {text: beaufortDesc[12],style:{color:'var(--color5)'}}
 				}]
 			}, {
 				// right
@@ -534,6 +555,16 @@ var doWind = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No wind data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -573,6 +604,7 @@ var doWind = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -658,6 +690,16 @@ var doRain = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No rainfall data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -690,6 +732,7 @@ var doRain = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -775,6 +818,16 @@ var doHum = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No humidity data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -795,6 +848,7 @@ var doHum = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -878,6 +932,16 @@ var doSolar = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No solar data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -896,6 +960,7 @@ var doSolar = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1086,6 +1151,16 @@ var doDegDays = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No degree day data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1100,6 +1175,7 @@ var doDegDays = function () {
 	};
 
 	chart = new Highcharts.Chart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1207,6 +1283,16 @@ var doTempSum = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No temperature sum data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1221,6 +1307,7 @@ var doTempSum = function () {
 	};
 
 	chart = new Highcharts.Chart(options);
+	Chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1334,6 +1421,16 @@ var doChillHrs = function () {
             },
             line: {lineWidth: 2}
         },
+		lang: {
+			noData: 'No chill hours data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
         tooltip: {
             shared: true,
             split: false,
@@ -1348,7 +1445,8 @@ var doChillHrs = function () {
     };
 
     chart = new Highcharts.Chart(options);
-    chart.showLoading();
+    chart.hideNoData();
+	chart.showLoading();
 
     $.ajax({
         url: '/api/dailygraphdata/chillhrsdata.json',
@@ -1438,6 +1536,16 @@ var doSnow = function () {
                 }
             }
         },
+		lang: {
+			noData: 'No snow data available'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
         tooltip: {
             shared: true,
             split: false,
@@ -1462,7 +1570,8 @@ var doSnow = function () {
     };
 
     chart = new Highcharts.StockChart(options);
-    chart.showLoading();
+    chart.hideNoData();
+	chart.showLoading();
 
     $.ajax({
         url: '/api/dailygraphdata/dailysnow.json',

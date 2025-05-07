@@ -27,6 +27,7 @@ Highcharts.theme = {
 		},
 		navigator: {
 			maskFill: 'var(--modal)',
+			maskInside: false,
 			margin: 30,
 			handles: {
 				backgroundColor: 'var(--color7)',
