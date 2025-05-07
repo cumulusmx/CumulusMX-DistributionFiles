@@ -201,11 +201,11 @@ var doTemp = function () {
 						color: 'rgb(0, 0, 180)',
 						width: 1,
 						zIndex: 2,
-						label: {text:'Freezing', align:'center'}
+						label: {text:'Freezing', align:'center', style: {color: 'var(--color5)'}}
 					},{
 						value: frostTemp,
 						color: 'rgb(128,128,255)', width: 1, zIndex: 2,
-						label: {text: 'Frost possible',y:12,align:'center'}
+						label: {text: 'Frost possible',y:12,align:'center', style: {color: 'var(--color5)'}}	
 					}]
 			}, {
 				// right
@@ -644,51 +644,51 @@ var doWind = function () {
 				plotLines: [{
 					value: beaufortScale[1],
 					color: 'rgb(255,220,0)', width: 1,zIndex:1,
-					label: { text: beaufortDesc[1], y:12}
+					label: { text: beaufortDesc[1], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[2],
 					color: 'rgb(255,200,0)', width:1,zIndex:1,
-					label: {text: beaufortDesc[2], y:12}
+					label: {text: beaufortDesc[2], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[3],
 					color: 'rgb(255,180,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[3], y:12}
+					label: {text: beaufortDesc[3], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[4],
 					color: 'rgb(255,160,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[4], y:12}
+					label: {text: beaufortDesc[4], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[5],
 					color: 'rgb(255,140,0)', width:1, zIndex:1,
-					label: {text:beaufortDesc[5], y:12}
+					label: {text:beaufortDesc[5], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[6],
 					color: 'rgb(255,120,0)', width:1, zIndex:1,
-					label: { text: beaufortDesc[6], y:12}
+					label: { text: beaufortDesc[6], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[7],
 					color: 'rgb(255,100,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[7], y:12}
+					label: {text: beaufortDesc[7], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[8],
 					color: 'rgb(255,80,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[8], y:12}
+					label: {text: beaufortDesc[8], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[9],
 					color: 'rgb(255,60,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[9], y:12}
+					label: {text: beaufortDesc[9], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[10],
 					color: 'rgb(255,40,0)', width:1, zIndex:1,
-					label: {text:beaufortDesc[10], y:12}
+					label: {text:beaufortDesc[10], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[11],
 					color: 'rgb(255,20,0)', width:1, zIndex:1,
-					label: { text: beaufortDesc[11], y:12}
+					label: { text: beaufortDesc[11], y:12, style: {color: 'var(--color5)'}}
 				},{
 					value: beaufortScale[11],// Note use of previous line
 					//color: 'rgb(255,0,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[12]}
+					label: {text: beaufortDesc[12], style: {color: 'var(--color5)'}}
 				}]
 			}, {
 				// right
@@ -1480,13 +1480,13 @@ var doDailyTemp = function () {
 					color: 'rgb(0, 0, 180)',
 					width: 1,
 					zIndex: 2,
-					label:{text:'Freezing', align:'center'}
+					label:{text:'Freezing', align:'center',	style: {color: 'var(--color5)'}}
 				},{
 					value: frostTemp,
 					color: 'rgb(128,128,255)',
 					width: 1,
 					zIndex: 2,
-					label: {text: 'Frost possible',y:12, align:'center'}
+					label: {text: 'Frost possible',y:12, align:'center', style: {color: 'var(--color5)'}}
 				}]
 			}, {
 				// right
