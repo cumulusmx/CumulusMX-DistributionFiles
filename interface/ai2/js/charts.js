@@ -247,6 +247,14 @@ var doTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: { noData: 'No temperature data to display' },
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -264,6 +272,7 @@ var doTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -399,6 +408,10 @@ var doPress = function () {
 			},
 			spline: {lineWidth: 2}
 		},
+		lang: { noData: 'No pressure data to display' },
+		noData: {
+			style: {fontWeight: 'bold', fontSize: '20px', color: '#FF3030'}	
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -419,6 +432,7 @@ var doPress = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -528,6 +542,16 @@ var doWindDir = function () {
 				//label: {enabled: false}
 			}
 		},
+		lang: {
+			noData: 'No wind direction data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			enabled: true,
 			split: true,
@@ -569,6 +593,7 @@ var doWindDir = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -704,6 +729,16 @@ var doWind = function () {
 			},
 			spline: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No wind data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -727,6 +762,7 @@ var doWind = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -819,6 +855,16 @@ var doRain = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No rainfall data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -848,6 +894,7 @@ var doRain = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -936,6 +983,16 @@ var doHum = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No humidity data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -953,6 +1010,7 @@ var doHum = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1037,6 +1095,16 @@ var doSolar = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No solar data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1052,6 +1120,7 @@ var doSolar = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1209,6 +1278,16 @@ var doSunHours = function () {
 				}
 			}
 		},
+		lang: {
+			noData: 'No Sunshine Hours data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1230,6 +1309,7 @@ var doSunHours = function () {
 	};
 
 	chart = new Highcharts.Chart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1315,6 +1395,16 @@ var doDailyRain = function () {
 				}
 			}
 		},
+		lang:{
+			noData: 'No Daily Rainfall data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1336,6 +1426,7 @@ var doDailyRain = function () {
 	};
 
 	chart = new Highcharts.Chart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1439,6 +1530,16 @@ var doDailyTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No Daily Temperature data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1458,6 +1559,7 @@ var doDailyTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1563,6 +1665,16 @@ var doAirQuality = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No Air Quality data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1580,6 +1692,7 @@ var doAirQuality = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1697,6 +1810,16 @@ var doExtraTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No Extra Temperature data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1714,6 +1837,7 @@ var doExtraTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1810,6 +1934,16 @@ var doExtraHum = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No Extra Humidity data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1827,6 +1961,7 @@ var doExtraHum = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -1932,6 +2067,16 @@ var doExtraDew = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No Extra Dew Point data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -1949,6 +2094,7 @@ var doExtraDew = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -2057,6 +2203,16 @@ var doSoilTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No Soil Temperature data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -2074,6 +2230,7 @@ var doSoilTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -2165,6 +2322,16 @@ var doSoilMoist = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{
+			noData: 'No Soil Moisture data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -2182,6 +2349,7 @@ var doSoilMoist = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -2276,6 +2444,16 @@ var doLeafWet = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang:{ 
+			noData: 'No Leaf Wetness data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -2293,6 +2471,7 @@ var doLeafWet = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -2401,6 +2580,16 @@ var doUserTemp = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No User Temperature data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: false,
@@ -2418,6 +2607,7 @@ var doUserTemp = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
@@ -2505,6 +2695,16 @@ var doCO2 = function () {
 			},
 			line: {lineWidth: 2}
 		},
+		lang: {
+			noData: 'No CO2 data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
 		tooltip: {
 			shared: true,
 			split: true,
@@ -2520,6 +2720,7 @@ var doCO2 = function () {
 	};
 
 	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
 	chart.showLoading();
 
 	$.ajax({
