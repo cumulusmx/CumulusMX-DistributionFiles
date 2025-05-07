@@ -162,8 +162,8 @@ $(document).ready(function () {
 
 		//Modified by Neil
 		var tmpTrend = Number(data.TempTrend.replace(',','.'));
-		if (tmpTrend === 0 && $('#TempTrendImg').attr('src') != 'img/steady.png') {
-			$('#TempTrendImg').attr('src', 'img/steady.png');
+		if (tmpTrend === 0 && $('#TempTrendImg').attr('src') != 'img/nochange.png') {
+			$('#TempTrendImg').attr('src', 'img/nochange.png');
 		} else if (tmpTrend > 0  && $('#TempTrendImg').attr('src') != 'img/up.png') {
 			$('#TempTrendImg').attr('src', 'img/up.png');
 		} else if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
@@ -171,8 +171,8 @@ $(document).ready(function () {
 		}
 
 		tmpTrend = Number(data.PressTrend.replace(',','.'));
-		if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/steady.png') {
-			$('#PressTrendImg').attr('src', 'img/steady.png');
+		if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/nochange.png') {
+			$('#PressTrendImg').attr('src', 'img/nochange.png');
 		} else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
 			$('#PressTrendImg').attr('src', 'img/up.png');
 		} else if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {

@@ -182,7 +182,7 @@ $(document).ready(function () {
                         alarmState[alarm.id] = true;
 
                         // set the indicator
-                        $(alarmtag).removeClass('indicatorOff ax-led-off').addClass('indicatorOn ax-led-on');
+                        $(alarmtag).removeClass('ax-led-off').addClass('ax-led-on');
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
@@ -207,7 +207,7 @@ $(document).ready(function () {
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
-                        $(alarmtag).removeClass('indicatorOn ax-led-on').addClass('indicatorOff ax-led-off');
+                        $(alarmtag).removeClass('ax-led-on').addClass('ax-led-off');
                     }
                 });
             } else {
