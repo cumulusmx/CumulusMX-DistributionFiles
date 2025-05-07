@@ -1600,6 +1600,9 @@ var doSnow = function () {
             });
         }
     })
+/*	.fail(function() {
+		chart.lang.noData( 'No snow data available');
+	})*/
     .always(function() {
         chart.hideLoading();
     });

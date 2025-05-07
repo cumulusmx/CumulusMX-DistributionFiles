@@ -218,6 +218,14 @@ $(document).ready(function () {
 						},
 						line: {lineWidth: 2}
 					},
+					lang: { noData: 'Please select some data to display' },
+					noData: {
+						style: {
+							fontWeight: 'bold',
+							fontSize: '20px',
+							color: '#FF3030'
+						}
+					},
 					tooltip: {
 						shared: true,
 						split: false,
