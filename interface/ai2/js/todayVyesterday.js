@@ -8,6 +8,19 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 $().ready(function () {
+	// Hide unwanted panels based on 'Available Data' settings
+	//	Added by NEIL
+	$.ajax({
+		url: '/api/settings/displayoptions.json',
+		dataType: 'json',
+		success: function (results) {
+			var dataVisible = results.DataVisibility;
+            if( dataVisible.solar.Solar == 0 && dataVisible.solar.UV == 0 ){
+                //  Hide the panel
+                $('[data-cmxData-Rad]').addClass('w3-hide');
+			}
+        }
+    })
 
 	var tempTable = $('#TempTable').DataTable({
 		"paging": false,
