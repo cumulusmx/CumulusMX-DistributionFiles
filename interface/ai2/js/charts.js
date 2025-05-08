@@ -2791,7 +2791,6 @@ var doCO2 = function () {
 						}
 					});
 				}
-
 				chart.addSeries({
 					name: config.series.co2[id].name,
 					color: config.series.co2[id].colour,
@@ -2799,9 +2798,9 @@ var doCO2 = function () {
 					yAxis: yaxis,
 					tooltip: tooltip
 				});
-
 			 });
-
+		},
+		complete: function () {
 			chart.hideLoading();
 			chart.redraw();
 		}

@@ -469,11 +469,11 @@ var doWind = function () {
 				plotLines: [{
 					value: beaufortScale[1],
 					color: 'rgb(255,220,0)', width: 1, zIndex:1,
-					label: { text: beaufortDesc[1], y:12}
+					label: { text: beaufortDesc[1], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[2],
 					color: 'rgb(255,200,0)', width:1, zIndex:1,
-					label: {text: beaufortDesc[2], y:12}
+					label: {text: beaufortDesc[2], y:12, style:{color:'var(--color5)'}}
 				},{
 					value: beaufortScale[3],
 					color: 'rgb(255,180,0)', width:1, zIndex:1,
@@ -1498,7 +1498,7 @@ var doSnow = function () {
                 // left
                 title: {text: 'Snow depth (' + config.snow.units + ')'},
                 opposite: false,
-                min: 0,
+                min: 0, softMax:5,
                 labels: {
                     align: 'right',
                     x: -5
