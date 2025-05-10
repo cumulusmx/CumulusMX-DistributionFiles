@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/04/15 12:06:07",
+	"version": "Last Modified: 2025/05/09 21:28:41",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -14,10 +14,10 @@
 						"No Sensor",
 						"Davis AirLink Outdoor",
 						"Davis AirLink Indoor",
-						"Ecowitt Sensor 1",
-						"Ecowitt Sensor 2",
-						"Ecowitt Sensor 3",
-						"Ecowitt Sensor 4",
+						"AQ Sensor 1",
+						"AQ Sensor 2",
+						"AQ Sensor 3",
+						"AQ Sensor 4",
 						"Ecowitt CO₂ Sensor"
 					],
 					"sort": false,
@@ -118,6 +118,82 @@
 							"label": "Station ID:",
 							"helper": "Enter the wetherlink.com Station ID - you can leave this blank if you already entered it for your WLL device and this AirLink has been added as a node to the same station, it will be copied automatically"
 						}
+					}
+				}
+			}
+		},
+		"purpleAir": {
+			"collapsible":true,
+			"collapsed": true,
+			"helpers": [
+				"It is the users reposibilty to ensure that the PurpleAir sensors do not conflict with any other sensors on the main or any extra station. Likewise if allocating a PA temp/humidity sensor to an extra sensor channel.",
+				"Leave the IP address blank to disable the sensor"
+			],
+			"helperPosition": "above",
+			"fields": {
+				"enabled": {
+					"rightLabel": "Enable Purple Air Sensors"
+				},
+				"sensors": {
+					"type": "table",
+					"label": "Sensors",
+					"collapsible": false,
+					"collapsed": false,
+					"showActionsColumn": false,
+					"toolbarSticky": false,
+					"items": {
+						"fields": {
+							"id": {
+								"type": "text",
+								"label": "Sensor",
+								"readonly": true
+							},
+							"ipAddress": {
+								"label": "IP Address",
+								"type": "ipv4",
+								"size": 50
+							},
+							"algorithm": {
+								"label": "Sensor Type",
+								"type": "select",
+								"optionLabels": [
+									"Indoor (CF=1)",
+									"Outdoor (ATM)"
+								],
+								"sort": false,
+								"removeDefaultNone": true,
+								"helper": "Select the algorithm to use for this sensor."
+							},
+							"thsensor": {
+								"label": "Extra T/H",
+								"type": "select",
+								"optionLabels": [
+									"None",
+									"Sensor 1",
+									"Sensor 2",
+									"Sensor 3",
+									"Sensor 4",
+									"Sensor 5",
+									"Sensor 6",
+									"Sensor 7",
+									"Sensor 8",
+									"Sensor 9",
+									"Sensor 10",
+									"Sensor 11",
+									"Sensor 12",
+									"Sensor 13",
+									"Sensor 14",
+									"Sensor 15",
+									"Sensor 16"
+								],
+								"sort": false,
+								"removeDefaultNone": true,
+								"helper": "Select the Extra Temperature/Humidity sensor channel to populate with data from this sensor."
+							}
+						}
+					},
+					"dependencies": {
+						"enabled": true
 					}
 				}
 			}
