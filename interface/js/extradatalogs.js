@@ -1,4 +1,4 @@
-// Last modified: 2025/05/16 11:18:59
+// Last modified: 2025/05/17 14:36:05
 
 var myTable;
 var currMonth;
@@ -207,14 +207,14 @@ $(document).ready(function () {
             {title:"Soil Moist 14", type: 'number', min: 0, max: 100},
             {title:"Soil Moist 15", type: 'number', min: 0, max: 100},
             {title:"Soil Moist 16", type: 'number', min: 0, max: 100},
-            {title:"Air Quality 1", type: 'number', min: 0, step: 0.1},
-            {title:"Air Quality 2", type: 'number', min: 0, step: 0.1},
-            {title:"Air Quality 3", type: 'number', min: 0, step: 0.1},
-            {title:"Air Quality 4", type: 'number', min: 0, step: 0.1},
-            {title:"Air Qual Avg 1", type: 'number', min: 0, step: 0.1},
-            {title:"Air Qual Avg 2", type: 'number', min: 0, step: 0.1},
-            {title:"Air Qual Avg 3", type: 'number', min: 0, step: 0.1},
-            {title:"Air Qual Avg 4", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 1", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 2", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 3", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 4", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 Avg 1", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 Avg 2", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 Avg 3", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm2.5 Avg 4", type: 'number', min: 0, step: 0.1},
             {title:"User Temp 1", type: 'number', step: tempStep},
             {title:"User Temp 2", type: 'number', step: tempStep},
             {title:"User Temp 3", type: 'number', step: tempStep},
@@ -257,7 +257,15 @@ $(document).ready(function () {
             {title:"Dew point 13", type: 'number', step: tempStep},
             {title:"Dew point 14", type: 'number', step: tempStep},
             {title:"Dew point 15", type: 'number', step: tempStep},
-            {title:"Dew point 16", type: 'number', step: tempStep}
+            {title:"Dew point 16", type: 'number', step: tempStep},
+            {title:"AQ pm10 1", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 2", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 3", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 4", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 Avg 1", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 Avg 2", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 Avg 3", type: 'number', min: 0, step: 0.1},
+            {title:"AQ pm10 Avg 4", type: 'number', min: 0, step: 0.1},
         ];
 
         myTable = $('#datalog').dataTable({
