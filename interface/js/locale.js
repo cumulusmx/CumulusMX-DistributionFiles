@@ -1,4 +1,4 @@
-// Last modified: 2025/03/29 15:39:22
+// Last modified: 2025/05/16 16:01:08
 
 let accessMode;
 
@@ -67,7 +67,9 @@ $(document).ready(function () {
             setSensorLabels(form, 'soilMoist');
             setSensorLabels(form, 'leafWet');
             setSensorLabels(form, 'airQuality/sensor');
-            setAvgSensorLabels(form, 'airQuality/sensorAvg');
+            setSensorLabels(form, 'airQuality/sensorAvg');
+            setSensorLabels(form, 'airQuality/sensor10');
+            setSensorLabels(form, 'airQuality/sensor10Avg');
             setSensorLabels(form, 'laser');
         }
     });
@@ -171,16 +173,6 @@ function setSensorLabels(form, path) {
         .children
         .forEach(sensor => {
             sensor.options.label = 'Sensor ' + i++;
-            sensor.refresh()
-        });
-}
-
-function setAvgSensorLabels(form, path) {
-    let i = 1;
-    form.getControlByPath(path)
-        .children
-        .forEach(sensor => {
-            sensor.options.label = 'Sensor Avg ' + i++;
             sensor.refresh()
         });
 }

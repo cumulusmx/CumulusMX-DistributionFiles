@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/04/22 13:49:43",
+	"version": "Last modified: 2025/05/16 15:35:27",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -249,6 +249,18 @@
 					"toolbarSticky": false
 				},
 				"sensorAvg": {
+					"collapsible": true,
+					"collapsed": true,
+					"type": "array",
+					"toolbarSticky": false
+				},
+				"sensor10": {
+					"collapsible": true,
+					"collapsed": true,
+					"type": "array",
+					"toolbarSticky": false
+				},
+				"sensor10Avg": {
 					"collapsible": true,
 					"collapsed": true,
 					"type": "array",

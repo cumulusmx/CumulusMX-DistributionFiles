@@ -1,4 +1,4 @@
-// Last modified: 2025/02/14 11:48:33
+// Last modified: 2025/05/16 11:18:59
 
 var myTable;
 var currMonth;
@@ -240,6 +240,24 @@ $(document).ready(function () {
             {title:"Laser Depth 3", type: 'number', step: laserStep},
             {title:"Laser Depth 4", type: 'number', step: laserStep},
             {title:"Snow 24h", type: 'number', min: 0, step: snowStep},
+            {title:"Temp 11", type: 'number', step: tempStep},
+            {title:"Temp 12", type: 'number', step: tempStep},
+            {title:"Temp 13", type: 'number', step: tempStep},
+            {title:"Temp 14", type: 'number', step: tempStep},
+            {title:"Temp 15", type: 'number', step: tempStep},
+            {title:"Temp 16", type: 'number', step: tempStep},
+            {title:"Hum 11", type: 'number', min: 0, max: 100},
+            {title:"Hum 12", type: 'number', min: 0, max: 100},
+            {title:"Hum 13", type: 'number', min: 0, max: 100},
+            {title:"Hum 14", type: 'number', min: 0, max: 100},
+            {title:"Hum 15", type: 'number', min: 0, max: 100},
+            {title:"Hum 16", type: 'number', min: 0, max: 100},
+            {title:"Dew point 11", type: 'number', step: tempStep},
+            {title:"Dew point 12", type: 'number', step: tempStep},
+            {title:"Dew point 13", type: 'number', step: tempStep},
+            {title:"Dew point 14", type: 'number', step: tempStep},
+            {title:"Dew point 15", type: 'number', step: tempStep},
+            {title:"Dew point 16", type: 'number', step: tempStep}
         ];
 
         myTable = $('#datalog').dataTable({

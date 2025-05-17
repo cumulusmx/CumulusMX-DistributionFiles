@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/04/22 13:29:25",
+	"version": "Last modified: 2025/05/16 15:59:17",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -216,14 +216,28 @@
 			"type": "object",
 			"properties": {
 				"sensor": {
-					"title": "Sensors",
+					"title": "Sensors PM2.5",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
 				"sensorAvg": {
-					"title": "Sensor Averages",
+					"title": "Sensor PM2.5 Averages",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"sensor10": {
+					"title": "Sensors PM10",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"sensor10Avg": {
+					"title": "Sensor PM10 Averages",
 					"type": "array",
 					"items": {
 						"type": "string"

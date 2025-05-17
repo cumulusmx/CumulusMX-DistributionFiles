@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/14 15:26:15",
+	"version": "Last Modified: 2025/05/16 15:37:25",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -568,6 +568,14 @@
 										"enum": [0,1,2]
 									},
 									"pmavg": {
+										"type": "number",
+										"enum": [0,1,2]
+									},
+									"pm10": {
+										"type": "number",
+										"enum": [0,1,2]
+									},
+									"pm10avg": {
 										"type": "number",
 										"enum": [0,1,2]
 									},

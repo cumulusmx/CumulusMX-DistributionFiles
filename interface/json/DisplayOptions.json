@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/14 15:15:14",
+	"version": "Last Modified: 2025/05/16 16:02:00",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -660,11 +660,19 @@
 							"items": {
 								"fields": {
 									"pm": {
-										"label": "PM",
+										"label": "PM2.5",
 										"$ref": "#/definitions/visibility"
 									},
 									"pmavg": {
-										"label": "PM Avg",
+										"label": "PM2.5 Avg",
+										"$ref": "#/definitions/visibility"
+									},
+									"pm10": {
+										"label": "PM10",
+										"$ref": "#/definitions/visibility"
+									},
+									"pm10avg": {
+										"label": "PM10 Avg",
 										"$ref": "#/definitions/visibility"
 									},
 									"temp": {
