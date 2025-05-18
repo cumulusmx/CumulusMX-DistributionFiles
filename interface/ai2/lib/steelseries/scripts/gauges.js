@@ -2482,8 +2482,8 @@ gauges = (function () {
 						// update tooltip
 						tip = '<div class="ax-titleBar" style="max-width:10em;"><h5>' + strings.uv_title + ':</h5><span>' + cache.value + '</span></div>' + 
 							  '<div class="ax-titleBar ax-tableRow"><span><i>' + strings.solar_maxToday + ':</span><span>' + data.UVTH + '</i></span></div>';
-						tip += '<i>' + cache.headLine + '</i><br>';
-						tip += '<div style="max-width: 20em">' + cache.detail.replace('<br>', ' ') + '</div>' ;
+						tip += '<div><i><b>' + cache.headLine.replaceAll('<br>',' ') + '</b></i><br>';
+						tip += cache.detail.replaceAll('<br>', ' ') + '</div>' ;
 						$('#imgtip8_txt').html(tip);
 					}
 				} // End of update()
