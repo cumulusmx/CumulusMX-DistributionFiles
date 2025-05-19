@@ -1029,6 +1029,7 @@ var doSolar = function () {
 							id: idx,
 							title: {text: 'UV Index'},
 							opposite: true,
+							allowDecimals: false,
 							min: 0,
 							labels: {
 								align: 'left'

@@ -641,6 +641,7 @@ var addUVAxis = function (idx) {
 		title:{text: 'UV Index'},
 		opposite: idx < settings.series.length / 2 ? false : true,
 		id: 'UV',
+		allowDecimals: false,
 		showEmpty: false,
 		labels: {
 			align: idx < settings.series.length / 2 ? 'right' : 'left'

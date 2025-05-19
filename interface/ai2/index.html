@@ -52,7 +52,7 @@
 		</script>
 		<style>
 			.ax-grid { display:grid;grid-template-rows:auto;gap: 1vh 1vw;}
-			.ax-reading {color:var(--color1);}/*	You can use this to change the style for the main readings on this page */
+			.ax-reading {color:var(--color1); font-style:italic;}/*	You can use this to change the style for the main readings on this page */
 		</style>
 	</head>
 	<body class="ax-theme9">
@@ -232,8 +232,8 @@
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
 						<div class="ax-titleBar"><h4>Wind Overview</h4></div>
 						<div class="w3-center">
-							<h4>Average: <span id="WindAverage">-.-</span><span class="WindUnit sup">---</span></h4>
-							<p>Gust: <span id="Recentmaxgust" class="ax-reading">--.-</span> <span class="WindUnit">---</span></p>
+							<h4>Average: <span id="WindAverage" class="ax-reading">-.-</span><span class="WindUnit sup">---</span></h4>
+							<h4>Gust: <span id="Recentmaxgust" class="ax-reading">--.-</span> <span class="WindUnit">---</span></h4>
 							<p><span>High gust</span>: <span id="HighGustToday" class="high">--.-</span><span class="WindUnit ">---</span><span class="ax-at" id="HighGustTodayTime">--:--</span></p>
 							<p>Windrun: <span id="WindRunToday"></span> <span data-CMXData="WindRunUnit"></span></p>
 							<p>Beaufort: <span id="Beaufort">??</span> (<span id="BeaufortDesc"></span>)</p>
@@ -243,7 +243,7 @@
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
 						<div class="ax-titleBar"><h4>Humidity</h4></div>
 						<div class="w3-center">
-							<h4><span id="OutdoorHum" class="ax-reading">--.-</span>%</h4>
+							<h3><span id="OutdoorHum" class="ax-reading">--.-</span>%</h3>
 							<p><span>High&nbsp;</span><span id="HighHumToday" class="high">--</span>%<span class="ax-at" id="HighHumTodayTime">--:--</span></p>
 							<p><span>Low&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span>%<span class="ax-at" id="LowHumTodayTime">--:--</span></p>
 						</div>
@@ -252,7 +252,7 @@
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
 						<div class="ax-titleBar"><h4>Dew Point</h4></div>
 						<div class="w3-center">
-							<h4><span id="OutdoorDewpoint" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;F</span></h4>
+							<h3><span id="OutdoorDewpoint" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;F</span></h3>
 							<p><span>High&nbsp;</span><span id="HighDewpointToday" class="high">--.-</span><span class="TempUnit"></span><span class="ax-at" id="HighDewpointTodayTime">--:--</span></p>
 							<p><span>Low&nbsp;&nbsp;</span><span id="LowDewpointToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowDewpointTodayTime">--:--</span></p>
 						</div>
@@ -261,7 +261,7 @@
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
 						<div class="ax-titleBar"><h4>Wind Chill</h4></div>
 						<div class="w3-center">
-							<h4><span id="WindChill" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;C</span></h4>
+							<h3><span id="WindChill" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;C</span></h3>
 							<p><span>Low&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowWindChillTodayTime">--:--</span></p>
 						</div>
 					</div>
@@ -269,9 +269,9 @@
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;" data-cmxData-Rad="">
 						<div class="ax-titleBar"><h4>Solar Radiation</h4></div>
 						<div class="w3-center">
-							<h4 data-cmxData-Solar="">Rad.&nbsp;<span id="SolarRad" class="ax-reading">---.-</span>&nbsp;W/m<sup>2</sup></h4>
+							<h3 data-cmxData-Solar="">Rad.&nbsp;<span id="SolarRad" class="ax-reading">---.-</span>&nbsp;W/m<sup>2</sup></h3>
 							<p data-cmxData-Solar=""><span>High&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ax-at" id="HighSolarRadTodayTime">--:--</span></p>
-							<h4 data-cmxData-UV="">UV Index&nbsp;<span id="UVindex" class="ax-reading">--</span></h4>
+							<h3 data-cmxData-UV="">UV Index&nbsp;<span id="UVindex" class="ax-reading">--</span></h3>
 							<p data-cmxData-UV=""><span>High&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ax-at" id="HighUVindexTodayTime">--:--</span></p>
 						</div>
 					</div>

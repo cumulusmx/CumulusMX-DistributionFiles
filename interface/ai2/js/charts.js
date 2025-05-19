@@ -1164,6 +1164,7 @@ var doSolar = function () {
 							title:{text: titles['UV']},
 							accessibility: { enabled: true, description: 'UV Index'},
 							opposite: true,
+							allowDecimals: false,
 							min: 0,
 							labels: {
 								align: 'left'
