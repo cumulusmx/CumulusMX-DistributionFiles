@@ -234,6 +234,9 @@
 "MonthLongestDryPeriodD":"<#MonthLongestDryPeriodD>",
 "MonthLongestWetPeriod":"<#MonthLongestWetPeriod>",
 "MonthLongestWetPeriodD":"<#MonthLongestWetPeriodD>",
+"MonthDryDays":"<#MonthDryDays>",
+"MonthWetDays":"<#MonthWetDays>",
+
 "MonthGustH":"<#MonthGustH>",
 "MonthGustHT":"<#MonthGustHT>",
 "MonthGustHD":"<#MonthGustHD>",
@@ -305,7 +308,11 @@
     "highpress":["<#ByMonthPressH mon=1>","<#ByMonthPressH mon=2>","<#ByMonthPressH mon=3>","<#ByMonthPressH mon=4>","<#ByMonthPressH mon=5>","<#ByMonthPressH mon=6>","<#ByMonthPressH mon=7>","<#ByMonthPressH mon=8>","<#ByMonthPressH mon=9>","<#ByMonthPressH mon=10>","<#ByMonthPressH mon=11>","<#ByMonthPressH mon=12>"],
     "highpressT":["<#ByMonthPressHT mon=1>","<#ByMonthPressHT mon=2>","<#ByMonthPressHT mon=3>","<#ByMonthPressHT mon=4>","<#ByMonthPressHT mon=5>","<#ByMonthPressHT mon=6>","<#ByMonthPressHT mon=7>","<#ByMonthPressHT mon=8>","<#ByMonthPressHT mon=9>","<#ByMonthPressHT mon=10>","<#ByMonthPressHT mon=11>","<#ByMonthPressHT mon=12>"],
     "lowpress":["<#ByMonthPressL mon=1>","<#ByMonthPressL mon=2>","<#ByMonthPressL mon=3>","<#ByMonthPressL mon=4>","<#ByMonthPressL mon=5>","<#ByMonthPressL mon=6>","<#ByMonthPressL mon=7>","<#ByMonthPressL mon=8>","<#ByMonthPressL mon=9>","<#ByMonthPressL mon=10>","<#ByMonthPressL mon=11>","<#ByMonthPressL mon=12>"],
-    "lowpressT":["<#ByMonthPressLT mon=1>","<#ByMonthPressLT mon=2>","<#ByMonthPressLT mon=3>","<#ByMonthPressLT mon=4>","<#ByMonthPressLT mon=5>","<#ByMonthPressLT mon=6>","<#ByMonthPressLT mon=7>","<#ByMonthPressLT mon=8>","<#ByMonthPressLT mon=9>","<#ByMonthPressLT mon=10>","<#ByMonthPressLT mon=11>","<#ByMonthPressLT mon=12>"]
+    "lowpressT":["<#ByMonthPressLT mon=1>","<#ByMonthPressLT mon=2>","<#ByMonthPressLT mon=3>","<#ByMonthPressLT mon=4>","<#ByMonthPressLT mon=5>","<#ByMonthPressLT mon=6>","<#ByMonthPressLT mon=7>","<#ByMonthPressLT mon=8>","<#ByMonthPressLT mon=9>","<#ByMonthPressLT mon=10>","<#ByMonthPressLT mon=11>","<#ByMonthPressLT mon=12>"],
+    "dryDays":["<#ByMonthMostDryDays mon=1>","<#ByMonthMostDryDays mon=2>","<#ByMonthMostDryDays mon=3>","<#ByMonthMostDryDays mon=4>","<#ByMonthMostDryDays mon=5>","<#ByMonthMostDryDays mon=6>","<#ByMonthMostDryDays mon=7>","<#ByMonthMostDryDays mon=8>","<#ByMonthMostDryDays mon=9>","<#ByMonthMostDryDays mon=10>","<#ByMonthMostDryDays mon=11>","<#ByMonthMostDryDays mon=12>"],
+    "dryDaysT":["<#ByMonthMostDryDaysT mon=1>","<#ByMonthMostDryDaysT mon=2>","<#ByMonthMostDryDaysT mon=3>","<#ByMonthMostDryDaysT mon=4>","<#ByMonthMostDryDaysT mon=5>","<#ByMonthMostDryDaysT mon=6>","<#ByMonthMostDryDaysT mon=7>","<#ByMonthMostDryDaysT mon=8>","<#ByMonthMostDryDaysT mon=9>","<#ByMonthMostDryDaysT mon=10>","<#ByMonthMostDryDaysT mon=11>","<#ByMonthMostDryDaysT mon=12>"],
+    "wetDays":["<#ByMonthMostWetDays mon=1>","<#ByMonthMostWetDays mon=2>","<#ByMonthMostWetDays mon=3>","<#ByMonthMostWetDays mon=4>","<#ByMonthMostWetDays mon=5>","<#ByMonthMostWetDays mon=6>","<#ByMonthMostWetDays mon=7>","<#ByMonthMostWetDays mon=8>","<#ByMonthMostWetDays mon=9>","<#ByMonthMostWetDays mon=10>","<#ByMonthMostWetDays mon=11>","<#ByMonthMostWetDays mon=12>"],
+    "wetDaysT":["<#ByMonthMostWetDaysT mon=1>","<#ByMonthMostWetDaysT mon=2>","<#ByMonthMostWetDaysT mon=3>","<#ByMonthMostWetDaysT mon=4>","<#ByMonthMostWetDaysT mon=5>","<#ByMonthMostWetDaysT mon=6>","<#ByMonthMostWetDaysT mon=7>","<#ByMonthMostWetDaysT mon=8>","<#ByMonthMostWetDaysT mon=9>","<#ByMonthMostWetDaysT mon=10>","<#ByMonthMostWetDaysT mon=11>","<#ByMonthMostWetDaysT mon=12>"]
 },
 
 "YearTempH":"<#YearTempH>",

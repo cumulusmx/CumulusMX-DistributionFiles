@@ -1,4 +1,4 @@
-// Last modified: 2022/07/27 15:35:57
+// Last modified: 2025/05/20 16:10:57
 
 $(document).ready(function() {
 	dataLoadedPromise.then(function() {
@@ -59,6 +59,10 @@ function changeData(month) {
 	document.getElementById('LongestDryPeriodT').innerHTML = cmx_data.monthlyrecs.dryperiodT[month];
 	document.getElementById('LongestWetPeriod').innerHTML = cmx_data.monthlyrecs.wetperiod[month];
 	document.getElementById('LongestWetPeriodT').innerHTML = cmx_data.monthlyrecs.wetperiodT[month];
+	document.getElementById('MostDryDays').innerHTML = cmx_data.monthlyrecs.dryDays[month];
+	document.getElementById('MostDryDaysT').innerHTML = cmx_data.monthlyrecs.dryDaysT[month];
+	document.getElementById('MostRainDays').innerHTML = cmx_data.monthlyrecs.wetDays[month];
+	document.getElementById('MostRainDaysT').innerHTML = cmx_data.monthlyrecs.wetDaysT[month];
 	document.getElementById('GustH').innerHTML = cmx_data.monthlyrecs.highgust[month];
 	document.getElementById('GustHT').innerHTML = cmx_data.monthlyrecs.highgustT[month];
 	document.getElementById('WindH').innerHTML = cmx_data.monthlyrecs.highwind[month];
