@@ -51,6 +51,8 @@
 			
 		</script>
 		<style>
+			#DavisPanel, #AlarmsPanel { margin-top:1vh;}
+			#DavisPanel span { float:right}
 			.ax-grid { display:grid;grid-template-rows:auto;gap: 1vh 1vw;}
 			.ax-reading {color:var(--color1); font-style:italic;}/*	You can use this to change the style for the main readings on this page */
 		</style>
@@ -97,7 +99,7 @@
 						<div class="ax-titleBar">
 							<h4>Davis Status</h4>
 						</div>
-						<div class="ax-column4 ax-fixedwidth" style="gap: .3vh; margin-bottom:1vh;">
+						<div class="ax-column5 ax-fixedwidth" style="gap: .3vh 2vw; margin-bottom:1vh;">
 							<div class="davisVP2">Packets Received: <span id="DavisPacketsReceived">nkn</span></div>
 							<div class="davisVP2">Packets Missed: <span id="DavisPacketsMissed">nkn</span></div>
 							<div class="davisVP2">Packet streak: <span id="DavisMaxInARow">nkn</span></div>
@@ -106,7 +108,7 @@
 							<div>Console Battery: <span id="ConsoleBattery">nkn</span></div>
 						</div>
 						<div class="ax-menu-line" style="margin-bottom:0.5em;"></div>
-						<div class="ax-column5 ax-fixedwidth" style="gap:0 2vw; margin-bottom:1vh;">
+						<div class="ax-column4 ax-fixedwidth" style="gap:0.3vh 2vw; margin-bottom:1vh;">
 							<div id="DavisXmt0">Xmt Batt 1: <span id="DavisTXBattery0">nkn</span></div>
 							<div id="DavisXmt1">Xmt Batt 2: <span id="DavisTXBattery1">nkn</span></div>
 							<div id="DavisXmt2">Xmt Batt 3: <span id="DavisTXBattery2">nkn</span></div>
@@ -115,22 +117,22 @@
 							<div id="DavisXmt5">Xmt Batt 6: <span id="DavisTXBattery5">nkn</span></div>
 							<div id="DavisXmt6">Xmt Batt 7: <span id="DavisTXBattery6">nkn</span></div>
 							<div id="DavisXmt7">Xmt Batt 8: <span id="DavisTXBattery7">nkn</span></div>
-							<div id="DavisPct0" class="davisWLL">Percent Recv 1: <span id="DavisPercentReceived0">nkn</span>%</div>
-							<div id="DavisPct1" class="davisWLL">Percent Recv 2: <span id="DavisPercentReceived1">nkn</span>%</div>
-							<div id="DavisPct2" class="davisWLL">Percent Recv 3: <span id="DavisPercentReceived2">nkn</span>%</div>
-							<div id="DavisPct3" class="davisWLL">Percent Recv 4: <span id="DavisPercentReceived3">nkn</span>%</div>
-							<div id="DavisPct4" class="davisWLL">Percent Recv 5: <span id="DavisPercentReceived4">nkn</span>%</div>
-							<div id="DavisPct5" class="davisWLL">Percent Recv 6: <span id="DavisPercentReceived5">nkn</span>%</div>
-							<div id="DavisPct6" class="davisWLL">Percent Recv 7: <span id="DavisPercentReceived6">nkn</span>%</div>
-							<div id="DavisPct7" class="davisWLL">Percent Recv 8: <span id="DavisPercentReceived7">nkn</span>%</div>
-							<div id="DavisRssi0" class="davisWLL">RSSI 1: <span id="DavisTxRssi0">nkn</span> dB</div>
-							<div id="DavisRssi1" class="davisWLL">RSSI 2: <span id="DavisTxRssi1">nkn</span> dB</div>
-							<div id="DavisRssi2" class="davisWLL">RSSI 3: <span id="DavisTxRssi2">nkn</span> dB</div>
-							<div id="DavisRssi3" class="davisWLL">RSSI 4: <span id="DavisTxRssi3">nkn</span> dB</div>
-							<div id="DavisRssi4" class="davisWLL">RSSI 5: <span id="DavisTxRssi4">nkn</span> dB</div>
-							<div id="DavisRssi5" class="davisWLL">RSSI 6: <span id="DavisTxRssi5">nkn</span> dB</div>
-							<div id="DavisRssi6" class="davisWLL">RSSI 7: <span id="DavisTxRssi6">nkn</span> dB</div>
-							<div id="DavisRssi7" class="davisWLL">RSSI 8: <span id="DavisTxRssi7">nkn</span> dB</div>
+							<div id="DavisPct0" class="davisWLL">Percent Recv 1: <span id="DavisPercentReceived0">nkn</span></div>
+							<div id="DavisPct1" class="davisWLL">Percent Recv 2: <span id="DavisPercentReceived1">nkn</span></div>
+							<div id="DavisPct2" class="davisWLL">Percent Recv 3: <span id="DavisPercentReceived2">nkn</span></div>
+							<div id="DavisPct3" class="davisWLL">Percent Recv 4: <span id="DavisPercentReceived3">nkn</span></div>
+							<div id="DavisPct4" class="davisWLL">Percent Recv 5: <span id="DavisPercentReceived4">nkn</span></div>
+							<div id="DavisPct5" class="davisWLL">Percent Recv 6: <span id="DavisPercentReceived5">nkn</span></div>
+							<div id="DavisPct6" class="davisWLL">Percent Recv 7: <span id="DavisPercentReceived6">nkn</span></div>
+							<div id="DavisPct7" class="davisWLL">Percent Recv 8: <span id="DavisPercentReceived7">nkn</span></div>
+							<div id="DavisRssi0" class="davisWLL">RSSI 1: <span id="DavisTxRssi0">nkn</span></div>
+							<div id="DavisRssi1" class="davisWLL">RSSI 2: <span id="DavisTxRssi1">nkn</span></div>
+							<div id="DavisRssi2" class="davisWLL">RSSI 3: <span id="DavisTxRssi2">nkn</span></div>
+							<div id="DavisRssi3" class="davisWLL">RSSI 4: <span id="DavisTxRssi3">nkn</span></div>
+							<div id="DavisRssi4" class="davisWLL">RSSI 5: <span id="DavisTxRssi4">nkn</span></div>
+							<div id="DavisRssi5" class="davisWLL">RSSI 6: <span id="DavisTxRssi5">nkn</span></div>
+							<div id="DavisRssi6" class="davisWLL">RSSI 7: <span id="DavisTxRssi6">nkn</span></div>
+							<div id="DavisRssi7" class="davisWLL">RSSI 8: <span id="DavisTxRssi7">nkn</span></div>
 						</div>
 					</div>
 					<!--	Alarm Panel	-->

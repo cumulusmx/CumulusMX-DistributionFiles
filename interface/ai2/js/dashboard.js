@@ -524,8 +524,8 @@ let DavisStats = function() {
                 $('#DavisPct' + i).removeClass('w3-hide');
                 $('#DavisRssi' + i).removeClass('w3-hide');
                 $('#DavisTXBattery' + i).html(batteries[i].slice(2,4).toUpperCase());
-                $('#DavisPercentReceived' + i).html(data['DavisPercentReceived' + i]);
-                $('#DavisTxRssi' + i).html(data['DavisTxRssi' + i]);
+                $('#DavisPercentReceived' + i).html(data['DavisPercentReceived' + i]+ '%');
+                $('#DavisTxRssi' + i).html(data['DavisTxRssi' + i] + 'dB');
             }
         }
     })
