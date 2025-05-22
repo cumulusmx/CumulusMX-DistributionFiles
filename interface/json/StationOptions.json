@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/02 22:45:19",
+	"version": "Last Modified: 2025/05/22 15:12:17",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1227,6 +1227,19 @@
 					],
 					"dependencies": {
 						"stationid": [14,18,22]
+					}
+				},
+				"interval": {
+					"label": "Update interval (minutes):",
+					"type": "select",
+					"sort": false,
+					"optionLabels": ["1 minute","2 minutes","3 minutes","4 minutes","5 minutes","10 minutes"],
+					"removeDefaultNone": true,
+					"helpers": [
+						"How often your station uploads to the Ecowitt.net web site"
+					],
+					"dependencies": {
+						"stationid": [18]
 					}
 				},
 				"stationid": {

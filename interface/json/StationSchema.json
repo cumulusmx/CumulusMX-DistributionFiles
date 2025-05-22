@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/02 22:24:30",
+	"version": "Last Modified: 2025/05/22 15:03:41",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -825,6 +825,12 @@
 				},
 				"stationid": {
 					"type": "integer"
+				},
+				"interval" : {
+					"enum": [1,2,3,4,5,10],
+					"dependencies": [
+						"stationid"
+					]
 				}
 			},
 			"dependencies": [
