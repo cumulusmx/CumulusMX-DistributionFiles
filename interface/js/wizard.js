@@ -1,4 +1,4 @@
-// Last modified: 2025/04/17 19:04:54
+// Last modified: 2025/05/23 17:34:14
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -378,9 +378,10 @@ $(document).ready(function () {
                 let form = $('form').alpaca('get');
                 let stationTypeObj = form.getControlByPath('station/stationtype')
                 stationTypeObj.refresh();
+                var station = stationTypeObj.selectOptions[0].value;
                 if (stationTypeObj.selectOptions.length == 1) {
-                    stationTypeObj.setValue(stationTypeObj.selectOptions[0].value);
-                    stationIdObj.setValue(stationTypeObj.selectOptions[0].value);
+                    stationTypeObj.setValue(station);
+                    stationIdObj.setValue(station);
                 } else {
                     stationTypeObj.setValue(-1);
                     stationIdObj.setValue(-1);
@@ -402,10 +403,12 @@ $(document).ready(function () {
                 stationIdObj.setValue(+stationid);
                 form.getControlByPath('station/stationmodel').setValue(this.selectOptions.reduce((a, o) => (o.value == stationid && a.push(manu + ' ' + o.text), a), []));
                 form.getControlByPath('station/daviscloud/stationtype').setValue(+stationid);
+                form.getControlByPath('station/ecowittapi/stationid').setValue(+stationid);
             });
 
             // Set the initial stationid for Davis Cloud
             form.getControlByPath('station/daviscloud/stationtype').setValue(+currId);
+            form.getControlByPath('station/ecowittapi/stationid').setValue(+currId);
 
             // On changing the web uploads enabled, disable/enable the other FTP options
             webEnabled.on('change', function () {

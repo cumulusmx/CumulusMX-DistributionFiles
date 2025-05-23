@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/01/19 18:10:10",
+	"version": "Last Modified: 2025/05/23 17:27:44",
 	"fields":{
 		"location": {
 			"fields": {
@@ -531,6 +531,23 @@
 							"dependencies": {
 								"stationid": [14,18,22]
 							}
+						},
+						"interval": {
+							"label": "Update interval (minutes):",
+							"type": "select",
+							"sort": false,
+							"optionLabels": ["1 minute","2 minutes","3 minutes","4 minutes","5 minutes","10 minutes"],
+							"removeDefaultNone": true,
+							"helpers": [
+								"How often your station uploads to the Ecowitt.net web site"
+							],
+							"dependencies": {
+								"stationid": [18]
+							}
+						},
+						"stationid": {
+							"type": "integer",
+							"fieldClass": "hideme"
 						}
 					},
 					"dependencies": {
