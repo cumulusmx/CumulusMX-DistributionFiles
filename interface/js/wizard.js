@@ -1,4 +1,4 @@
-// Last modified: 2025/05/23 17:34:14
+// Last modified: 2025/05/24 12:15:35
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -209,7 +209,7 @@ $(document).ready(function () {
                                         if (value != '') {
                                             // check for IMEI format - 15 or 16 digits
                                             var val = Number.parseInt(value)
-                                            if (!isNaN(val))
+                                            if (!isNaN(val) && val > 2550)
                                             {
                                                 if (value.length == 15 || value.length == 16) {
                                                     callback({

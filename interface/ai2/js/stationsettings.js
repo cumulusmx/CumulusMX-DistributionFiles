@@ -2,7 +2,7 @@
     Script: stationsettings.js      Ver: aiX-1.0
     Author: M Crossley & N Thomas
     Last Edit (MC): 2025/02/17 10:54:18
-    Last Edit (NT): 2025/03/21 
+    Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for stationsettings.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -100,7 +100,8 @@ $(document).ready(function () {
                                 if (value != "")
                                 {
                                     // check for IMEI format - 15 or 16 digits
-                                    if (Number.isInteger(value)) {
+                                    var val = Number.parseInt(value)
+                                    if (!isNaN(val) && val > 2550) {
                                         if (value.length == 15 || value.length == 16) {
                                             callback({
                                                 "status": true

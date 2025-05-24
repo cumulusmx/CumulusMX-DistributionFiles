@@ -1,4 +1,4 @@
-// Last modified: 2025/05/24 10:21:07
+// Last modified: 2025/05/24 12:15:28
 
 let StashedStationId;
 let accessMode;
@@ -94,7 +94,7 @@ $(document).ready(function () {
                                 {
                                     // check for IMEI format - 15 or 16 digits
                                     var val = Number.parseInt(value)
-                                    if (!isNaN(val)) {
+                                    if (!isNaN(val) && val > 2550) {
                                         if (value.length == 15 || value.length == 16) {
                                             callback({
                                                 status: true
