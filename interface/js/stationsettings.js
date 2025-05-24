@@ -1,4 +1,4 @@
-// Last modified: 2025/05/02 20:21:58
+// Last modified: 2025/05/24 10:21:07
 
 let StashedStationId;
 let accessMode;
@@ -10,7 +10,7 @@ $(document).ready(function () {
         optionsSource: '/json/StationOptions.json',
         schemaSource: '/json/StationSchema.json',
         ui: 'bootstrap',
-        view: 'bootstrap-edit',
+        view: 'bootstrap-edit-horizontal',
         options: {
             form: {
                 buttons: {
