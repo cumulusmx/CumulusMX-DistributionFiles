@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/22 15:12:17",
+	"version": "Last Modified: 2025/05/24 17:16:12",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -61,6 +61,23 @@
 					"label": "Station&nbsp;model",
 					"type": "text",
 					"helper": "A descriptive name for your station type, this will default to the station type above if left blank. You can change this to whatever you like"
+				},
+				"firstRun": {
+					"fieldClass": "hideme"
+				},
+				"beginDate": {
+					"label": "Backfill Date",
+					"type": "date",
+					"dateFormat": "YYYY-MM-DD",
+					"dependencies": {
+						"firstRun": "true"
+					},
+					"helpers": [
+						"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
+						"This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
+						"On the first run Cumulus you can set this to the first date that you have historic data that Cumulus will be able to import.",
+						"This can only happen if you have correctly configured your station and any details required to access the historic data"
+					]
 				},
 				"loginterval": {
 					"label": "Log&nbsp;interval",
@@ -480,6 +497,7 @@
 						},
 						"apiSecret": {
 							"label": "WeatherLink APIv2 secret:",
+							"type": "password",
 							"helper": "Enter your WeatherLink.com APIv2 secret"
 						},
 						"apiStationId": {
@@ -787,6 +805,7 @@
 				},
 				"token": {
 					"label": "Security Token",
+					"type": "password",
 					"helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"
 				},
 				"dayshistory": {
@@ -1211,10 +1230,12 @@
 			"fields": {
 				"applicationkey": {
 					"label": "Application Key:",
+					"type": "password",
 					"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"userkey": {
 					"label": "API Key:",
+					"type": "password",
 					"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
 				},
 				"mac": {

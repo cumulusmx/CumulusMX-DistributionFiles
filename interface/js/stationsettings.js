@@ -1,4 +1,4 @@
-// Last modified: 2025/05/24 12:15:28
+// Last modified: 2025/05/24 17:24:24
 
 let StashedStationId;
 let accessMode;
@@ -169,6 +169,15 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             accessObj.on('change', function() {onAccessChange(this)});
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+                .focusout(function() {
+                    $(this).attr('type', 'password');
+                })
+                .focusin(function() {
+                    $(this).attr('type', 'text');
+                });
 
             let manufacturerObj = form.getControlByPath('general/manufacturer');
 

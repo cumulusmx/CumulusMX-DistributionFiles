@@ -1,4 +1,4 @@
-// Last modified: 2025/05/24 12:15:35
+// Last modified: 2025/05/24 17:41:23
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -335,6 +335,15 @@ $(document).ready(function () {
 
             siteRtEnabled.setValue(rtmState || webState || copyState);
             siteRtEnabled.triggerUpdate();
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+                .focusout(function() {
+                    $(this).attr('type', 'password');
+                })
+                .focusin(function() {
+                    $(this).attr('type', 'text');
+                });
 
             // hide the username & password fields if sslftp is set the SFTP and sshAuth is set PSK file only
             form.getControlByPath('internet/ftp/sslftp').on('change', function () {

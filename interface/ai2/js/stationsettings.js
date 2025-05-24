@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: stationsettings.js      Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit (MC): 2025/02/17 10:54:18
+    Last Edit (MC): 2025/05/24 17:19
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for stationsettings.html
@@ -172,6 +172,15 @@ $(document).ready(function () {
             if (!accessMode) {
                 setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
             }
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+                .focusout(function() {
+                    $(this).attr('type', 'password');
+                })
+                .focusin(function() {
+                    $(this).attr('type', 'text');
+                });
 
             // Trigger changes is the accessibility mode is changed
             accessObj.on("change", function() {onAccessChange(this)});

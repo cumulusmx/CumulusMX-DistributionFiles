@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/23 17:35:51",
+	"version": "Last Modified: 2025/05/24 17:36:23",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -78,6 +78,14 @@
 				},
 				"stationmodel": {
 					"type": "string"
+				},
+				"firstRun": {
+					"type": "boolean"
+				},
+				"beginDate": {
+					"type": "string",
+					"format": "date",
+					"dependencies": "firstRun"
 				},
 
 				"davisvp2": {

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/22 15:03:41",
+	"version": "Last Modified: 2025/05/24 16:47:11",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -21,6 +21,14 @@
 				},
 				"stationmodel": {
 					"type": "string"
+				},
+				"firstRun": {
+					"type": "boolean"
+				},
+				"beginDate": {
+					"type": "string",
+					"format": "date",
+					"dependencies": "firstRun"
 				},
 				"loginterval": {
 					"enum": [0,1,2,3,4,5],
