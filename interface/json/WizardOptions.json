@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/24 19:12:42",
+	"version": "Last Modified: 2025/05/25 17:55:10",
 	"fields":{
 		"location": {
 			"fields": {
@@ -142,9 +142,11 @@
 					},
 					"helpers": [
 						"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
-						"This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
-						"On the first run Cumulus you can set this to the first date that you have historic data that Cumulus will be able to import.",
-						"This can only happen if you have correctly configured your station and any details required to access the historic data"
+						"This is the 'Date of birth' for your Cumulus install, it defaults to the first day you run the program.",
+						"You can set this to the first date for which you have historic data that Cumulus will be able to import.",
+						"This can only happen if you have correctly configured your station and any details required to access the historic data.",
+						"The backfill will happen automaticlly when you restart Cumulus after configuring the station.",
+						"NOTE: Backfilling an extended period of time (month/years) WILL TAKE A LONG TIME, so be patient!"
 					]
 				},
 
