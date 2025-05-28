@@ -1260,8 +1260,8 @@ var doRainfall = function (idx) {
                 yAxis: 'Rain',
                 type: 'area',
                 tooltip: {
+                    valueSuffix: config.rain.units,
                     valueDecimals: config.rain.decimals,
-                    valueSuffix: ' ' + config.rain.units
                 },
                 visible: true,
                 color: settings.colours[idx],

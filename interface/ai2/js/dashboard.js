@@ -1,5 +1,5 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: dashboard.js        	Ver: aiX-1.0
+    Script: dashboard.js        	Ver: ai2-1.0
     Author: M Crossley & N Thomas
     Last Edit (MC): 2025/04/24 11:27:47
     Last Edit (NT): 2025/05/05
@@ -228,22 +228,35 @@ $(document).ready(function () {
         $('.TempUnit').text(data.TempUnit);
         $('.RainUnit').text(data.RainUnit);
 
-        var tmpTrend = Number(data.TempTrend.replace(',','.'));
-        if (tmpTrend < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
+        var trends = Number(data.TempTrend.replace(',','.'));
+        if (trends < 0 && $('#TempTrendImg').attr('src') != 'img/down.png') {
             $('#TempTrendImg').attr('src', 'img/down.png');
-        } else if (tmpTrend > 0 && $('#TempTrendImg').attr('src') != 'img/up.png') {
+        } else if (trends > 0 && $('#TempTrendImg').attr('src') != 'img/up.png') {
             $('#TempTrendImg').attr('src', 'img/up.png');
-        } else if (tmpTrend == 0 && $('#TempTrendImg').attr('src') != 'img/nochange.png') {
+        } else if (trends == 0 && $('#TempTrendImg').attr('src') != 'img/nochange.png') {
             $('#TempTrendImg').attr('src', 'img/nochange.png');
         }
 
-        tmpTrend = Number(data.PressTrend.replace(',','.'));
-        if (tmpTrend < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
+        trends = Number(data.PressTrend.replace(',','.'));
+        if (trends < 0 && $('#PressTrendImg').attr('src') != 'img/down.png') {
             $('#PressTrendImg').attr('src', 'img/down.png');
-        } else if (tmpTrend > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
+        } else if (trends > 0 && $('#PressTrendImg').attr('src') != 'img/up.png') {
             $('#PressTrendImg').attr('src', 'img/up.png');
-        } else if (tmpTrend == 0 && $('#PressTrendImg').attr('src') != 'img/nochange.png') {
+        } else if (trends == 0 && $('#PressTrendImg').attr('src') != 'img/nochange.png') {
             $('#PressTrendImg').attr('src', 'img/nochange.png');
+        }
+
+        trends = Number(data.RainRate.replace(',','.'));
+        if( trends > 0 ) {
+            if( trends < CMXConfig.RainRate.low && $('#RainRateImg').attr('src') != 'img/rain1.png') {
+                $('#RainRateImg').attr('src', 'img/rain1.png');
+            } else if ( trends < CMXConfig.RainRate.medium && $('#RainRateImg').attr('src') != 'img/rain2.png') {
+                $('#RainRateImg').attr('src', 'img/rain2.png');
+            } else if ( trends >= CMXConfig.RainRate.medium && $('#RainRateImg').attr('src') != 'img/rain3.png') {
+                $('#RainRateImg').attr('src', 'img/rain3.png');
+            }
+        } else {
+            $('#RainRateImg').attr('src', 'img/rain0.png');
         }
 
         wrData = data.WindRoseData.split(',');

@@ -42,6 +42,7 @@ let getConfig = function() {
                 'Speed': 5,
                 'OnTop': true
             },
+            'RainRate': { 'low':5,'medium':10},
             'LEDAlarm': 'ax-brick',
             'LEDUserAlarm': 'ax-brick',
             'ShowAlarms': true,

@@ -25,6 +25,7 @@ $( function () {
 		setUpUnits( CMXConfig.PaddingUnits );	//	Populate Padding Units
 		setUpAnimation( CMXConfig.Seagull.Animation );	// Populate Seagull Options
 		setupAlarms( CMXConfig.LEDAlarm, CMXConfig.LEDUserAlarm );	//	Create LED option list and options
+		setupRainRate()
 	}
 	displayCurrent();
 });
@@ -82,6 +83,9 @@ let displayCurrent = function() {
 	});
 	$('#defaultLED').addClass(CMXConfig.LEDAlarm);
 	$('#userLED').addClass(CMXConfig.LEDUserAlarm);
+	$('#rrLight').prop('value', CMXConfig.RainRate.low);
+	$('#rrMedium').prop('value', CMXConfig.RainRate.medium);
+	showConfig();
 };
 
 let setupTheme = function( activeTheme ) {
@@ -155,6 +159,15 @@ let setupAlarms = function( led, userLed ) {
 	})
 
 };
+
+let setupRainRate = function() {
+	$('#rrLight').on('change', function() {
+		CMXConfig.RainRate.low = parseFloat($('#rrLight').val());
+	});
+	$('#rrMedium').on('change', function() {
+		CMXConfig.RainRate.medium = parseFloat($('#rrMedium').val());
+	});
+}
 
 var clearScheme = function() {
     localStorage.removeItem( axStore );

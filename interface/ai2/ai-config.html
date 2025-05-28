@@ -37,10 +37,23 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-manager.js"></script>
+		<!--<script src="js/current.js"></script>-->
 		<script src="js/ai-config.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
+			$().ready(function() {
+				$.ajax({
+        			url: '/api/graphdata/units.json',
+        			dataType: 'json',
+       				 success: function (result) {
+            			$.each(result, function(key, value) {
+							console.log('Unit: ' + key + ' = ' + value);
+                			$('.unit-' + key).text(value);
+            			});
+        			}
+   				 });
+			});
 		</script>
 		<style>
 			input[type="number"], select  {border-radius: 0.7em; border:thin solid var(--color5);}
@@ -143,7 +156,7 @@
 						</div>
 						<p>In order to see changes dependant on numeric values, you need to click elsewhere on the page.</p>
 					</div>				
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
+					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:6;">
 						<div class="ax-titleBar ax-animate-drop">
 							<h3>Theme Colours</h3>
 						</div>
@@ -160,7 +173,7 @@
 						</div>
 						<p>There are 9 variation of each theme colour, classes or <em>style variables</em> can be used within any html element</p>
 					</div>				
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
+					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:5;">
 						<div class="ax-titleBar">
 							<h3>Change Settings</h3>
 						</div>
@@ -189,6 +202,16 @@
 							<label for="AlarmUsr">User Alarm LED </label>
 							<div class="ax-led " id="userLED"></div>
 							<select id="AlarmUsr" class="w3-select ax-gradient-up" style="border:thin solid var(--theme5);"><option value="ax-brick">Default</option></select>
+						</div>
+						<!--	Rain Rate demarcation boundries	-->
+						<div class="ax-titleBar" style="margin-top:1vh;"><h4>RainRate ranges</h4></div>
+						<div style="display:grid;grid-template-columns: 1fr 5em;grid-template-rows:auto;row-gap:0.5em;">
+							<span style="grid-column-start: span 2;">These rainrate values are used to determine which rainrate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/hr)</span></span>
+							<label for="rrLight">Light rainfale rate:</label>
+							<input type="number" min="0" step="0.1" name="rrLight" value="5" id="rrLight" class="ax-gradient-up w3-input" aria-label="Light rain image">
+							<label for="rrMedium">Medium rainfall rate:</label>
+							<input type="number" min="0" step="0.1" name="rrMedium" value="10" id="rrMedium" class="ax-gradient-up w3-input" aria-label="Medium rain image">
+							<span style="grid-column-start: span 2">Above this value will use the 'Heavy' rainfall rate image</span>
 						</div>
 					</div>
 				</div>	<!--	End of three column layout	-->
