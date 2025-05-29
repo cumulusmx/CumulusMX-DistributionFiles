@@ -85,6 +85,7 @@ let displayCurrent = function() {
 	$('#userLED').addClass(CMXConfig.LEDUserAlarm);
 	$('#rrLight').prop('value', CMXConfig.RainRate.low);
 	$('#rrMedium').prop('value', CMXConfig.RainRate.medium);
+	configPage();
 	showConfig();
 };
 
@@ -172,8 +173,9 @@ let setupRainRate = function() {
 var clearScheme = function() {
     localStorage.removeItem( axStore );
     alert("All saved configuration values removed. Reload the page to confirm.");
-    configPage();
-    showConfig();
+    getConfig();
+	displayCurrent();
+	configPage();
 	checkTheme();
 };
 
@@ -187,6 +189,7 @@ var setScheme = function(destination) {
 		localStorage.setItem( axStore, JSON.stringify( CMXConfig ));
 		alert( "The current configuration is now stored for all pages" );
 	}
+	showConfig();
 }
 
 function showConfig() {
