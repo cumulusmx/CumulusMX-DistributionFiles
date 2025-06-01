@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/16 10:05:16",
+	"version": "Last Modified: 2025/05/31 20:53:35",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -169,7 +169,7 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Create Local"
+												"title": "Local"
 											},
 											"ftp": {
 												"type": "boolean",
@@ -206,7 +206,7 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Create Local"
+												"title": "Local"
 											},
 											"ftp": {
 												"type": "boolean",
@@ -236,7 +236,7 @@
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Create Local"
+												"title": "Local"
 											},
 											"ftp": {
 												"type": "boolean",
@@ -286,7 +286,7 @@
 									},
 									"create": {
 										"type": "boolean",
-										"title": "Create Local"
+										"title": "Local"
 									},
 									"ftp": {
 										"type": "boolean",

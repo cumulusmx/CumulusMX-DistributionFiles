@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/17 09:57:59",
+	"version": "Last Modified: 2025/05/31 20:55:22",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -373,7 +373,7 @@
 									},
 									"helpers": [
 										"Select which graph data files are to be created locally/uploaded/copied every update interval",
-										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
 										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
 									]
 								}
@@ -400,7 +400,7 @@
 									},
 									"helpers": [
 										"Select which graph data files are to be created locally/uploaded/copied at the daily rollover",
-										"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it",
+										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
 										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
 									]
 								}
@@ -452,7 +452,7 @@
 							},
 							"helpers": [
 								"Select which standard files are to be created locally/uploaded/copied every real-time interval",
-								"Note: All three options are independent, you do not need to create a local copy of the file to upload/copy it"
+								"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>"
 							]
 						}
 					}
