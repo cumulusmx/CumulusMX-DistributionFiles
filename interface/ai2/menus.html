@@ -108,8 +108,17 @@
 		<a href="/index.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="The Default Interface"><i class="fa-solid fa-gears"></i>Default Interface</a>
 	</div>
 </div>
+<div class="w3-dropdown-hover w3-hide-small w3-hide-medium">
+	<button id="Support" class="w3-btn ax-theme5 ax-theme4-hvr" onClick="toggleDropDown(this);" aria-label="Help and information" aria-controls="mnuSupport">Support <i class="fa-solid fa-caret-down fa-xs"></i></button>
+	<div id="mnuSupport" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+		<a href="https://cumulus.hosiene.co.uk" target="_blank" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Cumulus MX Forum"><i class="fa-solid fa-users"></i>Cumulus MX Forum</a>
+		<a href="https://cumuluswiki.org/a/Original_Cumulus_Wiki" target="_blank" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="Cumulus MX Wiki"><i class="fa-solid fa-book"></i>Cumulus MX Wiki</a>
+		<div class="ax-menu-line"></div>
+		<a href="https://oaktreewebs.co.uk/wiki/" target="_blank" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="AI Wiki"><i class="fa-solid fa-book"></i>AI Wiki</a>
+	</div>
+</div>
 <button  class="w3-bar-item w3-btn ax-theme5 ax-theme3-hvr w3-right w3-hide-large" onClick="toggleMenus();" role="menuitem" aria-label="Mobile menu toggle">Menu:&nbsp;<strong><i class="fa-solid fa-bars"></i></strong></button>
-
+<!--	Mobile Menu		-->
 <div id="menuMobile" class="siteWidth w3-hide-large w3-hide" role="menubar">
 	<div class="w3-bar-block ax-theme5" role="menubar" aria-label="Main menu">
 		<a href="index.html" class="w3-bar-item w3-btn ax-theme6-hvr w3-hide w3-hide-medium" role="menuitem" aria-label="The Dashboard">The Dashboard</a>
@@ -214,6 +223,15 @@
 				<a href="ai-config.html"	class="w3-bar-item w3-btn theme ax-theme5-hvr" role="menuitem" aria-label="AI Settings"><i class="fa-solid fa-gears"></i>Alternative Interface Settings</a>
 				<div class="ax-menu-line"></div>
 				<a href="/index.html" class="w3-bar-item w3-btn ax-theme6-hvr" role="menuitem" aria-label="The Default Interface"><i class="fa-solid fa-gears"></i>Use the Default Interface</a>
+			</div>
+		</div>
+		<div class="w3-dropdown-click">
+			<button id="SupportMob" class="w3-bar-item w3-btn ax-theme5 ax-theme6-hvr" onClick="toggleDropDown(this);" aria-controls="mnuSupportMob" aria-label="Help and information">Support...</button>
+			<div id="mnuSupportMob" class="w3-dropdown-content w3-bar-block w3-card ax-theme4 ax-animate-menu">
+				<a href="https://cumulus.hosiene.co.uk" target="_blank" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Cumulus MX Forum"><i class="fa-solid fa-users"></i>Cumulus MX Forum</a>
+				<a href="https://cumuluswiki.org/a/Original_Cumulus_Wiki" target="_blank" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Cumulus MX Wiki"><i class="fa-solid fa-book"></i>Cumulus MX Wiki</a>
+				<div class="ax-menu-line"></div>
+				<a href="https://oaktreewebs.co.uk/wiki/" target="_blank" class="w3-bar-item w3-btn ax-theme5-hvr" role="menuitem" aria-label="Alternative Interface Wiki"><i class="fa-solid fa-book"></i>AI Wiki</a>
 			</div>
 		</div>
 	</div>
