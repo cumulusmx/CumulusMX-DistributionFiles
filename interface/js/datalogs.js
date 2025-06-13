@@ -1,4 +1,4 @@
-// Last modified: 2025/02/14 11:47:56
+// Last modified: 2025/06/11 19:26:08
 
 var myTable;
 var currMonth;
@@ -168,7 +168,6 @@ $(document).ready(function () {
         ];
 
         myTable = $('#datalog').dataTable({
-            //pagingType: 'input',
             processing: true,
             serverSide: true,
             searching: true,
@@ -191,7 +190,13 @@ $(document).ready(function () {
             },
             deferLoading: 0,
             columns: columnDefs,
-            dom: '<"top"Bfip<"clear">>t<"bottom"fip<"clear">>',
+            layout: {
+                top: 'inputPaging',
+                topStart: 'buttons',
+                topEnd: 'search',
+                bottomStart: 'inputPaging',
+                bottomEnd: 'info'
+            },
             select: 'os',
             responsive: false,
             altEditor: true,     // Enable altEditor

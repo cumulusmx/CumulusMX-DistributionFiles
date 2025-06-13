@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/02/12 15:21:55
+Last modified: 2025/06/11 19:19:53
 -->
 <!doctype html>
 <html lang="en">
@@ -26,10 +26,11 @@ Last modified: 2025/02/12 15:21:55
 
     <!-- DataTables CSS -->
     <link href="lib/datatables/datatables.min.css" rel="stylesheet">
+    <link href="lib/datatables/dataTables.inputPaging.min.css" rel="stylesheet">
 
     <!-- DataTables -->
     <script src="lib/datatables/datatables.min.js"></script>
-    <!--<script src="lib/datatables/pagination_input.js"></script>-->
+    <script src="lib/datatables/dataTables.inputPaging.min.js"></script>
     <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
     <!-- datepicker -->
@@ -81,7 +82,7 @@ Last modified: 2025/02/12 15:21:55
                 <button type="button" class="btn btn-default" onclick="load()">Load</button>
             </div>
         </div>
-        <div class="row top-buffer">
+        <div class="row">
             <div class="col-md-12">
                 <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
             </div>

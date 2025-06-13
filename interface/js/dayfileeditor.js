@@ -1,4 +1,4 @@
-// Last modified: 2025/02/12 15:25:50
+// Last modified: 2025/06/11 19:27:44
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -99,7 +99,6 @@ $(document).ready(function() {
         ];
 
         var myTable = $('#dayfile').DataTable({
-            //pagingType: 'input',
             processing: true,
             serverSide: true,
             searching: true,
@@ -121,7 +120,13 @@ $(document).ready(function() {
                 }
             },
             columns: columnDefs,
-            dom: '<"top"Bfip<"clear">>t<"bottom"fip<"clear">>',
+            layout: {
+                top: 'inputPaging',
+                topStart: 'buttons',
+                topEnd: 'search',
+                bottomStart: 'inputPaging',
+                bottomEnd: 'info'
+            },
             select: 'os',
             responsive: false,
             altEditor: true,     // Enable altEditor

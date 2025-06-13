@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/24 17:36:23",
+	"version": "Last Modified: 2025/06/03 22:33:13",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -239,6 +239,9 @@
 					"properties": {
 						"ipaddress": {
 							"format": "ip-address"
+						},
+						"usesdcard": {
+							"type": "boolean"
 						}
 					}
 				},
@@ -337,12 +340,9 @@
 					"title": "Ecowitt Cloud Access API",
 					"type": "object",
 					"properties": {
-						"applicationkey": {
-						},
-						"userkey": {
-						},
-						"mac": {
-						},
+						"applicationkey": {},
+						"userkey": {},
+						"mac": {},
 						"interval" : {
 							"enum": [1,2,3,4,5,10],
 							"dependencies": [
@@ -350,6 +350,7 @@
 							]
 						},
 						"stationid": {
+							"type": "integer"
 						}
 					}
 				},

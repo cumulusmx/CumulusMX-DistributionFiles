@@ -1,4 +1,4 @@
-// Last modified: 2025/05/24 17:41:23
+// Last modified: 2025/06/03 22:46:42
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -418,6 +418,36 @@ $(document).ready(function () {
             // Set the initial stationid for Davis Cloud
             form.getControlByPath('station/daviscloud/stationtype').setValue(+currId);
             form.getControlByPath('station/ecowittapi/stationid').setValue(+currId);
+
+            // Some ecowitt api control
+            let ecowittapi = form.getControlByPath('station/ecowittapi');
+            let sdcard = form.getControlByPath('station/ecowitthttpapi/usesdcard');
+
+            // Set the initial value of the ecowitt api
+            if (currId == 22 && sdcard.getValue()) {
+                ecowittapi.hide();
+            }
+            // set the ecowitt api to listen to the ecowitt http local api SD card setting
+            ecowittapi.subscribe(sdcard, function(val) {
+                if (val) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
+            });
+            ecowittapi.subscribe(currId, function(val) {
+                if (val != 22) {
+                    this.show();
+                } else {
+                    let form = $('form').alpaca('get');
+                    let sdcard = form.getControlByPath('station/ecowitthttpapi/usesdcard').getValue();
+                    if (sdcard) {
+                        this.hide();
+                    } else {
+                        this.show();
+                    }
+                }
+            });
 
             // On changing the web uploads enabled, disable/enable the other FTP options
             webEnabled.on('change', function () {

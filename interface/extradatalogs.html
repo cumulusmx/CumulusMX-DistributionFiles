@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/02/12 15:29:14
+Last modified: 2025/06/11 19:24:31
 -->
 <!doctype html>
 <html lang="en">
@@ -25,19 +25,19 @@ Last modified: 2025/02/12 15:29:14
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="lib/datatables/datatables.min.css">
+    <link href="lib/datatables/datatables.min.css" rel="stylesheet">
+    <link href="lib/datatables/dataTables.inputPaging.min.css" rel="stylesheet">
 
     <!-- DataTables -->
     <script src="lib/datatables/datatables.min.js"></script>
-    <!--<script src="lib/datatables/pagination_input.js"></script>-->
+    <script src="lib/datatables/dataTables.inputPaging.min.js"></script>
+    <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
     <!-- datepicker -->
     <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
     <link href="lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
     <link href="lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
     <script src="lib/jquery-ui-custom/jquery-ui.min.js"></script>
-
-    <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
     <script src ="js/extradatalogs.js"></script>
     <link href="css/cumulus.css" rel="stylesheet">
@@ -82,7 +82,7 @@ Last modified: 2025/02/12 15:29:14
                 <button type="button" class="btn btn-default" onclick="load()">Load</button>
             </div>
         </div>
-        <div class="row top-buffer">
+        <div class="row">
             <div class="col-md-12">
                 <table id="datalog" class="display dataTable" cellspacing="0" width="100%"></table>
             </div>
