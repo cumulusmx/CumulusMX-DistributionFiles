@@ -3,7 +3,7 @@
 # Define the file path
 RULES_FILE="/etc/udev/rules.d/50-usb-cmx.rules"
 
-read -p "Please unplug the sttaions USB cable."
+read -p "Please unplug the stations USB cable."
 
 
 # Create the file and add the content
