@@ -1,4 +1,4 @@
-// Last modified: 2024/12/28 12:09:59
+// Last modified: 2025/07/23 23:51:47
 
 var chart, config, available;
 
@@ -53,45 +53,49 @@ $(document).ready(function () {
         parent.location.hash = value;
     };
 
-    $.ajax({
-        url: '/api/graphdata/availabledata.json',
-        dataType: 'json'
-    })
-    .done(function (result) {
-        available = result;
-        if (result.Temperature === undefined || result.Temperature.Count == 0) {
+    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
+
+    Promise.all([availRes, configRes])
+    .then(function (results) {
+
+        available = results[0];
+        config = results[1];
+
+        if (available.Temperature === undefined || available.Temperature.Count == 0) {
             $('#temp').parent().remove();
         }
-        if (result.Humidity === undefined || result.Humidity.Count == 0) {
+        if (available.Humidity === undefined || available.Humidity.Count == 0) {
             $('#humidity').parent().remove();
         }
-        if (result.Solar === undefined || result.Solar.Count == 0) {
+        if (available.Solar === undefined || available.Solar.Count == 0) {
             $('#solar').parent().remove();
         }
-        if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
+        if (available.DegreeDays === undefined || available.DegreeDays.Count == 0) {
             $('#degdays').parent().remove();
         }
-        if (result.TempSum === undefined || result.TempSum.Count == 0) {
+        if (available.TempSum === undefined || available.TempSum.Count == 0) {
             $('#tempsum').parent().remove();
         }
-        if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
+        if (available.ChillHours === undefined || available.ChillHours.Count == 0) {
             $('#chillhrs').parent().remove();
         }
-        if (result.Snow === undefined || result.Snow.Count == 0) {
+        if (available.Snow === undefined || available.Snow.Count == 0) {
             $('#snow').parent().remove();
         }
-    });
 
+        Highcharts.setOptions({
+            time: {
+                timezone: config.tz,
+                useUTC: false
+            },
+            chart: {
+                style: {
+                    fontSize: '1.5rem'
+                }
+            }
+        });
 
-    $.ajax({url: '/api/info/version.json', dataType: 'json'})
-    .done(function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    });
-
-    $.ajax({url: '/api/graphdata/graphconfig.json'})
-    .done(function (result) {
-        config = result;
         var value = parent.location.hash.replace('#', '');
         doGraph(value);
         // set the correct button
@@ -100,6 +104,13 @@ $(document).ready(function () {
             $('input[name=options][value=' + value + ']').prop('checked', true).parent().addClass('active');
         }
     });
+
+    $.ajax({url: '/api/info/version.json', dataType: 'json'})
+    .done(function (result) {
+        $('#Version').text(result.Version);
+        $('#Build').text(result.Build);
+    });
+
 });
 
 

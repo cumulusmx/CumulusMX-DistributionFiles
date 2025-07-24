@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/12/01 16:29:24
+// Last modified: 2025/07/24 19:06:35
 
 var chart, avail, config, options;
 var settings = {
@@ -109,7 +109,13 @@ $(document).ready(function () {
             chart: {
                 renderTo: 'chartcontainer',
                 type: 'line',
-                alignTicks: true
+                alignTicks: true,
+                style: {
+                    fontSize: '1.5rem'
+                }
+            },
+            time: {
+                timezone: config.tz
             },
             title: {text: 'Recent Data Select-a-Chart'},
             credits: {enabled: true},
@@ -154,7 +160,7 @@ $(document).ready(function () {
             tooltip: {
                 shared: true,
                 split: false,
-                xDateFormat: '%A, %b %e, %H:%M'
+                xDateFormat: '%A, %b %e, %H:%M',
             },
             series: [],
             rangeSelector: myRanges
@@ -405,10 +411,7 @@ var clearSeries = function (val) {
 
     // check the navigator - have we just removed the series it was using, and is there at least one series we can use instead?
     if (!chart.navigator.hasNavigatorData && chart.series.length > 0 ) {
-        chart.series[0].setOptions({showInNavigator: true});
-        chart.navigator.baseSeries = chart.series[0];
-        chart.navigator.update();
-        chart.redraw();
+        chart.series[0].update({showInNavigator: true}, true);
     }
 }
 

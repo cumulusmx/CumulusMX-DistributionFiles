@@ -52,53 +52,91 @@ $().ready(function () {
 		doSelect( this.id );
 	});
 
-	$.ajax({
-		url: '/api/graphdata/availabledata.json',
-		dataType: 'json',
-		success: function (result) {
-			if (result.Temperature === undefined || result.Temperature.Count == 0) {
-				$('#temp').remove();
-			}
-			if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-				$('#dailytemp').remove()
-			}
-			if (result.Humidity === undefined || result.Humidity.Count == 0) {
-				$('#humidity').remove()
-			}
-			if (result.Solar === undefined || result.Solar.Count == 0) {
-				$('#solar').remove();
-			}
-			if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-				$('#sunhours').remove();
-			}
-			if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-				$('#airquality').remove();
-			}
-			if (result.ExtraTemp == undefined || result.ExtraTemp.Count == 0) {
-				$('#extratemp').remove();
-			}
-			if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
-				$('#extrahum').remove();
-			}
-			if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
-				$('#extradew').remove();
-			}
-			if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
-				$('#soiltemp').remove();
-			}
-			if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
-				$('#soilmoist').remove();
-			}
-			if (result.LeafWetness == undefined || result.LeafWetness.Count == 0) {
-				$('#leafwet').remove();
-			}
-			if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
-				$('#usertemp').remove();
-			}
-			if (result.CO2 == undefined || result.CO2.Count == 0) {
-				$('#co2').remove();
-			}
+	const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
+
+    Promise.all([availRes, configRes])
+    .then(function (results) {
+        avail = results[0];
+        config = results[1];
+
+		Highcharts.setOptions({
+            time: {
+                timezone: config.tz,
+                useUTC: false
+            },
+            chart: {
+                style: {
+                    fontSize: '1rem'
+                }
+            }
+        });
+
+		if (avail.Temperature === undefined || avail.Temperature.Count == 0) {
+			$('#temp').remove();
 		}
+		if (avail.DailyTemps === undefined || avail.DailyTemps.Count == 0) {
+			$('#dailytemp').remove()
+		}
+		if (avail.Humidity === undefined || avail.Humidity.Count == 0) {
+			$('#humidity').remove()
+		}
+		if (avail.Solar === undefined || avail.Solar.Count == 0) {
+			$('#solar').remove();
+		}
+		if (avail.Sunshine === undefined || avail.Sunshine.Count == 0) {
+			$('#sunhours').remove();
+		}
+		if (avail.AirQuality === undefined || avail.AirQuality.Count == 0) {
+			$('#airquality').remove();
+		}
+		if (avail.ExtraTemp == undefined || avail.ExtraTemp.Count == 0) {
+			$('#extratemp').remove();
+		}
+		if (avail.ExtraHum == undefined || avail.ExtraHum.Count == 0) {
+			$('#extrahum').remove();
+		}
+		if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.Count == 0) {
+			$('#extradew').remove();
+		}
+		if (avail.SoilTemp == undefined || avail.SoilTemp.Count == 0) {
+			$('#soiltemp').remove();
+		}
+		if (avail.SoilMoist == undefined || avail.SoilMoist.Count == 0) {
+			$('#soilmoist').remove();
+		}
+		if (avail.LeafWetness == undefined || avail.LeafWetness.Count == 0) {
+			$('#leafwet').remove();
+		}
+		if (avail.UserTemp == undefined || avail.UserTemp.Count == 0) {
+			$('#usertemp').remove();
+		}
+		if (avail.CO2 == undefined || avail.CO2.Count == 0) {
+			$('#co2').remove();
+		}
+
+		//	New
+		switch (config.wind.units) {
+			case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
+			case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
+			case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
+			case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
+			default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
+			// NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
+		}
+
+		freezing = config.temp.units === 'C' ? 0 : 32;
+		frostTemp = config.temp.units === 'C' ? 4 : 39;
+
+		console.log("Storage: " + CMXSession.Charts.Trends)
+
+		if (CMXSession.Charts.Trends == null || CMXSession.Charts.Trends == '') {
+			chart = 'temp';
+		} else {
+			chart = CMXSession.Charts.Trends;
+		}
+
+		doSelect( chart );
 	});
 
 	doSelect = function (sel) {
@@ -136,27 +174,7 @@ $().ready(function () {
 
 	$.ajax({url: "/api/graphdata/graphconfig.json", success: function (result) {
 		config = result;
-	
-		//	New
-		switch(config.wind.units){
-			case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
-			case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
-			case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
-			case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
-			default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
-			// NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-		}
-		freezing = config.temp.units === 'C' ? 0 : 32;
-		frostTemp = config.temp.units === 'C' ? 4 : 39;
-		
-		console.log("Storage: " + CMXSession.Charts.Trends)
-		if( CMXSession.Charts.Trends == null || CMXSession.Charts.Trends == '') {
-			chart = 'temp';
-		} else {
-			chart = CMXSession.Charts.Trends;
-		}
 
-		doSelect( chart );
 	}});
 });
 
@@ -205,7 +223,7 @@ var doTemp = function () {
 					},{
 						value: frostTemp,
 						color: 'rgb(128,128,255)', width: 1, zIndex: 2,
-						label: {text: 'Frost possible',y:12,align:'center', style: {color: 'var(--color5)'}}	
+						label: {text: 'Frost possible',y:12,align:'center', style: {color: 'var(--color5)'}}
 					}]
 			}, {
 				// right
@@ -410,7 +428,7 @@ var doPress = function () {
 		},
 		lang: { noData: 'No pressure data to display' },
 		noData: {
-			style: {fontWeight: 'bold', fontSize: '20px', color: '#FF3030'}	
+			style: {fontWeight: 'bold', fontSize: '20px', color: '#FF3030'}
 		},
 		tooltip: {
 			shared: true,
@@ -2445,7 +2463,7 @@ var doLeafWet = function () {
 			},
 			line: {lineWidth: 2}
 		},
-		lang:{ 
+		lang:{
 			noData: 'No Leaf Wetness data to display'
 		},
 		noData: {

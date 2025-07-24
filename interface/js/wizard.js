@@ -1,8 +1,11 @@
-// Last modified: 2025/06/03 22:46:42
+// Last modified: 2025/06/22 22:31:32
 
 $(document).ready(function () {
     let stationNameValidated = false;
     let stationTypeValidated = false;
+    let StashedDavisStationId = -1; // used to store the last selected Davis station id
+    let StashedDavisUuid = ''; // used to store the last selected Davis station uuid
+
 
     $('form').alpaca({
         dataSource: '/api/settings/wizard.json',
@@ -54,6 +57,34 @@ $(document).ready(function () {
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
+                                // If the station is Davis WLL or Cloud, check the station id and uuid
+                                let stationId = this.getControlByPath('station/stationid').getValue();
+                                if (stationId == 11 || stationId == 19 || stationId == 20) {
+                                    let davisObj;
+
+                                    if (stationId == 11) {
+                                        davisObj = this.getControlByPath('station/daviswll');
+                                    } else {
+                                        davisObj = this.getControlByPath('station/daviscloud');
+                                    }
+
+                                    let apiStationId = davisObj.getControlByPath('api/apiStationId').getValue();
+                                    let apiStationUuid = davisObj.getControlByPath('api/apiStationUuid').getValue();
+
+                                    if (apiStationId != StashedDavisStationId && apiStationUuid == StashedDavisUuid && StashedDavisUuid != '') {
+                                        // If the station id has changed, but the uuid is the same, blank the uuid
+                                        davisObj.getControlByPath('api/apiStationUuid').setValue('');
+                                        StashedDavisStationId = apiStationId;
+                                        alert('You have changed the Davis station id, but not the uuid. The uuid has been cleared.');
+                                    }
+                                    if (apiStationId == StashedDavisStationId && apiStationUuid != StashedDavisUuid && StashedDavisStationId != -1) {
+                                        // If the station id is the same, but the uuid has changed, blank the station id
+                                        davisObj.getControlByPath('api/apiStationId').setValue(-1);
+                                        StashedDavisUuid = apiStationUuid;
+                                        alert('You have changed the Davis station uuid, but not the station id. The station id has been cleared.');
+                                    }
+                                }
+
                                 let json = this.getValue();
 
                                 $.ajax({
@@ -319,6 +350,9 @@ $(document).ready(function () {
             // get the initial states - in case we are re-running the wizard
             let intState = siteIntEnabled.getValue();
             let rtmState = siteRtEnabled.getValue();
+
+            StashedDavisStationId = form.getControlByPath('station/daviswll/api/apiStationId').getValue();
+            StashedDavisUuid = form.getControlByPath('station/daviswll/api/apiStationUuid').getValue();
 
             siteIntFtp.setValue(webState);
             siteIntFtp.options.disabled = !webState;

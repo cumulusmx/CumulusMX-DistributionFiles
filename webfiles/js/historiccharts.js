@@ -1,43 +1,51 @@
-// Last modified: 2025/03/09 10:20:38
+// Last modified: 2025/07/24 19:12:54
 
 var chart, config, available;
 
 $(document).ready(function () {
-    $.ajax({
-        url: "availabledata.json",
-        dataType: "json"
-    })
-    .done(function (result) {
-        available = result;
-        if (result.Temperature === undefined || result.Temperature.Count == 0) {
+    const availRes = $.ajax({ url: 'availabledata.json', dataType: 'json' });
+    const configRes = $.ajax({ url: 'graphconfig.json', dataType: 'json' });
+
+    Promise.all([availRes, configRes])
+    .then(function (results) {
+        available = results[0];
+        config = results[1];
+
+        Highcharts.setOptions({
+            time: {
+                timezone: config.tz,
+                useUTC: false
+            },
+            chart: {
+                style: {
+                    fontSize: '1rem'
+                }
+            }
+        });
+
+
+        if (available.Temperature === undefined || available.Temperature.Count == 0) {
             $('#btnTemp').remove();
         }
-        if (result.Humidity === undefined || result.Humidity.Count == 0) {
+        if (available.Humidity === undefined || available.Humidity.Count == 0) {
             $('#btnHum').remove();
         }
-        if (result.Solar === undefined || result.Solar.Count == 0) {
+        if (available.Solar === undefined || available.Solar.Count == 0) {
             $('#btnSolar').remove();
         }
-        if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
+        if (available.DegreeDays === undefined || available.DegreeDays.Count == 0) {
             $('#btnDegDay').remove();
         }
-        if (result.TempSum === undefined || result.TempSum.Count == 0) {
+        if (available.TempSum === undefined || available.TempSum.Count == 0) {
             $('#btnTempSum').remove();
         }
-        if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
+        if (available.ChillHours === undefined || available.ChillHours.Count == 0) {
             $('#btnChillHrs').remove();
         }
-        if (result.Snow === undefined || result.Snow.Count == 0) {
+        if (available.Snow === undefined || available.Snow.Count == 0) {
             $('#btnsnow').parent().remove();
         }
-    });
 
-    $.ajax({
-        url: "graphconfig.json",
-        dataType: "json"
-    })
-    .done(function (result) {
-        config = result;
         changeGraph(parent.location.hash.replace('#', ''));
     });
 });

@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:11:47
+// Last modified: 2025/07/23 23:58:46
 
 var chart, config, doSelect;
 
@@ -28,53 +28,81 @@ $(document).ready(function () {
         doSelect($('#mySelect').val());
     });
 
-    $.ajax({
-        url: '/api/graphdata/availabledata.json',
-        dataType: 'json',
-        success: function (result) {
-            if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('#mySelect option[value="temp"]').remove();
-            }
-            if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-                $('#mySelect option[value="dailytemp"]').remove();
-            }
-            if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('#mySelect option[value="humidity"]').remove();
-            }
-            if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#mySelect option[value="solar"]').remove();
-            }
-            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-                $('#mySelect option[value="sunhours"]').remove();
-            }
-            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-                $('#mySelect option[value="airquality"]').remove();
-            }
-            if (result.ExtraTemp == undefined || result.ExtraTemp.Count == 0) {
-                $('#mySelect option[value="extratemp"]').remove();
-            }
-            if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
-                $('#mySelect option[value="extrahum"]').remove();
-            }
-            if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
-                $('#mySelect option[value="extradew"]').remove();
-            }
-            if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
-                $('#mySelect option[value="soiltemp"]').remove();
-            }
-            if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
-                $('#mySelect option[value="soilmoist"]').remove();
-            }
-            if (result.LeafWetness == undefined || result.LeafWetness.Count == 0) {
-                $('#mySelect option[value="leafwet"]').remove();
-            }
-            if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
-                $('#mySelect option[value="usertemp"]').remove();
-            }
-            if (result.CO2 == undefined || result.CO2.Count == 0) {
-                $('#mySelect option[value="co2"]').remove();
-            }
+    const ajax1 = $.ajax({url: '/api/graphdata/availabledata.json', dataType: 'json'});
+    const ajax3 = $.ajax({url: '/api/graphdata/graphconfig.json', dataType: 'json'});
+
+    Promise.all([ajax1, ajax3])
+    .then(function (results) {
+        // available data
+        var avail = results[0];
+        config = results[1];
+
+        if (avail.Temperature === undefined || avail.Temperature.Count == 0) {
+            $('#mySelect option[value="temp"]').remove();
         }
+        if (avail.DailyTemps === undefined || avail.DailyTemps.Count == 0) {
+            $('#mySelect option[value="dailytemp"]').remove();
+        }
+        if (avail.Humidity === undefined || avail.Humidity.Count == 0) {
+            $('#mySelect option[value="humidity"]').remove();
+        }
+        if (avail.Solar === undefined || avail.Solar.Count == 0) {
+            $('#mySelect option[value="solar"]').remove();
+        }
+        if (avail.Sunshine === undefined || avail.Sunshine.Count == 0) {
+            $('#mySelect option[value="sunhours"]').remove();
+        }
+        if (avail.AirQuality === undefined || avail.AirQuality.Count == 0) {
+            $('#mySelect option[value="airquality"]').remove();
+        }
+        if (avail.ExtraTemp == undefined || avail.ExtraTemp.Count == 0) {
+            $('#mySelect option[value="extratemp"]').remove();
+        }
+        if (avail.ExtraHum == undefined || avail.ExtraHum.Count == 0) {
+            $('#mySelect option[value="extrahum"]').remove();
+        }
+        if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.Count == 0) {
+            $('#mySelect option[value="extradew"]').remove();
+        }
+        if (avail.SoilTemp == undefined || avail.SoilTemp.Count == 0) {
+            $('#mySelect option[value="soiltemp"]').remove();
+        }
+        if (avail.SoilMoist == undefined || avail.SoilMoist.Count == 0) {
+            $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.LeafWetness == undefined || avail.LeafWetness.Count == 0) {
+            $('#mySelect option[value="leafwet"]').remove();
+        }
+        if (avail.UserTemp == undefined || avail.UserTemp.Count == 0) {
+            $('#mySelect option[value="usertemp"]').remove();
+        }
+        if (avail.CO2 == undefined || avail.CO2.Count == 0) {
+            $('#mySelect option[value="co2"]').remove();
+        }
+
+        // graph configuration
+
+        Highcharts.setOptions({
+            time: {
+                timezone: config.tz,
+                useUTC: false
+            },
+            chart: {
+                style: {
+                    fontSize: '1.5rem'
+                }
+            }
+        });
+
+        var value = parent.location.hash.replace('#', '');
+
+        if (value == '')
+            value = 'temp';
+
+        doSelect(value);
+        // set the correct option
+        $('#mySelect option[value="' + value + '"]').attr('selected', true);
+
     });
 
     doSelect = function (sel) {
@@ -147,18 +175,6 @@ $(document).ready(function () {
     $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
-    }});
-
-    $.ajax({url: '/api/graphdata/graphconfig.json', success: function (result) {
-        config = result;
-        var value = parent.location.hash.replace('#', '');
-
-        if (value == '')
-            value = 'temp';
-
-        doSelect(value);
-        // set the correct option
-        $('#mySelect option[value="' + value + '"]').attr('selected', true);
     }});
 });
 

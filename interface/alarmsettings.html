@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/04/28 00:35:47
+Last modified: 2025/07/16 10:51:37
 -->
 <!doctype html>
 <html lang="en">
@@ -442,6 +442,22 @@ Last modified: 2025/04/28 00:35:47
                         <td><input type="checkbox" id="firmwareEmail" aria-label="Enable firmware upgrade emails"></td>
                         <td><input type="checkbox" id="firmwareLatches" aria-label="Enable firmware upgrade latching"></td>
                         <td><input id="firmwareLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Firmware upgrade latching hours"></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="genErrorEnabled" aria-label="Enable general Cumulus MX error alarm"></td>
+                        <td aria-hidden>General Cumulus error</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="checkbox" id="genErrorSoundEnabled" aria-label="Enable general error sound"></td>
+                        <td><input id="genErrorSound" aria-label="general error sound filename"></td>
+                        <td><input id="genErrorAction" aria-label="general error action"></td>
+                        <td><input id="genErrorActionParams" aria-label="general error action parameters"></td>
+                        <td><input id="genErrorBsky" aria-label="general error Bluesky file"></td>
+                        <td><input type="checkbox" id="genErrorNotify" aria-label="Enable general error notifications"></td>
+                        <td><input type="checkbox" id="genErrorEmail" aria-label="Enable general error emails"></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     </tbody>

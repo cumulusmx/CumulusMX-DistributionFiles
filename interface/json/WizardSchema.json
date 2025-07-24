@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/06/03 22:33:13",
+	"version": "Last Modified: 2025/06/22 22:03:41",
 	"title": "Basic Cumulus and Station Setup",
 	"description": "Cumulus MX first time set-up wizard.",
 	"type": "object",
@@ -167,7 +167,8 @@
 								"apiStationId": {
 									"type": "integer",
 									"minimum": -1
-								}
+								},
+								"apiStationUuid": {}
 							}
 						}
 					}
@@ -210,7 +211,8 @@
 								"apiStationId": {
 									"type": "integer",
 									"minimum": -1
-								}
+								},
+								"apiStationUuid": {}
 							}
 						},
 						"stationtype": {

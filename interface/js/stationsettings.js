@@ -1,7 +1,9 @@
-// Last modified: 2025/05/24 17:24:24
+// Last modified: 2025/06/22 22:37:54
 
 let StashedStationId;
 let accessMode;
+let StashedDavisStationId = -1; // used to store the last selected Davis station id
+let StashedDavisUuid = ''; // used to store the last selected Davis station uuid
 
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
@@ -28,9 +30,24 @@ $(document).ready(function () {
                                     alert('You have not selected a station type');
                                     return;
                                 }
-                                if (stationId != StashedStationId) {
-                                    alert('You have changed the Station type, you must restart Cumulus MX');
-                                    StashedStationId = stationId;
+
+                                // If the station is Davis WLL or Cloud, check the station id and uuid
+                                if (stationId == 11 || stationId == 19 || stationId == 20) {
+                                    let davisObj = form.getControlByPath('daviswll');
+                                    let apiStationId = davisObj.getControlByPath('api/apiStationId').getValue();
+                                    let apiStationUuid = davisObj.getControlByPath('api/apiStationUuid').getValue();
+                                    if (apiStationId != StashedDavisStationId && apiStationUuid == StashedDavisUuid && StashedDavisUuid != '') {
+                                        // If the station id has changed, but the uuid is the same, blank the uuid
+                                        davisObj.getControlByPath('api/apiStationUuid').setValue('');
+                                        StashedDavisStationId = apiStationId;
+                                        alert('You have changed the Davis station id, but not the uuid. The uuid has been cleared.');
+                                    }
+                                    if (apiStationId == StashedDavisStationId && apiStationUuid != StashedDavisUuid && StashedDavisStationId != -1) {
+                                        // If the station id is the same, but the uuid has changed, blank the station id
+                                        davisObj.getControlByPath('api/apiStationId').setValue(-1);
+                                        StashedDavisUuid = apiStationUuid;
+                                        alert('You have changed the Davis station uuid, but not the station id. The station id has been cleared.');
+                                    }
                                 }
 
                                 let json = this.getValue();
@@ -42,7 +59,12 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    if (stationId != StashedStationId) {
+                                        alert('Settings updated.\n\nYou have changed the Station type, you must restart Cumulus MX');
+                                        StashedStationId = stationId;
+                                    } else {
+                                        alert('Settings updated');
+                                    }
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -231,6 +253,8 @@ $(document).ready(function () {
 
             // Keep a record of the last value
             StashedStationId = stationid;
+            StashedDavisStationId = form.getControlByPath('daviswll/api/apiStationId').getValue();
+            StashedDavisUuid = form.getControlByPath('daviswll/api/apiStationUuid').getValue();
 
             // On changing the JSON Station connection type, propgate to advanced settings
             let connType = form.getControlByPath('jsonstation/conntype');

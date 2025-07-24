@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/06/03 19:54:04",
+	"version": "Last Modified: 2025/06/22 22:07:29",
 	"fields":{
 		"location": {
 			"fields": {
@@ -278,8 +278,16 @@
 									"label": "Your device id on WeatherLink",
 									"placeholder": "e.g. 89281",
 									"helpers": [
+										"You can enter the station id, or the station uuid (below)",
 										"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
 										"Leave this at default -1 if you do not have a WeatherLink.com Pro/Pro+ subscription"
+									]
+								},
+								"apiStationUuid": {
+									"label": "Your device uuid on WeatherLink:",
+									"helpers": [
+										"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
+										"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
 									]
 								}
 							}
@@ -361,7 +369,18 @@
 								"apiStationId": {
 									"label": "Your device id on WeatherLink",
 									"placeholder": "e.g. 89281",
-									"helper": "Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you"
+									"helpers": [
+										"You can enter the station id, or the station uuid (below)",
+										"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
+										"Leave this at default -1 if you do not have a WeatherLink.com Pro/Pro+ subscription"
+									]
+								},
+								"apiStationUuid": {
+									"label": "Your device uuid on WeatherLink:",
+									"helpers": [
+										"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
+										"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
+									]
 								}
 							}
 						},

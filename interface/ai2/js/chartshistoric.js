@@ -32,35 +32,66 @@ $().ready(function () {
 		sessionStorage.setItem(CMXSession, JSON.stringify(CMXSession));
 		doGraph( this.id );
 	});
-	
-	$.ajax({
-		url: "/api/graphdata/availabledata.json",
-		dataType: "json",
-		success: function (result) {
-			//	Hide unwanted buttons
-			available = result;
-			if (result.Temperature === undefined || result.Temperature.Count == 0) {
-				$('#temp').remove();
-			}
-			if (result.Humidity === undefined || result.Humidity.Count == 0) {
-				$('#humidity').remove();
-			}
-			if (result.Solar === undefined || result.Solar.Count == 0) {
-				$('#solar').remove();
-			}
-			if (result.DegreeDays === undefined || result.DegreeDays.Count == 0) {
-				$('#degdays').remove();
-			}
-			if (result.TempSum === undefined || result.TempSum.Count == 0) {
-				$('#tempsum').remove();
-			}
-			if (result.ChillHours === undefined || result.ChillHours.Count == 0) {
-				$('#chillhrs').remove();
-			}
-			if (result.Snow === undefined || result.Snow.Count == 0) {
-				$('#snow').remove();
-			}
+
+    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
+
+    Promise.all([availRes, configRes])
+    .then(function (results) {
+        available = results[0];
+        config = results[1];
+
+		Highcharts.setOptions({
+            time: {
+                timezone: config.tz,
+                useUTC: false
+            },
+            chart: {
+                style: {
+                    fontSize: '1rem'
+                }
+            }
+        });
+
+		// Hide unwanted buttons
+		if (available.Temperature === undefined || available.Temperature.Count == 0) {
+			$('#temp').remove();
 		}
+		if (available.Humidity === undefined || available.Humidity.Count == 0) {
+			$('#humidity').remove();
+		}
+		if (available.Solar === undefined || available.Solar.Count == 0) {
+			$('#solar').remove();
+		}
+		if (available.DegreeDays === undefined || available.DegreeDays.Count == 0) {
+			$('#degdays').remove();
+		}
+		if (available.TempSum === undefined || available.TempSum.Count == 0) {
+			$('#tempsum').remove();
+		}
+		if (available.ChillHours === undefined || available.ChillHours.Count == 0) {
+			$('#chillhrs').remove();
+		}
+		if (available.Snow === undefined || available.Snow.Count == 0) {
+			$('#snow').remove();
+		}
+
+		var chart = CMXSession.Charts.Historic;
+		if( chart === null || chart =='') {
+			chart = 'temp';
+		}
+
+		//	New
+		switch(config.wind.units){
+			case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
+			case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
+			case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
+			case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
+			default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
+			// NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
+		}
+
+		doGraph( chart );
 	});
 
 	var doGraph = function (value) {
@@ -81,7 +112,7 @@ $().ready(function () {
 			case 'snow':		doSnow();		break;
 			default:			doTemp();		$('#temp').addClass('w3-disabled');	break;
 		}
-		
+
 //        parent.location.hash = value;
 	};
 

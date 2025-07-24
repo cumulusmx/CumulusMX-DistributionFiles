@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Charts 		
+	Page:	Charts
 	File:	charts.html					Ver: aiX-1.0
 	Author:	D.N.C.Thomas			   		Mar 2025
-	Last Edit:	2025/03/22 10:08
+	Last Edit:	2025/07/24 19:15:33
 	Last Check:	2025/03/28
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -22,7 +22,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-		
+
 		<!--	jQuery CDN	-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
@@ -30,15 +30,15 @@
 		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
 
         <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
-		<script src="https://code.highcharts.com/stock/10.3.3/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/10.3.3/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/10.3.3/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/10.3.3/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/10.3.3/modules/boost.js"></script>
+		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
+		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
 		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
-		<script src="https://code.highcharts.com/10.3.3/themes/grid.js"></script>
+		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
 		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
-	
+
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/theme.css">
 		<link rel="stylesheet" href="css/axPro.css">
@@ -72,7 +72,7 @@
 			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
 			<div class="siteWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
 				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				
+
 				<div class="ax-theme7-bak" style="z-index:5">
 					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
 					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
@@ -131,7 +131,7 @@
 				</div>	<!--	End of one column layout	-->
 			</div>
 		</div>
-		
+
 		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
 			<div class="siteWidth">
 				<div class="ax-titleBar ax-padding-small" >
