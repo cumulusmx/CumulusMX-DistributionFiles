@@ -1,4 +1,4 @@
-// Last modified: 2025/02/18 11:12:12
+// Last modified: 2025/07/29 13:58:06
 
 $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
     console.log(message);
@@ -39,7 +39,6 @@ $(document).ready(function() {
     }];
 
     var myTable = $('#sqlcache').DataTable({
-        //pagingType: 'input',
         processing: true,
         serverSide: true,
         searching: true,
@@ -56,7 +55,13 @@ $(document).ready(function() {
             }
         },
         columns: columnDefs,
-        dom: '<"top"Bfip<"clear">>t<"bottom"fip<"clear">>',
+        layout: {
+            top: 'inputPaging',
+            topStart: 'buttons',
+            topEnd: 'search',
+            bottomStart: 'inputPaging',
+            bottomEnd: 'info'
+        },
         select: 'os',
         responsive: false,
         altEditor: true,     // Enable altEditor

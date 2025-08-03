@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartsperiod.js        	Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit: 2025/07/24 22:33:59
+    Last Edit: 2025/08/01 17:15:38
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartsperiod.html
@@ -113,7 +113,7 @@ $(document).ready(function () {
 
 	// get all the required config data before we start using it
     const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
-    const settingsRes = $.ajax({ url: '/api/graphdata/selectachart.json', dataType: 'json' });
+    const settingsRes = $.ajax({ url: '/api/graphdata/selectaperiod.json', dataType: 'json' });
     const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
 
     Promise.all([availRes, settingsRes, configRes])

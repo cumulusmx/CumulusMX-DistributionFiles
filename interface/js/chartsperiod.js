@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/07/24 22:39:31
+// Last modified: 2025/08/01 17:17:30
 
 var chart, avail, config, options;
 var cache = {};
@@ -105,7 +105,7 @@ $(document).ready(function () {
 
     // get all the required config data before we start using it
     const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
-    const settingsRes = $.ajax({ url: '/api/graphdata/selectachart.json', dataType: 'json' });
+    const settingsRes = $.ajax({ url: '/api/graphdata/selectaperiod.json', dataType: 'json' });
     const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
 
     Promise.all([availRes, settingsRes, configRes])
