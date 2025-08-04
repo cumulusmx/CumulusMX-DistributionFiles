@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/04/09 21:42:03",
+	"version": "Last Modified: 2025/08/04 11:40:35",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["Disabled","Sensor 1","Sensor 2","Sensor 3","Sensor 4","Sensor 5","Sensor 6","Sensor 7","Sensor 8","Sensor 9","Sensor 10"],
@@ -264,7 +264,7 @@
 				"includesoiltemp": {
 					"label": "Soil Temp:",
 					"rightLabel": "Include soil temperature",
-					"helper": "Include the soil temperature from sensor 1 in the update",
+					"helper": "Include the soil temperature in the update",
 					"dependencies": {
 						"enabled": true
 					}
@@ -275,6 +275,25 @@
 					"dependencies": {
 						"enabled": true,
 						"includesoiltemp": true
+					}
+				},
+				"includesoilmoisture": {
+					"label": "Soil Moisture:",
+					"rightLabel": "Include soil moisture",
+					"helpers": [
+						"Include the soil moisture the update",
+						"NOTE: The sensor must supply data in percentage, not centibars"
+					],
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"soilmoistsensor": {
+					"label": "Soil moisture sensor number:",
+					"helper": "Soil moisture sensor number",
+					"dependencies": {
+						"enabled": true,
+						"includesoilmoisture": true
 					}
 				}
 			}

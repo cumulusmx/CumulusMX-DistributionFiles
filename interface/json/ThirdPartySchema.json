@@ -165,6 +165,14 @@
 					"type": "integer",
 					"minimum": 1,
 					"maximum": 16
+				},
+				"includesoilmoisture": {
+					"type": "boolean"
+				},
+				"soilmoistsensor": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 16
 				}
 			},
 			"dependencies": {
@@ -174,7 +182,9 @@
 				"includeuv": ["enabled"],
 				"includesolar": ["enabled"],
 				"includesoiltemp": ["enabled"],
-				"soiltempsensor": ["enabled","includesoiltemp"]
+				"soiltempsensor": ["enabled","includesoiltemp"],
+				"includesoilmoisture": ["enabled"],
+				"soilmoistsensor": ["enabled", "includesoilmoisture"]
 			}
 		},
 		"cwop": {
