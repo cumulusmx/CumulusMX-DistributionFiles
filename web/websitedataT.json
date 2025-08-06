@@ -3,7 +3,8 @@
   "useApparent":"<#Option_useApparent>",
   "showSolar":"<#Option_showSolar>",
   "showUV":"<#Option_showUV>",
-  "noaaFormat":"<#Option_noaaFormat>"
+  "noaaFormat":"<#Option_noaaFormat>",
+  "showSnow":"<#Option_showSnow>"
 },
 
 "location":"<#locationJsEnc>",
@@ -81,6 +82,8 @@
 "press":"<#press>",
 "presstrend":"<#presstrend>",
 "presstrendval":"<#presstrendval>",
+"snowdepth":"<#snowDepth>",
+"snow24h":"<#snow24h>",
 
 "tempTH":"<#tempTH>",
 "TtempTH":"<#TtempTH>",
