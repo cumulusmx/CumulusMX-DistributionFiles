@@ -82,6 +82,8 @@
 "press":"<#press>",
 "presstrend":"<#presstrend>",
 "presstrendval":"<#presstrendval>",
+"snowdepth":"<#snowDepth>",
+"snow24h":"<#snow24h>",
 
 "tempTH":"<#tempTH>",
 "TtempTH":"<#TtempTH>",
