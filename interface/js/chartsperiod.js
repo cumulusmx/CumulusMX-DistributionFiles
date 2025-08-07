@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/08/01 17:17:30
+// Last modified: 2025/08/06 22:45:32
 
 var chart, avail, config, options;
 var cache = {};
@@ -192,6 +192,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',
                     month: '%b %y',
@@ -229,7 +230,7 @@ $(document).ready(function () {
             tooltip: {
                 shared: true,
                 split: false,
-                xDateFormat: '%A, %b %e, %H:%M'
+                xDateFormat: "%A, %b %e, " + config.timeformat
             },
             series: [],
             rangeSelector: myRanges

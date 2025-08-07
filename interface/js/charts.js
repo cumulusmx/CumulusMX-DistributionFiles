@@ -1,4 +1,4 @@
-// Last modified: 2025/07/23 23:58:46
+// Last modified: 2025/08/06 22:41:43
 
 var chart, config, doSelect;
 
@@ -83,6 +83,7 @@ $(document).ready(function () {
         // graph configuration
 
         Highcharts.setOptions({
+            credits: {enabled: true},
             time: {
                 timezone: config.tz,
                 useUTC: false
@@ -91,7 +92,19 @@ $(document).ready(function () {
                 style: {
                     fontSize: '1.5rem'
                 }
+            },
+            xAxis: {
+                type: 'datetime',
+                ordinal: false,
+                dateTimeLabelFormats: {
+                    hour: config.timeformat,
+                    day: '%e %b',
+                    week: '%e %b %y',
+                    month: '%b %y',
+                    year: '%Y'
+                }
             }
+
         });
 
         var value = parent.location.hash.replace('#', '');
@@ -188,17 +201,6 @@ var doTemp = function () {
             alignTicks: false
         },
         title: {text: 'Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Temperature (°' + config.temp.units + ')'},
@@ -263,7 +265,7 @@ var doTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -344,17 +346,6 @@ var doPress = function () {
             alignTicks: false
         },
         title: {text: 'Pressure'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Pressure (' + config.press.units + ')'},
@@ -406,7 +397,7 @@ var doPress = function () {
             split: false,
             valueSuffix: ' ' + config.press.units,
             valueDecimals: config.press.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
                 name: 'Pressure',
@@ -442,7 +433,6 @@ var doWindDir = function () {
             alignTicks: false
         },
         title: {text: 'Wind Direction'},
-        credits: {enabled: true},
         boost: {
             useGPUTranslations: false,
             usePreAllocated: true
@@ -461,16 +451,6 @@ var doWindDir = function () {
                     enabled: true,
                     radius : 1
                 }
-            }
-        },
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
             }
         },
         yAxis: [{
@@ -581,17 +561,6 @@ var doWind = function () {
             alignTicks: false
         },
         title: {text: 'Wind Speed'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Wind Speed (' + config.wind.units + ')'},
@@ -644,7 +613,7 @@ var doWind = function () {
             shared: true,
             split: false,
             valueSuffix: ' ' + config.wind.units,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
                 name: 'Wind Speed',
@@ -686,17 +655,6 @@ var doRain = function () {
             alignTicks: true
         },
         title: {text: 'Rainfall'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
@@ -750,7 +708,7 @@ var doRain = function () {
             shared: true,
             split: false,
             valueDecimals: config.rain.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
                 name: 'Daily rain',
@@ -792,17 +750,6 @@ var doHum = function () {
             alignTicks: false
         },
         title: {text: 'Relative Humidity'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Humidity (%)'},
@@ -859,7 +806,7 @@ var doHum = function () {
             split: false,
             valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -905,17 +852,6 @@ var doSolar = function () {
             alignTicks: true
         },
         title: {text: 'Solar'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [],
         legend: {enabled: true},
         plotOptions: {
@@ -950,7 +886,7 @@ var doSolar = function () {
         tooltip: {
             shared: true,
             split: false,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1049,17 +985,6 @@ var doSunHours = function () {
             alignTicks: false
         },
         title: {text: 'Sunshine Hours'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Sunshine Hours'},
@@ -1145,17 +1070,6 @@ var doDailyRain = function () {
             alignTicks: false
         },
         title: {text: 'Daily Rainfall'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Daily Rainfall'},
@@ -1243,17 +1157,6 @@ var doDailyTemp = function () {
             alignTicks: false
         },
         title: {text: 'Daily Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Daily Temperature (°' + config.temp.units + ')'},
@@ -1366,17 +1269,6 @@ var doAirQuality = function () {
             alignTicks: false
         },
         title: {text: 'Air Quality'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'µg/m³'},
@@ -1431,7 +1323,7 @@ var doAirQuality = function () {
             split: false,
             valueSuffix: ' µg/m³',
             valueDecimals: 1,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1475,17 +1367,6 @@ var doExtraTemp = function () {
             alignTicks: false
         },
         title: {text: 'Extra Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Temperature (°' + config.temp.units + ')'},
@@ -1550,7 +1431,7 @@ var doExtraTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1587,17 +1468,6 @@ var doExtraHum = function () {
             alignTicks: false
         },
         title: {text: 'Extra Humidity'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Humidity (%)'},
@@ -1654,7 +1524,7 @@ var doExtraHum = function () {
             split: false,
             valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1692,17 +1562,6 @@ var doExtraDew = function () {
             alignTicks: false
         },
         title: {text: 'Extra Dew Point'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Dew Point (°' + config.temp.units + ')'},
@@ -1767,7 +1626,7 @@ var doExtraDew = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1805,17 +1664,6 @@ var doSoilTemp = function () {
             alignTicks: false
         },
         title: {text: 'Soil Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Temperature (°' + config.temp.units + ')'},
@@ -1880,7 +1728,7 @@ var doSoilTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1917,17 +1765,6 @@ var doSoilMoist = function () {
             alignTicks: false
         },
         title: {text: 'Soil Moisture'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Soil Moisture'},
@@ -1979,7 +1816,7 @@ var doSoilMoist = function () {
             split: false,
             //valueSuffix: ' ' + config.soilmoisture.units,
             valueDecimals: 0,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2017,17 +1854,6 @@ var doLeafWet = function () {
             alignTicks: false
         },
         title: {text: 'Leaf Wetness'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Leaf Wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
@@ -2081,7 +1907,7 @@ var doLeafWet = function () {
             split: false,
             valueSuffix: ' ' + config.leafwet.units,
             valueDecimals: config.leafwet.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2119,17 +1945,6 @@ var doUserTemp = function () {
             alignTicks: false
         },
         title: {text: 'User Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 title: {text: 'Temperature (°' + config.temp.units + ')'},
@@ -2194,7 +2009,7 @@ var doUserTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2231,17 +2046,6 @@ var doCO2 = function () {
             alignTicks: false
         },
         title: {text: 'CO&#8322; Sensor'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
         yAxis: [{
                 // left
                 id: 'co2',
@@ -2287,7 +2091,7 @@ var doCO2 = function () {
         tooltip: {
             shared: true,
             split: true,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges

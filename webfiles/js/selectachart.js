@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2025/07/24 19:08:51
+// Last modified: 2025/08/07 11:46:55
 
 var chart, config, avail, options;
 var settings;
@@ -17,7 +17,7 @@ $(document).ready(function () {
     settings = prefs.load();
 
     const availRes = $.ajax({ url: 'availabledata.json', dataType: 'json' });
-    const configRes = $.ajax({ url: '/graphconfig.json', dataType: 'json' });
+    const configRes = $.ajax({ url: 'graphconfig.json', dataType: 'json' });
 
     Promise.all([availRes, configRes])
     .then(function (results) {
@@ -89,6 +89,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',
                     month: '%b %y',
