@@ -198,6 +198,12 @@ let getPageData = function (resolve, reject) {
 			$('[data-cmx-uv-gauge]').addClass('w3-hide'); // Gauges do not draw correctly if hidden from the start
 		}
 
+		if ( cmx_data.options.showSnow === "1") {
+			$('[data-cmx-Snow]').removeClass('w3-hide');
+		} else {
+			$('[data-cmx-Snow]').addClass('w3-hide');
+		}
+
 		// Update all spans having data-cmxdata with data values
 		$('[data-cmxdata]').each(function () {
 			this.innerHTML = cmx_data[this.dataset.cmxdata];
