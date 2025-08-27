@@ -1,4 +1,4 @@
-// Last modified: 2025/08/07 10:17:28
+// Last modified: 2025/08/27 22:16:29
 
 var chart, config, avail;
 
@@ -59,6 +59,13 @@ $(document).ready(function () {
                     week: '%e %b %y',
                     month: '%b %y',
                     year: '%Y'
+                }
+            },
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat
+                    }
                 }
             }
         });

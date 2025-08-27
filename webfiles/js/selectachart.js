@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2025/08/07 11:46:55
+// Last modified: 2025/08/27 22:14:47
 
 var chart, config, avail, options;
 var settings;
@@ -149,6 +149,13 @@ $(document).ready(function () {
                     }],
                 inputEnabled: false,
                 selected: 1
+            },
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat
+                    }
+                }
             }
         };
 

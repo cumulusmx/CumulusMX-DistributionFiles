@@ -1,4 +1,4 @@
-// Last modified: 2025/08/21 20:17:11
+// Last modified: 2025/08/27 23:11:55
 
 var chart, config, doSelect;
 
@@ -103,8 +103,18 @@ $(document).ready(function () {
                     month: '%b %y',
                     year: '%Y'
                 }
+            },
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat,
+                        day: '%e %b',
+                        week: '%e %b %y',
+                        month: '%b %y',
+                        year: '%Y'
+                    }
+                }
             }
-
         });
 
         var value = parent.location.hash.replace('#', '');
@@ -201,6 +211,17 @@ var doTemp = function () {
             alignTicks: false
         },
         title: {text: '{{TEMPERATURE}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
@@ -346,6 +367,17 @@ var doPress = function () {
             alignTicks: false
         },
         title: {text: '{{PRESSURE}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
@@ -451,6 +483,17 @@ var doWindDir = function () {
                     enabled: true,
                     radius : 1
                 }
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
             }
         },
         yAxis: [{
@@ -561,6 +604,17 @@ var doWind = function () {
             alignTicks: false
         },
         title: {text: '{{WIND_SPEED}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
@@ -628,7 +682,14 @@ var doWind = function () {
                     valueDecimals: config.wind.gustdecimals
                 }
         }],
-        rangeSelector: myRanges
+        rangeSelector: myRanges,
+        navigator: {
+            xAxis: {
+                dateTimeLabelFormats: {
+                    hour: config.timeformat
+                }
+            }
+        }
     };
 
     chart = new Highcharts.StockChart(options);
@@ -655,6 +716,17 @@ var doRain = function () {
             alignTicks: true
         },
         title: {text: '{{RAINFALL}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT}})'},
@@ -750,6 +822,17 @@ var doHum = function () {
             alignTicks: false
         },
         title: {text: '{{RELATIVE_HUMIDITY}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: '{{HUMIDITY}} (%)'},
@@ -852,6 +935,17 @@ var doSolar = function () {
             alignTicks: true
         },
         title: {text: '{{SOLAR}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [],
         legend: {enabled: true},
         plotOptions: {
@@ -1269,6 +1363,17 @@ var doAirQuality = function () {
             alignTicks: false
         },
         title: {text: '{{AIR_QUALITY}}'},
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                hour: config.timeformat,
+                day: '%e %b',
+                week: '%e %b %y',
+                month: '%b %y',
+                year: '%Y'
+            }
+        },
         yAxis: [{
                 // left
                 title: {text: 'µg/m³'},

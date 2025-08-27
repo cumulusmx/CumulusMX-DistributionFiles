@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/08/21 20:32:33
+// Last modified: 2025/08/27 22:10:35
 
 var chart, avail, config, options;
 var settings = {
@@ -165,7 +165,14 @@ $(document).ready(function () {
             xDateFormat: "%A, %b %e, " + config.timeformat
             },
             series: [],
-            rangeSelector: myRanges
+            rangeSelector: myRanges,
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat
+                    }
+                }
+            }
         };
 
         // draw the basic chart framework

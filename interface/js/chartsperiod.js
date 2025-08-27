@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/08/22 11:14:25
+// Last modified: 2025/08/27 22:12:03
 
 var chart, avail, config, options;
 var cache = {};
@@ -233,7 +233,14 @@ $(document).ready(function () {
                 xDateFormat: "%A, %b %e, " + config.timeformat
             },
             series: [],
-            rangeSelector: myRanges
+            rangeSelector: myRanges,
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat
+                    }
+                }
+            }
         };
 
         // draw the basic chart framework
