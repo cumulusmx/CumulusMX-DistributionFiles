@@ -1,25 +1,25 @@
 {
-    "version": "Last Modified: 2025/04/22 16:03:25",
+    "version": "Last Modified: 2025/08/27 15:13:13",
     "fields": {
         "accessible": {
-            "rightLabel": "Enable accessibility features",
-            "helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting."
+            "rightLabel": "{{ENABLE_ACCESSIBILITY}}",
+            "helper": "{{ENABLE_ACCESSIBILITY_HELP1}}"
         },
         "startup": {
             "collapsible": true,
             "collapsed": true,
             "fields": {
                 "startupdelay": {
-                    "helper": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds"
+                    "helper": "{{STARTUP_DELAY_HELP1}}"
                 },
                 "startupdelaymaxuptime" : {
-                    "helper": "The maximum system uptime to apply the delay. If the system uptime is greater than this value then the delay will not be applied. Set to zero to disable (delay will always be applied). Time in seconds"
+                    "helper": "{{STARTUP_DELAY_MAX_UPTIME_HELP1}}"
                 },
                 "startuphostping": {
-                    "helper": "Add a hostname or IP to address to ping at start-up. Cumulus waits until the ping is successful before trying to read from your station. Leave blank to disable"
+                    "helper": "{{STARTUP_HOST_PING_HELP1}}"
                 },
                 "startuppingescape": {
-                    "helper": "Specify a time after which if no ping response is received carry on starting Cumulus MX anyway. Ignored if the host ping field is blank. Time in minutes"
+                    "helper": "{{STARTUP_PING_ESCAPE_HELP1}}"
                 },
                 "startuptask": {
                     "collapsible": true,
@@ -27,16 +27,16 @@
                     "fields": {
                         "task": {
                             "helpers": [
-                                "Enter a task (program/scripts etc) to run before Cumulus MX starts up fully",
-                                "Note: You must enter a full path to the task, unless it is in the Cumulus MX root folder"
+                                "{{STARTUP_TASK_HELP1}}",
+                                "{{STARTUP_TASK_HELP2}}"
                             ]
                         },
                         "taskparams": {
-                            "helper": "Optional parameters for the start-up task"
+                            "helper": "{{STARTUP_TASK_PARAMS_HELP1}}"
                         },
                         "wait": {
-                            "rightLabel": "Wait for task to complete",
-                            "helper": "Should Cumulus wait for the start-up task to complete (terminate) before continuing?"
+                            "rightLabel": "{{STARTUP_TASK_WAIT}}",
+                            "helper": "{{STARTUP_TASK_WAIT_HELP1}}"
                         }
                     }
                 }
@@ -47,14 +47,15 @@
             "collapsed": true,
             "fields": {
                 "datastoppedexit": {
-                    "rightLabel": "Exit on data stopped",
+                    "label": "{{SHUTDOWN_DATA_STOPPED}}:",
+                    "rightLabel": "{{SHUTDOWN_DATA_STOPPED_EXIT}}",
                     "helpers": [
-                        "If a 'data stopped' event occurs because some or all of the station data is not updating, then exit Cumulus MX to prevent a flat line being logged",
-                        "Note: the data stopped event can be suppressed by the station 'No sensor check' setting"
+                        "{{SHUTDOWN_DATA_STOPPED_EXIT_HELP1}}",
+                        "{{SHUTDOWN_DATA_STOPPED_EXIT_HELP2}}"
                     ]
                 },
                 "datastoppedmins": {
-                    "helper": "Specify the number of minutes to wait after the data stopped event for it to clear before exiting",
+                    "helper": "{{SHUTDOWN_DATA_STOPPED_MINS_HELP1}}",
                     "dependencies": {
                         "datastoppedexit": true
                     }
@@ -65,13 +66,13 @@
                     "fields": {
                         "task": {
                             "helpers": [
-                                "Enter a task (program/scripts etc) to run when Cumulus MX is about to exit",
-                                "Note: You must enter a full path to the task, unless it is in the Cumulus MX root folder",
-                                "Note: Cumulus does not wait for this task to complete"
+                                "{{SHUTDOWN_TASK_HELP1}}",
+                                "{{SHUTDOWN_TASK_HELP2}}",
+                                "{{SHUTDOWN_TASK_HELP3}}"
                             ]
                         },
                         "taskparams": {
-                            "helper": "Optional parameters for the shutdown task, this can string can contain web tags"
+                            "helper": "{{SHUTDOWN_TASK_PARAMS_HELP1}}"
                         }
                     }
                 }
@@ -82,56 +83,61 @@
             "collapsed": true,
             "fields": {
                 "debuglogging": {
-                    "rightLabel": "Debug logging",
-                    "helper": "Enable extra diagnostic logging to the MX diags files."
+                    "label": "{{DEBUG}}:",
+                    "rightLabel": "{{LOG_DEBUG}}",
+                    "helper": "{{LOG_DEBUG_HELP1}}"
                 },
                 "datalogging": {
-                    "rightLabel": "Data logging",
-                    "helper": "Enable diagnostic logging to the MX diags files of data transfers from the station."
+                    "label": "{{DATA}}:",
+                    "rightLabel": "{{LOG_DATA}}",
+                    "helper": "{{LOG_DATA_HELP1}}"
                 },
                 "ftplogging": {
-                    "rightLabel": "FTP logging",
+                    "label": "{{FTP}}:",
+                    "rightLabel": "{{LOG_FTP}}",
                     "helpers": [
-                        "Log FTP activity to ftplog.txt and to MX diags for diagnostic purposes",
-                        "Note: SFTP only logs to the MX diags file and PHP upload logging is included in debug/data logging"
+                        "{{LOG_FTP_HELP1}}",
+                        "{{LOG_FTP_HELP2}}"
                     ]
                 },
                 "ftplogginglevel": {
-                    "label" : "FTP logging level:",
+                    "label" : "{{FTP_LOG_LEVEL}}:",
                     "type": "select",
                     "sort": false,
                     "optionLabels": [
-                        "Trace",
-                        "Debug",
-                        "Information",
-                        "Warning",
-                        "Failure",
-                        "Critcal"
+                        "{{LOG_LEVEL_TRACE}}",
+                        "{{LOG_LEVEL_DEBUG}}",
+                        "{{LOG_LEVEL_INFORMATION}}",
+                        "{{LOG_LEVEL_WARNING}}",
+                        "{{LOG_LEVEL_FAILURE}}",
+                        "{{LOG_LEVEL_CRITICAL}}"
                     ],
                     "removeDefaultNone": true,
                     "helpers": [
-                        "Controls the level of FTP activity detail logged to ftp.log",
-                        "Default = Information, only change this if requested for support purposes"
+                        "{{LOG_LEVEL_HELP1}}",
+                        "{{LOG_LEVEL_HELP2}}"
                     ]
                 },
                 "emaillogging": {
-                    "rightLabel": "Email logging",
-                    "helper": "Enable extra SMTP logging to the smtp.log file in the MXdiags folder."
+                    "label": "{{EMAIL}}:",
+                    "rightLabel": "{{LOG_EMAIL}}",
+                    "helper": "{{LOG_EMAIL_HELP1}}"
                 },
                 "spikelogging": {
-                    "rightLabel": "Spike logging",
-                    "helper": "Enable the logging of data spike and limit violations to MX diags files."
+                    "label": "{{SPIKES}}:",
+                    "rightLabel": "{{LOG_SPIKE}}",
+                    "helper": "{{LOG_SPIKE_HELP1}}"
                 },
                 "errorlistlevel": {
-                    "label": "Dashboard latest errors logging level",
+                    "label": "{{DASHBOARD_ERROR_LOG_LEVEL}}",
                     "type": "select",
                     "sort": false,
                     "optionLabels": [
-                        "Warning",
-                        "Error"
+                        "{{LOG_LEVEL_WARNING}}",
+                        "{{LOG_LEVEL_ERROR}}"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "The default of Error only shows more serious issues, set to Warning to get more verbose logging"
+                    "helper": "{{DASHBOARD_ERROR_LOG_LEVEL_HELP1}}"
                 }
             }
         },
@@ -140,16 +146,19 @@
             "collapsed": true,
             "fields": {
                 "stopsecondinstance": {
-                    "rightLabel": "Stop second instance",
-                    "helper": "Prevent multiple instances of Cumulus running. This setting requires a restart to take effect"
+                    "label": "{{SECOND_INSTANCE}}:",
+                    "rightLabel": "{{STOP_SECOND_INSTANCE}}",
+                    "helper": "{{STOP_SECOND_INSTANCE_HELP1}}"
                 },
                 "listwebtags": {
-                    "rightLabel": "List web tags",
-                    "helper": "Every time Cumulus MX is started it will create listing of all web tags in the 'WebTags.txt' file."
+                    "label": "{{WEB_TAGS}}:",
+                    "rightLabel": "{{LIST_WEB_TAGS}}",
+                    "helper": "{{LIST_WEB_TAGS_HELP1}}"
                 },
                 "usewebsockets": {
-                    "rightLabel": "Use WebSockets",
-                    "helper": "Disable the use of WebSockets for real-time data updates. This will make the dashboard use regular HTTP polling instead."
+                    "label": "{{WEB_SOCKETS}}:",
+                    "rightLabel": "{{USE_WEBSOCKETS}}",
+                    "helper": "{{USE_WEBSOCKETS_HELP1}}"
                 }
             }
         },
@@ -157,25 +166,38 @@
             "collapsible": true,
             "collapsed": true,
             "fields": {
+                "displayLang": {
+                    "label": "{{DISPLAY_LANG}}",
+                    "type": "select",
+                    "sort": "false",
+                    "removeDefaultNone": true,
+                    "dataSource": "/api/info/displaylangs.json"
+                },
                 "removespacefromdateseparator": {
-                    "rightLabel": "Remove space character from date separators (if present)",
+                    "label": "{{DATE_SPACES}}:",
+                    "rightLabel": "{{CULTURE_REMOVE_SPACE_FROM_DATE}}",
                     "helpers": [
-                        "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'",
-                        "You MUST restart Cumulus MX after changing this setting for it to take effect"
+                        "{{CULTURE_REMOVE_SPACE_FROM_DATE_HELP1}}",
+                        "{{CULTURE_REMOVE_SPACE_FROM_DATE_HELP2}}"
                     ]
                 },
                 "timeFormat": {
-                    "label": "Dashboard time format",
+                    "label": "{{CULTURE_TIME_FORMAT}}",
                     "type": "select",
                     "sort": false,
                     "optionLabels": [
-                        "Locale default",
-                        "Force 12 hour",
-                        "Force 24 hour"
+                        "{{TIME_FORMAT_DEFAULT}}",
+                        "{{TIME_FORMAT_12H}}",
+                        "{{TIME_FORMAT_24H}}"
                     ],
                     "removeDefaultNone": true,
-                    "helper": "The default shows times on the dashboard in the locale format, or you can force 24 hour or 12 hour times with AM/PM"
+                    "helper": "{{CULTURE_TIME_FORMAT_HELP1}}"
+                },
+                "amPmLowerCase" : {
+                    "label": "{{AM_PM_FORMAT}}",
+                    "rightLabel": "{{TIME_AM_PM_LC}}"
                 }
+
             }
         },
         "security": {
@@ -183,17 +205,18 @@
             "collapsed": true,
             "fields": {
                 "securesettings": {
-                    "rightLabel": "Secure the settings",
-                    "helper": "Enables the requirement for a username/password to edit the settings"
+                    "label": "{{SECURITY_LABEL}}:",
+                    "rightLabel": "{{SECURITY_ENABLE}}",
+                    "helper": "{{SECURITY_ENABLE_HELP1}}"
                 },
                 "username": {
-                    "label": "Username:",
+                    "label": "{{USERNAME}}:",
                     "dependencies": {
                         "securesettings": true
                     }
                 },
                 "password":{
-                    "label": "Password:",
+                    "label": "{{PASSWORD}}:",
                     "type": "password",
                     "dependencies": {
                         "securesettings": true

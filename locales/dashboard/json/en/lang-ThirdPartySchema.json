@@ -1,0 +1,7 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:27",
+    "CUSTOM_HTTP": "Custom HTTP",
+    "CUSTOM_SECONDS": "Custom HTTP call - Seconds Interval",
+    "CUSTOM_MINUTES": "Custom HTTP call - Minutes Interval",
+    "CUSTOM_ROLLOVER": "Custom HTTP call - At Rollover"
+}

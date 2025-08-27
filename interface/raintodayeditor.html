@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:10:28
+Last modified: 2025/08/10 18:03:47
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Rain today editor - Cumulus MX</title>
+    <title>{{TODAYS_RAIN_EDITOR}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -57,37 +57,37 @@ Last modified: 2024/11/23 15:10:28
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Today's Rain Editor</h1>
+        <h1>{{TODAYS_RAIN_EDITOR}}</h1>
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" id="rainform">
                     <div class="form-group">
-                        <label for="inputCurrentCounter" class="control-label col-xs-2">Current rain counter</label>
+                        <label for="inputCurrentCounter" class="control-label col-xs-2">{{CURRENT_RAIN_COUNTER}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputCurrentCounter" step="0.01" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputStartCounter" class="control-label col-xs-2">Start of day rain counter</label>
+                        <label for="inputStartCounter" class="control-label col-xs-2">{{START_OF_DAY_RAIN_COUNTER}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputStartCounter" step="0.01" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputRainMultiplier" class="control-label col-xs-2">Rain multiplier</label>
+                        <label for="inputRainMultiplier" class="control-label col-xs-2">{{RAIN_MULTIPLIER}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputRainMultiplier" step="0.001" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputRainToday" class="control-label col-xs-2">Today's rain</label>
+                        <label for="inputRainToday" class="control-label col-xs-2">{{RAIN_TODAY}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputRainToday" name="raintoday" step="0.01">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
-                            <button type="submit" class="btn btn-primary"  form="rainform">Apply</button>
+                            <button type="submit" class="btn btn-primary"  form="rainform">{{APPLY_CHANGES}}</button>
                         </div>
                     </div>
                 </form>

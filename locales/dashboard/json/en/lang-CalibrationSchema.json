@@ -1,0 +1,19 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:15:46",
+    "EXPLANATION": "Calibration factors to adjust the raw readings from your sensors\\nThe formula applied is: newVal = (rawVal * multiplier) + offset\\n\\nFor some values a non-linear multiplier2 is available...\\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\\n\\nThe general case is the familiar formula: newVal = ax² + bx + c\\nWhere a = multiplier2, b = multiplier, c = offset",
+    "SEA_LEVEL_PRESS": "Sea Level Pressure",
+    "STATION_PRESS": "Station Pressure",
+    "TEMP_OUT": "Outdoor Temperature",
+    "TEMP_IN": "Indoor Temperature",
+    "HUM_OUT": "Outdoor Humidity",
+    "HUM_IN": "Indoor Humidity",
+    "WIND_SPEED": "Wind Speed",
+    "WIND_GUST": "Wind Gust",
+    "WIND_DIR": "Wind Direction",
+    "RAINFALL": "Rainfall",
+    "SOLAR": "Solar",
+    "UV_I": "UV Index",
+    "DEW_POINT": "Dew Point",
+    "WET_BULB": "Wet Bulb Temperature",
+    "SNOWFALL": "Snowfall"
+}

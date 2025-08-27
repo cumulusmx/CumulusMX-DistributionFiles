@@ -1,4 +1,4 @@
-// Last modified: 2025/04/12 11:24:02
+// Last modified: 2025/08/11 17:08:16
 
 var activeDates;
 var defaultSnowHour;
@@ -137,11 +137,11 @@ function deleteEntry() {
     $('#status').text('');
 
     if ('' == date) {
-        $('#status').text('Error: You must select a date first.');
+        $('#status').text('{{ERROR_SELECT_DATE}}');
     } else {
         var body = '{"Date":"' + getDateString(date) + '"}';
 
-        if (!window.confirm("Are you sure you want to delete this record?")) {
+        if (!window.confirm("{{DELETE_ARE_YOU_SURE}}")) {
             return;
         }
 
@@ -182,7 +182,7 @@ function applyEntry() {
     $('#status').text('');
 
     if ('' == date) {
-        $('#status').text('Error: You must select a date first.');
+        $('#status').text('{{ERROR_SELECT_DATE}}');
     } else {
         var body = '{"Date":"' + getDateString(date) + '",' +
             '"Time":"' + $('#inputTime').val() + '",' +
@@ -225,11 +225,11 @@ function uploadFile() {
     $('#status').text('');
 
     if (fileInput.files.length < 1) {
-        alert('You must select a file to upload first!');
+        alert('{{ERROR_SELECT_FILE}}');
         return;
     }
 
-    if (!window.confirm("Are you sure you want to upload this file? All existing data will be deleted.")) {
+    if (!window.confirm("{{UPLOAD_FILE_ARE_YOU_SURE}}")) {
         return;
     }
 

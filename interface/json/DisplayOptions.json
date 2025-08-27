@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/16 16:02:00",
+	"version": "Last Modified: 2025/08/22 21:43:06",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -8,7 +8,7 @@
 		"visibility": {
 			"type": "select",
 			"sort": false,
-			"optionLabels": ["Hidden","Visible","Dashboard Only"],
+			"optionLabels": ["{{OPTION_HIDDEN}}","{{OPTION_VISIBLE}}","{{OPTION_DASHBOARD}}"],
 			"removeDefaultNone": true
 		},
 		"sensors": {
@@ -28,41 +28,41 @@
 			"collapsed": true,
 			"fields": {
 				"useapparent": {
-					"label": "Apparent/Feels Like:",
-					"rightLabel": "Use Apparent Temperature",
+					"label": "{{APPARENT_FEELSLIKE}}:",
+					"rightLabel": "{{APPARENT_FEELSLIKE_LABEL}}",
 					"helpers": [
-						"Enabling this option will display Apparent temperature on the default web site",
-						"Disabling this option will display Feels Like temperature on the default web site"
+						"{{APPARENT_FEELSLIKE_HELP1}}",
+						"{{APPARENT_FEELSLIKE_HELP2}}"
 					]
 				},
 				"displaysolar": {
-					"label": "Solar:",
-					"rightLabel": "Display Solar data",
-					"helpers": ["Enabling this option will display solar data on the default web site"]
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helpers": ["{{SOLAR_HELP1}}"]
 				},
 				"displayuv": {
-					"label": "UV-I:",
-					"rightLabel": "Display UV-I data",
-					"helpers": ["Enabling this option will display UV-I data on the default web site"]
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helpers": ["{{UV_I_HELP1}}"]
 				},
 				"windrosepoints": {
-					"label": "Number of wind rose points:",
+					"label": "{{ROSE_POINTS_LABEL}}:",
 					"type": "select",
 					"removeDefaultNone": true,
 					"sort": false,
 					"optionLabels": [
-						"8 points",
-						"16 points"
+						"{{ROSE_POINTS_OPT1}}",
+						"{{ROSE_POINTS_OPT2}}"
 					],
 					"helpers": [
-						"The number of cardinal points to display on the Wind Rose",
-						"Set this to 8 for Fine Offset stations"
+						"{{ROSE_POINTS_HELP1}}",
+						"{{ROSE_POINTS_HELP2}}"
 					]
 				},
 				"displaysnow": {
-					"label": "Snowfall:",
-					"rightLabel": "Display Snowfall data",
-					"helper": ["Enabling this option will display snowfall data from the Weather Diary on the default web site"]
+					"label": "{{SNOWFALL}}:",
+					"rightLabel": "{{SNOWFALL_LABEL}}",
+					"helper": ["{{SNOWFALL_HELP1}}"]
 				}
 			}
 		},
@@ -71,20 +71,20 @@
 			"collapsed": true,
 			"fields": {
 				"graphhours": {
-					"label": "Chart hours:",
-					"helper": "The number of hours shown on the minute-by-minute charts"
+					"label": "{{CHART_HOURS}}:",
+					"helper": "{{CHART_HOURS_HELP1}}"
 				},
 				"graphdays": {
-					"label": "Chart days:",
-					"helper": "The number of days shown on the daily charts"
+					"label": "{{CHART_DAYS}}:",
+					"helper": "{{CHART_HOURS_HELP1}}"
 				},
 				"colour": {
 					"collapsible": true,
 					"collapsed": true,
 					"helpers": [
-						"Select the data series colours on the dashboard and web site charts",
-						"You can also enter any of 140 standard HTML colour names and they will be translated to hex values",
-						"See the colours here: https://www.w3schools.com/colors/colors_names.asp"
+						"{{COLOUR_HELP1}}",
+						"{{COLOUR_HELP2}}",
+						"{{COLOUR_HELP3}}"
 					],
 					"helpersPosition": "above",
 					"fields": {
@@ -93,35 +93,35 @@
 							"collapsed": true,
 							"fields": {
 								"Temp": {
-									"label": "Outdoor Temperature",
+									"label": "{{TEMP_OUT}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"InTemp": {
-									"label": "Indoor Temperature",
+									"label": "{{TEMP_IN}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"HeatIndex": {
-									"label": "Heat Index",
+									"label": "{{HEAT_INDEX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"DewPoint": {
-									"label": "Dew Point",
+									"label": "{{DEW_POINT}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"WindChill": {
-									"label": "Wind Chill",
+									"label": "{{WIND_CHILL}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"AppTemp": {
-									"label": "Apparent Temperature",
+									"label": "{{APPARENT_TEMP}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"FeelsLike": {
-									"label": "Feels Like",
+									"label": "{{FEELS_LIKE}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Humidex": {
-									"label": "Humidex",
+									"label": "{{HUMIDEX}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -131,11 +131,11 @@
 							"collapsed": true,
 							"fields": {
 								"Hum": {
-									"label": "Outdoor Humidity",
+									"label": "{{HUM_OUT}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"InHum": {
-									"label": "Indoor Humidity",
+									"label": "{{HUM_IN}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -145,7 +145,7 @@
 							"collapsed": true,
 							"fields": {
 								"Press": {
-									"label": "Pressure",
+									"label": "{{PRESSURE}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -155,15 +155,15 @@
 							"collapsed": true,
 							"fields": {
 								"WindGust": {
-									"label": "Wind Speed Gust",
+									"label": "{{WIND_GUST}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"WindAvg": {
-									"label": "Wind Speed Average",
+									"label": "{{WIND_AVG}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"WindRun": {
-									"label": "Wind Run",
+									"label": "{{WIND_RUN}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -173,11 +173,11 @@
 							"collapsed": true,
 							"fields": {
 								"Bearing": {
-									"label": "Wind Bearing",
+									"label": "{{WIND_BEARING}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"BearingAvg": {
-									"label": "Wind Average Bearing",
+									"label": "{{WIND_AVG_BEARING}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -187,11 +187,11 @@
 							"collapsed": true,
 							"fields": {
 								"Rain": {
-									"label": "Rainfall",
+									"label": "{{RAINFALL}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"RainRate": {
-									"label": "Rainfall Rate",
+									"label": "{{RAINFALL_RATE}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -201,19 +201,19 @@
 							"collapsed": true,
 							"fields": {
 								"UV": {
-									"label": "UV Index",
+									"label": "{{UV_INDEX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Solar": {
-									"label": "Solar Irradiation",
+									"label": "{{SOLAR_RAD}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"CurrentSolarMax": {
-									"label": "Solar Theoretical",
+									"label": "{{SOLAR_THEORETICAL}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Sunshine": {
-									"label": "Sunshine Hours",
+									"label": "{{SUNSHINE_HOURS}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -223,47 +223,47 @@
 							"collapsed": true,
 							"fields": {
 								"MaxTemp": {
-									"label": "Maximum Temperature",
+									"label": "{{TEMP_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"AvgTemp": {
-									"label": "Average Temperature",
+									"label": "{{TEMP_AVG}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MinTemp": {
-									"label": "Minimum Temperature",
+									"label": "{{TEMP_MIN}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MaxHeatIndex": {
-									"label": "Maximum Heat Index",
+									"label": "{{HEAT_INDEX_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MaxDewPoint": {
-									"label": "Maximum Dew Point",
+									"label": "{{DEW_POINT_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MinDewPoint": {
-									"label": "Minimum Dew Point",
+									"label": "{{DEW_POINT_MIN}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MaxFeelsLike": {
-									"label": "Maximum Feels Like",
+									"label": "{{FEELSLIKE_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MinFeelsLike": {
-									"label": "Minimum Feels like",
+									"label": "{{FEELSLIKE_MIN}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MaxAppTemp": {
-									"label": "Maximum Apparent Temp",
+									"label": "{{APPARENT_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MinAppTemp": {
-									"label": "Minimum Apparent Temp",
+									"label": "{{APPARENT_MIN}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"MaxHumidex": {
-									"label": "Maximum Humidex",
+									"label": "{{HUMIDEX_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -273,11 +273,11 @@
 							"collapsed": true,
 							"fields": {
 								"Max": {
-									"label": "High Pressure",
+									"label": "{{PRESS_HIGH}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Min": {
-									"label": "Low Pressure",
+									"label": "{{PRESS_LOW}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -287,11 +287,11 @@
 							"collapsed": true,
 							"fields": {
 								"Max": {
-									"label": "Max Humidity",
+									"label": "{{HUM_MAX}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Min": {
-									"label": "Min Humidity",
+									"label": "{{HUM_MIN}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -410,7 +410,7 @@
 									"$ref": "#/definitions/colorpicker"
 								},
 								"co2avg": {
-									"label": "CO&#8322; average",
+									"label": "{{CO2_AVG}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"pm25": {
@@ -418,7 +418,7 @@
 									"$ref": "#/definitions/colorpicker"
 								},
 								"pm25avg": {
-									"label": "PM2.5 average",
+									"label": "{{PM25_AVG}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"pm10": {
@@ -426,15 +426,15 @@
 									"$ref": "#/definitions/colorpicker"
 								},
 								"pm10avg": {
-									"label": "PM10 average",
+									"label": "{{PM10_AVG}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"temp": {
-									"label": "Temperature",
+									"label": "{{TEMPERATURE}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"hum": {
-									"label": "Humidity",
+									"label": "{{HUMIDITY}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -444,11 +444,11 @@
 							"collapsed": true,
 							"fields": {
 								"Depth": {
-									"label": "Snow Depth",
+									"label": "{{SNOW_DEPTH}}",
 									"$ref": "#/definitions/colorpicker"
 								},
 								"Last24h": {
-									"label": "Snowfall in 24hr",
+									"label": "{{SNOW_24H}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -460,7 +460,7 @@
 		"DataVisibility": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "Show or hide data series on the dashboard and web site charts and data pages",
+			"helper": "{{VISIBILITY_HELP}}",
 			"helpersPosition": "above",
 			"fields": {
 				"temperature": {
@@ -468,47 +468,47 @@
 					"collapsed": true,
 					"fields": {
 						"Temp": {
-							"label": "Outdoor Temperature",
+							"label": "{{TEMP_OUT}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"InTemp": {
-							"label": "Indoor Temperature",
+							"label": "{{TEMP_IN}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"HeatIndex": {
-							"label": "Heat Index",
+							"label": "{{HEAT_INDEX}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"DewPoint": {
-							"label": "Dew Point",
+							"label": "{{DEW_POINT}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"WindChill": {
-							"label": "Wind Chill",
+							"label": "{{WIND_CHILL}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"AppTemp": {
-							"label": "Apparent Temperature",
+							"label": "{{APPARENT_TEMP}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"FeelsLike": {
-							"label": "Feels Like",
+							"label": "{{FEELS_LIKE}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"Humidex": {
-							"label": "Humidex",
+							"label": "{{HUMIDEX}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"MaxTemp": {
-							"label": "Daily Maximum Temperature",
+							"label": "{{DAILY_TEMP_MAX}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"AvgTemp": {
-							"label": "Daily Average Temperature",
+							"label": "{{DAILY_TEMP_AVG}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"MinTemp": {
-							"label": "Daily Minimum Temperature",
+							"label": "{{DAILY_TEMP_MIN}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -518,11 +518,11 @@
 					"collapsed": true,
 					"fields": {
 						"Hum": {
-							"label": "Outdoor Humidity",
+							"label": "{{HUM_OUT}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"InHum": {
-							"label": "Indoor Humidity",
+							"label": "{{HUM_IN}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -532,15 +532,15 @@
 					"collapsed": true,
 					"fields": {
 						"UV": {
-							"label": "UV Index",
+							"label": "{{UV_INDEX}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"Solar": {
-							"label": "Solar Irradiation",
+							"label": "{{SOLAR_RAD}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"Sunshine": {
-							"label": "Sunshine Hours",
+							"label": "{{SUNSHINE_HOURS}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -550,11 +550,11 @@
 					"collapsed": true,
 					"fields": {
 						"GrowingDegreeDays1": {
-							"label": "Growing Degree Days series #1",
+							"label": "{{GDD}} #1",
 							"$ref": "#/definitions/visibility"
 						},
 						"GrowingDegreeDays2": {
-							"label": "Growing Degree Days series #2",
+							"label": "{{GDD}} #2",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -564,15 +564,15 @@
 					"collapsed": true,
 					"fields": {
 						"TempSum0": {
-							"label": "Annual Temperature Sum #0",
+							"label": "{{TEMP_SUM}} #0",
 							"$ref": "#/definitions/visibility"
 						},
 						"TempSum1": {
-							"label": "Annual Temperature Sum #1",
+							"label": "{{TEMP_SUM}} #1",
 							"$ref": "#/definitions/visibility"
 						},
 						"TempSum2": {
-							"label": "Annual Temperature Sum #2",
+							"label": "{{TEMP_SUM}} #2",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -582,7 +582,7 @@
 					"collapsed": true,
 					"fields": {
 						"ChillHrs": {
-							"label": "Chill Hours",
+							"label": "{{CHILL_HRS}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -664,7 +664,7 @@
 										"$ref": "#/definitions/visibility"
 									},
 									"pmavg": {
-										"label": "PM2.5 Avg",
+										"label": "{{PM25_AVG}}",
 										"$ref": "#/definitions/visibility"
 									},
 									"pm10": {
@@ -672,15 +672,15 @@
 										"$ref": "#/definitions/visibility"
 									},
 									"pm10avg": {
-										"label": "PM10 Avg",
+										"label": "{{PM10_AVG}}",
 										"$ref": "#/definitions/visibility"
 									},
 									"temp": {
-										"label": "Temperature",
+										"label": "{{TEMPERATURE}}",
 										"$ref": "#/definitions/visibility"
 									},
 									"hum": {
-										"label": "Humidity",
+										"label": "{{HUMIDITY}}",
 										"$ref": "#/definitions/visibility"
 									}
 								}
@@ -697,7 +697,7 @@
 							"$ref": "#/definitions/visibility"
 						},
 						"co2avg": {
-							"label": "CO&#8322; average",
+							"label": "{{CO2_AVG}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"pm25": {
@@ -705,7 +705,7 @@
 							"$ref": "#/definitions/visibility"
 						},
 						"pm25avg": {
-							"label": "PM2.5 average",
+							"label": "{{PM25_AVG}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"pm10": {
@@ -713,15 +713,15 @@
 							"$ref": "#/definitions/visibility"
 						},
 						"pm10avg": {
-							"label": "PM10 average",
+							"label": "{{PM10_AVG}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"temp": {
-							"label": "Temperature",
+							"label": "{{TEMPERATURE}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"hum": {
-							"label": "Humidity",
+							"label": "{{HUMIDITY}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}
@@ -731,11 +731,11 @@
 					"collapsed": true,
 					"fields": {
 						"Depth": {
-							"label": "Daily Snow Depth",
+							"label": "{{SNOW_DEPTH_DAILY}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"Last24h": {
-							"label": "Daily Snowfall in 24h",
+							"label": "{{SNOW_24h_DAILY}}",
 							"$ref": "#/definitions/visibility"
 						},
 						"CurrLast24h": {

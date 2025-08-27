@@ -1,34 +1,40 @@
 {
-	"version": "Last Modified: 2025/06/22 22:07:29",
+	"version": "Last Modified: 2025/08/21 19:36:49",
 	"fields":{
 		"location": {
 			"fields": {
 				"sitename": {
-					"label": "Name",
+					"label": "{{STATION_NAME}}",
 					"type": "text",
-					"placeholder": "My Station Name",
+					"placeholder": "{{STATION_NAME_PLACEHOLDER}}",
 					"focus": true,
-					"helper": "A short name for your weather station. This will be used in headings and reports etc"
+					"helper": "{{STATION_NAME_HELP1}}"
 				},
 				"description": {
-					"label": "Description",
+					"label": "{{STATION_DESCRIPTION}}",
 					"type": "text",
-					"placeholder": "About my station",
-					"helper": "A longer description of your weather station. This will be used to add additional information to the web pages"
+					"placeholder": "{{STATION_DESCRIPTION_PLACEHOLDER}}",
+					"helper": "{{STATION_DESCRIPTION_HELP1}}"
 				},
 				"latitude": {
-					"label": "Latitude",
-					"placeholder": "e.g. 53.2314",
-					"helper": "Enter your latitude as a decimal degrees value (+ve = North, -ve = South)."
+					"label": "{{LATITUDE}}",
+					"placeholder": "{{LATITUDE_PLACEHOLDER}}",
+					"helper": "{{LATITUDE_HELP1}}"
 				},
 				"longitude": {
-					"label": "Longitude",
-					"placeholder": "e.g. -2.5643",
-					"helper": "Enter your longitude as a decimal degrees value (+ve = East, -ve = West)."
+					"label": "{{LONGITUDE}}",
+					"placeholder": "{{LONGITUDE_PLACEHOLDER}}",
+					"helper": "{{LONGITUDE_HELP1}}"
 				},
 				"altitude": {
-					"label": "Altitude",
-					"helper": "Enter the elevation of your weather station above sea level. This is used for pressure calculations so get it as accurate as you can"
+					"label": "{{ALTITUDE}}",
+					"helper": "{{ALTITUDE_HELP1}}"
+				},
+				"altitudeunit": {
+					"optionLabels": [
+						"{{FEET}}",
+						"{{METRES}}"
+					]
 				}
 			}
 		},
@@ -36,7 +42,7 @@
 		"units": {
 			"fields": {
 				"temp": {
-					"label": "Temperature",
+					"label": "{{TEMPERATURE}}",
 					"type": "select",
 					"removeDefaultNone": true,
 					"sort": false,
@@ -46,37 +52,37 @@
 					]
 				},
 				"wind": {
-					"label": "Wind",
+					"label": "{{WIND}}",
 					"type": "select",
 					"removeDefaultNone": true,
 					"sort": false,
 					"optionLabels": [
-						"Metres per second (m/s)",
-						"Miles per hour (mph)",
-						"Kilometres per hour (km/h)",
-						"Knots (kts)"
+						"{{WIND_MS}}",
+						"{{WIND_MPH}}",
+						"{{WIND_KPH}}",
+						"{{Knots (kts)}}"
 					]
 				},
 				"pressure": {
-					"label": "Pressure",
+					"label": "{{PRESSURE}}",
 					"type": "select",
 					"removeDefaultNone": true,
 					"sort": false,
 					"optionLabels": [
-						"Millibar (mbar)",
-						"Hectopascal (hPa)",
-						"Inches of mercury (inHg)",
-						"Kilopascal (kPa)"
+						"{{PRESS_MB}}",
+						"{{PRESS_HPA}}",
+						"{{PRESS_INHG}}",
+						"{{PRESS_KPA}}"
 					]
 				},
 				"rain": {
-					"label": "Rain",
+					"label": "{{RAIN}}",
 					"type": "select",
 					"removeDefaultNone": true,
 					"sort": false,
 					"optionLabels": [
-						"Millimetres",
-						"Inches"
+						"{{MILLIMETRES}}",
+						"{{INCHES}}"
 					]
 				},
 				"snow": {
@@ -84,12 +90,12 @@
 					"removeDefaultNone": true,
 					"sort": false,
 					"optionLabels": [
-						"Centimetres",
-						"Inches"
+						"{{CENTIMETRES}}",
+						"{{INCHES}}"
 					]
 				}
 			},
-			"helper": "Think carefully, you cannot change these later and retain any existing data"
+			"helper": "{{UNITS_HELP1}}"
 		},
 
 		"station": {
@@ -99,54 +105,54 @@
 					"fieldClass": "hideme"
 				},
 				"manufacturer": {
-					"label": "Manufacturer",
+					"label": "{{MANUFACTURER}}",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						" Select Manufacturer",
+						" {{MANUFACTURER_SELECT}}",
 						"Davis",
-						"Ecowitt and clones",
-						"Fine Offset (legacy models) and clones",
+						"{{MANUFACTURER_ECOWITT_CLONES}}",
+						"{{MANUFACTURER_FO_CLONES}}",
 						"WeatherFlow",
 						"Weather Underground",
 						"Ambient",
-						"JSON Data Input",
-						"Oregon Scientific (serial)",
-						"Oregon Scientific (USB)",
+						"{{MANUFACTURER_JSON}}",
+						"{{MANUFACTURER_OS_SERIAL}}",
+						"{{MANUFACTURER_OS_USB}}",
 						"Instromet",
 						"LaCrosse",
-						"Cumulus MX Simulator"
+						"{{MANUFACTURER_SIMULATOR}}"
 					]
 				},
 				"stationtype": {
-					"label": "Station type",
+					"label": "{{STATION_TYPE}}",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
 					"hideInitValidationError": true
 				},
 				"stationmodel": {
-					"label": "Station&nbsp;model",
+					"label": "{{STATION_MODEL}}",
 					"type": "text",
-					"helper": "A descriptive name for your station type, this will default to the station type if blank. You can change this to whatever you like"
+					"helper": "{{STATION_MODEL_HELP1}}"
 				},
 				"firstRun": {
 					"fieldClass": "hideme"
 				},
 				"beginDate": {
-					"label": "Backfill Date",
+					"label": "{{BACKFILL_DATE}}",
 					"type": "date",
 					"dateFormat": "YYYY-MM-DD",
 					"dependencies": {
 						"firstRun": "true"
 					},
 					"helpers": [
-						"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
-						"This is the 'Date of birth' for your Cumulus install, it defaults to the first day you run the program.",
-						"You can set this to the first date for which you have historic data that Cumulus will be able to import.",
-						"This can only happen if you have correctly configured your station and any details required to access the historic data.",
-						"The backfill will happen automaticlly when you restart Cumulus after configuring the station.",
-						"NOTE: Backfilling an extended period of time (month/years) WILL TAKE A LONG TIME, so be patient!"
+						"{{BACKFILL_DATE_HELP1}}",
+						"{{BACKFILL_DATE_HELP2}}",
+						"{{BACKFILL_DATE_HELP3}}",
+						"{{BACKFILL_DATE_HELP4}}",
+						"{{BACKFILL_DATE_HELP5}}",
+						"{{BACKFILL_DATE_HELP6}}"
 					]
 				},
 
@@ -156,14 +162,14 @@
 							"label": "Type",
 							"type": "select",
 							"optionLabels": [
-								"Serial",
-								"TCP/IP"
+								"{{SERIAL}}",
+								"{{TCP_IP}}"
 							],
 							"removeDefaultNone": true
 						},
 						"comportname": {
-							"label": "Serial port name",
-							"helper": "Your station serial port (real or virtual)",
+							"label": "{{SERIAL_PORT_NAME}}",
+							"helper": "{{SERIAL_PORT_NAME_HELP1}}",
 							"dependencies": {
 								"conntype": 0
 							}
@@ -171,13 +177,13 @@
 						"tcpsettings": {
 							"fields": {
 								"ipaddress": {
-									"label": "IP address",
+									"label": "{{IP_ADDRESS}}",
 									"type": "ipv4"
 								},
 								"disconperiod": {
-									"label": "Disconnect period",
+									"label": "{{DISCONNECT_PERIOD}}",
 									"numericEntry": true,
-									"helper": "Period to disconnect once a minute from IP loggers to allow them to upload to WeatherLink.com. Time in seconds"
+									"helper": "{{DISCONNECT_PERIOD_HELP1}}"
 								}
 							},
 							"dependencies": {
@@ -195,99 +201,99 @@
 						"network": {
 							"fields": {
 								"autoDiscover": {
-									"label": "Auto-Discovery",
-									"rightLabel": "Enable Auto-Discovery",
-									"helper": "Enable auto-discovery of your WLL devices IP address - do not enable if you have more than one device"
+									"label": "{{AUTO_DISCOVERY}}",
+									"rightLabel": "{{AUTO_DISCOVERY_ENABLE}}",
+									"helper": "{{WLL_AUTO_DISCOVERY_HELP1}}"
 								},
 								"ipaddress": {
-									"label": "IP address",
+									"label": "{{IP_ADDRESS}}",
 									"type": "ipv4",
 									"helpers": [
-										"Enter the IP address of your device if not using auto-discovery",
-										"This will be populated for you if auto-discovery is successful"
+										"{{IP_ADDRESS_HELP1}}",
+										"{{IP_ADDRESS_HELP2}}"
 									]
 								}
 							}
 						},
 						"primary": {
-							"helpers": ["You can configure extra sensors in the main Station Settings page after completing this wizard"],
+							"helpers": ["{{DAVIS_SENSORS_HELP1}}"],
 							"fields": {
 								"wind": {
-									"label": "Wind sensor Transmitter ID:",
+									"label": "{{WIND_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Wind sensor"
+									"helper": "{{WIND_SENSOR_TX_ID_HELP1}}"
 								},
 								"temphum": {
-									"label": "Temperature/Humidity Transmitter ID:",
+									"label": "{{TH_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+									"helper": "{{TH_SENSOR_TX_ID_HELP1}}"
 								},
 								"rain": {
-									"label": "Rain sensor Transmitter ID:",
+									"label": "{{RAIN_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Rain sensor"
+									"helper": "{{RAIN_SENSOR_TX_ID_HELP1}}"
 								},
 								"solar": {
-									"label": "Solar sensor Transmitter ID:",
+									"label": "{{SOLAR_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
-									"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+									"optionLabels": ["{{NONE}}","1","2","3","4","5","6","7","8"],
+									"helper": "{{SOLAR_SENSOR_TX_ID_HELP1}}"
 								},
 								"uv": {
 									"label": "UV sensor Transmitter ID:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
-									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+									"optionLabels": ["{{NONE}}","1","2","3","4","5","6","7","8"],
+									"helper": "{{UV_SENSOR_TX_ID_HELP1}}"
 								}
 							}
 						},
 						"api": {
 							"fields": {
 								"apiKey": {
-									"label": "WeatherLink APIv2 key",
-									"placeholder": "e.g. m7olk3u2ajylt6rjucsap48bmhbvudki",
+									"label": "{{WL_API_KEY}}",
+									"placeholder": "{{WL_API_KEY_PLACEHOLDER}}",
 									"helpers": [
-										"Enter your WeatherLink.com APIv2 key",
-										"Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
+										"{{WL_API_KEY_HELP1}}",
+										"{{WL_API_KEY_HELP2}}"
 									]
 								},
 
 								"apiSecret": {
-									"label": "WeatherLink APIv2 secret",
-									"placeholder": "e.g. d4f1mony2a38jfy5f7nzg6ys24tptjrk",
+									"label": "{{WL_API_SECRET}}",
+									"placeholder": "{{WL_API_SECRET_PLACEHOLDER}}",
 									"type": "password",
 									"helpers": [
-										"Enter your WeatherLink.com APIv2 secret",
-										"Leave this blank if you do not have a WeatherLink.com Pro/Pro+ subscription"
+										"{{WL_API_SECRET_HELP1}}",
+										"{{WL_API_SECRET_HELP2}}"
 									]
 								},
 								"apiStationId": {
-									"label": "Your device id on WeatherLink",
-									"placeholder": "e.g. 89281",
+									"label": "{{WL_DEVICE_ID}}",
+									"placeholder": "{{WL_DEVICE_ID_PLACEHOLDER}}",
 									"helpers": [
-										"You can enter the station id, or the station uuid (below)",
-										"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
-										"Leave this at default -1 if you do not have a WeatherLink.com Pro/Pro+ subscription"
+										"{{WL_DEVICE_ID_HELP1}}",
+										"{{WL_DEVICE_ID_HELP2}}",
+										"{{WL_DEVICE_ID_HELP3}}"
 									]
 								},
 								"apiStationUuid": {
-									"label": "Your device uuid on WeatherLink:",
+									"label": "{{WL_DEVICE_UUID}}:",
 									"helpers": [
-										"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
-										"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
+										"{{WL_DEVICE_UUID_HELP1}}",
+										"{{WL_DEVICE_UUID_HELP2}}'"
 									]
 								}
 							}
@@ -305,47 +311,47 @@
 				"daviscloud": {
 					"fields": {
 						"primary": {
-							"helpers": ["You can configure extra sensors in the main Station Settings page after completing this wizard"],
+							"helpers": ["Y{{DAVIS_SENSORS_HELP1}}"],
 							"fields": {
 								"wind": {
-									"label": "Wind sensor Transmitter ID:",
+									"label": "{{WIND_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Wind sensor"
+									"helper": "{{WIND_SENSOR_TX_ID_HELP1}}"
 								},
 								"temphum": {
-									"label": "Temperature/Humidity Transmitter ID:",
+									"label": "{{TH_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+									"helper": "{{TH_SENSOR_TX_ID_HELP1}}"
 								},
 								"rain": {
-									"label": "Rain sensor Transmitter ID:",
+									"label": "{{RAIN_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
 									"optionLabels": ["1","2","3","4","5","6","7","8"],
-									"helper": "Select the ISS transmitter ID for your Rain sensor"
+									"helper": "{{RAIN_SENSOR_TX_ID_HELP1}}"
 								},
 								"solar": {
-									"label": "Solar sensor Transmitter ID:",
+									"label": "{{SOLAR_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
-									"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+									"optionLabels": ["{{NONE}}","1","2","3","4","5","6","7","8"],
+									"helper": "{{SOLAR_SENSOR_TX_ID_HELP1}}"
 								},
 								"uv": {
-									"label": "UV sensor Transmitter ID:",
+									"label": "{{UV_SENSOR_TX_ID}}:",
 									"type": "select",
 									"sort": false,
 									"removeDefaultNone": true,
-									"optionLabels": ["None","1","2","3","4","5","6","7","8"],
-									"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+									"optionLabels": ["{{NONE}}","1","2","3","4","5","6","7","8"],
+									"helper": "{{UV_SENSOR_TX_ID_HELP1}}"
 								}
 							},
 							"dependencies": {
@@ -355,31 +361,30 @@
 						"api": {
 							"fields": {
 								"apiKey": {
-									"label": "WeatherLink APIv2 key",
-									"placeholder": "e.g. m7olk3u2ajylt6rjucsap48bmhbvudki",
-									"helper": "Enter your WeatherLink.com APIv2 key"
+									"label": "{{WL_API_KEY}}",
+									"placeholder": "{{WL_API_KEY_PLACEHOLDER}}",
+									"helper": "{{WL_API_KEY_HELP1}}"
 								},
 
 								"apiSecret": {
-									"label": "WeatherLink APIv2 secret",
+									"label": "{{WL_API_SECRET}}",
 									"type": "password",
-									"placeholder": "e.g. d4f1mony2a38jfy5f7nzg6ys24tptjrk",
-									"helper": "Enter your WeatherLink.com APIv2 secret"
+									"placeholder": "{{WL_API_SECRET_PLACEHOLDER}}",
+									"helper": "{{WL_API_SECRET_HELP1}}"
 								},
 								"apiStationId": {
-									"label": "Your device id on WeatherLink",
-									"placeholder": "e.g. 89281",
+									"label": "{{WL_DEVICE_ID}}",
+									"placeholder": "{{WL_DEVICE_ID_PLACEHOLDER}}",
 									"helpers": [
-										"You can enter the station id, or the station uuid (below)",
-										"Enter the station id used for your device in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
-										"Leave this at default -1 if you do not have a WeatherLink.com Pro/Pro+ subscription"
+										"{{WL_DEVICE_ID_HELP1}}",
+										"{{WL_DEVICE_ID_HELP2}}"
 									]
 								},
 								"apiStationUuid": {
-									"label": "Your device uuid on WeatherLink:",
+									"label": "WL_DEVICE_UUID:",
 									"helpers": [
-										"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
-										"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
+										"{{WL_DEVICE_UUID_HELP1}}",
+										"{{WL_DEVICE_UUID_HELP2}}"
 									]
 								}
 							}
@@ -397,23 +402,23 @@
 				"gw1000": {
 					"fields": {
 						"autoDiscover": {
-							"label": "Auto-Discovery",
-							"rightLabel": "Enable Auto-Discovery",
-							"helper": "Enable auto-discovery of your Ecowitt devices IP address - do not enable if you have more than one device"
+							"label": "{{AUTO_DISCOVERY}}",
+							"rightLabel": "{{AUTO_DISCOVERY_ENABLE}}",
+							"helper": "{{GW_AUTO_DISCOVERY_HELP1}}"
 						},
 						"ipaddress": {
-							"label": "IP address",
+							"label": "{{IP_ADDRESS}}",
 							"type": "ipv4",
 							"helpers": [
-								"Enter the IP address of your device if not using auto-discovery",
-								"This will be populated for you if auto-discovery is successful"
+								"{{IP_ADDRESS_HELP1}}",
+								"{{IP_ADDRESS_HELP2}}"
 							]
 						},
 						"macaddress": {
-							"label": "MAC address (read the help below!)",
+							"label": "{{GW_MAC_ADDRESS}}",
 							"helpers": [
-								"Populated by Cumulus when using auto-discovery.",
-								"Do not edit unless you change your Ecowitt device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+								"{{GW_MAC_ADDRESS_HELP1}}",
+								"{{GW_MAC_ADDRESS_HELP2}}"
 							]
 						}
 					},
@@ -425,18 +430,18 @@
 				"ecowitthttpapi": {
 					"fields": {
 						"ipaddress": {
-							"label": "IP address:",
+						"label": "{{IP_ADDRESS}}:",
 							"type": "ipv4",
 							"helpers": [
-								"The IPv4 address of your station or gateway device"
+								"{{ECO_IP_ADDRESS_HELP1}}"
 							]
 						},
 						"usesdcard": {
-							"label": "SD Card:",
-							"rightLabel": "Use the SD card data",
+							"label": "{{SD_CARD}}:",
+							"rightLabel": "{{SD_CARD_LABEL}}",
 							"helpers": [
-								"Use the data from the SD card in the station or gateway device for historical data",
-								"NOTE: This feature is only supported by some devices"
+								"{{SD_CARD_HELP1}}",
+								"{{SD_CARD_HELP2}}"
 							]
 						}
 					},
@@ -448,13 +453,25 @@
 				"weatherflow": {
 					"fields": {
 					"deviceid": {
-					"label" : "Device Id",
-						"rightlabel": "Tempest Device Id",
-						"helper": "Get this from the weatherflow app"
+					"label" : "{{DEVICE_ID}}",
+						"rightlabel": "{{TEMPEST_DEVICE_ID_LABEL}}",
+						"helper": "{{TEMPEST_DEVICE_ID_HELP1}}"
 					},
-					"tcpport": {"label": "TCP/IP Port", "helper": "TCP/IP port to listen on. Don't change unless you know what you're doing."},
-					"token": {"label": "Security Token", "helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"},
-					"dayshistory":{"label": "History Days Import", "helpers":["Number of days to import from the WeatherFlow website.","A large amount of historical data may take a while to import."]}
+					"tcpport": {
+						"label": "{{TCP_IP_PORT}}",
+						"helper": "{{TEMPEST_TCP_IP_PORT_HELP1}}"
+					},
+					"token": {
+						"label": "{{SECURITY_TOKEN}}",
+						"helper": "{{TEMPEST_SECURITY_TOKEN_HELP1}}"
+					},
+					"dayshistory": {
+						"label": "{{HISTORY_IMPORT}}",
+						"helpers": [
+							"{{HISTORY_IMPORT_HELP1}}",
+							"{{HISTORY_IMPORT_HELP2}}"
+							]
+						}
 					},
 					"dependencies": {
 						"stationid": 16
@@ -464,17 +481,17 @@
 				"fineoffset": {
 					"fields": {
 						"syncreads": {
-							"label": "Synchronise",
-							"rightLabel": "Enable Synchronised Reads",
-							"helper": "Attempts to synchronise console reads to avoid clashing with the console writing the data"
+							"label": "{{SYNCHRONISE}}",
+							"rightLabel": "{{SYNCHRONISE_LABEL}}",
+							"helper": "{{SYNCHRONISE_HELP1}}"
 						},
 						"readavoid": {
-							"label": "Read Avoid Period",
+							"label": "{{READ_AVOID}}",
 							"numericEntry": true,
 							"helpers": [
-								"The time span around the synchronised read to avoid reading from the console.",
-								"The default 3 seconds means do not read from  3 secs before to 3 secs after the expected write time.",
-								 "Time in seconds"
+								"{{READ_AVOID_HELP1}}",
+								"{{READ_AVOID_HELP2}}",
+								 "{{READ_AVOID_HELP3}}"
 							]
 						}
 					},
@@ -486,13 +503,13 @@
 				"easyw": {
 					"fields": {
 						"interval": {
-							"label": "File Read Interval",
+							"label": "{{FILE_READ_INTERVAL}}",
 							"numericEntry": true,
-							"helpers": ["How often to read the EasyWeather data file in minutes"]
+							"helpers": ["{{FILE_READ_INTERVAL_HELP1}}"]
 						},
 						"filename": {
-							"label": "Filename",
-							"helpers": ["Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"]
+							"label": "{{FILENAME}}",
+							"helpers": ["{{EW_FILENAME_HELP1}}"]
 						}
 					},
 					"dependencies": {
@@ -503,13 +520,13 @@
 				"imet": {
 					"fields": {
 						"comportname": {
-							"label": "Serial port name",
-							"helper": "Enter the serial port name via a serial port (real or virtual)"
+							"label": "{{SERIAL_PORT_NAME}}",
+							"helper": "{{SERIAL_PORT_NAME_HELP1}}"
 						},
 						"baudrate": {
-							"label": "Serial Baud Rate",
+							"label": "{{SERIAL_PORT_BAUD}}",
 							"removeDefaultNone": true,
-							"helper": "Serial port baud rate in bps"
+							"helper": "{{SERIAL_PORT_BAUD_HELP1}}"
 						}
 					},
 					"dependencies": {
@@ -520,8 +537,8 @@
 				"wmr928": {
 					"fields": {
 						"comportname": {
-							"label": "Serial port name",
-							"helper": "Enter the serial port name via a serial port (real or virtual)"
+							"label": "{{SERIAL_PORT_NAME}}",
+							"helper": "{{SERIAL_PORT_NAME_HELP1}}"
 						}
 					},
 					"dependencies": {
@@ -531,9 +548,9 @@
 
 				"http-wunder": {
 					"helpers": [
-						"Configure your station to send data to Cumulus using the Wunderground protocol",
-						"Note: If possible use the Ecowitt protocol rather than this one",
-						"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
+						"{{WUNDER_HELP1}}",
+						"{{WUNDER_HELP2}}",
+						"{{WUNDER_HELP3}}"
 					],
 					"dependencies": {
 						"stationid": 13
@@ -541,8 +558,8 @@
 				},
 				"http-ecowitt": {
 					"helpers": [
-						"Configure your Ecowitt station, or GW-XX00 device to send data to Cumulus using the Ecowitt protocol",
-						"In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
+						"{{ECOW_MESSAGE1}}",
+						"{{ECOW_MESSAGE2}}"
 					],
 					"dependencies": {
 						"stationid": 14
@@ -550,8 +567,8 @@
 				},
 				"http-ambient": {
 					"helpers": [
-						"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
-						"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br>Interval: 20"
+						"{{AMB_HELP1}}",
+						"{{AMB_HELP2}}"
 					],
 					"dependencies": {
 						"stationid": 15
@@ -561,35 +578,35 @@
 					"helpersPosition": "above",
 					"fields": {
 						"applicationkey": {
-							"label": "Application Key:",
+							"label": "{{APPLICATION_KEY}}:",
 							"type": "password",
-							"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
+							"helper": "{{APPLICATION_KEY_HELP1}}"
 						},
 						"userkey": {
-							"label": "API Key:",
+							"label": "{{API_KEY}}:",
 							"type": "password",
-							"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
+							"helper": "{{API_KEY_HELP1}}"
 						},
 						"mac": {
-							"label": "Station MAC/IMEI address",
+							"label": "{{ECOW_MAC_EMEI}}",
 							"helpers": [
-								"Enter the MAC/IMEI address of your station/gateway.",
-								"MAC format is  XX:XX:XX:XX:XX:XX",
-								"IMEI format is 15 or 16 digits",
-								"You can find this on your device in the Ecowitt WS View or WS View Plus app"
+								"{{ECOW_MAC_EMEI_HELP1}}",
+								"{{ECOW_MAC_EMEI_HELP2}}",
+								"{{ECOW_MAC_EMEI_HELP3}}",
+								"{{ECOW_MAC_EMEI_HELP4}}"
 							],
 							"dependencies": {
 								"stationid": [14,18,22]
 							}
 						},
 						"interval": {
-							"label": "Update interval (minutes):",
+							"label": "{{UPDATE_INTERVAL_MINS}}:",
 							"type": "select",
 							"sort": false,
-							"optionLabels": ["1 minute","2 minutes","3 minutes","4 minutes","5 minutes","10 minutes"],
+							"optionLabels": ["{{MINS01}}","{{MINS02}}","{{MINS03}}","{{MINS04}}","{{MINS05}}","{{MINS10}}"],
 							"removeDefaultNone": true,
 							"helpers": [
-								"How often your station uploads to the Ecowitt.net web site"
+								"{{ECOW_UPDATE_INTERVAL_HELP1}}"
 							],
 							"dependencies": {
 								"stationid": [18]
@@ -607,18 +624,18 @@
 				"jsonstation": {
 					"fields": {
 						"conntype": {
-							"label": "Data Source:",
+							"label": "{{JSON_DATA_SOURCE}}:",
 							"type": "select",
 							"optionLabels": [
-								"From file",
-								"HTTP POST",
-								"MQTT Topic"
+								"{{JSON_DATA_SOURCE_FILE}}",
+								"{{JSON_DATA_SOURCE_HTTP}}",
+								"{{JSON_DATA_SOURCE_MQTT}}"
 							],
 							"removeDefaultNone": true
 						},
 						"filename": {
-							"label": "File Name:",
-							"helper": "Enter the path/filename of the file which will contain your JSON data",
+							"label": "{{FILENAME}}:",
+							"helper": "{{JSON_FILENAME_HELP1}}",
 							"dependencies": {
 								"conntype": 0
 							}
@@ -626,53 +643,53 @@
 						"dummy": {
 							"fieldClass": "displayonly",
 							"helpers": [
-								"The data must be sent as a HTTP POST message with the JSON text in the request body.",
-								"Configure the source server to send the request to:-<br>http://[CMX_IP_Address]:8998/station/json"
+								"{{JSON_DATA_SOURCE_HTTP_HELP1}}",
+								"{{JSON_DATA_SOURCE_HTTP_HELP2}}"
 							],
 							"dependencies": {
 								"conntype": 1
 							}
 						},
 						"mqttserver": {
-							"label": "MQTT Server:",
-							"helper": "Enter the name/IP of your MQTT server",
+							"label": "{{MQTT_SERVER}}:",
+							"helper": "{{MQTT_SERVER_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"mqttport": {
-							"label": "MQTT port:",
-							"helper": "TCP/IP port for your MQTT server. Default is 1883",
+							"label": "{{MQTT_PORT}}:",
+							"helper": "{{MQTT_PORT_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"mqttuser": {
-							"label": "User Name:",
-							"helper": "Enter the user name for your MQTT server. Leave blank for anonymous access",
+							"label": "{{USER_NAME}}:",
+							"helper": "{{JSON_USER_NAME_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"mqttpass": {
-							"label": "Password:",
+							"label": "{{PASSWORD}}:",
 							"type": "password",
-							"helper": "Enter the user password for your MQTT server. Leave blank for anonymous access",
+							"helper": "{{JSON_PASSWORD_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"mqtttopic": {
-							"label": "Topic:",
-							"helper": "Enter the topic on your MQTT server that supplies the data",
+							"label": "{{MQTT_TOPIC}}:",
+							"helper": "{{JSON_TOPIC_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"mqtttls": {
-							"label": "Use TLS:",
-							"rightLabel": "MQTT Server requires TLS",
-							"helper": "Enable if TLS is required by your server, if you host the server this is unlikely",
+							"label": "{{MQTT_TLS}}:",
+							"rightLabel": "{{MQTT_TLS_LABEL}}",
+							"helper": "{{MQTT_TLS_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
@@ -688,31 +705,35 @@
 		"logs": {
 			"fields": {
 				"loginterval": {
-					"label": "Log interval",
+					"label": "{{LOG_INTERVAL}}",
 					"sort": false,
 					"optionLabels": [
-						"1 minute",
-						"5 minutes",
-						"10 minutes",
-						"15 minutes",
-						"20 minutes",
-						"30 minutes"
+						"{{MINS01}}",
+						"{{MINS05}}",
+						"{{MINS10}}",
+						"{{MINS15}}",
+						"{{MINS20}}",
+						"{{MINS30}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"Frequency of Cumulus log entries - set your station to the same",
-						"Think - Do I really need 1 minute logging? For the vast majority of users 5 or 10 minutes is fine"
+						"{{LOG_INTERVAL_HELP1}}",
+						"{{LOG_INTERVAL_HELP2}}e"
 					]
 				},
 				"logrollover": {
 					"fields": {
 						"time": {
-							"label": "Rollover Time",
-							"removeDefaultNone": true
+							"label": "{{ROLLOVER_TIME}}",
+							"removeDefaultNone": true,
+							"optionLabels": [
+								"{{9AM}}",
+								"{{MIDNIGHT}}"
+							]
 						},
 						"summer10am": {
-							"label": "DST",
-							"rightLabel": "Use 10am in Summer:",
+							"label": "{{DST}}",
+							"rightLabel": "{{USE_10AM_SUMMER}}:",
 							"dependencies": {
 								"time": "9am"
 							}
@@ -727,21 +748,20 @@
 				"copy": {
 					"fields": {
 						"localcopy": {
-							"label": "Local Copy",
-							"rightLabel": "Enable local file copy of standard files",
+							"label": "{{LOCAL_COPY}}",
+							"rightLabel": "{{LOCAL_COPY_LABEL}}",
 							"helpers": [
-								"Rather than using uploads, simply copy the standard web files to another folder.",
-								"Typically this would be used when 'self hosting', when FTP would not be appropriate/efficient.",
-								"It can be used in conjunction with uploading."
+								"{{LOCAL_COPY_HELP1}}",
+								"{{LOCAL_COPY_HELP2}}",
+								"{{LOCAL_COPY_HELP3}}"
 							]
 						},
 						"localcopyfolder": {
-							"label": "Local copy destination folder path",
+							"label": "{{LOCAL_COPY_FOLDER}}",
 							"helpers": [
-								"Enter the folder name to which you wish to copy the standard files",
-								"Note: The path entered here should end with a folder separator - Windows = \\, Linux = /"
+								"LOCAL_COPY_FOLDER_HELP1"
 							],
-							"placeholder": "Destination path with trailing folder delimiter",
+							"placeholder": "{{LOCAL_COPY_FOLDER_PLACEHOLDER}}",
 							"dependencies": {
 								"localcopy": true
 							}
@@ -751,76 +771,79 @@
 				"ftp": {
 					"fields": {
 						"enabled": {
-							"label": "Upload",
-							"rightLabel": "Enable upload connections",
-							"helpers": ["Enable web site uploads via FTP, FTPS, SFTP, or PHP"]
+							"label": "{{UPLOAD}}",
+							"rightLabel": "{{UPLOAD_LABEL}}",
+							"helpers": ["{{UPLOAD_HELP1}}"]
 						},
 						"sslftp": {
-							"label": "Select the FTP Protocol to use",
+							"label": "{{UPLOAD_PROTOCOL}}",
 							"type": "select",
 							"sort": false,
 							"optionLabels": [
-								"0 - FTP (plain old FTP)",
-								"1 - Use SSL/TLS for FTP (FTPS)",
-								"2 - Use SSH for FTP (SFTP)",
-								"3 - Use PHP upload"
+								"0 - {{UPLOAD_PROTOCOL_OPT1}}",
+								"1 - {{UPLOAD_PROTOCOL_OPT2}}",
+								"2 - {{UPLOAD_PROTOCOL_OPT3}}",
+								"3 - {{UPLOAD_PROTOCOL_OPT4}}"
 							],
 							"removeDefaultNone": true,
-							"helper": "Select the protocol required by your web host",
+							"helper": "{{UPLOAD_PROTOCOL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
 						},
 						"hostname": {
-							"label": "Host name",
-							"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+							"label": "{{HOST_NAME}}",
+							"helper": "{{HOST_NAME_HELP1}}",
 							"dependencies": {
 								"enabled": true,
 								"sslftp": [0,1,2]
 							}
 						},
 						"phpurl": {
-							"label": "Upload URL:",
+							"label": "{{UPLOAD_URL}}:",
 							"type": "text",
 							"placeholder": "https://mysite.com/upload.php",
-							"helper": "Enter the URL of the upload script on your server",
+							"helper": "{{UPLOAD_URL_HELP1}}",
 							"dependencies": {
 								"enabled": true,
 								"sslftp": 3
 							}
 						},
 						"ftpport": {
-							"label": "FTP port",
-							"helper": "Enter the FTP port to use. Common defaults are: FTP=21, FTPS=990, SFTP=22",
+							"label": "{{FTP_PORT}}",
+							"helpers": [
+								"{{FTP_PORT_HELP1}}",
+								"{{FTP_PORT_HELP2}}"
+							],
 							"dependencies": {
 								"enabled": true,
 								"sslftp": [0,1,2]
 							}
 						},
 						"sshAuth": {
-							"label": "SFTP Authentication method",
+							"label": "{{SFTP_AUTH}}",
 							"type": "select",
 							"sort": false,
 							"optionLabels": [
-								"Password",
-								"Pre-shared key",
-								"Password or pre-shared key"
+								"{{PASSWORD}}",
+								"{{PRE_SHARED_KEY}}",
+								"{{PASSWORD_OR_PSK}}"
 							],
 							"removeDefaultNone": true,
-							"helper": "Select the authentication method for SFTP connections",
+							"helper": "{{SFTP_AUTH_HELP1}}",
 							"dependencies": {
 								"sslftp": 2
 							}
 						},
 						"pskFile": {
-							"label": "Pre-shared Private Key file for SFTP",
-							"helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
+							"label": "{{PSK_FILE}}",
+							"helper": "{{PSK_FILE_HELP1}}",
 							"dependencies": {
 								"sshAuth": ["psk","password_psk"]
 							}
 						},
 						"directory": {
-							"label": "Remote FTP Directory",
+							"label": "{{REMOTE_FTP_DIR}}",
 							"sslftp": [0,1,2]
 						},
 						"username": {
@@ -831,7 +854,7 @@
 							}
 						},
 						"password": {
-							"label": "Password",
+							"label": "{{PASSWORD}}",
 							"type": "password",
 							"dependencies": {
 								"enabled": true,
@@ -839,12 +862,12 @@
 							}
 						},
 						"phpsecret": {
-							"label": "PHP Upload Secret:",
+							"label": "{{PHP_SECRET}}:",
 							"type": "password",
 							"helpers": [
-								"Enter a complex string used to generate PHP upload signatures.",
-								"Cumulus will generate a unique string for you.",
-								"You will need to enter this string into the webfiles/upload.php file before uploading it to your web site"
+								"{{PHP_SECRET_HELP1}}",
+								"{{PHP_SECRET_HELP2}}",
+								"{{PHP_SECRET_HELP3}}"
 							],
 							"id": "phpsecret",
 							"dependencies": {
@@ -862,21 +885,21 @@
 				"interval": {
 					"fields": {
 						"enabled": {
-							"label": "Enable",
-							"rightLabel": "Enable normal update interval",
-							"helpers": ["Enable the update interval timer so normal interval actions can take place"]
+							"label": "{{ENABLE}}",
+							"rightLabel": "{{INTERVAL_LABEL}}",
+							"helpers": ["{{INTERVAL_HELP1}}"]
 						},
 						"enableintervalftp": {
-							"label": "Upload",
-							"rightLabel": "Enable normal interval uploads",
-							"helper": "Select this to have Cumulus uploading files at the normal update interval",
+							"label": "{{UPLOAD}}",
+							"rightLabel": "{{UPLOAD_INTERVAL_LABEL}}",
+							"helper": "{{UPLOAD_INTERVAL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
 						},
 						"ftpinterval": {
-							"label": "Normal interval",
-							"helper": "Interval between normal updates in minutes",
+							"label": "{{NORMAL_INTERVAL}}",
+							"helper": "{{NORMAL_INTERVAL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
@@ -886,24 +909,24 @@
 				"realtime": {
 					"fields": {
 						"enabled": {
-							"label": "Enable",
-							"rightLabel": "Enable real time update interval",
-							"helper": "Start the real time timer so that any real time actions can take place"
+							"label": "{{ENABLE}}",
+							"rightLabel": "{{REAL_TIME_ENABLE}}",
+							"helper": "{{REAL_TIME_ENABLE_HELP1}}"
 						},
 						"enablerealtimeftp": {
-							"label": "Upload",
-							"rightLabel": "Enable real time interval uploads",
+							"label": "{{UPLOAD}}",
+							"rightLabel": "{{REAL_TIME_UPLOAD_LABEL}}",
 							"helpers": [
-								"FTP: Establishes the real time FTP connection so that FTP uploads can take place at the real time interval",
-								"PHP: Uploads are made individually"
+								"{{REAL_TIME_UPLOAD_HELP1}}",
+								"{{REAL_TIME_UPLOAD_HELP2}}"
 							],
 							"dependencies": {
 								"enabled": true
 							}
 						},
 						"realtimeinterval": {
-							"label": "Real time interval",
-							"helper": "Interval between real time updates in seconds",
+							"label": "{{REAL_TIME_INTERVAL}}",
+							"helper": "{{REAL_TIME_INTERVAL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}

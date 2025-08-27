@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/12/07 16:33:24",
+	"version": "Last Modified: 2025/08/19 16:44:27",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -10,7 +10,7 @@
 		},
 		"sitedetails": {
 			"type": "object",
-			"title": "Site Details",
+			"title": "{{SITE_DETAILS}}",
 			"properties": {
 				"sitename": {
 				},
@@ -22,7 +22,7 @@
 		},
 		"outputfiles": {
 			"type": "object",
-			"title": "Output Files",
+			"title": "{{OUTPUT_FILES}}",
 			"properties": {
 				"monthfileformat": {
 				},
@@ -32,7 +32,7 @@
 		},
 		"options": {
 			"type": "object",
-			"title": "Report Options",
+			"title": "{{REPORT_OPTIONS}}",
 			"properties": {
 				"outputtext": {
 					"enum": [0, 1]
@@ -56,7 +56,7 @@
 		},
 		"ftp": {
 			"type": "object",
-			"title": "Upload Options",
+			"title": "{{UPLOAD_OPTIONS}}",
 			"properties": {
 				"autotransfer": {
 					"type": "boolean"
@@ -70,7 +70,7 @@
 		},
 		"copy": {
 			"type": "object",
-			"title": "Local Copy Options",
+			"title": "{{LOCAL_COPY_OPTIONS}}",
 			"properties": {
 				"autotransfer": {
 					"type": "boolean"
@@ -84,7 +84,7 @@
 		},
 		"thresholds": {
 			"type": "object",
-			"title": "Thresholds",
+			"title": "{{THRESHOLDS}}",
 			"properties": {
 				"heatingthreshold": {
 					"type": "number"
@@ -117,7 +117,7 @@
 		},
 		"normalmeantemps": {
 			"type": "object",
-			"title": "Normal Mean Temperatures",
+			"title": "{{MEAN_TEMPS}}",
 			"properties": {
 				"jan": {
 					"type": "number"
@@ -159,7 +159,7 @@
 		},
 		"normalrain": {
 			"type": "object",
-			"title": "Normal Precipitation",
+			"title": "{{PRECIPITATION}}",
 			"properties": {
 				"jan": {
 					"type": "number"

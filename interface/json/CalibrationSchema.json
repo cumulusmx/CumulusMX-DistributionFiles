@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/02/06 16:17:35",
+	"version": "Last Modified: 2025/08/16 21:14:26",
 	"definitions": {
 		"OM": {
 			"properties": {
@@ -59,42 +59,42 @@
 			"type": "boolean"
 		},
 		"explanation": {
-			"default": "Calibration factors to adjust the raw readings from your sensors\nThe formula applied is: newVal = (rawVal * multiplier) + offset\n\nFor some values a non-linear multiplier2 is available...\nThe formula applied then is: newVal = (rawVal * rawVal * multiplier2) + (rawVal * multiplier) + offset\n\nThe general case is the familiar formula: newVal = ax² + bx + c\nWhere a = multiplier2, b = multiplier, c = offset",
+			"default": "{{EXPLANATION}}",
 			"readonly": true
 		},
 		"pressure": {
 			"type": "object",
-			"title": "Sea Level Pressure",
+			"title": "{{SEA_LEVEL_PRESS}}",
 			"$ref": "#/definitions/limits"
 		},
 		"pressureStn": {
 			"type": "object",
-			"title": "Station Pressure",
+			"title": "{{STATION_PRESS}}",
 			"$ref": "#/definitions/OM"
 		},
 		"temp": {
 			"type": "object",
-			"title": "Outdoor Temperature",
+			"title": "{{TEMP_OUT}}",
 			"$ref": "#/definitions/limits"
 		},
 		"tempin": {
 			"type": "object",
-			"title": "Indoor Temperature",
+			"title": "{{TEMP_IN}}",
 			"$ref": "#/definitions/OMS"
 		},
 		"hum": {
 			"type": "object",
-			"title": "Outdoor Humidity",
+			"title": "{{HUM_OUT}}",
 			"$ref": "#/definitions/OMS"
 		},
 		"humin": {
 			"type": "object",
-			"title": "Indoor Humidity",
+			"title": "{{HUM_IN}}",
 			"$ref": "#/definitions/OMS"
 		},
 		"windspd": {
 			"type": "object",
-			"title": "Wind Speed",
+			"title": "{{WIND_SPEED}}",
 			"properties": {
 				"multiplier": {
 					"type": "number"
@@ -109,7 +109,7 @@
 		},
 		"gust": {
 			"type": "object",
-			"title": "Wind Gust",
+			"title": "{{WIND_GUST}}",
 			"properties": {
 				"multiplier": {
 					"type": "number"
@@ -128,7 +128,7 @@
 		},
 		"winddir": {
 			"type": "object",
-			"title": "Wind Direction",
+			"title": "{{WIND_DIR}}",
 			"properties": {
 				"offset": {
 					"type": "number",
@@ -139,7 +139,7 @@
 		},
 		"rain": {
 			"type": "object",
-			"title": "Rainfall",
+			"title": "{{RAINFALL}}",
 			"properties": {
 				"multiplier": {
 					"type": "number"
@@ -154,7 +154,7 @@
 		},
 		"solar": {
 			"type": "object",
-			"title": "Solar",
+			"title": "{{SOLAR}}",
 			"properties": {
 				"offset": {
 					"type": "number"
@@ -169,7 +169,7 @@
 		},
 		"uv": {
 			"type": "object",
-			"title": "UV Index",
+			"title": "{{UV_I}}",
 			"properties": {
 				"offset": {
 					"type": "number"
@@ -184,7 +184,7 @@
 		},
 		"dewpt": {
 			"type": "object",
-			"title": "Dew Point",
+			"title": "{{DEW_POINT}}",
 			"properties": {
 				"limitmax": {
 					"type": "number"
@@ -193,7 +193,7 @@
 		},
 		"wetbulb": {
 			"type": "object",
-			"title": "Wet Bulb Temperature",
+			"title": "{{WET_BULB}}",
 			"properties": {
 				"offset": {
 					"type": "number"
@@ -208,7 +208,7 @@
 		},
 		"snow": {
 			"type": "object",
-			"title": "Snowfall",
+			"title": "{{SNOWFALL}}",
 			"properties": {
 				"mininc": {
 					"type": "number"

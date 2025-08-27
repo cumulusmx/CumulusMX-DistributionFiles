@@ -1,12 +1,12 @@
 {
-	"version": "Last Modified: 2025/05/10 11:50:11",
+	"version": "Last Modified: 2025/08/17 22:23:59",
 	"type": "object",
 	"properties": {
 		"accessible": {
 			"type": "boolean"
 		},
 		"airquality": {
-			"title": "Air Quality Settings",
+			"title": "{{AQ_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"primaryaqsensor": {
@@ -18,7 +18,7 @@
 			}
 		},
 		"airLink": {
-			"title": "Davis AirLink",
+			"title": "{{DAVIS_AIRLINK}}",
 			"type": "object",
 			"properties": {
 				"isNode": {
@@ -32,7 +32,7 @@
 					"type": "boolean"
 				},
 				"indoor": {
-					"title": "Indoor AirLink",
+					"title": "{{AIRLINK_IN}}",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -53,7 +53,7 @@
 					}
 				},
 				"outdoor": {
-					"title": "Outdoor AirLink",
+					"title": "{{AIRLINK_OUT}}",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -80,14 +80,14 @@
 			}
 		},
 		"purpleAir": {
-			"title": "Purple Air Sensors",
+			"title": "{{PA_SENSORS}}",
 			"type": "object",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
 				},
 				"sensors" : {
-					"title": "Sensors",
+					"title": "{{SENSORS}}",
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -111,14 +111,14 @@
 			}
 		},
 		"httpSensors":{
-			"title": "Use a second station for extra sensors",
+			"title": "{{USE_SECOND_STATION}}",
 			"type": "object",
 			"properties": {
 				"extraStation": {
 					"enum": [-1, 0, 1, 2, 3]
 				},
 				"ecowittapi": {
-					"title": "Ecowitt Cloud Access API",
+					"title": "{{ECOWITT_CLOUD_API}}",
 					"type": "object",
 					"properties": {
 						"applicationkey": {
@@ -228,7 +228,7 @@
 							}
 						},
 						"forwarders": {
-							"title": "HTTP Forwarders",
+							"title": "{{HTTP_FORWARDERS}}",
 							"type": "object",
 							"properties": {
 								"usemain":
@@ -237,7 +237,7 @@
 								},
 								"forward": {
 									"type": "array",
-									"title": "Forwarding URLs",
+									"title": "{{FORWARDING_URLS}}",
 									"maxItems": 10,
 									"items": {
 										"type": "object",
@@ -282,7 +282,7 @@
 					}
 				},
 				"jsonstation": {
-					"title": "JSON Station",
+					"title": "{{JSON_STATION}}",
 					"type": "object",
 					"properties": {
 						"conntype": {
@@ -322,7 +322,7 @@
 							"dependencies": "conntype"
 						},
 						"advanced": {
-							"title": "Advanced Settings",
+							"title": "{{ADVANCED_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"conntype": {
@@ -385,7 +385,7 @@
 			}
 		},
 		"blakeLarsen": {
-			"title": "Blake-Larsen Sunshine recorder",
+			"title": "{{BLAKE_LARSEN}}",
 			"type": "object",
 			"properties": {
 				"enabled": {
@@ -394,11 +394,11 @@
 			}
 		},
 		"laser": {
-			"title": "Laser Sensor Options",
+			"title": "{{LASER_SENSOR_OPTIONS}}",
 			"type": "object",
 			"properties": {
 				"sensor1": {
-					"title": "Sensor 1",
+					"title": "{{SENSOR}} 1",
 					"type": "object",
 					"properties": {
 						"depth": {
@@ -408,7 +408,7 @@
 					}
 				},
 				"sensor2": {
-					"title": "Sensor 2",
+					"title": "{{SENSOR}} 2",
 					"type": "object",
 					"properties": {
 						"depth": {
@@ -418,7 +418,7 @@
 					}
 				},
 				"sensor3": {
-					"title": "Sensor 3",
+					"title": "{{SENSOR}} 3",
 					"type": "object",
 					"properties": {
 						"depth": {
@@ -428,7 +428,7 @@
 					}
 				},
 				"sensor4": {
-					"title": "Sensor 4",
+					"title": "{{SENSOR}} 4",
 					"type": "object",
 					"properties": {
 						"depth": {
@@ -440,11 +440,11 @@
 			}
 		},
 		"rg11": {
-			"title": "Hydreon RG-11 rain device(s)",
+			"title": "{{RG11_DEVICE}}",
 			"type": "object",
 			"properties": {
 				"port1": {
-					"title": "Device 1",
+					"title": "{{DEVICE}} 1",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -469,7 +469,7 @@
 					}
 				},
 				"port2": {
-					"title": "Device 2",
+					"title": "{{DEVICE}} 2",
 					"type": "object",
 					"properties": {
 						"enabled": {

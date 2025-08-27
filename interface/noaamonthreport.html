@@ -1,11 +1,11 @@
 <!--
-Last modified: 2025/01/24 16:37:22
+Last modified: 2025/08/10 17:57:40
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>NOAA month report - Cumulus MX</title>
+    <title>{{NOAA_MONTHLY_REPORT}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -64,17 +64,17 @@ Last modified: 2025/01/24 16:37:22
     <!-- END NAVIGATION MENU -->
 
     <main class="container">
-        <h1>NOAA Monthly Report</h1>
+        <h1>{{NOAA_MONTHLY_REPORT}}</h1>
 
         <div class="row">
             <div style="margin-bottom:10px">
-                Select year:&nbsp;<select id="selYear" aria-label="select year"></select> month:&nbsp;<select id="selMonth" aria-label="select month"></select>
-                <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">Load Report</button>
-                <button type="button" class="btn btn-warning" id="generate-button" onclick="generate()" style="margin:10px;">(Re)Generate this Report</button>
-                <button type="button" class="btn btn-info" id="generateAll-button" onclick="generateAll()" style="margin:10px;">Regenerate all missing Reports</button>
-                <button type="button" class="btn btn-default" id="upload-button" onclick="uploadRpt()" style="margin:10px;">Re-upload Report</button>
+                {{SELECT_YEAR}}:&nbsp;<select id="selYear" aria-label="select year"></select> {{MONTH}}:&nbsp;<select id="selMonth" aria-label="select month"></select>
+                <button type="button" class="btn btn-default" id="load-button" onclick="load()" style="margin:10px;">{{LOAD_REPORT}}</button>
+                <button type="button" class="btn btn-warning" id="generate-button" onclick="generate()" style="margin:10px;">{{REGENERATE_THIS_REPORT}}</button>
+                <button type="button" class="btn btn-info" id="generateAll-button" onclick="generateAll()" style="margin:10px;">{{REGENERATE_ALL_MISSING_REPORTS}}</button>
+                <button type="button" class="btn btn-default" id="upload-button" onclick="uploadRpt()" style="margin:10px;">{{REUPLOAD_REPORT}}</button>
                 <br>
-                Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly
+                {{NOAA_REPORTS_NOTE}}
             </div>
         </div>
 

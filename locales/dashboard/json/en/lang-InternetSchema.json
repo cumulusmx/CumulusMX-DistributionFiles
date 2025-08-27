@@ -1,0 +1,23 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:23",
+    "WEB_SITE": "Web/Upload Site",
+    "GENERAL_SETTINGS": "General Settings",
+    "ADVANCED_SETTINGS": "Advanced Settings",
+    "INTERVAL_CONFIG": "Interval Configuration",
+    "NORMAL_INTERVAL_SETTINGS": "Normal Interval Settings",
+    "STANDARD_FILE_SETTINGS": "Standard File Settings",
+    "FILENAME": "Filename",
+    "LOCAL": "Local",
+    "UPLOAD": "Upload",
+    "COPY": "Copy",
+    "WXNOW_UTC": "wxnow.txt Use UTC:",
+    "GRAPH_FILE_SETTINGS": "Graph File Settings",
+    "DAILY_GRAPH_FILE_SETTINGS": "Daily Graph File Settings",
+    "REALTIME_INTERVAL_SETTINGS": "Real time Interval Settings",
+    "EMAIL_SETTINGS": "Email Server Settings",
+    "EXTERNAL_PROGRAMS": "External Programs",
+    "MOON_IMAGE": "Moon Image",
+    "PROXIES": "Proxy Settings",
+    "HTTP_PROXY": "HTTP Proxy",
+    "MISC_SETTINGS": "Miscellaneous Settings"
+}

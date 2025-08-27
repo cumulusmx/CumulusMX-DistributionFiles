@@ -1,4 +1,4 @@
-// Last modified: 2025/07/16 10:53:55
+// Last modified: 2025/08/11 11:50:53
 
 $(document).ready(function() {
     $.ajax({
@@ -328,7 +328,7 @@ function updateAlarms() {
             }
         })
     }).done(function () {
-        alert('Settings updated');
+        alert('{{SETTINGS_UPDATED}}');
     }).fail(function (jqXHR, textStatus) {
         alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
     });

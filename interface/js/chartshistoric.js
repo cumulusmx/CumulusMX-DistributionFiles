@@ -1,4 +1,4 @@
-// Last modified: 2025/07/23 23:51:47
+// Last modified: 2025/08/21 23:09:55
 
 var chart, config, available;
 
@@ -115,7 +115,7 @@ $(document).ready(function () {
 
 
 var doTemp = function () {
-    $('#chartdescription').text('Line chart showing daily temperature values. Shown are the maximum, minimum, and average temperatures for each day along with many possible derived temperatuer values. The site owner may choose to not display all these values');
+    $('#chartdescription').text('{{CHART_HIST_TEMP_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -123,7 +123,7 @@ var doTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Temperature'},
+        title: {text: '{{TEMPERATURE}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -137,7 +137,7 @@ var doTemp = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -216,18 +216,18 @@ var doTemp = function () {
     })
     .done(function (resp) {
         var titles = {
-            'minTemp'  : 'Min Temp',
-            'maxTemp'  : 'Max Temp',
-            'avgTemp'  : 'Avg Temp',
-            'heatIndex': 'Heat Index',
-            'minApp'   : 'Min Apparent',
-            'maxApp'   : 'Max Apparent',
-            'minDew'   : 'Min Dewpoint',
-            'maxDew'   : 'Max Dewpoint',
-            'minFeels' : 'Min Feels',
-            'maxFeels' : 'Max Feels',
-            'humidex'  : 'Humidex',
-            'windChill': 'Wind Chill'
+            'minTemp'  : '{{TEMP_MIN}}',
+            'maxTemp'  : '{{TEMP_MAX}}',
+            'avgTemp'  : '{{TEMP_AVG}}',
+            'heatIndex': '{{HEAT_INDEX}}',
+            'minApp'   : '{{APPARENT_TEMP_MIN}}',
+            'maxApp'   : '{{APPARENT_TEMP_MAX}}',
+            'minDew'   : '{{DEW_POINT_MIN}}',
+            'maxDew'   : '{{DEW_POINT_MAX}}',
+            'minFeels' : '{{FEELS_LIKE_MIN}}',
+            'maxFeels' : '{{FEELS_LIKE_MAX}}',
+            'humidex'  : '{{HUMIDEX}}',
+            'windChill': '{{WIND_CHILL}}'
         };
         var visibility = {
             'minTemp'  : true,
@@ -263,7 +263,7 @@ var doTemp = function () {
                         chart.yAxis[1].remove();
                         chart.addAxis({
                             id: 'humidex',
-                            title:{text: 'Humidex'},
+                            title:{text: '{{HUMIDEX}}'},
                             opposite: true,
                             labels: {
                                 align: 'left'
@@ -303,7 +303,7 @@ var doPress = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Pressure'},
+        title: {text: '{{PRESSURE}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -317,7 +317,7 @@ var doPress = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Pressure (' + config.press.units + ')'},
+                title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -369,11 +369,11 @@ var doPress = function () {
             xDateFormat: '%e %b %y'
         },
         series: [{
-                name: 'High Pressure',
+                name: '{{HIGH_PRESSURE}}',
                 color: config.series.maxpress.colour,
                 showInNavigator: true
             }, {
-                name: 'Low Pressure',
+                name: '{{LOW_PRESSURE}}',
                 color: config.series.minpress.colour,
                 showInNavigator: true
             }],
@@ -398,7 +398,7 @@ var doPress = function () {
 };
 
 var compassP = function (deg) {
-    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
@@ -505,14 +505,14 @@ var compassP = function (deg) {
 // };
 
 var doWind = function () {
-    $('#chartdescription').text('Line chart showing daily high gust, high average wind speed, and daily wind run values.');
+    $('#chartdescription').text('{{CHART_HIST_WIND_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Wind Speed'},
+        title: {text: '{{WIND_SPEED}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -526,7 +526,7 @@ var doWind = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Wind Speed (' + config.wind.units + ')'},
+                title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -539,7 +539,7 @@ var doWind = function () {
                 gridLineWidth: 0,
                 opposite: true,
                 min: 0,
-                title: {text: 'Wind Run (' + config.wind.rununits + ')'},
+                title: {text: '{{WIND_RUN}} (' + config.wind.rununits + ')'},
                 labels: {
                     align: 'left',
                     x: 5
@@ -581,21 +581,21 @@ var doWind = function () {
             xDateFormat: '%e %b %y'
         },
         series: [{
-                name: 'Wind Speed',
+                name: '{{WIND_SPEED}}',
                 color: config.series.wspeed.colour,
                 showInNavigator: true,
                 tooltip: {
                     valueDecimals: config.wind.avgdecimals
                 }
             }, {
-                name: 'Wind Gust',
+                name: '{{WIND_GUST}}',
                 color: config.series.wgust.colour,
                 showInNavigator: true,
                 tooltip: {
                     valueDecimals: config.wind.gustdecimals
                 }
             }, {
-                name: 'Wind Run',
+                name: '{{WIND_RUN}}',
                 type: 'column',
                 color: config.series.windrun.colour,
                 yAxis: 1,
@@ -628,14 +628,14 @@ var doWind = function () {
 };
 
 var doRain = function () {
-    $('#chartdescription').text('Bar chart showing daily rainfall values.');
+    $('#chartdescription').text('{{CHART_HIST_RAIN_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: true
         },
-        title: {text: 'Rainfall'},
+        title: {text: '{{RAINFALL}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -649,7 +649,7 @@ var doRain = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Rainfall (' + config.rain.units + ')'},
+                title: {text: '{{RAINFALL}} (' + config.rain.units + ')'},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -658,7 +658,7 @@ var doRain = function () {
                 }
             }, {
                 // right
-                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
+                title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT_LC}})'},
                 opposite: true,
                 min: 0,
                 labels: {
@@ -704,17 +704,17 @@ var doRain = function () {
             xDateFormat: '%e %b %y'
         },
         series: [{
-                name: 'Daily rain',
+                name: '{{RAIN_DAILY}}',
                 type: 'column',
                 color: config.series.rfall.colour,
                 yAxis: 0,
                 tooltip: {valueSuffix: ' ' + config.rain.units},
             }, {
-                name: 'Rain rate',
+                name: '{{RAIN_RATE}}',
                 type: 'column',
                 color: config.series.rrate.colour,
                 yAxis: 1,
-                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'},
+                tooltip: {valueSuffix: ' ' + config.rain.units + '/{{HOUR_SHORT_LC}}'},
                 visible: false
             }],
         rangeSelector: {
@@ -738,14 +738,14 @@ var doRain = function () {
 };
 
 var doHum = function () {
-    $('#chartdescription').text('Line chart showing daily high and low relative humidity values.');
+    $('#chartdescription').text('{{CHART_HIST_HUM_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Relative Humidity'},
+        title: {text: '{{RELATIVE_HUMIDITY}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -759,7 +759,7 @@ var doHum = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Humidity (%)'},
+                title: {text: '{{HUMIDITY}} (%)'},
                 opposite: false,
                 min: 0,
                 max: 100,
@@ -831,8 +831,8 @@ var doHum = function () {
     })
     .done(function (resp) {
         var titles = {
-            'minHum'  : 'Minimum Humidity',
-            'maxHum': 'Maximum Humidity'
+            'minHum'  : '{{HUMIDITY_MINIMUM}}',
+            'maxHum': '{{HUMIDITY_MAXIMUM}}'
             }
             var idxs = ['minHum', 'maxHum'];
             var cnt = 0;
@@ -855,14 +855,14 @@ var doHum = function () {
 };
 
 var doSolar = function () {
-    $('#chartdescription').text('Combination line and bar chart showing daily high solar irradiation and sunshine hours.');
+    $('#chartdescription').text('{{CHART_HIST_SOLAR_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: true
         },
-        title: {text: 'Solar'},
+        title: {text: '{{SOLAR}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -926,9 +926,9 @@ var doSolar = function () {
     })
     .done(function (resp) {
         var titles = {
-            solarRad: 'Solar Radiation',
-            uvi     : 'UV Index',
-            sunHours: 'Sunshine Hours'
+            solarRad: '{{SOLAR_RADIATION}}',
+            uvi     : '{{UV_INDEX}}',
+            sunHours: '{{SUNSHINE_HOURS}}'
         };
         var types = {
             solarRad: 'area',
@@ -945,7 +945,7 @@ var doSolar = function () {
                 valueDecimals: config.uv.decimals
             },
             sunHours: {
-                valueSuffix: ' hours',
+                valueSuffix: ' {{HOURS}}',
                 valueDecimals: 0
             }
         };
@@ -985,7 +985,7 @@ var doSolar = function () {
                 if (idx === 'uvi') {
                     chart.addAxis({
                         id: idx,
-                        title: {text: 'UV Index'},
+                        title: {text: '{{UV_INDEX}}'},
                         opposite: true,
                         min: 0,
                         labels: {
@@ -996,7 +996,7 @@ var doSolar = function () {
                 } else if (idx === 'sunHours') {
                     chart.addAxis({
                         id: idx,
-                        title: {text: 'Sunshine Hours'},
+                        title: {text: '{{SUNSHINE_HOURS}}'},
                         opposite: true,
                         min: 0,
                         labels: {
@@ -1007,7 +1007,7 @@ var doSolar = function () {
                 } else if (idx === 'solarRad') {
                     chart.addAxis({
                         id: idx,
-                        title: {text: 'Solar Radiation (W/m\u00B2)'},
+                        title: {text: '{{SOLAR_RADIATION}} (W/m\u00B2)'},
                         min: 0,
                         opposite: false,
                         labels: {
@@ -1039,7 +1039,7 @@ var doSolar = function () {
 };
 
 var doDegDays = function () {
-    $('#chartdescription').text('Line chart showing daily increments to growing degree days. These values increase over the growing year, the year normally starts in January for the northern hemisphere, and July in the southern. Two ranges are defined for each year: range one incrementing when the temperature is above 5°C or 40°F, and range two incrementing when the temperature is above 10°C or 50°F. Though the station owner can override these values and define their own.');
+    $('#chartdescription').text('{{CHART_HIST_GDD_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1047,7 +1047,7 @@ var doDegDays = function () {
             alignTicks: false,
             zoomType: 'x'
         },
-        title: {text: 'Degree Days'},
+        title: {text: '{{DEGREE_DAYS}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -1061,7 +1061,7 @@ var doDegDays = function () {
         },
         yAxis: [{
                 // left
-                title: {text: '°' + config.temp.units + ' days'},
+                title: {text: '°' + config.temp.units + ' {{DAYS}}'},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -1130,13 +1130,13 @@ var doDegDays = function () {
         success: function (resp) {
             var subtitle = '';
             if (available.DegreeDays.indexOf('GDD1') != -1) {
-                subtitle = 'GDD#1 base: ' + resp.options.gddBase1 + '°' + config.temp.units;
+                subtitle = '{{GDD1_BASE}}: ' + resp.options.gddBase1 + '°' + config.temp.units;
                 if (available.DegreeDays.indexOf('GDD2') != -1) {
                     subtitle += ' - ';
                 }
             }
             if (available.DegreeDays.indexOf('GDD2') != -1) {
-                subtitle += 'GDD#2 base: ' + resp.options.gddBase2 + '°' + config.temp.units;
+                subtitle += '{{GDD2_BASE}}: ' + resp.options.gddBase2 + '°' + config.temp.units;
             }
 
             chart.setSubtitle({text: subtitle});
@@ -1162,7 +1162,7 @@ var doDegDays = function () {
 };
 
 var doTempSum = function () {
-    $('#chartdescription').text('Line chart showing daily increments to the annual temperature sum. These values increase over the year, the year normally starts in January for the northern hemisphere, and July in the southern. Three ranges are defined for each year: The ranges being measured relative to the base temperatures of; 0°C/32°F, 5°C/40°F, and 10°C/50°F respectively. Though the station owner can override these values and define their own.');
+    $('#chartdescription').text('{{CHART_HIST_TEMPSUM_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1170,7 +1170,7 @@ var doTempSum = function () {
             alignTicks: false,
             zoomType: 'x'
         },
-        title: {text: 'Temperature Sum'},
+        title: {text: '{{TEMERATURE_SUM}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -1184,7 +1184,7 @@ var doTempSum = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Total °' + config.temp.units},
+                title: {text: '{{TOTAL}} °' + config.temp.units},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1252,19 +1252,19 @@ var doTempSum = function () {
     .done(function (resp) {
         var subtitle = '';
         if (available.TempSum.indexOf('Sum0') != -1) {
-            subtitle = 'Sum#0 base: 0°' + config.temp.units;
+            subtitle = '{{SUM0_BASE}}: 0°' + config.temp.units;
             if (available.TempSum.indexOf('Sum1') != -1 || available.TempSum.indexOf('Sum2') != -1) {
                 subtitle += ' - ';
             }
         }
         if (available.TempSum.indexOf('Sum1') != -1) {
-            subtitle += 'Sum#1 base: ' + resp.options.sumBase1 + '°' + config.temp.units;
+            subtitle += '{{SUM1_BASE}}: ' + resp.options.sumBase1 + '°' + config.temp.units;
             if (available.TempSum.indexOf('Sum2') != -1) {
                 subtitle += ' - ';
             }
         }
         if (available.TempSum.indexOf('Sum2') != -1) {
-            subtitle += 'Sum#2 base: ' + resp.options.sumBase2 + '°' + config.temp.units;
+            subtitle += '{{SUM2_BASE}}: ' + resp.options.sumBase2 + '°' + config.temp.units;
         }
 
         chart.setSubtitle({text: subtitle});
@@ -1290,7 +1290,7 @@ var doTempSum = function () {
 };
 
 var doChillHrs = function () {
-    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern.');
+    $('#chartdescription').text('{{CHART_HIST_CHILL_HRS_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
@@ -1298,7 +1298,7 @@ var doChillHrs = function () {
             alignTicks: false,
             zoomType: 'x'
         },
-        title: {text: 'Chill Hours'},
+        title: {text: '{{CHILL_HOURS}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -1312,7 +1312,7 @@ var doChillHrs = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Total Hours'},
+                title: {text: '{{TOTAL_HOURS}}'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1378,7 +1378,7 @@ var doChillHrs = function () {
         dataType: 'json'
     })
     .done(function (resp) {
-        var subtitle = 'Threshold: ' + resp.options.threshold + '°' + config.temp.units + ' Base: ' + resp.options.basetemp + '°' + config.temp.units;
+        var subtitle = '{{THRESHOLD}}: ' + resp.options.threshold + '°' + config.temp.units + ' {{BASE}}: ' + resp.options.basetemp + '°' + config.temp.units;
         chart.setSubtitle({text: subtitle});
 
         for (var yr in resp.data) {
@@ -1400,14 +1400,14 @@ var doChillHrs = function () {
 
 
 var doSnow = function () {
-    $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
+    $('#chartdescription').text('{{CHART_HIST_SNOW_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: true
         },
-        title: {text: 'Snow'},
+        title: {text: '{{SNOWFALL}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',
@@ -1421,7 +1421,7 @@ var doSnow = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Snow (' + config.snow.units + ')'},
+                title: {text: '{{SNOW}} (' + config.snow.units + ')'},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -1489,7 +1489,7 @@ var doSnow = function () {
     .done(function (resp) {
         if ('SnowDepth' in resp && resp.SnowDepth.length > 0) {
             chart.addSeries({
-                name: 'Snow Depth',
+                name: '{{SNOW_DEPTH}}',
                 type: 'column',
                 color: config.series.snowdepth.colour,
                 tooltip: {valueSuffix: ' ' + config.snow.units},
@@ -1500,7 +1500,7 @@ var doSnow = function () {
 
         if ('Snow24h' in resp && resp.Snow24h.length > 0) {
             chart.addSeries({
-                name: 'Snowfall 24h',
+                name: '{{SNOW_24H}}',
                 type: 'column',
                 color: config.series.snow24h.colour,
                 tooltip: {valueSuffix: ' ' + config.snow.units},

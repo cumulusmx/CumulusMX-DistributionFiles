@@ -1,12 +1,12 @@
 {
-	"version": "Last Modified: 2025/05/31 20:53:35",
+	"version": "Last Modified: 2025/08/19 09:18:48",
 	"type": "object",
 	"properties": {
 		"accessible": {
 			"type": "boolean"
 		},
 		"website": {
-			"title": "Web/Upload Site",
+			"title": "{{WEB_SITE}}",
 			"type": "object",
 			"properties": {
 				"localcopy": {
@@ -47,7 +47,7 @@
 				"phpsecret": {
 				},
 				"general": {
-					"title": "General Settings",
+					"title": "{{GENERAL_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"ftprename": {
@@ -68,7 +68,7 @@
 					}
 				},
 				"advanced": {
-					"title": "Advanced Settings",
+					"title": "{{ADVANCED_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"autodetect": {
@@ -134,14 +134,14 @@
 			}
 		},
 		"websettings": {
-			"title": "Interval Configuration",
+			"title": "{{INTERVAL_CONFIG}}",
 			"type": "object",
 			"properties": {
 				"stdwebsite": {
 					"type": "boolean"
 				},
 				"interval": {
-					"title": "Normal Interval Settings",
+					"title": "{{NORMAL_INTERVAL_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -155,7 +155,7 @@
 							"type": "boolean"
 						},
 						"stdfiles": {
-							"title": "Standard File Settings",
+							"title": "{{STANDARD_FILE_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"files": {
@@ -165,19 +165,19 @@
 										"properties": {
 											"filename": {
 												"type": "string",
-												"title": "Filename"
+												"title": "{{FILENAME}}"
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Local"
+												"title": "{{LOCAL}}"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "Upload"
+												"title": "{{UPLOAD}}"
 											},
 											"copy": {
 												"type": "boolean",
-												"title": "Copy"
+												"title": "{{COPY}}"
 											}
 										}
 									}
@@ -187,12 +187,12 @@
 								},
 								"wxnowutc": {
 									"type": "boolean",
-									"title": "wxnow.txt Use UTC:"
+									"title": "{{WXNOW_UTC}}:"
 								}
 							}
 						},
 						"graphfiles": {
-							"title": "Graph File Settings",
+							"title": "{{GRAPH_FILE_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"files": {
@@ -202,19 +202,19 @@
 										"properties": {
 											"filename": {
 												"type": "string",
-												"title": "Filename"
+												"title": "{{FILENAME}}"
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Local"
+												"title": "{{LOCAL}}"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "Upload"
+												"title": "{{UPLOAD}}"
 											},
 											"copy": {
 												"type": "boolean",
-												"title": "Copy"
+												"title": "{{COPY}}"
 											}
 										}
 									}
@@ -222,7 +222,7 @@
 							}
 						},
 						"graphfileseod": {
-							"title": "Daily Graph File Settings",
+							"title": "{{DAILY_GRAPH_FILE_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"files": {
@@ -232,19 +232,19 @@
 										"properties": {
 											"filename": {
 												"type": "string",
-												"title": "Filename"
+												"title": "{{FILENAME}}"
 											},
 											"create": {
 												"type": "boolean",
-												"title": "Local"
+												"title": "{{LOCAL}}"
 											},
 											"ftp": {
 												"type": "boolean",
-												"title": "Upload"
+												"title": "{{UPLOAD}}"
 											},
 											"copy": {
 												"type": "boolean",
-												"title": "Copy"
+												"title": "{{COPY}}"
 											}
 										}
 									}
@@ -262,7 +262,7 @@
 					}
 				},
 				"realtime": {
-					"title": "Real time Interval Settings",
+					"title": "{{REALTIME_INTERVAL_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -282,19 +282,19 @@
 								"properties": {
 									"filename": {
 										"type": "string",
-										"title": "Filename"
+										"title": "{{FILENAME}}"
 									},
 									"create": {
 										"type": "boolean",
-										"title": "Local"
+										"title": "{{LOCAL}}"
 									},
 									"ftp": {
 										"type": "boolean",
-										"title": "Upload"
+										"title": "{{UPLOAD}}"
 									},
 									"copy": {
 										"type": "boolean",
-										"title": "Copy"
+										"title": "{{COPY}}"
 									}
 								}
 							}
@@ -309,7 +309,7 @@
 			}
 		},
 		"emailsettings": {
-			"title": "Email Server Settings",
+			"title": "{{EMAIL_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"enabled": {
@@ -350,7 +350,7 @@
 
 		},
 		"externalprograms": {
-			"title": "External Programs",
+			"title": "{{EXTERNAL_PROGRAMS}}",
 			"type": "object",
 			"properties": {
 				"program": {
@@ -368,7 +368,7 @@
 			}
 		},
 		"moonimage": {
-			"title": "Moon Image",
+			"title": "{{MOON_IMAGE}}",
 			"type": "object",
 			"properties": {
 				"enabled": {
@@ -405,11 +405,11 @@
 			}
 		},
 		"proxies": {
-			"title": "Proxies",
+			"title": "{{PROXIES}}",
 			"type": "object",
 			"properties": {
 				"httpproxy": {
-					"title": "HTTP proxy",
+					"title": "{{HTTP_PROXY}}",
 					"type": "object",
 					"properties": {
 						"proxy": {
@@ -429,7 +429,7 @@
 			}
 		},
 		"misc": {
-			"title": "Miscellaneous",
+			"title": "{{MISC_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"forumurl": {

@@ -8,16 +8,16 @@
 			"items": {
 				"fields": {
 					"enabled": {
-						"label": "Enabled"
+						"label": "{{ENABLED}}"
 					},
 					"filename": {
 						"type": "text",
-						"label": "Filename",
+						"label": "{{FILENAME}}",
 						"cols": 20
 					},
 					"content": {
 						"type": "textarea",
-						"label": "Data Content",
+						"label": "{{DATA_CONTENT}}",
 						"cols": 180
 					}
 				}

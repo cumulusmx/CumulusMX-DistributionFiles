@@ -1,4 +1,4 @@
-// Last modified: 2025/06/11 19:26:08
+// Last modified: 2025/08/15 22:38:16
 
 var myTable;
 var currMonth;
@@ -127,44 +127,44 @@ $(document).ready(function () {
 
         var columnDefs = [
             {
-                title: 'Line #',
+                title: '{{LINE_#}}',
                 readonly: true
             },
             {
-                title: 'Date (dd/mm/yy)',
+                title: '{{DATE_DDMMYY}}',
                 readonly: true
             },
             {
-                title: 'Time',
+                title: '{{TIME}}',
                 readonly: true
             },
-            {title: 'Temp', type: 'number', step: tempStep},
-            {title: 'Hum', type: 'number', min: 0, max: 100},
-            {title: 'Dew point', type: 'number', step: tempStep},
-            {title: 'Wind speed', type: 'number', min: 0, step: windAvgStep},
-            {title: 'Recent high gust', type: 'number', min: 0, step: windGustStep},
-            {title: 'Average wind bearing', type: 'number', min: 0, max: 360},
-            {title: 'Rainfall rate', type: 'number', min: 0, step: rainStep},
-            {title: 'Rainfall so far', type: 'number', min: 0, step: rainStep},
-            {title: 'Sea level pressure', type: 'number', min: 0, step: pressStep},
-            {title: 'Rainfall counter', type: 'number', min: 0, step: rainStep},
-            {title: 'Inside temp', type: 'number', step: tempStep},
-            {title: 'Inside hum', type: 'number', min: 0, max: 100},
-            {title: 'Current gust', type: 'number', min: 0, step: windGustStep},
-            {title: 'Wind chill', type: 'number', step: tempStep},
-            {title: 'Heat Index', type: 'number', step: tempStep},
-            {title: 'UV Index', type: 'number', min: 0, max: 16, step: 0.1},
-            {title: 'Solar Rad', type: 'number', min: 0, max: 1200},
-            {title: 'ET', type: 'number', min: 0, step: etStep},
-            {title: 'Annual ET', type: 'number', min: 0, step: etStep},
-            {title: 'Apparent temp', type: 'number', step: tempStep},
-            {title: 'Max Solar rad', type: 'number'},
-            {title: 'Sun hours', type: 'number', step: 0.01},
+            {title: '{{TEMPERATURE_SHORT}}', type: 'number', step: tempStep},
+            {title: '{{HUMIDITY_SHORT}}', type: 'number', min: 0, max: 100},
+            {title: '{{DEW_POINT}}', type: 'number', step: tempStep},
+            {title: '{{WIND_SPEED}}', type: 'number', min: 0, step: windAvgStep},
+            {title: '{{RECENT_HIGH_GUST}}', type: 'number', min: 0, step: windGustStep},
+            {title: '{{AVERAGE_BEARING}}', type: 'number', min: 0, max: 360},
+            {title: '{{RAINFALL_RATE}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{RAINFALL_SO_FAR}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{SEA_LEVEL_PRESSURE}}', type: 'number', min: 0, step: pressStep},
+            {title: '{{RAINFALL_COUNTER}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{INDOOR_TEMP}}', type: 'number', step: tempStep},
+            {title: '{{INDOOR_HUMIDITY}}', type: 'number', min: 0, max: 100},
+            {title: '{{CURRENT_GUST}}', type: 'number', min: 0, step: windGustStep},
+            {title: '{{WIND_CHILL}}', type: 'number', step: tempStep},
+            {title: '{{HEAT_INDEX}}', type: 'number', step: tempStep},
+            {title: '{{UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
+            {title: '{{SOLAR_RAD}}', type: 'number', min: 0, max: 1200},
+            {title: '{{EVAPOTRANSPIRATION_SHORT}}', type: 'number', min: 0, step: etStep},
+            {title: '{{ANNUAL_ET}}', type: 'number', min: 0, step: etStep},
+            {title: '{{APPARENT_TEMP}}', type: 'number', step: tempStep},
+            {title: '{{HIGH_SOLAR_RAD}}', type: 'number'},
+            {title: '{{SUN_HOURS}}', type: 'number', step: 0.01},
             {title: 'Wind bearing', type: 'number', min: 0, max: 360},
-            {title: 'RG-11 Rain', type: 'number', min: 0, step: rainStep},
-            {title: 'Rain Since Midnight', type: 'number', min: 0, step: rainStep},
-            {title: 'Feels like', type: 'number', step: tempStep},
-            {title: 'Humidex', type: 'number', step: tempStep}
+            {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep},
+            {title: '{{HUMIDEX}}', type: 'number', step: tempStep}
         ];
 
         myTable = $('#datalog').dataTable({
@@ -203,25 +203,25 @@ $(document).ready(function () {
             buttons: [
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Edit',
+                    text: '{{EDIT}}',
                     name: 'edit'        // do not change name
                 },
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Delete',
+                    text: '{{DELETE}}',
                     name: 'delete'      // do not change name
                 },
                 {
-                    text: 'Refresh',
+                    text: '{{REFRESH}}',
                     name: 'refresh'      // do not change name
                 },
                 'pageLength'
             ],
             language: {
                 altEditor: {
-                    modalClose: 'Close',
+                    modalClose: '{{CLOSE}}',
                     edit: {
-                        title: 'Edit record',
+                        title: '{{EDIT_RECORD}}',
                         button: 'Save'
                     }
                 }

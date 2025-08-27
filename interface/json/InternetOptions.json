@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/31 20:55:22",
+	"version": "Last Modified: 2025/08/21 18:35:53",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -9,64 +9,64 @@
 			"collapsed": true,
 			"fields": {
 				"localcopy": {
-					"rightLabel": "Enable file copy of standard files",
+					"rightLabel": "{{ENABLE_COPY}}",
 					"helpers": [
-						"Rather than using FTP simply copy the standard web files to another folder.",
-						"Typically this would be used when 'self hosting', when FTP/PHP upload would not be appropriate/efficient.",
-						"It can be used in conjunction with FTP."
+						"{{ENABLE_COPY_HELP1}}",
+						"{{ENABLE_COPY_HELP2}}",
+						"{{ENABLE_COPY_HELP3}}"
 					]
 				},
 				"localcopyfolder": {
-					"label": "Local copy destination folder path:",
-					"helper": "Enter the folder name to which you wish to copy the standard files, this should have a trailing '/' or '\\'",
-					"placeholder": "Destination path with trailing folder delimiter",
+					"label": "{{LOCAL_COPY}}:",
+					"helper": "{{LOCAL_COPY_HELP1}}",
+					"placeholder": "{{LOCAL_COPY_PLACEHOLDER}}",
 					"dependencies": {
 						"localcopy": true
 					}
 				},
 				"enabled": {
-					"rightLabel": "Enable Upload connections",
-					"helpers": ["Enable web site uploads via FTP, FTPS, SFTP, or PHP"]
+					"rightLabel": "{{ENABLE_UPLOAD}}",
+					"helpers": ["{{ENABLE_UPLOAD_HELP1}}"]
 				},
 				"sslftp": {
-					"label": "Select the Upload Protocol to use:",
+					"label": "{{UPLOAD_PROTOCOL}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"0 - FTP (plain old FTP)",
-						"1 - Use SSL/TLS for FTP (FTPS)",
-						"2 - Use SSH for FTP (SFTP)",
-						"3 - Use PHP upload"
+						"0 - {{UPLOAD_PROTOCOL_OPT1}}",
+						"1 - {{UPLOAD_PROTOCOL_OPT2}}",
+						"2 - {{UPLOAD_PROTOCOL_OPT3}}",
+						"3 - {{UPLOAD_PROTOCOL_OPT4}}"
 					],
 					"removeDefaultNone": true,
-					"helper": "Select the protocol required by your web host",
+					"helper": "{{UPLOAD_PROTOCOL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"hostname": {
-					"label": "Host name:",
-					"helper": "Enter the host name of the remote FTP server. Leaving this blank also suppresses all FTP activities.",
+					"label": "{{HOST_NAME}}:",
+					"helper": "{{HOST_NAME_HELP1}}",
 					"dependencies": {
 						"enabled": true,
 						"sslftp": [0,1,2]
 					}
 				},
 				"phpurl": {
-					"label": "Upload URL:",
+					"label": "{{UPLOAD_URL}}:",
 					"type": "text",
 					"placeholder": "https://mysite.com/upload.php",
-					"helper": "Enter the URL of the upload script on your server",
+					"helper": "{{UPLOAD_URL_HELP1}}",
 					"dependencies": {
 						"enabled": true,
 						"sslftp": 3
 					}
 				},
 				"ftpport": {
-					"label": "FTP port:",
+					"label": "{{FTP_PORT}}:",
 					"helpers": [
-						"Enter the FTP port to use. Common defaults are: FTP=21, FTPS=21(990*), SFTP=22",
-						"* Port 990 is used when the older Implicit FTPS is configured"
+						"{{FTP_PORT_HELP1}}",
+						"{{FTP_PORT_HELP2}}"
 					],
 					"dependencies": {
 						"enabled": true,
@@ -74,43 +74,43 @@
 					}
 				},
 				"sshAuth": {
-					"label": "SFTP Authentication method:",
+					"label": "{{SFTP_AUTH}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"Password",
-						"Pre-shared key",
-						"Password or pre-shared key"
+						"{{PASSWORD}}",
+						"{{PRE_SHARED_KEY}}",
+						"{{PASSWORD_OR_PSK}}"
 					],
 					"removeDefaultNone": true,
-					"helper": "Select the authentication method for SFTP connections",
+					"helper": "{{SFTP_AUTH_HELP1}}",
 					"dependencies": {
 						"sslftp": 2
 					}
 				},
 				"pskFile": {
-					"label": "Pre-shared Private Key file for SFTP:",
-					"helper": "Filename for your private PSK file, include the full path if the file is not in your CumulusMX folder",
+					"label": "{{PSK_FILE}}:",
+					"helper": "{{PSK_FILE_HELP1}}",
 					"dependencies": {
 						"sshAuth": ["psk","password_psk"]
 					}
 				},
 				"directory": {
-					"label": "Remote FTP Directory:",
+					"label": "{{REMOTE_FTP_DIR}}:",
 					"dependencies": {
 						"enabled": true,
 						"sslftp": [0,1,2]
 					}
 				},
 				"username": {
-					"label": "Username:",
+					"label": "{{USERNAME}}:",
 					"dependencies": {
 						"enabled": true,
 						"sslftp": [0,1,2]
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
 					"dependencies": {
 						"enabled": true,
@@ -119,12 +119,12 @@
 					}
 				},
 				"phpsecret": {
-					"label": "PHP Upload Secret:",
+					"label": "{{PHP_SECRET}}:",
 					"type": "password",
 					"helpers": [
-						"Enter a complex string used to generate PHP upload signatures.",
-						"Cumulus will generate a unique string for you.",
-						"You will need to enter this string into the webfiles/upload.php file before uploading it to your web site"
+						"{{PHP_SECRET_HELP1}}",
+						"{{PHP_SECRET_HELP2}}",
+						"{{PHP_SECRET_HELP3}}"
 					],
 					"id": "phpsecret",
 					"dependencies": {
@@ -137,28 +137,28 @@
 					"collapsed": true,
 					"fields": {
 						"ftprename": {
-							"rightLabel": "Enable FTP rename",
+							"rightLabel": "{{FTP_RENAME}}",
 							"helpers": [
-								"Use this if your FTP server supports it (most do)",
-								"It minimises the time the file will be unavailable to your web server"
+								"{{FTP_RENAME_HELP1}}",
+								"{{FTP_RENAME_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": [0,1,2]
 							}
 						},
 						"ftpdelete": {
-							"rightLabel": "Enable delete before upload",
+							"rightLabel": "{{DELETE_BEFORE_UPLOAD}}",
 							"helpers": [
-								"Use this only if your FTP server requires it (most do not)",
-								"It deletes the destination file before uploading the new version"
+								"{{DELETE_BEFORE_UPLOAD_HELP1}}",
+								"{{DELETE_BEFORE_UPLOAD_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": [0,1,2]
 							}
 						},
 						"utf8encode": {
-							"rightLabel": "Enable UTF-8 encoding",
-							"helpers": ["Use UTF-8 encoding for the standard files. This is the normal standard."]
+							"rightLabel": "{{UTF8_ENCODE}}",
+							"helpers": ["{{UTF8_ENCODE_HELP1}}"]
 						},
 						"ftpmode": {
 							"type": "integer",
@@ -172,24 +172,24 @@
 				"advanced": {
 					"collapsible":true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"autodetect": {
-							"rightLabel": "Enable Automatic Connection",
+							"rightLabel": "{{AUTO_CONNECTION}}",
 							"helpers": [
-								"Enabling this means the FTP client attempts to discover a working configuration for your server",
-								"Note that using this setting may slow down the connection process a little"
+								"{{AUTO_CONNECTION_HELP1}}",
+								"{{AUTO_CONNECTION_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": [0,1]
 							}
 						},
 						"disableftpsepsv": {
-							"rightLabel": "Disable EPSV mode in FTP(S)",
+							"rightLabel": "{{DISABLE_EPSV}}",
 							"helpers": [
-								"Not normally required - use with caution",
-								"Extended passive mode is a newer standard of PSV. Disabling this forces PSV mode connections"
+								"{{NOT_NORMALLY_REQUIRED}}",
+								"{{DISABLE_EPSV_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": [0,1],
@@ -197,10 +197,10 @@
 							}
 						},
 						"disableftpsexplicit": {
-							"rightLabel": "Disable Explicit mode in FTPS",
+							"rightLabel": "{{DISABLE_EXPLICIT}}",
 							"helpers": [
-								"Not normally required - use with caution",
-								"Explicit mode is the newer standard of FTPS. Disabling this forces Implicit mode connections"
+								"{{NOT_NORMALLY_REQUIRED}}",
+								"{{DISABLE_EXPLICIT_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": 1,
@@ -208,61 +208,61 @@
 							}
 						},
 						"activeftp": {
-							"rightLabel": "Enable Active FTP(S) mode",
-							"helpers": ["Not normally required - use with caution"],
+							"rightLabel": "{{ACTIVE_FTPS}}",
+							"helpers": ["{{NOT_NORMALLY_REQUIRED}}"],
 							"dependencies": {
 								"ftpmode": [0,1]
 							}
 						},
 						"ignorecerts": {
-							"rightLabel": "Ignore FTPS certificate errors",
+							"rightLabel": "{{IGNORE_FTPS_CERTS}}",
 							"helpers": [
-								"Not normally required - use with caution",
-								"Typically only used if you are connecting to your own internal FTP server and it does not have a public certificate"
+								"{{NOT_NORMALLY_REQUIRED}}",
+								"{{IGNORE_FTPS_CERTS_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": 1
 							}
 						},
 						"phpignorecerts": {
-							"label": "Certificates",
-							"rightLabel": "Ignore PHP certificate errors",
+							"label": "{{CERTS}}",
+							"rightLabel": "{{IGNORE_PHP_CERTS}}",
 							"helpers": [
-								"Not normally required - use with caution",
-								"Typically only used if you are connecting to your own internal web server and it does not have a public certificate"
+								"{{NOT_NORMALLY_REQUIRED}}",
+								"{{IGNORE_PHP_CERTS_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": 3
 							}
 						},
 						"phpuseget": {
-							"label": "GET uploads",
-							"rightLabel": "Use GET for PHP small file uploads",
+							"label": "{{GET_UPLOADS}}",
+							"rightLabel": "{{GET_UPLOADS_LABEL}}",
 							"helpers": [
-								"Some web servers do not seem to work well with GET uploads, if you experience issues with the small uploads (realtime.txt etc) then this option can be disabled",
-								"Disabling this option will make small uploads slightly slower"
+								"{{GET_UPLOADS_HELP1}}",
+								"{{GET_UPLOADS_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": 3
 							}
 						},
 						"phpusebrotli": {
-							"label": "Brotli Compression",
-							"rightLabel": "Use Brotli compression for PHP file uploads",
+							"label": "{{BROTLI}}",
+							"rightLabel": "{{BROTLI_LABEL}}",
 							"helpers": [
-								"Enables Brotli compression of PHP file uploads to your web server if it supports it",
-								"Note, this also requires PHP support for Brotli compression on your web server - CHECK this support is available before enabling this option"
+								"{{BROTLI_HELP1}}",
+								"{{BROTLI_HELP2}}"
 							],
 							"dependencies": {
 								"ftpmode": 3
 							}
 						},
 						"maxuploads": {
-							"label": "Concurrent Uploads",
+							"label": "{{CONCURRRENT_UPLOADS}}",
 							"helpers": [
-								"Set the maximum number of concurrent PHP uploads allowed to your web server",
-								"Changing this setting requires a restart of CMX to take effect",
-								"Default = 2"
+								"{{CONCURRRENT_UPLOADS_HELP1}}",
+								"{{CONCURRRENT_UPLOADS_HELP2}}",
+								"{{CONCURRRENT_UPLOADS_HELP3}}"
 							],
 							"dependencies": {
 								"ftpmode": 3
@@ -285,13 +285,13 @@
 			"collapsed": true,
 			"fields": {
 				"stdwebsite": {
-					"rightLabel": "I want to use the supplied default web site",
+					"rightLabel": "{{USE_DEFAULT_WEB_SITE}}",
 					"helpers": [
-						"WARNING: Ticking this WILL overwrite any existing settings you may have saved, if you set this, please double check all your settings below",
-						"Enabling this will automatically enable all the required options below",
-						"Disabling this WILL automatically DISABLE all the required options below",
-						"You will still need to save the configuration after setting this option",
-						"This switch setting is not saved, it is just a switch to configure the defaults for the standard web site. It overwrites any settings you may already have set"
+						"{{USE_DEFAULT_WEB_SITE_HELP1}}",
+						"{{USE_DEFAULT_WEB_SITE_HELP2}}",
+						"{{USE_DEFAULT_WEB_SITE_HELP3}}",
+						"{{USE_DEFAULT_WEB_SITE_HELP4}}",
+						"{{USE_DEFAULT_WEB_SITE_HELP5}}"
 					]
 				},
 				"interval": {
@@ -299,21 +299,21 @@
 					"collapsed": true,
 					"fields": {
 						"enabled": {
-							"label": "Interval:",
-							"rightLabel": "Enable the web update interval",
-							"helpers": ["Enable the update interval timer so interval actions can take place"]
+							"label": "{{INTERVAL}}:",
+							"rightLabel": "{{INTERVAL_LABEL}}",
+							"helpers": ["{{INTERVAL_HELP1}}"]
 						},
 						"ftpinterval": {
-							"label": "Interval time:",
-							"helper": "Interval between web updates in minutes",
+							"label": "{{INTERVAL_TIME}}:",
+							"helper": "{{INTERVAL_TIME_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
 						},
 						"enableintervalftp": {
-							"label": "Upload",
-							"rightLabel": "Enable update interval uploads",
-							"helper": "Select this to have Cumulus enable uploading files at the web update interval",
+							"label": "{{UPLOAD}}",
+							"rightLabel": "{{UPLOAD_INTERVAL_LABEL}}",
+							"helper": "{{UPLOAD_INTERVAL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
@@ -336,19 +336,19 @@
 										}
 									},
 									"helpers": [
-										"Select which standard files are to be created locally/uploaded/copied every update interval",
-										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
-										"Note: The websitedata.json file is required for the default web site and is uploaded once or when the station configuration is changed",
-										"Note: The wxnow.txt file is created every minute, regardless of your web interval"
+										"{{STD_FILES_HELP1}}",
+										"{{OPTIONS_INDEPENDENT}}",
+										"{{STD_FILES_HELP3}}",
+										"{{STD_FILES_HELP4}}"
 									]
 								},
 								"wxnowcomment": {
-									"label": "wxnow.txt Comment:",
-									"helper": "Text to append to the wxnow.txt file. This can contain web tags"
+									"label": "{{WXNOW_COMMENT}}:",
+									"helper": "{{WXNOW_COMMENT_HELP1}}"
 								},
 								"wxnowutc": {
-									"rightLabel": "Force UTC timestamp in wxnow.txt file",
-									"helper": "Normally the wxnow.txt uses the local date/time in the file. You can override this and force it to be UTC"
+									"rightLabel": "{{WXNOW_UTC}}",
+									"helper": "{{WXNOW_UTC_HELP1}}"
 								}
 							},
 							"dependencies": {
@@ -372,9 +372,9 @@
 										}
 									},
 									"helpers": [
-										"Select which graph data files are to be created locally/uploaded/copied every update interval",
-										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
-										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+										"{{GRAPH_FILES_HELP1}}",
+										"{{OPTIONS_INDEPENDENT}}",
+										"{{GRAPH_FILES_HELP3}}"
 									]
 								}
 							},
@@ -399,9 +399,9 @@
 										}
 									},
 									"helpers": [
-										"Select which graph data files are to be created locally/uploaded/copied at the daily rollover",
-										"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>",
-										"Note: The availabledata.json and graphconfig.json are only uploaded once or when the graph configuration is changed"
+										"{{GRAPH_EOD_HELP1}}",
+										"{{OPTIONS_INDEPENDENT}}",
+										"{{GRAPH_FILES_HELP3}}"
 									]
 								}
 							},
@@ -416,21 +416,21 @@
 					"collapsed": true,
 					"fields": {
 						"enabled": {
-							"label": "Real time:",
-							"rightLabel": "Enable Real time",
-							"helper": "Start the real time timer so that real time actions can take place"
+							"label": "{{REAL_TIME}}:",
+							"rightLabel": "{{REAL_TIME_ENABLE}}",
+							"helper": "{{REAL_TIME_HELP1}}"
 						},
 						"realtimeinterval": {
-							"label": "Real time interval",
-							"helper": "Interval between real time updates in seconds",
+							"label": "{{REAL_TIME_INTERVAL}}",
+							"helper": "{{REAL_TIME_INTERVAL_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
 						},
 						"enablerealtimeftp": {
-							"label": "Upload:",
-							"rightLabel": "Enable real time Uploads",
-							"helper": "FTP: Establishes the real time connection so that uploads can take place at the real time interval",
+							"label": "{{UPLOAD}}:",
+							"rightLabel": "{{UPLOAD_REALTIME_LABEL}}",
+							"helper": "{{UPLOAD_REALTIME_HELP1}}",
 							"dependencies": {
 								"enabled": true
 							}
@@ -451,8 +451,8 @@
 								"enabled": true
 							},
 							"helpers": [
-								"Select which standard files are to be created locally/uploaded/copied every real-time interval",
-								"Note: All three options are independent, <mark>you do not need to create a local copy of the file to upload/copy it</mark>"
+								"{{REAL_TIME_FILES_HELP1}}",
+								"{{OPTIONS_INDEPENDENT}}"
 							]
 						}
 					}
@@ -464,81 +464,81 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"server": {
-					"label": "Server Name:",
-					"helper": "The hostname (and domain) or IP address of your SMTP server",
+					"label": "{{SERVER_NAME}}:",
+					"helper": "{{SMTP_SERVER_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"port": {
-					"label": "Network Port:",
-					"helper": "The SMTP port used by your SMTP server",
+					"label": "{{NETWORK_PORT}}:",
+					"helper": "{{SMTP_PORT_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"ssloption": {
-					"label": "Use SSL/TLS:",
+					"label": "{{USE_SSL}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"None",
-						"Auto",
-						"TLS on connect",
-						"Start TLS",
-						"Start TLS when available"
+						"{{NONE}}",
+						"{{USE_SSL_OPT2}}",
+						"{{USE_SSL_OPT3}}",
+						"{{USE_SSL_OPT4}}",
+						"{{USE_SSL_OPT5}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"Select the protocol required by your email server:",
-						"None - No SSL or TLS encryption will be used",
-						"Auto - Cumulus decides which TLS/unencrypted options to use (default). Use this option unless you have good reason not to",
-						"TlsOnConnect - The connection should use TLS encryption immediately" ,
-						"StartTls - Use TLS encryption immediately. If the server does not support the STARTTLS extension then the connection will fail",
-						"StartTlsWhenAvailable - use TLS encryption immediately, but only if the server supports the STARTTLS extension"
+						"{{USE_SSL_HELP1}}:",
+						"{{USE_SSL_HELP2}}",
+						"{{USE_SSL_HELP3}}",
+						"{{USE_SSL_HELP4}}" ,
+						"{{USE_SSL_HELP5}}",
+						"{{USE_SSL_HELP6}}"
 					],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"ignorecerterrors": {
-					"label": "Certificate errors:",
-					"rightLabel": "Ignore server certificate errors",
-					"helper": "Caution: Forces the email client to ignore any errors when checking the servers security certificate, this is not normally required",
+					"label": "{{CERTS_ERRORS}}:",
+					"rightLabel": "{{IGNORE_CERTS}}",
+					"helper": "{{SMTP_CERTS_HELP1}}",
 					"dependencies": {
 						"enabled": true,
 						"ssloption": [1,2,3,4]
 					}
 				},
 				"authenticate": {
-					"label": "Authentication:",
+					"label": "{{AUTHENTICATION}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"None",
-						"Username/Password"
+						"{{NONE}}",
+						"{{USERNAME_PASSWORD}}"
 					],
 					"removeDefaultNone": true,
-					"helper": "Does your SMTP server require username/password authentication",
+					"helper": "{{SMTP_AUTH_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"user": {
-					"label": "Username:",
-					"helper": "The username to connect to your SMTP server",
+					"label": "{{USERNAME}}:",
+					"helper": "{{SMTP_USERNAME_HELP1}}",
 					"dependencies": {
 						"enabled": true,
 						"authenticate": [1,2]
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
-					"helper": "The password used to authenticate with your SMTP server",
+					"helper": "{{SMTP_PASSWORD_HELP1}}",
 					"dependencies": {
 						"enabled": true,
 						"authenticate": 1
@@ -551,28 +551,28 @@
 			"collapsed": true,
 			"fields": {
 				"program": {
-					"label": "Interval program:",
-					"helper": "A program or command to be run at each web update interval"
+					"label": "{{PROG_INTERVAL}}:",
+					"helper": "{{PROG_INTERVAL_HELP1}}"
 				},
 				"programparams": {
-					"label": "Interval program parameters:",
-					"helper": "Parameters for the above program or command, this can contain web tags"
+					"label": "{{PROG_INTERVAL_PARAMS}}:",
+					"helper": "{{PROG_PARAMS_HELP1}}"
 				},
 				"realtimeprogram": {
-					"label": "Real time program:",
-					"helper": "A program or command to be run at each real time interval"
+					"label": "{{PROG_REALTIME}}:",
+					"helper": "{{PROG_REALTIME_HELP1}}"
 				},
 				"realtimeprogramparams": {
-					"label": "Real time program parameters:",
-					"helper": "Parameters for the above program or command, this can contain web tags"
+					"label": "{{PROG_REALTIME_PARAMS}}:",
+					"helper": "{{PROG_PARAMS_HELP1}}"
 				},
 				"dailyprogram": {
-					"label": "Daily program:",
-					"helper": "A program or command to be run at the start of each day"
+					"label": "{{PROG_DAILY}}:",
+					"helper": "{{PROG_DAILY_HELP1}}"
 				},
 				"dailyprogramparams": {
-					"label": "Daily program parameters:",
-					"helper": "Parameters for the above program or command, this can contain web tags"
+					"label": "{{PROG_DAILY_PARAMS}}:",
+					"helper": "{{PROG_PARAMS_HELP1}}"
 				}
 			}
 		},
@@ -581,52 +581,52 @@
 			"collapsed":true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Generate Moon image",
-					"helper": "Generate a Moon image file '/web/moon.png' every hour"
+					"rightLabel": "{{MOON}}",
+					"helper": "{{MOON_HELP1}}"
 				},
 			   "size": {
-					"label": "Image Size:",
-					"helper": "Set the image size in pixels",
+					"label": "{{MOON_SIZE}}:",
+					"helper": "{{MOON_SIZE_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"transparent": {
-					"label" : "Shadow:",
-					"rightLabel": "Make shadow transparent",
-					"helper": "Draw the shadow as transparent so the background shows through. If disabled then the shadow is drawn as dimming by 80%",
+					"label" : "{{MOON_SHADOW}}:",
+					"rightLabel": "{{MOON_SHADOW_LABEL}}",
+					"helper": "{{MOON_SHADOW_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includemoonimage": {
-					"label": "Upload file:",
-					"rightLabel": "Upload Moon image file",
-					"helper": "Select this to have the Moon image file uploaded to your web server",
+					"label": "{{UPLOAD}}:",
+					"rightLabel": "{{MOON_UPLOAD}}",
+					"helper": "{{MOON_UPLOAD_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"ftpdest": {
-					"label": "Upload folder:",
-					"helper": "Set the folder and filename to use on your web server - default 'images/moon.png'",
+					"label": "{{UPLOAD_FOLDER}}:",
+					"helper": "{{MOON_FOLDER_HELP1}}",
 					"dependencies": {
 						"includemoonimage": true
 					}
 				},
 				"copyimage": {
-					"label": "Copy file:",
-					"rightLabel": "Copy Moon image file",
-					"helpers": "Select this to have the Moon image file copied to a destination of your choice",
+					"label": "{{COPY_FILE}}:",
+					"rightLabel": "{{MOON_COPY}}",
+					"helpers": "{{MOON_COPY_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"copydest": {
-					"label": "Copy destination folder:",
+					"label": "{{MOON_COPY_DEST}}:",
 					"helpers": [
-						"Set the folder and filename to use for your locally copied image file",
-						"Note the path entered here should be a full absolute path to the destination folder"
+						"{{MOON_COPY_DEST_HELP1}}",
+						"{{MOON_COPY_DEST_HELP2}}"
 					],
 					"dependencies": {
 						"copyimage": true
@@ -641,16 +641,16 @@
 				"httpproxy": {
 					"fields": {
 						"proxy": {
-							"label": "Proxy server:"
+							"label": "{{PROXY_SERVER}}:"
 						},
 						"port": {
-							"label": "Port number:"
+							"label": "{{NETWORK_PORT}}:"
 						},
 						"user": {
-							"label": "Username:"
+							"label": "{{USERNAME}}:"
 						},
 						"password": {
-							"label": "Password:"
+							"label": "{{PASSWORD}}:"
 						}
 					}
 				}
@@ -661,11 +661,11 @@
 			"collapsed": true,
 			"fields": {
 				"forumurl": {
-					"label": "Forum URL:",
+					"label": "{{FORUM_URL}}:",
 					"type": "url"
 				},
 				"webcamurl": {
-					"label": "Webcam URL:",
+					"label": "{{WEBCAM_URL}}:",
 					"type": "url",
 					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
 				}

@@ -1,10 +1,10 @@
 {
-	"version": "Last Modified: 2025/08/04 11:40:35",
+	"version": "Last Modified: 2025/08/22 21:47:07",
 	"definitions": {
 		"wundextratemp": {
-			"optionLabels": ["Disabled","Sensor 1","Sensor 2","Sensor 3","Sensor 4","Sensor 5","Sensor 6","Sensor 7","Sensor 8","Sensor 9","Sensor 10"],
+			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
 			"removeDefaultNone": true,
-			"helper": "Select the MX extra sensor number to map to the Wunderground sensor",
+			"helper": "{{WU_EXTRA_TEMP}}",
 			"sort": false,
 			"dependencies": {
 				"enabled": true
@@ -20,99 +20,99 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"stationid": {
-					"label": "Device ID:",
+					"label": "{{DEVICE_ID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Station Key:",
+					"label": "{{STATION_KEY}}:",
 					"type": "password",
 					"helpers": [
-						"This used to be your password, but changed to the Station Key (case sensitive)",
-						"NOTE: This is NOT the long API Key"
+						"{{STATION_KEY_HELP1}}",
+						"{{STATION_KEY_HELP2}}"
 					],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval",
-					"helper": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)",
+					"label": "{{INTERVAL}}",
+					"helper": "{{WU_INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"rapidfire": {
-					"label": "Rapid file:",
-					"rightLabel": "Enable Rapid Fire",
+					"label": "{{RAPID_FIRE}}:",
+					"rightLabel": "{{RAPID_FIRE_LABEL}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeindoor": {
-					"label": "Indoor:",
-					"rightLabel": "Include indoor data",
-					"helper": "Include indoor temperature and humidity in the update",
+					"label": "{{INDOOR}}:",
+					"rightLabel": "{{INDOOR_LABEL}}",
+					"helper": "{{INDOOR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I",
-					"rightLabel": "Include UV-I",
-					"helper": "Include UV index in the update",
+					"label": "{{UV_I}}",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"sendavgwind": {
-					"label": "Average speed:",
-					"rightLabel": "Send average wind speed",
-					"helper": "Send the average wind speed for the current speed",
+					"label": "{{AVERAGE_SPEED}}:",
+					"rightLabel": "{{AVERAGE_SPEED_LABEL}}",
+					"helper": "{{AVERAGE_SPEED_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeaq": {
-					"label": "Air quality:",
-					"rightLabel": "Include air quality data",
-					"helper": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
+					"label": "{{AIR_QUALITY}}:",
+					"rightLabel": "{{AIR_QUALITY_LABEL}}",
+					"helper": "{{AIR_QUALITY_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"extratemp1": {
-					"label": "Extra Temperature #1",
+					"label": "{{EXTRA_TEMPERATURE}} #1",
 					"$ref": "#/definitions/wundextratemp"
 				},
 				"extratemp2": {
-					"label": "Extra Temperature #2",
+					"label": "{{EXTRA_TEMPERATURE}} #2",
 					"$ref": "#/definitions/wundextratemp"
 				},
 				"extratemp3": {
-					"label": "Extra Temperature #3",
+					"label": "{{EXTRA_TEMPERATURE}} #3",
 					"$ref": "#/definitions/wundextratemp"
 				},
 				"extratemp4": {
-					"label": "Extra Temperature #4",
+					"label": "{{EXTRA_TEMPERATURE}} #4",
 					"$ref": "#/definitions/wundextratemp"
 				},
 				"catchup": {
-					"label": "Catch up:",
-					"rightLabel": "Enable catch up",
-					"helper": "When Cumulus starts, send each entry read from the station logger",
+					"label": "{{CATCH_UP}}:",
+					"rightLabel": "{{CATCH_UP_LABEL}}",
+					"helper": "{{CATCH_UP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -124,41 +124,41 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"stationidx": {
-					"label": "Station Index:",
-					"helper": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc.",
+					"label": "{{STATION_INDEX}}:",
+					"helper": "{{STATION_INDEX_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"apikey": {
-					"label": "API Key:",
-					"helper": "This is a very long string and is used for all your Windy.com stations",
+					"label": "{{API_KEY}}:",
+					"helper": "{{WINDY_API_KEY_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper": "Interval in minutes between updates (min value = 5).",
+					"label": "{{INTERVAL}}:",
+					"helper": "{{WINDY_INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I:",
-					"rightLabel": "Include UV",
-					"helper": "Include UV index in the update",
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"catchup": {
-					"label": "Catch up:",
-					"rightLabel": "Enable catch up",
-					"helper": "When Cumulus starts, send each entry read from the station logger",
+					"label": "{{CATCH_UP}}:",
+					"rightLabel": "{{CATCH_UP_LABEL}}",
+					"helper": "{{CATCH_UP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -170,48 +170,48 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"stationid": {
-					"label": "Station ID:",
+					"label": "{{STATION_ID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"label": "{{INTERVAL}}:",
+					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I:",
-					"rightLabel": "Include UV",
-					"helper": "Include UV index in the update",
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"catchup": {
-					"label": "Catch up:",
-					"rightLabel": "Enable catch up",
-					"helper": "When Cumulus starts, send each entry read from the station logger",
+					"label": "{{CATCH_UP}}:",
+					"rightLabel": "{{CATCH_UP_LABEL}}",
+					"helper": "{{CATCH_UP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -223,74 +223,72 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"stationid": {
-					"label": "Site ID:",
+					"label": "{{SITE_ID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Authentication Key:",
+					"label": "{{AUTH_KEY}}:",
 					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"label": "{{INTERVAL}}:",
+					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I:",
-					"rightLabel": "Include UV",
-					"helper": "Include UV index in the update",
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesoiltemp": {
-					"label": "Soil Temp:",
-					"rightLabel": "Include soil temperature",
-					"helper": "Include the soil temperature in the update",
+					"label": "{{SOIL_TEMP}}:",
+					"rightLabel": "{{SOIL_TEMP_LABEL}}",
+					"helper": "{{SOIL_TEMP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"soiltempsensor": {
-					"label": "Soil temperature sensor number:",
-					"helper": "Soil temperature sensor number",
+					"label": "{{SOIL_TEMP_SENSOR}}:",
 					"dependencies": {
 						"enabled": true,
 						"includesoiltemp": true
 					}
 				},
 				"includesoilmoisture": {
-					"label": "Soil Moisture:",
-					"rightLabel": "Include soil moisture",
+					"label": "{{SOIL_MOIST}}:",
+					"rightLabel": "{{SOIL_MOIST_LABEL}}",
 					"helpers": [
-						"Include the soil moisture the update",
-						"NOTE: The sensor must supply data in percentage, not centibars"
+						"{{SOIL_MOIST_HELP1}}",
+						"{{WOW_SOIL_MOIST_HELP2}}"
 					],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"soilmoistsensor": {
-					"label": "Soil moisture sensor number:",
-					"helper": "Soil moisture sensor number",
+					"label": "{{SOIL_MOIST_SENSOR}}:",
 					"dependencies": {
 						"enabled": true,
 						"includesoilmoisture": true
@@ -303,43 +301,43 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"id": {
-					"label": "ID:",
+					"label": "{{ID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Password:",
-					"helper":  "Leave at -1 unless you are using an amateur radio call sign",
+					"label": "{{PASSWORD}}:",
+					"helper":  "{{CWOP_PASSWORD_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"server": {
-					"label": "Server name:",
+					"label": "{{SERVER_NAME}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"port": {
-					"label": "Port number:",
+					"label": "{{PORT_NUMBER}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
+					"label": "{{INTERVAL}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -351,89 +349,89 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"user": {
-					"label": "Username:",
+					"label": "{{USERNAME}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"lang": {
-					"label": "Language:",
-					"optionLabels": ["English", "German", "French", "Italian", "Dutch"],
+					"label": "{{LANGUAGE}}:",
+					"optionLabels": ["{{LANG_ENGLISH}}", "{{LANG_GERMAN}}", "{{LANG_FRENCH}}", "{{LANG_ITALIAN}}", "{{LANG_DUTCH}}"],
 					"removeDefaultNone": true,
-					"helper": "One of fr/de/en/it/nl",
+					"helper": "{{LANGUAGE_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval (seconds):",
-					"helper": "Update interval in seconds. Min value 15 seconds",
+					"label": "{{INTERVAL}}:",
+					"helper": "{{AWEKAS_INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I:",
-					"rightLabel": "Include UV",
-					"helper": "Include UV index in the update",
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesoiltemp": {
-					"label": "Soil Temp:",
-					"rightLabel": "Include soil temp",
-					"helper": "Include soil temperature 1-4 in the update",
+					"label": "{{SOIL_TEMP}}:",
+					"rightLabel": "{{SOIL_TEMP_LABEL}}",
+					"helper": "{{SOIL_TEMP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesoilmoisture": {
-					"label": "Soil Moisture:",
-					"rightLabel": "Include soil moisture",
-					"helper": "Include soil moisture 1-4 in the update",
+					"label": "{{SOIL_MOIST}}:",
+					"rightLabel": "{{SOIL_MOIST_LABEL}}",
+					"helper": "{{SOIL_MOIST_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeleafwetness": {
-					"label": "Leaf Wetness:",
-					"rightLabel": "Include leaf wetness",
-					"helper": "Include leaf wetness 1-2 in the update",
+					"label": "{{LEAF_WET}}:",
+					"rightLabel": "{{LEAF_WET_LABEL}}",
+					"helper": "{{AWEKAS_LEAF_WET_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeindoor": {
-					"label": "Indoor:",
-					"rightLabel": "Include indoor data",
-					"helper": "Include indoor temperature and humidity in the update",
+					"label": "{{INDOOR}}:",
+					"rightLabel": "{{INDOOR_LABEL}}",
+					"helper": "{{INDOOR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeaq": {
-					"label": "Air Quality:",
-					"rightLabel": "Include air quality data",
-					"helper": "Include the pm2.5 (and pm10 if available). You also need to set the Primary AQ sensor in Station Options settings",
+					"label": "{{AIR_QUALITY}}:",
+					"rightLabel": "{{AIR_QUALITY_LABEL}}",
+					"helper": "{{AIR_QUALITY_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -445,7 +443,7 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"wid": {
 					"label": "WID:",
@@ -454,69 +452,67 @@
 					}
 				},
 				"key": {
-					"label": "Key:",
+					"label": "{{KEY}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"label": "{{INTERVAL}}:",
+					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeuv": {
-					"label": "UV-I:",
+					"label": "{{UV_I}}:",
 					"rightLabel": "Include UV-I",
-					"helper": "Include UV index in the update",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesolar": {
-					"label": "Solar:",
-					"rightLabel": "Include solar radiation",
-					"helper": "Include the solar radiation reading in the update",
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includeaqi": {
-					"label": "Air Quality:",
-					"rightLabel": "Include air quality",
-					"helper": "Include air quality PM values and US EPA AQI in the update",
+					"label": "{{AIR_QUALITY}}:",
+					"rightLabel": "{{AIR_QUALITY_LABEL}}",
+					"helper": "{{WC_AIR_QUALITY_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includesoilmoist": {
-					"label": "Soil Moisture:",
-					"rightLabel": "Include soil moisture",
-					"helper": "Include a soil moisture reading in the update",
+					"label": "{{SOIL_MOIST}}:",
+					"rightLabel": "{{SOIL_MOIST_LABEL}}",
+					"helper": "{{SOIL_MOIST_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"moistsensor": {
-					"label": "Soil moisture sensor number:",
-					"helper": "Soil moisture sensor number",
+					"label": "{{SOIL_MOIST_SENSOR}}:",
 					"dependencies": {
 						"enabled": true,
 						"includesoilmoist": true
 					}
 				},
 				"includeleafwet": {
-					"label": "Leaf Wetness:",
-					"rightLabel": "Include soil moisture",
-					"helper": "Include a soil moisture reading in the update",
+					"label": "{{LEAF_WET}}:",
+					"rightLabel": "{{LEAF_WET_LABEL}}",
+					"helper": "{{LEAF_WET_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"leafwetsensor": {
-					"label": "Leaf wetness sensor number:",
-					"helper": "Soil moisture sensor number",
+					"label": "{{LEAF_WET_SENSOR}}:",
 					"dependencies": {
 						"enabled": true,
 						"includeleafwet": true
@@ -529,33 +525,32 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"apikey": {
-					"label": "API key:",
-					"helper": "Enter the API key you want to use for these uploads",
+					"label": "{{API_KEY}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"stationid": {
-					"label": "Station Id:",
-					"helper": "Enter your station id if known. If not leave blank and Cumulus will find an existing station or generate a new station for you",
+					"label": "{{STATION_ID}}:",
+					"helper": "{{OWM_STATION_ID_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"label": "{{INTERVAL}}l:",
+					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"catchup": {
-					"label": "Catch up:",
-					"rightLabel": "Enable catch up",
-					"helper": "When Cumulus starts, send each entry read from the station logger",
+					"label": "{{CATCH_UP}}:",
+					"rightLabel": "{{CATCH_UP_LABEL}}",
+					"helper": "{{CATCH_UP_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -567,33 +562,33 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "{{ENABLED}}"
 				},
 				"uid": {
-					"label": "Station UID:",
+					"label": "{{STATION_UID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Secret password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
-					"helper": "The station login password or the special API password which you can also set during registration, either of these will work",
+					"helper": "{{WINDGURU_PASSWORD_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"helper":  "Interval between updates in minutes",
+					"label": "{{INTERVAL}}:",
+					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"includerain": {
-					"label": "Rainfall:",
-					"rightLabel": "Include rainfall data",
-					"helper": "Include the rainfall in the last hour reading in the update",
+					"label": "{{RAINFALL}}:",
+					"rightLabel": "{{RAINFALL_LABEL}}",
+					"helper": "{{WINDGURU_RAINFALL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -605,43 +600,43 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enabled"
+					"rightLabel": "ENABLED"
 				},
 				"id": {
-					"label": "Identifier:",
+					"label": "{{ID}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"password": {
-					"label": "Password:",
+					"label": "{{PASSWORD}}:",
 					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval:",
-					"placeholder": "Disabled",
-					"helper":  "Interval between updates in minutes, delete entry to disable interval posts",
+					"label": "{{INTERVAL}}:",
+					"placeholder": "{{DISABLED}}",
+					"helper":  "{{BLUESKY_INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"contentTemplate": {
-					"label": "Bluesky.txt Template:",
+					"label": "{{BLUESKY_TEMPLATE}}:",
 					"type": "textarea",
 					"helpers":  [
-						"Edit the /web/Bluesky.txt file and reload this page to refesh the Cumulus configuration",
-						"You can include URLs 'https://xx.yy/page.htm|Link Text|' and Bluesky tags '#MyTag'",
-						"NOTE: Your total parsed content is limited to 300 characters - this excludes any URLs, but includes the link text"
+						"{{BLUESKY_TEMPLATE_HELP1}}",
+						"{{BLUESKY_TEMPLATE_HELP2}}",
+						"{{BLUESKY_TEMPLATE_HELP3}}"
 					],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"times": {
-					"label": "Fixed Posting Times:",
+					"label": "{{{POSTING_TIMES_FIXED}}}:",
 					"collapsible": true,
 					"collapsed": false,
 					"items": {
@@ -661,13 +656,13 @@
 					}
 				},
 				"variable": {
-					"label": "Variable Posting Times:",
+					"label": "{{POSTING_TIMES_VARIABLE}}:",
 					"collapsible": true,
 					"collapsed": false,
 					"items": {
 						"fields": {
 							"time": {
-								"optionLabels": ["Sun Rise", "Sun Set", "Dawn Start", "Dusk End"],
+								"optionLabels": ["{{TIME_SUN_RISE}}", "{{TIME_SUN_SET}}", "{{TIME_DAWN_START}}", "{{TIME_DUSK_END}}"],
 								"sort": false
 							},
 							"file": {
@@ -680,15 +675,15 @@
 					}
 				},
 				"lang": {
-					"label": "Posting Language Code",
-					"helper": "The language code helps apps process/index your posts",
+					"label": "{{POST_LANGUAGE_CODE}}",
+					"helper": "{{POST_LANGUAGE_CODE_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"baseUrl": {
-					"label": "Base URL",
-					"helper": "The base URL for BlueSky, Only change this if you are using your own Personal Data Server (PDS) or another non-bsky.social PDS",
+					"label": "{{BASE_URL}}",
+					"helper": "{{BASE_URL_HELP1}}",
 					"placeholder": "https://bsky.social",
 					"dependencies": {
 						"enabled": true
@@ -703,13 +698,13 @@
 				"customseconds": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "Custom HTTP URLs to be invoked at an interval in seconds, max of 10 entries - can include webtags",
+					"helper": "{{CUSTOM_HELP1}}",
 					"fields": {
 						"enabled": {
-							"rightLabel": "Enabled"
+							"rightLabel": "{{ENABLED}}"
 						},
 						"url": {
-							"label": "HTTP URLs:",
+							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
 							"dependencies": {
@@ -717,7 +712,7 @@
 							}
 						},
 						"interval": {
-							"label": "Interval (seconds):",
+							"label": "{{INTERVAL_SECS}}:",
 							"dependencies": {
 								"enabled": true
 							}
@@ -727,13 +722,13 @@
 				"customminutes": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "Custom HTTP URLs to be invoked at an interval in minutes, max of 10 entries - can include webtags",
+					"helper": "{{CUSTOM_MINS_HELP1}}",
 					"fields": {
 						"enabled": {
-							"rightLabel": "Enabled"
+							"rightLabel": "{{ENABLED}}"
 						},
 						"url": {
-							"label": "HTTP URLs:",
+							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
 							"dependencies": {
@@ -743,18 +738,18 @@
 						"intervalindex": {
 							"label": "Interval:",
 							"optionLabels": [
-								"1 minute",
-								"2 minutes",
-								"3 minutes",
-								"4 minutes",
-								"5 minutes",
-								"6 minutes",
-								"10 minutes",
-								"12 minutes",
-								"15 minutes",
-								"20 minutes",
-								"30 minutes",
-								"60 minutes"
+								"{{MIN01}}",
+								"{{MIN02}}",
+								"{{MIN03}}",
+								"{{MIN04}}",
+								"{{MIN05}}",
+								"{{MIN06}}",
+								"{{MIN10}}",
+								"{{MIN12}}",
+								"{{MIN15}}",
+								"{{MIN20}}",
+								"{{MIN30}}",
+								"{{MIN60}}"
 							],
 							"removeDefaultNone": true,
 							"sort": false,
@@ -767,13 +762,13 @@
 				"customrollover": {
 					"collapsible":true,
 					"collapsed": false,
-					"helper": "Custom HTTP URLs to be invoked just before end of day rollover, max of 10 entries - can include webtags",
+					"helper": "{{CUST_ROLLOEVR_HELP1}}",
 					"fields": {
 						"enabled": {
-							"rightLabel": "Enabled"
+							"rightLabel": "{{ENABLED}}"
 						},
 						"url": {
-							"label": "HTTP URLs:",
+							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
 							"dependencies": {

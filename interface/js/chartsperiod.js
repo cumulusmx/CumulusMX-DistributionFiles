@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/08/06 22:45:32
+// Last modified: 2025/08/22 11:14:25
 
 var chart, avail, config, options;
 var cache = {};
@@ -11,26 +11,26 @@ var settings = {
 }
 
 var freezing;
-var txtSelect = 'Select Series';
-var txtClear = 'Clear Series';
+var txtSelect = '{{SELECT_SERIES}}';
+var txtClear = '{{CLEAR_SERIES}}';
 
 var myRanges = {
     buttons: [{
         count: 1,
         type: 'day',
-        text: '1d'
+        text: '{{TIME_1D}}'
     }, {
         count: 7,
         type: 'day',
-        text: '7d'
+        text: '{{TIME_7D}}'
     }, {
         count: 28,
         type: 'day',
-        text: '28d'
+        text: '{{TIME_28D}}'
     }, {
         type: 'all',
         text: 'All',
-        title: 'View all'
+        title: '{{ALL}}'
     }],
     inputEnabled: true,
     selected: 3,
@@ -38,7 +38,7 @@ var myRanges = {
 };
 
 var compassP = function (deg) {
-    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
@@ -186,7 +186,7 @@ $(document).ready(function () {
                 type: 'line',
                 alignTicks: true
             },
-            title: {text: 'All Data Select-a-Chart'},
+            title: {text: '{{ALL_DATA_SELECTACHART}}'},
             credits: {enabled: true},
             xAxis: {
                 type: 'datetime',
@@ -518,7 +518,7 @@ var addTemperatureAxis = function (idx) {
 
     // nope no existing axis, add one
    chart.addAxis({
-        title: {text: 'Temperature (°' + config.temp.units + ')'},
+        title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Temperature',
         showEmpty: false,
@@ -548,7 +548,7 @@ var addPressureAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Pressure (' + config.press.units + ')'},
+        title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Pressure',
         showEmpty: false,
@@ -567,7 +567,7 @@ var addHumidityAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Humidity (%)'},
+        title: {text: '{{HUMIDITY}} (%)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Humidity',
         showEmpty: false,
@@ -587,7 +587,7 @@ var addSoilMoistAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Soil Moisture'},
+        title: {text: '{{SOIL_MOISTURE}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'SoilMoist',
         showEmpty: false,
@@ -606,7 +606,7 @@ var addSolarAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Solar Radiation (W/m\u00B2)'},
+        title: {text: '{{SOLAR_RADIATION}} (W/m\u00B2)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Solar',
         showEmpty: false,
@@ -625,7 +625,7 @@ var addUVAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title:{text: 'UV Index'},
+        title:{text: '{{UV_INDEX}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'UV',
         showEmpty: false,
@@ -643,7 +643,7 @@ var addWindAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Wind Speed (' + config.wind.units + ')'},
+        title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Wind',
         showEmpty: false,
@@ -662,7 +662,7 @@ var addBearingAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Wind Bearing'},
+        title: {text: '{{WIND_BEARING}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Bearing',
         alignTicks: false,
@@ -670,8 +670,7 @@ var addBearingAxis = function (idx) {
         labels: {
             align: idx < settings.series.length / 2 ? 'right' : 'left',
             formatter: function () {
-                var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-                return a[Math.floor((this.value + 22.5) / 45) % 8];
+                compassP(this.value + 22.5);
             }
         },
         min: 0,
@@ -689,7 +688,7 @@ var addRainAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Rainfall (' + config.rain.units + ')'},
+        title: {text: '{{RAINFALL}} (' + config.rain.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Rain',
         showEmpty: false,
@@ -709,7 +708,7 @@ var addRainRateAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Rainfall Rate (' + config.rain.units + '/hr)'},
+        title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT_LC}})'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'RainRate',
         showEmpty: false,
@@ -729,7 +728,7 @@ var addAQAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Particulates (µg/m³)'},
+        title: {text: '{{PARTICULATES}} (µg/m³)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'pm',
         showEmpty: false,
@@ -748,7 +747,7 @@ var addLeafWetAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Leaf wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+        title: {text: '{{LEAF_WETNESS}}' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'LeafWetness',
         showEmpty: false,
@@ -788,7 +787,7 @@ var doTemp = function (idx) {
             index: idx,
             data: cache.temp.temp,
             id: 'Temperature',
-            name: 'Temperature',
+            name: '{{TEMPERATURE}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -830,7 +829,7 @@ var doInTemp = function (idx) {
             index: idx,
             data: cache.temp.intemp,
             id: 'Indoor Temp',
-            name: 'Indoor Temp',
+            name: '{{INDOOR_TEMP}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -872,7 +871,7 @@ var doHeatIndex = function (idx) {
             index: idx,
             data: cache.temp.heatindex,
             id: 'Heat Index',
-            name: 'Heat Index',
+            name: '{{HEAT_INDEX}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -914,7 +913,7 @@ var doDewPoint = function (idx) {
             index: idx,
             data: cache.temp.dew,
             id: 'Dew Point',
-            name: 'Dew Point',
+            name: '{{DEW_POINT}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -956,7 +955,7 @@ var doWindChill = function (idx) {
             index: idx,
             data: cache.temp.wchill,
             id: 'Wind Chill',
-            name: 'Wind Chill',
+            name: '{{WIND_CHILL}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -998,7 +997,7 @@ var doAppTemp = function (idx) {
             index: idx,
             data: cache.temp.apptemp,
             id: 'Apparent Temp',
-            name: 'Apparent Temp',
+            name: '{{APPARENT_TEMP}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1040,7 +1039,7 @@ var doFeelsLike = function (idx) {
             index: idx,
             data: cache.temp.feelslike,
             id: 'Feels Like',
-            name: 'Feels Like',
+            name: '{{FEELS_LIKE}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1082,7 +1081,7 @@ var doHumidex = function (idx) {
             index: idx,
             data: cache.temp.humidex,
             id: 'Humidex',
-            name: 'Humidex',
+            name: '{{HUMIDEX}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1125,7 +1124,7 @@ var doHumidity = function (idx) {
             index: idx,
             data: cache.hum.hum,
             id: 'Humidity',
-            name: 'Humidity',
+            name: '{{HUMIDITY}}',
             yAxis: 'Humidity',
             type: 'line',
             tooltip: {
@@ -1167,7 +1166,7 @@ var doInHumidity = function (idx) {
             index: idx,
             data: cache.hum.inhum,
             id: 'Indoor Hum',
-            name: 'Indoor Hum',
+            name: '{{INDOOR_HUM}}',
             yAxis: 'Humidity',
             type: 'line',
             tooltip: {
@@ -1210,7 +1209,7 @@ var doSolarRad = function (idx) {
             index: idx,
             data: cache.solar.SolarRad,
             id: 'Solar Rad',
-            name: 'Solar Rad',
+            name: '{{SOLAR_RAD}}',
             yAxis: 'Solar',
             type: 'area',
             tooltip: {
@@ -1254,7 +1253,7 @@ var doUV = function (idx) {
             index: idx,
             data: cache.solar.UV,
             id: 'UV Index',
-            name: 'UV Index',
+            name: '{{UV_INDEX}}',
             yAxis: 'UV',
             type: 'line',
             tooltip: {
@@ -1296,7 +1295,7 @@ var doPress = function (idx) {
             index: idx,
             data: cache.press,
             id: 'Pressure',
-            name: 'Pressure',
+            name: '{{PRESSURE}}',
             yAxis: 'Pressure',
             type: 'line',
             tooltip: {
@@ -1339,7 +1338,7 @@ var doWindSpeed = function (idx) {
             index: idx,
             data: cache.wind.wspeed,
             id: 'Wind Speed',
-            name: 'Wind Speed',
+            name: '{{WIND_SPEED}}',
             yAxis: 'Wind',
             type: 'line',
             tooltip: {
@@ -1381,7 +1380,7 @@ var doWindGust = function (idx) {
             index: idx,
             data: cache.wind.wgust,
             id: 'Wind Gust',
-            name: 'Wind Gust',
+            name: '{{WIND_GUST}}',
             yAxis: 'Wind',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
@@ -1422,7 +1421,7 @@ var doWindDir = function (idx) {
             index: idx,
             data: cache.wind.avgbearing,
             id: 'Wind Bearing',
-            name: 'Wind Bearing',
+            name: '{{WIND_BEARING}}',
             yAxis: 'Bearing',
             type: 'scatter',
             color: settings.colours[idx],
@@ -1477,7 +1476,7 @@ var doRainfall = function (idx) {
             index: idx,
             data: cache.rain.rfall,
             id: 'Rainfall',
-            name: 'Rainfall',
+            name: '{{RAINFALL}}',
             yAxis: 'Rain',
             type: 'area',
             tooltip: {
@@ -1521,11 +1520,11 @@ var doRainRate = function (idx) {
             index: idx,
             data: cache.rain.rrate,
             id: 'Rainfall Rate',
-            name: 'Rainfall Rate',
+            name: '{{RAINFALL_RATE}}',
             yAxis: 'RainRate',
             type: 'line',
             tooltip: {
-                valueSuffix: ' ' + config.rain.units + '/hr',
+                valueSuffix: ' ' + config.rain.units + '/{{HOUR_SHORT_LC}}',
                 valueDecimals: config.rain.decimals
             },
             visible: true,

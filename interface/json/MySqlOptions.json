@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/04/02 17:15:18",
+	"version": "Last Modified: 2025/08/19 14:16:23",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -9,20 +9,20 @@
 			"collapsed": true,
 			"fields": {
 				"host": {
-					"label": "Host name:"
+					"label": "{{HOST_NAME}}:"
 				},
 				"port": {
-					"label": "Port number:"
+					"label": "{{PORT_NUMBER}}:"
 				},
 				"user": {
-					"label": "User name:"
+					"label": "{{USER_NAME}}:"
 				},
 				"pass": {
 					"type": "password",
-					"label": "Password:"
+					"label": "{{PASSWORD}}:"
 				},
 				"database": {
-					"label": "Database name:"
+					"label": "{{DATABASE_NAME}}:"
 				}
 			}
 		},
@@ -31,14 +31,14 @@
 			"collapsed": true,
 			"fields": {
 				"updateonedit": {
-					"rightLabel": "Update MySQL on Edit",
-					"helpers": ["When editing the dayfile and log file values via the dashboard, also update the corresponding MySQL values"]
+					"rightLabel": "{{UPDATE_ON_EDIT}}",
+					"helpers": ["{{UPDATE_ON_EDIT_HELP1}}"]
 				},
 				"bufferonerror": {
-					"rightLabel": "Buffer commands on failure",
+					"rightLabel": "{{BUFFER_ON_ERROR}}",
 					"helpers": [
-						"On a MySQL command failure, buffer the failed command(s) until Cumulus can reconnect to the MySQL server",
-						"The buffer of failed commands will be lost if you restart Cumulus"
+						"{{BUFFER_ON_ERROR_HELP1}}",
+						"{{BUFFER_ON_ERROR_HELP2}}"
 					]
 				}
 			}
@@ -48,45 +48,45 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Real time Enabled"
+					"rightLabel": "{{REAL_TIME_ENABLED}}"
 				},
 				"table": {
-					"label": "Table name:",
+					"label": "{{TABLE_NAME}}:",
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"retentionVal": {
-					"label": "Data Retention value:",
+					"label": "{{RETENTION_VALUE}}:",
 					"numericEntry": true,
-					"helpers": ["The number of \"units\" to retain in your table"],
+					"helpers": ["{{RETENTION_HELP}}"],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"retentionUnit": {
-					"label": "Data Retention unit:",
+					"label": "{{RETENTION_UNIT}}:",
 					"optionLabels": [
-						"Seconds",
-						"Minutes",
-						"Hours",
-						"Days",
-						"Weeks",
-						"Months"
+						"{{UNIT_SECS}}",
+						"{{UNIT_MINS}}",
+						"{{UNIT_HOURS}}",
+						"{{UNIT_DAYS}}",
+						"{{Weeks}}",
+						"{{UNIT_MONTHS}}"
 					],
 					"sort": false,
 					"removeDefaultNone": true,
-					"helpers": ["The the unit to use with the value above"],
+					"helpers": ["{{UNIT_HELP1}}"],
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"limit1min": {
-					"label": "Limit Inserts:",
-					"rightLabel": "Limit real time table inserts to once a minute",
+					"label": "{{LIMIT_INSERTS}}:",
+					"rightLabel": "{{LIMIT_INSERTS_LABEL}}",
 					"helpers": [
-						"Setting this means that if your real time interval is less than one minute, then a new row will only be inserted once a minute",
-						"You should not enable this option if your real time interval is greater than one minute"
+						"{{LIMIT_INSERTS_HELP1}}",
+						"{{LIMIT_INSERTS_HELP2}}"
 					],
 					"dependencies": {
 						"enabled": true
@@ -99,10 +99,10 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Dayfile Enabled"
+					"rightLabel": "{{DAYFILE_ENABLED}}"
 				},
 				"table": {
-					"label": "Table name:",
+					"label": "{{TABLE_NAME}}:",
 					"dependencies": {
 						"enabled": true
 					}
@@ -114,10 +114,10 @@
 			"collapsed": true,
 			"fields": {
 				"enabled": {
-					"rightLabel": "Monthly Log Enabled"
+					"rightLabel": "{{MONTHLY_ENABLED}}"
 				},
 				"table": {
-					"label": "Table name:",
+					"label": "{{TABLE_NAME}}:",
 					"dependencies": {
 						"enabled": true
 					}
@@ -128,22 +128,22 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpers": [
-				"A custom SQL command to be executed at an interval in seconds - can include webtags",
-				"For the logging date & time, use the web tag <#DataDateTime>"
+				"{{CUST_SECS_HELP1}}",
+				"{{CUST_HELP2}}"
 			],
 			"fields": {
 				"enabled": {
-					"rightLabel": "Custom Seconds Enabled"
+					"rightLabel": "{{CUST_SECS_ENABLED}}"
 				},
 				"command": {
-					"label": "SQL Commands:",
+					"label": "{{SQL_COMMANDS}}:",
 					"collapsible": false,
 					"dependencies": {
 						"enabled": true
 					}
 				},
 				"interval": {
-					"label": "Interval (seconds):",
+					"label": "{{INTERVAL_SECS}}:",
 					"numericEntry": true,
 					"dependencies": {
 						"enabled": true
@@ -155,32 +155,32 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpers": [
-				"A custom SQL command to be executed at an interval in minutes - can include webtags",
-				"For the logging date & time, use the web tag <#DataDateTime>"
+				"{{CUST_SECS_HELP1}}",
+				"{{CUST_HELP2}}"
 			],
 			"fields": {
 				"enabled": {
-					"rightLabel": "Custom Minutes Enabled"
+					"rightLabel": "{{CUST_MINS_ENABLED}}"
 				},
 				"entries": {
 					"collapsible": false,
-					"label": "SQL Commands:",
+					"label": "{{SQL_COMMANDS}}:",
 					"fields": {
 						"item": {
 							"fields": {
 								"command": {
-									"label": "SQL:",
+									"label": "{{SQL}}:",
 									"required": true
 								},
 								"intervalidx": {
-									"label": "Interval:",
-									"optionLabels": ["1 min","2 mins","3 mins","4 mins","5 mins","6 mins","10 mins","12 mins","15 mins","20 mins","30 mins","60 mins"],
+									"label": "{{INTERVAL}}:",
+									"optionLabels": ["{{INT_1MIN}}","{{INT_2MINS}}","{{INT_3MINS}}","{{INT_4MINS}}","{{INT_5MINS}}","{{INT_6MINS}}","{{INT_10MINS}}","{{INT_12MINS}}","{{INT_15MINS}}","{{INT_20MINS}}","{{INT_30MINS}}","{{INT_60MINS}}"],
 									"removeDefaultNone": true,
 									"sort": false
 								},
 								"catchup": {
-									"label": "Catch up:",
-									"rightLabel": "Fill in historic data on catch up"
+									"label": "{{CATCH_UP}}:",
+									"rightLabel": "{{CATCH_UP_HELP1}}"
 								}
 							}
 						},
@@ -195,15 +195,15 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helper": [
-				"A custom SQL command to be executed just before end of day rollover - can include webtags",
-				"For the logging date & time, use the web tag <#DataDateTime>"
+				"{{CUST_ROLLOVER_HELP1}}",
+				"{{CUST_HELP2}}"
 			],
 			"fields": {
 				"enabled": {
-					"rightLabel": "Custom Rollover Enabled"
+					"rightLabel": "{{CUST_ROLLOVER_ENABLED}}"
 				},
 				"command": {
-					"label": "SQL commands:",
+					"label": "{{SQL_COMMANDS}}:",
 					"collapsible": false,
 					"collapsed": false,
 					"dependencies": {
@@ -216,15 +216,15 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helper": [
-				"A custom SQL command to be executed at a set time of day - can include webtags, and can be repeated at intervals",
-				"For the logging date & time, use the web tag <#DataDateTime>"
+				"{{CUST_TIMED_HELP1}}",
+				"{{CUST_HELP2}}"
 			],
 			"fields": {
 				"enabled": {
-					"rightLabel": "Custom Timed Enabled"
+					"rightLabel": "{{CUST_TIMED_ENABLED}}"
 				},
 				"entries": {
-					"label": "SQL Commands:",
+					"label": "{{SQL_COMMANDS}}:",
 					"fields": {
 						"item": {
 							"fields": {
@@ -241,7 +241,7 @@
 								},
 								"interval": {
 									"type": "select",
-									"optionLabels": ["1 min","2 mins","5 mins","10 mins","15 mins","20 mins","30 mins","1 hr","2 hrs","3 hrs","4 hrs","6 hrs","8 hrs","12 hrs"],
+									"optionLabels": ["{{INT_1MIN}}","{{INT_2MINS}}","{{INT_5MINS}}","{{INT_10MINS}}","{{INT_15MINS}}","{{INT_20MINS}}","{{INT_30MINS}}","{{INT_1HR}}","{{INT_2HRS}}","{{INT_3HRS}}","{{INT_4HRS}}","{{INT_6HRS}}","{{INT_8HRS}}","{{INT_12HRS}}"],
 									"sort": false,
 									"removeDefaultNone": false,
 									"dependencies": {
@@ -260,13 +260,13 @@
 		"customstart": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "A custom SQL command to be executed when Cumulus starts up",
+			"helper": "{{CUST_START_HELP1}}",
 			"fields": {
 				"enabled": {
-					"rightLabel": "Custom Start-up Enabled"
+					"rightLabel": "{{CUST_START_ENABLED}}"
 				},
 				"command": {
-					"label": "SQL commands:",
+					"label": "{{SQL_COMMANDS}}:",
 					"dependencies": {
 						"enabled": true
 					}

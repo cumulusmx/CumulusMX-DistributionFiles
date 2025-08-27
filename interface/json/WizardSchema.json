@@ -1,7 +1,7 @@
 {
-	"version": "Last Modified: 2025/06/22 22:03:41",
-	"title": "Basic Cumulus and Station Setup",
-	"description": "Cumulus MX first time set-up wizard.",
+	"version": "Last Modified: 2025/08/21 19:26:02",
+	"title": "{{TITLE}}",
+	"description": "{{DESCRIPTION}}",
 	"type": "object",
 	"properties":{
 		"location": {
@@ -26,7 +26,7 @@
 					"required": true
 				},
 				"altitudeunit": {
-					"title": "Altitude units",
+					"title": "{{ALTITUDE_UNITS}}",
 					"type": "string",
 					"enum": [
 						"feet",
@@ -57,7 +57,7 @@
 					"required": true
 				},
 				"snow": {
-					"title": "Snow Depth",
+					"title": "{{SNOW_DEPTH}}",
 					"enum": [0,1]
 				}
 			}
@@ -99,7 +99,7 @@
 							"type": "string"
 						},
 						"tcpsettings": {
-							"title": "TCP/IP settings",
+							"title": "{{TCP_IP_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"ipaddress": {
@@ -124,7 +124,7 @@
 					"type": "object",
 					"properties": {
 						"network": {
-							"title": "Network Settings",
+							"title": "{{NETWORK_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"autoDiscover": {
@@ -136,7 +136,7 @@
 							}
 						},
 						"primary": {
-							"title": "Primary Sensors",
+							"title": "{{PRIMARY_SENSORS}}",
 							"type": "object",
 							"properties": {
 								"wind": {
@@ -157,7 +157,7 @@
 							}
 						},
 						"api": {
-							"title": "WeatherLink.com API details",
+							"title": "{{WL_API_DETAILS}}",
 							"type": "object",
 							"properties": {
 								"apiKey": {
@@ -175,11 +175,11 @@
 				},
 
 				"daviscloud": {
-					"title": "Davis WeatherLink Cloud",
+					"title": "{{DAVIS_WL_CLOUD}}",
 					"type": "object",
 					"properties": {
 						"primary": {
-							"title": "Primary Sensors",
+							"title": "{{PRIMARY_SENSORS}}",
 							"type": "object",
 							"properties": {
 								"wind": {
@@ -201,7 +201,7 @@
 							"dependencies": ["stationtype"]
 						},
 						"api": {
-							"title": "WeatherLink.com API details",
+							"title": "{{WL_API_DETAILS}}",
 							"type": "object",
 							"properties": {
 								"apiKey": {
@@ -221,7 +221,7 @@
 				},
 
 				"gw1000": {
-					"title": "Ecowitt Binary Local API (Legacy) Settings",
+					"title": "{{ECOW_BINARY_API}}",
 					"type": "object",
 					"properties": {
 						"autoDiscover" : {
@@ -236,7 +236,7 @@
 				},
 
 				"ecowitthttpapi": {
-					"title": "Ecowitt HTTP Local API Settings",
+					"title": "{{ECOW_HTTP_API}}",
 					"type": "object",
 					"properties": {
 						"ipaddress": {
@@ -249,7 +249,7 @@
 				},
 
 				"weatherflow": {
-					"title": "WeatherFlow Settings",
+					"title": "{{WF_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"tcpport": {
@@ -272,7 +272,7 @@
 				},
 
 				"fineoffset": {
-					"title": "Fine Offset (legacy) Settings",
+					"title": "{{FO_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"syncreads" : {
@@ -287,7 +287,7 @@
 				},
 
 				"easyw": {
-					"title": "EasyWeather File Settings",
+					"title": "{{EW_FILE_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"interval": {
@@ -301,7 +301,7 @@
 				},
 
 				"imet": {
-					"title": "Instromet Settings",
+					"title": "{{IMET_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"comportname": {
@@ -314,7 +314,7 @@
 				},
 
 				"wmr928": {
-					"title": "WM918/WMR928 Settings",
+					"title": "{{WMR_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"comportname": {
@@ -324,22 +324,22 @@
 				},
 
 				"http-wunder": {
-					"title": "HTTP Upload (Wunderground) Settings",
+					"title": "{{HTTP_WU_SETTINGS}}",
 					"type": "object"
 				},
 
 				"http-ecowitt": {
-					"title": "HTTP Upload (Ecowitt) Settings",
+					"title": "{{HTTP_ECOW_SETTINGS}}",
 					"type": "object"
 				},
 
 				"http-ambient": {
-					"title": "HTTP Upload (Ambient) Settings",
+					"title": "{{HTTP_AMB_SETTINGS}}",
 					"type": "object"
 				},
 
 				"ecowittapi": {
-					"title": "Ecowitt Cloud Access API",
+					"title": "{{ECO_CLOUD_API}}",
 					"type": "object",
 					"properties": {
 						"applicationkey": {},
@@ -358,7 +358,7 @@
 				},
 
 				"jsonstation": {
-					"title": "JSON Data Input",
+					"title": "{{JSON_DATA}}",
 					"type": "object",
 					"properties": {
 						"conntype": {
@@ -427,7 +427,7 @@
 					"required": true
 				},
 				"logrollover": {
-					"title": "Log Rollover",
+					"title": "{{LOG_ROLLOVER}}",
 					"type": "object",
 					"properties": {
 						"time": {
@@ -447,11 +447,11 @@
 		},
 
 		"internet": {
-			"title": "Web Hosting Site",
+			"title": "{{WEB_HOST_SITE}}",
 			"type": "object",
 			"properties": {
 				"copy": {
-					"title": "Local Copy",
+					"title": "{{LOCAL_COPY}}",
 					"type": "object",
 					"properties": {
 						"localcopy": {
@@ -465,7 +465,7 @@
 					}
 				},
 				"ftp": {
-					"title": "Upload",
+					"title": "{{UPLOAD}}",
 					"type": "object",
 					"properties": {
 						"enabled": {
@@ -518,11 +518,11 @@
 		},
 
 		"website": {
-			"title": "Normal Interval Configuration",
+			"title": "{{NORMAL_INTERVAL}}",
 			"type": "object",
 			"properties": {
 				"interval": {
-					"title": "Interval Settings",
+					"title": "{{INTERVAL_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"enabled": {

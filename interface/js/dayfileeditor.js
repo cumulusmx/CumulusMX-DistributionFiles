@@ -1,4 +1,4 @@
-// Last modified: 2025/06/11 19:27:44
+// Last modified: 2025/08/11 16:58:02
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -35,67 +35,67 @@ $(document).ready(function() {
 
         var columnDefs = [
         {
-            title: 'Line #',
+            title: '{{LINE_#}}',
             readonly: true
         },
         {
-            title: 'Date (dd/mm/yy)',
+            title: '{{DATE_DDMMYY}}',
             readonly: true
         },
-        {title: 'Max gust', type: 'number', min: 0, step: windGustStep},
-        {title: 'Max gust bearing', type: 'number', min: 0, max: 360},
-        {title: 'Max gust time', type:'text', pattern: timeRegex},
-        {title: 'Min temp', type: 'number', step: tempStep},
-        {title: 'Min temp time', type:'text', pattern: timeRegex},
-        {title: 'Max temp', type: 'number', step: tempStep},
-        {title: 'Max temp time', type:'text', pattern: timeRegex},
-        {title: 'Min pressure', type: 'number', min: pressMin, max: pressMax, step: pressStep},
-        {title: 'Min pressure time', type:'text', pattern: timeRegex},
-        {title: 'Max pressure', type: 'number', min: pressMin, max: pressMax, step: pressStep},
-        {title: 'Max pressure time', type:'text', pattern: timeRegex},
-        {title: 'Max rainfall rate', type: 'number', step: rainStep},
-        {title: 'Max rainfall rate time', type:'text', pattern: timeRegex},
-        {title: 'Total rainfall', type: 'number', step: rainStep},
-        {title: 'Avg temp', type: 'number', step: tempStep},
-        {title: 'Total wind run', type: 'number', min: 0, step: 0.001},
-        {title: 'High avg wind speed', type: 'number', min: 0, step: windAvgStep},
-        {title: 'High avg wind speed time', type:'text', pattern: timeRegex},
-        {title: 'Low humidity', type: 'number', min: 0, max: 100},
-        {title: 'Low humidity time', type:'text', pattern: timeRegex},
-        {title: 'High humidity', type: 'number', min: 0, max: 100},
-        {title: 'High humidity time', type:'text', pattern: timeRegex},
-        {title: 'Total ET', type: 'number', min: 0, step: etStep},
-        {title: 'Total hours of sunshine', type: 'number', min: 0, step: 0.01},
-        {title: 'High heat index', type: 'number', step: tempStep},
-        {title: 'High heat index time', type:'text', pattern: timeRegex},
-        {title: 'High apparent temp', type: 'number', step: tempStep},
-        {title: 'High apparent temp time', type:'text', pattern: timeRegex},
-        {title: 'Low apparent temp', type: 'number', step: tempStep},
-        {title: 'Low apparent temp time', type:'text', pattern: timeRegex},
-        {title: 'High hourly rain', type: 'number', step: rainStep},
-        {title: 'High hourly rain time', type:'text', pattern: timeRegex},
-        {title: 'Low wind chill', type: 'number', step: tempStep},
-        {title: 'Low wind chill time', type:'text', pattern: timeRegex},
-        {title: 'High dew point', type: 'number', step: tempStep},
-        {title: 'High dew point time', type:'text', pattern: timeRegex},
-        {title: 'Low dew point', type: 'number', step: tempStep},
-        {title: 'Low dew point time', type:'text', pattern: timeRegex},
-        {title: 'Dominant wind bearing', type: 'number', min: 0, max: 360},
-        {title: 'Heating degree days', type: 'number', step: tempStep},
-        {title: 'Cooling degree days', type: 'number', step: tempStep},
-        {title: 'High solar rad', type: 'number', min: 0, max: 1200},
-        {title: 'High solar rad time', type:'text', pattern: timeRegex},
-        {title: 'High UV-I', type: 'number', min: 0, max: 16, step: 0.1},
-        {title: 'High UV-I time', type:'text', pattern: timeRegex},
-        {title: 'High feels like', type: 'number', step: tempStep},
-        {title: 'High feels like time', type:'text', pattern: timeRegex},
-        {title: 'Low feels like', type: 'number', step: tempStep},
-        {title: 'Low feels like time', type:'text', pattern: timeRegex},
-        {title: 'High humidex', type: 'number', step: tempStep},
-        {title: 'High humidex time', type:'text', pattern: timeRegex},
-        {title: 'Chill hours', type: 'number', min: 0, step: tempStep},
-        {title: 'High 24 hour rain', type: 'number', step: rainStep},
-        {title: 'High 24 hour rain time', type:'text', pattern: timeRegex}
+        {title: '{{HIGH_GUST}}', type: 'number', min: 0, step: windGustStep},
+        {title: '{{HIGH_GUST_BEARING}}', type: 'number', min: 0, max: 360},
+        {title: '{{HIGH_GUST_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_TEMP}}', type: 'number', step: tempStep},
+        {title: '{{LOW_TEMP_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_TEMP}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_TEMP_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_PRESS}}', type: 'number', min: pressMin, max: pressMax, step: pressStep},
+        {title: '{{LOW_PRESS_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_PRESS}}', type: 'number', min: pressMin, max: pressMax, step: pressStep},
+        {title: '{{HIGH_PRESS_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_RAIN_RATE}}', type: 'number', step: rainStep},
+        {title: '{{HIGH_RAIN_RATE_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{DAILY_RAIN}}', type: 'number', step: rainStep},
+        {title: '{{TEMP_AVG}}', type: 'number', step: tempStep},
+        {title: '{{WIND_RUN}}', type: 'number', min: 0, step: 0.001},
+        {title: '{{HIGH_WIND_SPEED}}', type: 'number', min: 0, step: windAvgStep},
+        {title: '{{HIGH_WIND_SPEED_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_HUMIDITY}}', type: 'number', min: 0, max: 100},
+        {title: '{{LOW_HUMIDITY_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_HUMIDITY}}', type: 'number', min: 0, max: 100},
+        {title: '{{HIGH_HUMIDITY_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{EVAPOTRANSPIRATION_SHORT}}', type: 'number', min: 0, step: etStep},
+        {title: '{{SUNSHINE_HOURS}}', type: 'number', min: 0, step: 0.01},
+        {title: '{{HIGH_HEAT_INDEX}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_HEAT_INDEX_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_APPARENT_TEMP}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_APPARENT_TEMP_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_APPARENT_TEMP}}', type: 'number', step: tempStep},
+        {title: '{{LOW_APPARENT_TEMP_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_RAINFALL_1HR}}', type: 'number', step: rainStep},
+        {title: '{{HIGH_RAINFALL_1HR_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_WIND_CHILL}}', type: 'number', step: tempStep},
+        {title: '{{LOW_WIND_CHILL_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_DEW_POINT}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_DEW_POINT_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_DEW_POINT}}', type: 'number', step: tempStep},
+        {title: '{{LOW_DEW_POINT_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{DOMINANT_DIRECTION}}', type: 'number', min: 0, max: 360},
+        {title: '{{HEATING_DEGREE_DAYS}}', type: 'number', step: tempStep},
+        {title: '{{COOLING_DEGREE_DAYS}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1200},
+        {title: '{{HIGH_SOLAR_RAD_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
+        {title: '{{HIGH_UV_INDEX_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_FEELS_LIKE}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_FEELS_LIKE_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{LOW_FEELS_LIKE}}', type: 'number', step: tempStep},
+        {title: '{{LOW_FEELS_LIKE_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_HUMIDEX}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_HUMIDEX_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{CHILL_HOURS}}', type: 'number', min: 0, step: tempStep},
+        {title: '{{HIGH_RAINFALL_24HR}}', type: 'number', step: rainStep},
+        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex}
         ];
 
         var myTable = $('#dayfile').DataTable({
@@ -133,25 +133,25 @@ $(document).ready(function() {
             buttons: [
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Edit',
+                    text: '{{EDIT}}',
                     name: 'edit'        // do not change name
                 },
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Delete',
+                    text: '{{DELETE}}',
                     name: 'delete'      // do not change name
                 },
                 {
-                    text: 'Refresh',
+                    text: '{{REFRESH}}',
                     name: 'refresh'      // do not change name
                 },
                 'pageLength'
             ],
             language: {
                 altEditor: {
-                    modalClose: 'Close',
+                    modalClose: '{{Close}}',
                     edit: {
-                        title: 'Edit record',
+                        title: '{{EDIT_RECORD}}',
                         button: 'Save'
                     }
                 }

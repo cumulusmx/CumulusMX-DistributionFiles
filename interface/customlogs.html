@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:07:22
+Last modified: 2025/08/16 12:04:55
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Custom Log settings - Cumulus MX</title>
+    <title>{{CUSTOM_LOG_SETTINGS}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -89,38 +89,38 @@ Last modified: 2024/11/23 15:07:22
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Custom Log Settings</h1>
+        <h1>{{CUSTOM_LOG_SETTINGS}}</h1>
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <b>Filename Root:</b> This string is used to create the full log filename. It will be appended with the date, and suffixed with .txt<br>
-                    For example, you enter "MyLog", the interval log filename will be MyLog-yyyyMM.txt, the daily log would just be MyLog.txt
+                    {{CUSTOM_LOG_SETTINGS_ROOT}}<br>
+                    {{CUSTOM_LOG_SETTINGS_ROOT_NOTE1}}
                 </p>
                 <p>
-                    <b>Data Content:</b> This string is used to create the data in the log file, you use webtags to specify the data.<br>
-                    Your data string will be automatically prefixed with the date or date-time in the log file.
+                    {{CUSTOM_LOG_SETTINGS_DATA}}<br>
+                    {{Your data string will be automatically prefixed with the date or date-time in the log file.}}
                 </p>
                 <p>
-                    For example you could use the string: <span style="font-family:'Courier New'">&lt;#temp&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1&gt;</span><br>
-                    You can also use modifiers in the webtags for further control of the output like this: <span style="font-family:'Courier New'">&lt;#temp rc=y&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1 dp=2 rc=y&gt;</span><br>
-                    You <b>MUST</b> use the rc=y web tag parameter for numeric values if your locale uses a comma decimal
+                    {{CUSTOM_LOG_SETTINGS_EXAMPLE1}}<br>
+                    {{CUSTOM_LOG_SETTINGS_EXAMPLE2}}<br>
+                    {{You <b>MUST</b> use the rc=y web tag parameter for numeric values if your locale uses a comma decimal}}
                 </p>
                 <p style="font-size:16px;font-style: italic;">
-                    <b>Note:</b> It is <b>important</b> to use a comma "," as the field separator as CMX will only recognise this format.
+                    {{CUSTOM_LOG_SETTINGS_NOTE1}}
                 </p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Custom Interval Logs</h2>
+                <h2>{{CUSTOM_LOG_SETTINGS_LOGS_INTERVAL}}</h2>
                 <form id="intvlform"></form>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Custom Daily Logs</h2>
+                <h2>{{CUSTOM_LOG_SETTINGS_LOGS_DAILY}}</h2>
                 <form id="dailyform"></form>
             </div>
         </div>

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/04/29 20:01:57",
+	"version": "Last Modified: 2025/08/19 12:53:09",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -17,7 +17,7 @@
 		"password": {
 		},
 		"advanced": {
-			"title": "Advanced Settings",
+			"title": "{{ADVANCED_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"useTls": {
@@ -32,7 +32,7 @@
 			}
 		},
 		"dataUpdate": {
-			"title": "Send message on data update",
+			"title": "{{SEND_MESSAGE_ON_DATA_UPDATE}}",
 			"type": "object",
 			"properties": {
 				"enabled": {
@@ -46,7 +46,7 @@
 			}
 		},
 		"interval": {
-			"title": "Send messages at fixed intervals",
+			"title": "{{SEND_MESSAGES_AT_FIXED_INTERVALS}}",
 			"type": "object",
 			"properties": {
 				"enabled": {

@@ -1,4 +1,4 @@
-// Last modified: 2024/10/30 10:52:28
+// Last modified: 2025/08/11 17:54:17
 
 let accessMode;
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Update',
+                        title: '{{UPDATE}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {

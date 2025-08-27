@@ -1,12 +1,12 @@
 {
-	"version": "Last modified: 2025/05/16 15:59:17",
+	"version": "Last modified: 2025/08/19 11:22:19",
 	"type": "object",
 	"properties": {
 		"accessible": {
 			"type": "boolean"
 		},
 		"forecast": {
-			"title": "Zambretti Forecast Strings",
+			"title": "{{ZAMBRETTI}}",
 			"type": "object",
 			"properties": {
 				"notavailable": {
@@ -24,7 +24,7 @@
 			}
 		},
 		"davisForecast": {
-			"title": "Davis Forecast Strings",
+			"title": "{{DAVIS}}",
 			"type": "object",
 			"properties": {
 				"forecast1": {
@@ -48,7 +48,7 @@
 			}
 		},
 		"moonPhase": {
-			"title": "Moon Phases",
+			"title": "{{MOON_PHASES}}",
 			"type": "object",
 			"properties": {
 				"Newmoon": {
@@ -78,7 +78,7 @@
 			}
 		},
 		"beaufort": {
-			"title": "Beaufort Scale",
+			"title": "{{BEAUFORT}}",
 			"type": "object",
 			"properties": {
 				"f0": {
@@ -123,7 +123,7 @@
 			}
 		},
 		"trends": {
-			"title": "Trends",
+			"title": "{{TRENDS}}",
 			"type": "object",
 			"properties": {
 				"Risingveryrapidly": {
@@ -156,88 +156,88 @@
 			}
 		},
 		"compass": {
-			"title": "Compass Points",
+			"title": "{{COMPASS}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"extraTemp": {
-			"title": "Extra Temperature Sensors",
+			"title": "{{EXTRA_TEMP}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"extraHum": {
-			"title": "Extra Humidity Sensors",
+			"title": "{{EXTRA_HUM}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"extraDP": {
-			"title": "Extra Dew Point Sensors",
+			"title": "{{EXTRA_DP}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"userTemp": {
-			"title": "User Temperature Sensors",
+			"title": "{{USER_TEMP}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"soilTemp": {
-			"title": "Soil Temperature Sensors",
+			"title": "{{SOIL_TEMP}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"soilMoist": {
-			"title": "Soil Moisture Sensors",
+			"title": "{{SOIL_MOIST}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"leafWet": {
-			"title": "Leaf Wetness Sensors",
+			"title": "{{LEAF_WET}}",
 			"type": "array",
 			"items": {
 				"type": "string"
 			}
 		},
 		"airQuality": {
-			"title": "Air Quality",
+			"title": "{{AIR_QUALITY}}",
 			"type": "object",
 			"properties": {
 				"sensor": {
-					"title": "Sensors PM2.5",
+					"title": "{{SENSOR_PM25}}",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
 				"sensorAvg": {
-					"title": "Sensor PM2.5 Averages",
+					"title": "{{SENSOR_PM25_AVGS}}",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
 				"sensor10": {
-					"title": "Sensors PM10",
+					"title": "{{SENSOR_PM10}}",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
 				"sensor10Avg": {
-					"title": "Sensor PM10 Averages",
+					"title": "{{SENSOR_PM10_AVGS}}",
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -246,7 +246,7 @@
 			}
 		},
 		"co2": {
-			"title": "CO₂ Sensor",
+			"title": "{{SENSOR_CO2}}",
 			"type": "object",
 			"properties": {
 				"Current": {
@@ -276,7 +276,7 @@
 			}
 		},
 		"solar": {
-			"title": "Solar",
+			"title": "{{SOLAR}}",
 			"type": "object",
 			"properties": {
 				"lessdaylight": {
@@ -288,7 +288,7 @@
 			}
 		},
 		"alarms": {
-			"title": "Alarms",
+			"title": "{{ALARMS}}",
 			"type": "object",
 			"properties": {
 				"subject": {
@@ -298,7 +298,7 @@
 					"type": "string"
 				},
 				"names": {
-					"title": "Names",
+					"title": "{{NAMES}}",
 					"type": "object",
 					"properties": {
 						"windGustAbove": {
@@ -392,7 +392,7 @@
 					}
 				},
 				"email": {
-					"title": "Email Messages",
+					"title": "{{EMAIL_MSGS}}",
 					"type": "object",
 					"properties": {
 						"windGustAbove": {
@@ -466,7 +466,7 @@
 			}
 		},
 		"webtags": {
-			"title": "Web Tags",
+			"title": "{{TAGS}}",
 			"type": "object",
 			"properties": {
 				"gentimedate": {
@@ -493,7 +493,7 @@
 			}
 		},
 		"snow": {
-			"title": "Snowfall",
+			"title": "{{SNOW}}",
 			"type": "object",
 			"properties": {
 				"snowdepth": {
@@ -505,7 +505,7 @@
 			}
 		},
 		"laser": {
-			"title": "Laser Sensors",
+			"title": "{{SENSOR_LASER}}",
 			"type": "array",
 			"items": {
 				"type": "string"

@@ -1,20 +1,20 @@
 {
-	"version": "Last Modified: 2025/05/25 17:55:11",
+	"version": "Last Modified: 2025/08/25 10:59:03",
 	"definitions": {
 		"months": {
 			"optionLabels": [
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December"
+				"{{MONTH01}}",
+				"{{MONTH02}}",
+				"{{MONTH03}}",
+				"{{MONTH04}}",
+				"{{MONTH05}}",
+				"{{MONTH06}}",
+				"{{MONTH07}}",
+				"{{MONTH08}}",
+				"{{MONTH09}}",
+				"{{MONTH10}}",
+				"{{MONTH11}}",
+				"{{MONTH12}}"
 			]
 		}
 	},
@@ -24,78 +24,78 @@
 			"fieldClass": "hideme"
 		},
 		"accessible": {
-			"rightLabel": "Enable accessibility features",
-			"helper": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the settings."
+			"rightLabel": "{{ENABLE_ACCESSIBILITY}}",
+			"helper": "{{ENABLE_ACCESSIBILITY_HELP1}}"
 		},
 		"general": {
 			"collapsible": true,
 			"collapsed": true,
 			"fields": {
 				"manufacturer": {
-					"label": "Manufacturer",
+					"label": "{{MANUFACTURER}}",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						" Select Manufacturer",
+						" {{MANUFACTURER_SELECT}}",
 						"Davis",
-						"Ecowitt and clones",
-						"Fine Offset (legacy) and clones",
+						"{{MANUFACTURER_ECOWITT_CLONES}}",
+						"{{MANUFACTURER_FO_CLONES}}",
 						"WeatherFlow",
 						"Weather Underground",
 						"Ambient Weather",
-						"JSON Data Input",
-						"Oregon Scientific (serial)",
-						"Oregon Scientific (USB)",
+						"{{MANUFACTURER_JSON}}",
+						"{{MANUFACTURER_OS_SERIAL}}",
+						"{{MANUFACTURER_OS_USB}}",
 						"Instromet",
 						"LaCrosse",
-						"Cumulus MX Simulator"
+						"{{MANUFACTURER_SIMULATOR}}"
 					]
 				},
 				"stationtype": {
-					"label": "Station&nbsp;type",
+					"label": "{{STATION_TYPE}}",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true
 				},
 				"stationmodel": {
-					"label": "Station&nbsp;model",
+					"label": "{{STATION_MODEL}}",
 					"type": "text",
-					"helper": "A descriptive name for your station type, this will default to the station type above if left blank. You can change this to whatever you like"
+					"helper": "{{STATION_MODEL_HELP1}}"
 				},
 				"firstRun": {
 					"fieldClass": "hideme"
 				},
 				"beginDate": {
-					"label": "Backfill Date",
+					"label": "{{BACKFILL_DATE}}",
 					"type": "date",
 					"dateFormat": "YYYY-MM-DD",
 					"dependencies": {
 						"firstRun": "true"
 					},
 					"helpers": [
-						"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
-						"This is the 'Date of birth' for your Cumulus install, it defaults to the first day you run the program.",
-						"You can set this to the first date for which you have historic data that Cumulus will be able to import.",
-						"This can only happen if you have correctly configured your station and any details required to access the historic data.",
-						"The backfill will happen automaticlly when you restart Cumulus after configuring the station.",
-						"NOTE: Backfilling an extended period of time (month/years) WILL TAKE A LONG TIME, so be patient!"
+						"{{BACKFILL_DATE_HELP1}}.",
+						"{{BACKFILL_DATE_HELP2}}",
+						"{{BACKFILL_DATE_HELP3}}",
+						"{{BACKFILL_DATE_HELP4}}",
+						"{{BACKFILL_DATE_HELP5}}",
+						"{{BACKFILL_DATE_HELP6}}"
 					]
 				},
 				"loginterval": {
-					"label": "Log&nbsp;interval",
+					"label": "{{LOG_INTERVAL}}",
 					"sort": false,
 					"optionLabels": [
-						"1 minute",
-						"5 minutes",
-						"10 minutes",
-						"15 minutes",
-						"20 minutes",
-						"30 minutes"
+						"{{MINS01}}",
+						"{{MINS05}}",
+						"{{MINS10}}",
+						"{{MINS15}}",
+						"{{MINS20}}",
+						"{{MINS30}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"Frequency of Cumulus log entries - ideally set your station to the same",
-						"Think - Do I really need 1 minute logging? For the vast majority of users 5 or 10 minutes is fine"
+						"{{LOG_INTERVAL_HELP1}}",
+						"{{LOG_INTERVAL_HELP2}}"
 					]
 				},
 				"logrollover": {
@@ -103,17 +103,21 @@
 					"collapsed": true,
 					"fields": {
 						"time": {
-							"label": "Time",
+							"label": "{{TIME}}",
 							"removeDefaultNone": true,
-							"helper": "Sets the time that your new meteorological day starts"
+							"helper": "{{ROLLOVER_HELP1}}",
+							"optionLabels": [
+								"{{ROLLOVER_9AM}}",
+								"{{ROLLOVER_MIDNIGHT}}"
+							]
 						},
 						"summer10am": {
-							"label": "DST Adjustment",
+							"label": "{{DST_USE_10AM}}",
 							"dependencies": {
 								"time": "9am"
 							},
-							"rightLabel": "Use 10am in Summer",
-							"helper": "When using a 9am rollover, switch to 10am when using DST"
+							"rightLabel": "{{DST_USE_10AM}}",
+							"helper": "{{DST_USE_10AM_HELP1}}"
 						}
 					}
 				},
@@ -122,27 +126,27 @@
 					"collapsed": true,
 					"fields": {
 						"wind": {
-							"label": "Wind",
+							"label": "{{WIND}}",
 							"type": "select",
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Metres per second (m/s)",
-								"Miles per hour (mph)",
-								"Kilometres per hour (km/h)",
-								"Knots (kts)"
+								"{{UNIT_MS}}",
+								"{{UNIT_MPH}}",
+								"{{UNIT_KMH}}",
+								"{{UNIT_KTS}}"
 							]
 						},
 						"pressure": {
-							"label": "Pressure",
+							"label": "{{PRESSURE}}",
 							"type": "select",
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Milli-bar (mbar)",
-								"Hectopascal (hPa)",
-								"Inches of mercury (inHg)",
-								"Kilopascal (kPa)"
+								"{{UNIT_MB}}",
+								"{{UNIT_HPA}}",
+								"{{UNIT_INHG}}",
+								"{{UNIT_KPA}}"
 							]
 						},
 						"temp": {
@@ -150,8 +154,8 @@
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Celsius",
-								"Fahrenheit"
+								"{{UNIT_CELSIUS}}",
+								"{{UNIT_FAHRENHEIT}}"
 							]
 						},
 						"rain": {
@@ -159,8 +163,8 @@
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Millimetres",
-								"Inches"
+								"{{UNIT_MM}}",
+								"{{UNIT_INCHES}}"
 							]
 						},
 						"snow": {
@@ -168,8 +172,8 @@
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Centimetres",
-								"Inches"
+								"{{UNIT_CM}}",
+								"{{UNIT_INCHES}}"
 							]
 						},
 						"laser": {
@@ -177,64 +181,64 @@
 							"removeDefaultNone": true,
 							"sort": false,
 							"optionLabels": [
-								"Centimetres",
-								"Inches",
-								"Millimetres"
+								"{{UNIT_CM}}",
+								"{{UNIT_INCHES}}",
+								"{{UNIT_MM}}"
 							]
 						},
 						"cloudbaseft": {
-							"label": "Cloudbase",
-							"rightLabel": "Show cloud base in feet",
-							"helper": "Select to show cloud base in feet, otherwise it will be in metres"
+							"label": "{{CLOUDBASE}}",
+							"rightLabel": "{{CLOUDBASE_LABEL}}",
+							"helper": "{{CLOUDBASE_HELP1}}"
 						},
 						"advanced": {
 							"collapsible": true,
 							"collapsed": true,
 							"helpers": [
-								"THESE OVERIDES ARE ONLY VALID AFTER THE UNITS CONFIGURATION ABOVE HAS BEEN SET, SAVED, AND THEN THIS PAGE RELOADED"
+								"{{DECIMAL_OVERRIDE_HELP1}}"
 							],
 							"helpersPosition": "above",
 							"fields": {
 								"tempdp": {
-									"label": "Temperature decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_TEMP}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"pressdp": {
-									"label": "Pressure decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_PRESS}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"raindp": {
-									"label": "Rainfall decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_RAIN}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"winddp": {
-									"label": "Wind speed decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_WIND}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"windavgdp": {
-									"label": "Wind speed average decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_WIND_AVG}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"windrundp": {
-									"label": "Wind run decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_WIND_RUN}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"airqulaitydp": {
-									"label": "Air Quality decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_AQ}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"sunshinedp": {
-									"label": "Sunshine hours decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_SUNSHINE}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								},
 								"uvdp": {
-									"label": "UV Index decimals",
-									"helper": "Override the default number of decimal places"
+									"label": "{{DECIMAL_UV}}",
+									"helper": "{{DECIMAL_HELP1}}"
 								}
 							}
 						}
 					},
-					"helper": "DO NOT change units after you have chosen them for the first time!",
+					"helper": "{{UNITS_HELP1}}",
 					"helpersPosition": "above"
 				},
 				"Location": {
@@ -242,35 +246,45 @@
 					"collapsed": true,
 					"fields": {
 						"sitename": {
-							"label": "Name",
+							"label": "{{LOC_NAME}}",
 							"type": "text",
-							"helper": "A short name for the location"
+							"helper": "{{LOC_NAME_HELP1}}"
 						},
 						"description": {
-							"label": "Description",
+							"label": "{{LOC_DESCRIPTION}}",
 							"type": "text",
-							"helper": "A longer description of the location"
+							"helper": "{{LOC_DESCRIPTIONHELP1}}"
 						},
 						"altitude": {
-							"helper": "Enter the altitude of your station (in the units below)"
+							"helper": "{{LOC_ALTITUDE_HELP1}}"
+						},
+						"altitudeunit": {
+							"optionLabels": [
+								"{{LOC_ATTITUDE_FEET}}",
+								"{{LOC_ATTITUDE_METRES}}"
+							]
 						},
 						"Latitude": {
 							"collapsible": true,
 							"collapsed": true,
 							"fields": {
 								"degrees": {
-									"label": "Degrees"
+									"label": "{{LOC_DEGREES}}"
 								},
 								"minutes": {
-									"label": "Minutes"
+									"label": "{{LOC_MINUTES}}"
 								},
 								"seconds": {
-									"label": "Seconds"
+									"label": "{{LOC_SECONDS}}"
 								},
 								"hemisphere": {
-									"label": "Hemisphere",
+									"label": "{{LOC_HEMISPHERE}}",
 									"type": "radio",
-									"helper": "Is the station North or South of the equator?"
+									"optionLabels": [
+										"{{LOC_NORTH}}",
+										"{{LOC_SOUTH}}"
+									],
+									"helper": "{{LOC_N_OR_S}}"
 								}
 							}
 						},
@@ -279,18 +293,22 @@
 							"collapsed": true,
 							"fields": {
 								"degrees": {
-									"label": "Degrees"
+									"label": "{{LOC_DEGREES}}"
 								},
 								"minutes": {
-									"label": "Minutes"
+									"label": "{{LOC_MINUTES}}"
 								},
 								"seconds": {
-									"label": "Seconds"
+									"label": "{{LOC_SECONDS}}"
 								},
 								"hemisphere": {
-									"label": "Hemisphere",
+									"label": "{{LOC_HEMISPHERE}}",
 									"type": "radio",
-									"helper": "Is the station East or West of the Prime Meridian (Greenwich)?"
+									"optionLabels": [
+										"{{LOC_EAST}}",
+										"{{LOC_WEST}}"
+									],
+									"helper": "{{LOC_E_OR_W}}"
 								}
 							}
 						}
@@ -299,17 +317,17 @@
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"recsbegandate": {
-							"label": "Records Began Date",
+							"label": "{{RECS_BEGAN_DATE}}",
 							"type": "date",
 							"dateFormat": "YYYY-MM-DD",
 							"helpers": [
-								"IMPORTANT: You MUST keep the date format YYYY-MM-DD.",
-								"This is the 'Date of birth' for your Cumulus install, it defaults to the first time you run the program.",
-								"You may need to alter this if for instance you import historic data in Cumulus from another source, in that case set it to the first date of your imported data."
+								"{{RECS_BEGAN_DATE_HELP1}}.",
+								"{{RECS_BEGAN_DATE_HELP2}}",
+								"{{RECS_BEGAN_DATE_HELP3}}"
 							]
 						}
 					}
@@ -325,17 +343,17 @@
 					"collapsed": true,
 					"fields": {
 						"conntype": {
-							"label": "Connection type:",
+							"label": "{{CONNECTION_TYPE}}:",
 							"type": "select",
 							"optionLabels": [
-								"Serial",
-								"TCP/IP"
+								"{{SERIAL}}",
+								"{{TCP_IP}}"
 							],
 							"removeDefaultNone": true
 						},
 						"comportname": {
-							"label": "Serial port name:",
-							"helper": "Enter the name of the serial port to which your station is connected",
+							"label": "{{SERIAL_PORT_NAME}}:",
+							"helper": "{{SERIAL_PORT_NAME_HELP1}}",
 							"dependencies": {
 								"conntype": 0
 							}
@@ -345,12 +363,12 @@
 							"collapsed": false,
 							"fields": {
 								"ipaddress": {
-									"label": "IP address:",
+									"label": "{{IP_ADDRESS}}:",
 									"type": "ipv4"
 								},
 								"disconperiod": {
-									"label": "Disconnect period:",
-									"helper": "Period of time to disconnect from IP loggers to allow them to upload to WeatherLink.com. The disconnect happens once a minute. Time in seconds"
+									"label": "{{DISCONNECT_PERIOD}}:",
+									"helper": "{{DISCONNECT_PERIOD_HELP1}}"
 								}
 							},
 							"dependencies": {
@@ -362,93 +380,90 @@
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"conntype": {
-							"title": "Davis Connection Settings:",
 							"type": "integer",
 							"fieldClass": "hideme"
 						},
 						"syncstationclock": {
-							"label": "Clock:",
-							"rightLabel": "Synchronise station clock:",
-							"helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
+							"label": "{{CLOCK}}:",
+							"rightLabel": "{{CLOCK_LABEL}}:",
+							"helper": "{{CLOCK_HELP1}}"
 						},
 						"syncclockhour": {
-							"label": "Clock sync hour:",
-							"helper": "The hour of the day to synchronise the station clock (Davis/Instromet only)",
+							"label": "{{CLOCK_SYNC_HOUR}}:",
+							"helper": "{{CLOCK_SYNC_HELP1}}",
 							"removeDefaultNone": true
 						},
 						"readreceptionstats": {
-							"label": "Reception stats:",
-							"rightLabel": "Read Davis reception stats",
-							"helper": "Read Davis reception stats to provide values for corresponding web tags"
+							"label": "{{DAVIS_RECEPTION_STATS}}:",
+							"rightLabel": "{{DAVIS_RECEPTION_STATS_LABEL}}",
+							"helper": "{{DAVIS_RECEPTION_STATS_HELP1}}"
 						},
 						"setloggerinterval": {
-							"label": "Logger interval:",
-							"rightLabel": "Set the Davis Logger interval to match Cumulus MX interval",
+							"label": "{{DAVIS_SET_LOGGER}}:",
+							"rightLabel": "{{DAVIS_SET_LOGGER_LABEL}}",
 							"helpers": [
-								"WARNING: This will clear all data from your logger if it is invoked.",
-								"If the Davis logger interval does not match the Cumulus interval, set it to match.",
-								"Requires a restart of Cumulus MX"
+								"{{DAVIS_SET_LOGGER_HELP1}}",
+								"{{DAVIS_SET_LOGGER_HELP2}}",
+								"{{DAVIS_SET_LOGGER_HELP3}}"
 							]
 						},
 						"useloop2": {
 							"label": "LOOP2:",
-							"rightLabel": "Enable use of the LOOP2 data packets (UseDavisLoop2)",
-							"helper": "This should only be disabled on VP consoles or VP2 consoles using firmware versions before version 1.90"
+							"rightLabel": "{{DAVIS_LOOP2_LABEL}}",
+							"helper": "{{DAVIS_LOOP2_HELP1}}"
 						},
 						"raingaugetype": {
-							"label": "Rain gauge type (VPrainGaugeType):",
+							"label": "{{DAVIS_RAIN_GAUGE_TYPE}}:",
 							"type": "select",
 							"optionLabels": [
-								"Auto",
-								"Metric (0.2 mm)",
-								"Imperial (0.01 in)"
+								"{{DAVIS_RAIN_GAUGE_AUTO}}",
+								"{{DAVIS_RAIN_GAUGE_METRIC}}",
+								"{{DAVIS_RAIN_GAUGE_IMPERIAL}}"
 							],
 							"removeDefaultNone": true,
-							"helper": "Default is auto, the size is then inferred from the units selected for the station"
+							"helper": "{{DAVIS_RAIN_GAUGE_HELP1}}"
 						},
 						"vp1minbarupdate": {
-							"label": "VP1 barometer:",
-							"rightLabel": "Davis VP 1-minute barometer update (ForceVPBarUpdate)",
+							"label": "{{DAVIS_VP1_BARO}}:",
+							"rightLabel": "{{DAVIS_VP1_BARO_LABEL}}",
 							"helpers": [
-								"Force older Vantage Pro and Pro2 barometer to update once a minute instead of the default 15 minutes",
-								"This is not required for the majority of stations in use today"
+								"{{DAVIS_VP1_BARO_HELP1}}",
+								"{{DAVIS_VP1_BARO_HELP2}}"
 							]
 						},
 						"initwaittime": {
-							"label": "TCP/IP Initialisation Wait Time (DavisInitWaitTime):",
+							"label": "{{DAVIS_TCP_WAIT_TIME}}:",
 							"helpers": [
-								"Time to wait after establishing a connection to an IP logger before sending commands",
-								"Time is in milliseconds"
+								"{{DAVIS_TCP_WAIT_TIME_HELP1}}"
 							],
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"ipresponsetime": {
-							"label": "TCP/IP Response Delay (DavisIPResponseTime):",
+							"label": "{{DAVIS_TCP_RESPONSE_DELAY}}:",
 							"helpers": [
-								"Time to wait after sending a command to an IP logger before trying to read the response",
-								"Time is in milliseconds"
+								"{{DAVIS_TCP_RESPONSE_DELAY_HELP1}}"
 							],
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"tcpport": {
-							"label": "TCP port:",
-							"helper": "TCP/IP port for your logger. Default is 22222",
+							"label": "{{TCP_PORT}}:",
+							"helper": "{{DAVIS_TCP_PORT_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
 						},
 						"baudrate": {
-							"label": "Serial Baud Rate (DavisBaudRate):",
+							"label": "{{SERIAL_PORT_BAUD}}:",
 							"removeDefaultNone": true,
-							"helper": "Serial port speed in bps",
+							"helper": "{{SERIAL_PORT_BAUD_HELP1}}",
 							"dependencies": {
 								"conntype": 0
 							}
@@ -469,19 +484,19 @@
 					"collapsed": true,
 					"fields": {
 						"autoDiscover": {
-							"label": "Auto-Discovery:",
-							"rightLabel": "Enable Auto-Discovery",
+							"label": "{{AUTO_DISCOVERY}}:",
+							"rightLabel": "{{AUTO_DISCOVERY_ENABLE}}",
 							"helpers": [
-								"Enable auto-discovery of your WLL devices IP address",
-								"If you have more than one WLL, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MX diags file. You must then enter the IP address you want to use in the field below."
+								"{{WLL_AUTO_DISCOVERY_HELP1}}",
+								"{{WLL_AUTO_DISCOVERY_HELP2}}"
 							]
 						},
 						"ipaddress": {
-							"label": "IP address:",
+							"label": "{{IP_ADDRESS}}:",
 							"type": "ipv4",
 							"helpers": [
-								"You can leave this at default if you enabled Auto-Discovery, and it will be set for you.",
-								"If Auto-Discovery fails, or you have more than one WLL device, then you can enter the IP address manually."
+								"{{AUTO_DISCOVERY_IP_ADDRESS_HELP1}}",
+								"{{AUTO_DISCOVERY_IP_ADDRESS_HELP2}}"
 							]
 						}
 					},
@@ -494,27 +509,27 @@
 					"collapsed": true,
 					"fields": {
 						"apiKey": {
-							"label": "WeatherLink APIv2 key:",
-							"helper": "Enter your WeatherLink.com APIv2 key"
+							"label": "{{WL_API_KEY}}:",
+							"helper": "{{WL_API_KEY_HELP1}}"
 						},
 						"apiSecret": {
-							"label": "WeatherLink APIv2 secret:",
+							"label": "{{WL_API_SECRET}}:",
 							"type": "password",
-							"helper": "Enter your WeatherLink.com APIv2 secret"
+							"helper": "{{WL_API_SECRET_HELP1}}"
 						},
 						"apiStationId": {
-							"label": "Your device id on WeatherLink:",
+							"label": "{{WL_DEVICE_ID}}:",
 							"helpers": [
-								"You can enter the station id, or the station uuid (below)",
-								"Enter the numeric station id used for your station in the WeatherLink.com APIv2, OR if you do not know this, leave this field blank and Cumulus will attempt to discover it for you",
-								"If more than one station is registered to your account, then all the station ids will be listed in the console and the MX diags file. You will then have to enter the required id manually in this field"
+								"{{WL_DEVICE_ID_HELP1}}",
+								"{{WL_DEVICE_ID_HELP2}}",
+								"I{{WL_DEVICE_ID_HELP3}}"
 							]
 						},
 						"apiStationUuid": {
-							"label": "Your device uuid on WeatherLink:",
+							"label": "{{WL_DEVICE_UUID}}:",
 							"helpers": [
-								"If you do not know your station id above, leave it blank and enter the uuid here, Cumulus will then look-up your station id for you",
-								"Enter the uuid used for your device on the WeatherLink.com web site. You can find this uuid when you open your station in browser, it is usually the last part of the url and looks something like 'f8fb0649-f6ef-44ca-9ab2-25c59fb1acbc'"
+								"{{WL_DEVICE_UUID_HELP1}}",
+								"{{WL_DEVICE_UUID_HELP2}}"
 							]
 						}
 					}
@@ -524,44 +539,44 @@
 					"collapsed": true,
 					"fields": {
 						"wind": {
-							"label": "Wind sensor Tx ID:",
+							"label": "{{WLL_WIND_TX}}:",
 							"type": "select",
 							"sort": false,
 							"removeDefaultNone": true,
 							"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
-							"helper": "Select the ISS transmitter ID for your Wind sensor"
+							"helper": "WLL_WIND_TX_HELP1"
 						},
 						"temphum": {
-							"label": "Temperature/Humidity Tx ID:",
+							"label": "{{WLL_TH_TX}}:",
 							"type": "select",
 							"sort": false,
 							"removeDefaultNone": true,
 							"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
-							"helper": "Select the ISS transmitter ID for your Temperature/Humidity sensor"
+							"helper": "{{WLL_TH_TX_HELP1}}"
 						},
 						"rain": {
-							"label": "Rain sensor Tx ID:",
+							"label": "{{WLL_RAIN_TX}}:",
 							"type": "select",
 							"sort": false,
 							"removeDefaultNone": true,
 							"optionLabels": ["1", "2", "3", "4", "5", "6", "7","8"],
-							"helper": "Select the ISS transmitter ID for your Rain sensor"
+							"helper": "{{WLL_RAIN_TX_HELP1}}"
 						},
 						"solar": {
-							"label": "Solar sensor Tx ID:",
+							"label": "{{WLL_SOLAR_TX}}:",
 							"type": "select",
 							"sort": false,
 							"removeDefaultNone": true,
-							"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-							"helper": "Optional: Select the ISS transmitter ID for your Solar sensor"
+							"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+							"helper": "{{WLL_SOLAR_TX_HELP1}}"
 						},
 						"uv": {
-							"label": "UV sensor Tx ID:",
+							"label": "{{WLL_UV_TX}}:",
 							"type": "select",
 							"sort": false,
 							"removeDefaultNone": true,
-							"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-							"helper": "Optional: Select the ISS transmitter ID for your UV sensor"
+							"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+							"helper": "{{WLL_UV_TX_HELP1}}"
 						}
 					},
 					"dependencies": {
@@ -581,7 +596,7 @@
 							"items": {
 								"fields": {
 									"name": {
-										"label": "Sensor",
+										"label": "{{SENSOR}}",
 										"type": "text",
 										"maxLength": 9
 									},
@@ -589,14 +604,14 @@
 										"type": "select",
 										"sort": false,
 										"removeDefaultNone": true,
-										"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-										"label": "Tx ID"
+										"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+										"label": "{{TX_ID}}"
 									},
 									"idx": {
 										"type": "select",
 										"removeDefaultNone": true,
 										"optionLabels": ["1", "2", "3", "4"],
-										"label": "Channel"
+										"label": "{{CHANNEL}}"
 									}
 								}
 							}
@@ -610,7 +625,7 @@
 							"items": {
 								"fields": {
 									"name": {
-										"label": "Sensor",
+										"label": "{{TX_ID}}",
 										"type": "text",
 										"maxLength": 9
 									},
@@ -618,14 +633,14 @@
 										"type": "select",
 										"sort": false,
 										"removeDefaultNone": true,
-										"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-										"label": "Tx ID"
+										"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+										"label": "{{TX_ID}}"
 									},
 									"idx": {
 										"type": "select",
 										"removeDefaultNone": true,
 										"optionLabels": ["1", "2", "3", "4"],
-										"label": "Channel"
+										"label": "{{CHANNEL}}"
 									}
 								}
 							}
@@ -639,7 +654,7 @@
 							"items": {
 								"fields": {
 									"name": {
-										"label": "Sensor",
+										"label": "{{SENSOR}}",
 										"type": "text",
 										"maxLength": 9
 									},
@@ -647,22 +662,22 @@
 										"type": "select",
 										"sort": false,
 										"removeDefaultNone": true,
-										"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-										"label": "Tx ID"
+										"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+										"label": "{{TX_ID}}"
 									},
 									"idx": {
 										"type": "select",
 										"removeDefaultNone": true,
 										"optionLabels": ["1", "2", "3", "4"],
-										"label": "Channel"
+										"label": "{{CHANNEL}}"
 									}
 								}
 							}
 						}
 					},
 					"helpers": [
-						"Note: 6345 temperature sensors can be allocated to either soil sensors or the extra temperature sensors.",
-						"It is up to the user to ensure that the correct sensor type allocation is used. Soil sensors take priority over extra temperature sensors."
+						"{{WLL_SOIL_SENSORS_HELP1}}",
+						"{{WLL_SOIL_SENSORS_HELP2}}"
 					],
 					"dependencies": {
 						"stationid": [11,19]
@@ -677,7 +692,7 @@
 					"items": {
 						"fields": {
 							"name": {
-								"label": "Sensor",
+								"label": "{{SENSOR}}",
 								"type": "text",
 								"maxLength": 9
 							},
@@ -685,21 +700,21 @@
 								"type": "select",
 								"sort": false,
 								"removeDefaultNone": true,
-								"optionLabels": ["None", "1", "2", "3", "4", "5", "6", "7","8"],
-								"label": "Tx ID"
+								"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+								"label": "{{TX_ID}}"
 							},
 							"idx": {
 								"type": "select",
 								"removeDefaultNone": true,
 								"optionLabels": ["1", "2", "3", "4"],
-								"label": "Channel"
+								"label": "{{CHANNEL}}"
 							}
 						}
 					},
 					"helpers": [
-						"Extra temperature sensors can be attached to either additional ISS transmitters, or on 6345 transmitters.",
-						"ISS transmitters can only have one temperature sensor which also has a combined humidity sensor. In this case set the channel to 1, and the extra humidity will also be enabled.",
-						"6345 transmitters can have up to four temperature sensors, but no humidity sensors. In this case set the channel to 1, 2, 3 or 4."
+						"{{WLL_EXTRA_TEMP_SENSORS_HELP1}}",
+						"{{WLL_EXTRA_TEMP_SENSORS_HELP2}}",
+						"{{WLL_EXTRA_TEMP_SENSORS_HELP3}}"
 					],
 					"dependencies": {
 						"stationid": [11,19]
@@ -708,38 +723,38 @@
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"raingaugetype": {
-							"label": "Rain gauge type (VPrainGaugeType):",
+							"label": "{{DAVIS_RAIN_GAUGE_TYPE}}:",
 							"type": "select",
 							"sort": false,
 							"optionLabels": [
-								"Auto",
-								"Metric (0.2 mm)*",
-								"Imperial (0.01 in)*",
-								"Metric (0.1 mm)",
-								"Imperial (0.001 in)"
+								"{{DAVIS_RAIN_GAUGE_AUTO}}",
+								"{{DAVIS_RAIN_GAUGE_METRIC}} *",
+								"{{DAVIS_RAIN_GAUGE_IMPERIAL}} *",
+								"{{DAVIS_RAIN_GAUGE_METRIC2}}",
+								"{{DAVIS_RAIN_GAUGE_IMPERIAL2}}"
 							],
 							"removeDefaultNone": true,
 							"helpers": [
-								"Default is auto, the size will be set when Cumulus connects to your WLL",
-								"* Denotes normal Davis tipper sizes"
+								"{{WLL_RAIN_GAUGE_HELP1}}",
+								"{{WLL_RAIN_GAUGE_HELP2}}"
 							]
 						},
 						"tcpport": {
-							"label": "TCP port:",
-							"helper": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL",
+							"label": "{{UDP_PORT}}:",
+							"helper": "{{WLL_UDP_PORT_HELP1}}",
 							"dependencies": {
 								"stationid": 11
 							}
 						},
 						"datastopped": {
-							"rightLabel": "Trigger DataStopped on Broadcast stop",
+							"rightLabel": "{{WLL_DATA_STOPPED}}",
 							"helpers": [
-								"By default if WLL broadcasts stop being received a DataStopped condition and alarm will be triggered",
-								"Disabling this option means a DataStopped condition will only be triggered if both broadcasts AND current data API responses stop being received"
+								"{{WLL_DATA_STOPPED_HELP1}}",
+								"{{WLL_DATA_STOPPED_HELP2}}"
 							],
 							"dependencies": {
 								"stationid": 11
@@ -765,26 +780,26 @@
 			"collapsed": true,
 			"fields": {
 				"autoDiscover": {
-					"label": "Auto-Discovery:",
-					"rightLabel": "Enable Auto-Discovery",
+					"label": "{{AUTO_DISCOVERY}}:",
+					"rightLabel": "{{AUTO_DISCOVERY_ENABLE}}",
 					"helpers": [
-						"Enable auto-discovery of your Ecowitt devices IP address",
-						"If you have more than one Ecowitt device, then your IP address will not be automatically set, but Cumulus will list the device IP's in the console, and the MXdiags file. You must then enter the IP address you want to use in the field below."
+						"{{GW1000_AUTO_DISCOVERY_HELP1}}",
+						"{{GW1000_AUTO_DISCOVERY_HELP2}}"
 					]
 				},
 				"ipaddress": {
-					"label": "IP address:",
+					"label": "{{IP_ADDRESS}}:",
 					"type": "ipv4",
 					"helpers": [
-						"You can leave this at default if you enabled Auto-Discovery, and it will be set for you.",
-						"If Auto-Discovery fails, or you have more than one Ecowitt device, then you can enter the IP address manually."
+						"{{AUTO_DISCOVERY_IP_ADDRESS_HELP1}}",
+						"{{AUTO_DISCOVERY_IP_ADDRESS_HELP2}}"
 					]
 				},
 				"macaddress": {
-					"label": "MAC address (read the help below!):",
+					"label": "{{GW1000_MAC}}:",
 					"helpers": [
-						"Populated by Cumulus when using auto-discovery. The format is  XX:XX:XX:XX:XX:XX",
-						"Do not edit unless you change your Ecowitt device for a new one, then just delete this entry and the new MAC address will be added for you by auto-discovery."
+						"{{GW1000_MAC_HELP1}}",
+						"{{GW1000_MAC_HELP2}}"
 					]
 				}
 			},
@@ -797,24 +812,24 @@
 			"collapsed": true,
 			"fields": {
 				"deviceid": {
-					"label": "Device Id",
-					"rightlabel": "Tempest Device Id",
-					"helper": "Get this from the weatherflow app"
+					"label": "{{DEVICE_ID}}",
+					"rightlabel": "{{TEMPEST_DEVICE_ID}}",
+					"helper": "{{TEMPEST_DEVICE_ID_HELP1}}"
 				},
 				"tcpport": {
-					"label": "UDP Port",
-					"helper": "UDP port to listen on. Don't change unless you know what you're doing."
+					"label": "{{UDP_PORT}}",
+					"helper": "{{TEMPEST_UDP_PORT_HELP1}}"
 				},
 				"token": {
-					"label": "Security Token",
+					"label": "{{TEMPEST_SECURITY_TOKEN}}",
 					"type": "password",
-					"helper": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions"
+					"helper": "{{TEMPEST_SECURITY_TOKEN_HELP1}}"
 				},
 				"dayshistory": {
-					"label": "History Days Import",
+					"label": "{{TEMPEST_HISTORY_DAYS}}",
 					"helpers": [
-						"Number of days to import from the WeatherFlow website.",
-						"A large amount of historical data may take a while to import."
+						"{{TEMPEST_HISTORY_DAYS_HELP1}}",
+						"{{TEMPEST_HISTORY_DAYS_HELP2}}"
 					]
 				}
 			},
@@ -827,46 +842,46 @@
 			"collapsed": true,
 			"fields": {
 				"syncreads": {
-					"label": "Synchronisation:",
-					"rightLabel": "Synchronise Reads and Writes",
-					"helper": "Attempts to synchronise console reads to avoid clashing with the console writing the data"
+					"label": "{{FO_SYNC}}:",
+					"rightLabel": "{{FO_SYNC_LABEL}}",
+					"helper": "{{FO_SYNC_HELP1}}"
 				},
 				"readavoid": {
-					"label": "Read Avoid Period:",
+					"label": "{{FO_READ_AVOID}}:",
 					"helpers": [
-						"The time span around the synchronised read to avoid reading from the console.",
-						"The default 3 seconds means do not read from 3 secs before to 3 secs after the expected write time.",
-						"Time in seconds"
+						"{{FO_READ_AVOID_HELP1}}",
+						"{{FO_READ_AVOID_HELP2}}",
+						"{{FO_READ_AVOID_HELP3}}"
 					]
 				},
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"readtime": {
-							"label": "Request/Read Delay:",
+							"label": "{{FO_READ_DELAY}}:",
 							"helpers": [
-								"Delay after requesting a memory read before trying to read data from the USB connection",
-								"Time in milli-seconds. Default = 150ms"
+								"{{FO_READ_DELAY_HELP1}}",
+								"{{FO_READ_DELAY_HELP2}}"
 							]
 						},
 						"setlogger": {
-							"label": "Set Logger Interval:",
-							"rightLabel": "Set the FineOffset Logger interval to match Cumulus MX interval",
+							"label": "{{FO_SET_LOGGER}}:",
+							"rightLabel": "{{FO_SET_LOGGER_LABEL}}",
 							"helpers": [
-								"If the Davis logger interval does not match the Cumulus interval, set it to match.",
-								"Experimental - Use with caution"
+								"{{FO_SET_LOGGER_HELP1}}",
+								"{{FO_SET_LOGGER_HELP2}}"
 							]
 						},
 						"vid": {
-							"label": "USB Vendor Id (VID):",
-							"helper": "Specify an non-standard VID. Use -1 to use the normal setting"
+							"label": "{{FO_USB_VID}}:",
+							"helper": "{{FO_USB_VID_HELP1}}"
 						},
 						"pid": {
-							"label": "USB Product Id (PID):",
-							"helper": "Specify an non-standard PID. Use -1 to use the normal setting"
+							"label": "{{FO_USB_PID}}:",
+							"helper": "{{FO_USB_PID_HELP1}}"
 						}
 					}
 				}
@@ -880,28 +895,28 @@
 			"collapsed": true,
 			"fields": {
 				"interval": {
-					"label": "File Read Interval:",
-					"helper": "How often to read the EasyWeather data file in minutes. Default = 1 minute"
+					"label": "{{EW_FILE_READ_INTERVAL}}:",
+					"helper": "{{EW_FILE_READ_INTERVAL_HELP1}}"
 				},
 				"filename": {
-					"label": "Filename:",
-					"helper": "Path and filename of the EasyWeather data file (Easyweather.dat or EasyWeatherPlus.dat)"
+					"label": "{{FILENAME}}:",
+					"helper": "{{EW_FILENAME_HELP1}}"
 				},
 				"minpressmb": {
-					"label": "Minimum Pressure Value:",
-					"helper": "Pressure value below which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 900"
+					"label": "{{EW_MIN_PRESS}}:",
+					"helper": "{{EW_MIN_PRESS_HELP1}}"
 				},
 				"maxpressmb": {
-					"label": "Maximum Pressure Value:",
-					"helper": "Pressure value above which Cumulus will ignore the value in the file. Value in hPa/mbar. Default = 1200"
+					"label": "{{EW_MAX_PRESS}}:",
+					"helper": "{{EW_MAX_PRESS_HELP1}}"
 				},
 				"raintipdiff": {
-					"label": "Rain Tip Difference:",
-					"helper": "Number of rain bucket tips between data reads above which Cumulus will ignore the increase. Default = 30"
+					"label": "{{EW_RAIN_TIP_DIFF}}:",
+					"helper": "{{EW_RAIN_TIP_DIFF_HELP1}}"
 				},
 				"pressoffset": {
-					"label": "Pressure Offset:",
-					"helper": "Offset value to apply to the pressure value in EasyWeather data file"
+					"label": "{{EW_PRESS_OFFSET}}:",
+					"helper": "{{EW_PRESS_OFFSET_HELP1}}"
 				}
 			},
 			"dependencies": {
@@ -913,47 +928,47 @@
 			"collapsed": true,
 			"fields": {
 				"comportname": {
-					"label": "Serial port name:",
-					"helper": "Enter the name of the serial port to which your station is connected"
+					"label": "{{SERIAL_PORT_NAME}}:",
+					"helper": "{{SERIAL_PORT_NAME_HELP1}}"
 				},
 				"baudrate": {
-					"label": "Serial Baud Rate (DavisBaudRate):",
+					"label": "{{SERIAL_PORT_BAUD}}:",
 					"removeDefaultNone": true,
-					"helper": "Serial port speed in bps. Default = 19200"
+					"helper": "{{IMET_SERIAL_BAUD_HELP2}}"
 				},
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"syncstationclock": {
-							"label": "Clock:",
-							"rightLabel": "Synchronise station clock",
-							"helper": "Keep station clock in line with computer clock (Davis/Instromet only)"
+							"label": "{{CLOCK}}:",
+							"rightLabel": "{{CLOCK_LABEL}}",
+							"helper": "{{CLOCK_HELP1}}"
 						},
 						"syncclockhour": {
-							"label": "Clock sync hour:",
-							"helper": "The hour of the day to synchronise the station clock (Davis/Instromet only)",
+							"label": "{{CLOCK_SYNC_HOUR}}:",
+							"helper": "{{CLOCK_SYNC_HELP1}}",
 							"removeDefaultNone": true
 						},
 						"updatelogpointer": {
-							"label": "Logger pointer:",
-							"rightLabel": "Update logger pointer on read",
-							"helper": "Update the memory pointer to the last record after every 30 data reads"
+							"label": "{{IMET_LOGGER_POINTER}}:",
+							"rightLabel": "{{IMET_LOGGER_POINTER_LABEL}}",
+							"helper": "{{IMET_LOGGER_POINTER_HELP1}}"
 						},
 						"waittime": {
-							"label": "Command wait time:",
+							"label": "{{IMET_CMD_WAIT}}:",
 							"helpers": [
-								"Delay after sending a command before trying to read data from the serial port",
-								"Time in milli-seconds. Default = 500"
+								"{{IMET_CMD_WAIT_HELP1}}",
+								"{{IMET_CMD_WAIT_HELP2}}"
 							]
 						},
 						"readdelay": {
-							"label": "Command delay time:",
+							"label": "{{IMET_CMD_DELAY}}:",
 							"helpers": [
-								"Delay between sending data read commands",
-								"Time in milli-seconds. Default = 500"
+								"{{IMET_CMD_DELAY_HELP1}}",
+								"{{IMET_CMD_WAIT_HELP2}}"
 							]
 						}
 					}
@@ -968,8 +983,8 @@
 			"collapsed": true,
 			"fields": {
 				"comportname": {
-					"label": "Serial port name:",
-					"helper": "Enter the name of the serial port to which your station is connected"
+					"label": "{{SERIAL_PORT_NAME}}:",
+					"helper": "{{SERIAL_PORT_NAME_HELP1}}"
 				}
 			},
 			"dependencies": {
@@ -980,9 +995,9 @@
 			"collapsible": true,
 			"collapsed": false,
 			"helpers": [
-				"Configure your station to send data to Cumulus using the Wunderground protocol",
-				"Note: If possible use the Ecowitt protocol rather than this",
-				"In WS View configure the Custom Server to use:-<br>Protocol: Wunderground<br>Server: CMX IP Address<br>Path: /station/wunderground?<br>Station Id: 1<br>Key: 1<br>Port: 8998<br>Interval: 20"
+				"{{WUNDER_HELP1}}",
+				"{{WUNDER_HELP2}}",
+				"{{WUNDER_HELP3}}"
 			],
 			"dependencies": {
 				"stationid": 13
@@ -992,42 +1007,42 @@
 			"collapsible": true,
 			"collapsed": true,
 			"helpersPosition": "above",
-			"helper": "If your station/gateway supports the Local API, it is recommended that you use the Local API station type rather than the Custom Server protocol",
+			"helper": "{{ECOW_HELP1}}",
 			"fields": {
 				"setcustom": {
-					"label": "Enable Gateway Config:",
-					"rightLabel": "Allow Cumulus to configure your Ecowitt gateway for you",
-					"helper": "Enabling this feature automatically configures your gateway to send data to Cumulus MX"
+					"label": "{{ECOW_ENABLE_GATEWAY_CONFIG}}:",
+					"rightLabel": "{{ECOW_ENABLE_GATEWAY_CONFIG_LABEL}}",
+					"helper": "{{ECOW_ENABLE_GATEWAY_CONFIG_HELP1}}"
 				},
 				"dummy": {
 					"fieldClass": "displayonly",
 					"helpers": [
-						"Configure your Ecowitt station, or Gateway  device to send data to Cumulus using the Ecowitt protocol",
-						"Manual Configuration: In WS View configure the Custom Server to use:-<br>Protocol: Ecowitt<br>Server: CMX IP Address<br>Path: /station/ecowitt<br>Port: 8998<br>Interval: 20"
+						"{{ECOW_MESSAGE1}}",
+						"{{ECOW_MESSAGE2}}"
 					],
 					"dependencies": {
 						"setcustom": false
 					}
 				},
 				"gwaddr": {
-					"label": "Ecowitt Gateway devices IP address:",
-					"helper": "You must enter the IP address of your gateway or station so that Cumulus can configure it",
+					"label": "{{ECOW_GATEWAY_IP}}:",
+					"helper": "{{ECOW_GATEWAY_IP_HELP1}}",
 					"dependencies": {
 						"setcustom": true
 					}
 				},
 				"localaddr": {
-					"label": "Local Cumulus address:",
-					"helper": "You must enter the IP address of this Cumulus instance to which the Ecowitt gateway will send the data",
+					"label": "{{ECOW_CMX_IP}}:",
+					"helper": "{{ECOW_CMX_IP_HELP1}}",
 					"dependencies": {
 						"setcustom": true
 					}
 				},
 				"interval": {
-					"label": "Update interval (seconds):",
+					"label": "{{ECOW_UPDATE_INTVL_SECS}}:",
 					"helpers": [
-						"How often the Ecowitt gateway will send data to Cumulus (4-600)",
-						"Note: If you specify a time lower than 16 seconds, you will no longer be able to save the Web Server settings in the Ecowitt App. You will have to change the interval in the app back to 16 seconds in order to save other changes. Restarting Cumulus will restore the time you have set here."
+						"{{ECOW_UPDATE_INTVL_SECS_HELP1}}",
+						"{{ECOW_UPDATE_INTVL_SECS_HELP2}}"
 					],
 					"dependencies": {
 						"setcustom": true
@@ -1035,17 +1050,17 @@
 				},
 				"forward": {
 					"type": "table",
-					"label": "Forwarding Destinations",
+					"label": "{{ECOW_FORWARDING_DESTS}}",
 					"collapsible": true,
 					"collapsed": true,
 					"items": {
 						"fields": {
 							"url": {
-								"label": "Destination URL"
+								"label": "{{ECOW_FORWARDING_DESTS_LABEL}}"
 							}
 						}
 					},
-					"helper": "Add the URLs of the destinations you wish to forward the Ecowitt HTTP data"
+					"helper": "{{ECOW_FORWARDING_DESTS_HELP1}}"
 				}
 			},
 			"dependencies": {
@@ -1057,18 +1072,18 @@
 			"collapsed": true,
 			"fields": {
 				"ipaddress": {
-					"label": "IP address:",
+					"label": "{{IP_ADDRESS}}:",
 					"type": "ipv4",
 					"helpers": [
-						"The IPv4 address of your station or gateway device"
+						"{{ECOWHTTP_IP_HELP1}}"
 					]
 				},
 				"usesdcard": {
-					"label": "SD Card:",
-					"rightLabel": "Use the SD card data",
+					"label": "{{ECOWHTTP_SD_CARD}}:",
+					"rightLabel": "{{ECOWHTTP_SD_CARD_LABEL}}",
 					"helpers": [
-						"Use the data from the SD card in the station or gateway device for historical data",
-						"NOTE: This feature is only supported by some devices"
+						"{{ECOWHTTP_SD_CARD_HELP1}}",
+						"{{ECOWHTTP_SD_CARD_HELP2}}"
 					]
 				}
 			},
@@ -1081,129 +1096,129 @@
 			"collapsed": true,
 			"fields": {
 				"primaryTHsensor": {
-					"label": "Primary Temp/Humidity sensor:",
+					"label": "{{ECOMAP_PRIMARY_TH}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"Default",
-						"Extra TH chan 1",
-						"Extra TH chan 2",
-						"Extra TH chan 3",
-						"Extra TH chan 4",
-						"Extra TH chan 5",
-						"Extra TH chan 6",
-						"Extra TH chan 7",
-						"Extra TH chan 8",
-						"Indoor TH sensor"
+						"{{DEFAULT}}",
+						"{{EXTRA_TH}} 1",
+						"{{EXTRA_TH}} 2",
+						"{{EXTRA_TH}} 3",
+						"{{EXTRA_TH}} 4",
+						"{{EXTRA_TH}} 5",
+						"{{EXTRA_TH}} 6",
+						"{{EXTRA_TH}} 7",
+						"{{EXTRA_TH}} 8",
+						"{{INDOOR_TH_SENSOR}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"You can over-ride the default outdoor temperature and humidity sensor by specifying a WH31 T/H sensor channel",
-						"It is also possible to use the indoor sensor values - mainly for WS6006 which does not allow extra TH sensors"
+						"{{ECOMAP_PRIMARY_TH_HELP1}}",
+						"{{ECOMAP_PRIMARY_TH_HELP2}}"
 					]
 				},
 				"primaryRainSensor": {
-					"label": "Select Rain Sensor:",
+					"label": "{{ECOMAP_RAIN_SENSOR}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"Tipping Bucket",
-						"Piezo Sensor (WS90)"
+						"{{ECOMAP_RAIN_SENSOR_BUCKET}}",
+						"{{ECOMAP_RAIN_SENSOR_PIEZO}}"
 					],
 					"removeDefaultNone": true,
-					"helper": "You can over-ride the default tipping bucket sensor with the piezo sensor found in the WS90"
+					"helper": "{{ECOMAP_RAIN_SENSOR_HELP1}}"
 				},
 				"piezosrain": {
-					"label": "Use Piezo IsRaining:",
-					"rightLabel": "Use the piezo sensor IsRaining value to trigger Cumulus MX IsRaining",
-					"helper": "Note: Currently only available with a WS90 connected to a GW2000 (Sept 2024)",
+					"label": "{{ECOMAP_IS_RAINING}}:",
+					"rightLabel": "{{ECOMAP_IS_RAINING_LABEL}}",
+					"helper": "{{ECOMAP_IS_RAINING_HELP1}}",
 					"dependencies": {
 						"stationid": [14,22]
 					}
 				},
 				"primaryIndoorTHsensor": {
-					"label": "Primary Indoor Temp/Humidity sensor:",
+					"label": "{{ECOMAP_PRIMARY_TH_IN}}:",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"Default",
-						"Extra TH chan 1",
-						"Extra TH chan 2",
-						"Extra TH chan 3",
-						"Extra TH chan 4",
-						"Extra TH chan 5",
-						"Extra TH chan 6",
-						"Extra TH chan 7",
-						"Extra TH chan 8"
+						"{{DEFAULT}}",
+						"{{EXTRA_TH_CHAN1}}",
+						"{{EXTRA_TH_CHAN2}}",
+						"{{EXTRA_TH_CHAN3}}",
+						"{{EXTRA_TH_CHAN4}}",
+						"{{EXTRA_TH_CHAN5}}",
+						"{{EXTRA_TH_CHAN6}}",
+						"{{EXTRA_TH_CHAN7}}",
+						"{{EXTRA_TH_CHAN8}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"You can over-ride the default indoor temperature and humidity sensor by specifying a WH31 T/H sensor channel"
+						"{{ECOMAP_PRIMARY_TH_IN_HELP1}}"
 					]
 				},
 				"wn34chan1": {
-					"label": "WN34 chan 1:",
+					"label": "WN34 #1:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 1","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 1","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan2": {
-					"label": "WN34 chan 2:",
+					"label": "WN34 #2:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 2","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 2","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan3": {
-					"label": "WN34 chan 3:",
+					"label": "WN34 #3:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 3","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 3","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan4": {
-					"label": "WN34 chan 4:",
+					"label": "WN34 #4:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 4","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 4","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan5": {
-					"label": "WN34 chan 5:",
+					"label": "WN34 #5:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 5","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 5","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan6": {
-					"label": "WN34 chan 6:",
+					"label": "WN34 #6:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 6","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 6","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan7": {
-					"label": "WN34 chan 7:",
+					"label": "WN34 #7:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 7","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 7","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan8": {
-					"label": "WN34 chan 8:",
+					"label": "WN34 #8:",
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["User 8","Soil 1", "Soil 2", "Soil 3", "Soil 4", "Soil 5", "Soil 6", "Soil 7","Soil 8"],
-					"helper": "Select the mapping for your WN34 sensor"
+					"optionLabels": ["{{USER}} 8","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"stationid": {
 					"type": "integer",
@@ -1218,8 +1233,8 @@
 			"collapsible": true,
 			"collapsed": false,
 			"helpers": [
-				"Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
-				"In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20"
+				"{{AMB_HELP1}}",
+				"{{AMB_HELP2}}"
 			],
 			"dependencies": {
 				"stationid": 15
@@ -1231,35 +1246,35 @@
 			"helpersPosition": "above",
 			"fields": {
 				"applicationkey": {
-					"label": "Application Key:",
+					"label": "{{ECOW_APPLICATION_KEY}}:",
 					"type": "password",
-					"helper": "Enter the Application Key you have created in your user profile on the ecowitt.net web site"
+					"helper": "{{ECOW_APPLICATION_KEY_HELP1}}"
 				},
 				"userkey": {
-					"label": "API Key:",
+					"label": "{{ECOW_API_KEY}}:",
 					"type": "password",
-					"helper": "Enter the API Key you have created in your user profile on the ecowitt.net web site"
+					"helper": "{{ECOW_API_KEY_HELP1}}"
 				},
 				"mac": {
-					"label": "Station MAC/IMEI address",
+					"label": "{{ECOW_MAC_EMEI}}",
 					"helpers": [
-						"Enter the MAC/IMEI address of your station/gateway.",
-						"MAC format is  XX:XX:XX:XX:XX:XX",
-						"IMEI format is 15 or 16 digits",
-						"You can find this on your device in the Ecowitt WS View or WS View Plus app"
+						"{{ECOW_MAC_EMEI_HELP1}}",
+						"{{ECOW_MAC_EMEI_HELP2}}",
+						"{{ECOW_MAC_EMEI_HELP3}}",
+						"{{ECOW_MAC_EMEI_HELP4}}"
 					],
 					"dependencies": {
 						"stationid": [14,18,22]
 					}
 				},
 				"interval": {
-					"label": "Update interval (minutes):",
+					"label": "{{ECOW_UPDATE_INTVL_MINS}}:",
 					"type": "select",
 					"sort": false,
-					"optionLabels": ["1 minute","2 minutes","3 minutes","4 minutes","5 minutes","10 minutes"],
+					"optionLabels": ["{{MINS01}}","{{MINS02}}","{{MINS03}}","{{MINS04}}","{{MINS05}}","{{MINS10}}"],
 					"removeDefaultNone": true,
 					"helpers": [
-						"How often your station uploads to the Ecowitt.net web site"
+						"{{ECOW_UPDATE_INTVL_MINS_HELP1}}"
 					],
 					"dependencies": {
 						"stationid": [18]
@@ -1279,19 +1294,19 @@
 			"collapsed": true,
 			"fields": {
 				"conntype": {
-					"label": "Data Source:",
+					"label": "{{JSON_DATA_SOURCE}}:",
 					"type": "select",
 					"optionLabels": [
-						"From file",
-						"HTTP POST",
-						"MQTT Topic"
+						"{{JSON_DATA_SOURCE_FILE}}",
+						"{{JSON_DATA_SOURCE_HTTP}}",
+						"{{JSON_DATA_SOURCE_MQTT}}"
 					],
 					"removeDefaultNone": true,
-					"helper": "If you change the data source you must restart Cumulus MX for it to take effect"
+					"helper": "{{JSON_DATA_SOURCE_HELP1}}"
 				},
 				"filename": {
-					"label": "File Name:",
-					"helper": "Enter the path/filename of the file which will contain your JSON data",
+					"label": "{{FILENAME}}:",
+					"helper": "{{JSON_FILENAME_HELP1}}",
 					"dependencies": {
 						"conntype": 0
 					}
@@ -1299,44 +1314,44 @@
 				"dummy": {
 					"fieldClass": "displayonly",
 					"helpers": [
-						"The data must be sent as a HTTP POST message with the JSON text in the request body.",
-						"Configure the source server to send the request to:-<br>http://[CMX_IP_Address]:8998/station/json"
+						"{{JSON_DATA_SOURCE_HTTP_HELP1}}",
+						"{{JSON_DATA_SOURCE_HTTP_HELP2}}"
 					],
 					"dependencies": {
 						"conntype": 1
 					}
 				},
 				"mqttserver": {
-					"label": "MQTT Server:",
-					"helper": "Enter the name/IP of your MQTT server",
+					"label": "{{MQTT_SERVER}}:",
+					"helper": "{{MQTT_SERVER_HELP1}}",
 					"dependencies": {
 						"conntype": 2
 					}
 				},
 				"mqttport": {
-					"label": "MQTT port:",
-					"helper": "TCP/IP port for your MQTT server. Default is 1883",
+					"label": "{{MQTT_PORT}}:",
+					"helper": "{{MQTT_PORT_HELP1}}",
 					"dependencies": {
 						"conntype": 2
 					}
 				},
 				"mqttuser": {
-					"label": "User Name:",
-					"helper": "Enter the user name for your MQTT server. Leave blank for anonymous access",
+					"label": "{{USER_NAME}}:",
+					"helper": "{{JSON_USER_NAME_HELP1}}",
 					"dependencies": {
 						"conntype": 2
 					}
 				},
 				"mqttpass": {
-					"label": "Password:",
-					"helper": "Enter the user password for your MQTT server. Leave blank for anonymous access",
+					"label": "{{PASSWORD}}:",
+					"helper": "{{JSON_PASSWORD_HELP1}}",
 					"dependencies": {
 						"conntype": 2
 					}
 				},
 				"mqtttopic": {
-					"label": "Topic:",
-					"helper": "Enter the topic on your MQTT server that supplies the data",
+					"label": "{{MQTT_TOPIC}}:",
+					"helper": "{{JSON_TOPIC_HELP1}}",
 					"dependencies": {
 						"conntype": 2
 					}
@@ -1350,23 +1365,23 @@
 							"fieldClass": "hideme"
 						},
 						"filedelay": {
-							"label": "File Read Delay (ms):",
-							"helper": "How long to wait after the file is written to before trying to read it. Default = 200ms",
+							"label": "{{JSON_FILE_READ_DELAY}}:",
+							"helper": "{{JSON_FILE_READ_DELAY_HELP1}}",
 							"dependencies": {
 								"conntype": 0
 							}
 						},
 						"fileignore": {
-							"label": "File Change Ignore (ms):",
-							"helper": "Period of time after a change that further changes are ignored. Default = 600ms",
+							"label": "{{JSON_FILE_CHANGE_IGNORE}}:",
+							"helper": "{{JSON_FILE_CHANGE_IGNORE_HELP}}",
 							"dependencies": {
 								"conntype": 0
 							}
 						},
 						"mqtttls": {
-							"label": "Use TLS:",
-							"rightLabel": "MQTT Server requires TLS for encryption",
-							"helper": "Enable if TLS encryption is required by your server, if you host your own server this is unlikely",
+							"label": "{{MQTT_TLS}}:",
+							"rightLabel": "{{MQTT_TLS_LABEL}}",
+							"helper": "{{MQTT_TLS_HELP1}}",
 							"dependencies": {
 								"conntype": 2
 							}
@@ -1386,183 +1401,183 @@
 			"collapsed": true,
 			"fields": {
 				"usezerobearing": {
-					"label": "Zero Bearing:",
-					"rightLabel": "Use bearing zero when calm",
-					"helper": "Use zero for current bearing if speed is zero"
+					"label": "{{OPT_ZERO_BEARING}}:",
+					"rightLabel": "{{OPT_ZERO_BEARING_LABEL}}",
+					"helper": "{{OPT_ZERO_BEARING_HELP1}}"
 				},
 				"calcwindaverage": {
-					"label": "Average Wind Speed:",
-					"rightLabel": "Calculate average wind speed",
+					"label": "{{OPT_AVG_WIND_SPEED}}:",
+					"rightLabel": "{{OPT_AVG_WIND_LABEL}}",
 					"helpers": [
-						"Use the Cumulus calculated value instead of the value supplied station",
-						"If your station does not supply an average wind speed, then you must enable this option"
+						"{{OPT_CMX_CALC_HELP1}}",
+						"{{OPT_AVG_WIND_HELP2}}"
 					]
 				},
 				"roundwindspeeds": {
-					"label": "Speed rounding:",
-					"rightLabel": "Round wind speeds",
-					"helper": "Round wind speeds to the nearest whole number"
+					"label": "{{OPT_SPEED_ROUND}}:",
+					"rightLabel": "{{OPT_SPEED_LABEL}}",
+					"helper": "{{OPT_SPEED_HELP1}}"
 				},
 				"use100for98hum": {
-					"label": "Max humidity:",
-					"rightLabel": "Use 100% for 98% humidity",
-					"helper": "For stations whose humidity sensors don't go above 98% and you would like to see 100% values"
+					"label": "{{OPT_MAX_HUM}}:",
+					"rightLabel": "{{OPT_MAX_HUM_LABEL}}",
+					"helper": "{{OPT_MAX_HUM_HELP1}}"
 				},
 				"calculatedewpoint": {
-					"label": "Dew point:",
-					"rightLabel": "Calculate dew point",
+					"label": "{{OPT_DEW_POINT}}:",
+					"rightLabel": "{{OPT_DEW_POINT_LABEL}}",
 					"helpers": [
-						"Use the Cumulus calculated value instead of the value supplied station",
-						"If your station does not supply a dew point value, then you must enable this option"
+						"{{OPT_CMX_CALC_HELP1}}",
+						"{{OPT_DEW_POINT_HELP2}}"
 					]
 				},
 				"calculatewindchill": {
-					"label": "Wind chill:",
-					"rightLabel": "Calculate wind chill",
+					"label": "{{OPT_WIND_CHILL}}:",
+					"rightLabel": "{{OPT_WIND_CHILL_LABEL}}",
 					"helpers": [
-						"Use the Cumulus calculated value instead of the value supplied station",
-						"If your station does not supply a wind chill value, then you must enable this option"
+						"{{OPT_CMX_CALC_HELP1}}",
+						"{{OPT_WIND_CHILL_HELP2}}"
 					]
 				},
 				"calculateet": {
-					"label": "Evapotranspiration:",
-					"rightLabel": "Calculate evapotranspiration",
+					"label": "{{OPT_ET}}:",
+					"rightLabel": "{{OPT_ET_LABEL}}",
 					"helpers": [
-						"Use a cumulus calculated value for evapotranspiration if your station does not provide this value",
-						"Note this calculation REQUIRES a solar radiation sensor to estimate any sensible values",
-						"DO NOT enable this feature if your station already supplies a value for ET - eg. Davis VP2/WLL with solar"
+						"{{OPT_CMX_CALC_HELP1}}",
+						"{{OPT_ET_HELP2}}",
+						"{{OPT_ET_HELP3}}"
 					]
 				},
 				"calculateslp": {
-					"label": "Sea Level Pressure:",
-					"rightLabel": "Calculate sea level pressure",
+					"label": "{{OPT_SLP}}:",
+					"rightLabel": "{{OPT_SLP_LABEL}}",
 					"helpers": [
-						"Use the Cumulus calculated value from the absolute pressure instead of the value supplied station",
-						"When enabled, the pressure calibration is applied to the raw station pressure"
+						"{{OPT_CMX_CALC_HELP1}}",
+						"{{OPT_SLP_HELP2}}"
 					]
 				},
 				"cumuluspresstrendnames": {
-					"label": "Pressure names:",
-					"rightLabel": "Cumulus pressure trend names",
-					"helper": "Use Cumulus names for pressure trends instead of the stations"
+					"label": "{{OPT_PRESS_NAMES}}:",
+					"rightLabel": "{{OPT_PRESS_NAMES_LABEL}}",
+					"helper": "{{OPT_PRESS_NAMES_HELP1}}"
 				},
 				"ignorelacrosseclock": {
-					"label": "LaCrosse clock:",
-					"rightLabel": "Ignore the LaCrosse clock",
-					"helper": "Use computer clock instead of LaCrosse station clock for archive data",
+					"label": "{{OPT_LACROSSE_CLOCK}}:",
+					"rightLabel": "{{OPT_LACROSSE_CLOCK_LABEL}}",
+					"helper": "{{OPT_LACROSSE_CLOCK_HELP1}}",
 					"dependencies": {
 						"stationid": 6
 					}
 				},
 				"extrasensors": {
-					"label": "Extra sensors:",
-					"rightLabel": "Log Extra sensors",
+					"label": "{{OPT_EXTRA_SENSORS}}:",
+					"rightLabel": "{{OPT_EXTRA_SENSORS_LABEL}}",
 					"helpers": [
-						"Display and log extra sensors, if you have any connected to your station"
+						"{{OPT_EXTRA_SENSORS_HELP1}}"
 					]
 				},
 				"nosensorcheck": {
-					"label": "Sensor check:",
-					"rightLabel": "No sensor check",
-					"helper": "Make Cumulus MX run even if you do not have the minimum sensors required (temp, press, wind)"
+					"label": "{{OPT_SENSORCHECK}}:",
+					"rightLabel": "{{OPT_SENSORCHECK_LABEL}}",
+					"helper": "{{OPT_SENSORCHECK_HELP1}}"
 				},
 				"userainforisraining": {
-					"label": "Is Raining trigger:",
-					"rightLabel": "What triggers the 'Is Raining' logic",
+					"label": "{{OPT_ISRAINING}}:",
+					"rightLabel": "{{OPT_ISRAINING_LABEL}}",
 					"type": "select",
 					"sort": false,
 					"optionLabels": [
-						"RG11 sensor",
-						"Primary rain sensor",
-						"Haptic rain sensor"
+						"{{OPT_ISRAINING_OPT_RG11}}",
+						"{{OPT_ISRAINING_OPT_PRIMARY}}",
+						"{{OPT_ISRAINING_OPT_HAPTIC}}"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
-						"Normally the 'Is Raining' value is triggered by a dedicated device - currently RG11",
-						"Primary rainfall sensor: It will also be triggered by a rainfall rate > 0, or by a bucket tip",
-						"Haptic sensor: If you have a haptic rain sensor (currently only the Ecowitt WS90 supported), then if you have a tipping bucket as your sensor, the haptic sensor can be used to trigger Is Raining",
-						"If you ONLY have a haptic sensor, then you should set this option to 'Primary rain sensor'",
-						"Note: This trigger may only be transient, the next station read may not have another bucket tip and 'Is Raining' will be cleared. Use the Is Raining alarm to latch the alarm value for a while"
+						"{{OPT_ISRAINING_HELP1}}",
+						"{{OPT_ISRAINING_HELP2}}",
+						"{{OPT_ISRAINING_HELP3}}",
+						"{{OPT_ISRAINING_HELP4}}",
+						"{{OPT_ISRAINING_HELP5}}"
 					]
 				},
 				"leafwetisrainingidx": {
-					"label": "Leaf wetness IsRaining sensor:",
-					"optionLabels": ["Disabled",1,2,3,4,5,6,7,8],
+					"label": "{{OPT_LEAF_WET_ISRAINING}}:",
+					"optionLabels": ["{{DISABLED}}",1,2,3,4,5,6,7,8],
 					"helpers": [
-						"Select a leaf wetness sensor to be used as a 'Is Raining' sensor",
-						"Note: This can be used in addition to the Is raining trigger above"
+						"{{OPT_LEAF_WET_ISRAINING_HELP1}}",
+						"{{OPT_LEAF_WET_ISRAINING_HELP2}}"
 					],
 					"removeDefaultNone": true
 				},
 				"leafwetisrainingthrsh": {
-					"label": "Leaf wetness IsRaining trigger:",
-					"helper": "Set the leaf wetness value in the units used by your station to trigger 'Is Raining'",
+					"label": "{{OPT_LEAF_WET_ISRAINING_THRESHOLD}}:",
+					"helper": "{{OPT_LEAF_WET_ISRAINING_THRESHOLD_HELP1}}",
 					"dependencies": {
 						"leafwetisrainingidx": [1,2,3,4,5,6,7,8]
 					}
 				},
 				"snowseasonstart": {
-					"label": "Snowfall Season Starts:",
+					"label": "{{OPT_SNOW_SEASON}}:",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"$ref": "#/definitions/months",
 					"helpers": [
-						"The month of the year to start the total snowfall accumulation season",
-						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
+						"{{OPT_SNOW_SEASON_HELP1}}",
+						"{{OPT_SNOW_SEASON_HELP2}}"
 					]
 				},
 				"advanced": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Here be dragons! Only alter these settings if you understand what they do.",
+					"helper": "{{HERE_BE_DRAGONS}}",
 					"helpersPosition": "above",
 					"fields": {
 						"usespeedforavg": {
-							"label": "Speed for average calc:",
-							"rightLabel": "Use wind speed for average calculation",
-							"helper": "Use station 'speed' in calculation instead of 'latest' as latter may be a gust figure"
+							"label": "{{OPT_ADV_SPEED_4_AVG}}:",
+							"rightLabel": "{{OPT_ADV_SPEED_4_AVG_LABEL}}",
+							"helper": "{{OPT_ADV_SPEED_4_AVG_HELP1}}"
 						},
 						"avgbearingmins": {
-							"label": "Average wind bearing time:",
-							"helper": "Period of time in minutes to average out wind bearings"
+							"label": "{{OPT_ADV_BERAING_AVG}}:",
+							"helper": "{{OPT_ADV_BERAING_AVG_HELP1}}"
 						},
 						"avgspeedmins": {
-							"label": "Average wind speed time:",
-							"helper": "Period of time in minutes to average out wind speeds"
+							"label": "{{OPT_ADV_WIND_AVG_TIME}}:",
+							"helper": "{{OPT_ADV_WIND_AVG_TIME_HELP1}}"
 						},
 						"peakgustmins": {
-							"label": "Peak wind gust time:",
-							"helper": "Period of time in minutes to record the peak gust speed"
+							"label": "{{OPT_ADV_WIND_GUST_TIME}}:",
+							"helper": "{{OPT_ADV_WIND_GUST_TIME_HELP1}}"
 						},
 						"maxwind": {
-							"label": "Maximum wind speed:",
-							"helper": "Maximum allowed wind speed in your selected units. Speeds above this will be ignored"
+							"label": "{{OPT_ADV_WIND_MAX}}:",
+							"helper": "{{OPT_ADV_WIND_MAX_HELP1}}"
 						},
 						"recordtimeout": {
-							"label": "Record set timeout:",
+							"label": "{{OPT_ADV_RECORD_TIMEOUT}}:",
 							"helpers": [
-								"Set the time to elapse after which new records will be cleared automatically.",
-								"The default is 24 hours"
+								"{{OPT_ADV_RECORD_TIMEOUT_HELP1}}",
+								"{{OPT_ADV_RECORD_TIMEOUT_HELP2}}"
 							]
 						},
 						"snowdepthhour": {
-							"label": "Snow depth hour:",
-							"helper": "The hour of the day to start measuring snow depth values. Default = midnight (0)",
+							"label": "{{OPT_ADV_SNOW_HOUR}}:",
+							"helper": "{{OPT_ADV_SNOW_HOUR_HELP1}}",
 							"removeDefaultNone": true
 						},
 						"raindaythreshold": {
-							"label": "Rain day threshold:",
+							"label": "{{OPT_ADV_RAINDAY_THRESH}}:",
 							"helpers": [
-								"Set the amount of rainfall required for a day to be considered a 'rainy day'",
-								"Defaults value is -1, which is interpreted as 0.2 mm or 0.01 inches for *most* stations",
-								"DO NOT set to zero, then every day would be counted as a rain day"
+								"{{OPT_ADV_RAINDAY_THRESH_HELP1}}",
+								"{{OPT_ADV_RAINDAY_THRESH_HELP2}}",
+								"{{OPT_ADV_RAINDAY_THRESH_HELP3}}"
 							]
 						},
 						"uselogger": {
-							"label": "Use data logger:",
-							"rightLabel": "Use the logger/cloud for catch-up",
-							"helper": "By disabling this option, you can over-ride the default behaviour of attempting to download catch-up data from the logger (or cloud) on start-up"
+							"label": "{{OPT_ADV_DATA_LOGGER}}:",
+							"rightLabel": "{{OPT_ADV_DATA_LOGGER_LABEL}}",
+							"helper": "{{OPT_ADV_DATA_LOGGER_HELP1}}"
 						}
 					}
 				},
@@ -1577,36 +1592,36 @@
 			"collapsed": true,
 			"fields": {
 				"usecumulusforecast": {
-					"label": "Forecast source",
-					"rightLabel": "Use Cumulus forecast",
-					"helper": "Use the Zambretti forecast generated by Cumulus rather than the station forecast"
+					"label": "{{FORECAST_SOURCE}}",
+					"rightLabel": "{{FORECAST_SOURCE_LABEL}}",
+					"helper": "{{FORECAST_SOURCE_HELP1}}"
 				},
 				"updatehourly": {
-					"label": "Forecast updates:",
-					"rightLabel": "Update forecast hourly",
-					"helper": "If using the Cumulus forecast, update only once an hour rather than every data update (recommended)",
+					"label": "{{FORECAST_UPDATE}}:",
+					"rightLabel": "{{FORECAST_UPDATE_LABEL}}",
+					"helper": "{{FORECAST_UPDATE_HELP1}}",
 					"dependencies": {
 						"usecumulusforecast": true
 					}
 				},
 				"lowpressureextreme": {
-					"label": "Low pressure extreme:",
-					"helper": "The low pressure extreme for your location",
+					"label": "{{FORECAST_LOW_PRESS}}:",
+					"helper": "{{FORECAST_LOW_PRESS_HELP1}}",
 					"dependencies": {
 						"usecumulusforecast": true
 					}
 				},
 				"highpressureextreme": {
-					"label": "High pressure extreme:",
-					"helper": "The high pressure extreme for your location",
+					"label": "{{FORECAST_HIGH_PRESS}}:",
+					"helper": "{{FORECAST_HIGH_PRESS_HELP1}}",
 					"dependencies": {
 						"usecumulusforecast": true
 					}
 				},
 				"pressureunit": {
-					"label": "Pressure extreme units:",
+					"label": "{{FORECAST_PRESS_UNITS}}:",
 					"removeDefaultNone": true,
-					"helper": "The units that you have used for the pressure extremes",
+					"helper": "{{FORECAST_PRESS_UNITS_HELP1}}",
 					"dependencies": {
 						"usecumulusforecast": true
 					}
@@ -1616,51 +1631,51 @@
 		"Solar": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "Settings used for determining hours of sunshine - if you have a solar sensor",
+			"helper": "{{SOLAR_HELP1}}",
 			"helpersPosition": "above",
 			"fields": {
 				"solarcalc": {
-					"label": "Solar calculation method:",
+					"label": "{{SOLAR_CALC}}:",
 					"type": "select",
 					"optionLabels": [
 						"Ryan-Stolzenbach",
 						"Bras"
 					],
 					"removeDefaultNone": true,
-					"helper": "  Select the algorithm to use for solar irradiation calculations"
+					"helper": "{{SOLAR_CALC_HELP1}}"
 				},
 				"sunthreshold": {
-					"label": "Sun Threshold (percent):",
-					"helper": "The percentage of the current theoretical solar value above which the sun should be considered to be shining (default = 75%)"
+					"label": "{{SOLAR_SUN_THRESH}}:",
+					"helper": "{{SOLAR_SUN_THRESH_HELP1}}"
 				},
 				"solarmin": {
-					"label": "Solar minimum (W/m2):",
-					"helper": "The minimum solar reading for the sun to be considered to be shining (default = 30W/m²)"
+					"label": "{{SOLAR_MIN}}:",
+					"helper": "{{SOLAR_MIN_HELP1}}"
 				},
 				"transfactorJun": {
-					"label": "RS Transmission factor (June):",
-					"helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70=smoggy - 0.91=clear, default 0.80)",
+					"label": "{{SOLAR_RS_TRANS_FACTOR_JUN}}:",
+					"helper": "{{SOLAR_RS_TRANS_FACTOR_HELP1}}",
 					"dependencies": {
 						"solarcalc": 0
 					}
 				},
 				"transfactorDec": {
-					"label": "RS Transmission factor (December):",
-					"helper": "The R-S transmission factor of the solar radiation through the atmosphere (0.70=smoggy - 0.91=clear, default 0.80)",
+					"label": "{{SOLAR_RS_TRANS_FACTOR_DEC}}:",
+					"helper": "{{SOLAR_RS_TRANS_FACTOR_HELP1}}",
 					"dependencies": {
 						"solarcalc": 0
 					}
 				},
 				"turbidityJun": {
-					"label": "Bras turbidity factor (June):",
-					"helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)",
+					"label": "{{SOLAR_BRAS_TURBIDITY_JUN}}:",
+					"helper": "{{SOLAR_BRAS_TURBIDITY_HELP1}}",
 					"dependencies": {
 						"solarcalc": 1
 					}
 				},
 				"turbidityDec": {
-					"label": "Bras turbidity factor (December):",
-					"helper": "The Bras turbidity factor (1.00=clear, 5.00=smoggy, default = 2.00)",
+					"label": "{{SOLAR_BRAS_TURBIDITY_DEC}}:",
+					"helper": "{{SOLAR_BRAS_TURBIDITY_HELP1}}",
 					"dependencies": {
 						"solarcalc": 1
 					}
@@ -1672,30 +1687,30 @@
 			"collapsed": true,
 			"fields": {
 				"ytdamount": {
-					"label": "Year-to-date amount:",
-					"helper": "Enter a rainfall amount to be added to the total for the year when you started using Cumulus - i.e. for the period for which you have no Cumulus data"
+					"label": "{{RAIN_YTD}}:",
+					"helper": "{{RAIN_YTD_HELP1}}"
 				},
 				"ytdyear": {
-					"label": "Year to which year-to-date amount applies:",
-					"helper": "Enter the year to apply the correct to (normally this year or last year) as a four digit number. Leave as zero to disable"
+					"label": "{{RAIN_YTD_YEAR}}:",
+					"helper": "{{RAIN_YTD_YEAR_HELP1}}"
 				},
 				"rainseasonstart": {
-					"label": "Start of rainfall season:",
-					"helper": "Select the month from which the annual total is to be calculated",
+					"label": "{{RAIN_SEASON_START}}:",
+					"helper": "{{RAIN_SEASON_START_HELP1}}",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"$ref": "#/definitions/months"
 				},
 				"rainweekstart": {
-					"label": "Start of rainfall week:",
-					"helper": "Select the day of the week from which the weekly total is to be calculated",
+					"label": "{{RAIN_WEEK_START}}:",
+					"helper": "{{RAIN_WEEK_START_HELP1}}",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"optionLabels": [
-						"Sunday",
-						"Monday"
+						"{{DOW_SUNDAY}}",
+						"{{DOW_MONDAY}}"
 					]
 				}
 			}
@@ -1705,34 +1720,34 @@
 			"collapsed": true,
 			"fields": {
 				"starts": {
-					"label": "Growing season starting month:",
+					"label": "{{GDD_SEASON_START}}:",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"$ref": "#/definitions/months",
 					"helpers": [
-						"The month you want the growing season year to start",
-						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
+						"{{GDD_SEASON_START_HELP1}}",
+						"{{GDD_SEASON_START_HELP2}}"
 					]
 				},
 				"basetemp1": {
-					"label": "Base temperature #1:",
+					"label": "{{GDD_BASE_1}}:",
 					"helpers": [
-						"The first series base temperature which is to be used to calculate the growing degree days",
-						"Default = 5°C / 40°F"
+						"{{GDD_BASE_1_HELP1}}",
+						"{{GDD_BASE_1_HELP2}}"
 					]
 				},
 				"basetemp2": {
-					"label": "Base temperature #2:",
+					"label": "{{GDD_BASE_2}}:",
 					"helpers": [
-						"The second series base temperature which is to be used to calculate the growing degree days",
-						"Default = 10°C / 50°F"
+						"{{GDD_BASE_2_HELP1}}",
+						"{{GDD_BASE_2_HELP2}}"
 					]
 				},
 				"cap30C": {
-					"label": "Temperature cap:",
-					"rightLabel": "Cap GDD at 30°C / 86°F",
-					"helper": "Limits the maximum temperature used for the GDD to this value - most temperate crops will use this"
+					"label": "{{GDD_CAP}}:",
+					"rightLabel": "{{GDD_CAP_LABEL}}",
+					"helper": "{{GDD_CAP_HELP1}}"
 				}
 			}
 		},
@@ -1741,28 +1756,28 @@
 			"collapsed": true,
 			"fields": {
 				"starts": {
-					"label": "Year summation starting month:",
+					"label": "{{TEMPSUM_START}}:",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"$ref": "#/definitions/months",
 					"helpers": [
-						"The month you want the year summing to start",
-						"Default: January, in Northern hemisphere / July, in Southern hemisphere"
+						"{{TEMPSUM_START_HELP1}}",
+						"{{TEMPSUM_START_HELP2}}"
 					]
 				},
 				"basetemp1": {
-					"label": "Base temperature #1:",
+					"label": "{{TEMPSUM_BASE_1}}:",
 					"helpers": [
-						"The first series base temperature which is subtracted from the annual temperature sum",
-						"Default = 5°C / 40°F"
+						"{{TEMPSUM_BASE_1_HELP1}}",
+						"{{TEMPSUM_BASE_1_HELP2}}"
 					]
 				},
 				"basetemp2": {
-					"label": "Base temperature #2:",
+					"label": "{{TEMPSUM_BASE_2}}:",
 					"helpers": [
-						"The second series base temperature which is subtracted from the annual temperature sum",
-						"Default = 10°C / 50°F"
+						"{{TEMPSUM_BASE_2_HELP1}}",
+						"{{TEMPSUM_BASE_2_HELP2}}"
 					]
 				}
 			}
@@ -1786,14 +1801,14 @@
 					]
 				},
 				"month": {
-					"label": "Chill Season Starts:",
+					"label": "{{CHILLHRS_START}}:",
 					"removeDefaultNone": true,
 					"sort": false,
 					"type": "select",
 					"$ref": "#/definitions/months",
 					"helpers": [
-						"The month of the year to start the chill hours season",
-						"Default: October, in Northern hemisphere / April, in Southern hemisphere"
+						"{{CHILLHRS_START_HELP1}}",
+						"{{CHILLHRS_START_HELP2}}"
 					]
 				}
 			}

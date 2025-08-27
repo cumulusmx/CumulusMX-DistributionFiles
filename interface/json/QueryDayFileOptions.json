@@ -1,104 +1,104 @@
 {
-	"version": "Last Modified: 2024/10/05 17:26:54",
+	"version": "Last Modified: 2025/08/22 21:57:43",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
 		},
 		"dataname": {
-			"label": "Data Parameter",
+			"label": "{{DATA_PARAMETER}}",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"Highest Gust",
-				"Wind Run",
-				"Highest Average Windspeed",
-				"Lowest Temperature",
-				"Highest Temperature",
-				"Average Temperature",
-				"Highest Heat Index",
-				"Highest Apparent Temperature",
-				"Lowest Apparent Temperature",
-				"Lowest Wind Chill",
-				"Highest Dew Point",
-				"Lowest Dew Point",
-				"Highest Feels Like",
-				"Lowest Feels Like",
-				"Highest Humidex",
-				"Lowest Pressure",
-				"Highest Pressure",
-				"Highest Rain Rate",
-				"Total Rainfall",
-				"Highest Hourly Rain",
-				"Most Rain in 24h",
-				"Lowest Humidity",
-				"Highest Humidity",
-				"Sunshine Hours",
-				"Highest Solar Radiation",
-				"Highest UV-Index",
-				"Evapotranspiration",
-				"Heating Degree Days",
-				"Cooling Degree Days",
-				"Chill Hours"
+				"{{DATA_HIGH_GUST}}",
+				"{{DATA_WIND_RUN}}",
+				"{{DATA_HIGH_AVG_WIND}}",
+				"{{DATA_LOW_TEMP}}",
+				"{{DATA_HIGH_TEMP}}",
+				"{{DATA_AVG_TEMP}}",
+				"{{DATA_HIGH_HEAT_INDEX}}",
+				"{{DATA_HIGH_APPARENT_TEMP}}",
+				"{{DATA_LOW_APPARENT_TEMP}}",
+				"{{DATA_LOW_WIND_CHILL}}",
+				"{{DATA_HIGH_DEW_POINT}}",
+				"{{DATA_LOW_DEW_POINT}}",
+				"{{DATA_HIGH_FEELS_LIKE}}",
+				"{{DATA_LOW_FEELS_LIKE}}",
+				"{{DATA_HIGH_HUMIDEX}}",
+				"{{DATA_LOW_PRESSURE}}",
+				"{{DATA_HIGH_PRESSURE}}",
+				"{{DATA_HIGH_RAIN_RATE}}",
+				"{{DATA_TOTAL_RAINFALL}}",
+				"{{DATA_HIGH_HOURLY_RAIN}}",
+				"{{DATA_MOST_RAIN_24H}}",
+				"{{DATA_LOW_HUMIDITY}}",
+				"{{DATA_HIGH_HUMIDITY}}",
+				"{{DATA_SUNSHINE_HOURS}}",
+				"{{DATA_HIGH_SOLAR_RADIATION}}",
+				"{{DATA_HIGH_UV_INDEX}}",
+				"{{DATA_EVAPOTRANSPIRATION}}",
+				"{{DATA_HEATING_DEGREE_DAYS}}",
+				"{{DATA_COOLING_DEGREE_DAYS}}",
+				"{{DATA_CHILL_HOURS}}"
 			]
 		},
 		"function": {
-			"label": "Function",
+			"label": "{{FUNCTION}}",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"Minimum",
-				"Maximum",
-				"Average",
-				"Sum",
-				"Count"
+				"{{FUNCTION_MINIMUM}}",
+				"{{FUNCTION_MAXIMUM}}",
+				"{{FUNCTION_AVERAGE}}",
+				"{{FUNCTION_SUM}}",
+				"{{FUNCTION_COUNT}}"
 			],
 			"helpers": [
-				"The function to apply to the value in each period"
+				"{{FUNCTION_HELP1}}"
 			],
 			"dependencies": {
 				"startsel": ["User", "ThisMonth", "ThisYear", "Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12", "Yearly"]
 			}
 		},
 		"where": {
-			"label": "Where",
+			"label": "{{WHERE}}",
 			"type": "text",
 			"helpers": [
-				"Comparison string for the data. Only include values in the result that match this where condition",
-				"Example: <= 10",
-				"Allowed operators: >, >=, <, <=, =",
-				"Leave blank to include all values"
+				"{{WHERE_HELP1}}",
+				"{{WHERE_HELP2}}",
+				"{{WHERE_HELP3}}",
+				"{{WHERE_HELP4}}"
 			],
 			"dependencies": {
 				"function": ["count"]
 			}
 		},
 		"startsel": {
-			"label": "Start Date Preset",
+			"label": "{{START_DATE_PRESET}}",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"User Entered",
-				"On This Day",
-				"On Specified Day",
-				"This Month",
-				"This Year",
-				"Yearly",
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December"
+				"{{DATE_USER}}",
+				"{{DATE_THIS_DAY}}",
+				"{{DATE_SPECIFIC}}",
+				"{{DATE_THIS_MONTH}}",
+				"{{DATE_THIS_YEAR}}",
+				"{{DATE_YEARLY}}",
+				"{{DATE_MONTH1}}",
+				"{{DATE_MONTH2}}",
+				"{{DATE_MONTH3}}",
+				"{{DATE_MONTH4}}",
+				"{{DATE_MONTH5}}",
+				"{{DATE_MONTH6}}",
+				"{{DATE_MONTH7}}",
+				"{{DATE_MONTH8}}",
+				"{{DATE_MONTH9}}",
+				"{{DATE_MONTH10}}",
+				"{{DATE_MONTH11}}",
+				"{{DATE_MONTH12}}"
 			]
 		},
 		"start": {
-			"label": "Start Date",
+			"label": "{{START_DATE}}",
 			"type": "date",
 			"id": "startDate",
 			"dependencies": {
@@ -106,7 +106,7 @@
 			}
 		},
 		"end": {
-			"label": "End Date",
+			"label": "{{END_DATE}}",
 			"type": "date",
 			"id": "endDate",
 			"dependencies": {
@@ -114,53 +114,53 @@
 			}
 		},
 		"month": {
-			"label": "Month",
+			"label": "{{MONTH}}",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December"
+				"{{DATE_MONTH1}}",
+				"{{DATE_MONTH2}}",
+				"{{DATE_MONTH3}}",
+				"{{DATE_MONTH4}}",
+				"{{DATE_MONTH5}}",
+				"{{DATE_MONTH6}}",
+				"{{DATE_MONTH7}}",
+				"{{DATE_MONTH8}}",
+				"{{DATE_MONTH9}}",
+				"{{DATE_MONTH10}}",
+				"{{DATE_MONTH11}}",
+				"{{DATE_MONTH12}}"
 			],
 			"removeDefaultNone": true,
 			"helpers": [
-				"Select the month of 'On Specified Day'"
+				"{{MONTH_HELP1}}'"
 			],
 			"dependencies": {
 				"startsel": ["SpecificDay"]
 			}
 		},
 		"day": {
-			"label": "Day",
+			"label": "{{DAY}}",
 			"type": "integer",
 			"removeDefaultNone": true,
 			"helpers": [
-				"Select the day of 'On Specified Day'"
+				"{{DAY_HELP1}}"
 			],
 			"dependencies": {
 				"startsel": ["SpecificDay"]
 			}
 		},
 		"countfunction": {
-			"label": "Result Function",
+			"label": "{{RESULT_FUNCTION}}",
 			"type": "select",
 			"sort": false,
 			"optionLabels": [
-				"Most/Highest value in the groups",
-				"Least/Lowest value in the groups"
+				"{{RESULT_FUNCTION_MOST_HIGHEST}}",
+				"{{RESULT_FUNCTION_LEAST_LOWEST}}"
 			],
 			"removeDefaultNone": true,
 			"helpers": [
-				"Do you want the highest or lowest value of all the grouped periods?"
+				"{{RESULT_FUNCTION_HELP1}}"
 			],
 			"dependencies": {
 				"startsel": ["ThisDay", "SpecificDay", "Yearly", "Month1", "Month2", "Month3", "Month4", "Month5", "Month6", "Month7", "Month8", "Month9", "Month10", "Month11", "Month12"]

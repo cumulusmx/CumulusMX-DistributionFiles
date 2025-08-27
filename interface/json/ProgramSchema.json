@@ -1,47 +1,47 @@
 {
-    "version": "Last Modified: 2025/04/22 16:03:19",
+    "version": "Last Modified: 2025/08/27 14:35:10",
     "type": "object",
     "properties": {
         "accessible": {
             "type": "boolean"
         },
         "startup": {
-            "title": "Start-up Options",
+            "title": "{{STARTUP_OPTIONS}}",
             "type": "object",
             "properties": {
                 "startupdelay": {
-                    "title": "Start-up Delay (secs)",
+                    "title": "{{STARTUP_DELAY}}",
                     "type": "integer",
                     "minimum": 0
                 },
                 "startupdelaymaxuptime" : {
-                    "title": "Max system uptime to apply the start-up delay",
+                    "title": "{{MAX_UPTIME}}",
                     "type": "integer",
                     "minimum": 0
                 },
                 "startuphostping": {
-                    "title": "Host to PING on program start-up",
+                    "title": "{{HOST_PING}}",
                     "type": "string"
                 },
                 "startuppingescape": {
-                    "title": "PING escape time (mins)",
+                    "title": "{{PING_ESCAPE}}",
                     "type": "integer",
                     "minimum": 1
                 },
                 "startuptask": {
-                    "title": "Start-up Task",
+                    "title": "{{STARTUP_TASK}}",
                     "type": "object",
                     "properties": {
                         "task": {
-                            "title": "Start-up task executable",
+                            "title": "{{STARTUP_TASK_EXE}}",
                             "type": "string"
                         },
                         "taskparams": {
-                            "title": "Start-up task parameters",
+                            "title": "{{STARTUP_TASK_PARAMS}}",
                             "type": "string"
                         },
                         "wait": {
-                            "title": "Start-up task waits",
+                            "title": "{{STARTUP_TASK_WAITS}}",
                             "type": "boolean"
                         }
                     }
@@ -49,27 +49,27 @@
             }
         },
         "shutdown": {
-            "title": "Shutdown Options",
+            "title": "{{SHUTDOWN_OPTIONS}}",
             "type": "object",
             "properties": {
                 "datastoppedexit": {
                     "type": "boolean"
                 },
                 "datastoppedmins": {
-                    "title": "Data Stopped exit delay",
+                    "title": "{{DATA_STOPPED_DELAY}}",
                     "type": "integer",
                     "minimum": 0
                 },
                 "shutdowntask": {
-                    "title": "Shutdown Task",
+                    "title": "{{SHUTDOWN_TASK}}",
                     "type": "object",
                     "properties": {
                         "task": {
-                            "title": "Shutdown task executable",
+                            "title": "{{SHUTDOWN_TASK_EXE}}",
                             "type": "string"
                         },
                         "taskparams": {
-                            "title": "Shutdown task parameters",
+                            "title": "{{SHUTDOWN_TASK_PARAMS}}",
                             "type": "string"
                         }
                     }
@@ -80,7 +80,7 @@
             }
         },
         "logging": {
-            "title": "Logging Options",
+            "title": "{{LOGGING_OPTIONS}}",
             "type": "object",
             "properties": {
                 "debuglogging": {
@@ -110,7 +110,7 @@
             }
         },
         "options": {
-            "title": "General Options",
+            "title": "{{GENERAL_OPTIONS}}",
             "type": "object",
             "properties": {
                 "stopsecondinstance": {
@@ -125,19 +125,24 @@
             }
         },
         "culture": {
-            "title": "Culture Over-rides",
+            "title": "{{CULTURE_OVERRIDES}}",
             "type": "object",
             "properties": {
+                "displayLang": {
+                },
                 "removespacefromdateseparator": {
                     "type": "boolean"
                 },
                 "timeFormat": {
                     "enum": ["t", "h:mm tt", "HH:mm"]
+                },
+                "amPmLowerCase" : {
+                    "type": "boolean"
                 }
             }
         },
         "security": {
-            "title": "Security Settings",
+            "title": "{{SECURITY_SETTINGS}}",
             "type": "object",
             "properties": {
                 "securesettings": {

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/05/24 16:47:11",
+	"version": "Last Modified: 2025/08/21 19:51:09",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -9,7 +9,7 @@
 			"type": "boolean"
 		},
 		"general": {
-			"title": "General Settings",
+			"title": "{{GENERAL_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"manufacturer": {
@@ -35,7 +35,7 @@
 					"required": true
 				},
 				"logrollover": {
-					"title": "Log&nbsp;Rollover",
+					"title": "{{LOG_ROLLOVER}}",
 					"type": "object",
 					"properties": {
 						"time": {
@@ -52,7 +52,7 @@
 					}
 				},
 				"units": {
-					"title": "Units",
+					"title": "{{UNITS}}",
 					"type": "object",
 					"properties": {
 						"wind": {
@@ -64,28 +64,28 @@
 							"required": true
 						},
 						"temp": {
-							"title": "Temperature",
+							"title": "{{TEMPERATURE}}",
 							"enum": [0,1],
 							"required": true
 						},
 						"rain": {
-							"title": "Rain",
+							"title": "{{RAIN}}",
 							"enum": [0,1],
 							"required": true
 						},
 						"snow": {
-							"title": "Snow Depth",
+							"title": "{{SNOW_DEPTH}}",
 							"enum": [0,1]
 						},
 						"laser": {
-							"title": "Laser Distance",
+							"title": "{{LASER_DIST}}",
 							"enum": [0,1,2]
 						},
 						"cloudbaseft": {
 							"type": "boolean"
 						},
 						"advanced": {
-							"title": "Advanced Options - Number Decimals",
+							"title": "{{ADVANCED_OPTIONS_DECIMALS}}",
 							"type": "object",
 							"properties": {
 								"tempdp": {
@@ -138,7 +138,7 @@
 					}
 				},
 				"Location": {
-					"title": "Location",
+					"title": "{{LOCATION}}",
 					"type": "object",
 					"properties": {
 						"sitename": {
@@ -148,11 +148,11 @@
 							"type": "string"
 						},
 						"altitude": {
-							"title": "Altitude",
+							"title": "{{ALTITUDE}}",
 							"type": "integer"
 						},
 						"altitudeunit": {
-							"title": "Altitude units",
+							"title": "{{ALTITUDE_UNITS}}",
 							"type": "string",
 							"enum": [
 								"feet",
@@ -161,7 +161,7 @@
 							"required": true
 						},
 						"Latitude": {
-							"title": "Latitude",
+							"title": "{{LATITUDE}}",
 							"type": "object",
 							"properties": {
 								"degrees": {
@@ -190,7 +190,7 @@
 							}
 						},
 						"Longitude": {
-							"title": "Longitude",
+							"title": "{{LONGITUDE}}",
 							"type": "object",
 							"properties": {
 								"degrees": {
@@ -222,7 +222,7 @@
 					}
 				},
 				"advanced": {
-					"title": "Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"recsbegandate": {
@@ -238,20 +238,17 @@
 			"type": "object",
 			"properties": {
 				"davisconn": {
-					"title": "Davis Connection Settings",
+					"title": "{{DAVIS_CONN_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"conntype": {
-							"enum": [
-								0,
-								2
-							]
+							"enum": [0,2]
 						},
 						"comportname": {
 							"type": "string"
 						},
 						"tcpsettings": {
-							"title": "TCP/IP settings",
+							"title": "{{TCP_IP_SETTINGS}}",
 							"type": "object",
 							"properties": {
 								"ipaddress": {
@@ -275,7 +272,7 @@
 					}
 				},
 				"advanced": {
-					"title": "Davis Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"conntype": {},
@@ -344,7 +341,7 @@
 			"type": "object",
 			"properties": {
 				"network": {
-					"title": "Network Settings",
+					"title": "{{NETWORK_SETTINGS}}",
 					"type": "object",
 					"properties": {
 						"autoDiscover": {
@@ -359,7 +356,7 @@
 					]
 				},
 				"api": {
-					"title": "WeatherLink.com API details",
+					"title": "{{WL_API_DETAILS}}",
 					"type": "object",
 					"properties": {
 						"apiKey": {},
@@ -371,7 +368,7 @@
 					}
 				},
 				"primary": {
-					"title": "Primary Sensors",
+					"title": "{{PRIMARY_SENSORS}}",
 					"type": "object",
 					"properties": {
 						"wind": {
@@ -395,11 +392,11 @@
 					]
 				},
 				"soilLeaf": {
-					"title": "Extra Soil/Leaf Sensors (6345)",
+					"title": "{{DAVIS_EXTRA_LEAF_SOIL}}",
 					"type": "object",
 					"properties": {
 						"extraSoilTemp": {
-							"title": "Soil Temperature Sensors",
+							"title": "{{SOIL_TEMP_SENSORS}}",
 							"type": "array",
 							"maxItems": 16,
 							"items": {
@@ -420,7 +417,7 @@
 							}
 						},
 						"extraSoilMoist": {
-							"title": "Soil Moisture Sensors",
+							"title": "{{SOIL_MOIST_SENSORS}}",
 							"type": "array",
 							"maxItems": 16,
 							"items": {
@@ -441,7 +438,7 @@
 							}
 						},
 						"extraLeaf": {
-							"title": "Leaf Wetness Sensors",
+							"title": "{{LEAF_WET_SENSORS}}",
 							"type": "array",
 							"maxItems": 8,
 							"items": {
@@ -467,7 +464,7 @@
 					]
 				},
 				"extraTemp": {
-					"title": "Extra Temperature (Temp/Humidity) Sensors",
+					"title": "{{EXTRA_TEMP_SENSORS}}",
 					"type": "array",
 					"maxItems": 16,
 					"items": {
@@ -491,7 +488,7 @@
 					]
 				},
 				"advanced": {
-					"title": "Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"raingaugetype": {
@@ -527,7 +524,7 @@
 			]
 		},
 		"gw1000": {
-			"title": "Ecowitt Binary Local API (Legacy) Settings",
+			"title": "{{ECOWITT_BINARY_API}}",
 			"type": "object",
 			"properties": {
 				"autoDiscover": {
@@ -543,7 +540,7 @@
 			]
 		},
 		"weatherflow": {
-			"title": "WeatherFlow Settings",
+			"title": "{{WEATHERFLOW_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"tcpport": {
@@ -566,7 +563,7 @@
 			]
 		},
 		"fineoffset": {
-			"title": "Fine Offset (legacy) Settings",
+			"title": "{{FO_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"syncreads": {
@@ -578,7 +575,7 @@
 					"maximum": 20
 				},
 				"advanced": {
-					"title": "Fine Offset Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"readtime": {
@@ -605,7 +602,7 @@
 			]
 		},
 		"easyw": {
-			"title": "EasyWeather File Settings",
+			"title": "{{EW_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"interval": {
@@ -641,7 +638,7 @@
 			]
 		},
 		"imet": {
-			"title": "Instromet Settings",
+			"title": "{{IMET_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"comportname": {
@@ -651,7 +648,7 @@
 					"enum": [19200,115200]
 				},
 				"advanced": {
-					"title": "Instromet Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"syncstationclock": {
@@ -681,7 +678,7 @@
 			]
 		},
 		"wmr928": {
-			"title": "WM918/WMR928 Settings",
+			"title": "{{WMR_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"comportname": {
@@ -693,14 +690,14 @@
 			]
 		},
 		"http-wunder": {
-			"title": "HTTP (Wunderground) Settings",
+			"title": "{{HTTP_WU_SETTINGS}}",
 			"type": "object",
 			"dependencies": [
 				"stationid"
 			]
 		},
 		"ecowitt": {
-			"title": "HTTP (Ecowitt) Settings",
+			"title": "{{HTTP_ECOWITT_SETTINGS}}",
 			"type": "object",
 			"properties": {
 				"setcustom": {
@@ -731,7 +728,7 @@
 				},
 				"forward": {
 					"type": "array",
-					"title": "Forwarding URLs",
+					"title": "{{FORWARDING_URLS}}",
 					"maxItems": 10,
 					"items": {
 						"type": "object",
@@ -748,7 +745,7 @@
 			]
 		},
 		"ecowitthttpapi": {
-			"title": "Ecowitt HTTP Local API Settings",
+			"title": "{{ECOWITT_HTTP_LOCAL_API}}",
 			"type": "object",
 			"properties": {
 				"ipaddress": {
@@ -763,7 +760,7 @@
 			]
 		},
 		"ecowittmaps": {
-			"title": "Ecowitt Sensor Mappings",
+			"title": "{{ECOWITT_SENSOR_MAPPINGS}}",
 			"type": "object",
 			"properties": {
 				"primaryTHsensor": {
@@ -814,14 +811,14 @@
 			]
 		},
 		"http-ambient": {
-			"title": "HTTP (Ambient) Settings",
+			"title": "{{HTTP_AMBIENT_SETTINGS}}",
 			"type": "object",
 			"dependencies": [
 				"stationid"
 			]
 		},
 		"ecowittapi": {
-			"title": "Ecowitt Cloud Access API",
+			"title": "{{ECOWITT_CLOUD_API}}",
 			"type": "object",
 			"properties": {
 				"applicationkey": {},
@@ -846,7 +843,7 @@
 			]
 		},
 		"jsonstation": {
-			"title": "JSON Data Input",
+			"title": "{{JSON_DATA_INPUT}}",
 			"type": "object",
 			"properties": {
 				"conntype": {
@@ -882,7 +879,7 @@
 					"dependencies": "conntype"
 				},
 				"advanced": {
-					"title": "Advanced Settings",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"conntype": {
@@ -913,7 +910,7 @@
 			]
 		},
 		"Options": {
-			"title": "Common Options",
+			"title": "{{COMMON_OPTIONS}}",
 			"type": "object",
 			"properties": {
 				"usezerobearing": {
@@ -966,7 +963,7 @@
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"advanced": {
-					"title": "Advanced Options",
+					"title": "{{ADVANCED_OPTIONS}}",
 					"type": "object",
 					"properties": {
 						"usespeedforavg": {
@@ -1024,7 +1021,7 @@
 			}
 		},
 		"Forecast": {
-			"title": "Forecast",
+			"title": "{{FORECAST}}",
 			"type": "object",
 			"properties": {
 				"usecumulusforecast": {
@@ -1064,14 +1061,11 @@
 			}
 		},
 		"Solar": {
-			"title": "Solar",
+			"title": "{{SOLAR}}",
 			"type": "object",
 			"properties": {
 				"solarcalc": {
-					"enum": [
-						0,
-						1
-					]
+					"enum": [0,1]
 				},
 				"sunthreshold": {
 					"type": "integer",
@@ -1117,7 +1111,7 @@
 			}
 		},
 		"AnnualRainfall": {
-			"title": "Rainfall",
+			"title": "{{RAINFALL}}",
 			"type": "object",
 			"properties": {
 				"ytdamount": {
@@ -1137,7 +1131,7 @@
 			}
 		},
 		"GrowingDD": {
-			"title": "Growing Degree Days",
+			"title": "{{GROWING_DEGREE_DAYS}}",
 			"type": "object",
 			"properties": {
 				"starts": {
@@ -1159,7 +1153,7 @@
 			}
 		},
 		"TempSum": {
-			"title": "Annual Temperature Sum",
+			"title": "{{ANNUAL_TEMP_SUM}}",
 			"type": "object",
 			"properties": {
 				"starts": {
@@ -1178,7 +1172,7 @@
 			}
 		},
 		"ChillHrs": {
-			"title": "Chill Hours",
+			"title": "{{CHILL_HOURS}}",
 			"type": "object",
 			"properties": {
 				"threshold": {
