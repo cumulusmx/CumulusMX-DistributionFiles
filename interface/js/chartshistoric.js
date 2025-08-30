@@ -1,4 +1,4 @@
-// Last modified: 2025/08/21 23:09:55
+// Last modified: 2025/08/30 22:04:04
 
 var chart, config, available;
 
@@ -1170,7 +1170,7 @@ var doTempSum = function () {
             alignTicks: false,
             zoomType: 'x'
         },
-        title: {text: '{{TEMERATURE_SUM}}'},
+        title: {text: '{{TEMPERATURE_SUM}}'},
         credits: {enabled: true},
         xAxis: {
             type: 'datetime',

@@ -1,4 +1,4 @@
-// Last modified: 2025/08/27 20:03:40
+// Last modified: 2025/08/29 14:01:42
 
 // Configuration section
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -117,7 +117,7 @@ $(document).ready(function () {
         }
         let tim = hrs + ':' + ('' + d.getMinutes()).padStart(2, '0') + ':' + ('' + d.getSeconds()).padStart(2, '0')
         if (timeFormat.hours == 12) {
-            tim += ' ' + (d.getHours() < 12 ? timeFormat.am : timeFormat.am);
+            tim += ' ' + (d.getHours() < 12 ? timeFormat.am : timeFormat.pm);
         }
         return tim;
     }

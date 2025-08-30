@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/27 15:17:58",
+    "_LAST_MODIFIED": "Last modified: 2025/08/30 17:01:11",
     "ENABLE_ACCESSIBILITY": "Enable accessibility features",
     "ENABLE_ACCESSIBILITY_HELP1": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting.",
     "STARTUP_DELAY_HELP1": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds",
@@ -61,7 +61,7 @@
     "DATE_SPACES": "Date Spaces",
     "CULTURE_REMOVE_SPACE_FROM_DATE": "Remove space character from date separators (if present)",
     "CULTURE_REMOVE_SPACE_FROM_DATE_HELP1": "Globally change the default date separator for your locale by removing any spaces. Eg. change 'dd. mm. yy' to 'dd.mm.yy'",
-    "CULTURE_REMOVE_SPACE_FROM_DATE_HELP2": "You MUST restart Cumulus MX after changing this setting for it to take effect",
+    "MUST_REBOOT_HELP": "You MUST restart Cumulus MX after changing this setting for it to fully take effect",
     "CULTURE_TIME_FORMAT": "Dashboard time format",
     "TIME_FORMAT_DEFAULT": "Locale default",
     "TIME_FORMAT_24H": "Force 24 hour",

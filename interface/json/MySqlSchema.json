@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 16:08:16",
+	"version": "Last Modified: 2025/08/29 12:25:36",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -21,6 +21,20 @@
 				"pass": {
 				},
 				"database": {
+				},
+				"advanced": {
+					"type": "object",
+					"title": "{{ADVANCED_OPTIONS}}",
+					"properties": {
+						"sslMode": {
+							"enum": [0,1,2]
+						},
+						"tlsVers": {
+						}
+					},
+					"dependencies": {
+						"tlsVers": ["sslMode"]
+					}
 				}
 			}
 		},

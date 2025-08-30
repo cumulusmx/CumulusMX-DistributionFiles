@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 14:16:23",
+	"version": "Last Modified: 2025/08/29 12:25:55",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -23,6 +23,36 @@
 				},
 				"database": {
 					"label": "{{DATABASE_NAME}}:"
+				},
+				"advanced": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sslMode": {
+							"label": "{{SSL_MODE}}:",
+							"type": "select",
+							"optionLabels": [
+								"{{SSL_MODE_NONE}}",
+								"{{SSL_MODE_PREFERRED}}",
+								"{{SSL_MODE_REQUIRED}}"
+							],
+							"helpers": [
+								"{{SSL_MODE_HELP1}}",
+								"{{SSL_MODE_HELP2}}",
+								"{{SSL_MODE_HELP3}}"
+							],
+							"sort": false,
+							"removeDefaultNone": true
+						},
+						"tlsVers": {
+							"label": "{{TLS_VERSIONS}}:",
+							"helper": "{{TLS_VERSION_HELP1}}",
+							"placeholder": "TLS 1.2,TLS 1.3",
+							"dependencies": {
+								"sslMode": [1,2]
+							}
+						}
+					}
 				}
 			}
 		},
