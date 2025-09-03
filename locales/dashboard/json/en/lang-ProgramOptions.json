@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/30 17:01:11",
+    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:07:56",
     "ENABLE_ACCESSIBILITY": "Enable accessibility features",
     "ENABLE_ACCESSIBILITY_HELP1": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting.",
     "STARTUP_DELAY_HELP1": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds",

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/25 10:59:03",
+	"version": "Last Modified: 2025/09/03 11:04:51",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -262,6 +262,13 @@
 							"optionLabels": [
 								"{{LOC_ATTITUDE_FEET}}",
 								"{{LOC_ATTITUDE_METRES}}"
+							]
+						},
+						"timeZone": {
+							"helpers": [
+								"{{TIME_ZONE_HELP1}}",
+								"{{TIME_ZONE_HELP2}}",
+								"{{TIME_ZONE_HELP3}}"
 							]
 						},
 						"Latitude": {

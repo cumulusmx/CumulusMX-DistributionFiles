@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:19",
+    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:08:39",
     "ADVANCED_OPTIONS_DECIMALS": "Advanced Options - Number Decimals",
     "ADVANCED_OPTIONS": "Advanced Options",
     "ALTITUDE_UNITS": "Altitude units",
@@ -41,6 +41,7 @@
     "SOLAR": "Solar",
     "TCP_IP_SETTINGS": "TCP/IP settings",
     "TEMPERATURE": "Temperature",
+    "TIME_ZONE": "Time Zone",
     "UNITS": "Units",
     "WEATHERFLOW_SETTINGS": "WeatherFlow Settings",
     "WL_API_DETAILS": "WeatherLink.com API details",

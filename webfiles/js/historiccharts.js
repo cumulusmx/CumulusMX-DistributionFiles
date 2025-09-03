@@ -1,4 +1,4 @@
-// Last modified: 2025/07/24 19:12:54
+// Last modified: 2025/09/03 16:13:21
 
 var chart, config, available;
 
@@ -13,8 +13,7 @@ $(document).ready(function () {
 
         Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

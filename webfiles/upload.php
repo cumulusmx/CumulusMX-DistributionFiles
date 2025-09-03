@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2024/11/28 17:56:02";
+$last_Modified="2025/09/03 10:09:37";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -105,8 +105,10 @@ if (isset($_SERVER['HTTP_FILE'])) {
     // check if the path exists
     if (!is_dir($name_dir)) {
         // try an create it
-        echo "Creating folder $name_dir";
-        mkdir($name_dir, 0777, true) or die("Cannot create required path $name_dir");
+        echo "Creating folder $name_dir\n";
+        if (!mkdir($name_dir, 0777, true)) {
+            exitCode(500, "Error: Cannot create required path $name_dir");
+        }
     }
 
     // if the file exists, check the file is writable

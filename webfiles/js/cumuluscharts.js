@@ -1,4 +1,4 @@
-// Last modified: 2025/08/27 22:16:29
+// Last modified: 2025/09/03 16:13:24
 
 var chart, config, avail;
 
@@ -42,8 +42,7 @@ $(document).ready(function () {
                 enabled: true
             },
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

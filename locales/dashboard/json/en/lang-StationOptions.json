@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:15",
+    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:07:54",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -406,6 +406,9 @@
     "TEMPSUM_START_HELP2": "Default: January, in Northern hemisphere / July, in Southern hemisphere",
     "TEMPSUM_START": "Year summation starting month",
     "TIME": "Time",
+    "TIME_ZONE_HELP1": "This will default to the time zone Cumulus is using. eg 'Europe/London'. Change with caution!",
+    "TIME_ZONE_HELP2": "This setting is used to ensure chart data displays in the stations time zone for all users",
+    "TIME_ZONE_HELP3": "You may want to change this if for instance Cumulus is running as UTC, but your station is actually in the 'Europe/London' time zone",
     "TX_ID": "Tx ID",
     "UDP_PORT": "UDP Port",
     "UNIT_CELSIUS": "Celsius",

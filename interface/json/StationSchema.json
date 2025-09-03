@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/21 19:51:09",
+	"version": "Last Modified: 2025/09/03 11:06:14",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -159,6 +159,9 @@
 								"metres"
 							],
 							"required": true
+						},
+						"timeZone": {
+							"title" : "{{TIME_ZONE}}"
 						},
 						"Latitude": {
 							"title": "{{LATITUDE}}",
