@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/08/27 22:12:03
+// Last modified: 2025/09/03 16:11:32
 
 var chart, avail, config, options;
 var cache = {};
@@ -116,8 +116,7 @@ $(document).ready(function () {
 
         Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

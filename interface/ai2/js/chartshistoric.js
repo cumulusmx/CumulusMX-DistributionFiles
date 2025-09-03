@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartshistoric.js        Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit (MC): 2024/12/28 12:09:59
+    (MC) Last Edit: 2025/09/03 17:54:03
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartshistoric.html
@@ -43,8 +43,7 @@ $().ready(function () {
 
 		Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

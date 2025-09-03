@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartsperiod.js        	Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit: 2025/08/01 17:15:38
+    Last Edit: 2025/09/03 17:58:10
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartsperiod.html
@@ -124,8 +124,7 @@ $(document).ready(function () {
 
         Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

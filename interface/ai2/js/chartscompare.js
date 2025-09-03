@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartscompare.js        Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit (MC): 2024/12/01 16:30:19
+    (MC) Last Edit: 2025/09/03 17:53:19
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartscompare.html
@@ -123,8 +123,7 @@ $().ready(function () {
 
         Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

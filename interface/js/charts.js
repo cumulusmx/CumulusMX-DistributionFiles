@@ -1,4 +1,4 @@
-// Last modified: 2025/08/27 23:11:55
+// Last modified: 2025/09/03 16:08:35
 
 var chart, config, doSelect;
 
@@ -23,13 +23,14 @@ var myRanges = {
     selected: 1
 };
 
+const ajax1 = $.ajax({url: '/api/graphdata/availabledata.json', dataType: 'json'});
+const ajax3 = $.ajax({url: '/api/graphdata/graphconfig.json', dataType: 'json'});
+
 $(document).ready(function () {
     $('#mySelect').change(function () {
         doSelect($('#mySelect').val());
     });
 
-    const ajax1 = $.ajax({url: '/api/graphdata/availabledata.json', dataType: 'json'});
-    const ajax3 = $.ajax({url: '/api/graphdata/graphconfig.json', dataType: 'json'});
 
     Promise.all([ajax1, ajax3])
     .then(function (results) {
@@ -81,12 +82,10 @@ $(document).ready(function () {
         }
 
         // graph configuration
-
         Highcharts.setOptions({
             credits: {enabled: true},
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {

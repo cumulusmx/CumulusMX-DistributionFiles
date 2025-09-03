@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	charts.js				Ver: aiX-1.0
  * 	Author:	M Crossley & N Thomas
- * 	Last Edit (MC):	2024/10/04 12:52:06
+ * 	(MC) Last Edit:	2025/09/03 15:54:40
  * 	Last Edit (NT):	2025/05/05
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Role: Draw charts based on readings
@@ -62,8 +62,7 @@ $().ready(function () {
 
 		Highcharts.setOptions({
             time: {
-                timezone: config.tz,
-                useUTC: false
+                timezone: config.tz
             },
             chart: {
                 style: {
