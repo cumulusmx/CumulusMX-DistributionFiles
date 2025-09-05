@@ -1,67 +1,67 @@
 {
-	"version": "Last Modified: 2025/02/06 16:54:24",
+	"version": "Last Modified: 2025/08/16 20:59:05",
 	"definitions": {
 		"calibnospike": {
 			"fields": {
 				"offset": {
-					"label": "Offset",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				}
 			}
 		},
 		"calib": {
 			"fields": {
 				"offset": {
-					"label": "Offset",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				},
 				"spike": {
-					"label": "Spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				}
 			}
 		},
 		"limits": {
 			"fields": {
 				"offset": {
-					"label": "Offset",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				},
 				"spike": {
-					"label": "Spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				},
 				"limitmin": {
-					"label": "Min. limit",
-					"helper" : "If the raw value is less this limit value it will be ignored"
+					"label": "{{LIMIT_MIN}}",
+					"helper" : "{{LIMIT_MIN_HELPER}}"
 				},
 				"limitmax": {
-					"label": "Max. limit",
-					"helper" : "If the raw value is greater than this limit value it will be ignored"
+					"label": "{{LIMIT_MAX}}",
+					"helper" : "{{LIMIT_MAX_HELPER}}"
 				}
 			}
 		}
@@ -80,8 +80,8 @@
 			"collapsed": true,
 			"$ref": "#/definitions/limits",
 			"helpers": [
-				"Only applied to the Sea Level Pressure value supplied by your station",
-				"If the option for Cumulus calculated SLP is enabled, then this calibration will NOT be applied"
+				"{{PRESS_HELPER1}}",
+				"{{PRESS_HELPER2}}"
 			]
 		},
 		"pressureStn": {
@@ -89,9 +89,9 @@
 			"collapsed": true,
 			"$ref": "#/definitions/calibnospike",
 			"helpers": [
-				"Only applied to the station (or raw/absolute) pressure value supplied by your station",
-				"The altimeter pressure is dervied from the calibrated value",
-				"If the option for Cumulus calculated SLP is enabled, then this the calibration that will be applied"
+				"{{STN_PRESS_HELPER1}}",
+				"{{STN_PRESS_HELPER2}}",
+				"{{STN_PRESS_HELPER3}}"
 			]
 		},
 		"temp": {
@@ -119,16 +119,16 @@
 			"collapsed": true,
 			"fields": {
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				},
 				"spike": {
-					"label": "Spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				}
 			}
 		},
@@ -137,20 +137,20 @@
 			"collapsed": true,
 			"fields": {
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				},
 				"spike": {
-					"label": "Spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				},
 				"limitmax": {
-					"label": "Max. limit",
-					"helper" : "If the raw value is greater than this limit value it will be ignored"
+					"label": "{{LIMIT_MAX}}",
+					"helper" : "{{LIMIT_MAX_HELPER}}"
 				}
 			}
 		},
@@ -159,8 +159,8 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset:",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}:",
+					"helper" : "{{OFFSET_HELPER}}"
 				}
 			}
 		},
@@ -169,16 +169,16 @@
 			"collapsed": true,
 			"fields": {
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"spikerate": {
-					"label": "Rain rate spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{RAIN_RATE_SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				},
 				"spikehour": {
-					"label": "Rain per hour spike removal",
-					"helper" : "If the change in the raw value between consecutive readings is greater than this value it will be ignored"
+					"label": "{{RAIN_HOUR_SPIKE}}",
+					"helper" : "{{SPIKE_HELPER}}"
 				}
 			}
 		},
@@ -187,16 +187,16 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset (W/m²):",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}} (W/m²):",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				}
 			}
 		},
@@ -205,16 +205,16 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset:",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}:",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				}
 			}
 		},
@@ -223,8 +223,8 @@
 			"collapsed": true,
 			"fields": {
 				"limitmax": {
-					"label": "Max. limit",
-					"helper" : "If the dew point value is greater than this limit the value it will be ignored"
+					"label": "{{LIMIT_MAX}}",
+					"helper" : "{{LIMIT_MAX_HELPER}}"
 				}
 			}
 		},
@@ -233,16 +233,16 @@
 			"collapsed": true,
 			"fields": {
 				"offset": {
-					"label": "Offset",
-					"helper" : "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount"
+					"label": "{{OFFSET}}",
+					"helper" : "{{OFFSET_HELPER}}"
 				},
 				"multiplier": {
-					"label": "Multiplier:",
-					"helper" :"Multiply the raw reading by a constant, this affects the slope of the response"
+					"label": "{{MULTIPLIER}}:",
+					"helper" :"{{MULTIPLIER_HELPER}}"
 				},
 				"multiplier2": {
-					"label": "Multiplier ^2:",
-					"helper": "The Multiplier ^2 affects the curve of the correction"
+					"label": "{{MULTIPLIER2}}:",
+					"helper": "{{MULTIPLIER2_HELPER}}"
 				}
 			}
 		},
@@ -251,17 +251,17 @@
 			"collapsed": true,
 			"fields": {
 				"mininc": {
-					"label": "Minimum increment",
+					"label": "{{MIN_INCREMENT}}",
 					"helpers" : [
-						"The minimum increase in the laser depth value between consecutive readings for the value to added to the daily snowfall accumulation",
-						"NOTE: This is set in laser measurement units, not snow depth units"
+						"{{MIN_INCREMENT_HELPER1}}",
+						"{{MIN_INCREMENT_HELPER2}}"
 					]
 				},
 				"spike": {
-					"label": "Spike removal",
+					"label": "{{SPIKE}}",
 					"helpers" : [
-						"If the change in the laser depth value between consecutive readings is greater than this value it will be ignored and not added to the daily snow accumulation",
-						"NOTE: This is set in laser measurement units, not snow depth units"
+						"{{SNOW_SPIKE_HELPER1}}",
+						"{{MIN_INCREMENT_HELPER2}}"
 					]
 				}
 			}

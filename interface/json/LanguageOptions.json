@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/05/16 15:35:27",
+	"version": "Last modified: 2025/08/19 10:33:32",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -9,17 +9,17 @@
 			"collapsed": true,
 			"fields": {
 				"notavailable": {
-					"label": "Not Available",
+					"label": "{{FORECAST_NOT_AVAIL_LABEL}}",
 					"type": "text",
-					"helper": "Text to display whenever a forecast is not available"
+					"helper": "{{FORECAST_NOT_AVAIL_HELP1}}"
 				},
 				"exceptional": {
-					"label": "Exceptional",
+					"label": "{{FORECAST_EXCEPTIONAL_LABEL}}",
 					"type": "text",
-					"helper": "Text to display whenever forecast data exceeds the configured limits"
+					"helper": "{{FORECAST_EXCEPTIONAL_HELP1}}"
 				},
 				"forecast": {
-					"label": "Forecast Messages",
+					"label": "{{FORECAST_MESSAGES}}",
 					"type": "array",
 					"toolbarSticky": false
 				}
@@ -32,21 +32,21 @@
 				"forecast1": {
 					"collapsible": true,
 					"collapsed": true,
-					"label": "Forecast 1",
+					"label": "{{FORECAST}} 1",
 					"type": "array",
 					"toolbarSticky": false
 				},
 				"forecast2": {
 					"collapsible": true,
 					"collapsed": true,
-					"label": "Forecast 2",
+					"label": "{{FORECAST}} 2",
 					"type": "array",
 					"toolbarSticky": false
 				},
 				"forecast3": {
 					"collapsible": true,
 					"collapsed": true,
-					"label": "Forecast 3",
+					"label": "{{FORECAST}} 3",
 					"type": "array",
 					"toolbarSticky": false
 				}
@@ -57,35 +57,35 @@
 			"collapsed": true,
 			"fields": {
 				"Newmoon": {
-					"label": "New Moon",
+					"label": "{{MOON_NEW}}",
 					"type": "text"
 				},
 				"WaxingCrescent": {
-					"label": "Waxing Crescent",
+					"label": "{{MOON_WAXING_CRESCENT}}",
 					"type": "text"
 				},
 				"FirstQuarter": {
-					"label": "First Quarter",
+					"label": "{{MOON_FIRST_QUARTER}}",
 					"type": "text"
 				},
 				"WaxingGibbous": {
-					"label": "Waxing Gibbous",
+					"label": "{{MOON_WAXING_GIBBOUS}}",
 					"type": "text"
 				},
 				"Fullmoon": {
-					"label": "Full Moon",
+					"label": "{{MOON_FULL}}",
 					"type": "text"
 				},
 				"WaningGibbous": {
-					"label": "Waning Gibbous",
+					"label": "{{MOON_WANING_GIBBOUS}}",
 					"type": "text"
 				},
 				"LastQuarter": {
-					"label": "Last Quarter",
+					"label": "{{MOON_LAST_QUARTER}}",
 					"type": "text"
 				},
 				"WaningCrescent": {
-					"label": "Waning Crescent",
+					"label": "{{MOON_WANING_CRESCENT}}",
 					"type": "text"
 				}
 			}
@@ -153,39 +153,39 @@
 			"collapsed": true,
 			"fields": {
 				"Risingveryrapidly": {
-					"label": "Rising very rapidly",
+					"label": "{{TREND_RISING_RAPIDLY}}",
 					"type": "text"
 				},
 				"Risingquickly": {
-					"label": "Rising quickly",
+					"label": "{{TREND_RISING_QUICKLY}}",
 					"type": "text"
 				},
 				"Rising": {
-					"label": "Rising",
+					"label": "{{TREND_RISING}}",
 					"type": "text"
 				},
 				"Risingslowly": {
-					"label": "Rising slowly",
+					"label": "{{TREND_RISING_SLOWLY}}",
 					"type": "text"
 				},
 				"Steady": {
-					"label": "Steady",
+					"label": "{{TREND_STEADY}}",
 					"type": "text"
 				},
 				"Fallingslowly": {
-					"label": "Falling slowly",
+					"label": "{{TREND_FALLING_SLOWLY}}",
 					"type": "text"
 				},
 				"Falling": {
-					"label": "Falling",
+					"label": "{{TREND_FALLING}}",
 					"type": "text"
 				},
 				"Fallingquickly": {
-					"label": "Falling quickly",
+					"label": "{{TREND_FALLING_QUICKLY}}",
 					"type": "text"
 				},
 				"Fallingveryrapidly": {
-					"label": "Falling very rapidly",
+					"label": "{{TREND_FALLING_RAPIDLY}}",
 					"type": "text"
 				}
 			}
@@ -273,11 +273,11 @@
 			"collapsed": true,
 			"fields": {
 				"Current": {
-					"label": "Current",
+					"label": "{{CURRENT_VALUE}}",
 					"type": "text"
 				},
 				"Hr24": {
-					"label": "24 hr",
+					"label": "{{HOUR_24}}",
 					"type": "text"
 				},
 				"Pm2p5": {
@@ -285,7 +285,7 @@
 					"type": "text"
 				},
 				"Pm2p5_24hr": {
-					"label": "PM 2.5 24 hr",
+					"label": "PM 2.5 {{HOUR_24}}",
 					"type": "text"
 				},
 				"Pm10": {
@@ -293,15 +293,15 @@
 					"type": "text"
 				},
 				"Pm10_24hr": {
-					"label": "PM 10 24 hr",
+					"label": "PM 10 {{HOUR_24}}",
 					"type": "text"
 				},
 				"Temperature": {
-					"label": "Temperature",
+					"label": "{{TEMPERATURE}}",
 					"type": "text"
 				},
 				"Humidity": {
-					"label": "Humidity",
+					"label": "{{HUMIDITY}}",
 					"type": "text"
 				}
 			}
@@ -311,14 +311,14 @@
 			"collapsed": true,
 			"fields": {
 				"lessdaylight": {
-					"label": "Less Daylight",
+					"label": "{{DAYLIGHT_LESS}}",
 					"type": "text",
-					"helper": "Use variables {0} = minutes, {1} = seconds"
+					"helper": "{{DAYLIGHT_HELP1}}"
 				},
 				"moredaylight": {
-					"label": "More Daylight",
+					"label": "{{DAYLIGHT_MORE}}",
 					"type": "text",
-					"helper": "Use variables {0} = minutes, {1} = seconds"
+					"helper": "{{DAYLIGHT_HELP1}}"
 				}
 			}
 		},
@@ -327,107 +327,107 @@
 			"collapsed": true,
 			"fields": {
 				"subject": {
-					"label": "Email Subject",
+					"label": "{{ALARM_EMAIL_SUBJECT}}",
 					"type": "text",
-					"helper": "The email subject used for all alarms"
+					"helper": "{{ALARM_EMAIL_SUBJECT_HELP1}}"
 				},
 				"preamble": {
-					"label": "Email Body Preamble",
+					"label": "{{ALARM_EMAIL_PREAMBLE}}",
 					"type": "text",
-					"helper": "The email introductory text used for all alarms"
+					"helper": "{{ALARM_EMAIL_PREAMBLE_HELP1}}"
 				},
 				"names":{
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "The alarm name used in email messages and notifications",
+					"helper": "{{ALARM_HELP1}}",
 					"helperPosition": "above",
 					"fields": {
 						"windGustAbove": {
-							"label": "Wind Gust Above",
+							"label": "{{ALARM_WIND_GUST_ABOVE}}",
 							"type": "text"
 						},
 						"windAbove": {
-							"label": "Wind Above",
+							"label": "{{ALARM_WIND_ABOVE}}",
 							"type": "text"
 						},
 						"pressureAbove": {
-							"label": "Pressure Above",
+							"label": "{{ALARM_PRESS_ABOVE}}",
 							"type": "text"
 						},
 						"pressBelow": {
-							"label": "Pressure Below",
+							"label": "{{ALARM_PRESS_BELOW}}",
 							"type": "text"
 						},
 						"pressUp": {
-							"label": "Pressure Increase",
+							"label": "{{ALARM_PRESS_INCREASE}}",
 							"type": "text"
 						},
 						"pressDown": {
-							"label": "Pressure Decrease",
+							"label": "{{ALARM_PRESS_DECREASE}}",
 							"type": "text"
 						},
 						"tempAbove": {
-							"label": "Temperature Above",
+							"label": "{{ALARM_TEMP_ABOVE}}",
 							"type": "text"
 						},
 						"tempBelow": {
-							"label": "Temperature Below",
+							"label": "{{ALARM_TEMP_BELOW}}",
 							"type": "text"
 						},
 						"tempUp": {
-							"label": "Temperature Increase",
+							"label": "{{ALARM_TEMP_INCREASE}}",
 							"type": "text"
 						},
 						"tempDown": {
-							"label": "Temperature Decrease",
+							"label": "{{ALARM_TEMP_DECREASE}}",
 							"type": "text"
 						},
 						"rainAbove": {
-							"label": "Rainfall Above",
+							"label": "{{ALARM_RAIN_ABOVE}}",
 							"type": "text"
 						},
 						"rainRateAbove": {
-							"label": "Rain rate Above",
+							"label": "{{ALARM_RAIN_RATE_ABOVE}}",
 							"type": "text"
 						},
 						"newRecord": {
-							"label": "New All-time record",
+							"label": "{{ALARM_ALL_TIME}}",
 							"type": "text"
 						},
 						"sensorLost": {
-							"label": "Sensor Contact Lost",
+							"label": "{{ALARM_SENSOR_LOST}}",
 							"type": "text"
 						},
 						"dataStopped": {
-							"label": "Data Stopped",
+							"label": "{{ALARM_DATA_STOPPED}}",
 							"type": "text"
 						},
 						"batteryLow": {
-							"label": "Low Battery",
+							"label": "{{ALARM_LOW_BATTERY}}",
 							"type": "text"
 						},
 						"dataSpike": {
-							"label": "Data Spike",
+							"label": "{{ALARM_DATA_SPIKE}}",
 							"type": "text"
 						},
 						"upgrade": {
-							"label": "Cumulus Upgrade",
+							"label": "{{ALARM_UPGRADE}}",
 							"type": "text"
 						},
 						"firmware": {
-							"label": "Firmware Upgrade",
+							"label": "{{ALARM_FIRMWARE}}",
 							"type": "text"
 						},
 						"ftpStopped": {
-							"label": "Web Uploads",
+							"label": "{{ALARM_WEB_UPLOAD}}",
 							"type": "text"
 						},
 						"httpStopped": {
-							"label": "HTTP Uploads",
+							"label": "{{ALARM_HTTP_UPLOAD}}",
 							"type": "text"
 						},
 						"mySqlStopped": {
-							"label": "MySQL Uploads",
+							"label": "{{ALARM_MYSQL_STOPPED}}",
 							"type": "text"
 						}
 					}
@@ -435,95 +435,95 @@
 				"email": {
 					"collapsible": true,
 					"collapsed": true,
-					"helper": "Use variables {0} = value, {1} = units",
+					"helper": "{{ALARM_EMAIL_HELP1}}",
 					"helperPosition": "above",
 					"fields": {
 						"windGustAbove": {
-							"label": "Wind Gust Above",
+							"label": "{{ALARM_WIND_GUST_ABOVE}}",
 							"type": "text"
 						},
 						"windAbove": {
-							"label": "Wind Above",
+							"label": "{{ALARM_WIND_ABOVE}}",
 							"type": "text"
 						},
 						"pressureAbove": {
-							"label": "Pressure Above",
+							"label": "{{ALARM_PRESS_ABOVE}}",
 							"type": "text"
 						},
 						"pressBelow": {
-							"label": "Pressure Below",
+							"label": "{{ALARM_PRESS_BELOW}}",
 							"type": "text"
 						},
 						"pressUp": {
-							"label": "Pressure Increase",
+							"label": "{{ALARM_PRESS_INCREASE}}",
 							"type": "text"
 						},
 						"pressDown": {
-							"label": "Pressure Decrease",
+							"label": "{{ALARM_PRESS_DECREASE}}",
 							"type": "text"
 						},
 						"tempAbove": {
-							"label": "Temperature Above",
+							"label": "{{ALARM_TEMP_ABOVE}}",
 							"type": "text"
 						},
 						"tempBelow": {
-							"label": "Temperature Below",
+							"label": "{{ALARM_TEMP_BELOW}}",
 							"type": "text"
 						},
 						"tempUp": {
-							"label": "Temperature Increase",
+							"label": "{{ALARM_TEMP_INCREASE}}",
 							"type": "text"
 						},
 						"tempDown": {
-							"label": "Temperature Decrease",
+							"label": "{{ALARM_TEMP_DECREASE}}",
 							"type": "text"
 						},
 						"rainAbove": {
-							"label": "Rainfall Above",
+							"label": "{{ALARM_RAIN_ABOVE}}",
 							"type": "text"
 						},
 						"rainRateAbove": {
-							"label": "Rain rate Above",
+							"label": "{{ALARM_RAIN_RATE_ABOVE}}",
 							"type": "text"
 						},
 						"newRecord": {
-							"label": "New All-time record",
+							"label": "{{ALARM_ALL_TIME}}",
 							"type": "text"
 						},
 						"sensorLost": {
-							"label": "Sensor Contact Lost",
+							"label": "{{ALARM_SENSOR_LOST}}",
 							"type": "text"
 						},
 						"dataStopped": {
-							"label": "Data Stopped",
+							"label": "{{ALARM_DATA_STOPPED}}",
 							"type": "text"
 						},
 						"batteryLow": {
-							"label": "Low Battery",
+							"label": "{{ALARM_LOW_BATTERY}}",
 							"type": "text"
 						},
 						"dataSpike": {
-							"label": "Data Spike",
+							"label": "{{ALARM_DATA_SPIKE}}",
 							"type": "text"
 						},
 						"upgrade": {
-							"label": "Cumulus Upgrade",
+							"label": "{{ALARM_UPGRADE}}",
 							"type": "text"
 						},
 						"firmware": {
-							"label": "Firmware Upgrade",
+							"label": "{{ALARM_FIRMWARE}}",
 							"type": "text"
 						},
 						"ftpStopped": {
-							"label": "Web Uploads",
+							"label": "{{ALARM_WEB_UPLOAD}}",
 							"type": "text"
 						},
 						"httpStopped": {
-							"label": "HTTP Uploads",
+							"label": "{{ALARM_HTTP_UPLOAD}}",
 							"type": "text"
 						},
 						"mySqlStopped": {
-							"label": "MySQL Uploads",
+							"label": "{{ALARM_MYSQL_STOPPED}}",
 							"type": "text"
 						}
 					}
@@ -533,65 +533,65 @@
 		"webtags": {
 			"collapsible": true,
 			"collapsed": true,
-			"helper": "Please see the Wiki for more information on web tag custom formats",
+			"helper": "{{TAGS_HELP1}}",
 			"helperPosition": "above",
 			"fields": {
 				"gentimedate": {
-					"label": "General time & date",
+					"label": "{{TAGS_GENTIMEDATE}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for general time & date web tags",
-						"Default: HH:mm 'on' dd MMMM yyyy"
+						"{{TAGS_GENTIMEDATE_HELP1}}",
+						"{{TAGS_GENTIMEDATE_HELP2}}"
 					]
 				},
 				"gendate": {
-					"label": "General date",
+					"label": "{{TAGS_GENDATE}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for general date web tags",
-						"Default: dd MMMM yyyy"
+						"{{TAGS_GENDATE_HELP1}}",
+						"{{TAGS_GENDATE_HELP2}}"
 					]
 				},
 				"gentime": {
-					"label": "General time",
+					"label": "{{TAGS_GENTIME}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for general time web tags",
-						"Default: HH:mm",
-						"For 12-hr format use: hh:mm tt or h:mm tt"
+						"{{TAGS_GENTIME_HELP1}}",
+						"{{TAGS_GENTIME_HELP2}}",
+						"{{TAGS_GENTIME_HELP3}}"
 					]
 				},
 				"recdate": {
-					"label": "Record date",
+					"label": "{{TAGS_REC_DATE}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for record web tags that are date only",
-						"Default: 'on' dd MMMM yyyy"
+						"{{TAGS_REC_DATE_HELP1}}",
+						"{{TAGS_GENDATE_HELP2}}"
 					]
 				},
 				"rectimedate": {
-					"label": "Record time & date",
+					"label": "{{TAGS_REC_TIMEDATE}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for record web tags that have a time and date",
-						"Default: 'at' HH:mm 'on' dd MMMM yyyy"
+						"{{TAGS_REC_TIMEDATE_HELP1}}",
+						"{{TAGS_REC_TIMEDATE_HELP2}}"
 					]
 				},
 				"recwetdrytimedate": {
-					"label": "Record dry/wet days",
+					"label": "{{TAGS_DRYWET_DAYS}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for record dry wet periods",
-						"Default: 'to' dd MMMM yyyy"
+						"{{TAGS_DRYWET_DAYS_HELP1}}",
+						"{{TAGS_DRYWET_DAYS_HELP2}}"
 					]
 				},
 				"elapsedtime": {
-					"label": "Elapsed time",
+					"label": "{{TAGS_ELAPSED_TIME}}",
 					"type": "text",
 					"helpers": [
-						"Text displayed for elapsed time web tags",
-						"Default: {0:%d} days {0:%h} hours",
-						"Note: This is a TimeSpan format string not the usual DateTime format string"
+						"{{TAGS_ELAPSED_TIME_HELP1}}",
+						"{{TAGS_ELAPSED_TIME_HELP2}}",
+						"{{TAGS_ELAPSED_TIME_HELP3}}"
 					]
 				}
 			}
@@ -601,14 +601,14 @@
 			"collapsed": true,
 			"fields": {
 				"snowdepth": {
-					"label": "Snow Depth",
+					"label": "{{SNOW_DEPTH}}",
 					"type": "text",
-					"helper": "Text displayed for snow depth fields"
+					"helper": "{{SNOW_DEPTH_HELP1}}"
 				},
 				"snow24h": {
-					"label": "Snowfall 24h",
+					"label": "{{SNOW_24H}}",
 					"type": "text",
-					"helper": "Text displayed for snowfall in last 24 hours fields"
+					"helper": "{{SNOW_24H_HELP1}}"
 				}
 			}
 		},

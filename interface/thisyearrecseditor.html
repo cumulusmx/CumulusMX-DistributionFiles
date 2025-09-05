@@ -1,12 +1,12 @@
 <!--
-Last modified: 2025/03/12 10:40:51
+Last modified: 2025/08/16 23:10:04
 -->
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>This year records editor - Cumulus MX</title>
+    <title>{{RECORDS_EDITOR_THIS_YEAR}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <link href="css/font-style.css" rel="stylesheet">
@@ -108,17 +108,17 @@ Last modified: 2025/03/12 10:40:51
     <!-- END NAVIGATION MENU -->
 
     <div id="container" class="container">
-        <h1>This Year's Records Editor</h1>
+        <h1>{{RECORDS_EDITOR_THIS_YEAR}}</h1>
         <div class="row">
             <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
-                Note: You can click on the Dayfile/Logfile Values/Timestamps to copy the value to your record fields
+                {{RECORDS_EDITOR_NOTE}}
             </div>
         </div>
         <div class="row" style="margin-top:10px">
             <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">Fetch Monthly Log Data</button>
-                    <span id="logFilesWarn">This could be a lengthy process on a slow machine towards the end of the year!</span>
+                    <button type="submit" class="btn btn-primary" form="recsform" onclick="getMonthlyLogs()" aria-describedby="logFilesWarn">{{FETCH_MONTHLY_LOG_RECORDS}}</button>
+                    <span id="logFilesWarn">{{RECORDS_EDITOR_CAUTION}}</span>
                 </div>
             </div>
         </div>
@@ -127,277 +127,267 @@ Last modified: 2025/03/12 10:40:51
                 <table id="alltime" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" style="width: 100%;">
                     <thead>
                         <tr style="background-color: #b2c2dc;">
-                            <th>Record</th>
-                            <th>Record Value</th>
-                            <th>Record Timestamp</th>
-                            <th>Dayfile Value</th>
-                            <th>Dayfile Timestamp</th>
-                            <th>Logfile Value</th>
-                            <th>Logfile Timestamp</th>
+                            <th>{{NAME}}</th>
+                            <th>{{RECORD_VALUE}}</th>
+                            <th>{{RECORD_TIMESTAMP}}</th>
+                            <th>{{DAYFILE_VALUE}}</th>
+                            <th>{{DAYFILE_TIMESTAMP}}</th>
+                            <th>{{LOGFILE_VALUE}}</th>
+                            <th>{{LOGFILE_TIMESTAMP}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>High temperature</td>
-                            <td><div id="highTempVal" data-title="Enter new high temp value"></div></td>
-                            <td><div id="highTempTime" data-title="Enter new high temp date/time"></div></td>
-                            <td id="highTempValDayfile"></td>
-                            <td id="highTempTimeDayfile"></td>
-                            <td id="highTempValLogfile"></td>
-                            <td id="highTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low temperature</td>
-                            <td><div id="lowTempVal" data-title="Enter new low temp value"></div></td>
-                            <td><div id="lowTempTime" data-title="Enter new low temp date/time"></div></td>
-                            <td id="lowTempValDayfile"></td>
-                            <td id="lowTempTimeDayfile"></td>
-                            <td id="lowTempValLogfile"></td>
-                            <td id="lowTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High dew point</td>
-                            <td><div id="highDewPointVal" data-title="Enter new high dew point value"></div></td>
-                            <td><div id="highDewPointTime" data-title="Enter new high dew point date/time"></div></td>
-                            <td id="highDewPointValDayfile"></td>
-                            <td id="highDewPointTimeDayfile"></td>
-                            <td id="highDewPointValLogfile"></td>
-                            <td id="highDewPointTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low dew point</td>
-                            <td><div id="lowDewPointVal" data-title="Enter new low dew point value"></div></td>
-                            <td><div id="lowDewPointTime" data-title="Enter new low dew point date/time"></div></td>
-                            <td id="lowDewPointValDayfile"></td>
-                            <td id="lowDewPointTimeDayfile"></td>
-                            <td id="lowDewPointValLogfile"></td>
-                            <td id="lowDewPointTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High apparent temperature</td>
-                            <td><div id="highApparentTempVal" data-title="Enter new high apparent temp value"></div></td>
-                            <td><div id="highApparentTempTime" data-title="Enter new high apparent temp date/time"></div></td>
-                            <td id="highApparentTempValDayfile"></td>
-                            <td id="highApparentTempTimeDayfile"></td>
-                            <td id="highApparentTempValLogfile"></td>
-                            <td id="highApparentTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low apparent temperature</td>
-                            <td><div id="lowApparentTempVal" data-title="Enter new low apparent temp value"></div></td>
-                            <td><div id="lowApparentTempTime" data-title="Enter new low apparent temp date/time"></div></td>
-                            <td id="lowApparentTempValDayfile"></td>
-                            <td id="lowApparentTempTimeDayfile"></td>
-                            <td id="lowApparentTempValLogfile"></td>
-                            <td id="lowApparentTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High feels like</td>
-                            <td><div id="highFeelsLikeVal" data-title="Enter new high feels like value"></div></td>
-                            <td><div id="highFeelsLikeTime" data-title="Enter new high feels like date/time"></div></td>
-                            <td id="highFeelsLikeValDayfile"></td>
-                            <td id="highFeelsLikeTimeDayfile"></td>
-                            <td id="highFeelsLikeValLogfile"></td>
-                            <td id="highFeelsLikeTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low feels like</td>
-                            <td><div id="lowFeelsLikeVal" data-title="Enter new low feels like value"></div></td>
-                            <td><div id="lowFeelsLikeTime" data-title="Enter new low feels like date/time"></div></td>
-                            <td id="lowFeelsLikeValDayfile"></td>
-                            <td id="lowFeelsLikeTimeDayfile"></td>
-                            <td id="lowFeelsLikeValLogfile"></td>
-                            <td id="lowFeelsLikeTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High humidex</td>
-                            <td><div id="highHumidexVal" data-title="Enter new high humidex value"></div></td>
-                            <td><div id="highHumidexTime" data-title="Enter new high humidex date/time"></div></td>
-                            <td id="highHumidexValDayfile"></td>
-                            <td id="highHumidexTimeDayfile"></td>
-                            <td id="highHumidexValLogfile"></td>
-                            <td id="highHumidexTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low wind chill</td>
-                            <td><div id="lowWindChillVal" data-title="Enter new low wind chill value"></div></td>
-                            <td><div id="lowWindChillTime" data-title="Enter new low wind chill date/time"></div></td>
-                            <td id="lowWindChillValDayfile"></td>
-                            <td id="lowWindChillTimeDayfile"></td>
-                            <td id="lowWindChillValLogfile"></td>
-                            <td id="lowWindChillTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High heat index</td>
-                            <td><div id="highHeatIndexVal" data-title="Enter new high heat index value"></div></td>
-                            <td><div id="highHeatIndexTime" data-title="Enter new high heat index date/time"></div></td>
-                            <td id="highHeatIndexValDayfile"></td>
-                            <td id="highHeatIndexTimeDayfile"></td>
-                            <td id="highHeatIndexValLogfile"></td>
-                            <td id="highHeatIndexTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High minimum temperature</td>
-                            <td><div id="highMinTempVal" data-title="Enter new high minimum temp value"></div></td>
-                            <td><div id="highMinTempTime" data-title="Enter new high minimum date/time"></div></td>
-                            <td id="highMinTempValDayfile"></td>
-                            <td id="highMinTempTimeDayfile"></td>
-                            <td id="highMinTempValLogfile"></td>
-                            <td id="highMinTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low maximum temperature</td>
-                            <td><div id="lowMaxTempVal" data-title="Enter new low max temp value"></div></td>
-                            <td><div id="lowMaxTempTime" data-title="Enter new low max date/time"></div></td>
-                            <td id="lowMaxTempValDayfile"></td>
-                            <td id="lowMaxTempTimeDayfile"></td>
-                            <td id="lowMaxTempValLogfile"></td>
-                            <td id="lowMaxTempTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High daily temp range</td>
-                            <td><div id="highDailyTempRangeVal" data-title="Enter new high daily temp range value"></div></td>
-                            <td><div id="highDailyTempRangeTime" data-title="Enter new high daily temp range date"></div></td>
-                            <td id="highDailyTempRangeValDayfile"></td>
-                            <td id="highDailyTempRangeTimeDayfile"></td>
-                            <td id="highDailyTempRangeValLogfile"></td>
-                            <td id="highDailyTempRangeTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low daily temp range</td>
-                            <td><div id="lowDailyTempRangeVal" data-title="Enter new low daily temp range value"></div></td>
-                            <td><div id="lowDailyTempRangeTime" data-title="Enter new low daily temp range date"></div></td>
-                            <td id="lowDailyTempRangeValDayfile"></td>
-                            <td id="lowDailyTempRangeTimeDayfile"></td>
-                            <td id="lowDailyTempRangeValLogfile"></td>
-                            <td id="lowDailyTempRangeTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High humidity</td>
-                            <td><div id="highHumidityVal" data-title="Enter new high humidity value"></div></td>
-                            <td><div id="highHumidityTime" data-title="Enter new high humidity date/time"></div></td>
-                            <td id="highHumidityValDayfile"></td>
-                            <td id="highHumidityTimeDayfile"></td>
-                            <td id="highHumidityValLogfile"></td>
-                            <td id="highHumidityTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low humidity</td>
-                            <td><div id="lowHumidityVal" data-title="Enter new low humidity value"></div></td>
-                            <td><div id="lowHumidityTime" data-title="Enter new low humidity date/time"></div></td>
-                            <td id="lowHumidityValDayfile"></td>
-                            <td id="lowHumidityTimeDayfile"></td>
-                            <td id="lowHumidityValLogfile"></td>
-                            <td id="lowHumidityTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High barometer</td>
-                            <td><div id="highBarometerVal" data-title="Enter new high pressure value"></div></td>
-                            <td><div id="highBarometerTime" data-title="Enter new high pressure date/time"></div></td>
-                            <td id="highBarometerValDayfile"></td>
-                            <td id="highBarometerTimeDayfile"></td>
-                            <td id="highBarometerValLogfile"></td>
-                            <td id="highBarometerTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Low barometer</td>
-                            <td><div id="lowBarometerVal" data-title="Enter new low pressure value"></div></td>
-                            <td><div id="lowBarometerTime" data-title="Enter new low pressure date/time"></div></td>
-                            <td id="lowBarometerValDayfile"></td>
-                            <td id="lowBarometerTimeDayfile"></td>
-                            <td id="lowBarometerValLogfile"></td>
-                            <td id="lowBarometerTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High gust speed</td>
-                            <td><div id="highGustVal" data-title="Enter new high gust value"></div></td>
-                            <td><div id="highGustTime" data-title="Enter new high gust date/time"></div></td>
-                            <td id="highGustValDayfile"></td>
-                            <td id="highGustTimeDayfile"></td>
-                            <td id="highGustValLogfile"></td>
-                            <td id="highGustTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High wind speed</td>
-                            <td><div id="highWindVal" data-title="Enter new high wind speed value"></div></td>
-                            <td><div id="highWindTime" data-title="Enter new high wind speed date/time"></div></td>
-                            <td id="highWindValDayfile"></td>
-                            <td id="highWindTimeDayfile"></td>
-                            <td id="highWindValLogfile"></td>
-                            <td id="highWindTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High daily wind run</td>
-                            <td><div id="highWindRunVal" data-title="Enter new high daily wind run value"></div></td>
-                            <td><div id="highWindRunTime" data-title="Enter new high daily wind run date"></div></td>
-                            <td id="highWindRunValDayfile"></td>
-                            <td id="highWindRunTimeDayfile"></td>
-                            <td id="highWindRunValLogfile"></td>
-                            <td id="highWindRunTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High rain rate</td>
-                            <td><div id="highRainRateVal" data-title="Enter new high rain rate value"></div></td>
-                            <td><div id="highRainRateTime" data-title="Enter new high rain rate date/time"></div></td>
-                            <td id="highRainRateValDayfile"></td>
-                            <td id="highRainRateTimeDayfile"></td>
-                            <td id="highRainRateValLogfile"></td>
-                            <td id="highRainRateTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High hourly rain</td>
-                            <td><div id="highHourlyRainVal" data-title="Enter new high hourly rain value"></div></td>
-                            <td><div id="highHourlyRainTime" data-title="Enter new high hourly rain date/time"></div></td>
-                            <td id="highHourlyRainValDayfile"></td>
-                            <td id="highHourlyRainTimeDayfile"></td>
-                            <td id="highHourlyRainValLogfile"></td>
-                            <td id="highHourlyRainTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High daily rain</td>
-                            <td><div id="highDailyRainVal" data-title="Enter new high daily rain value"></div></td>
-                            <td><div id="highDailyRainTime" data-title="Enter new high daily rain date"></div></td>
-                            <td id="highDailyRainValDayfile"></td>
-                            <td id="highDailyRainTimeDayfile"></td>
-                            <td id="highDailyRainValLogfile"></td>
-                            <td id="highDailyRainTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High 24h rain</td>
-                            <td><div id="highRain24hVal" data-title="Enter new high 24h rain value"></div></td>
-                            <td><div id="highRain24hTime" data-title="Enter new high 24h rain date"></div></td>
-                            <td id="highRain24hValDayfile"></td>
-                            <td id="highRain24hTimeDayfile"></td>
-                            <td id="highRain24hValLogfile"></td>
-                            <td id="highRain24hTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>High monthly rain</td>
-                            <td><div id="highMonthlyRainVal" data-title="Enter new high monthly rain value"></div></td>
-                            <td><div id="highMonthlyRainTime" data-title="Enter new high monthly rain date"></div></td>
-                            <td id="highMonthlyRainValDayfile"></td>
-                            <td id="highMonthlyRainTimeDayfile"></td>
-                            <td id="highMonthlyRainValLogfile"></td>
-                            <td id="highMonthlyRainTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Longest dry period</td>
-                            <td><div id="longestDryPeriodVal" data-title="Enter new longest dry period value"></div></td>
-                            <td><div id="longestDryPeriodTime" data-title="Enter new longest dry period end date"></div></td>
-                            <td id="longestDryPeriodValDayfile"></td>
-                            <td id="longestDryPeriodTimeDayfile"></td>
-                            <td id="longestDryPeriodValLogfile"></td>
-                            <td id="longestDryPeriodTimeLogfile"></td>
-                        </tr>
-                        <tr>
-                            <td>Longest wet period</td>
-                            <td><div id="longestWetPeriodVal" data-title="Enter new longest wet period value"></div></td>
-                            <td><div id="longestWetPeriodTime" data-title="Enter new longest wet period end date"></div></td>
-                            <td id="longestWetPeriodValDayfile"></td>
-                            <td id="longestWetPeriodTimeDayfile"></td>
-                            <td id="longestWetPeriodValLogfile"></td>
-                            <td id="longestWetPeriodTimeLogfile"></td>
-                        </tr>
+                        <td>{{HIGH_TEMPERATURE}}</td>
+                        <td><div id="highTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highTempValDayfile"></td>
+                        <td id="highTempTimeDayfile"></td>
+                        <td id="highTempValLogfile"></td>
+                        <td id="highTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_TEMPERATURE}}</td>
+                        <td><div id="lowTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowTempValDayfile"></td>
+                        <td id="lowTempTimeDayfile"></td>
+                        <td id="lowTempValLogfile"></td>
+                        <td id="lowTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_DEW_POINT}}</td>
+                        <td><div id="highDewPointVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highDewPointTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highDewPointValDayfile"></td>
+                        <td id="highDewPointTimeDayfile"></td>
+                        <td id="highDewPointValLogfile"></td>
+                        <td id="highDewPointTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_DEW_POINT}}</td>
+                        <td><div id="lowDewPointVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowDewPointTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowDewPointValDayfile"></td>
+                        <td id="lowDewPointTimeDayfile"></td>
+                        <td id="lowDewPointValLogfile"></td>
+                        <td id="lowDewPointTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_APPARENT_TEMPERATURE}}</td>
+                        <td><div id="highApparentTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highApparentTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highApparentTempValDayfile"></td>
+                        <td id="highApparentTempTimeDayfile"></td>
+                        <td id="highApparentTempValLogfile"></td>
+                        <td id="highApparentTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_APPARENT_TEMPERATURE}}</td>
+                        <td><div id="lowApparentTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowApparentTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowApparentTempValDayfile"></td>
+                        <td id="lowApparentTempTimeDayfile"></td>
+                        <td id="lowApparentTempValLogfile"></td>
+                        <td id="lowApparentTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_FEELS_LIKE}}</td>
+                        <td><div id="highFeelsLikeVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highFeelsLikeTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highFeelsLikeValDayfile"></td>
+                        <td id="highFeelsLikeTimeDayfile"></td>
+                        <td id="highFeelsLikeValLogfile"></td>
+                        <td id="highFeelsLikeTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_FEELS_LIKE}}</td>
+                        <td><div id="lowFeelsLikeVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowFeelsLikeTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowFeelsLikeValDayfile"></td>
+                        <td id="lowFeelsLikeTimeDayfile"></td>
+                        <td id="lowFeelsLikeValLogfile"></td>
+                        <td id="lowFeelsLikeTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_HUMIDEX}}</td>
+                        <td><div id="highHumidexVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highHumidexTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highHumidexValDayfile"></td>
+                        <td id="highHumidexTimeDayfile"></td>
+                        <td id="highHumidexValLogfile"></td>
+                        <td id="highHumidexTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_WIND_CHILL}}</td>
+                        <td><div id="lowWindChillVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowWindChillTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowWindChillValDayfile"></td>
+                        <td id="lowWindChillTimeDayfile"></td>
+                        <td id="lowWindChillValLogfile"></td>
+                        <td id="lowWindChillTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_HEAT_INDEX}}</td>
+                        <td><div id="highHeatIndexVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highHeatIndexTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highHeatIndexValDayfile"></td>
+                        <td id="highHeatIndexTimeDayfile"></td>
+                        <td id="highHeatIndexValLogfile"></td>
+                        <td id="highHeatIndexTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_MINIMUM_TEMPERATURE}}</td>
+                        <td><div id="highMinTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highMinTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highMinTempValDayfile"></td>
+                        <td id="highMinTempTimeDayfile"></td>
+                        <td id="highMinTempValLogfile"></td>
+                        <td id="highMinTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_MAXIMUM_TEMPERATURE}}</td>
+                        <td><div id="lowMaxTempVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowMaxTempTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowMaxTempValDayfile"></td>
+                        <td id="lowMaxTempTimeDayfile"></td>
+                        <td id="lowMaxTempValLogfile"></td>
+                        <td id="lowMaxTempTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_DAILY_TEMPERATURE_RANGE}}</td>
+                        <td><div id="highDailyTempRangeVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highDailyTempRangeTime" data-title="{{ENTER_NEW_DATE}}"></div></td>
+                        <td id="highDailyTempRangeValDayfile"></td>
+                        <td id="highDailyTempRangeTimeDayfile"></td>
+                        <td id="highDailyTempRangeValLogfile"></td>
+                        <td id="highDailyTempRangeTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_DAILY_TEMPERATURE_RANGE}}</td>
+                        <td><div id="lowDailyTempRangeVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowDailyTempRangeTime" data-title="{{ENTER_NEW_DATE}}"></div></td>
+                        <td id="lowDailyTempRangeValDayfile"></td>
+                        <td id="lowDailyTempRangeTimeDayfile"></td>
+                        <td id="lowDailyTempRangeValLogfile"></td>
+                        <td id="lowDailyTempRangeTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_HUMIDITY}}</td>
+                        <td><div id="highHumidityVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highHumidityTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highHumidityValDayfile"></td>
+                        <td id="highHumidityTimeDayfile"></td>
+                        <td id="highHumidityValLogfile"></td>
+                        <td id="highHumidityTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_HUMIDITY}}</td>
+                        <td><div id="lowHumidityVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="lowHumidityTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="lowHumidityValDayfile"></td>
+                        <td id="lowHumidityTimeDayfile"></td>
+                        <td id="lowHumidityValLogfile"></td>
+                        <td id="lowHumidityTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_PRESSURE}}</td>
+                        <td><div id="highBarometerVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highBarometerTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highBarometerValDayfile"></td>
+                        <td id="highBarometerTimeDayfile"></td>
+                        <td id="highBarometerValLogfile"></td>
+                        <td id="highBarometerTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LOW_PRESSURE}}</td>
+                        <td><div id="lowBarometerVal" data-title="{{ENTER_NEW_VALUE}}"></td>
+                        <td><div id="lowBarometerTime" data-title="{{ENTER_NEW_DATE_TIME}}"></td>
+                        <td id="lowBarometerValDayfile"></td>
+                        <td id="lowBarometerTimeDayfile"></td>
+                        <td id="lowBarometerValLogfile"></td>
+                        <td id="lowBarometerTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_GUST_SPEED}}</td>
+                        <td><div id="highGustVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highGustTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highGustValDayfile"></td>
+                        <td id="highGustTimeDayfile"></td>
+                        <td id="highGustValLogfile"></td>
+                        <td id="highGustTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_WIND_SPEED}}</td>
+                        <td><div id="highWindVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highWindTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highWindValDayfile"></td>
+                        <td id="highWindTimeDayfile"></td>
+                        <td id="highWindValLogfile"></td>
+                        <td id="highWindTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_DAILY_WIND_RUN}}</td>
+                        <td><div id="highWindRunVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highWindRunTime" data-title="{{ENTER_NEW_DATE}}"></div></td>
+                        <td id="highWindRunValDayfile"></td>
+                        <td id="highWindRunTimeDayfile"></td>
+                        <td id="highWindRunValLogfile"></td>
+                        <td id="highWindRunTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_RAIN_RATE}}</td>
+                        <td><div id="highRainRateVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highRainRateTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highRainRateValDayfile"></td>
+                        <td id="highRainRateTimeDayfile"></td>
+                        <td id="highRainRateValLogfile"></td>
+                        <td id="highRainRateTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_HOURLY_RAIN}}</td>
+                        <td><div id="highHourlyRainVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highHourlyRainTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highHourlyRainValDayfile"></td>
+                        <td id="highHourlyRainTimeDayfile"></td>
+                        <td id="highHourlyRainValLogfile"></td>
+                        <td id="highHourlyRainTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_DAILY_RAIN}}</td>
+                        <td><div id="highDailyRainVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highDailyRainTime" data-title="{{ENTER_NEW_DATE}}"></div></td>
+                        <td id="highDailyRainValDayfile"></td>
+                        <td id="highDailyRainTimeDayfile"></td>
+                        <td id="highDailyRainValLogfile"></td>
+                        <td id="highDailyRainTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{HIGH_24_HOUR_RAIN}}</td>
+                        <td><div id="highRain24hVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="highRain24hTime" data-title="{{ENTER_NEW_DATE_TIME}}"></div></td>
+                        <td id="highRain24hValDayfile"></td>
+                        <td id="highRain24hTimeDayfile"></td>
+                        <td id="highRain24hValLogfile"></td>
+                        <td id="highRain24hTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>L{{LONGEST_DRY_PERIOD}}</td>
+                        <td><div id="longestDryPeriodVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="longestDryPeriodTime" data-title="{{ENTER_NEW_END_DATE}}"></div></td>
+                        <td id="longestDryPeriodValDayfile"></td>
+                        <td id="longestDryPeriodTimeDayfile"></td>
+                        <td id="longestDryPeriodValLogfile"></td>
+                        <td id="longestDryPeriodTimeLogfile"></td>
+                    </tr>
+                    <tr>
+                        <td>{{LONGEST_WET_PERIOD}}</td>
+                        <td><div id="longestWetPeriodVal" data-title="{{ENTER_NEW_VALUE}}"></div></td>
+                        <td><div id="longestWetPeriodTime" data-title="{{ENTER_NEW_END_DATE}}"></div></td>
+                        <td id="longestWetPeriodValDayfile"></td>
+                        <td id="longestWetPeriodTimeDayfile"></td>
+                        <td id="longestWetPeriodValLogfile"></td>
+                        <td id="longestWetPeriodTimeLogfile"></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -423,18 +413,18 @@ Last modified: 2025/03/12 10:40:51
     <div id="recUpdater" role="dialog" style="visibility: hidden; position: fixed;">
         <div class="editorContent">
             <div style="text-align: center;">
-                Change <span id="editName"></span> record <span id="editType"></span> from:<br>
+                {{CHANGE_RECORD_FROM}}:<br>
                 <b><span id="editOldVal" style="font-family: monospace;"></span></b> &nbsp;&nbsp; <b><span id="editOldTime" style="font-family: monospace;"></span></b><br>
-                to<br>
+                {{TO}}:<br>
                 <b><span id="editNewVal" style="font-family: monospace;"></span></b> &nbsp;&nbsp; <b><span id="editNewTime" style="font-family: monospace;"></span></b>
             </div>
-            <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">Yes</button> <button type="button" class="recUpdater_close">No</button></div>
+            <div style="width: 100px; margin: 0 auto; margin-top: 10px"><button type="button" onclick="updateRec()">{{YES}}</button> <button type="button" class="recUpdater_close">{{NO}}</button></div>
         </div>
     </div>
     <div id="updaterError" role="alertdialog" style="visibility: hidden; position: fixed;">
         <div class="editorContent">
-            <div id="errorContent" style="margin-bottom:10px">Error</div>
-            <div><button type="button" class="updaterError_close">Close</button></div>
+            <div id="errorContent" style="margin-bottom:10px">{{ERROR}}</div>
+            <div><button type="button" class="updaterError_close">{{CLOSE}}</button></div>
         </div>
     </div>
 </body>

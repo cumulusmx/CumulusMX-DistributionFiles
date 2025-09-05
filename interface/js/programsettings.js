@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:16:30
+// Last modified: 2025/08/27 14:56:23
 
 let accessMode;
 
@@ -7,14 +7,13 @@ $(document).ready(function () {
         dataSource: '/api/settings/programdata.json',
         optionsSource: '/json/ProgramOptions.json',
         schemaSource: '/json/ProgramSchema.json',
-        //view: 'bootstrap-edit',
-        ui: 'bootstrap',
+        view: 'bootstrap-edit-horizontal',
         options: {
             form: {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -27,7 +26,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -36,7 +35,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);

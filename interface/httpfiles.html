@@ -1,5 +1,5 @@
 <!--
-Last modified: 2024/12/13 22:45:20
+Last modified: 2025/08/15 22:58:53
 -->
 <!doctype html>
 <html lang="en">
@@ -109,11 +109,10 @@ Last modified: 2024/12/13 22:45:20
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>HTTP File Settings</h1>
+        <h1>{{HTTP_FILE_SETTINGS}}</h1>
 
         <div class="row">
             <div class="col-md-12">
-                <h2>HTTP Files</h2>
                 <form id="filesForm"></form>
             </div>
         </div>
@@ -121,27 +120,26 @@ Last modified: 2024/12/13 22:45:20
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <b>URL:</b> This the url used to access your source file.<br>
-                    This can be either a URL or &lt;ecowittcameraurl&gt;, in which case the latest Ecowitt web cam image will be downloaded (if available).
-                    URLs can contain web tags
+                    {{HTTP_FILE_SETTINGS_URL1}}<br>
+                    {{HTTP_FILE_SETTINGS_URL2}}
                 </p>
                 <p>
-                    <b>Destination Filename:</b> This the path and file name where you want your downloaded file to be saved.<br>
-                    This is either a path on your web server, or a local path where Cumulus is running - the Upload Enabled option controls which.
+                    {{HTTP_FILE_SETTINGS_DEST1}}<br>
+                    {{HTTP_FILE_SETTINGS_DEST2}}
                 </p>
                 <p>
-                    <b>Download Interval:</b> This a multiple of your web interval, or at the End of Day rollover<br>
-                    For example, if your web interval is 5 minutes and you select "x12", then the download will occur once an hour.
+                    {{HTTP_FILE_SETTINGS_DOWN1}}<br>
+                    {{HTTP_FILE_SETTINGS_DOWN2}}
                 </p>
                 <p>
-                    <b>Upload Enabled:</b> This controls if the file is just downloaded to the local file system, or it is then uploaded to your web site.
+                    {{HTTP_FILE_SETTINGS_UP1}}
                 </p>
                 <p>
-                    <b>Timed Downloads:</b> If this is disabled, then the file will be downloaded at the set interval, starting whenever Cumulus is started.<br>
-                    If you enable this option, then the downloads will start at First Download and repeat each interval
+                    {{HTTP_FILE_SETTINGS_TIMED1}}<br>
+                    {{HTTP_FILE_SETTINGS_TIMED2}}
                 </p>
                 <p>
-                    <b>First Download:</b> If timed uploads are enabled, then the first download of the day will occur at this time and repeat at each interval until the end of the day
+                    {{HTTP_FILE_SETTINGS_FIRST1}}
                 </p>
             </div>
         </div>

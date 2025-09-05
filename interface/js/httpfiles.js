@@ -1,4 +1,4 @@
-// Last modified: 2024/12/13 22:29:10
+// Last modified: 2025/08/22 11:59:17
 
 let accessMode;
 let csvChar;
@@ -21,7 +21,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -34,7 +34,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -43,7 +43,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -65,7 +65,7 @@ $(document).ready(function () {
                                     if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl>)$/.test(value)) {
                                         callback({
                                             status: false,
-                                            message: 'That is not a valid URL!'
+                                            message: '{{NOT_VALID_URL}}'
                                         });
                                         return;
                                     }

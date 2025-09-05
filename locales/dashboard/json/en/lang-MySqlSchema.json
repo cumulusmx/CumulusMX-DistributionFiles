@@ -1,0 +1,19 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/29 11:54:01",
+    "SERVER_DETAILS": "Server Details",
+    "ADVANCED_OPTIONS": "Advanced Options",
+    "GENERAL_OPTIONS": "General Options",
+    "REALTIME_UPLOAD": "Realtime.txt Upload",
+    "DAYFILE_UPLOAD": "Dayfile.txt Upload",
+    "MONTHLY_UPLOAD": "Monthly log file upload",
+    "CUST_UPLOADS_SECS": "Custom upload - seconds interval",
+    "CUST_UPLOADS_MINS": "Custom upload - minutes interval",
+    "CUST_UPLOADS_ROLLOVER": "Custom upload - at rollover",
+    "CUST_UPLOADS_TIMED": "Custom upload - Timed",
+    "CUST_UPLOADS_STARTUP": "Custom upload - at start-up",
+    "INTERVAL": "Interval",
+    "SQL": "SQL",
+    "TIME_TO_RUN": "Time to run",
+    "REPEAT_AT_INTERVALS": "Repeat at intervals",
+    "REPEAT_INTERVAL": "Repeat Interval"
+}

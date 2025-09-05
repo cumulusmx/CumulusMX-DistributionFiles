@@ -1,4 +1,4 @@
-// Last modified: 2024/11/12 10:27:01
+// Last modified: 2025/08/22 11:57:21
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
@@ -16,7 +16,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 
                                 if (airLinkIn != stashedAirLinkIn || airLinkOut != stashedAirLinkOut || extra != stashedExtra) {
-                                    alert('You have changed the Extra Sensor settings, you must restart Cumulus MX for this to take effect');
+                                    alert('{{SETTINGS_CHANGED_RESTART}}');
                                     stashedAirLinkIn = airLinkIn;
                                     stashedAirLinkOut = airLinkOut;
                                     stashedExtra = extra;
@@ -41,7 +41,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -50,7 +50,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -72,7 +72,7 @@ $(document).ready(function () {
                                         if (value != '' && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                             callback({
                                                 'status': false,
-                                                'message': 'That is not a valid MAC address!'
+                                                'message': '{{NOT_VALID_MAC}}'
                                             });
                                             return;
                                         }
@@ -87,7 +87,7 @@ $(document).ready(function () {
                                         if (value != '' && !/^[A-F0-9]{30,35}$/.test(value)) {
                                             callback({
                                                 'status': false,
-                                                'message': 'That is not a valid Application Key!'
+                                                'message': '{{NOT_VALID_APP_KEY}}'
                                             });
                                             return;
                                         }
@@ -102,7 +102,7 @@ $(document).ready(function () {
                                         if (value != '' && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                             callback({
                                                 'status': false,
-                                                'message': 'That is not a valid API Key!'
+                                                'message': '{{NOT_VALID_API_KEY}}'
                                             });
                                             return;
                                         }

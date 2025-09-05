@@ -1,34 +1,36 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/04/23 16:02:06
+// Last modified: 2025/09/03 16:11:32
 
 var chart, avail, config, options;
 var cache = {};
 var settings = {
     series: [],
-    colours: []
+    colours: [],
+    fromDate: "",
+    toDate: ""
 }
 
 var freezing;
-var txtSelect = 'Select Series';
-var txtClear = 'Clear Series';
+var txtSelect = '{{SELECT_SERIES}}';
+var txtClear = '{{CLEAR_SERIES}}';
 
 var myRanges = {
     buttons: [{
         count: 1,
         type: 'day',
-        text: '1d'
+        text: '{{TIME_1D}}'
     }, {
         count: 7,
         type: 'day',
-        text: '7d'
+        text: '{{TIME_7D}}'
     }, {
         count: 28,
         type: 'day',
-        text: '28d'
+        text: '{{TIME_28D}}'
     }, {
         type: 'all',
         text: 'All',
-        title: 'View all'
+        title: '{{ALL}}'
     }],
     inputEnabled: true,
     selected: 3,
@@ -36,13 +38,14 @@ var myRanges = {
 };
 
 var compassP = function (deg) {
-    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
 var fromDate, toDate;
 var now = new Date();
 now.setHours(0,0,0,0);
+var then = new Date(now.setMonth(now.getMonth() - 1));
 
 $(document).ready(function () {
     $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
@@ -59,10 +62,15 @@ $(document).ready(function () {
     }).val(formatUserDateStr(now))
     .on('change', function() {
         var date = fromDate.datepicker('getDate');
+        settings.fromDate = formatDateStr(date);
+
         if (toDate.datepicker('getDate') < date) {
             toDate.datepicker('setDate', date);
+            settings.toDate = formatDateStr(date);
         }
+
         toDate.datepicker('option', { minDate: date });
+        storeSettings();
     });
 
     toDate = $('#dateTo').datepicker({
@@ -73,11 +81,15 @@ $(document).ready(function () {
             changeYear: true,
         }).val(formatUserDateStr(now))
         .on('change', function() {
-            var date = fromDate.datepicker('getDate');
-            if (toDate.datepicker('getDate') < date) {
-                toDate.datepicker('setDate', date);
+            var date = toDate.datepicker('getDate');
+            settings.toDate = formatDateStr(date);
+
+            if (fromDate.datepicker('getDate') < date) {
+                fromDate.datepicker('setDate', date);
+                settings.fromDate = formatDateStr(date);
             }
-            toDate.datepicker('option', { minDate: date });
+
+            storeSettings();
         });
 
     $.ajax({
@@ -91,20 +103,27 @@ $(document).ready(function () {
         }
     });
 
-    toDate.datepicker('setDate', now);
-    var then = new Date(now.setMonth(now.getMonth() - 1));
-    fromDate.datepicker('setDate', then);
-
     // get all the required config data before we start using it
-    function ajax1() {return $.ajax({url: '/api/graphdata/availabledata.json'});}
-    function ajax2() {return $.ajax({url: '/api/graphdata/selectaperiod.json'});}
-    function ajax3() {return $.ajax({url: '/api/graphdata/graphconfig.json'});}
+    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const settingsRes = $.ajax({ url: '/api/graphdata/selectaperiod.json', dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
 
-    $.when(ajax1(), ajax2(), ajax3())
-    .done(function (result1, result2, result3) {
-        avail = result1[0];
-        settings = result2[0];
-        config = result3[0];
+    Promise.all([availRes, settingsRes, configRes])
+    .then(function (results) {
+        avail = results[0];
+        settings = results[1];
+        config = results[2];
+
+        Highcharts.setOptions({
+            time: {
+                timezone: config.tz
+            },
+            chart: {
+                style: {
+                    fontSize: '1.5rem'
+                }
+            }
+        });
 
         // add the default select option
         var option = $('<option />');
@@ -116,6 +135,10 @@ $(document).ready(function () {
         $('#data3').append(option.clone());
         $('#data4').append(option.clone());
         $('#data5').append(option);
+
+        toDate.datepicker('setDate', settings.toDate ? new Date(settings.toDate) : now);
+        fromDate.datepicker('setDate', settings.fromDate ? new Date(settings.fromDate) : then);
+        toDate.datepicker('option', { minDate: fromDate.datepicker('getDate') });
 
         // then the real series options
         for (var k in avail) {
@@ -160,17 +183,15 @@ $(document).ready(function () {
             chart: {
                 renderTo: 'chartcontainer',
                 type: 'line',
-                alignTicks: true,
-                style: {
-                    fontSize: '16px'
-                }
+                alignTicks: true
             },
-            title: {text: 'All Data Select-a-Chart'},
+            title: {text: '{{ALL_DATA_SELECTACHART}}'},
             credits: {enabled: true},
             xAxis: {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',
                     month: '%b %y',
@@ -208,10 +229,17 @@ $(document).ready(function () {
             tooltip: {
                 shared: true,
                 split: false,
-                xDateFormat: '%A, %b %e, %H:%M'
+                xDateFormat: "%A, %b %e, " + config.timeformat
             },
             series: [],
-            rangeSelector: myRanges
+            rangeSelector: myRanges,
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat
+                    }
+                }
+            }
         };
 
         // draw the basic chart framework
@@ -459,10 +487,7 @@ var clearSeries = function (val) {
 
     // check the navigator - have we just removed the series it was using, and is there at least one series we can use instead?
     if (!chart.navigator.hasNavigatorData && chart.series.length > 0 ) {
-        chart.series[0].setOptions({showInNavigator: true});
-        chart.navigator.baseSeries = chart.series[0];
-        chart.navigator.update();
-        chart.redraw();
+        chart.series[0].update({showInNavigator: true}, true);
     }
 }
 
@@ -499,7 +524,7 @@ var addTemperatureAxis = function (idx) {
 
     // nope no existing axis, add one
    chart.addAxis({
-        title: {text: 'Temperature (°' + config.temp.units + ')'},
+        title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Temperature',
         showEmpty: false,
@@ -529,7 +554,7 @@ var addPressureAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Pressure (' + config.press.units + ')'},
+        title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Pressure',
         showEmpty: false,
@@ -548,7 +573,7 @@ var addHumidityAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Humidity (%)'},
+        title: {text: '{{HUMIDITY}} (%)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Humidity',
         showEmpty: false,
@@ -568,7 +593,7 @@ var addSoilMoistAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Soil Moisture'},
+        title: {text: '{{SOIL_MOISTURE}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'SoilMoist',
         showEmpty: false,
@@ -587,7 +612,7 @@ var addSolarAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Solar Radiation (W/m\u00B2)'},
+        title: {text: '{{SOLAR_RADIATION}} (W/m\u00B2)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Solar',
         showEmpty: false,
@@ -606,7 +631,7 @@ var addUVAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title:{text: 'UV Index'},
+        title:{text: '{{UV_INDEX}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'UV',
         showEmpty: false,
@@ -624,7 +649,7 @@ var addWindAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Wind Speed (' + config.wind.units + ')'},
+        title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Wind',
         showEmpty: false,
@@ -643,7 +668,7 @@ var addBearingAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Wind Bearing'},
+        title: {text: '{{WIND_BEARING}}'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Bearing',
         alignTicks: false,
@@ -651,8 +676,7 @@ var addBearingAxis = function (idx) {
         labels: {
             align: idx < settings.series.length / 2 ? 'right' : 'left',
             formatter: function () {
-                var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-                return a[Math.floor((this.value + 22.5) / 45) % 8];
+                compassP(this.value + 22.5);
             }
         },
         min: 0,
@@ -670,7 +694,7 @@ var addRainAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Rainfall (' + config.rain.units + ')'},
+        title: {text: '{{RAINFALL}} (' + config.rain.units + ')'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'Rain',
         showEmpty: false,
@@ -690,7 +714,7 @@ var addRainRateAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Rainfall Rate (' + config.rain.units + '/hr)'},
+        title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT_LC}})'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'RainRate',
         showEmpty: false,
@@ -710,7 +734,7 @@ var addAQAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Particulates (µg/m³)'},
+        title: {text: '{{PARTICULATES}} (µg/m³)'},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'pm',
         showEmpty: false,
@@ -729,7 +753,7 @@ var addLeafWetAxis = function (idx) {
 
     // nope no existing axis, add one
     chart.addAxis({
-        title: {text: 'Leaf wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+        title: {text: '{{LEAF_WETNESS}}' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
         opposite: idx < settings.series.length / 2 ? false : true,
         id: 'LeafWetness',
         showEmpty: false,
@@ -750,7 +774,7 @@ var doTemp = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -769,7 +793,7 @@ var doTemp = function (idx) {
             index: idx,
             data: cache.temp.temp,
             id: 'Temperature',
-            name: 'Temperature',
+            name: '{{TEMPERATURE}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -792,7 +816,7 @@ var doInTemp = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -811,7 +835,7 @@ var doInTemp = function (idx) {
             index: idx,
             data: cache.temp.intemp,
             id: 'Indoor Temp',
-            name: 'Indoor Temp',
+            name: '{{INDOOR_TEMP}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -834,7 +858,7 @@ var doHeatIndex = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -853,7 +877,7 @@ var doHeatIndex = function (idx) {
             index: idx,
             data: cache.temp.heatindex,
             id: 'Heat Index',
-            name: 'Heat Index',
+            name: '{{HEAT_INDEX}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -876,7 +900,7 @@ var doDewPoint = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -895,7 +919,7 @@ var doDewPoint = function (idx) {
             index: idx,
             data: cache.temp.dew,
             id: 'Dew Point',
-            name: 'Dew Point',
+            name: '{{DEW_POINT}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -918,7 +942,7 @@ var doWindChill = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -937,7 +961,7 @@ var doWindChill = function (idx) {
             index: idx,
             data: cache.temp.wchill,
             id: 'Wind Chill',
-            name: 'Wind Chill',
+            name: '{{WIND_CHILL}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -960,7 +984,7 @@ var doAppTemp = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -979,7 +1003,7 @@ var doAppTemp = function (idx) {
             index: idx,
             data: cache.temp.apptemp,
             id: 'Apparent Temp',
-            name: 'Apparent Temp',
+            name: '{{APPARENT_TEMP}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1002,7 +1026,7 @@ var doFeelsLike = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -1021,7 +1045,7 @@ var doFeelsLike = function (idx) {
             index: idx,
             data: cache.temp.feelslike,
             id: 'Feels Like',
-            name: 'Feels Like',
+            name: '{{FEELS_LIKE}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1044,7 +1068,7 @@ var doHumidex = function (idx) {
     if (cache === null || cache.temp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.temp = resp;
@@ -1063,7 +1087,7 @@ var doHumidex = function (idx) {
             index: idx,
             data: cache.temp.humidex,
             id: 'Humidex',
-            name: 'Humidex',
+            name: '{{HUMIDEX}}',
             yAxis: 'Temperature',
             type: 'line',
             tooltip: {
@@ -1087,7 +1111,7 @@ var doHumidity = function (idx) {
     if (cache === null || cache.hum === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvhum.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.hum = resp;
@@ -1106,7 +1130,7 @@ var doHumidity = function (idx) {
             index: idx,
             data: cache.hum.hum,
             id: 'Humidity',
-            name: 'Humidity',
+            name: '{{HUMIDITY}}',
             yAxis: 'Humidity',
             type: 'line',
             tooltip: {
@@ -1129,7 +1153,7 @@ var doInHumidity = function (idx) {
     if (cache === null || cache.hum === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvhum.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.hum = resp;
@@ -1148,7 +1172,7 @@ var doInHumidity = function (idx) {
             index: idx,
             data: cache.hum.inhum,
             id: 'Indoor Hum',
-            name: 'Indoor Hum',
+            name: '{{INDOOR_HUM}}',
             yAxis: 'Humidity',
             type: 'line',
             tooltip: {
@@ -1172,7 +1196,7 @@ var doSolarRad = function (idx) {
     if (cache === null || cache.solar === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvsolar.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.solar = resp;
@@ -1191,7 +1215,7 @@ var doSolarRad = function (idx) {
             index: idx,
             data: cache.solar.SolarRad,
             id: 'Solar Rad',
-            name: 'Solar Rad',
+            name: '{{SOLAR_RAD}}',
             yAxis: 'Solar',
             type: 'area',
             tooltip: {
@@ -1216,7 +1240,7 @@ var doUV = function (idx) {
     if (cache === null || cache.solar === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvsolar.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.solar = resp;
@@ -1235,7 +1259,7 @@ var doUV = function (idx) {
             index: idx,
             data: cache.solar.UV,
             id: 'UV Index',
-            name: 'UV Index',
+            name: '{{UV_INDEX}}',
             yAxis: 'UV',
             type: 'line',
             tooltip: {
@@ -1259,7 +1283,7 @@ var doPress = function (idx) {
     if (cache === null || cache.press === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvpress.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvpress.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.press = resp.press;
@@ -1277,7 +1301,7 @@ var doPress = function (idx) {
             index: idx,
             data: cache.press,
             id: 'Pressure',
-            name: 'Pressure',
+            name: '{{PRESSURE}}',
             yAxis: 'Pressure',
             type: 'line',
             tooltip: {
@@ -1301,7 +1325,7 @@ var doWindSpeed = function (idx) {
     if (cache === null || cache.wind === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.wind = resp;
@@ -1320,7 +1344,7 @@ var doWindSpeed = function (idx) {
             index: idx,
             data: cache.wind.wspeed,
             id: 'Wind Speed',
-            name: 'Wind Speed',
+            name: '{{WIND_SPEED}}',
             yAxis: 'Wind',
             type: 'line',
             tooltip: {
@@ -1343,7 +1367,7 @@ var doWindGust = function (idx) {
     if (cache === null || cache.wind === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.wind = resp;
@@ -1362,7 +1386,7 @@ var doWindGust = function (idx) {
             index: idx,
             data: cache.wind.wgust,
             id: 'Wind Gust',
-            name: 'Wind Gust',
+            name: '{{WIND_GUST}}',
             yAxis: 'Wind',
             tooltip: {
                 valueSuffix: ' ' + config.wind.units,
@@ -1384,7 +1408,7 @@ var doWindDir = function (idx) {
     if (cache === null || cache.wind === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.wind = resp;
@@ -1403,7 +1427,7 @@ var doWindDir = function (idx) {
             index: idx,
             data: cache.wind.avgbearing,
             id: 'Wind Bearing',
-            name: 'Wind Bearing',
+            name: '{{WIND_BEARING}}',
             yAxis: 'Bearing',
             type: 'scatter',
             color: settings.colours[idx],
@@ -1439,7 +1463,7 @@ var doRainfall = function (idx) {
     if (cache === null || cache.rain === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvrain.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.rain = resp;
@@ -1458,7 +1482,7 @@ var doRainfall = function (idx) {
             index: idx,
             data: cache.rain.rfall,
             id: 'Rainfall',
-            name: 'Rainfall',
+            name: '{{RAINFALL}}',
             yAxis: 'Rain',
             type: 'area',
             tooltip: {
@@ -1483,7 +1507,7 @@ var doRainRate = function (idx) {
     if (cache === null || cache.rain === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvrain.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.rain = resp;
@@ -1502,11 +1526,11 @@ var doRainRate = function (idx) {
             index: idx,
             data: cache.rain.rrate,
             id: 'Rainfall Rate',
-            name: 'Rainfall Rate',
+            name: '{{RAINFALL_RATE}}',
             yAxis: 'RainRate',
             type: 'line',
             tooltip: {
-                valueSuffix: ' ' + config.rain.units + '/hr',
+                valueSuffix: ' ' + config.rain.units + '/{{HOUR_SHORT_LC}}',
                 valueDecimals: config.rain.decimals
             },
             visible: true,
@@ -1524,7 +1548,7 @@ var doPm2p5 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: '/api/graphdata/intvairquality.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+        url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1553,7 +1577,7 @@ var doPm10 = function (idx) {
     addAQAxis(idx);
 
     $.ajax({
-        url: '/api/graphdata/intvairquality.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+        url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
         dataType: 'json',
         success: function (resp) {
             chart.hideLoading();
@@ -1587,7 +1611,7 @@ var doExtraTemp = function (idx, val) {
     if (cache === null || cache.extratemp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvextratemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvextratemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.extratemp = resp;
@@ -1632,7 +1656,7 @@ var doUserTemp = function (idx, val) {
     if (cache === null || cache.usertemp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvusertemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvusertemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.usertemp = resp;
@@ -1677,7 +1701,7 @@ var doExtraHum = function (idx, val) {
     if (cache === null || cache.extrahum === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvextrahum.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvextrahum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.extrahum = resp;
@@ -1722,7 +1746,7 @@ var doExtraDew = function (idx, val) {
     if (cache === null || cache.extradew === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvextradew.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvextradew.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.extradew = resp;
@@ -1767,7 +1791,7 @@ var doSoilTemp = function (idx, val) {
     if (cache === null || cache.soiltemp === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvsoiltemp.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvsoiltemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.soiltemp = resp;
@@ -1814,7 +1838,7 @@ var doSoilMoist = function (idx, val) {
     if (cache === null || cache.soilmoist === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvsoilmoist.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvsoilmoist.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.soilmoist = resp;
@@ -1858,7 +1882,7 @@ var doLeafWet = function (idx, val) {
     if (cache === null || cache.leafwet === undefined)
     {
         $.ajax({
-            url: '/api/graphdata/intvleafwetness.json?start=' + getUnixTimeStamp($('#dateFrom').datepicker('getDate')) + '&end=' + getUnixTimeStamp($('#dateTo').datepicker('getDate')),
+            url: '/api/graphdata/intvleafwetness.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
             dataType: 'json',
             success: function (resp) {
                 cache.leafwet = resp;
@@ -1892,7 +1916,7 @@ var doLeafWet = function (idx, val) {
 };
 
 function formatDateStr(inDate) {
-    return '' + inDate.getFullYear() + '-' + (inDate.getMonth() + 1) + '-' + (inDate.getDate());
+    return '' + inDate.getFullYear() + '-' + addLeadingZeros(inDate.getMonth() + 1) + '-' + addLeadingZeros(inDate.getDate());
 }
 
 function formatUserDateStr(inDate) {

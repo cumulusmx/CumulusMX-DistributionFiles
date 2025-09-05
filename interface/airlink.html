@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:14:05
+Last modified: 2025/08/11 22:26:43
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Airlink sensors - Cumulus MX</title>
+    <title>{{AIRLINK_SENSORS}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -58,24 +58,24 @@ Last modified: 2024/11/23 15:14:05
     <div class="container">
             <div class="row top-buffer">
             <div class="col-md-8">
-                <h1>AirLink Sensors</h1>
+                <h1>{{AIRLINK_SENSORS}}</h1>
             </div>
         </div>
 
         <div class="row top-buffer">
             <!-- COUNTS OUT BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Particle Counts - Outdoor</h2>
+                <h2>{{PARTICLE_COUNTS}} - {{OUTDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="CountsOutTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
-                            <th>&nbsp;1 min</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
+                            <th>&nbsp;1 {{MINUTE_SHORT}}</th>
+                            <th>&nbsp;1 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;3 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>
@@ -110,17 +110,17 @@ Last modified: 2024/11/23 15:14:05
         <div class="row top-buffer">
             <!-- AQI OUT BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Air Quality Index - Outdoor</h2>
+                <h2>{{AIR_QUALITY_INDEX}} - {{OUTDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="AqiOutTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
-                            <th>&nbsp;1 min</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
+                            <th>&nbsp;1 {{MINUTE_SHORT}}</th>
+                            <th>&nbsp;1 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;3 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>
@@ -147,17 +147,17 @@ Last modified: 2024/11/23 15:14:05
         <div class="row top-buffer">
             <!-- AQI PERCENT OUT BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Air Quality Index Confidence (%) - Outdoor</h2>
+                <h2>{{AIR_QUALITY_INDEX_CONFIDENCE}} (%) - {{OUTDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="PctOutTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
                             <th>&nbsp;</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;1 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;3 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>
@@ -184,17 +184,17 @@ Last modified: 2024/11/23 15:14:05
         <div class="row top-buffer">
             <!-- COUNTS IN BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Particle Counts - Indoor</h2>
+                <h2>{{PARTICLE_COUNTS}} - {{INDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="CountsInTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
-                            <th>&nbsp;1 min</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
+                            <th>&nbsp;1 {{MINUTE_SHORT}}</th>
+                            <th>&nbsp;1 {HR}</th>
+                            <th>&nbsp;3 {{{HOUR_SHORT}}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>
@@ -229,17 +229,17 @@ Last modified: 2024/11/23 15:14:05
         <div class="row top-buffer">
             <!-- AQI IN BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Air Quality Index - Indoor</h2>
+                <h2>{{AIR_QUALITY_INDEX}} - {{INDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="AqiInTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
-                            <th>&nbsp;1 min</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
+                            <th>&nbsp;1 {{MINUTE_SHORT}}</th>
+                            <th>&nbsp;1 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;3 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>
@@ -266,17 +266,17 @@ Last modified: 2024/11/23 15:14:05
         <div class="row top-buffer">
             <!-- AQI PERCENT IN BLOCK -->
             <div class="col-sm-10 col-lg-10">
-                <h2>Air Quality Index Confidence (%) - Indoor</h2>
+                <h2>{{AIR_QUALITY_INDEX_CONFIDENCE}} (%) - {{INDOOR}}</h2>
             </div>
             <div class="col-sm-10 col-lg-10">
                 <table id="PctInTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;PM Size</th>
+                            <th>&nbsp;{{PM_SIZE}}</th>
                             <th>&nbsp;</th>
-                            <th>&nbsp;1 hr</th>
-                            <th>&nbsp;3 hr</th>
-                            <th>&nbsp;24 hr</th>
+                            <th>&nbsp;1 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;3 {{HOUR_SHORT}}</th>
+                            <th>&nbsp;24 {{HOUR_SHORT}}</th>
                             <th>&nbsp;Nowcast</th>
                         </tr>
                     </thead>

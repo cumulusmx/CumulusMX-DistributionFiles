@@ -1,12 +1,12 @@
 {
-	"version": "Last Modified: 2025/05/16 15:37:25",
+	"version": "Last Modified: 2025/08/16 23:32:54",
 	"type": "object",
 	"properties": {
 		"accessible": {
 			"type": "boolean"
 		},
 		"DisplayOptions": {
-			"title": "General Options",
+			"title": "{{GENERAL_OPTIONS}}",
 			"type": "object",
 			"properties": {
 				"useapparent": {
@@ -27,7 +27,7 @@
 			}
 		},
 		"Graphs": {
-			"title": "Charts",
+			"title": "{{CHARTS}}",
 			"type": "object",
 			"properties": {
 				"graphhours": {
@@ -39,11 +39,11 @@
 					"minimum": 1
 				},
 				"colour": {
-					"title": "Data Series Colours",
+					"title": "{{DATA_COLOURS}}",
 					"type": "object",
 					"properties": {
 						"temperature": {
-							"title": "Temperatures",
+							"title": "{{TEMPERATURES}}",
 							"type": "object",
 							"properties": {
 								"Temp": {
@@ -73,7 +73,7 @@
 							}
 						},
 						"humidity": {
-							"title": "Humidity",
+							"title": "{{HUMIDITY}}",
 							"type": "object",
 							"properties": {
 								"Hum": {
@@ -85,7 +85,7 @@
 							}
 						},
 						"press": {
-							"title": "Pressure",
+							"title": "{{PRESSURE}}",
 							"type": "object",
 							"properties": {
 								"Press": {
@@ -94,7 +94,7 @@
 							}
 						},
 						"wind": {
-							"title": "Wind Speed",
+							"title": "{{WIND_SPEED}}",
 							"type": "object",
 							"properties": {
 								"WindGust": {
@@ -109,7 +109,7 @@
 							}
 						},
 						"bearing": {
-							"title": "Wind Bearing",
+							"title": "{{WIND_BEARING}}",
 							"type": "object",
 							"properties": {
 								"Bearing": {
@@ -121,7 +121,7 @@
 							}
 						},
 						"rain": {
-							"title": "Rainfall",
+							"title": "{{RAINFALL}}",
 							"type": "object",
 							"properties": {
 								"Rain": {
@@ -133,7 +133,7 @@
 							}
 						},
 						"solar": {
-							"title": "Solar Data",
+							"title": "{{SOLAR_DATA}}",
 							"type": "object",
 							"properties": {
 								"UV": {
@@ -151,7 +151,7 @@
 							}
 						},
 						"dailytemp": {
-							"title": "Daily Temperatures",
+							"title": "{{DAILY_TEMPS}}",
 							"type": "object",
 							"properties": {
 								"MaxTemp": {
@@ -191,7 +191,7 @@
 
 						},
 						"dailypress": {
-							"title": "Daily Pressure",
+							"title": "{{DAILY_PRESS}}",
 							"type": "object",
 							"properties": {
 								"Max": {
@@ -203,7 +203,7 @@
 							}
 						},
 						"dailyhum": {
-							"title": "Daily Humidity",
+							"title": "{{DAILY_HUMIDITY}}",
 							"type": "object",
 							"properties": {
 								"Max": {
@@ -215,7 +215,7 @@
 							}
 						},
 						"aq": {
-							"title": "Air Quality",
+							"title": "{{AIR_QUALITY}}",
 							"type": "object",
 							"properties": {
 								"Pm2p5": {
@@ -227,7 +227,7 @@
 							}
 						},
 						"extratemp" : {
-							"title": "Extra Temperatures",
+							"title": "{{EXTRA_TEMPS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -239,7 +239,7 @@
 							}
 						},
 						"extrahum" : {
-							"title": "Extra Humidity's",
+							"title": "{{EXTRA_HUMS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -251,7 +251,7 @@
 							}
 						},
 						"extradew" : {
-							"title": "Extra Dew Points",
+							"title": "{{EXTRA_DEWPOINTS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -263,7 +263,7 @@
 							}
 						},
 						"soiltemp" : {
-							"title": "Soil Temperatures",
+							"title": "{{SOIL_TEMPS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -275,7 +275,7 @@
 							}
 						},
 						"soilmoist" : {
-							"title": "Soil Moistures",
+							"title": "{{SOIL_MOISTS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -287,7 +287,7 @@
 							}
 						},
 						"leafwet": {
-							"title": "Leaf Wetness",
+							"title": "{{LEAF_WETNESS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -299,7 +299,7 @@
 							}
 						},
 						"usertemp" : {
-							"title": "User Temperatures",
+							"title": "{{USER_TEMPS}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -311,7 +311,7 @@
 							}
 						},
 						"co2" : {
-							"title": "CO&#8322; Sensor",
+							"title": "{{CO2_SENSOR}}",
 							"type": "object",
 							"properties": {
 								"co2": {
@@ -341,7 +341,7 @@
 							}
 						},
 						"snow": {
-							"title": "Snowfall",
+							"title": "{{SNOWFALL}}",
 							"type": "object",
 							"properties": {
 								"Depth": {
@@ -357,11 +357,11 @@
 			}
 		},
 		"DataVisibility": {
-			"title": "Data Visibility",
+			"title": "{{DATA_VISIBILITY}}",
 			"type": "object",
 			"properties": {
 				"temperature": {
-					"title": "Temperature Data",
+					"title": "{{TEMPERATURES}}",
 					"type": "object",
 					"properties": {
 						"Temp": {
@@ -400,7 +400,7 @@
 					}
 				},
 				"humidity": {
-					"title": "Humidity Data",
+					"title": "{{HUMIDITY}}",
 					"type": "object",
 					"properties": {
 						"Hum": {
@@ -412,7 +412,7 @@
 					}
 				},
 				"solar": {
-					"title": "Solar Data",
+					"title": "{{SOLAR_DATA}}",
 					"type": "object",
 					"properties": {
 						"UV": {
@@ -427,7 +427,7 @@
 					}
 				},
 				"degreedays": {
-					"title": "Degree Days",
+					"title": "{{DEGREE_DAYS}}",
 					"type": "object",
 					"properties": {
 						"GrowingDegreeDays1": {
@@ -439,7 +439,7 @@
 					}
 				},
 				"tempsum": {
-					"title": "Temperature Sum",
+					"title": "{{TEMP_SUM}}",
 					"type": "object",
 					"properties": {
 						"TempSum0": {
@@ -454,7 +454,7 @@
 					}
 				},
 				"chillhrs": {
-					"title": "Chill Hours",
+					"title": "{{CHILL_HOURS}}",
 					"type": "object",
 					"properties": {
 						"ChillHrs": {
@@ -463,7 +463,7 @@
 					}
 				},
 				"extratemp" : {
-					"title": "Extra Temperatures",
+					"title": "{{EXTRA_TEMPS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -476,7 +476,7 @@
 					}
 				},
 				"extrahum" : {
-					"title": "Extra Humidities",
+					"title": "{{EXTRA_HUMS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -489,7 +489,7 @@
 					}
 				},
 				"extradew" : {
-					"title": "Extra Dew Points",
+					"title": "{{EXTRA_DEWPOINTS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -502,7 +502,7 @@
 					}
 				},
 				"soiltemp" : {
-					"title": "Soil Temperatures",
+					"title": "{{SOIL_TEMPS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -515,7 +515,7 @@
 					}
 				},
 				"soilmoist" : {
-					"title": "Soil Moistures",
+					"title": "{{SOIL_MOISTS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -528,7 +528,7 @@
 					}
 				},
 				"leafwet" : {
-					"title": "Leaf Wetness",
+					"title": "{{LEAF_WETNESS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -541,7 +541,7 @@
 					}
 				},
 				"usertemp" : {
-					"title": "User Temperatures",
+					"title": "{{USER_TEMPS}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
@@ -554,13 +554,13 @@
 					}
 				},
 				"aq" : {
-					"title": "Air Quality Sensor",
+					"title": "{{AIR_QUALITY_SENSOR}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
 							"type": "array",
 							"items": {
-								"title": "Sensor",
+								"title": "{{SENSOR}}",
 								"type": "object",
 								"properties": {
 									"pm": {
@@ -593,7 +593,7 @@
 					}
 				},
 				"co2" : {
-					"title": "CO&#8322; Sensor",
+					"title": "{{CO2_SENSOR}}",
 					"type": "object",
 					"properties": {
 						"co2": {
@@ -623,7 +623,7 @@
 					}
 				},
 				"snow": {
-					"title": "Snow",
+					"title": "{{SNOWFALL}}",
 					"type": "object",
 					"properties": {
 						"Depth": {
@@ -633,7 +633,7 @@
 							"enum": [0,1,2]
 						},
 						"CurrLast24h": {
-							"title": "Current 24hr Accumulation per Sensor",
+							"title": "{{SNOW_ACCUMULATION}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -648,11 +648,11 @@
 					}
 				},
 				"laser" : {
-					"title": "Laser Sensors",
+					"title": "{{LASER_SENSORS}}",
 					"type": "object",
 					"properties": {
 						"Depth": {
-							"title": "Depth",
+							"title": "{{DEPTH}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -665,7 +665,7 @@
 							}
 						},
 						"Dist": {
-							"title": "Distance",
+							"title": "{{DISTANCE}}",
 							"type": "object",
 							"properties": {
 								"sensors": {

@@ -1,26 +1,26 @@
 {
-	"version": "Last Modified: 2025/01/23 15:00:49",
+	"version": "Last Modified: 2025/08/19 16:39:50",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
 		},
 		"autosave": {
-			"label": "Enable Reports:",
-			"rightLabel": "Create NOAA files after daily rollover",
-			"helper": "Enables the creation of the report files"
+			"label": "{{ENABLE_REPORTS}}:",
+			"rightLabel": "{{ENABLE_REPORTS_LABEL}}",
+			"helper": "{{ENABLE_REPORTS_HELP1}}"
 		},
 		"sitedetails": {
 			"collapsible": true,
 			"collapsed": true,
 			"fields": {
 				"sitename": {
-					"label": "Site Name: "
+					"label": "{{SITE_NAME}}: "
 				},
 				"city": {
-					"label": "City:"
+					"label": "{{CITY}}:"
 				},
 				"state": {
-					"label": "State:"
+					"label": "{{State}}:"
 				}
 			}
 		},
@@ -29,12 +29,12 @@
 			"collapsed": true,
 			"fields": {
 				"monthfileformat": {
-					"label": "Monthly filename format:",
-					"helper": "Specify the filename template using C# date formatting. Default = 'NOAAMO'MMyy'.txt'"
+					"label": "{{MONTH_FILE_FORMAT}}:",
+					"helper": "{{MONTH_FILE_FORMAT_HELP1}}"
 				},
 				"yearfileformat": {
-					"label": "Yearly filename format:",
-					"helper": "Specify the filename template using C# date formatting. Default = 'NOAAYR'yyyy'.txt'"
+					"label": "{{YEAR_FILE_FORMAT}}:",
+					"helper": "{{YEAR_FILE_FORMAT_HELP1}}"
 				}
 			}
 		},
@@ -43,48 +43,48 @@
 			"collapsed": true,
 			"fields": {
 				"outputtext": {
-					"label": "Report format:",
+					"label": "{{REPORT_FORMAT}}:",
 					"type": "select",
 					"removeDefaultNone": "true",
 					"optionLabels": [
 						"HTML",
-						"Plain Text"
+						"PLAIN_TEXT"
 					],
 					"sort": false,
-					"helper": "Create the report files as traditional plain text, or formatted HTML. Default = Plain Text"
+					"helper": "{{REPORT_FORMAT_HELP1}}"
 				},
 				"timeformat": {
-					"label": "Time format:",
+					"label": "{{TIME_FORMAT}}:",
 					"type": "select",
 					"removeDefaultNone": "true",
 					"optionLabels": [
-						"24 Hour",
-						"12 Hour"
+						"{{HOUR_12}}",
+						"{{HOUR_12}}"
 					],
 					"sort": false
 				},
 				"utf8": {
-					"label": "Text Encoding:",
-					"rightLabel": "Use UTF-8 encoding",
-					"helper": "Create the report files using the UTF-8 file format. Default = enabled"
+					"label": "TEXT_ENCODING:",
+					"rightLabel": "{{TEXT_ENCODING_LABEL}}",
+					"helper": "{{TEXT_ENCODING_HELP1}}"
 				},
 				"dotdecimal": {
-					"label": "Decimal Point:",
-					"rightLabel": "Use a 'dot' decimal point",
-					"helper": "Overrides your local locale setting for decimal points and always uses a dot decimal"
+					"label": "{{DECIMAL_POINT}}:",
+					"rightLabel": "{{DECIMAL_POINT_LABEL}}",
+					"helper": "{{DECIMAL_POINT_HELP1}}"
 				},
 				"minmaxavg": {
-					"label": "Mean Temperature Calculation:",
-					"rightLabel": "Use (max+min)/2 mean temperatures",
-					"helper": "The default is it use integrated mean temperatures, enabling this setting uses the traditional method based on max and min temperatures"
+					"label": "{{MEAN_TEMP_CALC}}:",
+					"rightLabel": "{{MEAN_TEMP_CALC_LABEL}}",
+					"helper": "{{MEAN_TEMP_CALC_HELP1}}"
 				},
 				"noaacoolheat": {
-					"label": "Cooling/Heating Day Calculation",
-					"rightLabel": "Use NOAA simple calculation",
+					"label": "{{COOL_HEAT_CALC}}",
+					"rightLabel": "{{COOL_HEAT_CALC_LABEL}}",
 					"helpers": [
-						"The default disabled setting uses the Cumulus integrated heating/cooling calculation",
-						"Enabling this option uses the simplified NOAA calculation of the difference between the mean temp and 65°F",
-						"Enabling this option forces the average calculation to be the (max+min)/2 mean, and disables the use of custom threshold values"
+						"{{COOL_HEAT_CALC_HELP1}}",
+						"{{COOL_HEAT_CALC_HELP2}}",
+						"{{COOL_HEAT_CALC_HELP3}}"
 					]
 				}
 			}
@@ -94,15 +94,15 @@
 			"collapsed": true,
 			"fields": {
 				"autotransfer": {
-					"rightLabel": "Auto Upload NOAA report files",
-					"helper": "Enabling this means your NOAA reports will be uploaded to the folder below after they are created during the daily rollover"
+					"rightLabel": "{{AUTO_UPLOAD}}",
+					"helper": "{{AUTO_UPLOAD_HELP1}}"
 				},
 				"dstfolder": {
-					"label": "Upload folder:",
+					"label": "{{UPLOAD_FOLDER}}:",
 					"helpers": [
-						"You can specify a different folder from the default upload folder if you wish to upload the reports to a different location",
-						"Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings upload folder",
-						"Paths entered here are relative to: the FTP root folder when using FTP, or the location of the upload.php file when using PHP upload"
+						"{{UPLOAD_FOLDER_HELP1}}",
+						"{{UPLOAD_FOLDER_HELP2}}",
+						"{{UPLOAD_FOLDER_HELP3}}"
 					],
 					"dependencies": {
 						"autotransfer": true
@@ -115,15 +115,15 @@
 			"collapsed": true,
 			"fields": {
 				"autotransfer": {
-					"rightLabel": "Auto Copy NOAA report files",
-					"helper": "Enabling this means your NOAA reports will be copied to the folder below after they are created during the daily rollover"
+					"rightLabel": "{{AUTO_COPY}}",
+					"helper": "{{AUTO_COPY_HELP1}}"
 				},
 				"dstfolder": {
-					"label": "Local copy folder:",
+					"label": "{{LOCAL_COPY_FOLDER}}:",
 					"helpers": [
-						"You can specify a different folder from the default local copy folder if you wish to up the reports to a different location",
-						"Leaving this blank will mean the reports are placed in the location specified in the main Internet Settings Local Copy destination folder",
-						"Note any path entered here should be a full absolute path to the destination folder"
+						"{{LOCAL_COPY_FOLDER_HELP1}}",
+						"{{LOCAL_COPY_FOLDER_HELP2}}",
+						"{{LOCAL_COPY_FOLDER_HELP3}}"
 					],
 					"dependencies": {
 						"autotransfer": true
@@ -136,46 +136,46 @@
 			"collapsed": true,
 			"fields": {
 				"heatingthreshold": {
-					"label": "Heating threshold:",
+					"label": "{{HEAT_THRESHOLD}}:",
 					"helpers": [
-						"The base temperature which is to be used to calculate heating demand as heating degree days",
-						"Default = 65°F / 18.3°C"
+						"{{HEAT_THRESHOLD_HELP1}}",
+						"{{HEAT_THRESHOLD_HELP2}}"
 					]
 				},
 				"coolingthreshold": {
-					"label": "Cooling threshold:",
+					"label": "{{COOLING_THRESHOLD}}:",
 					"helpers": [
-						"The base temperature which is to be used to calculate chilling demand as cooling degree days",
-						"Default = 65°F / 18.3°C"
+						"{{COOLING_THRESHOLD_HELP1}}",
+						"{{COOLING_THRESHOLD_HELP2}}"
 					]
 				},
 				"maxtempcomp1": {
-					"label": "Max temp comparison 1:",
-					"helpers": ["Used in the reports for the counts of days with max temperatures above this temperature"]
+					"label": "{{MAX_TEMP_COMP1}}:",
+					"helpers": ["{{MAX_TEMP_COMP1_HELP1}}"]
 				},
 				"maxtempcomp2": {
-					"label": "Max temp comparison 2:",
-					"helpers": ["Used in the reports for the counts of days with max temperatures below this temperature"]
+					"label": "{{MAX_TEMP_COMP2}}:",
+					"helpers": ["{{MAX_TEMP_COMP2_HELP1}}"]
 				},
 				"mintempcomp1": {
-					"label": "Min temp comparison 1:",
-					"helpers": ["Used in the reports for the counts of days with min temperatures below this temperature"]
+					"label": "{{MIN_TEMP_COMP1}}:",
+					"helpers": ["{{MIN_TEMP_COMP1_HELP1}}"]
 				},
 				"mintempcomp2": {
-					"label": "Min temp comparison 2:",
-					"helpers": ["Used in the reports for the counts of days with min temperatures below this temperature"]
+					"label": "{{MIN_TEMP_COMP2}}:",
+					"helpers": ["{{MIN_TEMP_COMP2_HELP1}}"]
 				},
 				"raincomp1": {
-					"label": "Rain comparison 1:",
-					"helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+					"label": "{{RAIN_COMP1}}:",
+					"helpers": ["{{RAIN_COMP1_HELP1}}"]
 				},
 				"raincomp2": {
-					"label": "Rain comparison 2:",
-					"helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+					"label": "{{RAIN_COMP2}}:",
+					"helpers": ["{{RAIN_COMP2_HELP1}}"]
 				},
 				"raincomp3": {
-					"label": "Rain comparison 3:",
-					"helpers": ["Used in the reports for the counts of days with rainfall totals >= this value"]
+					"label": "{{RAIN_COMP3}}:",
+					"helpers": ["{{RAIN_COMP3_HELP1}}"]
 				}
 			}
 		},
@@ -184,43 +184,43 @@
 			"collapsed": true,
 			"fields": {
 				"jan": {
-					"label": "Jan:"
+					"label": "{{MON_1}}:"
 				},
 				"feb": {
-					"label": "Feb:"
+					"label": "{{MON_2}}:"
 				},
 				"mar": {
-					"label": "Mar:"
+					"label": "{{MON_3}}:"
 				},
 				"apr": {
-					"label": "Apr:"
+					"label": "{{MON_4}}:"
 				},
 				"may": {
-					"label": "May:"
+					"label": "{{MON_5}}:"
 				},
 				"jun": {
-					"label": "Jun:"
+					"label": "{{MON_6}}:"
 				},
 				"jul": {
-					"label": "Jul:"
+					"label": "{{MON_7}}:"
 				},
 				"aug": {
-					"label": "Aug:"
+					"label": "{{MON_8}}:"
 				},
 				"sep": {
-					"label": "Sep:"
+					"label": "{{MON_9}}:"
 				},
 				"oct": {
-					"label": "Oct:"
+					"label": "{{MON_10}}:"
 				},
 				"nov": {
-					"label": "Nov:"
+					"label": "{{MON_11}}:"
 				},
 				"dec": {
-					"label": "Dec:"
+					"label": "{{MON_12}}:"
 				}
 			},
-			"helpers": ["Enter the long term mean monthly temperature values expected for your station"],
+			"helpers": ["{{MEAN_TEMP_HELP1}}"],
 			"helperPosition": "above"
 		},
 		"normalrain": {
@@ -228,43 +228,43 @@
 			"collapsed": true,
 			"fields": {
 				"jan": {
-					"label": "Jan:"
+					"label": "{{MON_1}}:"
 				},
 				"feb": {
-					"label": "Feb:"
+					"label": "{{MON_2}}:"
 				},
 				"mar": {
-					"label": "Mar:"
+					"label": "{{MON_3}}:"
 				},
 				"apr": {
-					"label": "Apr:"
+					"label": "{{MON_4}}:"
 				},
 				"may": {
-					"label": "May:"
+					"label": "{{MON_5}}:"
 				},
 				"jun": {
-					"label": "Jun:"
+					"label": "{{MON_6}}:"
 				},
 				"jul": {
-					"label": "Jul:"
+					"label": "{{MON_7}}:"
 				},
 				"aug": {
-					"label": "Aug:"
+					"label": "{{MON_8}}:"
 				},
 				"sep": {
-					"label": "Sep:"
+					"label": "{{MON_9}}:"
 				},
 				"oct": {
-					"label": "Oct:"
+					"label": "{{MON_10}}:"
 				},
 				"nov": {
-					"label": "Nov:"
+					"label": "{{MON_11}}:"
 				},
 				"dec": {
-					"label": "Dec:"
+					"label": "{{MON_12}}:"
 				}
 			},
-			"helpers": ["Enter the long term mean monthly rainfall values expected for your station"],
+			"helpers": ["{{MEAN_RAIN_HELP1}}"],
 			"helperPosition": "above"
 		}
 	}

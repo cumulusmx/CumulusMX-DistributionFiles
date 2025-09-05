@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2023/11/29 16:32:49
+ * Last modified: 2025/07/31 23:47:41
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -407,6 +407,7 @@ textarea {
 
 .clockcenter {
     text-align:center;
+    margin-bottom: 10px;
 }
 
 

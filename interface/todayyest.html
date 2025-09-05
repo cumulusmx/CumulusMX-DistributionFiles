@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:09:15
+Last modified: 2025/08/11 22:27:10
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Today yesterday - Cumulus MX</title>
+    <title>{{TODAY_YESTERDAY}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -54,7 +54,7 @@ Last modified: 2024/11/23 15:09:15
     <div class="container">
         <div class="row top-buffer">
             <div class="col-md-12">
-                <h1>Today and Yesterday</h1>
+                <h1>{{TODAY_AND_YESTERDAY}}</h1>
             </div>
         </div>
         <div class="row top-buffer">
@@ -62,7 +62,7 @@ Last modified: 2024/11/23 15:09:15
                 <table id="TempTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;Temperature</th>
+                            <th>&nbsp;{{TEMPERATURE}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -70,49 +70,49 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>High Temperature</td>
+                        <td>{{HIGH_TEMPERATURE}}</td>
                         <td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
                         <td>23:10</td>
                         <td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
                         <td>15:10</td>
                     </tr>
                     <tr>
-                        <td>Dew Point</td>
+                        <td>{{DEW_POINT}}</td>
                         <td><span id="OutdoorDewpoint">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Wind Chill</td>
+                        <td>{{WIND_CHILL}}</td>
                         <td><span id="WindChill">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Apparent Temperature</td>
+                        <td>{{APPARENT_TEMPERATURE}}</td>
                         <td><span id="AppTemp">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Feels Like</td>
+                        <td>{{FEELS_LIKE}}</td>
                         <td><span id="FeelsLike">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Heat Index</td>
+                        <td>{{HEAT_INDEX}}</td>
                         <td><span id="HeatIndex">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Humidex</td>
+                        <td>{{HUMIDEX}}</td>
                         <td><span id="Humidex">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Indoor Temperature</td>
+                        <td>{{INDOOR_TEMPERATURE}}</td>
                         <td><span id="IndoorTemp">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
@@ -124,7 +124,7 @@ Last modified: 2024/11/23 15:09:15
                 <table id="PressureTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;Pressure</th>
+                            <th>&nbsp;{{PRESSURE}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -132,25 +132,25 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Pressure</td>
+                        <td>{{PRESSURE}}</td>
                         <td><span id="Pressure">--</span></td>
                         <td><span class="PressUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Trend</td>
+                        <td>{{TREND}}</td>
                         <td><span id="PressTrend">--</span></td>
-                        <td><span class="PressUnit">--</span>/hr</td>
+                        <td><span class="PressUnit">--</span>/{{HOUR_SHORT}}</td>
                     </tr>
                 </table>
                 <table id="HumidityTable" style="width:100%">
                     <thead><br/>
                         <tr>
-                            <th>&nbsp;Humidity</th>
+                            <th>&nbsp;{{HUMIDITY}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -158,17 +158,17 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Outdoor Humidity</td>
+                        <td>{{OUTDOOR_HUMIDITY}}</td>
                         <td><span id="OutdoorHum">--</span></td>
                         <td><span>%</span></td>
                     </tr>
                     <tr>
-                        <td>Indoor Humidity</td>
+                        <td>{{INDOOR_HUMIDITY}}</td>
                         <td><span id="IndoorHum">--</span></td>
                         <td><span>%</span></td>
                     </tr>
@@ -177,7 +177,7 @@ Last modified: 2024/11/23 15:09:15
                 <table id="SolarTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;Solar</th>
+                            <th>&nbsp;{{SOLAR}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -185,19 +185,19 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Solar Radiation</td>
+                        <td>{{SOLAR_RADIATION}}</td>
                         <td><span id="SolarRad">--</span></td>
                         <td>W/m<sup>2</sup></td>
                     </tr>
                     <tr>
-                        <td>Sunshine Today</td>
+                        <td>{{SUNSHINE_TODAY}}</td>
                         <td><span id="SunshineHours">--</span></td>
-                        <td>hrs</td>
+                        <td>{{HOURS_SHORT}}</td>
                     </tr>
                     <!--
                     <tr>
@@ -215,7 +215,7 @@ Last modified: 2024/11/23 15:09:15
                 <table id="RainTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;Rainfall</th>
+                            <th>&nbsp;{{RAINFALL}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -223,37 +223,37 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Rain Today</td>
+                        <td>{{RAIN_TODAY}}</td>
                         <td><span id="RainToday">--</span></td>
                         <td><span class="RainUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Rain Rate</td>
+                        <td>{{RAIN_RATE}}</td>
                         <td><span id="RainRate">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
+                        <td><span class="RainUnit">--</span>/{{HOUR_SHORT}}</td>
                     </tr>
                     <tr>
-                        <td>Rain Last Hour</td>
+                        <td>{{RAIN_LAST_HOUR}}</td>
                         <td><span id="RainLastHour">--</span></td>
                         <td><span class="RainUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Rain This Month</td>
+                        <td>{{RAIN_THIS_MONTH}}</td>
                         <td><span id="RainMonth">--</span></td>
                         <td><span class="RainUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Rain This Year</td>
+                        <td>{{RAIN_THIS_YEAR}}</td>
                         <td><span id="RainYear">--</span></td>
                         <td><span class="RainUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Rain Yesterday</td>
+                        <td>{{RAIN_YESTERDAY}}</td>
                         <td><span id="RainYesterday">--</span></td>
                         <td><span class="RainUnit">--</span></td>
                     </tr>
@@ -265,7 +265,7 @@ Last modified: 2024/11/23 15:09:15
                 <table id="WindTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th>&nbsp;Wind</th>
+                            <th>&nbsp;{{WIND}}</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -273,32 +273,32 @@ Last modified: 2024/11/23 15:09:15
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="center" colspan="2">Today</th>
-                            <th class="center" colspan="2">Yesterday</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Latest</td>
+                        <td>{{LATEST}}</td>
                         <td><span id="WindLatest">--</span></td>
                         <td><span class="WindUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Average Speed</td>
+                        <td>{{AVERAGE_SPEED}}</td>
                         <td><span id="WindAverage">--</span></td>
                         <td><span class="WindUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Peak Gust</td>
+                        <td>{{PEAK_GUST}}</td>
                         <td><span id="Recentmaxgust">--</span></td>
                         <td><span class="WindUnit">--</span></td>
                     </tr>
                     <tr>
-                        <td>Bearing</td>
+                        <td>{{BEARING}}</td>
                         <td><span id="Bearing">--</span></td>
                         <td>&deg;</td>
                     </tr>
                     <tr>
-                        <td>Average Bearing</td>
+                        <td>{{AVERAGE_BEARING}}</td>
                         <td><span id="Avgbearing">--</span></td>
                         <td>&deg;</td>
                     </tr>

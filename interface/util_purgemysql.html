@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:08:41
+Last modified: 2025/08/10 23:19:52
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Purge MySQL - Cumulus MX</title>
+    <title>{{PURGE_CACHED_MYSQL}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -26,10 +26,11 @@ Last modified: 2024/11/23 15:08:41
 
     <!-- DataTables CSS -->
     <link href="lib/datatables/datatables.min.css" rel="stylesheet">
+    <link href="lib/datatables/dataTables.inputPaging.min.css" rel="stylesheet">
 
     <!-- DataTables -->
     <script src="lib/datatables/datatables.min.js"></script>
-    <script src="lib/datatables/pagination_input.js"></script>
+    <script src="lib/datatables/dataTables.inputPaging.min.js"></script>
     <script src="lib/datatableseditor/dataTables.altEditor.free.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
@@ -61,11 +62,11 @@ Last modified: 2024/11/23 15:08:41
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Edit/Purge Cached MySQL</h1>
+        <h1>{{PURGE_CACHED_MYSQL}}</h1>
         <div class="row">
             <div class="col-md-12">
-                <div><b>Edit or purge the failed MySQL command queue</b></div>
-                <div>If you have failed MySQL commands stuck in the upload queue, this page allows you to either delete the entire failed queue, or edit/delete individual entries.</div>
+                <div><b>{{PURGE_MYSQL_TEXT1}}</b></div>
+                <div>{{PURGE_MYSQL_TEXT2}}</div>
             </div>
         </div>
 
@@ -77,11 +78,11 @@ Last modified: 2024/11/23 15:08:41
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-lg-12">
                 <div style="text-align: center;">
-                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">Purge ALL MySQL statements</button>
+                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">{{PURGE_MYSQL_SUBMIT}}</button>
                 </div>
                 <br>
                 <div>
-                    <p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></p>
+                    <p>{{STATUS}}: <span id="status" style="height: 70px; font-weight: bold"></span></p>
                 </div>
             </div>
         </div>

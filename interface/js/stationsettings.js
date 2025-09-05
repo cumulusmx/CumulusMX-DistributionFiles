@@ -1,7 +1,9 @@
-// Last modified: 2025/05/24 17:24:24
+// Last modified: 2025/08/22 19:06:01
 
 let StashedStationId;
 let accessMode;
+let StashedDavisStationId = -1; // used to store the last selected Davis station id
+let StashedDavisUuid = ''; // used to store the last selected Davis station uuid
 
 $(document).ready(function () {
     //let layout1 = '<table class="table table-hover"><tr><td id="left"></td><td id="right"></td></tr></table>';
@@ -16,7 +18,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -28,9 +30,24 @@ $(document).ready(function () {
                                     alert('You have not selected a station type');
                                     return;
                                 }
-                                if (stationId != StashedStationId) {
-                                    alert('You have changed the Station type, you must restart Cumulus MX');
-                                    StashedStationId = stationId;
+
+                                // If the station is Davis WLL or Cloud, check the station id and uuid
+                                if (stationId == 11 || stationId == 19 || stationId == 20) {
+                                    let davisObj = form.getControlByPath('daviswll');
+                                    let apiStationId = davisObj.getControlByPath('api/apiStationId').getValue();
+                                    let apiStationUuid = davisObj.getControlByPath('api/apiStationUuid').getValue();
+                                    if (apiStationId != StashedDavisStationId && apiStationUuid == StashedDavisUuid && StashedDavisUuid != '') {
+                                        // If the station id has changed, but the uuid is the same, blank the uuid
+                                        davisObj.getControlByPath('api/apiStationUuid').setValue('');
+                                        StashedDavisStationId = apiStationId;
+                                        alert('You have changed the Davis station Id, but not the UUID. The uuid has been cleared.');
+                                    }
+                                    if (apiStationId == StashedDavisStationId && apiStationUuid != StashedDavisUuid && StashedDavisStationId != -1) {
+                                        // If the station id is the same, but the uuid has changed, blank the station id
+                                        davisObj.getControlByPath('api/apiStationId').setValue(-1);
+                                        StashedDavisUuid = apiStationUuid;
+                                        alert('You have changed the Davis station UUID, but not the station Id. The station Id has been cleared.');
+                                    }
                                 }
 
                                 let json = this.getValue();
@@ -42,7 +59,12 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    if (stationId != StashedStationId) {
+                                        alert('{{SETTINGS_CHANGED_RESTART}}');
+                                        StashedStationId = stationId;
+                                    } else {
+                                        alert('{{SETTINGS_UPDATED}}');
+                                    }
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -72,7 +94,7 @@ $(document).ready(function () {
                                 if (value != '' && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                     callback({
                                         status: false,
-                                        message: 'That is not a valid MAC address!'
+                                        message: '{{NOT_VALID_MAC}}'
                                     });
                                     return;
                                 }
@@ -102,7 +124,7 @@ $(document).ready(function () {
                                         } else {
                                             callback({
                                                 status: false,
-                                                message: 'That is not a valid IMEI!'
+                                                message: '{{NOT_VALID_EMEI}}'
                                             });
                                         }
                                         return;
@@ -111,7 +133,7 @@ $(document).ready(function () {
                                     if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                         callback({
                                             status: false,
-                                            message: 'That is not a valid MAC address!'
+                                            message: '{{NOT_VALID_MAC}}'
                                         });
                                         return;
                                     }
@@ -128,7 +150,7 @@ $(document).ready(function () {
                                 if (value != '' && !/^[A-F0-9]{30,35}$/.test(value)) {
                                     callback({
                                         status: false,
-                                        message: 'That is not a valid Application Key!'
+                                        message: '{{NOT_VALID_APP_KEY}}'
                                     });
                                     return;
                                 }
@@ -143,7 +165,7 @@ $(document).ready(function () {
                                 if (value != '' && !/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                     callback({
                                         status: false,
-                                        message: 'That is not a valid API Key!'
+                                        message: '{{NOT_VALID_API_KEY}}'
                                     });
                                     return;
                                 }
@@ -231,6 +253,8 @@ $(document).ready(function () {
 
             // Keep a record of the last value
             StashedStationId = stationid;
+            StashedDavisStationId = form.getControlByPath('daviswll/api/apiStationId').getValue();
+            StashedDavisUuid = form.getControlByPath('daviswll/api/apiStationUuid').getValue();
 
             // On changing the JSON Station connection type, propgate to advanced settings
             let connType = form.getControlByPath('jsonstation/conntype');
@@ -335,7 +359,7 @@ function setStationOptions(callback) {
             callback(jsonStations);
             break;
         default:
-            callback({'Select Station Type...': -1});
+            callback({'{{SELECT_STATION_TYPE}}': -1});
             break;
     }
 
@@ -436,23 +460,24 @@ function setDavisStationTitle(that, val) {
 }
 
 let allStations = {
-    'Select Station Type': -1,
-    'PWS Simulator': 17,
+    '{{SELECT_STATION_TYPE}}': -1,
+    '{{STN_SIMULATED}}': 17,
     'Vantage Pro': 0,
     'Vantage Pro2/Vue': 1,
     'WeatherLink Live': 11,
     'WeatherLink Cloud (WLL/WLC)': 19,
     'WeatherLink Cloud (VP2)': 20,
-    'Binary Local API (Legacy)': 12,
-    'Cloud': 18,
-    'HTTP Sender': 14,
+    '{{STN_ECO_BINARY}}': 12,
+    'Ecowitt.net Cloud': 18,
+    'HTTP Local API': 22,
+    'HTTP (Ecowitt)': 14,
     'HTTP (Wunderground)': 13,
     'HTTP (Ambient)': 15,
     'Tempest': 16,
-    'JSON Data Input': 21,
+    '{{STN_JSON_DATA}}': 21,
     'Fine Offset': 5,
-    'Fine Offset with Solar Sensor': 7,
-    'EasyWeather': 4,
+    '{{STN_FO_SOLAR}}': 7,
+    '{{STN_EW_FILE}}': 4,
     'Instromet': 10,
     'LaCrosse WS2300': 6,
     'WMR100': 8,
@@ -462,16 +487,16 @@ let allStations = {
 };
 
 
-let davisStations = {'Select Station Type...': -1, 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
-let ewStations = {'Select Station Type...': -1, 'FineOffset': 5, 'FineOffset with Solar Sensor': 7, 'EasyWeather File': 4};
-let oregonStations = {'Select Station Type...': -1, 'WMR-928': 2, 'WMR-918': 3};
+let davisStations = {'{{SELECT_STATION_TYPE}}': -1, 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
+let ewStations = {'{{SELECT_STATION_TYPE}}': -1, 'FineOffset': 5, '{{STN_FO_SOLAR}}': 7, '{{STN_EW_FILE}}': 4};
+let oregonStations = {'{{SELECT_STATION_TYPE}}': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
-let oregonUsbStations = {'Select Station Type...': -1 , 'WMR200': 9, 'WMR100': 8};
+let oregonUsbStations = {'{{SELECT_STATION_TYPE}}': -1 , 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'Binary Local API (Legacy)': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
-let httpStations = {'HTTP Sender (WUnderground format)': 13};
-let ambientStations = {'HTTP Sender (Ambient format)': 15};
+let ecowittStations = {'{{SELECT_STATION_TYPE}}': -1, 'HTTP Local API': 22, '{{STN_ECO_BINARY}}': 12, 'HTTP (Ecowitt)': 14, 'Ecowitt.net Cloud': 18};
+let httpStations = {'HTTP (WUnderground)': 13};
+let ambientStations = {'HTTP (Ambient)': 15};
 let weatherflowStations = {'Tempest': 16};
-let simStations = {'Simulated Station': 17};
-let jsonStations = {'JSON data input Station': 21};
+let simStations = {'{{STN_SIMULATED}}': 17};
+let jsonStations = {'{{STN_JSON_DATA}}': 21};
 

@@ -1,4 +1,4 @@
-// Last modified: 2024/11/24 17:31:37
+// Last modified: 2025/08/11 11:50:53
 
 $(document).ready(function() {
     $.ajax({
@@ -308,6 +308,16 @@ function updateAlarms() {
                     Email       : $('#firmwareEmail').prop('checked'),
                     Latches     : $('#firmwareLatches').prop('checked'),
                     LatchHrs    : $('#firmwareLatchHrs').val()
+                },
+                genError: {
+                    Enabled     : $('#genErrorEnabled').prop('checked'),
+                    SoundEnabled: $('#genErrorSoundEnabled').prop('checked'),
+                    Sound       : $('#genErrorSound').val(),
+                    Action      : $('#genErrorAction').val(),
+                    ActionParams: $('#genErrorActionParams').val(),
+                    Bsky        : $('#genErrorBsky').val(),
+                    Notify      : $('#genErrorNotify').prop('checked'),
+                    Email       : $('#genErrorEmail').prop('checked')
                 }
             },
             email: {
@@ -318,7 +328,7 @@ function updateAlarms() {
             }
         })
     }).done(function () {
-        alert('Settings updated');
+        alert('{{SETTINGS_UPDATED}}');
     }).fail(function (jqXHR, textStatus) {
         alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
     });

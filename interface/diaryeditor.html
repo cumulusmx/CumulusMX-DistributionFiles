@@ -1,11 +1,11 @@
 <!--
-Last modified: 2025/04/12 11:11:05
+Last modified: 2025/08/10 18:12:15
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Diary editor - Cumulus MX</title>
+    <title>{{DIARY_EDITOR}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -68,7 +68,7 @@ Last modified: 2025/04/12 11:11:05
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Diary Editor</h1>
+        <h1>{{DIARY_EDITOR}}</h1>
         <div class="row">
             <div class="col-md-12">
                 <div id="datepicker" style="display: flex; align-items: center; justify-content: center;" aria-label="Date picker"></div>
@@ -81,79 +81,79 @@ Last modified: 2025/04/12 11:11:05
                 <form class="form-horizontal" id="rainform">
 
                     <div class="form-group">
-                        <label for="selectedDate" class="control-label col-xs-2">Selected Date</label>
+                        <label for="selectedDate" class="control-label col-xs-2">{{SELECTED_DATE}}</label>
                         <div class="col-xs-10">
                             <div id="selectedDate" style="padding-top: 7px; font-weight: bold;"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputTime" class="control-label col-xs-2">Time</label>
+                        <label for="inputTime" class="control-label col-xs-2">{{TIME}}</label>
                         <div class="col-xs-10">
                             <input type="time" class="form-control" id="inputTime" style="width: 120px">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputComment" class="control-label col-xs-2">Comments</label>
+                        <label for="inputComment" class="control-label col-xs-2">{{COMMENTS}}</label>
                         <div class="col-xs-10">
                             <input type="text" class="form-control" id="inputComment" style="height: 70px" placeholder="Blank">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputSnow24h" id="snow24hLabel" class="control-label col-xs-2">Snow Fall in last 24 hours</label>
+                        <label for="inputSnow24h" id="snow24hLabel" class="control-label col-xs-2">{{SNOWFALL_LAST_24_HOURS}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputSnow24h" min="0" step="0.1" style="width: 120px" placeholder="null">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputSnowDepth" id="snowDepthLabel" class="control-label col-xs-2">Snow Depth</label>
+                        <label for="inputSnowDepth" id="snowDepthLabel" class="control-label col-xs-2">{{SNOW_DEPTH}}</label>
                         <div class="col-xs-10">
                             <input type="number" class="form-control" id="inputSnowDepth" min="0" step="0.1" style="width: 120px" placeholder="null">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputThunder" class="control-label col-xs-2">Thunder</label>
+                        <label for="inputThunder" class="control-label col-xs-2">{{THUNDER}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="form-control" style="box-shadow: none !important;" id="inputThunder">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputHail" class="control-label col-xs-2">Hail</label>
+                        <label for="inputHail" class="control-label col-xs-2">{{HAIL}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="form-control" style="box-shadow: none !important;" id="inputHail">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputFog" class="control-label col-xs-2">Fog</label>
+                        <label for="inputFog" class="control-label col-xs-2">{{FOG}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="form-control" style="box-shadow: none !important;" id="inputFog">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputGales" class="control-label col-xs-2">Gales</label>
+                        <label for="inputGales" class="control-label col-xs-2">{{GALES}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="form-control" style="box-shadow: none !important;" id="inputGales">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
-                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="applyEntry()">Apply</button>
-                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="deleteEntry()">Delete</button>
-                            <a href="api/data/diaryexport.txt" download><button class="btn btn-primary" form="diaryform" >Export All</button></a>
-                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="uploadFile()">Upload File</button>
+                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="applyEntry()">{{APPLY_CHANGES}}</button>
+                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="deleteEntry()">{{DELETE}}</button>
+                            <a href="api/data/diaryexport.txt" download><button class="btn btn-primary" form="diaryform" >{{EXPORT_ALL}}</button></a>
+                            <button type="submit" class="btn btn-primary" form="diaryform" onclick="uploadFile()">{{UPLOAD_FILE}}</button>
                             <input type="file" style="display: inline-block;" id="upFile" placeholder="Upload file name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="automated" id="automatedLabel" class="control-label col-xs-2">Automated readings</label>
+                        <label for="automated" id="automatedLabel" class="control-label col-xs-2">{{AUTOMATED_READINGS}}</label>
                         <div class="col-xs-10">
                             <select class="form-control" id="automated" style="width: 170px">
-                                <option value="0">Disabled</option>
-                                <option value="1">Laser Depth #1</option>
-                                <option value="2">Laser Depth #2</option>
-                                <option value="3">Laser Depth #3</option>
-                                <option value="4">Laser Depth #4</option>
+                                <option value="0">{{DISABLED}}</option>
+                                <option value="1">{{LASER_DEPTH}} #1</option>
+                                <option value="2">{{LASER_DEPTH}} #2</option>
+                                <option value="3">{{LASER_DEPTH}} #3</option>
+                                <option value="4">{{LASER_DEPTH}} #4</option>
                             </select>
-                            Adds an automated reading to the database from the above sensor at the snow reading time. This only creates the record if a manual record has not already been created.
+                            {{AUTOMATED_READINGS_DESC}}
                         </div>
                     </div>
                     <div class="form-group">

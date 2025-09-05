@@ -1,0 +1,23 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:35",
+    "SERVER_NAME": "Server Name",
+    "SERVER_NAME_HELP1": "Your MQTT Server network name or IP address",
+    "SERVER_PORT": "Server port",
+    "SERVER_POR_HELP1": "Your MQTT server port (default 1883)",
+    "USERNAME": "Username",
+    "USERNAME_HELP1": "Enter your MQTT server username - if required",
+    "PASSWORD": "Password",
+    "PASSWORD_HELP1": "Enter your MQTT server password - if required",
+    "TLS_ENABLE": "Enable TLS",
+    "TLS_HELP1": "Enable TLS support, currently special certificates are not supported",
+    "IP_VERSION": "IP Version",
+    "IP_VERSION_HELP": "Select the IP version to use for the connection",
+    "IP_VERSION_OPT1": "Auto - attempt to detect the correct version",
+    "IP_VERSION_OPT2": "Force IPv4",
+    "IP_VERSION_OPT3": "Force IPv6",
+    "PROTOCOL_VERSION": "Protocol Version",
+    "PROTOCOL_VERSION_HELP1": "Select the MQTT protocol version to use for the connection",
+    "ON_DATA_UPDATE": "Messages are sent when the data updates",
+    "TEMPLATE_FILE": "Template File",
+    "TEMPLATE_FILE_HELP1": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages"
+}

@@ -1,4 +1,4 @@
-// Last modified: 2025/02/06 16:11:01
+// Last modified: 2025/08/11 11:51:38
 
 let accessMode;
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
                         buttons: {
                             // don't use the Submit button because that is disabled on validation errors
                             validate: {
-                                title: 'Save Settings',
+                                title: '{{SAVE_SETTINGS}}',
                                 click: function() {
                                     this.refreshValidationState(true);
                                     if (this.isValid(true)) {

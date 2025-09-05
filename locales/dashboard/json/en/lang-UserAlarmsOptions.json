@@ -1,0 +1,21 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:30",
+    "ENABLED": "Enabled",
+    "ALARM_NAME": "Alarm Name",
+    "MY_ALARM": "My alarm name",
+    "WEB_TAGS": "Web tag(s)",
+    "TYPE": "Type",
+    "ABOVE": "Above",
+    "BELOW": "Below",
+    "EQUALS": "Equals",
+    "VALUE": "Value",
+    "EMAIL": "Email",
+    "EMAIL_MESSAGE": "Email message",
+    "MY_EMAIL": "Greenhouse temp is low = {0}",
+    "BLUESKY_TEMPLATE": "Bluesky Template file",
+    "LATCH": "Latch",
+    "LATCH_HOURS": "Latch Hours",
+    "ACTION": "Action",
+    "ACTION_PARAMS": "Action Params",
+    "FORM_ACTIONS": "Form actions"
+}

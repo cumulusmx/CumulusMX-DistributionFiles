@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2024/11/30 10:59:16
+ Last modified: 2025/08/16 23:10:47
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -15,70 +15,70 @@
 
 let menu = '';
 let menuSrc = [
-	{title: "Dashboard", menu: "b", label: "Dashboard",         url: "index.html"},
-	{title: "Now",       menu: "b", label: "Live tabular data", url: "now.html"},
-	{title: "Gauges",    menu: "b", label: "Gauges",            url: "gauges.html"},
-	{title: "Charts",    menu: "b", submenu: true, label: "Charts sub-menu", items: [
-		{title: "Recent Charts",         menu: "b", label: "Recent charts",         url: "charts.html"},
-		{title: "Recent Select-a-Chart", menu: "b", label: "Recent selected data charts", url: "chartscompare.html"},
-		{title: "Select-a-Period",       menu: "b", label: "Selected period charts",       url: "chartsperiod.html"},
-		{title: "Daily Charts",          menu: "b", label: "Daily charts",          url: "chartshistoric.html"}
+	{title: "{{MENU_DASHBOARD}}", menu: "b", label: "{{MENU_DASHBOARD}}", url: "index.html"},
+	{title: "{{NOW}}",       menu: "b", label: "{{MENU_NOW_LABEL}}", url: "now.html"},
+	{title: "{{MENU_GAUGES}}",    menu: "b", label: "{{MENU_GAUGES}}",    url: "gauges.html"},
+	{title: "{{MENU_CHARTS}}",    menu: "b", submenu: true, label: "Charts sub-menu", items: [
+		{title: "{{MENU_CHARTS_RECENT}}",       menu: "b", label: "{{MENU_CHARTS_RECENT}}",             url: "charts.html"},
+		{title: "{{MENU_CHARTS_SELECTACHART}}", menu: "b", label: "{{MENU_CHARTS_SELECTACHART_LABEL}}", url: "chartscompare.html"},
+		{title: "{{MENU_CHARTS_SELECTAPERIOD}}",menu: "b", label: "{{MENU_CHARTS_SELECTAPERIOD_LABEL}}",url: "chartsperiod.html"},
+		{title: "{{MENU_CHARTS_DAILY}}",        menu: "b", label: "{{MENU_CHARTS_DAILY_LABEL}}",        url: "chartshistoric.html"}
 	]},
-	{title: "Today/Yesterday", menu: "b", label: "Todays and yesterdays data", url: "todayyest.html"},
-	{title: "Records", submenu: true, label: "Records sub-menu", items: [
-		{title: "Records",          menu: "b", label: "All time records",    url: "records.html"},
-		{title: "This Period",      menu: "b", label: "Selected period records", url: "thisperiod.html"},
-		{title: "Daily Data Query", menu: "b", label: "Daily data query",    url: "querydayfile.html"}
+	{title: "{{MENU_TODAYYEST}}", menu: "b", label: "{{MENU_TODAYYEST_LABEL}}", url: "todayyest.html"},
+	{title: "{{RECORDS}}", submenu: true, label: "{{MENU_RECORDS_LABEL}}", items: [
+		{title: "{{RECORDS}}",                 menu: "b", label: "{{MENU_RECORDS_ALLTIME_LABEL}}",url: "records.html"},
+		{title: "{{MENU_RECORDS_PERIOD}}",     menu: "b", label: "{{MENU_RECORDS_PERIOD_LABEL}}", url: "thisperiod.html"},
+		{title: "{{MENU_RECORDS_DAILY_DATA}}", menu: "b", label: "{{MENU_RECORDS_DAILY_DATA}}",   url: "querydayfile.html"}
 	]},
-	{title: "Extra sensors", submenu: true, label:"Extra sensors sub-menu", items: [
-		{title: "Extra sensors",   menu: "b", label: "Extra sensors",   url: "extra.html"},
-		{title: "AirLink sensors", menu: "b", label: "Airlink sensors", url: "airlink.html"}
+	{title: "{{EXTRA_SENSORS}}", submenu: true, label:"{{MENU_EXTRA_LABEL}}", items: [
+		{title: "{{EXTRA_SENSORS}}",   menu: "b", label: "{{EXTRA_SENSORS}}",   url: "extra.html"},
+		{title: "{{AIRLINK_SENSORS}}", menu: "b", label: "{{AIRLINK_SENSORS}}", url: "airlink.html"}
 	]},
-	{title: "Data logs", submenu: true, label: "Data logs sub-menu", items: [
-		{title: "Monthly logs",        menu: "b", label: "Monthly logs viewer editor",      url: "datalogs.html"},
-		{title: "Extra data logs",     menu: "b", label: "Extra data logs viewer editor",   url: "extradatalogs.html"},
-		{title: "Dayfile",             menu: "b", label: "Dayfile viewer editor",           url: "dayfileviewer.html"},
-		{title: "Interval data viewer",menu: "b", label: "Interval data log viewer editor", url: "intervaldata.html"},
-		{title: "Daily data viewer",   menu: "b", label: "Daily data viewer",               url: "dailydata.html"}
+	{title: "{{MENU_LOGS}}", submenu: true, label: "{{MENU_LOGS_LABEL}}", items: [
+		{title: "{{MONTHLY_DATA_LOGS}}", menu: "b", label: "{{MENU_LOGS_MONTHLY_LABEL}}",      url: "datalogs.html"},
+		{title: "{{MENU_LOGS_EXTRA}}",   menu: "b", label: "{{EXTRA_DATALOGS_VIEWER_EDITOR}}", url: "extradatalogs.html"},
+		{title: "{{DAYFILE}}",           menu: "b", label: "{{DAYFIILE_VIEWER/EDITOR}}",       url: "dayfileviewer.html"},
+		{title: "{{MENU_LOGS_INTERVAL}}",menu: "b", label: "{{MENU_LOGS_INTERVAL}}",           url: "intervaldata.html"},
+		{title: "{{MENU_LOGS_DAILY}}",   menu: "b", label: "{{MENU_LOGS_DAILY}}",              url: "dailydata.html"}
 	]},
-	{title: "Reports", submenu: true, label: "Reports sub-menu", items: [
-		{title: "NOAA Month Report", menu: "b", label: "NOAA monthly reports", url: "noaamonthreport.html"},
-		{title: "NOAA Year Report",  menu: "b", label: "NOAA annual reports",  url: "noaayearreport.html"}
+	{title: "{{REPORTS}}", submenu: true, label: "{{MENU_REPORTS_LABEL}}", items: [
+		{title: "{{NOAA_MONTHLY_REPORT}}", menu: "b", label: "{{NOAA_MONTHLY_REPORT}}", url: "noaamonthreport.html"},
+		{title: "{{NOAA_YEARLY_REPORT}}",  menu: "b", label: "{{NOAA_YEARLY_REPORT}}",  url: "noaayearreport.html"}
 	]},
-	{title: "Settings", submenu: true, label: "Settings sub-menu", items: [
-		{title: "Config Wizard",        menu: "b",  label: "Configuration wizard",  url: "wizard.html"},
-		{title: "Program settings",     menu: "b",  label: "Program settings",      url: "programsettings.html"},
-		{title: "Station settings",     menu: "b",  label: "Station settings",      url: "stationsettings.html"},
-		{title: "Internet settings",    menu: "b",  label: "Internet settings",     url: "internetsettings.html"},
-		{title: "Third party uploads",  menu: "b",  label: "Third party uploads",   url: "thirdpartysettings.html"},
-		{title: "Extra sensors",        menu: "b",  label: "Extra sensors",         url: "extrasensorsettings.html"},
-		{title: "Extra web files",      menu: "b",  label: "Extra web files",       url: "extrawebfiles.html"},
-		{title: "HTTP files",           menu: "b",  label: "HTTP files",            url: "httpfiles.html"},
-		{title: "Calibration settings", menu: "b",  label: "Calibration settings",  url: "calibrationsettings.html"},
-		{title: "NOAA settings",        menu: "b",  label: "NOAA settings",         url: "noaasettings.html"},
-		{title: "MySQL settings",       menu: "b",  label: "MySQL settings",        url: "mysqlsettings.html"},
-		{title: "MQTT settings",        menu: "b",  label: "MQTT settings",         url: "mqttsettings.html"},
-		{title: "Alarms",               menu: "b",  label: "Alarm settings",        url: "alarmsettings.html"},
-		{title: "User defined Alarms",  menu: "b",  label: "User defined alarm settings", url: "useralarms.html"},
-		{title: "Custom logs",          menu: "b",  label: "Custom log settings",   url: "customlogs.html"},
-		{title: "Display options",      menu: "b",  label: "Data display settings", url: "display.html"},
-		{title: "Locale strings",       menu: "b",  label: "String localisations",  url: "locale.html"}
+	{title: "{{SETTINGS}}", submenu: true, label: "{{MENU_SETTINGS_LABEL}}", items: [
+		{title: "{{MENU_CONFIG_WIZARD}}",    menu: "b",  label: "{{MENU_CONFIG_WIZARD}}",    url: "wizard.html"},
+		{title: "{{PROGRAM_SETTINGS}}",      menu: "b",  label: "{{PROGRAM_SETTINGS}}",      url: "programsettings.html"},
+		{title: "{{STATION_SETTINGS}}",      menu: "b",  label: "{{STATION_SETTINGS}}",      url: "stationsettings.html"},
+		{title: "{{INTERNET_SETTINGS}}",     menu: "b",  label: "{{INTERNET_SETTINGS}}",     url: "internetsettings.html"},
+		{title: "{{MENU_THIRD_PARTY}}",      menu: "b",  label: "{{MENU_THIRD_PARTY}}",      url: "thirdpartysettings.html"},
+		{title: "{{EXTRA_SENSORS}}",         menu: "b",  label: "{{EXTRA_SENSORS}}",         url: "extrasensorsettings.html"},
+		{title: "{{EXTRA_WEB_FILES}}",       menu: "b",  label: "{{EXTRA_WEB_FILES}}",       url: "extrawebfiles.html"},
+		{title: "{{MENU_HTTP}}",             menu: "b",  label: "{{MENU_HTTP}}",             url: "httpfiles.html"},
+		{title: "{{CALIB_SETTINGS}}",        menu: "b",  label: "{{CALIB_SETTINGS}}",        url: "calibrationsettings.html"},
+		{title: "{{NOAA_SETTINGS}}",         menu: "b",  label: "{{NOAA_SETTINGS}}",         url: "noaasettings.html"},
+		{title: "{{MYSQL_SETTINGS}}",        menu: "b",  label: "{{MYSQL_SETTINGS}}",  	     url: "mysqlsettings.html"},
+		{title: "{{MQTT_SETTINGS}}",         menu: "b",  label: "{{MQTT_SETTINGS}}",         url: "mqttsettings.html"},
+		{title: "{{MENU_ALARMS}}",           menu: "b",  label: "{{ALARM_SETTINGS}}",        url: "alarmsettings.html"},
+		{title: "{{MENU_USER_ALARMS}}",      menu: "b",  label: "{{MENU_USER_ALARMS}}",      url: "useralarms.html"},
+		{title: "{{MENU_CUSTOM_LOGS}}",      menu: "b",  label: "{{MENU_CUSTOM_LOGS}}",      url: "customlogs.html"},
+		{title: "{{DISPLAY_OPTIONS}}",       menu: "b",  label: "{{DISPLAY_OPTIONS}}",       url: "display.html"},
+		{title: "{{LOCALE_STRINGS}}",        menu: "b",  label: "{{LOCALE_STRINGS}}",        url: "locale.html"}
 	]},
-	{title: "Edit",      submenu: true,  label: "Editors sub-menu",    items: [
-		{title: "Today's rain",         menu: "b",  label: "Today's rain",         url: "raintodayeditor.html"},
-		{title: "Weather Diary",        menu: "b",  label: "Weather diary",        url: "diaryeditor.html"},
-		{title: "Current Conditions",   menu: "b",  label: "Current conditions",   url: "currentcondeditor.html"},
-		{title: "All Time Records",     menu: "b",  label: "All-time records",     url: "alltimerecseditor.html"},
-		{title: "Monthly Records",      menu: "b",  label: "Monthly records",      url: "monthlyrecseditor.html"},
-		{title: "This Month's Records", menu: "b",  label: "This month's records", url: "thismonthrecseditor.html"},
-		{title: "This Year's Records",  menu: "b",  label: "This year's records",  url: "thisyearrecseditor.html"}
+	{title: "{{MENU_EDITORS}}",      submenu: true,  label: "{{MENU_EDITORS_LABEL}}",    items: [
+		{title: "{{MENU_TODAYS_RAIN}}",   menu: "b",  label: "{{MENU_TODAYS_RAIN}}",   url: "raintodayeditor.html"},
+		{title: "{{MENU_WEATHER_DIARY}}", menu: "b",  label: "{{MENU_WEATHER_DIARY}}", url: "diaryeditor.html"},
+		{title: "{{CURRENT_CONDITIONS}}", menu: "b",  label: "{{CURRENT_CONDITIONS}}", url: "currentcondeditor.html"},
+		{title: "{{MENU_ALL_TIME}}",      menu: "b",  label: "{{MENU_ALL_TIME}}",      url: "alltimerecseditor.html"},
+		{title: "{{MENU_MONTHLY}}",       menu: "b",  label: "{{MENU_MONTHLY}}",       url: "monthlyrecseditor.html"},
+		{title: "{{MENU_THIS_MONTH}}",    menu: "b",  label: "{{MENU_THIS_MONTH}}",    url: "thismonthrecseditor.html"},
+		{title: "{{MENU_THIS_YEAR}}",     menu: "b",  label: "{MENU_THIS_YEAR}",       url: "thisyearrecseditor.html"}
 	]},
-	{title: "Utils",     submenu: true,  label: "Utilities sub-menu",   items:[
-		{title: "Reload Dayfile",   menu: "b",  label: "Reload the dayfile",       url: "util_reloaddayfile.html"},
-		{title: "Upload/Copy Now!", menu: "b",  label: "Upload or copy files now", url: "util_ftpnow.html"},
-		{title: "Purge MySQL",      menu: "b",  label: "Purge MySQL upload queue", url: "util_purgemysql.html"},
-		{title: "Latest Errors",    menu: "b",  label: "Show the latest errors",   url: "util_errorlog.html"},
-		{title: "Alternative Interface", menu: "b", label: "Alternative interface",   url: "ai2/index.html"}
+	{title: "{{MENU_UTILS}}",     submenu: true,  label: "{{MENU_UTILS_LABEL}}",   items:[
+		{title: "{{RELOAD_DAYFILE}}",     menu: "b", label: "{{RELOAD_DAYFILE}}",     url: "util_reloaddayfile.html"},
+		{title: "{{UPLOAD_NOW}}",         menu: "b", label: "{{MENU_UPLOAD_LABEL}}",  url: "util_ftpnow.html"},
+		{title: "{{MENU_PURGE_MYSQL}}",   menu: "b", label: "{{PURGE_CACHED_MYSQL}}", url: "util_purgemysql.html"},
+		{title: "{{LATEST_ERRORS}}",      menu: "b", label: "{{LATEST_ERRORS}}",      url: "util_errorlog.html"},
+		{title: "{{MENU_ALT_INTERFACE}}", menu: "b", label: "{{MENU_ALT_INTERFACE}}", url: "ai2/index.html"}
 	]}
 ];
 

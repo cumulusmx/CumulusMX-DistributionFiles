@@ -1,8 +1,11 @@
-// Last modified: 2025/06/03 22:46:42
+// Last modified: 2025/08/22 19:03:44
 
 $(document).ready(function () {
     let stationNameValidated = false;
     let stationTypeValidated = false;
+    let StashedDavisStationId = -1; // used to store the last selected Davis station id
+    let StashedDavisUuid = ''; // used to store the last selected Davis station uuid
+
 
     $('form').alpaca({
         dataSource: '/api/settings/wizard.json',
@@ -11,8 +14,8 @@ $(document).ready(function () {
         view: {
             parent: 'bootstrap-edit-horizontal',
             wizard: {
-                title: 'Welcome to the Wizard',
-                description: 'Please fill things in as you wish',
+                title: '{{WIZARD_TITLE}}',
+                description: '{{WIZARD_DESC}}',
                 bindings: {
                     location: 1,
                     units: 2,
@@ -22,30 +25,30 @@ $(document).ready(function () {
                     website: 6
                 },
                 steps: [{
-                    title: 'Location',
-                    description: 'Geographic Information'
+                    title: '{{LOCATION}}',
+                    description: '{{LOCATION_DESC}}'
                 }, {
-                    title: 'Units',
-                    description: 'Temperature Wind etc'
+                    title: '{{UNITS}}',
+                    description: '{{UNITS_DESC}}'
                 }, {
-                    title: 'Station',
-                    description: 'Setup your PWS'
+                    title: '{{WEATHER_STATION}}',
+                    description: '{{WEATHER_STATION_DESC}}'
                 }, {
-                    title: 'Logging',
-                    description: 'Logging intervals'
+                    title: '{{DATA_LOGGING}}',
+                    description: '{{DATA_LOGGING_DESC}}'
                 }, {
-                    title: 'Internet',
-                    description: 'Configure web hosting'
+                    title: '{{INTERNET_SETTINGS}}',
+                    description: '{{INTERNET_SETTINGS_DESC}}'
                 }, {
-                    title: 'Actions',
-                    description: 'Enable interval actions'
+                    title: '{{ACTIONS}}',
+                    description: '{{ACTIONS_DESC}}'
                 }],
                 showSteps: true,
                 showProgressBar: false,
                 validation: true,
                 buttons: {
                     submit: {
-                        title: 'All Done!',
+                        title: '{{ALL_DONE}}',
                         validate: function(callback) {
                             console.log('Submit validate()');
                             callback(true);
@@ -54,6 +57,34 @@ $(document).ready(function () {
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
+                                // If the station is Davis WLL or Cloud, check the station id and uuid
+                                let stationId = this.getControlByPath('station/stationid').getValue();
+                                if (stationId == 11 || stationId == 19 || stationId == 20) {
+                                    let davisObj;
+
+                                    if (stationId == 11) {
+                                        davisObj = this.getControlByPath('station/daviswll');
+                                    } else {
+                                        davisObj = this.getControlByPath('station/daviscloud');
+                                    }
+
+                                    let apiStationId = davisObj.getControlByPath('api/apiStationId').getValue();
+                                    let apiStationUuid = davisObj.getControlByPath('api/apiStationUuid').getValue();
+
+                                    if (apiStationId != StashedDavisStationId && apiStationUuid == StashedDavisUuid && StashedDavisUuid != '') {
+                                        // If the station id has changed, but the uuid is the same, blank the uuid
+                                        davisObj.getControlByPath('api/apiStationUuid').setValue('');
+                                        StashedDavisStationId = apiStationId;
+                                        alert('You have changed the Davis station id, but not the UUID. The uuid has been cleared.');
+                                    }
+                                    if (apiStationId == StashedDavisStationId && apiStationUuid != StashedDavisUuid && StashedDavisStationId != -1) {
+                                        // If the station id is the same, but the uuid has changed, blank the station id
+                                        davisObj.getControlByPath('api/apiStationId').setValue(-1);
+                                        StashedDavisUuid = apiStationUuid;
+                                        alert('You have changed the Davis station UUID, but not the station id. The station id has been cleared.');
+                                    }
+                                }
+
                                 let json = this.getValue();
 
                                 $.ajax({
@@ -63,7 +94,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings saved. You can now restart Cumulus MX');
+                                    alert('{{SETTINGS_CHANGED_RESTART}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -72,7 +103,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -97,7 +128,7 @@ $(document).ready(function () {
                                 if (value == '' && stationNameValidated) {
                                     callback({
                                         status: false,
-                                        message: 'Please enter a station name'
+                                        message: '{{PLEASE_ENTER_STATION_NAME}}'
                                     });
                                 } else if (stationNameValidated == false) {
                                     stationNameValidated = true;
@@ -120,7 +151,7 @@ $(document).ready(function () {
                                 if (isNaN(newVal)) {
                                     callback({
                                         status: false,
-                                        message: 'Please enter a valid decimal value'
+                                        message: '{{PLEASE_ENTER_VALID_DECIMAL}}'
                                     });
                                 } else {
                                     if (newVal > -90 && newVal < 90) {
@@ -131,7 +162,7 @@ $(document).ready(function () {
                                     } else {
                                         callback({
                                             status: false,
-                                            message: 'Please enter a value between -90.0 and +90.0 degrees'
+                                            message: '{{PLEASE_ENTER_VALUE_90_90_DEGREES}}'
                                         });
                                     }
                                 }
@@ -145,7 +176,7 @@ $(document).ready(function () {
                                 if (isNaN(newVal)) {
                                     callback({
                                         status: false,
-                                        message: 'Please enter a valid decimal value'
+                                        message: '{{PLEASE_ENTER_VALID_DECIMAL}}'
                                     });
                                 } else {
                                     if (newVal >= -180 && newVal <= 180) {
@@ -156,7 +187,7 @@ $(document).ready(function () {
                                     } else {
                                         callback({
                                             status: false,
-                                            message: 'Please enter a value between -180.0 and +180.0 degrees'
+                                            message: '{{PLEASE_ENTER_VALUE_180_180_DEGREES}}'
                                         });
                                     }
                                 }
@@ -172,7 +203,7 @@ $(document).ready(function () {
                                 if (value == '-1' && stationTypeValidated) {
                                     callback({
                                         status: false,
-                                        message: 'Please select a station type'
+                                        message: '{{PLEASE_SELECT_STATION_TYPE}}'
                                     });
                                 } else {
                                     stationTypeValidated = true;
@@ -190,7 +221,7 @@ $(document).ready(function () {
                                         if (value && !/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                             callback({
                                                 status: false,
-                                                message: 'That is not a valid MAC address!'
+                                                message: '{{NOT_VALID_MAC}}'
                                             });
                                             return;
                                         }
@@ -218,7 +249,7 @@ $(document).ready(function () {
                                                 } else {
                                                     callback({
                                                         status: false,
-                                                        message: 'That is not a valid IMEI!'
+                                                        message: '{{NOT_VALID_EMEI}}'
                                                     });
                                                 }
                                                 return;
@@ -227,7 +258,7 @@ $(document).ready(function () {
                                             if (!/^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$/.test(value)) {
                                                 callback({
                                                     status: false,
-                                                    message: 'That is not a valid MAC address!'
+                                                    message: '{{NOT_VALID_MAC}}'
                                                 });
                                                 return;
                                             }
@@ -244,7 +275,7 @@ $(document).ready(function () {
                                             if (!/^[A-F0-9]{30,35}$/.test(value)) {
                                                 callback({
                                                     status: false,
-                                                    message: 'That is not a valid Application Key!'
+                                                    message: '{{NOT_VALID_APP_KEY}}'
                                                 });
                                                 return;
                                             }
@@ -261,7 +292,7 @@ $(document).ready(function () {
                                             if (!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(value)) {
                                                 callback({
                                                     status: false,
-                                                    message: 'That is not a valid API Key!'
+                                                    message: '{{NOT_VALID_API_KEY}}'
                                                 });
                                                 return;
                                             }
@@ -285,7 +316,7 @@ $(document).ready(function () {
                                         if (!/^.*[\/\\\\\\\\]{1}$/.test(value)) {
                                             callback({
                                                 status: false,
-                                                message: 'The path must end with a path delimiter [\\ or /]'
+                                                message: '{{PATH_MUST_END_WITH_DELIM}}'
                                             });
                                             return;
                                         }
@@ -319,6 +350,9 @@ $(document).ready(function () {
             // get the initial states - in case we are re-running the wizard
             let intState = siteIntEnabled.getValue();
             let rtmState = siteRtEnabled.getValue();
+
+            StashedDavisStationId = form.getControlByPath('station/daviswll/api/apiStationId').getValue();
+            StashedDavisUuid = form.getControlByPath('station/daviswll/api/apiStationUuid').getValue();
 
             siteIntFtp.setValue(webState);
             siteIntFtp.options.disabled = !webState;
@@ -499,7 +533,7 @@ function setStationOptions(callback) {
 
     if (form === null) {
         //return '{}';
-        callback({'Select Station Type...': -1});
+        callback({'{{SELECT_STATION_TYPE}}': -1});
     }
     let manufacturer = parseInt(form.getControlByPath('station/manufacturer').getValue(), 10);
     if (isNaN(manufacturer)) {
@@ -543,7 +577,7 @@ function setStationOptions(callback) {
             callback(jsonStations);
             break;
         default:
-            callback({'Select Station Type...': -1});
+            callback({'{{SELECT_STATION_TYPE}}': -1});
             break;
     }
 
@@ -566,23 +600,24 @@ function setDavisStationTitle(that, val) {
 }
 
 let allStations = {
-    'Select Station Type': -1,
-    'PWS Simulator': 17,
+    ' {{SELECT_STATION_TYPE}}': -1,
+    '{{STN_SIMULATED}}': 17,
     'Vantage Pro': 0,
     'Vantage Pro2/Vue': 1,
     'WeatherLink Live': 11,
     'WeatherLink Cloud (WLL/WLC)': 19,
     'WeatherLink Cloud (VP2)': 20,
-    'Binary Local API (Legacy)': 12,
-    'Cloud': 18,
-    'HTTP Sender': 14,
+    '{{STN_ECO_BINARY}}': 12,
+    'Ecowitt.net Cloud': 18,
+    'HTTP Local API': 22,
+    'HTTP (Ecowitt)': 14,
     'HTTP (Wunderground)': 13,
     'HTTP (Ambient)': 15,
     'Tempest': 16,
-    'JSON Data Input': 21,
+    '{{STN_JSON_DATA}}': 21,
     'Fine Offset': 5,
-    'Fine Offset with Solar Sensor': 7,
-    'EasyWeather': 4,
+    '{{STN_FO_SOLAR}}': 7,
+    '{{STN_EW_FILE}}': 4,
     'Instromet': 10,
     'LaCrosse WS2300': 6,
     'WMR100': 8,
@@ -591,15 +626,15 @@ let allStations = {
     'WMR-928': 2
 };
 
-let davisStations = {'Select Station Type...': -1 , 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
-let ewStations = {'Select Station Type...': -1, 'FineOffset': 5, 'FineOffset with Solar Sensor': 7, 'EasyWeather File': 4};
-let oregonStations = {'Select Station Type...': -1, 'WMR-928': 2, 'WMR-918': 3};
+let davisStations = {'{{SELECT_STATION_TYPE}}': -1 , 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
+let ewStations = {'{{SELECT_STATION_TYPE}}': -1, 'FineOffset': 5, '{{STN_FO_SOLAR}}': 7, '{{STN_EW_FILE}}': 4};
+let oregonStations = {'{{SELECT_STATION_TYPE}}': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
-let oregonUsbStations = {'Select Station Type...': -1, 'WMR200': 9, 'WMR100': 8};
+let oregonUsbStations = {'{{SELECT_STATION_TYPE}}': -1, 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'Select Station Type...': -1, 'HTTP Local API': 22, 'Binary Local API (Legacy)': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
-let httpStations = {'HTTP Sender (WUnderground format)': 13};
-let ambientStations = {'HTTP Sender (Ambient format)': 15};
+let ecowittStations = {'{{SELECT_STATION_TYPE}}': -1, 'HTTP Local API': 22, '{{STN_ECO_BINARY}}': 12, 'HTTP Custom Sender': 14, 'Ecowitt.net Cloud': 18};
+let httpStations = {'HTTP (WUnderground format)': 13};
+let ambientStations = {'HTTP (Ambient format)': 15};
 let weatherflowStations = {'Tempest': 16};
-let simStations = {'Simulated Station': 17};
-let jsonStations = {'JSON data input Station': 21};
+let simStations = {'{{STN_SIMULATED}}': 17};
+let jsonStations = {'{{STN_JSON_DATA}}': 21};

@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2025/01/22 10:05:37
+    Last Updated: 2025/09/02 00:12:00
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -19,7 +19,8 @@
         "rainfall": "mm|in",
         "pressure": "hPa|kPa|inHg",
         "soilmoisture": "cb|%",
-        "laserdist": "mm|cm|in"
+        "laserdist": "mm|cm|in",
+        "lightning": "km|mi"
     },
     // Last time the data was updated - Unix timestamp (seconds)
     "lastupdated": 9999999999,      // int
@@ -136,5 +137,10 @@
         //,{
         // etc ...
         //}
-    ]
+    ],
+    "lightning": {
+        "time": 1756437320, // Unix timestamp (seconds)
+        "strikes": 1,       // int
+        "distance": 99.9    // float
+    }
 }

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/12/16 17:08:56",
+	"version": "Last Modified: 2025/08/18 20:56:51",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -9,7 +9,7 @@
 			"items": {
 				"fields": {
 					"Enabled": {
-						"label": "Enabled"
+						"label": "{{ENABLED}}"
 					},
 					"Url": {
 						"type": "text",
@@ -19,26 +19,26 @@
 					},
 					"Remote": {
 						"type": "text",
-						"label": "Destination Filename",
+						"label": "{{DESTINATION_FILENAME}}",
 						"cols": 40,
 						"placeholder": "web/someimage.png"
 					},
 					"Interval": {
 						"type": "select",
-						"label": "Download Interval",
+						"label": "{{DOWNLOAD_INTERVAL}}",
 						"optionLabels": ["1 min","2 mins","5 mins","10 mins","15 mins","20 mins","30 mins","1 hr","2 hrs","3 hrs","4 hrs","6 hrs","8 hrs","12 hrs","24 hrs"],
 						"sort": false,
 						"removeDefaultNone": true
 					},
 					"Upload": {
-						"label": "Upload Enabled"
+						"label": "{{UPLOAD_ENABLED}}"
 					},
 					"Timed": {
-						"label": "Timed Downloads"
+						"label": "{{TIMED_DOWNLOADS}}"
 					},
 					"StartTimeStr": {
 						"type": "time",
-						"label": "Time of first download of the day",
+						"label": "{{FIRST_DOWNLOAD_TIME}}",
 						"dateFormat": "HH:mm",
 						"placeholder": "00:00"
 					}

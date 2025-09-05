@@ -1,0 +1,9 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:17",
+    "ENABLED": "Enabled",
+    "DESTINATION_FILENAME": "Destination Filename",
+    "DOWNLOAD_INTERVAL": "Download Interval",
+    "UPLOAD_ENABLED": "Upload Enabled",
+    "TIMED_DOWNLOADS": "Timed Downloads",
+    "FIRST_DOWNLOAD_TIME": "Time of first download of the day"
+}

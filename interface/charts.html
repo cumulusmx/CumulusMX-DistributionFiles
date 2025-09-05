@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:08:07
+Last modified: 2025/08/10 16:30:46
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Charts - Cumulus MX</title>
+    <title>{{CHARTS}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -23,12 +23,13 @@ Last modified: 2024/11/23 15:08:07
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Highcharts -->
-    <script src="https://code.highcharts.com/stock/10.3.3/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/10.3.3/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/10.3.3/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/10.3.3/modules/accessibility.js"></script>
-    <script src="https://code.highcharts.com/10.3.3/modules/boost.js"></script>
-    <script src="https://code.highcharts.com/10.3.3/themes/grid.js"></script>
+    <script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
+    <script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
+
 
     <link href="css/cumulus.css" rel="stylesheet">
     <script src="js/charts.js"></script>
@@ -69,25 +70,25 @@ Last modified: 2024/11/23 15:08:07
         <div class="text-center">
             <div class="btn-group"  id="btngroup" data-toggle="buttons">
                 <select id="mySelect" aria-label="select data type for graph" style="font-size:1.15em">
-                    <option value="temp" selected>Temperature</option>
-                    <option value="dailytemp">Daily Temperature</option>
-                    <option value="press">Pressure</option>
-                    <option value="wind">Wind Speed</option>
-                    <option value="windDir">Wind Direction</option>
-                    <option value="humidity">Humidity</option>
-                    <option value="rain">Rainfall</option>
-                    <option value="dailyrain">Daily Rain</option>
-                    <option value="solar">Solar</option>
-                    <option value="sunhours">Sunshine Hours</option>
-                    <option value="airquality">Air Quality</option>
-                    <option value="extratemp">Extra Temperature</option>
-                    <option value="extrahum">Extra Humidity</option>
-                    <option value="extradew">Extra Dew Point</option>
-                    <option value="soiltemp">Soil Temperature</option>
-                    <option value="soilmoist">Soil Moisture</option>
-                    <option value="leafwet">Leaf Wetness</option>
-                    <option value="usertemp">User Temperature</option>
-                    <option value="co2">CO&#8322; Sensor</option>
+                    <option value="temp" selected>{{TEMPERATURE}}</option>
+                    <option value="dailytemp">{{DAILY_TEMPERATURE}}</option>
+                    <option value="press">{{PRESSURE}}</option>
+                    <option value="wind">{{WIND_SPEED}}</option>
+                    <option value="windDir">{{WIND_DIRECTION}}</option>
+                    <option value="humidity">{{HUMIDITY}}</option>
+                    <option value="rain">{{RAINFALL}}</option>
+                    <option value="dailyrain">{{DAILY_RAIN}}</option>
+                    <option value="solar">{{SOLAR}}</option>
+                    <option value="sunhours">{{SUNSHINE_HOURS}}</option>
+                    <option value="airquality">{{AIR_QUALITY}}</option>
+                    <option value="extratemp">{{EXTRA_TEMPERATURE}}</option>
+                    <option value="extrahum">{{EXTRA_HUMIDITY}}</option>
+                    <option value="extradew">{{EXTRA_DEW_POINT}}</option>
+                    <option value="soiltemp">{{SOIL_TEMPERATURE}}</option>
+                    <option value="soilmoist">{{SOIL_MOISTURE}}</option>
+                    <option value="leafwet">{{LEAF_WETNESS}}</option>
+                    <option value="usertemp">{{USER_TEMPERATURE}}</option>
+                    <option value="co2">{{CO2_SENSOR}}</option>
                 </select>
             </div>
         </div>

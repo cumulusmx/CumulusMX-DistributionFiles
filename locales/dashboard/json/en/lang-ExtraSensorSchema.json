@@ -1,0 +1,20 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:13",
+    "AQ_SETTINGS": "Air Quality Settings",
+    "DAVIS_AIRLINK": "Davis AirLink",
+    "AIRLINK_IN": "Indoor AirLink",
+    "AIRLINK_OUT": "Outdoor AirLink",
+    "PA_SENSORS": "Purple Air Sensors",
+    "SENSOR": "Sensor",
+    "SENSORS": "Sensors",
+    "USE_SECOND_STATION": "Use a Second Station for Extra Sensors",
+    "ECOWITT_CLOUD_API": "Ecowitt Cloud Access API",
+    "HTTP_FORWARDERS": "HTTP Forwarders",
+    "FORWARDING_URLS": "Forwarding URLs",
+    "JSON_STATION": "JSON Station",
+    "ADVANCED_SETTINGS": "Advanced Settings",
+    "BLAKE_LARSEN": "Blake-Larsen Sunshine recorder",
+    "LASER_SENSOR_OPTIONS": "Laser Sensor Options",
+    "RG11_DEVICE": "Hydreon RG-11 rain device(s)",
+    "DEVICE": "Device"
+}

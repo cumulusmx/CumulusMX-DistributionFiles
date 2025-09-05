@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:07:33
+Last modified: 2025/08/10 18:18:45
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Current conditions editor - Cumulus MX</title>
+    <title>{{CURRENT_CONDITIONS}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -102,12 +102,12 @@ Last modified: 2024/11/23 15:07:33
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Current Conditions</h1>
+        <h1>{{CURRENT_CONDITIONS}}</h1>
         <div class="row">
             <div class="col-md-12">
-                <label for="inputCurrCond">Text to display - Note new lines will be replaced by spaces</label>
+                <label for="inputCurrCond">{{CURRENT_CONDITIONS_DESC}}</label>
                 <textarea wrap="hard" id="inputCurrCond" class="form-control" style="height: 120px;"></textarea>
-                <button type="button" class="btn btn-default" id="apply-button" onclick="applyEntry()" style="margin:10px;">Apply</button>
+                <button type="button" class="btn btn-default" id="apply-button" onclick="applyEntry()" style="margin:10px;">{{APPLY_CHANGES}}</button>
             </div>
         </div>
     </div>

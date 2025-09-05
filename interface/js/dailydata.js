@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2024/10/29 10:33:22
+// Last modified: 2025/08/11 16:20:44
 
 var fromDate, toDate;
 
@@ -36,27 +36,27 @@ $(document).ready(function () {
 
         if (dataVisibility.temperature.Temp > 0) {
             tempBoxes.append($('<input>', { type: 'checkbox', id: '6' }))
-                .append($('<label>', { for: '6', class: 'mylabel', html: 'Max Temperature' }))
+                .append($('<label>', { for: '6', class: 'mylabel', html: '{{TEMP_MAX}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '7' }))
-                .append($('<label>', { for: '7', class: 'mylabel', html: 'Max Temperature Time' }))
+                .append($('<label>', { for: '7', class: 'mylabel', html: '{{TEMP_MAX_TIME}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '4' }))
-                .append($('<label>', { for: '4', class: 'mylabel', html: 'Min Temperature' }))
+                .append($('<label>', { for: '4', class: 'mylabel', html: '{{TEMP_MIN}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '5' }))
-                .append($('<label>', { for: '5', class: 'mylabel', html: 'Min Temperature Time' }))
+                .append($('<label>', { for: '5', class: 'mylabel', html: '{{TEMP_MIN_TIME}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '15' }))
-                .append($('<label>', { for: '15', class: 'mylabel', html: 'Avg Temperature' }))
+                .append($('<label>', { for: '15', class: 'mylabel', html: '{{TEMP_AVG}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '52' }))
-                .append($('<label>', { for: '52', class: 'mylabel', html: 'Chill Hours' }));
+                .append($('<label>', { for: '52', class: 'mylabel', html: '{{CHILL_HOURS}}' }));
         }
 
         if (tempBoxes.children().length > 0) {
             let tempBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'my-title', text: 'Temperature' }))
+                .append($('<div>', { class: 'my-title', text: '{{TEMPERATURE}}' }))
                 .append(tempBoxes);
             group++;
             rows[row].append($('<div>', { class: 'col-md-3' }).append(tempBlock));
@@ -66,21 +66,21 @@ $(document).ready(function () {
         let humBoxes = $('<div>');
         if (dataVisibility.humidity.Hum > 0) {
             humBoxes.append($('<input>', { type: 'checkbox', id: '21' }))
-                .append($('<label>', { for: '21', class: 'mylabel', html: 'High Humidity' }))
+                .append($('<label>', { for: '21', class: 'mylabel', html: '{{HIGH_HUMIDITY}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '22' }))
-                .append($('<label>', { for: '22', class: 'mylabel', html: 'High Humidity Time' }))
+                .append($('<label>', { for: '22', class: 'mylabel', html: '{{HIGH_HUMIDITY_TIME}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '19' }))
-                .append($('<label>', { for: '19', class: 'mylabel', html: 'Low Humidity' }))
+                .append($('<label>', { for: '19', class: 'mylabel', html: '{{LOW_HUMIDITY}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '20' }))
-                .append($('<label>', { for: '20', class: 'mylabel', html: 'Min Humidity Time' }));
+                .append($('<label>', { for: '20', class: 'mylabel', html: '{{LOW_HUMIDITY_TIME}}' }));
         }
 
         if (humBoxes.children().length > 0) {
             let humBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'my-title', text: 'Humidity' }))
+                .append($('<div>', { class: 'my-title', text: '{{LOW_HUMIDITY_TIME}}' }))
                 .append(humBoxes);
             group++;
             rows[row].append($('<div>', { class: 'col-md-3' }).append(humBlock));
@@ -88,75 +88,75 @@ $(document).ready(function () {
 
         // pressure
         let pressBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'my-title', text: 'Atmospheric Pressure' }))
+            .append($('<div>', { class: 'my-title', text: '{{PRESSURE}}' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '10' }))
-            .append($('<label>', { for: '10', class: 'mylabel', html: 'Max Pressure' }))
+            .append($('<label>', { for: '10', class: 'mylabel', html: '{{HIGH_PRESSURE}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '11' }))
-            .append($('<label>', { for: '11', class: 'mylabel', html: 'Max Pressure Time' }))
+            .append($('<label>', { for: '11', class: 'mylabel', html: '{{HIGH_PRESSURE_TIME}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '8' }))
-            .append($('<label>', { for: '8', class: 'mylabel', html: 'Min Pressure' }))
+            .append($('<label>', { for: '8', class: 'mylabel', html: '{{LOW_PRESSURE}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
-            .append($('<label>', { for: '9', class: 'mylabel', html: 'Min Pressure Time' }));
+            .append($('<label>', { for: '9', class: 'mylabel', html: '{{LOW_PRESSURE_TIME}}' }));
 
         group++;
         rows[row].append($('<div>', { class: 'col-md-3' }).append(pressBlock));
 
         // wind data
         let windBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'my-title', text: 'Wind' }))
+            .append($('<div>', { class: 'my-title', text: '{{WIND}}' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '1' }))
-            .append($('<label>', { for: '1', class: 'mylabel', html: 'High Gust' }))
+            .append($('<label>', { for: '1', class: 'mylabel', html: '{{HIGH_GUST_SPEED}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '3' }))
-            .append($('<label>', { for: '3', class: 'mylabel', html: 'High Gust Time' }))
+            .append($('<label>', { for: '3', class: 'mylabel', html: '{{HIGH_GUST_TIME}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '2' }))
-            .append($('<label>', { for: '2', class: 'mylabel', html: 'High Gust Bearing' }))
+            .append($('<label>', { for: '2', class: 'mylabel', html: '{{HIGH_GUST_BEARING}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '17' }))
-            .append($('<label>', { for: '17', class: 'mylabel', html: 'High Average Speed' }))
+            .append($('<label>', { for: '17', class: 'mylabel', html: '{{HIGH_WIND_SPEED}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '18' }))
-            .append($('<label>', { for: '18', class: 'mylabel', html: 'High Average Speed Time' }))
+            .append($('<label>', { for: '18', class: 'mylabel', html: '{{HIGH_WIND_SPEED_TIME}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '39' }))
-            .append($('<label>', { for: '39', class: 'mylabel', html: 'Dominant Direction' }))
+            .append($('<label>', { for: '39', class: 'mylabel', html: '{{DOMINANT_DIRECTION}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
-            .append($('<label>', { for: '16', class: 'mylabel', html: 'Wind Run' }));
+            .append($('<label>', { for: '16', class: 'mylabel', html: '{{WIND_RUN}}' }));
 
         group++;
         rows[row].append($('<div>', { class: 'col-md-3' }).append(windBlock));
 
         // rainfall
         let rainBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'my-title', text: 'Rainfall' }))
+            .append($('<div>', { class: 'my-title', text: '{{RAINFALL}}' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '12' }))
-            .append($('<label>', { for: '12', class: 'mylabel', html: 'Max Rainfall Rate' }))
+            .append($('<label>', { for: '12', class: 'mylabel', html: '{{HIGH_RAIN_RATE}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '13' }))
-            .append($('<label>', { for: '13', class: 'mylabel', html: 'Max Rainfall Rate Time' }))
+            .append($('<label>', { for: '13', class: 'mylabel', html: '{{HIGH_RAIN_RATE_TIME}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '14' }))
-            .append($('<label>', { for: '14', class: 'mylabel', html: 'Total Rainfall' }))
+            .append($('<label>', { for: '14', class: 'mylabel', html: '{{DAILY_RAINFALL}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '31' }))
-            .append($('<label>', { for: '31', class: 'mylabel', html: 'High Rainfall 1 Hour' }))
+            .append($('<label>', { for: '31', class: 'mylabel', html: '{{HIGH_RAINFALL_1HR}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '32' }))
-            .append($('<label>', { for: '32', class: 'mylabel', html: 'High Rainfall 1 Hour Time' }))
+            .append($('<label>', { for: '32', class: 'mylabel', html: '{{HIGH_RAINFALL_1HR_TIME}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '53' }))
-            .append($('<label>', { for: '53', class: 'mylabel', html: 'High Rainfall 24 Hours' }))
+            .append($('<label>', { for: '53', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
-            .append($('<label>', { for: '54', class: 'mylabel', html: 'High Rainfall 24 Hours Time' }));
+            .append($('<label>', { for: '54', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR_TIME}}' }));
 
         group++;
         if (group > 4) {
@@ -170,31 +170,31 @@ $(document).ready(function () {
         let solarBoxes = $('<div>');
         if (dataVisibility.solar.Solar > 0) {
             solarBoxes.append($('<input>', { type: 'checkbox', id: '42' }))
-                .append($('<label>', { for: '42', class: 'mylabel', html: 'High Solar Radiation' }))
+                .append($('<label>', { for: '42', class: 'mylabel', html: '{{HIGH_SOLAR_RADIATION}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '43' }))
-                .append($('<label>', { for: '43', class: 'mylabel', html: 'High Solar Radiation Time' }))
+                .append($('<label>', { for: '43', class: 'mylabel', html: '{{HIGH_SOLAR_RADIATION_TIME}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '23' }))
-                .append($('<label>', { for: '23', class: 'mylabel', html: 'Evapotranspiration' }))
+                .append($('<label>', { for: '23', class: 'mylabel', html: '{{EVAPOTRANSPIRATION}}' }))
                 .append($('<br>'));
         }
         if (dataVisibility.solar.UV > 0) {
             solarBoxes.append($('<input>', { type: 'checkbox', id: '44' }))
-                .append($('<label>', { for: '44', class: 'mylabel', html: 'High UV Index' }))
+                .append($('<label>', { for: '44', class: 'mylabel', html: '{{HIGH_UV_INDEX}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '45' }))
-                .append($('<label>', { for: '45', class: 'mylabel', html: 'High UV Index Time' }))
+                .append($('<label>', { for: '45', class: 'mylabel', html: '{{HIGH_UV_INDEX_TIME}}' }))
                 .append($('<br>'));
         }
         if (dataVisibility.solar.Sunshine > 0) {
             solarBoxes.append($('<input>', { type: 'checkbox', id: '24' }))
-                .append($('<label>', { for: '24', class: 'mylabel', html: 'Sunshine Hours' }));
+                .append($('<label>', { for: '24', class: 'mylabel', html: '{{SUNSHINE_HOURS}}' }));
         }
 
         if (solarBoxes.children().length > 0) {
             let solarBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'my-title', text: 'Solar' }))
+                .append($('<div>', { class: 'my-title', text: '{{SOLAR}}' }))
                 .append(solarBoxes);
             if (group > 4) {
                 row++;
@@ -207,72 +207,72 @@ $(document).ready(function () {
         // derived temperatures
         if (dataVisibility.temperature.DewPoint > 0 || dataVisibility.temperature.FeelsLike > 0 || dataVisibility.temperature.HeatIndex > 0 || dataVisibility.temperature.Humidex > 0 || dataVisibility.temperature.WindChill > 0) {
             let derivedTempBlock = $('<div>', { class: 'my-unit' })
-                .append($('<div>', { class: 'my-title', text: 'Dervied Temperature' }))
+                .append($('<div>', { class: 'my-title', text: '{{DERIVED_TEMPERATURES}}' }))
                 .append($('<div>'));
             if (dataVisibility.temperature.DewPoint > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '35' }))
-                    .append($('<label>', { for: '35', class: 'mylabel', html: 'High Dewpoint' }))
+                    .append($('<label>', { for: '35', class: 'mylabel', html: '{{HIGH_DEW_POINT}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '36' }))
-                    .append($('<label>', { for: '36', class: 'mylabel', html: 'High Dewpoint Time' }))
+                    .append($('<label>', { for: '36', class: 'mylabel', html: '{{HIGH_DEW_POINT_TIME}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '37' }))
-                    .append($('<label>', { for: '37', class: 'mylabel', html: 'Low Dewpoint' }))
+                    .append($('<label>', { for: '37', class: 'mylabel', html: '{{LOW_DEW_POINT}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '38' }))
-                    .append($('<label>', { for: '38', class: 'mylabel', html: 'Low Dewpoint Time' }))
+                    .append($('<label>', { for: '38', class: 'mylabel', html: '{{LOW_DEW_POINT_TIME}}' }))
                     .append($('<br>'));
             }
             if (dataVisibility.temperature.FeelsLike > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '46' }))
-                    .append($('<label>', { for: '46', class: 'mylabel', html: 'High Feels Like' }))
+                    .append($('<label>', { for: '46', class: 'mylabel', html: '{{HIGH_FEELS_LIKE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '47' }))
-                    .append($('<label>', { for: '47', class: 'mylabel', html: 'High Feels Like Time' }))
+                    .append($('<label>', { for: '47', class: 'mylabel', html: '{{HIGH_FEELS_LIKE_TIME}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '48' }))
-                    .append($('<label>', { for: '48', class: 'mylabel', html: 'Low Feels Like' }))
+                    .append($('<label>', { for: '48', class: 'mylabel', html: '{{LOW_FEELS_LIKE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '49' }))
-                    .append($('<label>', { for: '49', class: 'mylabel', html: 'Low Feels Like Time' }))
+                    .append($('<label>', { for: '49', class: 'mylabel', html: '{{LOW_FEELS_LIKE_TIME}}' }))
                     .append($('<br>'));
             }
             if (dataVisibility.temperature.HeatIndex > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '25' }))
-                    .append($('<label>', { for: '25', class: 'mylabel', html: 'High Heat Index' }))
+                    .append($('<label>', { for: '25', class: 'mylabel', html: '{{HIGH_HEAT_INDEX}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '26' }))
-                    .append($('<label>', { for: '26', class: 'mylabel', html: 'High Heat Index Time' }))
+                    .append($('<label>', { for: '26', class: 'mylabel', html: '{{HIGH_HEAT_INDEX_TIME}}' }))
                     .append($('<br>'));
             }
             if (dataVisibility.temperature.Humidex > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '50' }))
-                    .append($('<label>', { for: '50', class: 'mylabel', html: 'High Humidex' }))
+                    .append($('<label>', { for: '50', class: 'mylabel', html: '{{HIGH_HUMIDEX}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '51' }))
-                    .append($('<label>', { for: '51', class: 'mylabel', html: 'High Humidex Time' }))
+                    .append($('<label>', { for: '51', class: 'mylabel', html: '{{HIGH_HUMIDEX_TIME}}' }))
                     .append($('<br>'));
             }
             if (dataVisibility.temperature.WindChill > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '33' }))
-                    .append($('<label>', { for: '3', class: 'mylabel', html: 'Low Wind Chill' }))
+                    .append($('<label>', { for: '3', class: 'mylabel', html: '{{LOW_WIND_CHILL}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '34' }))
-                    .append($('<label>', { for: '34', class: 'mylabel', html: 'Low Wind Chill Time' }))
+                    .append($('<label>', { for: '34', class: 'mylabel', html: '{{LOW_WIND_CHILL_TIME}}' }))
                     .append($('<br>'));
             }
             if (dataVisibility.temperature.AppTemp > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '27' }))
-                    .append($('<label>', { for: '27', class: 'mylabel', html: 'High Apparent' }))
+                    .append($('<label>', { for: '27', class: 'mylabel', html: '{{HIGH_APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '28' }))
-                    .append($('<label>', { for: '28', class: 'mylabel', html: 'High Apparent Time' }))
+                    .append($('<label>', { for: '28', class: 'mylabel', html: '{{HIGH_APPARENT_TEMPERATURE_TIME}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '29' }))
-                    .append($('<label>', { for: '29', class: 'mylabel', html: 'Low Apparent' }))
+                    .append($('<label>', { for: '29', class: 'mylabel', html: '{{LOW_APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '30' }))
-                    .append($('<label>', { for: '30', class: 'mylabel', html: 'Low Apparent Time' }))
+                    .append($('<label>', { for: '30', class: 'mylabel', html: '{{LOW_APPARENT_TEMPERATURE_TIME}}' }))
             }
 
             group++;
@@ -286,13 +286,13 @@ $(document).ready(function () {
 
         // degree days
         let degreeDayBlock = $('<div>', { class: 'my-unit' })
-            .append($('<div>', { class: 'my-title', text: 'Degree Days' }))
+            .append($('<div>', { class: 'my-title', text: '{{DEGREE_DAYS}}' }))
             .append($('<div>'))
             .append($('<input>', { type: 'checkbox', id: '40' }))
-            .append($('<label>', { for: '40', class: 'mylabel', html: 'Heating Degree Days' }))
+            .append($('<label>', { for: '40', class: 'mylabel', html: '{{HEATING_DEGREE_DAYS}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '41' }))
-            .append($('<label>', { for: '41', class: 'mylabel', html: 'Cooling Degree Days' }));
+            .append($('<label>', { for: '41', class: 'mylabel', html: '{{COOLING_DEGREE_DAYS}}' }));
 
         if (group > 4) {
             row++;
@@ -417,7 +417,7 @@ function capitalizeFirstLetters(string) {
 function showData() {
     var url = createQuery();
     if (url == '') {
-        alert('No data types selected!');
+        alert('{{NO_DATATYPES_SELECTED}}');
     } else {
         $.ajax({
             url: url,
@@ -435,7 +435,7 @@ function showData() {
 function downloadData() {
     var url = createQuery();
     if (url == '') {
-        alert('No data types selected!');
+        alert('{{NO_DATATYPES_SELECTED}}');
     } else {
         $.ajax({
             url: url,
@@ -483,10 +483,10 @@ function createDataPage(result) {
     let w = window.open('', 'DailyData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
     let html = '';
     if (format == 'CSV') {
-        html = '<html><head><title>Daily Data Viewer</title></head>';
+        html = '<html><head><title>{{DAILY_DATA_VIEWER}}</title></head>';
         html += '<body>' + convertToCSV(result, true) + '</body></html>';
     } else {
-        html = '<html><head><title>Daily Data Viewer</title><style>table{border-collapse:collapse;}th,td{border:1px solid #ddd;padding:8px;text-align:center;}th{background-color:#f2f2f2;color:black;}tr:nth-child(even){background-color:#f9f9f9;}tr:hover{background-color:#ddd;}td{white-space:nowrap;}</style></head>';
+        html = '<html><head><title>{{DAILY_DATA_VIEWER}}</title><style>table{border-collapse:collapse;}th,td{border:1px solid #ddd;padding:8px;text-align:center;}th{background-color:#f2f2f2;color:black;}tr:nth-child(even){background-color:#f9f9f9;}tr:hover{background-color:#ddd;}td{white-space:nowrap;}</style></head>';
         html += '<body>' + makeTable(result) + '</body></html>';
     }
     w.document.open().write(html);

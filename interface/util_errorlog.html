@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:08:57
+Last modified: 2025/08/10 23:23:07
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Latest Errors - Cumulus MX</title>
+    <title>{{LATEST_ERRORS}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -123,17 +123,17 @@ Last modified: 2024/11/23 15:08:57
     </div>
     <!-- END NAVIGATION MENU -->
     <div class="container">
-        <h1>Latest Errors</h1>
+        <h1>{{LATEST_ERRORS}}</h1>
         <div id="xyz" class="row">
             <div class="col-md-12">
-                <div>Displays the latest errors recorded by Cumulus. The log content auto refreshes every 20 seconds.</div>
+                <div>{{LATEST_ERRORS_TEXT1}}</div>
                 <div class="myButton">
-                    <button type="button" class="btn btn-info" onclick="selectText()" aria-label="Select log text for copy">Select Log Text</button>
-                    <button type="button" class="btn btn-warning" onclick="clearLog()" aria-label="Clear the log entries">Clear the Log</button>
+                    <button type="button" class="btn btn-info" onclick="selectText()" aria-label="Select log text for copy">{{LATEST_ERRORS_SELECT}}</button>
+                    <button type="button" class="btn btn-warning" onclick="clearLog()" aria-label="Clear the log entries">{{LATEST_ERRORS_CLEAR}}</button>
                 </div>
             </div>
             <div class="col-md-12">
-                <pre id="logcontent" class="logcontent">Loading...</pre>
+                <pre id="logcontent" class="logcontent">{{LOADING}}</pre>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-// Last modified: 2025/04/24 11:27:47
+// Last modified: 2025/08/29 14:01:42
 
 // Configuration section
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -9,6 +9,8 @@ let alarmSettings = {};
 let alarmState = {};
 
 let playList = [];
+
+let timeFormat = {};
 
 $(document).ready(function () {
 
@@ -41,7 +43,7 @@ $(document).ready(function () {
         // Create and show the notification, or alert if notifications are not supported by the browser
 
         let img = '/img/logo30.png';
-        let title = 'Cumulus MX Alarm';
+        let title = '{{CUMULUS_MX_ALARM}}';
         if ((text.match(/\n/g)).length > 1) {
             title += 's';
         }
@@ -104,10 +106,9 @@ $(document).ready(function () {
 
     function formatTime() {
         let d = new Date();
-        let ampm = $('#LastDataRead').text().indexOf(' ') > -1
         let hr = d.getHours();
         let hrs = '';
-        if (ampm) {
+        if (timeFormat.hours == 12) {
             if (hr > 12) hr -= 12;
             if (hr === 0) hr = 12;
             hrs = '' + hr;
@@ -115,8 +116,8 @@ $(document).ready(function () {
             hrs = ('' + hr).padStart(2, '0');
         }
         let tim = hrs + ':' + ('' + d.getMinutes()).padStart(2, '0') + ':' + ('' + d.getSeconds()).padStart(2, '0')
-        if (ampm) {
-            tim += d.getHours() < 12 ? ' AM' : ' PM';
+        if (timeFormat.hours == 12) {
+            tim += ' ' + (d.getHours() < 12 ? timeFormat.am : timeFormat.pm);
         }
         return tim;
     }
@@ -231,7 +232,6 @@ $(document).ready(function () {
 
         gauges.processData(convertJson(data));
 
-        let lastupdatetime = new Date();
         $('#lastupdatetime').text(formatTime());
     }
 
@@ -415,6 +415,15 @@ $(document).ready(function () {
         $('#StationName').html(result.locationJsEnc);
     });
 
+    // get the preferred time format
+    $.ajax({
+        url: '/api/info/timeformat.json',
+        dataType: 'json'
+    })
+    .done(function (result) {
+        timeFormat = result;
+        ticktock();
+    });
 
     // Obtain the websockets port and open the connection
     $.ajax({
@@ -436,8 +445,6 @@ $(document).ready(function () {
             setInterval(doAjaxUpdate, updateInterval * 1000);
         }
     });
-
-    ticktock();
 
     // Calling ticktock() every 1 second
     setInterval(ticktock, 1000);

@@ -3,6 +3,7 @@
   "useApparent":"<#Option_useApparent>",
   "showSolar":"<#Option_showSolar>",
   "showUV":"<#Option_showUV>",
+  "showSnow":"<#Option_showSnow>",
   "noaaFormat":"<#Option_noaaFormat>"
 },
 
@@ -81,6 +82,8 @@
 "press":"<#press>",
 "presstrend":"<#presstrend>",
 "presstrendval":"<#presstrendval>",
+"snowdepth":"<#snowDepth>",
+"snow24h":"<#snow24h>",
 
 "tempTH":"<#tempTH>",
 "TtempTH":"<#TtempTH>",
@@ -446,5 +449,8 @@
 "pressL":"<#pressL>",
 "TpressL":"<#TpressL>",
 "pressH":"<#pressH>",
-"TpressH":"<#TpressH>"
+"TpressH":"<#TpressH>",
+
+"snowdepth":"<#snowdepth>",
+"snow24h":"<#snow24h>"
 }

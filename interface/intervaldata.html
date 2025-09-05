@@ -1,12 +1,12 @@
 <!--
 Created: 2024/08/13 10:24:51
-Last modified: 2024/11/23 15:12:00
+Last modified: 2025/08/19 19:19:24
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Interval Data Viewer - Cumulus MX</title>
+    <title>{{INTERVAL_DATA_VIEWER}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -90,25 +90,25 @@ Last modified: 2024/11/23 15:12:00
     <div id="container" class="container">
         <div class="row top-buffer">
             <div class="col-md-12">
-                <h1>Interval Data Viewer</h1>
+                <h1>{{INTERVAL_DATA_VIEWER}}</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="my-title">Date-Time Range</div>
+                <div class="my-title">{{DATE_TIME_RANGE}}</div>
                 <div class="cont">
-                    <label class="mylabel" for="dateFrom" aria-hidden="true">Start Time:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes">
-                    <label class="mylabel" for="dateTo" aria-hidden="true">End Time:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes">
+                    <label class="mylabel" for="dateFrom" aria-hidden="true">{{START_DATE}}:</label><input type="text" id="dateFrom" autocomplete="off" role="input" aria-label="Start date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes">
+                    <label class="mylabel" for="dateTo" aria-hidden="true">{{END_DATE}}:</label><input type="text" id="dateTo" autocomplete="off" role="input" aria-label="End date-time, input format is full year hyphen month hyphen day space 24-hours colon minutes">
                     <div>
                         <br>
-                        <label class="mylabel" for="format">Viewing format:</label>
+                        <label class="mylabel" for="format">{{VIEWING_FORMAT}}:</label>
                         <select id="format">
-                            <option>Table</option>
+                            <option>{{TABLE}}</option>
                             <option>CSV</option>
                         </select>
                         &nbsp;
-                        <button type="button" class="btn btn-default" onclick="showData()">View Data</button>
-                        <button type="button" class="btn btn-default" onclick="downloadData()">Download CSV</button>
+                        <button type="button" class="btn btn-default" onclick="showData()">{{VIEW_DATA}}</button>
+                        <button type="button" class="btn btn-default" onclick="downloadData()">{{DOWNLOAD_CSV}}</button>
                     </div>
                 </div>
             </div>

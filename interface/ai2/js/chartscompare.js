@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartscompare.js        Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit (MC): 2024/12/01 16:30:19
+    (MC) Last Edit: 2025/09/03 17:53:19
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartscompare.html
@@ -52,169 +52,182 @@ beaufortDesc = ['Calm','Light Air','Light breeze','Gentle breeze','Moderate bree
 $().ready(function () {
 
     // get all the required config data before we start using it
-    $.ajax({url: '/api/graphdata/availabledata.json', success: function (result1) {
-        $.ajax({url: '/api/graphdata/selectachart.json', success: function (result2) {
-            $.ajax({url: "/api/graphdata/graphconfig.json", success: function (result3) {
-                avail = result1;
-                settings = result2;
-                config = result3;
-                //  Configure for beaufort scale variations based on wind units
-           		switch(config.wind.units){
-                    case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
-                    case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
-                    case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
-                    case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
-                    default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
-                    // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
-                }
+    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
+    const settingsRes = $.ajax({ url: '/api/graphdata/selectachart.json', dataType: 'json' });
+    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
 
-                
-                // add the default select option
-                var option = $('<option />');
-                option.html(txtSelect);
-                option.val(0);
-                $('#data0').append(option.clone());
-                $('#data1').append(option.clone());
-                $('#data2').append(option.clone());
-                $('#data3').append(option.clone());
-                $('#data4').append(option.clone());
-                $('#data5').append(option);
+    Promise.all([availRes, settingsRes, configRes])
+    .then(function (results) {
+        avail = results[0];
+        settings = results[1];
+        config = results[2];
 
-                // then the real series options
-                for (var k in result1) {
-                    if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
-                        var optgrp = $('<optgroup />');
-                        optgrp.attr('label', k);
-                        result1[k].forEach(function (val) {
-                            var option = $('<option />');
-                            option.html(val);
-                            if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
-                                option.val(val);
-                            } else {
-                                option.val(k + '-' + val);
-                            }
-                            optgrp.append(option);
-                        });
-                        $('#data0').append(optgrp.clone());
-                        $('#data1').append(optgrp.clone());
-                        $('#data2').append(optgrp.clone());
-                        $('#data3').append(optgrp.clone());
-                        $('#data4').append(optgrp.clone());
-                        $('#data5').append(optgrp);
-                    }
-                }
+        //  Configure for beaufort scale variations based on wind units
+        switch(config.wind.units){
+            case 'mph':   beaufortScale = [ 1, 3, 7,12,18,24,31,38,46,54, 63, 72]; break;
+            case 'km/h':  beaufortScale = [ 2, 5,11,19,29,39,50,61,74,87,101,116]; break;
+            case 'm/s':   beaufortScale = [ 0, 0, 1, 1, 2, 3, 4, 5, 7,10, 12, 16]; break;
+            case 'knots': beaufortScale = [ 3, 6,10,16,21,27,33,40,47,55, 63, 65]; break;
+            default: 	  beaufortScale = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1];
+            // NOTE: Using -1 means the line will never be seen.  No line is drawn for Hurricane.
+        }
 
-                // add the chart theme colours
-                //console.log("Colours: " );
-                Highcharts.theme.colors.forEach(function(col, idx) {
-                    var option = $('<option style="background-color:' + col + '"/>');
-                    option.html(idx);
-                    option.val(col);
-                    $('#colour0').append(option.clone());
-                    $('#colour1').append(option.clone());
-                    $('#colour2').append(option.clone());
-                    $('#colour3').append(option.clone());
-                    $('#colour4').append(option.clone());
-                    $('#colour5').append(option);
-                });
+        // add the default select option
+        var option = $('<option />');
+        option.html(txtSelect);
+        option.val(0);
+        $('#data0').append(option.clone());
+        $('#data1').append(option.clone());
+        $('#data2').append(option.clone());
+        $('#data3').append(option.clone());
+        $('#data4').append(option.clone());
+        $('#data5').append(option);
 
-                // Draw the basic chart
-                freezing = config.temp.units === 'C' ? 0 : 32;
-                frostTemp = config.temp.units === 'C' ? 4 : 39;
-                var options = {
-                    chart: {
-                        renderTo: 'chartcontainer',
-                        type: 'spline',
-                        zoomType: 'x',
-                        alignTicks: true
-                    },
-                    title: {text: 'Recent Data Select-a-Chart'},
-                    credits: {enabled: true},
-                    xAxis: {
-                        type: 'datetime',
-                        ordinal: false,
-                        dateTimeLabelFormats: {
-                            day: '%e %b',
-                            week: '%e %b %y',
-                            month: '%b %y',
-                            year: '%Y'
-                        }
-                    },
-                    yAxis: [],
-                    legend: {enabled: true},
-                    plotOptions: {
-                        series: {
-                            dataGrouping: {
-                                enabled: false
-                            },
-                            states: {
-                                hover: {
-                                    halo: {
-                                        size: 5,
-                                        opacity: 0.25
-                                    }
-                                }
-                            },
-                            cursor: 'pointer',
-                            marker: {
-                                enabled: false,
-                                states: {
-                                    hover: {
-                                        enabled: true,
-                                        radius: 0.1
-                                    }
-                                }
-                            }
-                        },
-                        line: {lineWidth: 2}
-                    },
-                    lang: {
-                        noData: 'Please select some data to display'
-                    },
-                    noData: {
-                        style: { fontWeight: 'bold',
-                            fontSize: '20px',
-                            color: '#FF3030'
-                        }
-                    },
-                    tooltip: {
-                        shared: true,
-                        split: false,
-                        useHTML: true,
-                        className:'cmxToolTip',
-                        headerFormat: myTooltipHead,
-                        pointFormat: myTooltipPoint,
-                        footerFormat: '</table>',
-                        xDateFormat: '%A, %b %e, %H:%M'
-                    },
-                    series: [],
-                    rangeSelector: myRanges
-                };
-
-                // draw the basic chart framework
-                chart = new Highcharts.StockChart(options);
-
-                // Set the dropdowns to defaults or previous values
-                for (var i = 0; i < 6; i++) {
-                    if (settings.colours[i] == '' || settings.colours[i] == null) {
-                        $('#colour' + i).css('background', chart.options.colors[i]);
-                        $('#colour' + i).val(chart.options.colors[i]);
-                        settings.colours[i] = chart.options.colors[i];
+        // then the real series options
+        for (var k in settings) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2'].indexOf(k) === -1) {
+                var optgrp = $('<optgroup />');
+                optgrp.attr('label', k);
+                settings[k].forEach(function (val) {
+                    var option = $('<option />');
+                    option.html(val);
+                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
+                        option.val(val);
                     } else {
-                        $('#colour' + i).css('background', settings.colours[i]);
-                        $('#colour' + i).val(settings.colours[i]);
+                        option.val(k + '-' + val);
                     }
-                    if (settings.series[i] != '0') {
-                        // This series has some data associated with it
-                        $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
-                        $('#data' + i).val(settings.series[i]);
-                        // Draw it on the chart
-                        updateChart(settings.series[i], i, 'data' + i);
-                    }
+                    optgrp.append(option);
+                });
+                $('#data0').append(optgrp.clone());
+                $('#data1').append(optgrp.clone());
+                $('#data2').append(optgrp.clone());
+                $('#data3').append(optgrp.clone());
+                $('#data4').append(optgrp.clone());
+                $('#data5').append(optgrp);
+            }
+        }
+
+        // add the chart theme colours
+        //console.log("Colours: " );
+        Highcharts.theme.colors.forEach(function(col, idx) {
+            var option = $('<option style="background-color:' + col + '"/>');
+            option.html(idx);
+            option.val(col);
+            $('#colour0').append(option.clone());
+            $('#colour1').append(option.clone());
+            $('#colour2').append(option.clone());
+            $('#colour3').append(option.clone());
+            $('#colour4').append(option.clone());
+            $('#colour5').append(option);
+        });
+
+        Highcharts.setOptions({
+            time: {
+                timezone: config.tz
+            },
+            chart: {
+                style: {
+                    fontSize: '1rem'
                 }
-            }});
-        }});
-    }});
+            }
+        });
+
+
+        // Draw the basic chart
+        freezing = config.temp.units === 'C' ? 0 : 32;
+        frostTemp = config.temp.units === 'C' ? 4 : 39;
+        var options = {
+            chart: {
+                renderTo: 'chartcontainer',
+                type: 'spline',
+                zoomType: 'x',
+                alignTicks: true
+            },
+            title: {text: 'Recent Data Select-a-Chart'},
+            credits: {enabled: true},
+            xAxis: {
+                type: 'datetime',
+                ordinal: false,
+                dateTimeLabelFormats: {
+                    day: '%e %b',
+                    week: '%e %b %y',
+                    month: '%b %y',
+                    year: '%Y'
+                }
+            },
+            yAxis: [],
+            legend: {enabled: true},
+            plotOptions: {
+                series: {
+                    dataGrouping: {
+                        enabled: false
+                    },
+                    states: {
+                        hover: {
+                            halo: {
+                                size: 5,
+                                opacity: 0.25
+                            }
+                        }
+                    },
+                    cursor: 'pointer',
+                    marker: {
+                        enabled: false,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 0.1
+                            }
+                        }
+                    }
+                },
+                line: {lineWidth: 2}
+            },
+            lang: {
+                noData: 'Please select some data to display'
+            },
+            noData: {
+                style: { fontWeight: 'bold',
+                    fontSize: '20px',
+                    color: '#FF3030'
+                }
+            },
+            tooltip: {
+                shared: true,
+                split: false,
+                useHTML: true,
+                className:'cmxToolTip',
+                headerFormat: myTooltipHead,
+                pointFormat: myTooltipPoint,
+                footerFormat: '</table>',
+                xDateFormat: '%A, %b %e, %H:%M'
+            },
+            series: [],
+            rangeSelector: myRanges
+        };
+
+        // draw the basic chart framework
+        chart = new Highcharts.StockChart(options);
+
+        // Set the dropdowns to defaults or previous values
+        for (var i = 0; i < 6; i++) {
+            if (settings.colours[i] == '' || settings.colours[i] == null) {
+                $('#colour' + i).css('background', chart.options.colors[i]);
+                $('#colour' + i).val(chart.options.colors[i]);
+                settings.colours[i] = chart.options.colors[i];
+            } else {
+                $('#colour' + i).css('background', settings.colours[i]);
+                $('#colour' + i).val(settings.colours[i]);
+            }
+            if (settings.series[i] != '0') {
+                // This series has some data associated with it
+                $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
+                $('#data' + i).val(settings.series[i]);
+                // Draw it on the chart
+                updateChart(settings.series[i], i, 'data' + i);
+            }
+        }
+    });
 });
 
 
@@ -438,10 +451,7 @@ var clearSeries = function (val) {
 
     // check the navigator - have we just removed the series it was using, and is there at least one series we can use instead?
     if (!chart.navigator.hasNavigatorData && chart.series.length > 0 ) {
-        chart.series[0].setOptions({showInNavigator: true});
-        chart.navigator.baseSeries = chart.series[0];
-        chart.navigator.update();
-        chart.redraw();
+        chart.series[0].update({showInNavigator: true}, true);
     }
 }
 

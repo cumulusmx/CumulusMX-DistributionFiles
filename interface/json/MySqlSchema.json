@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/03/12 10:47:03",
+	"version": "Last Modified: 2025/08/29 12:25:36",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -7,7 +7,7 @@
 		},
 		"server": {
 			"type": "object",
-			"title": "Server details",
+			"title": "{{SERVER_DETAILS}}",
 			"properties": {
 				"host": {
 				},
@@ -21,12 +21,26 @@
 				"pass": {
 				},
 				"database": {
+				},
+				"advanced": {
+					"type": "object",
+					"title": "{{ADVANCED_OPTIONS}}",
+					"properties": {
+						"sslMode": {
+							"enum": [0,1,2]
+						},
+						"tlsVers": {
+						}
+					},
+					"dependencies": {
+						"tlsVers": ["sslMode"]
+					}
 				}
 			}
 		},
 		"options": {
 			"type": "object",
-			"title": "General Options",
+			"title": "{{GENERAL_OPTIONS}}",
 			"properties": {
 				"updateonedit": {
 					"type": "boolean"
@@ -38,7 +52,7 @@
 		},
 		"realtime": {
 			"type": "object",
-			"title": "Realtime.txt upload",
+			"title": "{{REALTIME_UPLOAD}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -73,7 +87,7 @@
 		},
 		"dayfile": {
 			"type": "object",
-			"title": "Dayfile.txt upload",
+			"title": "{{DAYFILE_UPLOAD}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -87,7 +101,7 @@
 		},
 		"monthly": {
 			"type": "object",
-			"title": "Monthly log file upload",
+			"title": "{{MONTHLY_UPLOAD}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -101,7 +115,7 @@
 		},
 		"customseconds": {
 			"type": "object",
-			"title": "Custom upload - seconds interval",
+			"title": "{{CUST_UPLOADS_SECS}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -122,7 +136,7 @@
 		},
 		"customminutes": {
 			"type": "object",
-			"title": "Custom upload - minutes interval",
+			"title": "{{CUST_UPLOADS_MINS}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -137,7 +151,7 @@
 								"type": "string"
 							},
 							"intervalidx": {
-								"label": "Interval:",
+								"label": "{{INTERVAL}}:",
 								"enum": [0,1,2,3,4,5,6,7,8,9,10,11],
 								"removeDefaultNone": true,
 								"sort": false
@@ -155,7 +169,7 @@
 		},
 		"customrollover": {
 			"type": "object",
-			"title": "Custom upload - at rollover",
+			"title": "{{CUST_UPLOADS_ROLLOVER}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -172,7 +186,7 @@
 		},
 		"customtimed": {
 			"type": "object",
-			"title": "Custom upload - Timed",
+			"title": "{{CUST_UPLOADS_TIMED}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"
@@ -184,22 +198,22 @@
 						"type": "object",
 						"properties": {
 							"command": {
-								"title": "SQL",
+								"title": "{{SQL}}",
 								"type": "string",
 								"required": true
 							},
 							"starttimestr": {
-								"title": "Time to run",
+								"title": "{{TIME_TO_RUN}}",
 								"type": "string",
 								"format": "time",
 								"required": true
 							},
 							"repeat": {
-								"title": "Repeat at intervals",
+								"title": "{{REPEAT_AT_INTERVALS}}",
 								"type": "boolean"
 							},
 							"interval": {
-								"title": "Repeat Interval",
+								"title": "{{REPEAT_INTERVAL}}",
 								"type": "number",
 								"enum": [1,2,5,10,15,20,30,60,120,180,240,360,480,720]
 							}
@@ -216,7 +230,7 @@
 		},
 		"customstart": {
 			"type": "object",
-			"title": "Custom upload - Start-up",
+			"title": "{{CUST_UPLOADS_STARTUP}}",
 			"properties": {
 				"enabled": {
 					"type": "boolean"

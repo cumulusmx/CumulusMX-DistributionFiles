@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:08:29
+Last modified: 2025/08/10 23:08:11
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Reload Dayfile - Cumulus MX</title>
+    <title>{{RELOAD_DAYFILE}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -72,17 +72,17 @@ Last modified: 2024/11/23 15:08:29
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Reload Dayfile</h1>
+        <h1>{{RELOAD_DAYFILE}}</h1>
         <div class="row">
             <div class="col-md-12">
-                <div><b>Force a reload of the Dayfile back into CMX memory</b></div>
-                <div>You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart it to perform the reload.</div>
+                <div><b>{{RELOAD_DAYFILE_TEXT1}}</b></div>
+                <div>{{RELOAD_DAYFILE_TEXT2}}</div>
                 <br>
                 <div>
-                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">Reload Dayfile</button>
+                    <button type="submit" class="btn btn-primary" id="reload" form="ftpform">{{RELOAD_DAYFILE}}</button>
                 </div>
                 <br>
-                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+                <div><p>{{STATUS}}: <span id="status" style="height: 70px; font-weight: bold"></span></div>
             </div>
         </div>
     </div>

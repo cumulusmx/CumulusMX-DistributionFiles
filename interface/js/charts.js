@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 10:11:47
+// Last modified: 2025/09/03 16:08:35
 
 var chart, config, doSelect;
 
@@ -6,75 +6,125 @@ var myRanges = {
     buttons: [{
         count: 12,
         type: 'hour',
-        text: '12h'
+        text: '{{TIME_12H}}'
     }, {
         count: 24,
         type: 'hour',
-        text: '24h'
+        text: '{{TIME_24H}}'
     }, {
         count: 2,
         type: 'day',
-        text: '2d'
+        text: '{{TIME_2D}}'
     }, {
         type: 'all',
-        text: 'All'
+        text: '{{ALL}}'
     }],
     inputEnabled: false,
     selected: 1
 };
+
+const ajax1 = $.ajax({url: '/api/graphdata/availabledata.json', dataType: 'json'});
+const ajax3 = $.ajax({url: '/api/graphdata/graphconfig.json', dataType: 'json'});
 
 $(document).ready(function () {
     $('#mySelect').change(function () {
         doSelect($('#mySelect').val());
     });
 
-    $.ajax({
-        url: '/api/graphdata/availabledata.json',
-        dataType: 'json',
-        success: function (result) {
-            if (result.Temperature === undefined || result.Temperature.Count == 0) {
-                $('#mySelect option[value="temp"]').remove();
-            }
-            if (result.DailyTemps === undefined || result.DailyTemps.Count == 0) {
-                $('#mySelect option[value="dailytemp"]').remove();
-            }
-            if (result.Humidity === undefined || result.Humidity.Count == 0) {
-                $('#mySelect option[value="humidity"]').remove();
-            }
-            if (result.Solar === undefined || result.Solar.Count == 0) {
-                $('#mySelect option[value="solar"]').remove();
-            }
-            if (result.Sunshine === undefined || result.Sunshine.Count == 0) {
-                $('#mySelect option[value="sunhours"]').remove();
-            }
-            if (result.AirQuality === undefined || result.AirQuality.Count == 0) {
-                $('#mySelect option[value="airquality"]').remove();
-            }
-            if (result.ExtraTemp == undefined || result.ExtraTemp.Count == 0) {
-                $('#mySelect option[value="extratemp"]').remove();
-            }
-            if (result.ExtraHum == undefined || result.ExtraHum.Count == 0) {
-                $('#mySelect option[value="extrahum"]').remove();
-            }
-            if (result.ExtraDewPoint == undefined || result.ExtraDewPoint.Count == 0) {
-                $('#mySelect option[value="extradew"]').remove();
-            }
-            if (result.SoilTemp == undefined || result.SoilTemp.Count == 0) {
-                $('#mySelect option[value="soiltemp"]').remove();
-            }
-            if (result.SoilMoist == undefined || result.SoilMoist.Count == 0) {
-                $('#mySelect option[value="soilmoist"]').remove();
-            }
-            if (result.LeafWetness == undefined || result.LeafWetness.Count == 0) {
-                $('#mySelect option[value="leafwet"]').remove();
-            }
-            if (result.UserTemp == undefined || result.UserTemp.Count == 0) {
-                $('#mySelect option[value="usertemp"]').remove();
-            }
-            if (result.CO2 == undefined || result.CO2.Count == 0) {
-                $('#mySelect option[value="co2"]').remove();
-            }
+
+    Promise.all([ajax1, ajax3])
+    .then(function (results) {
+        // available data
+        var avail = results[0];
+        config = results[1];
+
+        if (avail.Temperature === undefined || avail.Temperature.Count == 0) {
+            $('#mySelect option[value="temp"]').remove();
         }
+        if (avail.DailyTemps === undefined || avail.DailyTemps.Count == 0) {
+            $('#mySelect option[value="dailytemp"]').remove();
+        }
+        if (avail.Humidity === undefined || avail.Humidity.Count == 0) {
+            $('#mySelect option[value="humidity"]').remove();
+        }
+        if (avail.Solar === undefined || avail.Solar.Count == 0) {
+            $('#mySelect option[value="solar"]').remove();
+        }
+        if (avail.Sunshine === undefined || avail.Sunshine.Count == 0) {
+            $('#mySelect option[value="sunhours"]').remove();
+        }
+        if (avail.AirQuality === undefined || avail.AirQuality.Count == 0) {
+            $('#mySelect option[value="airquality"]').remove();
+        }
+        if (avail.ExtraTemp == undefined || avail.ExtraTemp.Count == 0) {
+            $('#mySelect option[value="extratemp"]').remove();
+        }
+        if (avail.ExtraHum == undefined || avail.ExtraHum.Count == 0) {
+            $('#mySelect option[value="extrahum"]').remove();
+        }
+        if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.Count == 0) {
+            $('#mySelect option[value="extradew"]').remove();
+        }
+        if (avail.SoilTemp == undefined || avail.SoilTemp.Count == 0) {
+            $('#mySelect option[value="soiltemp"]').remove();
+        }
+        if (avail.SoilMoist == undefined || avail.SoilMoist.Count == 0) {
+            $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.LeafWetness == undefined || avail.LeafWetness.Count == 0) {
+            $('#mySelect option[value="leafwet"]').remove();
+        }
+        if (avail.UserTemp == undefined || avail.UserTemp.Count == 0) {
+            $('#mySelect option[value="usertemp"]').remove();
+        }
+        if (avail.CO2 == undefined || avail.CO2.Count == 0) {
+            $('#mySelect option[value="co2"]').remove();
+        }
+
+        // graph configuration
+        Highcharts.setOptions({
+            credits: {enabled: true},
+            time: {
+                timezone: config.tz
+            },
+            chart: {
+                style: {
+                    fontSize: '1.5rem'
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                ordinal: false,
+                dateTimeLabelFormats: {
+                    hour: config.timeformat,
+                    day: '%e %b',
+                    week: '%e %b %y',
+                    month: '%b %y',
+                    year: '%Y'
+                }
+            },
+            navigator: {
+                xAxis: {
+                    dateTimeLabelFormats: {
+                        hour: config.timeformat,
+                        day: '%e %b',
+                        week: '%e %b %y',
+                        month: '%b %y',
+                        year: '%Y'
+                    }
+                }
+            }
+        });
+
+        var value = parent.location.hash.replace('#', '');
+
+        if (value == '')
+            value = 'temp';
+
+        doSelect(value);
+        // set the correct option
+        $('#mySelect option[value="' + value + '"]').attr('selected', true);
+
     });
 
     doSelect = function (sel) {
@@ -148,35 +198,23 @@ $(document).ready(function () {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
-
-    $.ajax({url: '/api/graphdata/graphconfig.json', success: function (result) {
-        config = result;
-        var value = parent.location.hash.replace('#', '');
-
-        if (value == '')
-            value = 'temp';
-
-        doSelect(value);
-        // set the correct option
-        $('#mySelect option[value="' + value + '"]').attr('selected', true);
-    }});
 });
 
 var doTemp = function () {
     var freezing = config.temp.units === 'C' ? 0 : 32;
-    $('#chartdescription').text('Line chart showing recent temperature and various derived temperature values at a one minute resolution.');
+    $('#chartdescription').text('{{CHART_RECENT_TEMP_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Temperature'},
-        credits: {enabled: true},
+        title: {text: '{{TEMPERATURE}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -185,7 +223,7 @@ var doTemp = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -247,7 +285,7 @@ var doTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -261,14 +299,14 @@ var doTemp = function () {
         dataType: 'json',
         success: function (resp) {
            var titles = {
-               'temp'     : 'Temperature',
-               'dew'      : 'Dew Point',
-               'apptemp'  : 'Apparent',
-               'feelslike': 'Feels Like',
-               'wchill'   : 'Wind Chill',
-               'heatindex': 'Heat Index',
-               'humidex'  : 'Humidex',
-               'intemp'   : 'Inside'
+               'temp'     : '{{TEMPERATURE}}',
+               'dew'      : '{{DEW_POINT}}',
+               'apptemp'  : '{{APPARENT_TEMP_SHORT}}',
+               'feelslike': '{{FEELS_LIKE}}',
+               'wchill'   : '{{WIND_CHILL}}',
+               'heatindex': '{{HEAT_INDEX}}',
+               'humidex'  : '{{HUMIDEX}}',
+               'intemp'   : '{{INDOOR}}'
             };
             var idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
             var yaxis = 0;
@@ -284,7 +322,7 @@ var doTemp = function () {
                             chart.yAxis[1].remove();
                             chart.addAxis({
                                 id: 'humidex',
-                                title:{text: 'Humidex'},
+                                title:{text: '{{HUMIDEX}}'},
                                 opposite: true,
                                 labels: {
                                     align: 'left'
@@ -320,19 +358,19 @@ var doTemp = function () {
 };
 
 var doPress = function () {
-    $('#chartdescription').text('Line chart showing recent pressure values at a one minute resolution.');
+    $('#chartdescription').text('{{CHART_RECENT_PRESS_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Pressure'},
-        credits: {enabled: true},
+        title: {text: '{{PRESSURE}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -341,7 +379,7 @@ var doPress = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Pressure (' + config.press.units + ')'},
+                title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -390,10 +428,10 @@ var doPress = function () {
             split: false,
             valueSuffix: ' ' + config.press.units,
             valueDecimals: config.press.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
-                name: 'Pressure',
+                name: '{{PRESSURE}}',
                 color: config.series.press.colour
             }],
         rangeSelector: myRanges
@@ -413,20 +451,19 @@ var doPress = function () {
 };
 
 var compassP = function (deg) {
-    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
 var doWindDir = function () {
-    $('#chartdescription').text('Scatter chart showing recent wind bearing spot and average values at a one minute resolution.');
+    $('#chartdescription').text('{{CHART_RECENT_WINDDIR_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'scatter',
             alignTicks: false
         },
-        title: {text: 'Wind Direction'},
-        credits: {enabled: true},
+        title: {text: '{{WIND_DIRECTION}}'},
         boost: {
             useGPUTranslations: false,
             usePreAllocated: true
@@ -451,6 +488,7 @@ var doWindDir = function () {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -459,7 +497,7 @@ var doWindDir = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Bearing'},
+                title: {text: '{{BEARING}}'},
                 opposite: false,
                 min: 0,
                 max: 360,
@@ -511,7 +549,7 @@ var doWindDir = function () {
             useHTML: true
         },
         series: [{
-                name: 'Bearing',
+                name: '{{BEARING}}',
                 type: 'scatter',
                 color: config.series.bearing.colour,
                 marker: {
@@ -521,7 +559,7 @@ var doWindDir = function () {
                 enableMouseTracking: false,
                 showInNavigator: false
             }, {
-                name: 'Avg Bearing',
+                name: '{{AVERAGE_BEARING}}',
                 type: 'scatter',
                 color: config.series.avgbearing.colour,
                 marker: {
@@ -534,7 +572,7 @@ var doWindDir = function () {
                     xDateFormat: '%A, %b %e %H:%M ',
                     pointFormatter() {
                         return '<span style="color:' + this.color + '">\u25CF</span> ' +
-                            this.series.name + ': <b>' + (this.y == 0 ? 'calm' : this.y + '°') + '</b><br/>';
+                            this.series.name + ': <b>' + (this.y == 0 ? '{{WIND_CALM}}' : this.y + '°') + '</b><br/>';
                     }
                 }
             }
@@ -557,19 +595,19 @@ var doWindDir = function () {
 };
 
 var doWind = function () {
-    $('#chartdescription').text('Line chart showing recent average wind speed and gust values at a one minute resolution.');
+    $('#chartdescription').text('{{CHART_RECENT_WIND_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Wind Speed'},
-        credits: {enabled: true},
+        title: {text: '{{WIND_SPEED}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -578,7 +616,7 @@ var doWind = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Wind Speed (' + config.wind.units + ')'},
+                title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -628,22 +666,29 @@ var doWind = function () {
             shared: true,
             split: false,
             valueSuffix: ' ' + config.wind.units,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
-                name: 'Wind Speed',
+                name: '{{WIND_SPEED}}',
                 color: config.series.wspeed.colour,
                 tooltip: {
                     valueDecimals: config.wind.avgdecimals
                 }
             }, {
-                name: 'Wind Gust',
+                name: '{{WIND_GUST}}',
                 color: config.series.wgust.colour,
                 tooltip: {
                     valueDecimals: config.wind.gustdecimals
                 }
         }],
-        rangeSelector: myRanges
+        rangeSelector: myRanges,
+        navigator: {
+            xAxis: {
+                dateTimeLabelFormats: {
+                    hour: config.timeformat
+                }
+            }
+        }
     };
 
     chart = new Highcharts.StockChart(options);
@@ -662,19 +707,19 @@ var doWind = function () {
 };
 
 var doRain = function () {
-    $('#chartdescription').text('Line chart showing the cumulative daily rainfall and rainfall rate at a one minute resolution');
+    $('#chartdescription').text('{{CHART_RECENT_RAIN_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: true
         },
-        title: {text: 'Rainfall'},
-        credits: {enabled: true},
+        title: {text: '{{RAINFALL}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -683,7 +728,7 @@ var doRain = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
+                title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT}})'},
                 min: 0,
                 opposite: false,
                 labels: {
@@ -694,7 +739,7 @@ var doRain = function () {
             }, {
                 // right
                 opposite: true,
-                title: {text: 'Rainfall (' + config.rain.units + ')'},
+                title: {text: '{{RAINFALL}} (' + config.rain.units + ')'},
                 min: 0,
                 labels: {
                     align: 'left',
@@ -734,21 +779,21 @@ var doRain = function () {
             shared: true,
             split: false,
             valueDecimals: config.rain.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [{
-                name: 'Daily rain',
+                name: '{{DAILY_RAIN}}',
                 type: 'area',
                 color: config.series.rfall.colour,
                 yAxis: 1,
                 tooltip: {valueSuffix: ' ' + config.rain.units},
                 fillOpacity: 0.3
             }, {
-                name: 'Rain rate',
+                name: '{{DAILY_RAIN}}',
                 type: 'line',
                 color: config.series.rrate.colour,
                 yAxis: 0,
-                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'}
+                tooltip: {valueSuffix: ' ' + config.rain.units + '/{{HOUR_SHORT}}'}
         }],
         rangeSelector: myRanges
     };
@@ -768,19 +813,19 @@ var doRain = function () {
 };
 
 var doHum = function () {
-    $('#chartdescription').text('Line chart showing outdoor (and optionally indoor) relative humidity at a one minute resolution.');
+    $('#chartdescription').text('{{CHART_RECENT_HUM_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Relative Humidity'},
-        credits: {enabled: true},
+        title: {text: '{{RELATIVE_HUMIDITY}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -789,7 +834,7 @@ var doHum = function () {
         },
         yAxis: [{
                 // left
-                title: {text: 'Humidity (%)'},
+                title: {text: '{{HUMIDITY}} (%)'},
                 opposite: false,
                 min: 0,
                 max: 100,
@@ -843,7 +888,7 @@ var doHum = function () {
             split: false,
             valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -857,8 +902,8 @@ var doHum = function () {
         dataType: 'json',
         success: function (resp) {
             var titles = {
-                'hum'  : 'Outdoor Humidity',
-                'inhum': 'Indoor Humidity'
+                'hum'  : '{{OUTDOOR_HUMIDITY}}',
+                'inhum': '{{INDOOR_HUMIDITY}}'
              }
              var idxs = ['hum', 'inhum'];
              var cnt = 0;
@@ -881,19 +926,19 @@ var doHum = function () {
 };
 
 var doSolar = function () {
-    $('#chartdescription').text('Line chart showing recent solar irradiation and UV index values at a one minute resolution. This station may not have both sensors. For comparision the chart also shows the calculated theoretical solar value.');
+    $('#chartdescription').text('{{CHART_RECENT_SOLAR_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: true
         },
-        title: {text: 'Solar'},
-        credits: {enabled: true},
+        title: {text: '{{SOLAR}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -934,7 +979,7 @@ var doSolar = function () {
         tooltip: {
             shared: true,
             split: false,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -948,9 +993,9 @@ var doSolar = function () {
         dataType: 'json',
         success: function (resp) {
             var titles = {
-                SolarRad       : 'Solar Radiation',
-                CurrentSolarMax: 'Theoretical Max',
-                UV: 'UV Index'
+                SolarRad       : '{{SOLAR_RADIATION}}',
+                CurrentSolarMax: '{{THEORETICAL_MAX}}',
+                UV: '{{UV_INDEX}}'
             };
             var types = {
                 SolarRad: 'area',
@@ -981,7 +1026,7 @@ var doSolar = function () {
                     if (idx === 'UV') {
                         chart.addAxis({
                             id: 'uv',
-                            title:{text: 'UV Index'},
+                            title:{text: '{{UV_INDEX}}'},
                             opposite: true,
                             min: 0,
                             labels: {
@@ -991,7 +1036,7 @@ var doSolar = function () {
                     } else if (!solarAxisCreated) {
                         chart.addAxis({
                             id: 'solar',
-                            title: {text: 'Solar Radiation (W/m\u00B2)'},
+                            title: {text: '{{SOLAR_RADIATION}} (W/m\u00B2)'},
                             min: 0,
                             opposite: false,
                             labels: {
@@ -1025,28 +1070,17 @@ var doSolar = function () {
 };
 
 var doSunHours = function () {
-    $('#chartdescription').text('Bar chart showing recent daily sunshine hours values.');
+    $('#chartdescription').text('{{CHART_RECENT_SUNSHOURS_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: false
         },
-        title: {text: 'Sunshine Hours'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{SUNSHINE_HOURS}}'},
         yAxis: [{
                 // left
-                title: {text: 'Sunshine Hours'},
+                title: {text: '{{SUNSHINE_HOURS}}'},
                 min: 0,
                 opposite: false,
                 labels: {
@@ -1098,12 +1132,12 @@ var doSunHours = function () {
             xDateFormat: "%A, %b %e"
         },
         series: [{
-                name: 'Sunshine Hours',
+                name: '{{SUNSHINE_HOURS}}',
                 type: 'column',
                 color: config.series.sunshine.colour,
                 yAxis: 0,
                 valueDecimals: 1,
-                tooltip: {valueSuffix: ' Hrs'}
+                tooltip: {valueSuffix: ' {{HOURS_SHORT}}'}
             }]
     };
 
@@ -1121,28 +1155,17 @@ var doSunHours = function () {
 };
 
 var doDailyRain = function () {
-    $('#chartdescription').text('Bar chart showing recent daily rainfall values.');
+    $('#chartdescription').text('{{CHART_RECENT_DAILYRAIN_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'column',
             alignTicks: false
         },
-        title: {text: 'Daily Rainfall'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{DAILY_RAINFALL}}'},
         yAxis: [{
                 // left
-                title: {text: 'Daily Rainfall'},
+                title: {text: '{{DAILY_RAINFALL}}'},
                 min: 0,
                 opposite: false,
                 labels: {
@@ -1195,7 +1218,7 @@ var doDailyRain = function () {
             xDateFormat: "%A, %b %e"
         },
         series: [{
-                name: 'Daily Rainfall',
+                name: '{{DAILY_RAINFALL}}',
                 type: 'column',
                 color: config.series.rfall.colour,
                 yAxis: 0,
@@ -1218,7 +1241,7 @@ var doDailyRain = function () {
 };
 
 var doDailyTemp = function () {
-    $('#chartdescription').text('Line chart showing recent daily temperature values. Shown are the maximum, minimum, and average temperatures for each day. The site owner may choose to not display all these values');
+    $('#chartdescription').text('{{CHART_RECENT_DAILYTEMP_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1226,21 +1249,10 @@ var doDailyTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Daily Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{DAILY_TEMPERATURE}}'},
         yAxis: [{
                 // left
-                title: {text: 'Daily Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{DAILY_TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1319,9 +1331,9 @@ var doDailyTemp = function () {
         dataType: 'json',
         success: function (resp) {
             var titles = {
-                'avgtemp': 'Avg Temp',
-                'mintemp': 'Min Temp',
-                'maxtemp': 'Max Temp'
+                'avgtemp': '{{TEMP_AVG}}',
+                'mintemp': '{{TEMP_MIN}}',
+                'maxtemp': '{{TEMP_MAX}}'
             };
             var idxs = ['avgtemp', 'mintemp', 'maxtemp'];
 
@@ -1342,19 +1354,19 @@ var doDailyTemp = function () {
 };
 
 var doAirQuality = function () {
-    $('#chartdescription').text('Line chart showing recent air bourne particulate matter concentrations at a one minute resolution. Air quality is typically measured using two particulate sizes of 2.5 microns and 10 microns.');
+    $('#chartdescription').text('{{CHART_RECENT_AQ_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Air Quality'},
-        credits: {enabled: true},
+        title: {text: '{{AIR_QUALITY}}'},
         xAxis: {
             type: 'datetime',
             ordinal: false,
             dateTimeLabelFormats: {
+                hour: config.timeformat,
                 day: '%e %b',
                 week: '%e %b %y',
                 month: '%b %y',
@@ -1415,7 +1427,7 @@ var doAirQuality = function () {
             split: false,
             valueSuffix: ' µg/m³',
             valueDecimals: 1,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1450,7 +1462,7 @@ var doAirQuality = function () {
 };
 
 var doExtraTemp = function () {
-    $('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
+    $('#chartdescription').text('{{CHART_RECENT_EXTRATEMP_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1458,21 +1470,10 @@ var doExtraTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Extra Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{EXTRA_TEMPERATURE}}'},
         yAxis: [{
                 // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1534,7 +1535,7 @@ var doExtraTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1563,28 +1564,17 @@ var doExtraTemp = function () {
 };
 
 var doExtraHum = function () {
-    $('#chartdescription').text('Line chart showing recent additional humidity sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+    $('#chartdescription').text('{{CHART_RECENT_EXTRAHUM_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Extra Humidity'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{EXTRA_HUMIDITY}}'},
         yAxis: [{
                 // left
-                title: {text: 'Humidity (%)'},
+                title: {text: '{{HUMIDITY}} (%)'},
                 opposite: false,
                 min: 0,
                 max: 100,
@@ -1638,7 +1628,7 @@ var doExtraHum = function () {
             split: false,
             valueSuffix: ' %',
             valueDecimals: config.hum.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1667,7 +1657,7 @@ var doExtraHum = function () {
 };
 
 var doExtraDew = function () {
-    $('#chartdescription').text('Line chart showing recent additional dew point sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+    $('#chartdescription').text('{{CHART_RECENT_EXTRADEW_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1675,21 +1665,10 @@ var doExtraDew = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Extra Dew Point'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{EXTRA_DEW_POINT}}'},
         yAxis: [{
                 // left
-                title: {text: 'Dew Point (°' + config.temp.units + ')'},
+                title: {text: '{{DEW_POINT}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1751,7 +1730,7 @@ var doExtraDew = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1780,7 +1759,7 @@ var doExtraDew = function () {
 };
 
 var doSoilTemp = function () {
-    $('#chartdescription').text('Line chart showing recent soil tempertaure sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
+    $('#chartdescription').text('{{CHART_RECENT_SOILTEMP_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -1788,21 +1767,10 @@ var doSoilTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Soil Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{SOIL_TEMPERATURE}}'},
         yAxis: [{
                 // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1864,7 +1832,7 @@ var doSoilTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1893,28 +1861,17 @@ var doSoilTemp = function () {
 };
 
 var doSoilMoist = function () {
-    $('#chartdescription').text('Line chart showing recent soil moisture sensor values at a one minute resolution. These sensors are unique to the station and placed at depths to suit the station requirements.');
+    $('#chartdescription').text('{{CHART_RECENT_SOILMOIST_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Soil Moisture'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{SOIL_MOISTURE}}'},
         yAxis: [{
                 // left
-                title: {text: 'Soil Moisture'},
+                title: {text: '{{SOIL_MOISTURE}}'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -1963,7 +1920,7 @@ var doSoilMoist = function () {
             split: false,
             //valueSuffix: ' ' + config.soilmoisture.units,
             valueDecimals: 0,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -1993,28 +1950,17 @@ var doSoilMoist = function () {
 };
 
 var doLeafWet = function () {
-    $('#chartdescription').text('Line chart showing recent leaf wetness sensor values at a one minute resolution. These sensors are unique to the station and placed to suit the station requirements.');
+    $('#chartdescription').text('{{CHART_RECENT_LEAFWET_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'Leaf Wetness'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{LEAF_WETNESS}}'},
         yAxis: [{
                 // left
-                title: {text: 'Leaf Wetness' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
+                title: {text: '{{LEAF_WETNESS}}' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
                 opposite: false,
                 min: 0,
                 labels: {
@@ -2065,7 +2011,7 @@ var doLeafWet = function () {
             split: false,
             valueSuffix: ' ' + config.leafwet.units,
             valueDecimals: config.leafwet.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2094,7 +2040,7 @@ var doLeafWet = function () {
 };
 
 var doUserTemp = function () {
-    $('#chartdescription').text('Line chart showing recent additional temperature sensor values at a one minute resolution. These sensors can display any sort of data from pool temperatures to freezer temperatures depending on station usage.');
+    $('#chartdescription').text('{{CHART_RECENT_USERTEMP_DESC}}');
     var freezing = config.temp.units === 'C' ? 0 : 32;
     var options = {
         chart: {
@@ -2102,21 +2048,10 @@ var doUserTemp = function () {
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'User Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{USER_TEMPERATURE}}'},
         yAxis: [{
                 // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
+                title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                 opposite: false,
                 labels: {
                     align: 'right',
@@ -2178,7 +2113,7 @@ var doUserTemp = function () {
             split: false,
             valueSuffix: ' °' + config.temp.units,
             valueDecimals: config.temp.decimals,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2207,25 +2142,14 @@ var doUserTemp = function () {
 };
 
 var doCO2 = function () {
-    $('#chartdescription').text('Line chart showing recent carbon dioxide sensor values at a one minute resolution. Typically these sensors only provide meaningful data indoors. This sensor may also show particulate matter, temperature and humidity values.');
+    $('#chartdescription').text('{{CHART_RECENT_CO2_DESC}}');
     var options = {
         chart: {
             renderTo: 'chartcontainer',
             type: 'line',
             alignTicks: false
         },
-        title: {text: 'CO&#8322; Sensor'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
+        title: {text: '{{CO2_SENSOR}}'},
         yAxis: [{
                 // left
                 id: 'co2',
@@ -2271,7 +2195,7 @@ var doCO2 = function () {
         tooltip: {
             shared: true,
             split: true,
-            xDateFormat: "%A, %b %e, %H:%M"
+            xDateFormat: "%A, %b %e, " + config.timeformat
         },
         series: [],
         rangeSelector: myRanges
@@ -2314,13 +2238,13 @@ var doCO2 = function () {
                             }
                         });
                     }
-                } else if (key == 'Temperature') {
+                } else if (key == '{{TEMPERATURE}}') {
                     yaxis = 'temp';
                     tooltip = {valueSuffix: ' °' + config.temp.units};
                     chart.addAxis({
                         // right
                         id: 'temp',
-                        title: {text: 'Temperature (°' + config.temp.units + ')'},
+                        title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
                         //gridLineWidth: 0,
                         opposite: true,
                         alignTicks: true,
@@ -2330,13 +2254,13 @@ var doCO2 = function () {
                             x: 5
                         }
                     });
-                } else if (key == 'Humidity') {
+                } else if (key == '{{HUMIDITY}}') {
                     yaxis = 'hum';
                     tooltip = {valueSuffix: ' %'};
                     chart.addAxis({
                         // right
                         id: 'hum',
-                        title: {text: 'Humidity (%)'},
+                        title: {text: '{{HUMIDITY}} (%)'},
                         min: 0,
                         //gridLineWidth: 0,
                         opposite: true,

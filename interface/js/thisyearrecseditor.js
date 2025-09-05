@@ -1,4 +1,4 @@
-// Last modified: 2024/10/29 11:38:47
+// Last modified: 2025/08/22 17:39:20
 
 var updateUrl = '/api/edit/thisyear';
 var newValue, newTime;
@@ -74,7 +74,7 @@ $(document).ready(function() {
         $.fn.editable.defaults.step = 'any';
         $.fn.editable.defaults.unsavedclass = null;
         // add some accessibility to the default buttons
-        $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i></button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i></button>';
+        $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="Save"><i class="glyphicon glyphicon-ok"></i>{{SAVE}}</button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="Cancel"><i class="glyphicon glyphicon-remove"></i>{{CANCEL}}</button>';
         $.fn.editable.defaults.success = function(response, newValue) {
             updateDirect(this, newValue);
         };
@@ -186,7 +186,7 @@ function update(field) {
     }
 
     if (newValue == '' || newValue == '-' || newTime == '') {
-        $('#errorContent').text('This field is blank, cannot set the record to this!');
+        $('#errorContent').text('{{RECORD_BLANK_FIELD}}');
         $('#updaterError').popup('show');
         return;
     }
@@ -197,7 +197,7 @@ function update(field) {
     oldTime = row.children[2].innerText;
 
     if (newValue == oldVal && newTime == oldTime) {
-        $('#errorContent').text('The record is already set to this value!');
+        $('#errorContent').text('{{RECORD_ALREADY_SET}}');
         $('#updaterError').popup('show');
         return;
     }
@@ -230,7 +230,7 @@ function updateDirect(field, directVal) {
     oldTime = row.children[2].childNodes[0].innerText;
 
     if (newValue == '' || newValue == '-' || newTime == '') {
-        $('#errorContent').text('This field is blank, cannot set the record to this!');
+        $('#errorContent').text('{{RECORD_BLANK_FIELD}}');
         $('#updaterError').popup('show');
         return;
     }

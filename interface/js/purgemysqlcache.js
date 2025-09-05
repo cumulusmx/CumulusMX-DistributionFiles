@@ -1,4 +1,4 @@
-// Last modified: 2025/02/18 11:12:12
+// Last modified: 2025/08/11 17:52:55
 
 $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
     console.log(message);
@@ -31,15 +31,14 @@ $(document).ready(function() {
     });
 
     var columnDefs = [{
-        title: 'Key',
+        title: '{{KEY}}',
         readonly: true
     }, {
-        title: 'MySQL Statement',
+        title: '{{PURGE_MYSQL_TITLE}}',
         type: 'textarea'
     }];
 
     var myTable = $('#sqlcache').DataTable({
-        //pagingType: 'input',
         processing: true,
         serverSide: true,
         searching: true,
@@ -56,33 +55,39 @@ $(document).ready(function() {
             }
         },
         columns: columnDefs,
-        dom: '<"top"Bfip<"clear">>t<"bottom"fip<"clear">>',
+        layout: {
+            top: 'inputPaging',
+            topStart: 'buttons',
+            topEnd: 'search',
+            bottomStart: 'inputPaging',
+            bottomEnd: 'info'
+        },
         select: 'os',
         responsive: false,
         altEditor: true,     // Enable altEditor
         buttons: [
             {
                 extend: 'selected', // Bind to Selected row
-                text: 'Edit',
+                text: '{{EDIT}}',
                 name: 'edit'        // do not change name
             },
             {
                 extend: 'selected', // Bind to Selected row
-                text: 'Delete',
+                text: '{{DELETE}}',
                 name: 'delete'      // do not change name
             },
             {
-                text: 'Refresh',
+                text: '{{REFRESH}}',
                 name: 'refresh'      // do not change name
             },
             'pageLength'
         ],
         language: {
             altEditor: {
-                modalClose: 'Close',
+                modalClose: '{{CLOSE}}',
                 edit: {
-                    title: 'Edit record',
-                    button: 'Save'
+                    title: '{{EDIT_RECORD}}',
+                    button: 'save'
                 }
             }
         },

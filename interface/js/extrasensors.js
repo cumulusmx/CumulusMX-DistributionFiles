@@ -1,4 +1,4 @@
-// Last modified: 2025/02/11 16:13:48
+// Last modified: 2025/08/11 17:20:48
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -7,7 +7,7 @@ $.extend( $.fn.dataTable.defaults, {
     paging: false,
     info: false,
     language: {
-        emptyTable: 'No sensors enabled'
+        emptyTable: '{{NO_SENSORS_ENABLED}}'
     },
     columnDefs: [
         {className: 'left', targets: [0,2]},
@@ -20,7 +20,7 @@ $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
 };
 
 $(document).ready(function () {
-    var emptyTable = 'No sensors enabled. Enable in: Settings|Display&nbsp;Options|Graphs|Data Visibility';
+    var emptyTable = '{{NO_SENSORS_ENABLED_DESC}}';
 
     $.ajax({url: '/api/info/version.json', dataType:'json', success: function (result) {
         $('#Version').text(result.Version);

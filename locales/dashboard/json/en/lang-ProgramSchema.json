@@ -1,0 +1,21 @@
+{
+    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:16:19",
+    "STARTUP_OPTIONS": "Start-up Options",
+    "STARTUP_DELAY": "Start-up delay (secs)",
+    "MAX_UPTIME": "Max system uptime to apply the start-up delay",
+    "HOST_PING": "Host to PING on program start-up",
+    "PING_ESCAPE": "PING escape time (mins)",
+    "STARTUP_TASK": "Start-up task",
+    "STARTUP_TASK_EXE": "Start-up task executable",
+    "STARTUP_TASK_PARAMS": "Start-up task parameters",
+    "STARTUP_TASK_WAITS": "Start-up task waits",
+    "SHUTDOWN_OPTIONS": "Shutdown Options",
+    "DATA_STOPPED_DELAY": "Data Stopped exit delay",
+    "SHUTDOWN_TASK": "Shutdown Task",
+    "SHUTDOWN_TASK_EXE": "Shutdown task executable",
+    "SHUTDOWN_TASK_PARAMS": "Shutdown task parameters",
+    "LOGGING_OPTIONS": "Logging Options",
+    "GENERAL_OPTIONS": "General Options",
+    "CULTURE_OVERRIDES": "Culture Overrides",
+    "SECURITY_SETTINGS": "Security Settings"
+}

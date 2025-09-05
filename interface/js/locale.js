@@ -1,4 +1,4 @@
-// Last modified: 2025/05/16 16:01:08
+// Last modified: 2025/08/22 12:04:29
 
 let accessMode;
 
@@ -14,7 +14,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -36,7 +36,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -157,7 +157,7 @@ function onAccessChange(that, val) {
 
 function setCompassLabels(form) {
     let i = 0;
-    let pnts = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+    let pnts = ['{{COMPASS_N}}','{{COMPASS_NNE}}','{{COMPASS_NE}}','{{COMPASS_ENE}}','{{COMPASS_E}}','{{COMPASS_ESE}}','{{COMPASS_SE}}','{{COMPASS_SSE}}','{{COMPASS_S}}','{{COMPASS_SSW}}','{{COMPASS_SW}}','{{COMPASS_WSW}}','{{COMPASS_W}}','{{COMPASS_WNW}}','{{COMPASS_NW}}','{{COMPASS_NNW}}'];
 
     form.getControlByPath('compass')
         .children
@@ -172,7 +172,7 @@ function setSensorLabels(form, path) {
     form.getControlByPath(path)
         .children
         .forEach(sensor => {
-            sensor.options.label = 'Sensor ' + i++;
+            sensor.options.label = '{{SENSOR}} ' + i++;
             sensor.refresh()
         });
 }

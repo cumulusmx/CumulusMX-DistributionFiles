@@ -1,4 +1,4 @@
-// Last modified: 2025/04/22 16:33:18
+// Last modified: 2025/08/11 17:50:40
 
 // Configuration section
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -7,7 +7,7 @@ var updateInterval = 3;   // update interval in seconds, if Ajax updating is use
 
 window.addEventListener('load', function() {
     var lastUpdateTimer, keepAliveTimer, ws;
-    var cp = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    var cp = ['{{COMPASS_N}}', '{{COMPASS_NNE}}', '{{COMPASS_NE}}', '{{COMPASS_ENE}}', '{{COMPASS_E}}', '{{COMPASS_ESE}}', '{{COMPASS_SE}}', '{{COMPASS_SSE}}', '{{COMPASS_S}}', '{{COMPASS_SSW}}', '{{COMPASS_SW}}', '{{COMPASS_WSW}}', '{{COMPASS_W}}', '{{COMPASS_WNW}}', '{{COMPASS_NW}}', '{{COMPASS_NNW}}'];
 
     $('[id$=Table]').DataTable({
         'paging': false,

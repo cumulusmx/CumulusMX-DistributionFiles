@@ -1,25 +1,25 @@
 {
-	"version": "Last Modified: 2025/04/29 20:02:10",
+	"version": "Last Modified: 2025/08/19 12:49:58",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
 		},
 		"server": {
-			"label": "Server Name:",
-			"helper": "Your MQTT Server network name or IP address"
+			"label": "{{SERVER_NAME}}:",
+			"helper": "{{SERVER_NAME_HELP1}}"
 		},
 		"port": {
-			"label": "Server port:",
-			"helper": "Your MQTT server port (default 1883)"
+			"label": "{{SERVER_PORT}}:",
+			"helper": "{{SERVER_POR_HELP1}}"
 		},
 		"username": {
-			"label": "Username:",
-			"helper": "Enter your MQTT server username - if required"
+			"label": "{{USERNAME}}:",
+			"helper": "{{USERNAME_HELP1}}"
 		},
 		"password": {
 			"type": "password",
-			"label": "Password:",
-			"helper": "Enter your MQTT server password - if required"
+			"label": "{{PASSWORD}}:",
+			"helper": "{{Enter your MQTT server password - if required}}"
 		},
 		"advanced": {
 			"collapsible": true,
@@ -27,24 +27,24 @@
 			"fields": {
 				"useTls": {
 					"label": "TLS:",
-					"rightLabel": "Enable TLS",
-					"helper": "Enable TLS support, currently special certificates are not supported"
+					"rightLabel": "{{TLS_ENABLE}}",
+					"helper": "{{TLS_HELP1}}"
 				},
 				"ipVersion": {
-					"label": "IP Version:",
-					"helper": "Select the IP version to use for the connection",
+					"label": "{{IP_VERSION}}:",
+					"helper": "{{IP_VERSION_HELP}}",
 					"type": "select",
                     "sort": false,
 					"optionLabels": [
-						"Auto - attempt to detect the correct version",
-						"Force IPv4",
-						"Force IPv6"
+						"{{IP_VERSION_OPT1}}",
+						"{{IP_VERSION_OPT2}}",
+						"{{IP_VERSION_OPT3}}"
 					],
 					"removeDefaultNone": true
 				},
 				"protocolVersion": {
-					"label": "Protocol Version:",
-					"helper": "Select the MQTT protocol version to use for the connection",
+					"label": "{{PROTOCOL_VERSION}}:",
+					"helper": "{{PROTOCOL_VERSION_HELP1}}",
 					"type": "select",
                     "sort": false,
 					"optionLabels": [
@@ -59,11 +59,11 @@
 		"dataUpdate": {
 			"fields": {
 				"enabled": {
-					"rightLabel": "Enable message sent when the data updates"
+					"rightLabel": "{{ON_DATA_UPDATE}}"
 				},
 				"template": {
-					"label": "Template File:",
-					"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+					"label": "{{TEMPLATE_FILE}}:",
+					"helper": "{{TEMPLATE_FILE_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -76,8 +76,8 @@
 					"rightLabel": "Enable messages sent at fixed intervals"
 				},
 				"template": {
-					"label": "Template File:",
-					"helper": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages",
+					"label": "{{TEMPLATE_FILE}}:",
+					"helper": "{{TEMPLATE_FILE_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}

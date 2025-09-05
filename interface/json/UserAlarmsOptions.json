@@ -8,55 +8,55 @@
 			"items": {
 				"fields": {
 					"Enabled": {
-						"label": "Enabled"
+						"label": "{{ENABLED}}"
 					},
 					"Name": {
 						"type": "text",
-						"label": "Alarm Name",
-						"placeholder": "My alarm",
+						"label": "{{ALARM_NAME}}",
+						"placeholder": "{{MY_ALARM}}",
 						"maxLength": 20
 					},
 					"WebTag": {
 						"type": "text",
-						"label": "Web tag(s)",
+						"label": "{{WEB_TAGS}}",
 						"placeholder": "<#ExtraTemp2 rc=y>"
 					},
 					"Type": {
 						"type": "select",
-						"label": "Type",
-						"optionLabels": ["Above", "Below", "Equals"],
+						"label": "{{TYPE}}",
+						"optionLabels": ["{{ABOVE}}", "{{BELOW}}", "{{EQUALS}}"],
 						"sort": false,
 						"removeDefaultNone": true
 					},
 					"Value": {
 						"type": "number",
-						"label": "Value",
+						"label": "{{VALUE}}",
 						"placeholder": "5.5"
 					},
 					"Email": {
-						"label": "Email"
+						"label": "{{EMAIL}}"
 					},
 					"EmailMsg": {
-						"label": "Email message",
-						"placeholder": "Greenhouse temp is low = {0}"
+						"label": "{{EMAIL_MESSAGE}}",
+						"placeholder": "{{MY_EMAIL}}"
 					},
 					"BskyFile": {
-						"label": "Bluesky Template file",
+						"label": "{{BLUESKY_TEMPLATE}}",
 						"placeholder": "web/BlueskyAlarm.txt"
 					},
 					"Latch": {
-						"label": "Latch"
+						"label": "{{LATCH}}"
 					},
 					"LatchHours": {
 						"type": "number",
-						"label": "Latch Hours"
+						"label": "{{LATCH_HOURS}}"
 					},
 					"Action": {
-						"label": "Action",
+						"label": "{{ACTION}}",
 						"placeholder": "./myscript.sh"
 					},
 					"ActionParams": {
-						"label": "Action params",
+						"label": "{{ACTION_PARAMS}}",
 						"placeholder": "-s param1 -t <#ExtraTemp2>"
 					}
 				}

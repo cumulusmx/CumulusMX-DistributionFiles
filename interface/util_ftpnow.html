@@ -1,11 +1,11 @@
 <!--
-Last modified: 2024/11/23 15:08:48
+Last modified: 2025/08/10 23:15:18
 -->
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Upload now - Cumulus MX</title>
+    <title>{{UPLOAD_NOW}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -73,24 +73,24 @@ Last modified: 2024/11/23 15:08:48
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <h1>Upload Now</h1>
+        <h1>{{UPLOAD_NOW}}</h1>
         <div class="row">
             <div class="col-md-12">
-                <div><b>Manually initiate the upload/local copy process.</b></div>
-                <div>Note: The actual upload/copy process will be started, but it will be run as a background process. You will have to check your log files and/or server/destination folder to check whether it worked correctly or not.</div>
+                <div><b>{{UPLOAD_NOW_TEXT1}}</b></div>
+                <div>{{UPLOAD_NOW_TEXT2}}</div>
                 <br>
                 <div>
-                    <input type="checkbox" id="graphs"> <label for="graphs">Re-upload full copies of the graph data files rather than incremental</label><br>
-                    <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">Include regenerating and transfer of daily graph data files</label><br>
-                    <input type="checkbox" id="noaa"> <label for="noaa">Include transfer of latest NOAA report files</label><br>
-                    <input type="checkbox" id="logfiles"> <label for="logfiles">Re-upload full copies of all Extra Web Files incremental log files</label>
+                    <input type="checkbox" id="graphs"> <label for="graphs">{{UPLOAD_NOW_CB1}}</label><br>
+                    <input type="checkbox" id="dailygraphs"> <label for="dailygraphs">{{UPLOAD_NOW_CB2}}</label><br>
+                    <input type="checkbox" id="noaa"> <label for="noaa">{{UPLOAD_NOW_CB3}}</label><br>
+                    <input type="checkbox" id="logfiles"> <label for="logfiles">{{UPLOAD_NOW_CB4}}</label>
                 </div>
                 <br>
                 <div>
-                    <button type="submit" class="btn btn-primary" id="startFtp" form="ftpform">Start Upload/Copy Now</button>
+                    <button type="submit" class="btn btn-primary" id="startFtp" form="ftpform">{{UPLOAD_NOW_START}}</button>
                 </div>
                 <br>
-                <div><p>Status: <span id="status" style="height: 70px; font-weight: bold"></span></div>
+                <div><p>{{STATUS}}: <span id="status" style="height: 70px; font-weight: bold"></span></div>
             </div>
         </div>
     </div>
