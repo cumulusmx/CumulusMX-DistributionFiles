@@ -1,4 +1,4 @@
-// Last modified: 2025/08/29 14:01:42
+// Last modified: 2025/09/12 10:10:22
 
 // Configuration section
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -180,11 +180,17 @@ $(document).ready(function () {
                         // upgrade?
                         if (alarm.Id == 'AlarmUpgrade') {
                             $(alarmtag).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+                        } else {
+                            $(alarmtag).on("click", function () {
+                                log("User clicked: " + $(this)[0].id);
+                                clearAlarm($(this)[0].id);
+                            });
                         }
-                   } else if (!alarm.triggered && alarmState[alarm.id] == true) {
+                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
                         $(alarmtag).removeClass('indicatorOn').addClass('indicatorOff');
+                        $(alarmtag).prop("onclick", null).off("click");
                     }
                 });
             } else {
@@ -338,6 +344,26 @@ $(document).ready(function () {
         })
         .done(function (data) {
             updateDisplay(data);
+        });
+    }
+
+    function clearAlarm(id) {
+        $.ajax({
+            url: '/api/utils/clearalarm.txt',
+            type: 'POST',
+            data: id,
+            contentType: 'plain/text; charset=UTF-8'
+        })
+        .done(function(result) {
+            if (result == "Cleared") {
+                log(id + ' Cleared');
+                alarmState[id] = false;
+                let alarmtag = '#' + id;
+                $(alarmtag).removeClass('indicatorOn').addClass('indicatorOff');
+                $(alarmtag).prop("onclick", null).off("click");
+            } else {
+                log(id + ' error: ' + result);
+            }
         });
     }
 
