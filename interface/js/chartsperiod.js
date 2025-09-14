@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/09/03 16:11:32
+// Last modified: 2025/09/14 13:20:01
 
 var chart, avail, config, options;
 var cache = {};
@@ -191,6 +191,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    minute: config.timeformat,
                     hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',

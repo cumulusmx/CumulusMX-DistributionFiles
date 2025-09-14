@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/08/27 22:10:35
+// Last modified: 2025/09/14 13:19:12
 
 var chart, avail, config, options;
 var settings = {
@@ -124,6 +124,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    minute: config.timeformat,
                     hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',

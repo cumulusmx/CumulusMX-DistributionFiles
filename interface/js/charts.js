@@ -1,4 +1,4 @@
-// Last modified: 2025/09/03 16:08:35
+// Last modified: 2025/09/14 13:18:44
 
 var chart, config, doSelect;
 
@@ -96,6 +96,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    minute: config.timeformat,
                     hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',
@@ -106,6 +107,7 @@ $(document).ready(function () {
             navigator: {
                 xAxis: {
                     dateTimeLabelFormats: {
+                        minute: config.timeformat,
                         hour: config.timeformat,
                         day: '%e %b',
                         week: '%e %b %y',
