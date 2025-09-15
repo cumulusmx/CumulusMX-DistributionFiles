@@ -1,4 +1,4 @@
-// Last modified: 2025/09/14 13:18:44
+// Last modified: 2025/09/15 21:54:20
 
 var chart, config, doSelect;
 
@@ -473,7 +473,7 @@ var doWindDir = function () {
         navigator: {
             series: {
                 // pseudo scatter
-                type: 'line',
+                type: 'scatter',
                 dataGrouping: {
                     groupPixelWidth: 1,
                     anchor: 1
@@ -534,7 +534,7 @@ var doWindDir = function () {
                 animationLimit: 1,
                 cursor: 'pointer',
                 enableMouseTracking: true,
-                boostThreshold: 200,
+                boostThreshold: 0,
                 marker: {
                     states: {
                         hover: {enabled: false},
@@ -559,7 +559,7 @@ var doWindDir = function () {
                     radius: 2
                 },
                 enableMouseTracking: false,
-                showInNavigator: false
+                showInNavigator: true
             }, {
                 name: '{{AVERAGE_BEARING}}',
                 type: 'scatter',

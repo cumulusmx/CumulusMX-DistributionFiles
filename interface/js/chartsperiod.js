@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/09/14 13:20:01
+// Last modified: 2025/09/15 12:04:16
 
 var chart, avail, config, options;
 var cache = {};
@@ -187,6 +187,9 @@ $(document).ready(function () {
             },
             title: {text: '{{ALL_DATA_SELECTACHART}}'},
             credits: {enabled: true},
+            lang: {
+                locale: config.locale
+            },
             xAxis: {
                 type: 'datetime',
                 ordinal: false,

@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2025/08/27 22:14:47
+// Last modified: 2025/09/15 21:55:49
 
 var chart, config, avail, options;
 var settings;
@@ -43,12 +43,12 @@ $(document).ready(function () {
                 avail[k].forEach(function (val) {
                     var option = $('<option />');
                     option.html(val);
-                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
-                            option.val(val);
-                        } else {
-                            option.val(k + '-' + val);
-                        }
-                        optgrp.append(option);
+                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
+                        option.val(val);
+                    } else {
+                        option.val(k + '-' + val);
+                    }
+                    optgrp.append(option);
                 });
                 $('#data0').append(optgrp.clone());
                 $('#data1').append(optgrp.clone());
@@ -89,6 +89,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    minute: config.timeformat,
                     hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',

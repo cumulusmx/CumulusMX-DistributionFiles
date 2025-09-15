@@ -1,4 +1,4 @@
-// Last modified: 2025/09/03 16:13:24
+// Last modified: 2025/09/15 21:56:34
 
 var chart, config, avail;
 
@@ -44,6 +44,9 @@ $(document).ready(function () {
             time: {
                 timezone: config.tz
             },
+            lang: {
+                locale: config.locale
+            },
             chart: {
                 style: {
                     fontSize: '1rem'
@@ -53,6 +56,7 @@ $(document).ready(function () {
                 type: 'datetime',
                 ordinal: false,
                 dateTimeLabelFormats: {
+                    minute: config.timeformat,
                     hour: config.timeformat,
                     day: '%e %b',
                     week: '%e %b %y',
@@ -452,7 +456,7 @@ var doWindDir = function () {
         navigator: {
             series: {
                 // pseudo scatter
-                type: 'line',
+                type: 'scatter',
                 dataGrouping: {
                     groupPixelWidth: 1,
                     anchor: 1
@@ -507,7 +511,7 @@ var doWindDir = function () {
             scatter: {
                 cursor: 'pointer',
                 enableMouseTracking: true,
-                boostThreshold: 200,
+                boostThreshold: 0,
                 marker: {
                     states: {
                         hover: {
@@ -538,7 +542,7 @@ var doWindDir = function () {
                 radius: 2
             },
             enableMouseTracking: false,
-            showInNavigator: false
+            showInNavigator: true
         }, {
             name: 'Avg Bearing',
             type: 'scatter',

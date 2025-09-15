@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2025/07/31 23:47:41
+ * Last modified: 2025/09/15 16:29:18
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -173,7 +173,7 @@ h5 {
 .dash-unit p {
     font-size: 14px;
     font-weight: 200;
-    line-height: 16px;
+    line-height: 18px;
     color: inherit;
     margin: 0 0 10px;
     padding: 0px;
@@ -195,6 +195,10 @@ h5 {
     font-weight:bold;
     color:#fff;
     vertical-align:middle;
+}
+
+.dash-unit .gauge{
+    padding-top:0;
 }
 
 
@@ -268,15 +272,25 @@ h5 {
 /**********Styling Elements**********/
 .cont {
     text-align:center;
-    margin-top:25px;
+    margin-top:20px;
 }
 
 .cont .low {
-    color:#3399ff;
+    /*color:#3399ff;*/
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .cont .high {
-    color:#fa1d2d;
+    /*color:#fa1d2d;*/
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.cont .avg {
+    /*color:#fa1d2d;*/
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .cont2 {

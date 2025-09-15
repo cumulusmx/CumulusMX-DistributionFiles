@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/09/14 13:19:12
+// Last modified: 2025/09/15 21:52:29
 
 var chart, avail, config, options;
 var settings = {
