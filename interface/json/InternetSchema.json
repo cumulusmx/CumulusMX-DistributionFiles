@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 09:18:48",
+	"version": "Last Modified: 2025/09/16 17:31:10",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -18,6 +18,7 @@
 					"type": "boolean"
 				},
 				"sslftp": {
+					"type": "number",
 					"enum": [0,1,2,3]
 				},
 				"hostname": {
@@ -323,12 +324,14 @@
 					"maximum": 65536
 				},
 				"ssloption": {
+					"type": "number",
 					"enum": [0,1,2,3,4]
 				},
 				"ignorecerterrors": {
 					"type": "boolean"
 				},
 				"authenticate": {
+					"type": "number",
 					"enum": [0,1]
 				},
 				"user": {

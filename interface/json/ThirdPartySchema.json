@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/09/18 17:45:00",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -38,15 +39,19 @@
 					"type":"boolean"
 				},
 				"extratemp1": {
+					"type": "number",
 					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 				},
 				"extratemp2": {
+					"type": "number",
 					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 				},
 				"extratemp3": {
+					"type": "number",
 					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 				},
 				"extratemp4": {
+					"type": "number",
 					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 				},
 				"catchup": {
@@ -490,6 +495,7 @@
 							"maxItems": 10
 						},
 						"intervalindex": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8,9,10,11]
 						}
 					},

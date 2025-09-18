@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/17 22:23:59",
+	"version": "Last Modified: 2025/09/16 17:26:47",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -10,9 +10,11 @@
 			"type": "object",
 			"properties": {
 				"primaryaqsensor": {
+					"type": "number",
 					"enum": [-1, 0, 5, 1, 2, 3, 4, 6]
 				},
 				"aqi": {
+					"type": "number",
 					"enum": [0, 1, 2, 3, 4, 5, 6, 7]
 				}
 			}
@@ -99,9 +101,11 @@
 								"format": "ip-address"
 							},
 							"algorithm": {
+								"type": "number",
 								"enum": [0, 1]
 							},
 							"thsensor": {
+								"type": "number",
 								"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 							}
 						}
@@ -115,6 +119,7 @@
 			"type": "object",
 			"properties": {
 				"extraStation": {
+					"type": "number",
 					"enum": [-1, 0, 1, 2, 3]
 				},
 				"ecowittapi": {
@@ -186,7 +191,7 @@
 							"dependencies": ["setcustom"]
 						},
 						"interval": {
-							"type": "integer",
+							"type": "number",
 							"minimum": 5,
 							"maximum": 600,
 							"dependencies": ["setcustom"]
@@ -196,33 +201,43 @@
 							"type": "object",
 							"properties": {
 								"primaryTHsensor": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"primaryIndoorTHsensor": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan1": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan2": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan3": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan4": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan5": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan6": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan7": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"wn34chan8": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								}
 							}
@@ -286,11 +301,8 @@
 					"type": "object",
 					"properties": {
 						"conntype": {
-							"enum": [
-								0,
-								1,
-								2
-							]
+							"type": "number",
+							"enum": [0,1,2]
 						},
 						"filename": {
 							"type": "string",
@@ -304,7 +316,7 @@
 							"dependencies": "conntype"
 						},
 						"mqttport": {
-							"type": "integer",
+							"type": "number",
 							"minimum": 1,
 							"maximum": 65535,
 							"dependencies": "conntype"
@@ -326,15 +338,15 @@
 							"type": "object",
 							"properties": {
 								"conntype": {
-									"type": "integer"
+									"type": "number"
 								},
 								"filedelay": {
-									"type": "integer",
+									"type": "number",
 									"minimum": 0,
 									"dependencies": "conntype"
 								},
 								"fileignore": {
-									"type": "integer",
+									"type": "number",
 									"minimum": 0,
 									"dependencies": "conntype"
 								},

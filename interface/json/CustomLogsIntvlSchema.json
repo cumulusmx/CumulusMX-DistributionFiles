@@ -1,4 +1,5 @@
 {
+	"version": "Last Modified: 2025/09/18 17:39:59",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -20,6 +21,7 @@
 						"type": "string"
 					},
 					"intervalidx": {
+						"type": "number",
 						"enum": [0,1,2,3,4,5,6,7,8,9,10,11]
 					}
 				}

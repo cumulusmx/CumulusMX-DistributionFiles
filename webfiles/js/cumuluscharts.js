@@ -1,4 +1,4 @@
-// Last modified: 2025/09/15 21:56:34
+// Last modified: 2025/09/18 17:35:15
 
 var chart, config, avail;
 
@@ -529,9 +529,7 @@ var doWindDir = function () {
             }
         },
         tooltip: {
-            enabled: true,
-            split: true,
-            useHTML: true
+            enabled: true
         },
         series: [{
             name: 'Bearing',
@@ -553,7 +551,7 @@ var doWindDir = function () {
             },
             showInNavigator: true,
             tooltip: {
-                headerFormat: '',
+                headerFormat: '{point.key}<br>',
                 xDateFormat: "%A, %b %e, " + config.timeformat,
                 pointFormatter() {
                     return '<span style="color:' + this.color + '">\u25CF</span> ' +

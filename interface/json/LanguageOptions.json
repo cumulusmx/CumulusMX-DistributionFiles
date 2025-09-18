@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/08/19 10:33:32",
+	"version": "Last modified: 2025/09/16 17:41:20",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -429,6 +429,10 @@
 						"mySqlStopped": {
 							"label": "{{ALARM_MYSQL_STOPPED}}",
 							"type": "text"
+						},
+						"genError": {
+							"label": "{{ALARM_GEN_ERROR}}",
+							"type": "text"
 						}
 					}
 				},
@@ -524,6 +528,10 @@
 						},
 						"mySqlStopped": {
 							"label": "{{ALARM_MYSQL_STOPPED}}",
+							"type": "text"
+						},
+						"genError": {
+							"label": "{{ALARM_GEN_ERROR}}",
 							"type": "text"
 						}
 					}

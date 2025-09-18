@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/08/19 11:22:19",
+	"version": "Last modified: 2025/09/16 17:41:21",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -388,6 +388,10 @@
 						"mySqlStopped": {
 							"type": "string",
 							"maxLength": 20
+						},
+						"genError": {
+							"type": "string",
+							"maxLength": 20
 						}
 					}
 				},
@@ -459,6 +463,9 @@
 							"type": "string"
 						},
 						"mySqlStopped": {
+							"type": "string"
+						},
+						"genError": {
 							"type": "string"
 						}
 					}

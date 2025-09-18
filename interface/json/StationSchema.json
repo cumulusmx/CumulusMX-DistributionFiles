@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/03 11:06:14",
+	"version": "Last Modified: 2025/09/16 17:56:27",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -13,10 +13,12 @@
 			"type": "object",
 			"properties": {
 				"manufacturer": {
+					"type": "number",
 					"enum": [-1,0,6,2,9,7,8,11,1,4,5,3,10],
 					"required": true
 				},
 				"stationtype": {
+					"type": "number",
 					"required": true
 				},
 				"stationmodel": {
@@ -31,6 +33,7 @@
 					"dependencies": "firstRun"
 				},
 				"loginterval": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5],
 					"required": true
 				},
@@ -56,29 +59,35 @@
 					"type": "object",
 					"properties": {
 						"wind": {
+							"type": "number",
 							"enum": [0,1,2,3],
 							"required": true
 						},
 						"pressure": {
+							"type": "number",
 							"enum": [0,1,2,3],
 							"required": true
 						},
 						"temp": {
 							"title": "{{TEMPERATURE}}",
+							"type": "number",
 							"enum": [0,1],
 							"required": true
 						},
 						"rain": {
 							"title": "{{RAIN}}",
+							"type": "number",
 							"enum": [0,1],
 							"required": true
 						},
 						"snow": {
 							"title": "{{SNOW_DEPTH}}",
+							"type": "number",
 							"enum": [0,1]
 						},
 						"laser": {
 							"title": "{{LASER_DIST}}",
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"cloudbaseft": {
@@ -245,6 +254,7 @@
 					"type": "object",
 					"properties": {
 						"conntype": {
+							"type": "number",
 							"enum": [0,2]
 						},
 						"comportname": {
@@ -283,6 +293,7 @@
 							"type": "boolean"
 						},
 						"syncclockhour": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"readreceptionstats": {
@@ -298,6 +309,7 @@
 							"type": "boolean"
 						},
 						"raingaugetype": {
+							"type": "number",
 							"enum": [-1,0,1]
 						},
 						"initwaittime": {
@@ -316,6 +328,7 @@
 							"maximum": 65536
 						},
 						"baudrate": {
+							"type": "number",
 							"enum": [1200,2400,4800,9600,14400,19200]
 						}
 					},
@@ -375,18 +388,23 @@
 					"type": "object",
 					"properties": {
 						"wind": {
+							"type": "number",
 							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"temphum": {
+							"type": "number",
 							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"rain": {
+							"type": "number",
 							"enum": [1,2,3,4,5,6,7,8]
 						},
 						"solar": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8]
 						},
 						"uv": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8]
 						}
 					},
@@ -495,6 +513,7 @@
 					"type": "object",
 					"properties": {
 						"raingaugetype": {
+							"type": "number",
 							"enum": [-1,0,1,2,3]
 						},
 						"tcpport": {
@@ -648,6 +667,7 @@
 					"type": "string"
 				},
 				"baudrate": {
+					"type": "number",
 					"enum": [19200,115200]
 				},
 				"advanced": {
@@ -658,6 +678,7 @@
 							"type": "boolean"
 						},
 						"syncclockhour": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"updatelogpointer": {
@@ -767,9 +788,11 @@
 			"type": "object",
 			"properties": {
 				"primaryTHsensor": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8,99]
 				},
 				"primaryRainSensor": {
+					"type": "number",
 					"enum": [0,1]
 				},
 				"piezosrain": {
@@ -779,30 +802,39 @@
 					]
 				},
 				"primaryIndoorTHsensor": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan1": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan2": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan3": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan4": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan5": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan6": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan7": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"wn34chan8": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5,6,7,8]
 				},
 				"stationid": {
@@ -835,6 +867,7 @@
 					"type": "integer"
 				},
 				"interval" : {
+					"type": "number",
 					"enum": [1,2,3,4,5,10],
 					"dependencies": [
 						"stationid"
@@ -850,6 +883,7 @@
 			"type": "object",
 			"properties": {
 				"conntype": {
+					"type": "number",
 					"enum": [0,1,2]
 				},
 				"filename": {
@@ -953,9 +987,11 @@
 					"type": "boolean"
 				},
 				"userainforisraining": {
+					"type": "number",
 					"enum": [0,1,2]
 				},
 				"leafwetisrainingidx": {
+					"type": "number",
 					"enum": [-1,1,2,3,4,5,6,7,8]
 				},
 				"leafwetisrainingthrsh": {
@@ -963,6 +999,7 @@
 					"type": "number"
 				},
 				"snowseasonstart": {
+					"type": "number",
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"advanced": {
@@ -998,6 +1035,7 @@
 							"maximum": 999
 						},
 						"snowdepthhour": {
+							"type": "number",
 							"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 						},
 						"raindaythreshold": {
@@ -1068,6 +1106,7 @@
 			"type": "object",
 			"properties": {
 				"solarcalc": {
+					"type": "number",
 					"enum": [0,1]
 				},
 				"sunthreshold": {
@@ -1126,9 +1165,11 @@
 					"maximum": 2050
 				},
 				"rainseasonstart": {
+					"type": "number",
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"rainweekstart": {
+					"type": "number",
 					"enum": [0,1]
 				}
 			}
@@ -1138,6 +1179,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
+					"type": "number",
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
@@ -1160,6 +1202,7 @@
 			"type": "object",
 			"properties": {
 				"starts": {
+					"type": "number",
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				},
 				"basetemp1": {
@@ -1185,6 +1228,7 @@
 					"type": "number"
 				},
 				"month": {
+					"type": "number",
 					"enum": [1,2,3,4,5,6,7,8,9,10,11,12]
 				}
 			}

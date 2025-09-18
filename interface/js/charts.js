@@ -1,4 +1,4 @@
-// Last modified: 2025/09/15 21:54:20
+// Last modified: 2025/09/18 17:32:03
 
 var chart, config, doSelect;
 
@@ -545,11 +545,6 @@ var doWindDir = function () {
                 //label: {enabled: false}
             }
         },
-        tooltip: {
-            enabled: true,
-            split: true,
-            useHTML: true
-        },
         series: [{
                 name: '{{BEARING}}',
                 type: 'scatter',
@@ -570,7 +565,8 @@ var doWindDir = function () {
                 },
                 showInNavigator: true,
                 tooltip: {
-                    headerFormat: '',
+                    enabled: true,
+                    headerFormat: '{point.key}<br>',
                     xDateFormat: '%A, %b %e %H:%M ',
                     pointFormatter() {
                         return '<span style="color:' + this.color + '">\u25CF</span> ' +

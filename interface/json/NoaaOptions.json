@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 16:39:50",
+	"version": "Last Modified: 2025/09/16 17:46:01",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -20,7 +20,7 @@
 					"label": "{{CITY}}:"
 				},
 				"state": {
-					"label": "{{State}}:"
+					"label": "{{STATE}}:"
 				}
 			}
 		},

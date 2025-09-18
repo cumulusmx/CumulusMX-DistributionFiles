@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 19:03:44
+// Last modified: 2025/09/16 18:11:40
 
 $(document).ready(function () {
     let stationNameValidated = false;
@@ -143,56 +143,6 @@ $(document).ready(function () {
                                 }
                             }
                         },
-                        latitude: {
-                            validator: function (callback) {
-                                // allow comma decimals
-                                let value = this.getValue().replace(',', '.');
-                                let newVal = parseFloat(value);
-                                if (isNaN(newVal)) {
-                                    callback({
-                                        status: false,
-                                        message: '{{PLEASE_ENTER_VALID_DECIMAL}}'
-                                    });
-                                } else {
-                                    if (newVal > -90 && newVal < 90) {
-                                        this.setValue(newVal);
-                                        callback({
-                                            status: true
-                                        });
-                                    } else {
-                                        callback({
-                                            status: false,
-                                            message: '{{PLEASE_ENTER_VALUE_90_90_DEGREES}}'
-                                        });
-                                    }
-                                }
-                            }
-                        },
-                        longitude: {
-                            validator: function (callback) {
-                                // allow comma decimals
-                                let value = this.getValue().replace(',', '.');
-                                let newVal = parseFloat(value);
-                                if (isNaN(newVal)) {
-                                    callback({
-                                        status: false,
-                                        message: '{{PLEASE_ENTER_VALID_DECIMAL}}'
-                                    });
-                                } else {
-                                    if (newVal >= -180 && newVal <= 180) {
-                                        this.setValue(newVal);
-                                        callback({
-                                            status: true
-                                        });
-                                    } else {
-                                        callback({
-                                            status: false,
-                                            message: '{{PLEASE_ENTER_VALUE_180_180_DEGREES}}'
-                                        });
-                                    }
-                                }
-                            }
-                        }
                     }
                 },
                 station: {

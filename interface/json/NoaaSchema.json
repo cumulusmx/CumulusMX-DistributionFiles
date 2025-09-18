@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 16:44:27",
+	"version": "Last Modified: 2025/09/16 17:46:48",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -35,9 +35,11 @@
 			"title": "{{REPORT_OPTIONS}}",
 			"properties": {
 				"outputtext": {
+					"type": "number",
 					"enum": [0, 1]
 				},
 				"timeformat": {
+					"type": "number",
 					"enum": [0, 1]
 				},
 				"utf8": {

@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 17:08:16
+// Last modified: 2025/09/16 11:40:25
 
 var activeDates;
 var defaultSnowHour;
@@ -187,8 +187,8 @@ function applyEntry() {
         var body = '{"Date":"' + getDateString(date) + '",' +
             '"Time":"' + $('#inputTime').val() + '",' +
             '"Entry":"' + $('#inputComment').val() + '",' +
-            '"Snow24h":' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : '"NULL"') + ',' +
-            '"SnowDepth":' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : '"NULL"') + ',' +
+            '"Snow24h":' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : 'null') + ',' +
+            '"SnowDepth":' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : 'null') + ',' +
             '"Thunder":' + $('#inputThunder').prop('checked') + ',' +
             '"Hail":' + $('#inputHail').prop('checked') + ',' +
             '"Fog":' + $('#inputFog').prop('checked') + ',' +

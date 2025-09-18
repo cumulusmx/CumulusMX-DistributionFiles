@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/16 23:32:54",
+	"version": "Last Modified: 2025/09/16 17:25:13",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -19,6 +19,7 @@
 					"type": "boolean"
 				},
 				"windrosepoints": {
+					"type": "number",
 					"enum": [8, 16]
 				},
 				"displaysnow": {
@@ -365,36 +366,47 @@
 					"type": "object",
 					"properties": {
 						"Temp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"InTemp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"HeatIndex": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"DewPoint": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"WindChill": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"AppTemp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"FeelsLike": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"Humidex": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"MaxTemp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"AvgTemp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"MinTemp": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -404,9 +416,11 @@
 					"type": "object",
 					"properties": {
 						"Hum": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"InHum": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -416,12 +430,15 @@
 					"type": "object",
 					"properties": {
 						"UV": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"Solar": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"Sunshine": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -431,9 +448,11 @@
 					"type": "object",
 					"properties": {
 						"GrowingDegreeDays1": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"GrowingDegreeDays2": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -443,12 +462,15 @@
 					"type": "object",
 					"properties": {
 						"TempSum0": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"TempSum1": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"TempSum2": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -458,6 +480,7 @@
 					"type": "object",
 					"properties": {
 						"ChillHrs": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -597,27 +620,35 @@
 					"type": "object",
 					"properties": {
 						"co2": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"co2avg": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"pm25": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"pm25avg": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"pm10": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"pm10avg": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"temp": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"hum": {
+							"type": "number",
 							"enum": [0,1,2]
 						}
 					}
@@ -627,9 +658,11 @@
 					"type": "object",
 					"properties": {
 						"Depth": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"Last24h": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"CurrLast24h": {

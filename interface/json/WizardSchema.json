@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/21 19:26:02",
+	"version": "Last Modified: 2025/09/16 18:13:10",
 	"title": "{{TITLE}}",
 	"description": "{{DESCRIPTION}}",
 	"type": "object",
@@ -14,11 +14,15 @@
 					"type": "string"
 				},
 				"latitude": {
-					"type": "string",
+					"type": "number",
+					"minimum": -90,
+					"maximum": 90,
 					"required": true
 				},
 				"longitude": {
-					"type": "string",
+					"type": "number",
+					"minimum": -180,
+					"maximum": 180,
 					"required": true
 				},
 				"altitude": {
@@ -41,23 +45,28 @@
 			"type": "object",
 			"properties": {
 				"temp": {
+					"type": "number",
 					"enum": [0,1],
 					"required": true
 				},
 				"wind": {
+					"type": "number",
 					"enum": [0,1,2,3],
 					"required": true
 				},
 				"pressure": {
+					"type": "number",
 					"enum": [0,1,2,3],
 					"required": true
 				},
 				"rain": {
+					"type": "number",
 					"enum": [0,1],
 					"required": true
 				},
 				"snow": {
 					"title": "{{SNOW_DEPTH}}",
+					"type": "number",
 					"enum": [0,1]
 				}
 			}
@@ -69,11 +78,13 @@
 				"stationid": {
 					"type": "integer"
 				},
-						"manufacturer": {
+				"manufacturer": {
+					"type": "number",
 					"enum": [-1,0,6,2,9,7,8,11,1,4,5,3,10],
 					"required": true
 				},
 				"stationtype": {
+					"type": "number",
 					"required": true
 				},
 				"stationmodel": {
@@ -93,6 +104,7 @@
 					"type": "object",
 					"properties": {
 						"conntype": {
+							"type": "number",
 							"enum": [0,2]
 						},
 						"comportname": {
@@ -140,18 +152,23 @@
 							"type": "object",
 							"properties": {
 								"wind": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"temphum": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"rain": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"solar": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"uv": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								}
 							}
@@ -183,18 +200,23 @@
 							"type": "object",
 							"properties": {
 								"wind": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"temphum": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"rain": {
+									"type": "number",
 									"enum": [1,2,3,4,5,6,7,8]
 								},
 								"solar": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								},
 								"uv": {
+									"type": "number",
 									"enum": [0,1,2,3,4,5,6,7,8]
 								}
 							},
@@ -308,6 +330,7 @@
 							"type": "string"
 						},
 						"baudrate": {
+							"type": "number",
 							"enum": [19200,115200]
 						}
 					}
@@ -346,6 +369,7 @@
 						"userkey": {},
 						"mac": {},
 						"interval" : {
+							"type": "number",
 							"enum": [1,2,3,4,5,10],
 							"dependencies": [
 								"stationid"
@@ -362,6 +386,7 @@
 					"type": "object",
 					"properties": {
 						"conntype": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"filename": {
@@ -423,6 +448,7 @@
 			"type": "object",
 			"properties": {
 				"loginterval": {
+					"type": "number",
 					"enum": [0,1,2,3,4,5],
 					"required": true
 				},
@@ -476,6 +502,7 @@
 						"phpurl": {
 						},
 						"sslftp": {
+							"type": "number",
 							"enum": [0,1,2,3]
 						},
 						"ftpport": {
