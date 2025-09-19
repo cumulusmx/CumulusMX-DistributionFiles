@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!--
-Last modified: 2025/09/15 16:27:33
+Last modified: 2025/09/18 21:59:44
 -->
     <meta charset="utf-8">
     <title>Dashboard - Cumulus MX</title>
@@ -192,11 +192,11 @@ Last modified: 2025/09/15 16:27:33
                     <div class="cont">
                         <div class="cont" >
                             <p>{{AVERAGE}}</p>
-                            <p><span id="WindAverage" style="font-size:200%">-.-</span>&nbsp;<span class="WindUnit">---</span></p>
+                            <p><span id="WindAverage" style="font-size:300%;">-.-</span>&nbsp;<span class="WindUnit">---</span></p>
                         </div>
                         <div class="cont" >
                             <p>{{GUST}}</p>
-                            <p><span id="Recentmaxgust" style="font-size:200%">--.-</span>&nbsp;<span class="WindUnit">---</span></p>
+                            <p><span id="Recentmaxgust" style="font-size:300%;">--.-</span>&nbsp;<span class="WindUnit">---</span></p>
                             <p><span>{{HIGH}}&nbsp;</span><span id="HighGustToday" class="high">--.-</span><br><span id="HighGustTodayTime">--:--</span></p>
                         </div>
                     </div>
@@ -260,11 +260,13 @@ Last modified: 2025/09/15 16:27:33
                     <hr>
                     <div class="cont">
                         <div class="cont" >
-                            <p>{{RADIATION}}&nbsp;<span id="SolarRad" style="font-size:200%">---.-</span>&nbsp;W/m<sup>2</sup></p>
+                            <p>{{RADIATION}}</p>
+                            <p><span id="SolarRad" style="font-size:300%">---.-</span><span style="vertical-align:100%;font-size:10pt">W/m<sup>2</sup></p>
                             <p><span>{{HIGH}}&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span><br><span id="HighSolarRadTodayTime">--:--</span></p>
                         </div>
-                        <div class="cont" >
-                            <p>{{UV_INDEX}}&nbsp;<span id="UVindex" style="font-size:200%">--</span></p>
+                        <div class="cont" style="margin-top:10px">
+                            <p>{{UV_INDEX}}</p>
+                            <p><span id="UVindex" style="font-size:300%">--</span></p>
                             <p><span>{{HIGH}}&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><br><span id="HighUVindexTodayTime">--:--</span></p>
                         </div>
                     </div>
