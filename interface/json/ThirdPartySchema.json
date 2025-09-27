@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/18 17:45:00",
+	"version": "Last Modified: 2025/09/24 12:59:35",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -159,6 +159,53 @@
 				},
 				"includeuv": {
 					"type": "boolean"
+				},
+				"includesolar": {
+					"type": "boolean"
+				},
+				"includesoiltemp": {
+					"type": "boolean"
+				},
+				"soiltempsensor": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 16
+				},
+				"includesoilmoisture": {
+					"type": "boolean"
+				},
+				"soilmoistsensor": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 16
+				}
+			},
+			"dependencies": {
+				"stationid": ["enabled"],
+				"password": ["enabled"],
+				"interval": ["enabled"],
+				"includeuv": ["enabled"],
+				"includesolar": ["enabled"],
+				"includesoiltemp": ["enabled"],
+				"soiltempsensor": ["enabled","includesoiltemp"],
+				"includesoilmoisture": ["enabled"],
+				"soilmoistsensor": ["enabled", "includesoilmoisture"]
+			}
+		},
+		"wowbe": {
+			"title": "WOW-BE",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"stationid": {
+				},
+				"password": {
+				},
+				"interval": {
+					"type": "integer",
+					"minimum": 1
 				},
 				"includesolar": {
 					"type": "boolean"

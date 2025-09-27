@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 11:59:17
+// Last modified: 2025/09/23 18:13:54
 
 let accessMode;
 let csvChar;
@@ -62,7 +62,7 @@ $(document).ready(function () {
                                 validator: function(callback) {
                                     let value = this.getValue();
                                     // check for URL format or <ecowittcameraurl>
-                                    if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl>)$/.test(value)) {
+                                    if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl[1-8]?>)$/.test(value)) {
                                         callback({
                                             status: false,
                                             message: '{{NOT_VALID_URL}}'
