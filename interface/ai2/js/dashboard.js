@@ -207,7 +207,7 @@ $(document).ready(function () {
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
-                        $(alarmtag).removeClass('ax-led-on').addClass('ax-led-off');
+                        $(alarmtag).removeClass('ax-led-on')/*.addClass('ax-led-off')*/;
                     }
                 });
             } else {

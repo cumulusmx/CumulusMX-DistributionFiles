@@ -47,7 +47,7 @@ let getConfig = function() {
             'LEDUserAlarm': 'ax-brick',
             'ShowAlarms': true,
             'ShowDavis': true,
-            'Version': '5.0'
+            'Version': '5'
         }
         localStorage.setItem( axStore, JSON.stringify( CMXConfig ));
     } else {
@@ -163,7 +163,7 @@ let getVersion = function() {
             $('[data-cmxData=Version]').html('<span style="color:#C00">-Not known-</span>');
         }
     })
-    $('[data-OWdata=Version]').html( CMXConfig.Version );
+    $('[data-OWdata=Version]').html( CMXConfig.Version + ' <span style="font-size:80%">(b:166)</span>');
 };
 
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

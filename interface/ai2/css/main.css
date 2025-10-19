@@ -329,7 +329,7 @@ tr > td { border-bottom: thin solid var(--color5);}
 /*  ~~~~~~  LEDs  ~~~~~~*/
 .ax-led {
 	display:inline-block;
-	background-color: green;
+	background-color: darkslategrey;
 	box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
 	/*border: thin solid var(--sub5);*/
 	width: 1.6rem;
@@ -348,7 +348,7 @@ tr > td { border-bottom: thin solid var(--color5);}
 }
 
 .ax-led-off {
-	background-color: green;
+	background-color: orange;
 }
 
 @keyframes pulseRed {
