@@ -42,6 +42,7 @@
 
 		<!--	Local scripts & styles	-->
 		<script>
+			/*
 			$().ready(function() {
 				$.ajax({
         			url: '/api/graphdata/units.json',
@@ -53,10 +54,10 @@
             			});
         			}
    				 });
-			});
+			});*/
 		</script>
 		<style>
-			input[type="number"], select  {border-radius: 0.7em; border:thin solid var(--color5);}
+			input[type="number"], select  {border-radius: 0.7em 0 0 0.7em; border:thin solid var(--color5); text-align:center;}
 		</style>
 	</head>
 	<body class="ax-theme9">
@@ -80,7 +81,7 @@
 
 		<div id="content">
 			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
-			<div class="siteWidth">
+			<div id="subContent" class="siteWidth">
 				<!--	Page Title	-->
 				<div class="ax-titleBar">
 					<h1>AI Configuration</h1>
@@ -96,20 +97,23 @@
 							Configure the top and bottom gap for the page content, and whether or not the header 
 							and footer are static.
 						</p>
-						<div style="display:grid; grid-template-columns: repeat(2, 2fr 1fr);grid-template-rows:auto;align-items:center;row-gap:0.5em;">
-							<label for="BannerState">Static Banner</label>
+						<div style="display:grid; grid-template-columns: repeat(2, 2em 1fr);align-items:center;row-gap:0.5em; margin-bottom:1vh;">
 							<input type="checkbox" class="w3-check" name="BannerState" id="BannerState" value="false" aria-label="Static or scrolling banner">
-							<label for="FooterState">Static Footer</label>
+							<label for="BannerState">Static Banner</label>
 							<input type="checkbox" class="w3-check" name="FooterState" id="FooterState" value="false" aria-label="Static or scrolling footer">
-							<label for="paddingTop" style="grid-column-end: span 2;">Gap below banner</label>
-							<input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ax-gradient-up w3-input" style="grid-column-end:span 2" aria-label="Gap below page">
-							<label for="paddingBottom" style="grid-column-end:span 2">Gap above footer</label>
-							<input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ax-gradient-up w3-input" style="grid-column-end:span 2;" aria-label="Gap below page">
-							<label for="unitSelect" style="grid-column-end:span 2;">Units to use</label>
-							<select id="unitSelect" class="ax-gradient-up w3-select" style="border:thin solid var(--color5);grid-column-end:span 2;">
-							</select>
+							<label for="FooterState">Static Footer</label>
 						</div>
-						<p>
+						<div style="display:grid; grid-template-columns: 1fr 5em; gap: 1vh var(--columnGap); margin-bottom:1vh;">
+							<label for="paddingTop">Gap below banner</label>
+							<input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ax-gradient-up" aria-label="Gap below page">
+							<label for="paddingBottom">Gap above footer</label>
+							<input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ax-gradient-up" aria-label="Gap below page">
+						</div>
+						<div style="display:grid; grid-template-columns: 1fr 9em; column-gap: var(--columnGap);">
+							<label for="unitSelect">Units to use</label>
+							<select id="unitSelect" class="ax-gradient-up" style="border:thin solid var(--color5);height: 1.5em;text-align:center;"></select>
+						</div>
+						<p class="w3-small">
 							You should note that the footer will scroll automatically on small screens regardless of the above settings. Also, 
 							when changing the state of the banner, this screen will jump down slightly but will correct itself when the settings are stored.
 						</p>
@@ -128,12 +132,13 @@
 								<option value="" selected="selected">Default theme</option>
 							</select>
 						</div>
-						<p>
+						<p class="w3-small">
 							This facility only works on browsers that support 'local storage'. If you are using an old browser 
 							to view your Interface then please consider updating if possible. (You can also use the 'CMXConfig' 
 							settings below to manually change your theme.)
 						</p>
 					</div>
+					<!--	The Gull	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
 						<div class="ax-titleBar ax-animate-drop">
 							<h3>The Seagull</h3>
@@ -142,21 +147,23 @@
 							The seagull at the bottom right of the page can be animated in different ways.  By setting to 'No animation' the seagull will
 							just appear in its current position.
 						</p>
-						<div style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr;grid-template-rows: auto;row-gap: 0.5em;align-items:center;">
-							<label for="animationSelect" style="grid-column-end: span 2;">Animation</label>
-							<select id="animationSelect" class="w3-select ax-gradient-up" style="grid-column-end: span 2;border:thin solid var(--color5);">
+						<div style="display:grid;grid-template-columns: 1fr 10em;grid-template-rows: auto;row-gap: 0.5em;align-items:center; margin-bottom:1vh;">
+							<label for="animationSelect">Animation</label>
+							<select id="animationSelect" class="w3-select ax-gradient-up" style="border:thin solid var(--color5);">
 								<option value="none" selected="">None</option>
 								<option value="floatDownRight">Float down screen</option>
 								<option value="slideRight">Slide across screen</option>
 							</select>
-							<label for="animationSpeed" style="grid-column-end: span 3;">Animation speed (seconds)</label>
-							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ax-gradient-up w3-input" aria-label="Animation speed">
-							<label for="stayOnTop" style="grid-column-end: span 3;">Stay on top of all elements</label>
-							<input type="checkbox" class="w3-check" name="stayOnTop" id="stayOnTop" value=""  aria-label="Keep the seagull on top">
 						</div>
-						<p>In order to see changes dependant on numeric values, you need to click elsewhere on the page.</p>
+						<div style="display: grid; grid-template-columns: 1fr 5em;gap: 1vw;">
+							<label for="animationSpeed">Animation speed (seconds)</label>
+							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ax-gradient-up " aria-label="Animation speed">
+							<label for="stayOnTop">Stay on top of all elements</label>
+							<input type="checkbox" class="w3-check" name="stayOnTop" id="stayOnTop" value="" style="justify-self:end" aria-label="Keep the seagull on top">
+						</div>
+						<p class="w3-small">In order to see changes dependant on numeric values, you need to click elsewhere on the page.</p>
 					</div>				
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:6;">
+					<div class="w3-card ax-theme5 ax-animate-fadeIn" style="order:6;">
 						<div class="ax-titleBar ax-animate-drop">
 							<h3>Theme Colours</h3>
 						</div>
@@ -171,18 +178,18 @@
 							<div class="ax-theme8 w3-center w3-padding w3-border ax-theme5-bdr">ax-theme8<br><em>var(--color8)</em></div>
 							<div class="ax-theme9 w3-center w3-padding">ax-theme9<br><em>var(--color9)</em></div>
 						</div>
-						<p>There are 9 variation of each theme colour, classes or <em>style variables</em> can be used within any html element</p>
+						<p class="w3-small">There are 9 variation of each theme colour, classes or <em>style variables</em> can be used within any html element</p>
 					</div>				
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:5;">
 						<div class="ax-titleBar">
 							<h3>Change Settings</h3>
 						</div>
-						<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1px;" role="menu">
+						<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1vw;" role="menu">
 							<button class="w3-btn ax-btn-gradient-up w3-round-xlarge" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use Configuration</button>
 							<button class="w3-btn ax-btn-gradient-up w3-round-xlarge" onclick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore default</button>
 						</div>
 						<P><strong>Note</strong>: If you used the '<em>Restore default</em> button above, <strong><em>Everything</em></strong> gets reset back to the deafult styles.</P>
-						<p>
+						<p class="w3-small">
 							If you cannot store configuration details in your browser, you can still use this page
 							to configure your AI and then copy the CMXConfig object shown below directly into the
 							<span class="ai-monospaced"><strong>ai-page-manager.js</strong></span> file.
@@ -208,9 +215,9 @@
 						<div style="display:grid;grid-template-columns: 1fr 5em;grid-template-rows:auto;row-gap:0.5em;">
 							<span style="grid-column-start: span 2;">These rainrate values are used to determine which rainrate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/hr)</span></span>
 							<label for="rrLight">Light rainfale rate:</label>
-							<input type="number" min="0" step="0.1" name="rrLight" value="5" id="rrLight" class="ax-gradient-up w3-input" aria-label="Light rain image">
+							<input type="number" min="0" step="0.1" name="rrLight" value="5" id="rrLight" class="ax-gradient-up" aria-label="Light rain image">
 							<label for="rrMedium">Medium rainfall rate:</label>
-							<input type="number" min="0" step="0.1" name="rrMedium" value="10" id="rrMedium" class="ax-gradient-up w3-input" aria-label="Medium rain image">
+							<input type="number" min="0" step="0.1" name="rrMedium" value="10" id="rrMedium" class="ax-gradient-up" aria-label="Medium rain image">
 							<span style="grid-column-start: span 2">Above this value will use the 'Heavy' rainfall rate image</span>
 						</div>
 					</div>

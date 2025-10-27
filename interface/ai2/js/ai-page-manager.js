@@ -126,15 +126,12 @@ let configPage = function() {
         $('#ax-gull').css('position', 'absolute');  // Gull on bottom of page
     }
     //  Top Padding
-    $('#content').css('padding-top', CMXConfig.PaddingTop + CMXConfig.PaddingUnits);
+    $('#subContent').css('padding-top', CMXConfig.PaddingTop + CMXConfig.PaddingUnits);
     //  Bottom padding
-    $('#content').css('padding-bottom', CMXConfig.PaddingBottom + CMXConfig.PaddingUnits);
+    $('#subContent').css('padding-bottom', CMXConfig.PaddingBottom + CMXConfig.PaddingUnits);
     //  Seagull
-    if( CMXConfig.Seagull.OnTop) {
-        $('#ax-gull').css( 'z-index','200');
-    } else {
-        $('#ax-gull').css( 'z-index','-200');
-    }
+    $('#ax-gull').css( 'z-index', (CMXConfig.Seagull.OnTop) ? 200 : -200 );
+
     //  Animation
     if( CMXConfig.Seagull.Animation =='') {
         $('#ax-gull').css('aniation', 'fadeIn ' + CMXConfig.Seagull.Speed + 's' );  // Default animation

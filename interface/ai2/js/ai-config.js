@@ -54,14 +54,14 @@ let displayCurrent = function() {
 		showConfig();
 	});
 
-	$('#paddingTop').prop('value', parseInt(CMXConfig.PaddingTop ));
+	$('#paddingTop').prop('value', parseFloat(CMXConfig.PaddingTop ));
 	$('#paddingTop').on('blur', function(){
 		CMXConfig.PaddingTop = $('#paddingTop').val();
 		console.log("Padding top: " + CMXConfig.PaddingTop + CMXConfig.PaddingUnits);
 		configPage();
 		showConfig();
 	});
-	$('#paddingBottom').prop('value', parseInt(CMXConfig.PaddingBottom ));
+	$('#paddingBottom').prop('value', parseFloat(CMXConfig.PaddingBottom ));
 	$('#paddingBottom').on('blur', function(){
 		CMXConfig.PaddingBottom = $('#paddingBottom').val();
 		console.log("Padding bottom: " + CMXConfig.PaddingBottom + CMXConfig.PaddingUnits);
@@ -69,7 +69,7 @@ let displayCurrent = function() {
 		showConfig();
 	});
 	
-	$('#animationSpeed').prop('value', parseInt(CMXConfig.Seagull.Speed));
+	$('#animationSpeed').prop('value', parseFloat(CMXConfig.Seagull.Duration));
 	$('#animationSpeed').on('blur', function(){
 		CMXConfig.Seagull.Speed = $('#animationSpeed').prop('value');
 		console.log('Animation speed: ' + CMXConfig.Seagull.Speed);
