@@ -45,7 +45,7 @@ Highcharts.theme = {
 		title: {
 			style: {
 				color: 'var(--color9)',
-				font: 'bold calc( 18px + 4 * (( 100vw - 300px) / ( var(--siteWidth) - 300 ))) "Red Rose", Verdana, sans-serif'
+				font: 'bold calc( 18px + 4 * (( 100vw - 300px) / ( var(--pageWidth) - 300 ))) "Red Rose", Verdana, sans-serif'
 			}
 		},
 		xAxis: {

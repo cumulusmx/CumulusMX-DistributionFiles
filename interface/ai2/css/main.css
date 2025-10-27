@@ -11,9 +11,9 @@
  * 	Generally you chould only change values here to affect the whole site	*/
 
 html {
-	--siteWidth: 1200;
+	--pageWidth: 1200;
 	--rowGap:    2em;
-	--columnGap: 1em;
+	--colGap: 1em;
 }
 
 /*	Only change below if you are compentant using css	*/
@@ -40,8 +40,8 @@ h4 { font-size: clamp( 1.125rem, 1.0625rem + 0.25vw,  1.25rem   ); font-weight: 
 h5 { font-size: clamp( 0.9rem,   0.8rem + 0.3vw,      1.05rem   ); font-weight: 700; }
 h6 { font-size: clamp( 0.85rem,  0.8rem + 0.2vw,      0.95rem   ); font-weight: 600; font-style: italic; }
 
-.siteWidth {
-	max-width: calc( var(--siteWidth) * 1px );
+.pageWidth {
+	max-width: calc( var(--pageWidth) * 1px );
 	margin: auto;
 	padding: 0 1vw;
 }
@@ -121,7 +121,7 @@ tr > td { border-bottom: thin solid var(--color5);}
 	min-width: calc( 800 * 1px / 4);
 	justify-content:stretch;
 	align-items:baseliine;
-	gap: var(--rowGap) var(--columnGap );
+	gap: var(--rowGap) var(--colGap );
 	margin-bottom: 2vh;
 }
 
@@ -166,33 +166,33 @@ tr > td { border-bottom: thin solid var(--color5);}
 	display: flex;
     justify-content: stretch;
 	flex-flow: row wrap;
-	gap: var(--rowGap) var(--columnGap );
+	gap: var(--rowGap) var(--colGap );
 	margin-bottom: 2vh;
 }
 
 .ax-column6 > div {
 	/*	All child divs of six col flex	*/
-	min-width: calc( var(--siteWidth) * 1px / 7.5);
+	min-width: calc( var(--pageWidth) * 1px / 7.5);
 	flex: 1;
 }
 
 .ax-column5 > div {
-	min-width: calc( var(--siteWidth) * 1px / 6);
+	min-width: calc( var(--pageWidth) * 1px / 6);
 	flex: 1;
 }
 
 .ax-column4 > div {
-	min-width: calc( var(--siteWidth) * 1px / 5);
+	min-width: calc( var(--pageWidth) * 1px / 5);
 	flex: 1;
 }
 
 .ax-column3 > div {
-	min-width: calc( var(--siteWidth) * 1px / 4);
+	min-width: calc( var(--pageWidth) * 1px / 4);
 	flex: 1;
 }
 
 .ax-column2 > div {
-	min-width: calc( var(--siteWidth) * 1px / 3);
+	min-width: calc( var(--pageWidth) * 1px / 3);
 	flex: 1;
 }
 
@@ -210,44 +210,44 @@ tr > td { border-bottom: thin solid var(--color5);}
 .ax-fixedwidth {
     justify-content: space-evenly;
 	&.ax-column2 > div {
-		max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 2)) / 2 );
+		max-width: calc( ( var(--pageWidth) * 1px - (var(--colGap) * 2)) / 2 );
 	}
     &.ax-column3 > div {
-        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 3)) / 3 );;
+        max-width: calc( ( var(--pageWidth) * 1px - (var(--colGap) * 3)) / 3 );;
     }
     &.ax-column4 > div {
-        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 4)) / 4 );
+        max-width: calc( ( var(--pageWidth) * 1px - (var(--colGap) * 4)) / 4 );
     }
     &.ax-column5 > div {
-        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 5)) / 5 );
+        max-width: calc( ( var(--pageWidth) * 1px - (var(--colGap) * 5)) / 5 );
     }
     &.ax-column6 > div {
-        max-width: calc( ( var(--siteWidth) * 1px - (var(--columnGap) * 6)) / 6 );
+        max-width: calc( ( var(--pageWidth) * 1px - (var(--colGap) * 6)) / 6 );
     }
 }
 
 .ax-column2.ax-fixedwidth .ax-growX2{
-	max-width: calc( var(--siteWidth) * 1px )!important;
+	max-width: calc( var(--pageWidth) * 1px )!important;
 }
 .ax-column3.ax-fixedwidth .ax-growX2,
 .ax-column5.ax-fixedwidth .ax-growX3{
-	max-width: calc( var(--siteWidth) * 1px / 3 * 2 - var(--columnGap))!important;
+	max-width: calc( var(--pageWidth) * 1px / 3 * 2 - var(--colGap))!important;
 }
 .ax-column4.ax-fixedwidth .ax-growX2,
 .ax-column6.ax-fixedwidth .ax-growX3{
-	max-width: calc( var(--siteWidth) * 1px / 2 - var(--columnGap))!important;
+	max-width: calc( var(--pageWidth) * 1px / 2 - var(--colGap))!important;
 }
 .ax-column4.ax-fixedwidth .ax-growX3{
-	max-width: calc( var(--siteWidth) * 1px / 4 * 3 - var(--columnGap));
+	max-width: calc( var(--pageWidth) * 1px / 4 * 3 - var(--colGap));
 }
 .ax-column5.ax-fixedwidth .ax-growX2{
-	max-width: calc( var(--siteWidth) * 1px / 5 * 2 - var(--columnGap))!important;
+	max-width: calc( var(--pageWidth) * 1px / 5 * 2 - var(--colGap))!important;
 }
 .ax-column6.ax-fixedwidth .ax-growX2{
-	max-width: calc( var(--siteWidth) * 1px / 3 - var(--columnGap))!important;
+	max-width: calc( var(--pageWidth) * 1px / 3 - var(--colGap))!important;
 }
 .ax-column5.ax-fixedwidth .ax-growX4{
-	max-width: calc( var(--siteWidth) * 1px / 5 * 4 - var(--columnGap));
+	max-width: calc( var(--pageWidth) * 1px / 5 * 4 - var(--colGap));
 }
 
 @media only screen and (max-width: 500px) {
@@ -268,7 +268,7 @@ tr > td { border-bottom: thin solid var(--color5);}
 	justify-content: space-between;
 	align-items: baseline;
 	flex-flow: row;
-	gap: var(--columnGap) var(--rowGap);
+	gap: var(--colGap) var(--rowGap);
 }
 
 .ax-titleBar > * {
@@ -308,7 +308,7 @@ tr > td { border-bottom: thin solid var(--color5);}
     flex-flow: row wrap;
     justify-content:space-between;
     align-items:baseline;
-    gap: calc(var(--columnGap) / 8 ) calc(var(--rowGap) / 6 );
+    gap: calc(var(--colGap) / 8 ) calc(var(--rowGap) / 6 );
 }
 
 .ax-btnBar > button,
