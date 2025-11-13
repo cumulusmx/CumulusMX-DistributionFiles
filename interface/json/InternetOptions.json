@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/21 18:35:53",
+	"version": "Last Modified: 2025/09/28 17:13:49",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -665,6 +665,21 @@
 					"type": "url"
 				},
 				"webcamurl": {
+					"label": "{{WEBCAM_URL}}:",
+					"type": "url",
+					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+				},
+				"webcamurl1": {
+					"label": "{{WEBCAM_URL}}:",
+					"type": "url",
+					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+				},
+				"webcamurl2": {
+					"label": "{{WEBCAM_URL}}:",
+					"type": "url",
+					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]
+				},
+				"webcamurl3": {
 					"label": "{{WEBCAM_URL}}:",
 					"type": "url",
 					"helpers": ["If you have a page that displays your web cam, enter it here. Otherwise leave this blank"]

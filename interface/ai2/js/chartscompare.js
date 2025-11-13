@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartscompare.js        Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    (MC) Last Edit: 2025/09/03 17:53:19
+    (MC) Last Edit: 2025/10/04 16:03:21
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartscompare.html
@@ -91,7 +91,7 @@ $().ready(function () {
                 settings[k].forEach(function (val) {
                     var option = $('<option />');
                     option.html(val);
-                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
+                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
                         option.val(val);
                     } else {
                         option.val(k + '-' + val);
@@ -286,6 +286,9 @@ var updateChart = function (val, num, id) {
         return;
     } else if (val.startsWith('LeafWetness-')) {
         doLeafWet(num, val);
+        return;
+    } else if (val.startsWith('LaserDepth-')) {
+        doLaserDepth(num, val);
         return;
     }
 
@@ -768,6 +771,24 @@ var addLeafWetAxis = function (idx) {
     }, false, false);
 };
 
+var addLaserAxis = function (idx) {
+    // first check if we already have a laser axis
+    if (checkAxisExists('Laser'))
+        return;
+
+    // nope no existing axis, add one
+   chart.addAxis({
+        title: {text: 'Laser Depth (' + config.laser.units + ')'},
+        opposite: idx < settings.series.length / 2 ? false : true,
+        id: 'Laser',
+        showEmpty: false,
+        labels: {
+            align: idx < settings.series.length / 2 ? 'right' : 'left',
+        },
+        allowDecimals: false
+    }, false, false);
+
+};
 
 var doTemp = function (idx) {
     chart.hideNoData();
@@ -1592,5 +1613,38 @@ var doLeafWet = function (idx, val) {
                 zIndex: 100 - idx
             });
         }
+    });
+};
+
+var doLaserDepth = function (idx, val) {
+    chart.showLoading();
+
+    addLaserAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    $.ajax({
+        url: '/api/graphdata/laserdepth.json',
+        dataType: 'json',
+        success: function (resp) {
+            chart.hideLoading();
+            chart.addSeries({
+                index: idx,
+                data: resp[name],
+                id: val,
+                name: name,
+                yAxis: 'Laser',
+                type: 'line',
+                tooltip: {
+                    valueSuffix: ' ' + config.laser.units,
+                    valueDecimals: config.laser.decimals
+                },
+                visible: true,
+                color: settings.colours[idx],
+                zIndex: 100 - idx
+            });
+        },
+        async: false
     });
 };

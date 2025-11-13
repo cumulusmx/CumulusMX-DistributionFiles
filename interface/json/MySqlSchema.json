@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/29 12:25:36",
+	"version": "Last Modified: 2025/09/30 16:43:14",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -27,6 +27,7 @@
 					"title": "{{ADVANCED_OPTIONS}}",
 					"properties": {
 						"sslMode": {
+							"type": "number",
 							"enum": [0,1,2]
 						},
 						"tlsVers": {
@@ -174,14 +175,24 @@
 				"enabled": {
 					"type": "boolean"
 				},
-				"command": {
-					"title": "SQL:",
+				"entries": {
 					"type": "array",
-					"maxItems": 10
+					"maxItems": 10,
+					"items": {
+						"type": "object",
+						"properties": {
+							"command": {
+								"type": "string"
+							},
+							"catchup": {
+								"type": "boolean"
+							}
+						}
+					}
 				}
 			},
 			"dependencies": {
-				"command": ["enabled"]
+				"entries": ["enabled"]
 			}
 		},
 		"customtimed": {

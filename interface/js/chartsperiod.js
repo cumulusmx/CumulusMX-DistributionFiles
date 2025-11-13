@@ -1,20 +1,14 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/09/15 12:04:16
+// Last modified: 2025/11/13 10:17:23
 
-var chart, avail, config, options;
-var cache = {};
-var settings = {
-    series: [],
-    colours: [],
-    fromDate: "",
-    toDate: ""
-}
+let cache = {};
+let mainChart, navChart, config, avail, options;
+let settings;
 
-var freezing;
 var txtSelect = '{{SELECT_SERIES}}';
 var txtClear = '{{CLEAR_SERIES}}';
 
-var myRanges = {
+var myRangeBtns = {
     buttons: [{
         count: 1,
         type: 'day',
@@ -32,26 +26,35 @@ var myRanges = {
         text: 'All',
         title: '{{ALL}}'
     }],
-    inputEnabled: true,
-    selected: 3,
-    allButtonsEnabled: false
+    selected: 3
 };
 
-var compassP = function (deg) {
-    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
-    return a[Math.floor((deg + 22.5) / 45) % 8];
+const plotColours = ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
+
+const compassP = (deg) => {
+    const compassPoints = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
+    if (deg === 0) {
+        return '{{CALM}}';
+    }
+    return compassPoints[Math.floor((deg + 22.5) / 45) % 8];
 };
 
-var fromDate, toDate;
-var now = new Date();
+let fromDate, toDate;
+let now = new Date();
 now.setHours(0,0,0,0);
-var then = new Date(now.setMonth(now.getMonth() - 1));
+let then = new Date(now.setMonth(now.getMonth() - 1));
 
-$(document).ready(function () {
-    $.ajax({url: '/api/info/version.json', dataType: 'json', success: function (result) {
+let defaultEnd, defaultStart, selection;
+let dragging = null;
+let dragStartX = 0;
+let currentCursor = 'default';
+
+$(document).ready(() => {
+    $.getJSON({url: '/api/info/version.json'})
+    .done((result) => {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
-    }});
+    });
 
     fromDate = $('#dateFrom').datepicker({
         dateFormat: 'dd-mm-yy',
@@ -61,7 +64,7 @@ $(document).ready(function () {
         changeYear: true,
     }).val(formatUserDateStr(now))
     .on('change', function() {
-        var date = fromDate.datepicker('getDate');
+        const date = fromDate.datepicker('getDate');
         settings.fromDate = formatDateStr(date);
 
         if (toDate.datepicker('getDate') < date) {
@@ -81,7 +84,7 @@ $(document).ready(function () {
             changeYear: true,
         }).val(formatUserDateStr(now))
         .on('change', function() {
-            var date = toDate.datepicker('getDate');
+            const date = toDate.datepicker('getDate');
             settings.toDate = formatDateStr(date);
 
             if (fromDate.datepicker('getDate') < date) {
@@ -94,39 +97,28 @@ $(document).ready(function () {
 
     $.ajax({
         url: '/api/info/dateformat.txt',
-        dataType: 'text',
-        success: function (result) {
-            // we want all lower case and yy for the year not yyyy
-            var format = result.toLowerCase().replace('yyyy','yy');
-            fromDate.datepicker('option', 'dateFormat', format);
-            toDate.datepicker('option', 'dateFormat', format);
-        }
+        dataType: 'text'
+    })
+    .done((result) => {
+        // we want all lower case and yy for the year not yyyy
+        const format = result.toLowerCase().replace('yyyy','yy');
+        fromDate.datepicker('option', 'dateFormat', format);
+        toDate.datepicker('option', 'dateFormat', format);
     });
 
     // get all the required config data before we start using it
-    const availRes = $.ajax({ url: '/api/graphdata/availabledata.json', dataType: 'json' });
-    const settingsRes = $.ajax({ url: '/api/graphdata/selectaperiod.json', dataType: 'json' });
-    const configRes = $.ajax({ url: '/api/graphdata/graphconfig.json', dataType: 'json' });
+    const availRes = $.getJSON({ url: '/api/graphdata/availabledata.json' });
+    const settingsRes = $.getJSON({ url: '/api/graphdata/selectaperiod.json' });
+    const configRes = $.getJSON({ url: '/api/graphdata/graphconfig.json' });
 
     Promise.all([availRes, settingsRes, configRes])
-    .then(function (results) {
+    .then((results) => {
         avail = results[0];
         settings = results[1];
         config = results[2];
 
-        Highcharts.setOptions({
-            time: {
-                timezone: config.tz
-            },
-            chart: {
-                style: {
-                    fontSize: '1.5rem'
-                }
-            }
-        });
-
         // add the default select option
-        var option = $('<option />');
+        let option = $('<option />');
         option.html(txtSelect);
         option.val(0);
         $('#data0').append(option.clone());
@@ -146,14 +138,16 @@ $(document).ready(function () {
                 var optgrp = $('<optgroup />');
                 optgrp.attr('label', k);
                 avail[k].forEach(function (val) {
-                    var option = $('<option />');
-                    option.html(val);
-                    if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
-                        option.val(val);
-                    } else {
-                        option.val(k + '-' + val);
+                    if (['Humidex'].indexOf(val) === -1) {
+                        let option = $('<option />');
+                        option.html(val);
+                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
+                            option.val(val);
+                        } else {
+                            option.val(k + '-' + val);
+                        }
+                        optgrp.append(option);
                     }
-                    optgrp.append(option);
                 });
                 $('#data0').append(optgrp.clone());
                 $('#data1').append(optgrp.clone());
@@ -165,8 +159,8 @@ $(document).ready(function () {
         }
 
         // add the chart theme colours
-        Highcharts.theme.colors.forEach(function(col, idx) {
-            var option = $('<option style="background-color:' + col + '"/>');
+        plotColours.forEach(function(col, idx) {
+            let option = $('<option style="background-color:' + col + '"/>');
             option.html(idx);
             option.val(col);
             $('#colour0').append(option.clone());
@@ -177,77 +171,74 @@ $(document).ready(function () {
             $('#colour5').append(option);
         });
 
+        CmxChartJsHelpers.SetRangeButtons('rangeButtons', myRangeBtns.buttons);
+        CmxChartJsHelpers.SetupNavigatorSelection('navChart')
+
+        // Global plugins
+        Chart.register(CmxChartJsPlugins.chartAreaBorder);
+
+        Chart.defaults.locale = config.locale;
+        Chart.defaults.scales.time.adapters = {date: {zone: config.tz}}
+        Chart.defaults.datasets.line.pointRadius = 0;
+        Chart.defaults.datasets.line.pointHoverRadius = 5;
+        Chart.defaults.datasets.line.borderWidth = 2;
+        Chart.defaults.scales.linear.title = {font: {weight: 'bold', size: 12}, padding: {bottom: -2}};
+        Chart.defaults.scales.linear.ticks.precision = 0;
+        Chart.defaults.scales.linear.grid = {display: false};
+        Chart.defaults.scales.linear.grace = '2.5%';
+        // set legend to use point style of line
+        Chart.defaults.plugins.legend.labels.usePointStyle = true;
+        Chart.defaults.plugins.legend.labels.pointStyle = 'line';
+        // set legend to show a common tooltip for all data series
+        Chart.defaults.interaction.mode = 'index';
+        Chart.defaults.interaction.intersect = false;
+        Chart.defaults.plugins.tooltip.boxHeight = 2;
+        Chart.defaults.plugins.title.font.size = 18;
+        Chart.defaults.plugins.title.font.color = '#000';
+        Chart.defaults.plugins.decimation.enabled = true;
+        Chart.defaults.plugins.chartAreaBorder = {borderColor: '#858585'}
+
         // Draw the basic chart
-        freezing = config.temp.units === 'C' ? 0 : 32;
-        var options = {
-            chart: {
-                renderTo: 'chartcontainer',
-                type: 'line',
-                alignTicks: true
-            },
-            title: {text: '{{ALL_DATA_SELECTACHART}}'},
-            credits: {enabled: true},
-            lang: {
-                locale: config.locale
-            },
-            xAxis: {
-                type: 'datetime',
-                ordinal: false,
-                dateTimeLabelFormats: {
-                    minute: config.timeformat,
-                    hour: config.timeformat,
-                    day: '%e %b',
-                    week: '%e %b %y',
-                    month: '%b %y',
-                    year: '%Y'
-                }
-            },
-            yAxis: [],
-            legend: {enabled: true},
-            plotOptions: {
-                series: {
-                    dataGrouping: {
-                        enabled: false
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {x: CmxChartJsHelpers.TimeScale},
+                plugins: {
+                    legend: {
+                        display: true
                     },
-                    states: {
-                        hover: {
-                            halo: {
-                                size: 5,
-                                opacity: 0.25
-                            }
-                        }
-                    },
-                    cursor: 'pointer',
-                    marker: {
-                        enabled: false,
-                        states: {
-                            hover: {
-                                enabled: true,
-                                radius: 0.1
-                            }
-                        }
-                    }
-                },
-                line: {lineWidth: 2}
-            },
-            tooltip: {
-                shared: true,
-                split: false,
-                xDateFormat: "%A, %b %e, " + config.timeformat
-            },
-            series: [],
-            rangeSelector: myRanges,
-            navigator: {
-                xAxis: {
-                    dateTimeLabelFormats: {
-                        hour: config.timeformat
+                    title: {
+                        display: true,
+                        text: 'Recent Data Select-a-Chart'
                     }
                 }
-            }
+            },
+            plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: [0,0],
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
         };
 
-        // draw the basic chart framework
-        chart = new Highcharts.StockChart(options);
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+
+        selection = {
+            start: 0, end: 0
+        };
+
+        const pendingCalls = [];
 
         // Set the dropdowns to defaults or previous values
         for (var i = 0; i < 6; i++) {
@@ -264,19 +255,25 @@ $(document).ready(function () {
                 $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
                 $('#data' + i).val(settings.series[i]);
                 // Draw it on the chart
-                updateChart(settings.series[i], i, 'data' + i);
+                promise = updateChart(settings.series[i], i, 'data' + i);
+                pendingCalls.push(promise);
             }
         }
+
+        Promise.all(pendingCalls).then(() => {
+            mainChart.config.update();
+            mainChart.update();
+            checkNavChartDataSet();
+        });
     });
 });
 
 
-var procDataSelect = function (sel) {
-
+const procDataSelect = (sel) => {
     // compare the select value against the other selects, and update the chart if required
-    var id = sel.id;
-    var num = +id.slice(-1);
-    var val = sel.value;
+    const id = sel.id;
+    const num = +id.slice(-1);
+    const val = sel.value;
 
     // Has this series already been selected? If so set the dropdown back to its previous value, then abort
     if (val != '0' &&  settings.series.indexOf(sel.value) != -1) {
@@ -293,40 +290,39 @@ var procDataSelect = function (sel) {
 
 
     // clear the existing series
-    if (chart.series.length > 0)
+    if (mainChart.data.datasets.length > 0)
         clearSeries(settings.series[num]);
 
-
-    updateChart(val, num, id);
+    const x = updateChart(val, num, id);
+    Promise.all([x]).then(() => {
+        mainChart.config.update();
+        mainChart.update();
+        checkNavChartDataSet();
+    });
 
     settings.series[num] = val;
 
     storeSettings();
 };
 
-var updateChart = function (val, num, id) {
+const updateChart = (val, num, id) => {
     // test for the extra sensor series first
     if (val.startsWith('ExtraTemp-')) {
-        doExtraTemp(num, val);
-        return;
+        return doExtraTemp(num, val);
     } else if (val.startsWith('ExtraHum-')) {
-        doExtraHum(num, val);
-        return;
+        return doExtraHum(num, val);
     } else if (val.startsWith('ExtraDewPoint-')) {
-        doExtraDew(num, val);
-        return;
+        return doExtraDew(num, val);
     } else if (val.startsWith('UserTemp-')) {
-        doUserTemp(num, val);
-        return;
+        return doUserTemp(num, val);
     } else if (val.startsWith('SoilMoist-')) {
-        doSoilMoist(num, val);
-        return;
+        return doSoilMoist(num, val);
     } else if (val.startsWith('SoilTemp-')) {
-        doSoilTemp(num, val);
-        return;
+        return doSoilTemp(num, val);
     } else if (val.startsWith('LeafWetness-')) {
-        doLeafWet(num, val);
-        return;
+        return doLeafWet(num, val);
+    } else if (val.startsWith('LaserDepth-')) {
+       return doLaserDepth(num, val);
     }
 
     // no? then do the "standard" data
@@ -335,71 +331,51 @@ var updateChart = function (val, num, id) {
             // clear this series
             break;
         case 'Temperature':
-            doTemp(num);
-            break;
+            return doTemp(num);
         case 'Indoor Temp':
-            doInTemp(num);
-            break;
+            return doInTemp(num);
         case 'Heat Index':
-            doHeatIndex(num);
-            break;
+            return doHeatIndex(num);
         case 'Dew Point':
-            doDewPoint(num);
-            break;
+            return doDewPoint(num);
         case 'Wind Chill':
-            doWindChill(num);
-            break;
+            return doWindChill(num);
         case 'Apparent Temp':
-            doAppTemp(num);
-            break;
+            return doAppTemp(num);
         case 'Feels Like':
-            doFeelsLike(num);
-            break;
+            return doFeelsLike(num);
         case 'Humidex':
-            doHumidex(num);
-            break;
+            return doHumidex(num);
 
         case 'Humidity':
-            doHumidity(num);
-            break;
+            return doHumidity(num);
         case 'Indoor Hum':
-            doInHumidity(num);
-            break;
+            return doInHumidity(num);
 
         case 'Solar Rad':
-            doSolarRad(num);
-            break;
+            return doSolarRad(num);
         case 'UV Index':
-            doUV(num);
-            break;
+            return doUV(num);
 
         case 'Pressure':
-            doPress(num);
-            break;
+            return doPress(num);
 
         case 'Wind Speed':
-            doWindSpeed(num);
-            break;
+            return doWindSpeed(num);
         case 'Wind Gust':
-            doWindGust(num);
-            break;
+            return doWindGust(num);
         case 'Wind Bearing':
-            doWindDir(num);
-            break;
+            return doWindDir(num);
 
         case 'Rainfall':
-            doRainfall(num);
-            break;
+            return doRainfall(num);
         case 'Rainfall Rate':
-            doRainRate(num);
-            break;
+            return doRainRate(num);
 
         case 'PM 2.5':
-            doPm2p5(num);
-            break;
+            return doPm2p5(num);
         case 'PM 10':
-            doPm10(num);
-            break;
+            return doPm10(num);
 
         default:
             $('#' + id).val(txtSelect);
@@ -407,10 +383,10 @@ var updateChart = function (val, num, id) {
     }
 }
 
-var updateColour = function (sel) {
-    var id = sel.id;
-    var num = +id.slice(-1);
-    var val = sel.value;
+const updateColour = (sel) => {
+    const id = sel.id;
+    const num = +id.slice(-1);
+    const val = sel.value;
 
     // set the selection colour
     $('#' + id).css('background', val);
@@ -420,8 +396,8 @@ var updateColour = function (sel) {
     // do we need to update the associated data series?
     if (settings.series[num] != '0') {
             // find the series
-        var seriesIdx = -1;
-        var i = 0;
+        let seriesIdx = -1;
+        let i = 0;
         chart.series.forEach(function (ser) {
             if (ser.options.name == settings.series[num] && ser.yAxis.options.id != 'navigator-y-axis') {
                 seriesIdx = i;
@@ -432,16 +408,22 @@ var updateColour = function (sel) {
         if (seriesIdx == -1)
             return;
 
-        chart.series[seriesIdx].options.color = settings.colours[num];
-        chart.series[seriesIdx].update(chart.series[seriesIdx].options);
+        mainChart.config.data.datasets[seriesIdx].borderColor = settings.colours[num];
+        mainChart.config.data.datasets[seriesIdx].backgroundColor = settings.colours[num];
+        mainChart.update('none');
+
+        if (navChart.data.datasets[0].id === mainChart.config.data.datasets[seriesIdx].id) {
+            navChart.config.data.datasets[0].borderColor = settings.colours[num];
+            navChart.config.data.datasets[0].backgroundColor = settings.colours[num];
+            navChart.update('none');
+        }
     }
     storeSettings();
 };
 
-var storeSettings = function () {
-    var url = '/api/graphdata/selectaperiod.json';
+const storeSettings = () => {
     $.ajax({
-        url: url,
+        url: '/api/graphdata/selectaperiod.json',
         type: 'POST',
         contentType: false,
         data: JSON.stringify(settings),
@@ -449,54 +431,74 @@ var storeSettings = function () {
     });
 };
 
-var clearSeries = function (val) {
+const clearSeries = (val) => {
     // find the series
-    var seriesIdx = -1;
-    var i = 0;
-    chart.series.forEach(function (ser) {
-        if (ser.options.id == val && ser.yAxis.options.id != 'navigator-y-axis') {
-            seriesIdx = i;
+    let found = false;
+    // clear the series - if found
+    for (let i = 0; i < mainChart.config.data.datasets.length; i++) {
+        if (mainChart.config.data.datasets[i].id === val) {
+            mainChart.config.data.datasets.splice(i, 1);
+            found = true;
+            break;
         }
-        i++;
-    });
+    };
 
-    if (seriesIdx == -1)
-        return;
-
-    // check no other series is using the yAxis
-    var yAxisId = chart.series[seriesIdx].yAxis.options.id;
-    var inUse = 0;
-
-    chart.series.forEach(function (ser) {
-        if (ser.yAxis.options.id == yAxisId) {
-            inUse++;
-        }
-    });
-
-    // clear the series
-    chart.series[seriesIdx].remove();
-
-    // Are we the only series using this axis, if so clear it
-    if (inUse === 1) {
-        var axisIdx = -1;
-        // find which index of yAxis that in use
-        for (i = 0; i < chart.yAxis.length; i++) {
-            if (chart.yAxis[i].options.id == yAxisId)
-                axisIdx = i;
-        }
-
-        // clear the yAxis
-        chart.yAxis[axisIdx].remove();
-    }
+    if (!found) return;
 
     // check the navigator - have we just removed the series it was using, and is there at least one series we can use instead?
-    if (!chart.navigator.hasNavigatorData && chart.series.length > 0 ) {
-        chart.series[0].update({showInNavigator: true}, true);
+    checkNavChartDataSet();
+
+    mainChart.update('none');
+    navChart.update('none');
+}
+
+const checkNavChartDataSet = () => {
+    let order = 100;
+    let useSet = -1;
+
+    for (let i = 0; i < mainChart.data.datasets.length; i++) {
+        if (mainChart.data.datasets[i].order < order) {
+            order = mainChart.data.datasets[i].order;
+            useSet = i;
+        }
+    }
+
+    if (useSet > -1) {
+        if (navChart.data.datasets[0].data == null || navChart.data.datasets[0].data.length == 0) {// initial state
+            navChart.data.datasets[0].id = mainChart.data.datasets[useSet].id;
+            navChart.data.datasets[0].data = mainChart.data.datasets[useSet].data
+            navChart.data.datasets[0].borderColor = mainChart.data.datasets[useSet].borderColor;
+            navChart.update();
+        } else if (navChart.data.datasets[0].id != mainChart.data.datasets[useSet].id) {
+            navChart.data.datasets[0].id = mainChart.data.datasets[useSet].id;
+            navChart.data.datasets[0].data = mainChart.data.datasets[useSet].data;
+            navChart.data.datasets[0].borderColor = mainChart.data.datasets[useSet].borderColor;
+            navChart.update();
+        }
+    } else {
+        navChart.data.datasets[0].data = [];
+        navChart.update();
+    }
+};
+
+const setInitialRange = (data) => {
+    // Initial x-range
+    if ((mainChart.data.datasets == null || mainChart.data.datasets.length === 0) && (data != null && data.length > 0)) {
+        CmxChartJsHelpers.SetInitialRange(data);
+
+        mainChart.config.options.scales.x.min = selection.start;
+        mainChart.config.options.scales.x.max = selection.end;
     }
 }
 
-var updateSeries = function() {
+const checkAxisExists = (name) => {
+    return name in mainChart.scales;
+};
+
+const updateSeries = () => {
     cache = {};
+    const pendingCalls = [];
+
     // update all the series
     for (var i = 0; i < 6; i++) {
         if (settings.series[i] != '0') {
@@ -505,378 +507,322 @@ var updateSeries = function() {
             $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
             $('#data' + i).val(settings.series[i]);
             // Draw it on the chart
-            updateChart(settings.series[i], i, 'data' + i);
+            promise = updateChart(settings.series[i], i, 'data' + i);
+            pendingCalls.push(promise);
         }
     }
-    // now reset the range to All
-    chart.rangeSelector.buttons[3].onEvents.click();
+
+    Promise.all(pendingCalls).then(() => {
+        mainChart.config.update();
+        mainChart.update();
+        checkNavChartDataSet();
+    });
 }
 
-var checkAxisExists = function (name) {
-    var exists = false;
-    chart.yAxis.forEach(function (axis) {
-        if (axis.options.id == name)
-            exists = true;
-    });
-    return exists;
-};
-
-var addTemperatureAxis = function (idx) {
+const addTemperatureAxis = (idx) => {
     // first check if we already have a temperature axis
-    if (checkAxisExists('Temperature'))
+    if (checkAxisExists('y_temp'))
         return;
 
     // nope no existing axis, add one
-   chart.addAxis({
-        title: {text: '{{TEMPERATURE}} (°' + config.temp.units + ')'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Temperature',
-        showEmpty: false,
-        labels: {
-            formatter: function () {
-                return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
-            },
-            align: idx < settings.series.length / 2 ? 'right' : 'left',
-        },
-        plotLines: [{
-            // freezing line
-            value: freezing,
-            color: 'rgb(0, 0, 180)',
-            width: 1,
-            zIndex: 2
-        }],
-        minRange: config.temp.units == 'C' ? 5 : 10,
-        allowDecimals: false
-    }, false, false);
+    const freezing = config.temp.units === 'C' ? 0 : 32;
 
+    mainChart.options.scales.y_temp = {
+        title: {
+            display: true,
+            text: `{{TEMPERATURE}} (°${config.temp.units})`
+        },
+        grid: {
+            color: (line) => (line.tick.value === freezing ? 'blue' : 'rgba(0, 0, 0, 0.1)')
+        },
+        ticks: {
+            color: (context) => {
+                return context.tick.value <= freezing ? 'blue' : 'red'
+            }
+        },
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addPressureAxis = function (idx) {
+const addPressureAxis = (idx) => {
     // first check if we already have a pressure axis
-    if (checkAxisExists('Pressure'))
+    if (checkAxisExists('y_press'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{PRESSURE}} (' + config.press.units + ')'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Pressure',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_press = {
+        title: {
+            display: true,
+            text: `{{PRESSURE}} (${config.press.units})`
         },
-        minRange: config.press.units == 'in' ? 1 : 5,
-        allowDecimals: config.press.units == 'in' ? true : false
-    }, false, false);
+        ticks: {
+            // suppress thousands separator for hPa
+            callback: (value, index, ticks) => { return Number(value); }
+        },
+        grace: config.press.units === 'inHg' ? 0.2 : 1,
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addHumidityAxis = function (idx) {
+const addHumidityAxis = (idx) => {
     // first check if we already have a humidity axis
-    if (checkAxisExists('Humidity'))
+    if (checkAxisExists('y_hum'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{HUMIDITY}} (%)'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Humidity',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_hum = {
+        title: {
+            display: true,
+            text: '{{HUMIDITY}} (%)'
         },
         min: 0,
         max: 100,
-        allowDecimals: false
-    }, false, false);
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addSoilMoistAxis = function (idx) {
+const addSoilMoistAxis = (idx) => {
     // first check if we already have a soil moisture axis
-    if (checkAxisExists('SoilMoist'))
+    if (checkAxisExists('y_moist'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{SOIL_MOISTURE}}'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'SoilMoist',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_moist = {
+        title: {
+            display: true,
+            text: '{{SOIL_MOISTURE}}'
         },
         min: 0,
-        allowDecimals: false
-    }, false, false);
+        max: config.soilmoisture.units.includes('cb') ? 200 : 100, // Davis 0-200 cb, Ecowitt 0-100%
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addSolarAxis = function (idx) {
+const addSolarAxis = (idx) => {
     // first check if we already have a solar axis
-    if (checkAxisExists('Solar'))
+    if (checkAxisExists('y_solar'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{SOLAR_RADIATION}} (W/m\u00B2)'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Solar',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_solar = {
+        title: {
+            display: true,
+            text: '{{SOLAR_RADIATION}} (W/m²)'
         },
         min: 0,
-        allowDecimals: false
-    }, false, false);
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addUVAxis = function (idx) {
+const addUVAxis = (idx) => {
     // first check if we already have a UV axis
-    if (checkAxisExists('UV'))
+    if (checkAxisExists('y_uv'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title:{text: '{{UV_INDEX}}'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'UV',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
-        },
-        min: 0
-    }, false, false);
-};
-
-var addWindAxis = function (idx) {
-    // first check if we already have a wind axis
-    if (checkAxisExists('Wind'))
-        return;
-
-    // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{WIND_SPEED}} (' + config.wind.units + ')'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Wind',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_uv = {
+        title: {
+            display: true,
+            text: '{{UV_INDEX}}'
         },
         min: 0,
-        allowDecimals: config.wind.units == 'm/s' ? true : false
-    }, false, false);
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addBearingAxis = function (idx) {
-    // first check if we already have a bearing axis
-    if (checkAxisExists('Bearing'))
+const addWindAxis = (idx) => {
+    // first check if we already have a wind axis
+    if (checkAxisExists('y_wind'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{WIND_BEARING}}'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Bearing',
-        alignTicks: false,
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left',
-            formatter: function () {
-                compassP(this.value + 22.5);
-            }
+    mainChart.options.scales.y_wind = {
+        title: {
+            display: true,
+            text: `{{WIND_SPEED}} (${config.wind.units})`
+        },
+        min: 0,
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
+};
+
+const addBearingAxis = (idx) => {
+    // first check if we already have a bearing axis
+    if (checkAxisExists('y_bearing'))
+        return;
+
+    // nope no existing axis, add one
+    mainChart.options.scales.y_bearing = {
+        title: {
+            display: true,
+            text: '{{WIND_BEARING}}'
         },
         min: 0,
         max: 360,
-        tickInterval: 45,
-        gridLineWidth: 0,
-        minorGridLineWidth: 0
-    }, false, false);
+        ticks: {
+            callback: (val, index) => {
+                return compassP(val);
+            },
+            stepSize: 45
+        },
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addRainAxis = function (idx) {
+const addRainAxis = (idx) => {
     // first check if we already have a rain axis
-    if (checkAxisExists('Rain'))
+    if (checkAxisExists('y_rain'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{RAINFALL}} (' + config.rain.units + ')'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'Rain',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_rain = {
+        title: {
+            display: true,
+            text: `{{RAINFALL}} (${config.rain.units})`
         },
-        min: 0,
-        minRange: config.rain.units == 'in' ? 0.25 : 4,
-        allowDecimals: config.rain.units == 'in' ? true : false
-    }, false, false);
+        beginAtZero: true,
+        grace: 0,
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addRainRateAxis = function (idx) {
+const addRainRateAxis = (idx) => {
     // first check if we already have a rain rate axis
-    if (checkAxisExists('RainRate'))
+    if (checkAxisExists('y_rainRate'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{RAINFALL_RATE}} (' + config.rain.units + '/{{HOUR_SHORT_LC}})'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'RainRate',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_rainRate = {
+        title: {
+            display: true,
+            text: `{{RAINFALL_RATE}} (${config.rain.units}/{{SHORT_HR}})`
         },
-        min: 0,
-        minRange: config.rain.units == 'in' ? 0.25 : 4,
-        allowDecimals: config.rain.units == 'in' ? true : false
-    }, false, false);
+        beginAtZero: true,
+        grace: 0,
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addAQAxis = function (idx) {
+const addAQAxis = (idx) => {
     // first check if we already have a AQ axis
-    if (checkAxisExists('pm'))
+    if (checkAxisExists('y_pm'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{PARTICULATES}} (µg/m³)'},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'pm',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_pm = {
+        title: {
+            display: true,
+            text: '{{PARTICULATES}} (µg/m³)'
         },
         min: 0,
-        allowDecimals: false
-    }, false, false);
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
 };
 
-var addLeafWetAxis = function (idx) {
+const addLeafWetAxis = (idx) => {
     // first check if we already have a humidity axis
-    if (checkAxisExists('LeafWetness'))
+    if (checkAxisExists('y_leaf'))
         return;
 
     // nope no existing axis, add one
-    chart.addAxis({
-        title: {text: '{{LEAF_WETNESS}}' + (config.leafwet.units == '' ? '' : '(' + config.leafwet.units + ')')},
-        opposite: idx < settings.series.length / 2 ? false : true,
-        id: 'LeafWetness',
-        showEmpty: false,
-        labels: {
-            align: idx < settings.series.length / 2 ? 'right' : 'left'
+    mainChart.options.scales.y_leaf = {
+        title: {
+            display: true,
+            text: `{{LEAF_WETNESS}} (${config.leafwet.units == '' ? '' : config.leafwet.units})`
         },
         min: 0,
-        allowDecimals: false
-    }, false, false);
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    }
 };
 
+const addLaserAxis = (idx) => {
+    // first check if we already have a laser axis
+    if (checkAxisExists('y_laser'))
+        return;
 
-var doTemp = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
+    // nope no existing axis, add one
+    mainChart.options.scales.y_laser = {
+        title: {
+            display: true,
+            text: `{{LASER_DEPTH}} (${config.laser.units})`
+        },
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
     }
-    else
-    {
-        addSeries();
-    }
+};
 
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.temp.temp,
-            id: 'Temperature',
-            name: '{{TEMPERATURE}}',
-            yAxis: 'Temperature',
+const doTemp = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.temp);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{TEMPERATURE}}',
             type: 'line',
+            data: cache.temp.temp,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
 var doInTemp = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.temp.intemp,
-            id: 'Indoor Temp',
-            name: '{{INDOOR_TEMP}}',
-            yAxis: 'Temperature',
+    const addSeries = () => {
+        setInitialRange(cache.temp.intemp);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{INDOOR_TEMP}}',
             type: 'line',
+            data: cache.temp.intemp,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+                url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doHeatIndex = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
+const doHeatIndex = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.heatindex);
         chart.addSeries({
             index: idx,
             data: cache.temp.heatindex,
@@ -892,178 +838,164 @@ var doHeatIndex = function (idx) {
             color: settings.colours[idx],
             zIndex: 100 - idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    }
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doDewPoint = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doDewPoint = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.dew);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{DEW_POINT}}',
+            type: 'line',
             data: cache.temp.dew,
-            id: 'Dew Point',
-            name: '{{DEW_POINT}}',
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doWindChill = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doWindChill = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.wchill);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{WIND_CHILL}}',
+            type: 'line',
             data: cache.temp.wchill,
-            id: 'Wind Chill',
-            name: '{{WIND_CHILL}}',
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doAppTemp = function (idx) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doAppTemp = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.apptemp);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{APPARENT_TEMP}}',
+            type: 'line',
             data: cache.temp.apptemp,
-            id: 'Apparent Temp',
-            name: '{{APPARENT_TEMP}}',
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
-    }
-};
 
-var doFeelsLike = function (idx) {
-    chart.showLoading();
+        addTemperatureAxis(idx);
+    };
 
-    addTemperatureAxis(idx);
-
-    if (cache === null || cache.temp === undefined)
-    {
-        $.ajax({
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
             url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.temp = resp;
-                addSeries();
-            },
-            async: false
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
         });
-    }
-    else
-    {
+    } else {
         addSeries();
     }
+};
 
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.temp.feelslike,
-            id: 'Feels Like',
-            name: '{{FEELS_LIKE}}',
-            yAxis: 'Temperature',
+const doFeelsLike = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.feelslike);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{FEELS_LIKE}}',
             type: 'line',
+            data: cache.temp.feelslike,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
+/*
 var doHumidex = function (idx) {
     chart.showLoading();
 
@@ -1105,832 +1037,745 @@ var doHumidex = function (idx) {
         chart.hideLoading();
     }
 };
+*/
 
-
-var doHumidity = function (idx) {
-    chart.showLoading();
-
-    addHumidityAxis(idx);
-
-    if (cache === null || cache.hum === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.hum = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doHumidity = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.hum.hum);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{HUMIDITY}}',
+            type: 'line',
             data: cache.hum.hum,
-            id: 'Humidity',
-            name: '{{HUMIDITY}}',
-            yAxis: 'Humidity',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_hum',
             tooltip: {
-                valueSuffix: ' %',
-                valueDecimals: config.hum.decimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-var doInHumidity = function (idx) {
-    chart.showLoading();
-
-    addHumidityAxis(idx);
-
-    if (cache === null || cache.hum === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.hum = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.hum.inhum,
-            id: 'Indoor Hum',
-            name: '{{INDOOR_HUM}}',
-            yAxis: 'Humidity',
-            type: 'line',
-            tooltip: {
-                valueSuffix: ' %',
-                valueDecimals: config.hum.decimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-
-var doSolarRad = function (idx) {
-    chart.showLoading();
-
-    addSolarAxis(idx);
-
-    if (cache === null || cache.solar === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.solar = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.solar.SolarRad,
-            id: 'Solar Rad',
-            name: '{{SOLAR_RAD}}',
-            yAxis: 'Solar',
-            type: 'area',
-            tooltip: {
-                valueSuffix: ' W/m\u00B2',
-                valueDecimals: 0
-            },
-            visible: true,
-            color: settings.colours[idx],
-            fillOpacity: 0.5,
-            boostThreshold: 0,
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-var doUV = function (idx) {
-    chart.showLoading();
-
-    addUVAxis(idx);
-
-    if (cache === null || cache.solar === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.solar = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.solar.UV,
-            id: 'UV Index',
-            name: '{{UV_INDEX}}',
-            yAxis: 'UV',
-            type: 'line',
-            tooltip: {
-                valueSuffix: null,
-                valueDecimals: config.uv.decimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-
-var doPress = function (idx) {
-    chart.showLoading();
-
-    addPressureAxis(idx);
-
-    if (cache === null || cache.press === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvpress.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.press = resp.press;
-                addSeries();
-            }
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.press,
-            id: 'Pressure',
-            name: '{{PRESSURE}}',
-            yAxis: 'Pressure',
-            type: 'line',
-            tooltip: {
-                valueSuffix: ' ' + config.press.units,
-                valueDecimals: config.press.decimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-
-var doWindSpeed = function (idx) {
-    chart.showLoading();
-
-    addWindAxis(idx);
-
-    if (cache === null || cache.wind === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.wind = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.wind.wspeed,
-            id: 'Wind Speed',
-            name: '{{WIND_SPEED}}',
-            yAxis: 'Wind',
-            type: 'line',
-            tooltip: {
-                valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.avgdecimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-var doWindGust = function (idx) {
-    chart.showLoading();
-
-    addWindAxis(idx);
-
-    if (cache === null || cache.wind === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.wind = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.wind.wgust,
-            id: 'Wind Gust',
-            name: '{{WIND_GUST}}',
-            yAxis: 'Wind',
-            tooltip: {
-                valueSuffix: ' ' + config.wind.units,
-                valueDecimals: config.wind.gustdecimals
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-        });
-        chart.hideLoading();
-    }
-};
-
-var doWindDir = function (idx) {
-    chart.showLoading();
-
-    addBearingAxis(idx);
-
-    if (cache === null || cache.wind === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.wind = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.wind.avgbearing,
-            id: 'Wind Bearing',
-            name: '{{WIND_BEARING}}',
-            yAxis: 'Bearing',
-            type: 'scatter',
-            color: settings.colours[idx],
-            zIndex: 100 - idx,
-            marker: {
-                enabled: true,
-                symbol: 'circle',
-                radius: 2,
-                states: {
-                    hover: {enabled: false},
-                    select: {enabled: false},
-                    normal: {enabled: false}
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
                 }
             },
-            tooltip: {
-                enabled: false
-            },
-            animationLimit: 1,
-            cursor: 'pointer',
-            enableMouseTracking: false,
-            label: {enabled: false}
+            order: idx
         });
-        chart.hideLoading();
+
+        addHumidityAxis(idx);
+    };
+
+    if (cache === null || cache.hum === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.hum = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-
-var doRainfall = function (idx) {
-    chart.showLoading();
-
-    addRainAxis(idx);
-
-    if (cache === null || cache.rain === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.rain = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.rain.rfall,
-            id: 'Rainfall',
-            name: '{{RAINFALL}}',
-            yAxis: 'Rain',
-            type: 'area',
-            tooltip: {
-                valueDecimals: config.rain.decimals,
-                valueSuffix: ' ' + config.rain.units
-            },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx,
-            fillOpacity: 0.3,
-            boostThreshold: 0
-});
-        chart.hideLoading();
-    }
-};
-
-var doRainRate = function (idx) {
-    chart.showLoading();
-
-    addRainRateAxis(idx);
-
-    if (cache === null || cache.rain === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.rain = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.rain.rrate,
-            id: 'Rainfall Rate',
-            name: '{{RAINFALL_RATE}}',
-            yAxis: 'RainRate',
+const doInHumidity = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.hum.inhum);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{INDOOR_HUM}}',
             type: 'line',
+            data: cache.hum.inhum,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_hum',
             tooltip: {
-                valueSuffix: ' ' + config.rain.units + '/{{HOUR_SHORT_LC}}',
-                valueDecimals: config.rain.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addHumidityAxis(idx);
+    };
+
+    if (cache === null || cache.hum === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvhum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.hum = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
 
-var doPm2p5 = function (idx) {
-    chart.showLoading();
+const doSolarRad = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.solar.SolarRad);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{SOLAR_RAD}}',
+            type: 'line',
+            fill: true,
+            data: cache.solar.SolarRad,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx] + '40',
+            yAxisID: 'y_solar',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} W/m²`
+                }
+            },
+            order: idx
+        });
 
-    addAQAxis(idx);
+        addSolarAxis(idx);
+    };
 
-    $.ajax({
-        url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-        dataType: 'json',
-        success: function (resp) {
-            chart.hideLoading();
-            chart.addSeries({
-                index: idx,
-                data: resp.pm2p5,
-                id: 'PM 2.5',
-                name: 'PM 2.5',
-                yAxis: 'pm',
-                type: 'line',
-                tooltip: {
-                    valueSuffix: ' µg/m³',
-                    valueDecimals: 1,
-                },
-                visible: true,
-                color: settings.colours[idx],
-                zIndex: 100 - idx
-            });
-        }
-    });
+    if (cache === null || cache.solar === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.solar = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
 };
 
-var doPm10 = function (idx) {
-    chart.showLoading();
+const doUV = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.solar.UV);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{UV_INDEX}}',
+            type: 'line',
+            data: cache.solar.UV,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_uv',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y}`
+                }
+            },
+            order: idx
+        });
 
-    addAQAxis(idx);
+        addUVAxis(idx);
+    };
 
-    $.ajax({
-        url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-        dataType: 'json',
-        success: function (resp) {
-            chart.hideLoading();
-            chart.addSeries({
-                index: idx,
-                data: resp.pm10,
-                id: 'PM 10',
-                name: 'PM 10',
-                yAxis: 'pm',
-                type: 'line',
-                tooltip: {
-                    valueSuffix: ' µg/m³',
-                    valueDecimals: 1,
-                },
-                visible: true,
-                color: settings.colours[idx],
-                zIndex: 100 - idx
-            });
-        }
-    });
+    if (cache === null || cache.solar === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsolar.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.solar = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+
+const doPress = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.press);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{PRESSURE}}',
+            type: 'line',
+            data: cache.press,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_press',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.press.units}`
+                }
+            },
+            order: idx
+        });
+
+        addPressureAxis(idx);
+    };
+
+    if (cache === null || cache.press === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvpress.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.press = resp.press;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+
+const doWindSpeed = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.wind.wspeed);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{WIND_SPEED}}',
+            type: 'line',
+            data: cache.wind.wspeed,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_wind',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.wind.units}`
+                }
+            },
+            order: idx
+        });
+
+        addWindAxis(idx);
+    };
+
+    if (cache === null || cache.wind === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.wind = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doWindGust = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.wind.wgust);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{WIND_GUST}}',
+            type: 'line',
+            data: cache.wind.wgust,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_wind',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.wind.units}`
+                }
+            },
+            order: idx
+        });
+
+        addWindAxis(idx);
+    };
+
+    if (cache === null || cache.wind === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.wind = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doWindDir = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.wind.avgbearing);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'WIND_BEARING',
+            type: 'scatter',
+            data: cache.wind.avgbearing,
+            borderColor: settings.colours[idx] + '60',
+            backgroundColor: settings.colours[idx] + '60',
+            yAxisID: 'y_bearing',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y +'°'}`
+                }
+            },
+            order: idx
+        });
+
+        addBearingAxis(idx);
+    };
+
+    if (cache === null || cache.wind === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvwind.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.wind = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+
+const doRainfall = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.rain.rfall);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{RAINFALL}}',
+            type: 'line',
+            fill: true,
+            data: cache.rain.rfall,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx] + '40',
+            yAxisID: 'y_rain',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.rain.units}`
+                }
+            },
+            order: idx
+        });
+
+        addRainAxis(idx);
+    };
+
+    if (cache === null || cache.rain === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.rain = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doRainRate = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.rain.rrate);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{RAINFALL_RATE}}',
+            type: 'line',
+            data: cache.rain.rrate,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_rainRate',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.rain.units}/hr`
+                }
+            },
+            order: idx
+        });
+
+        addRainRateAxis(idx);
+    };
+
+    if (cache === null || cache.rain === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvrain.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.rain = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+
+const doPm2p5 = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.pm.pm2p5);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'PM 2.5',
+            type: 'line',
+            data: cache.pm.pm2p5,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_pm',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} µg/m³`
+                }
+            },
+            order: idx
+        });
+
+        addAQAxis(idx);
+    };
+
+    if (cache === null || cache.hum === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.pm = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doPm10 = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.pm.pm10);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'PM 10',
+            type: 'line',
+            data: cache.pm.pm10,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_pm',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} µg/m³`
+                }
+            },
+            order: idx
+        });
+
+        addAQAxis(idx);
+    };
+
+    if (cache === null || cache.hum === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.pm = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
 };
 
 var doExtraTemp = function (idx, val) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.extratemp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvextratemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.extratemp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.extratemp[name],
-            id: val,
-            name: name,
-            yAxis: 'Temperature',
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.extratemp[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
             type: 'line',
+            data: cache.extratemp[name],
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.extratemp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvextratemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.extratemp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
 var doUserTemp = function (idx, val) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.usertemp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvusertemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.usertemp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.usertemp[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
             data: cache.usertemp[name],
-            id: val,
-            name: name,
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.usertemp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvusertemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.usertemp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doExtraHum = function (idx, val) {
-    chart.showLoading();
-
-    addHumidityAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.extrahum === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvextrahum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.extrahum = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doExtraHum = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.extrahum[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
             data: cache.extrahum[name],
-            id: val,
-            name: name,
-            yAxis: 'Humidity',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_hum',
             tooltip: {
-                valueSuffix: ' %',
-                valueDecimals: config.hum.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addHumidityAxis(idx);
+    };
+
+    if (cache === null || cache.extrahum === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvextrahum.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.extrahum = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doExtraDew = function (idx, val) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.extradew === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvextradew.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.extradew = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doExtraDew = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.extradew[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
             data: cache.extradew[name],
-            id: val,
-            name: name,
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.extradew === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvextradew.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.extradew = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doSoilTemp = function (idx, val) {
-    chart.showLoading();
-
-    addTemperatureAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.soiltemp === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvsoiltemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.soiltemp = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doSoilTemp = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.soiltemp[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
             data: cache.soiltemp[name],
-            id: val,
-            name: name,
-            yAxis: 'Temperature',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
             tooltip: {
-                valueSuffix: ' °' + config.temp.units,
-                valueDecimals: config.temp.decimals
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.soiltemp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsoiltemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.soiltemp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-var doSoilMoist = function (idx, val) {
-    chart.showLoading();
-
-    addSoilMoistAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-    var unitIdx = config.series.soilmoist.name.indexOf(name);
-    var suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
-
-    if (cache === null || cache.soilmoist === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvsoilmoist.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.soilmoist = resp;
-                addSeries();
-            },
-            async: false
-        });
-    }
-    else
-    {
-        addSeries();
-    }
-
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
+const doSoilMoist = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        const unitIdx = config.series.soilmoist.name.indexOf(name);
+        const suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
+        setInitialRange(cache.soilmoist[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
             data: cache.soilmoist[name],
-            id: val,
-            name: name,
-            yAxis: 'SoilMoist',
-            type: 'line',
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_moist',
             tooltip: {
-                valueSuffix: suffix
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${suffix}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
+            order: idx
         });
-        chart.hideLoading();
-    }
-};
 
-var doLeafWet = function (idx, val) {
-    chart.showLoading();
+        addSoilMoistAxis(idx);
+    };
 
-    addLeafWetAxis(idx);
-
-    // get the sensor name
-    var name = val.split('-').slice(1).join('-');
-
-    if (cache === null || cache.leafwet === undefined)
-    {
-        $.ajax({
-            url: '/api/graphdata/intvleafwetness.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
-            dataType: 'json',
-            success: function (resp) {
-                cache.leafwet = resp;
-                addSeries();
-            },
-            async: false
+    if (cache === null || cache.soilmoist === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsoilmoist.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.soilmoist = resp;
+            addSeries();
         });
-    }
-    else
-    {
+    } else {
         addSeries();
     }
+};
 
-    function addSeries() {
-        chart.addSeries({
-            index: idx,
-            data: cache.leafwet[name],
-            id: val,
-            name: name,
-            yAxis: 'LeafWetness',
+const doLeafWet = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.leafwet[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
             type: 'line',
+            data: cache.leafwet[name],
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_leaf',
             tooltip: {
-                valueSuffix: ' ' + config.leafwet.units
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.leafwet.units}`
+                }
             },
-            visible: true,
-            color: settings.colours[idx],
-            zIndex: 100 - idx
-});
-        chart.hideLoading();
+            order: idx
+        });
+
+        addLeafWetAxis(idx);
+    };
+
+    if (cache === null || cache.leafwet === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvleafwetness.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.leafwet = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
     }
 };
 
-function formatDateStr(inDate) {
+const doLaserDepth = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-').slice(1).join('-');
+        setInitialRange(cache.laserdepth[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
+            data: cache.laserdepth[name],
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_laser',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.laser.units}`
+                }
+            },
+            order: idx
+        });
+
+        addLaserAxis(idx);
+    };
+
+    if (cache === null || cache.laserdepth === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvlaserdepth.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.laserdepth = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const formatDateStr = (inDate) => {
     return '' + inDate.getFullYear() + '-' + addLeadingZeros(inDate.getMonth() + 1) + '-' + addLeadingZeros(inDate.getDate());
-}
+};
 
-function formatUserDateStr(inDate) {
+const formatUserDateStr = (inDate) => {
     return  addLeadingZeros(inDate.getDate()) + '-' + addLeadingZeros(inDate.getMonth() + 1) + '-' + inDate.getFullYear();
-}
+};
 
-function addLeadingZeros(n) {
+const addLeadingZeros = (n) => {
     return n <= 9 ? '0' + n : n;
-}
+};
 
-function getUnixTimeStamp(inDate) {
+const getUnixTimeStamp = (inDate) => {
     return inDate.getTime() / 1000;
-}
+};

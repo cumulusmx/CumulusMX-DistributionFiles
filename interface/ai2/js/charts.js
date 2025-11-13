@@ -1,7 +1,7 @@
 /*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Script:	charts.js				Ver: aiX-1.0
  * 	Author:	M Crossley & N Thomas
- * 	(MC) Last Edit:	2025/09/03 15:54:40
+ * 	(MC) Last Edit:	2025/10/04 16:27:45
  * 	Last Edit (NT):	2025/05/05
  * 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 	Role: Draw charts based on readings
@@ -71,47 +71,50 @@ $().ready(function () {
             }
         });
 
-		if (avail.Temperature === undefined || avail.Temperature.Count == 0) {
+		if (avail.Temperature === undefined || avail.Temperature.length == 0) {
 			$('#temp').remove();
 		}
-		if (avail.DailyTemps === undefined || avail.DailyTemps.Count == 0) {
+		if (avail.DailyTemps === undefined || avail.DailyTemps.length == 0) {
 			$('#dailytemp').remove()
 		}
-		if (avail.Humidity === undefined || avail.Humidity.Count == 0) {
+		if (avail.Humidity === undefined || avail.Humidity.length == 0) {
 			$('#humidity').remove()
 		}
-		if (avail.Solar === undefined || avail.Solar.Count == 0) {
+		if (avail.Solar === undefined || avail.Solar.length == 0) {
 			$('#solar').remove();
 		}
-		if (avail.Sunshine === undefined || avail.Sunshine.Count == 0) {
+		if (avail.Sunshine === undefined || avail.Sunshine.length == 0) {
 			$('#sunhours').remove();
 		}
-		if (avail.AirQuality === undefined || avail.AirQuality.Count == 0) {
+		if (avail.AirQuality === undefined || avail.AirQuality.length == 0) {
 			$('#airquality').remove();
 		}
-		if (avail.ExtraTemp == undefined || avail.ExtraTemp.Count == 0) {
+		if (avail.ExtraTemp == undefined || avail.ExtraTemp.length == 0) {
 			$('#extratemp').remove();
 		}
-		if (avail.ExtraHum == undefined || avail.ExtraHum.Count == 0) {
+		if (avail.ExtraHum == undefined || avail.ExtraHum.length == 0) {
 			$('#extrahum').remove();
 		}
-		if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.Count == 0) {
+		if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.length == 0) {
 			$('#extradew').remove();
 		}
-		if (avail.SoilTemp == undefined || avail.SoilTemp.Count == 0) {
+		if (avail.SoilTemp == undefined || avail.SoilTemp.length == 0) {
 			$('#soiltemp').remove();
 		}
-		if (avail.SoilMoist == undefined || avail.SoilMoist.Count == 0) {
+		if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
 			$('#soilmoist').remove();
 		}
-		if (avail.LeafWetness == undefined || avail.LeafWetness.Count == 0) {
+		if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
 			$('#leafwet').remove();
 		}
-		if (avail.UserTemp == undefined || avail.UserTemp.Count == 0) {
+		if (avail.UserTemp == undefined || avail.UserTemp.length == 0) {
 			$('#usertemp').remove();
 		}
-		if (avail.CO2 == undefined || avail.CO2.Count == 0) {
+		if (avail.CO2 == undefined || avail.CO2.length == 0) {
 			$('#co2').remove();
+		}
+		if (avail.LaserDepth == undefined || avail.LaserDepth.length == 0) {
+			$('#laserdepth').remove();
 		}
 
 		//	New
@@ -163,6 +166,7 @@ $().ready(function () {
 			case 'leafwet':		doLeafWet();	break;
 			case 'usertemp':	doUserTemp();	break;
 			case 'co2':			doCO2();		break;
+			case 'laserdepth':	doLaserDepth();	break;
 			default:
 				doTemp();
 				$('#temp').addClass('w3-disabled');
@@ -2819,6 +2823,124 @@ var doCO2 = function () {
 			 });
 		},
 		complete: function () {
+			chart.hideLoading();
+			chart.redraw();
+		}
+	});
+};
+
+var doLaserDepth = function () {
+	$('#chartdescription').text('Line chart showing recent laser sensor depth values at the logging interval resolution.');
+	var freezing = config.temp.units === 'C' ? 0 : 32;
+	var options = {
+		chart: {
+			renderTo: 'chartcontainer',
+			type: 'line',
+			alignTicks: false
+		},
+		title: {text: 'Laser Depth'},
+		credits: {enabled: true},
+		xAxis: {
+			type: 'datetime',
+			ordinal: false,
+			accessibility: { enabled: true, description: 'Date of reading'},
+			dateTimeLabelFormats: {
+				day: '<b>%e %b</b>',
+				week: '%e %b %y',
+				month: '%b %y',
+				year: '%Y'
+			}
+		},
+		yAxis: [{
+				// left
+				title: {text: 'Depth (' + config.laser.units + ')'},
+				opposite: false,
+				accessibility: { enabled: true, description: 'Laser depth'},
+				labels: {
+					align: 'right',
+					x: 15
+				}
+			}, {
+				// right
+				gridLineWidth: 0,
+				opposite: true,
+				linkedTo: 0,
+				labels: {
+					align: 'left',
+					x: -15
+				}
+			}],
+		legend: {enabled: true},
+		plotOptions: {
+			series: {
+				dataGrouping: {
+					enabled: false
+				},
+				states: {
+					hover: {
+						halo: {
+							size: 5,
+							opacity: 0.25
+						}
+
+					}
+				},
+				cursor: 'pointer',
+				marker: {
+					enabled: false,
+					states: {
+						hover: {
+							enabled: true,
+							radius: 0.1
+						}
+					}
+				}
+			},
+			line: {lineWidth: 2}
+		},
+		lang: {
+			noData: 'No Laser Depth data to display'
+		},
+		noData: {
+			style: {
+				fontWeight: 'bold',
+				fontSize: '20px',
+				color: '#FF3030'
+			}
+		},
+		tooltip: {
+			shared: true,
+			split: false,
+			useHTML: true,
+			className: 'cmxToolTip',
+			headerFormat: myTooltipHead,
+			pointFormat:  myTooltipPoint,
+			footerFormat: '</table>',
+			valueSuffix: ' ' + config.laser.units,
+			valueDecimals: config.laser.decimals,
+			xDateFormat: "%A, %b %e, %H:%M"
+		},
+		series: [],
+		rangeSelector: myRanges
+	};
+
+	chart = new Highcharts.StockChart(options);
+	chart.hideNoData();
+	chart.showLoading();
+
+	$.ajax({
+		url: '/api/graphdata/laserdepth.json',
+		dataType: 'json',
+		success: function (resp) {
+			Object.entries(resp).forEach(([key, value]) => {
+				var id = config.series.laserdepth.name.findIndex(val => val == key);
+				chart.addSeries({
+					name: key,
+					color: config.series.laserdepth.colour[id],
+					data: value
+				});
+			});
+
 			chart.hideLoading();
 			chart.redraw();
 		}

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/22 21:43:06",
+	"version": "Last Modified: 2025/10/04 15:39:14",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -450,6 +450,19 @@
 								"Last24h": {
 									"label": "{{SNOW_24H}}",
 									"$ref": "#/definitions/colorpicker"
+								}
+							}
+						},
+						"laserdepth": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
 								}
 							}
 						}

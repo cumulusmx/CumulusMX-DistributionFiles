@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2025/09/16 17:48:20",
+    "version": "Last Modified: 2025/09/28 14:08:58",
     "type": "object",
     "properties": {
         "accessible": {
@@ -109,6 +109,24 @@
             },
             "dependencies": {
                 "ftplogginglevel": ["ftplogging"]
+            }
+        },
+        "paths": {
+            "title": "{{PATH_OPTIONS}}",
+            "type": "object",
+            "properties": {
+                "datapath": {
+                    "title": "{{PATH_DATA}}",
+                    "type": "string"
+                },
+                "backuppath": {
+                    "title": "{{PATH_BACKUP}}",
+                    "type": "string"
+                },
+                "reportspath": {
+                    "title": "{{PATH_REPORTS}}",
+                    "type": "string"
+                }
             }
         },
         "options": {

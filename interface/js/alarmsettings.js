@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 11:50:53
+// Last modified: 2025/09/30 17:16:13
 
 $(document).ready(function() {
     $.ajax({
@@ -49,7 +49,7 @@ function updateAlarms() {
                     Notify      : $('#tempBelowNotify').prop('checked'),
                     Email       : $('#tempBelowEmail').prop('checked'),
                     Latches     : $('#tempBelowLatches').prop('checked'),
-                    LatchHrs    : $('#tempBelowLatchHrs').val()
+                    LatchHrs    : parseFloat($('#tempBelowLatchHrs').val())
                 },
                 tempAbove: {
                     Enabled     : $('#tempAboveEnabled').prop('checked'),
@@ -62,7 +62,7 @@ function updateAlarms() {
                     Notify      : $('#tempAboveNotify').prop('checked'),
                     Email       : $('#tempAboveEmail').prop('checked'),
                     Latches     : $('#tempAboveLatches').prop('checked'),
-                    LatchHrs    : $('#tempAboveLatchHrs').val()
+                    LatchHrs    : parseFloat($('#tempAboveLatchHrs').val())
                 },
                 tempChange: {
                     Enabled     : $('#tempChangeEnabled').prop('checked'),
@@ -75,7 +75,7 @@ function updateAlarms() {
                     Notify      : $('#tempChangeNotify').prop('checked'),
                     Email       : $('#tempChangeEmail').prop('checked'),
                     Latches     : $('#tempChangeLatches').prop('checked'),
-                    LatchHrs    : $('#tempChangeLatchHrs').val()
+                    LatchHrs    : parseFloat($('#tempChangeLatchHrs').val())
                 },
                 pressBelow: {
                     Enabled     : $('#pressBelowEnabled').prop('checked'),
@@ -88,7 +88,7 @@ function updateAlarms() {
                     Notify      : $('#pressBelowNotify').prop('checked'),
                     Email       : $('#pressBelowEmail').prop('checked'),
                     Latches     : $('#pressBelowLatches').prop('checked'),
-                    LatchHrs    : $('#pressBelowLatchHrs').val()
+                    LatchHrs    : parseFloat($('#pressBelowLatchHrs').val())
                 },
                 pressAbove: {
                     Enabled     : $('#pressAboveEnabled').prop('checked'),
@@ -101,7 +101,7 @@ function updateAlarms() {
                     Notify      : $('#pressAboveNotify').prop('checked'),
                     Email       : $('#pressAboveEmail').prop('checked'),
                     Latches     : $('#pressAboveLatches').prop('checked'),
-                    LatchHrs    : $('#pressAboveLatchHrs').val()
+                    LatchHrs    : parseFloat($('#pressAboveLatchHrs').val())
                 },
                 pressChange: {
                     Enabled     : $('#pressChangeEnabled').prop('checked'),
@@ -114,7 +114,7 @@ function updateAlarms() {
                     Notify      : $('#pressChangeNotify').prop('checked'),
                     Email       : $('#pressChangeEmail').prop('checked'),
                     Latches     : $('#pressChangeLatches').prop('checked'),
-                    LatchHrs    : $('#pressChangeLatchHrs').val()
+                    LatchHrs    : parseFloat($('#pressChangeLatchHrs').val())
                 },
                 rainAbove: {
                     Enabled     : $('#rainAboveEnabled').prop('checked'),
@@ -127,7 +127,7 @@ function updateAlarms() {
                     Notify      : $('#rainAboveNotify').prop('checked'),
                     Email       : $('#rainAboveEmail').prop('checked'),
                     Latches     : $('#rainAboveLatches').prop('checked'),
-                    LatchHrs    : $('#rainAboveLatchHrs').val()
+                    LatchHrs    : parseFloat($('#rainAboveLatchHrs').val())
                 },
                 rainRateAbove: {
                     Enabled     : $('#rainRateAboveEnabled').prop('checked'),
@@ -140,8 +140,7 @@ function updateAlarms() {
                     Notify      : $('#rainRateAboveNotify').prop('checked'),
                     Email       : $('#rainRateAboveEmail').prop('checked'),
                     Latches     : $('#rainRateAboveLatches').prop('checked'),
-                    LatchHrs    : $('#rainRateAboveLatchHrs').val(),
-                    Action      : $('#rainRateAboveAction').val()
+                    LatchHrs    : parseFloat($('#rainRateAboveLatchHrs').val())
                 },
                 isRaining: {
                     Enabled     : $('#isRainingEnabled').prop('checked'),
@@ -153,7 +152,7 @@ function updateAlarms() {
                     Notify      : $('#isRainingNotify').prop('checked'),
                     Email       : $('#isRainingEmail').prop('checked'),
                     Latches     : $('#isRainingLatches').prop('checked'),
-                    LatchHrs    : $('#isRainingLatchHrs').val()
+                    LatchHrs    : parseFloat($('#isRainingLatchHrs').val())
                 },
                 gustAbove: {
                     Enabled     : $('#gustAboveEnabled').prop('checked'),
@@ -162,11 +161,11 @@ function updateAlarms() {
                     Sound       : $('#gustAboveSound').val(),
                     Action      : $('#gustAboveAction').val(),
                     ActionParams: $('#gustAboveActionParams').val(),
-                    Bsky      : $('#gustAboveBsky').val(),
+                    Bsky        : $('#gustAboveBsky').val(),
                     Notify      : $('#gustAboveNotify').prop('checked'),
                     Email       : $('#gustAboveEmail').prop('checked'),
                     Latches     : $('#gustAboveLatches').prop('checked'),
-                    LatchHrs    : $('#gustAboveLatchHrs').val()
+                    LatchHrs    : parseFloat($('#gustAboveLatchHrs').val())
                 },
                 windAbove: {
                     Enabled     : $('#windAboveEnabled').prop('checked'),
@@ -179,7 +178,7 @@ function updateAlarms() {
                     Notify      : $('#windAboveNotify').prop('checked'),
                     Email       : $('#windAboveEmail').prop('checked'),
                     Latches     : $('#windAboveLatches').prop('checked'),
-                    LatchHrs    : $('#windAboveLatchHrs').val()
+                    LatchHrs    : parseFloat($('#windAboveLatchHrs').val())
                 },
                 newRecord: {
                     Enabled     : $('#newRecordEnabled').prop('checked'),
@@ -191,8 +190,7 @@ function updateAlarms() {
                     Notify      : $('#newRecordNotify').prop('checked'),
                     Email       : $('#newRecordEmail').prop('checked'),
                     Latches     : $('#newRecordLatches').prop('checked'),
-                    LatchHrs    : $('#newRecordLatchHrs').val(),
-                    Threshold   : $('#newRecordThreshold').val()
+                    LatchHrs    : parseFloat($('#newRecordLatchHrs').val())
                 },
                 contactLost: {
                     Enabled     : $('#contactLostEnabled').prop('checked'),
@@ -204,8 +202,8 @@ function updateAlarms() {
                     Notify      : $('#contactLostNotify').prop('checked'),
                     Email       : $('#contactLostEmail').prop('checked'),
                     Latches     : $('#contactLostLatches').prop('checked'),
-                    LatchHrs    : $('#contactLostLatchHrs').val(),
-                    Threshold   : $('#contactLostThreshold').val()
+                    LatchHrs    : parseFloat($('#contactLostLatchHrs').val()),
+                    Threshold   : parseInt($('#contactLostThreshold').val())
                 },
                 dataStopped: {
                     Enabled     : $('#dataStoppedEnabled').prop('checked'),
@@ -217,8 +215,8 @@ function updateAlarms() {
                     Notify      : $('#dataStoppedNotify').prop('checked'),
                     Email       : $('#dataStoppedEmail').prop('checked'),
                     Latches     : $('#dataStoppedLatches').prop('checked'),
-                    LatchHrs    : $('#dataStoppedLatchHrs').val(),
-                    Threshold   : $('#dataStoppedThreshold').val()
+                    LatchHrs    : parseFloat($('#dataStoppedLatchHrs').val()),
+                    Threshold   : parseInt($('#dataStoppedThreshold').val())
                 },
                 batteryLow: {
                     Enabled     : $('#batteryLowEnabled').prop('checked'),
@@ -230,8 +228,8 @@ function updateAlarms() {
                     Notify      : $('#batteryLowNotify').prop('checked'),
                     Email       : $('#batteryLowEmail').prop('checked'),
                     Latches     : $('#batteryLowLatches').prop('checked'),
-                    LatchHrs    : $('#batteryLowLatchHrs').val(),
-                    Threshold   : $('#batteryLowThreshold').val()
+                    LatchHrs    : parseFloat($('#batteryLowLatchHrs').val()),
+                    Threshold   : parseInt($('#batteryLowThreshold').val())
                 },
                 spike: {
                     Enabled     : $('#spikeEnabled').prop('checked'),
@@ -243,8 +241,8 @@ function updateAlarms() {
                     Notify      : $('#spikeNotify').prop('checked'),
                     Email       : $('#spikeEmail').prop('checked'),
                     Latches     : $('#spikeLatches').prop('checked'),
-                    LatchHrs    : $('#spikeLatchHrs').val(),
-                    Threshold   : $('#spikeThreshold').val(),
+                    LatchHrs    : parseFloat($('#spikeLatchHrs').val()),
+                    Threshold   : parseInt($('#spikeThreshold').val())
                 },
                 ftpUpload: {
                     Enabled     : $('#ftpUploadEnabled').prop('checked'),
@@ -256,8 +254,8 @@ function updateAlarms() {
                     Notify      : $('#ftpUploadNotify').prop('checked'),
                     Email       : $('#ftpUploadEmail').prop('checked'),
                     Latches     : $('#ftpUploadLatches').prop('checked'),
-                    LatchHrs    : $('#ftpUploadLatchHrs').val(),
-                    Threshold   : $('#ftpUploadThreshold').val()
+                    LatchHrs    : parseFloat($('#ftpUploadLatchHrs').val()),
+                    Threshold   : parseInt($('#ftpUploadThreshold').val())
                 },
                 httpUpload: {
                     Enabled     : $('#httpUploadEnabled').prop('checked'),
@@ -269,8 +267,8 @@ function updateAlarms() {
                     Notify      : $('#httpUploadNotify').prop('checked'),
                     Email       : $('#httpUploadEmail').prop('checked'),
                     Latches     : $('#httpUploadLatches').prop('checked'),
-                    LatchHrs    : $('#httpUploadLatchHrs').val(),
-                    Threshold   : $('#httpUploadThreshold').val()
+                    LatchHrs    : parseFloat($('#httpUploadLatchHrs').val()),
+                    Threshold   : parseInt($('#httpUploadThreshold').val())
                 },
                 mySqlUpload: {
                     Enabled     : $('#mySqlUploadEnabled').prop('checked'),
@@ -282,8 +280,8 @@ function updateAlarms() {
                     Notify      : $('#mySqlUploadNotify').prop('checked'),
                     Email       : $('#mySqlUploadEmail').prop('checked'),
                     Latches     : $('#mySqlUploadLatches').prop('checked'),
-                    LatchHrs    : $('#mySqlUploadLatchHrs').val(),
-                    Threshold   : $('#mySqlUploadThreshold').val()
+                    LatchHrs    : parseFloat($('#mySqlUploadLatchHrs').val()),
+                    Threshold   : parseInt($('#mySqlUploadThreshold').val())
                 },
                 upgrade: {
                     Enabled     : $('#upgradeEnabled').prop('checked'),
@@ -295,7 +293,7 @@ function updateAlarms() {
                     Notify      : $('#upgradeNotify').prop('checked'),
                     Email       : $('#upgradeEmail').prop('checked'),
                     Latches     : $('#upgradeLatches').prop('checked'),
-                    LatchHrs    : $('#upgradeLatchHrs').val()
+                    LatchHrs    : parseFloat($('#upgradeLatchHrs').val())
                 },
                 firmware: {
                     Enabled     : $('#firmwareEnabled').prop('checked'),
@@ -307,7 +305,7 @@ function updateAlarms() {
                     Notify      : $('#firmwareNotify').prop('checked'),
                     Email       : $('#firmwareEmail').prop('checked'),
                     Latches     : $('#firmwareLatches').prop('checked'),
-                    LatchHrs    : $('#firmwareLatchHrs').val()
+                    LatchHrs    : parseFloat($('#firmwareLatchHrs').val())
                 },
                 genError: {
                     Enabled     : $('#genErrorEnabled').prop('checked'),

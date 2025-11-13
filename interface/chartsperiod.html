@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/10 16:35:27
+Last modified: 2025/11/12 16:28:45
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +22,10 @@ Last modified: 2025/08/10 16:35:27
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Highcharts -->
-    <script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-    <script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-    <script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
+    <!-- ChartJS -->
+    <script src="lib/chartjs/chart.umd.min.js"></script>
+    <script src="lib/luxon/luxon.min.js"></script>
+    <script src="lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
     <!-- datepicker -->
     <link href="lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
@@ -38,6 +35,7 @@ Last modified: 2025/08/10 16:35:27
 
     <link href="css/cumulus.css" rel="stylesheet">
     <script src="js/chartsperiod.js"></script>
+    <script src="js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
     <style type="text/css">
         body {
@@ -46,10 +44,10 @@ Last modified: 2025/08/10 16:35:27
         }
         #chartcontainer {
             min-height: 700px;
-            height: 700px;
             margin-top:50px;
             margin-bottom: 10px;
-            background-color: white;
+            padding: 10px;
+            background-color:white;
         }
         .dates {
             color: white;
@@ -113,7 +111,18 @@ Last modified: 2025/08/10 16:35:27
 
     <div class="container">
         <figure>
-            <div id="chartcontainer"></div>
+            <div id="chartcontainer" class="chart-wrap">
+                <div class="chart-buttons">
+                    <div id="rangeButtons"></div>
+                    <button id="btnFullscreen">Fullscreen</button>
+                </div>
+                <div id="mainChartContainer" class="mainChartContainer">
+                    <canvas id="mainChart"></canvas>
+                </div>
+                <div id="navChartContainer" class="navChartContainer">
+                    <canvas id="navChart"></canvas>
+                </div>
+            </div>
             <p id="chartdescription" class="highcharts-description">{{SELECTACHART_DESC}}</p>
         </figure>
         <div class="selecta-area">

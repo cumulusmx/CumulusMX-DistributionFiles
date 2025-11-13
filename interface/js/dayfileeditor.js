@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 16:58:02
+// Last modified: 2025/10/08 17:29:01
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
         var columnDefs = [
         {
-            title: '{{LINE_#}}',
+            title: '{{LINE_NO}}',
             readonly: true
         },
         {
@@ -149,7 +149,7 @@ $(document).ready(function() {
             ],
             language: {
                 altEditor: {
-                    modalClose: '{{Close}}',
+                    modalClose: '{{CLOSE}}',
                     edit: {
                         title: '{{EDIT_RECORD}}',
                         button: 'Save'
@@ -242,7 +242,7 @@ $(document).ready(function() {
             lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
             // don't include the first element = line number
-            data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
         }
         // remove trailing commas
         lines = lines.slice(0, -1);

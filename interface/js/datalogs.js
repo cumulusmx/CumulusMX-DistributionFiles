@@ -1,4 +1,4 @@
-// Last modified: 2025/08/15 22:38:16
+// Last modified: 2025/10/16 16:24:58
 
 var myTable;
 var currMonth;
@@ -127,15 +127,16 @@ $(document).ready(function () {
 
         var columnDefs = [
             {
-                title: '{{LINE_#}}',
+                title: '{{LINE_NO}}',
                 readonly: true
             },
             {
-                title: '{{DATE_DDMMYY}}',
-                readonly: true
+                title: '{{DATE_DDMMYYHHMM}}',
+                readonly: true,
+                width: '100px'
             },
             {
-                title: '{{TIME}}',
+                title: '{{TIMESTAMP}}',
                 readonly: true
             },
             {title: '{{TEMPERATURE_SHORT}}', type: 'number', step: tempStep},
@@ -300,7 +301,7 @@ $(document).ready(function () {
             data = data.slice(0, -1);
             data += ']]';
 
-            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":"false","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":false,"data": ' + data + '}';
             return response;
         }
 
@@ -311,7 +312,7 @@ $(document).ready(function () {
                 lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
                 // don't include the first element = line number
-                data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
             }
             // remove trailing commas
             lines = lines.slice(0, -1);
@@ -319,7 +320,7 @@ $(document).ready(function () {
             lines += ']';
             data += ']';
 
-            response = '{"action":"' + action + '","lines":' + lines + ',"extra":"false","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":' + lines + ',"extra":false,"data": ' + data + '}';
             return response;
         }
     });

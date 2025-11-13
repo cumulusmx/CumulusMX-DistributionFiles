@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/16 17:25:13",
+	"version": "Last Modified: 2025/10/04 15:37:40",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -350,6 +350,18 @@
 								},
 								"Last24h": {
 									"type": "string"
+								}
+							}
+						},
+						"laserdepth" : {
+							"title": "{{LASER_DEPTH}}",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
 								}
 							}
 						}

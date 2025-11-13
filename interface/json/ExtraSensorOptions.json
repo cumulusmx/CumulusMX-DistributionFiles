@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/24 17:20:34",
+	"version": "Last Modified: 2025/10/29 22:48:09",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -13,7 +13,7 @@
 					"optionLabels": [
 						"{{AQ_PRIMARY_NONE}}",
 						"{{AQ_PRIMARY_AIRLINK_OUT}}",
-						"{{AQ_PRIMARY_AIRLINK_OUT}}",
+						"{{AQ_PRIMARY_AIRLINK_IN}}",
 						"{{AQ_SENSOR}} 1",
 						"{{AQ_SENSOR}} 2",
 						"{{AQ_SENSOR}} 3",

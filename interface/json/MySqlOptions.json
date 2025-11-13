@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/29 12:25:55",
+	"version": "Last Modified: 2025/09/30 16:28:15",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -232,12 +232,25 @@
 				"enabled": {
 					"rightLabel": "{{CUST_ROLLOVER_ENABLED}}"
 				},
-				"command": {
-					"label": "{{SQL_COMMANDS}}:",
+				"entries": {
 					"collapsible": false,
-					"collapsed": false,
-					"dependencies": {
-						"enabled": true
+					"label": "{{SQL_COMMANDS}}:",
+					"fields": {
+						"item": {
+							"fields": {
+								"command": {
+									"label": "{{SQL}}:",
+									"required": true
+								},
+								"catchup": {
+									"label": "{{CATCH_UP}}:",
+									"rightLabel": "{{CATCH_UP_HELP1}}"
+								}
+							}
+						},
+						"dependencies": {
+							"enabled": true
+						}
 					}
 				}
 			}

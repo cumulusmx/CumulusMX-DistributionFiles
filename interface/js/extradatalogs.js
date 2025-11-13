@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 11:55:23
+// Last modified: 2025/10/16 16:25:45
 
 var myTable;
 var currMonth;
@@ -130,15 +130,16 @@ $(document).ready(function () {
 
         var columnDefs = [
             {
-                title: "{{LINE_#}}",
+                title: "{{LINE_NO}}",
                 readonly: true
             },
             {
-                title: "{{DATE_DDMMYY}}",
+                title: "{{DATE_DDMMYYHHMM}}",
+                width: '100px',
                 readonly: true
             },
             {
-                title: "{{TIME}}",
+                title: "{{TIMESTAMP}}",
                 readonly: true
             },
             {title:"{{TEMPERATURE_SHORT}} 1", type: 'number', step: tempStep},
@@ -401,7 +402,7 @@ $(document).ready(function () {
             data = data.slice(0, -1);
             data += ']]';
 
-            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":"true","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":true,"data": ' + data + '}';
             return response;
         }
 
@@ -412,7 +413,7 @@ $(document).ready(function () {
                 lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
                 // don't include the first element = line number
-                data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
             }
             // remove trailing commas
             lines = lines.slice(0, -1);
@@ -420,7 +421,7 @@ $(document).ready(function () {
             lines += ']';
             data += ']';
 
-            response = '{"action":"' + action + '","lines":' + lines + ',"extra":"true","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":' + lines + ',"extra":true,"data": ' + data + '}';
             return response;
         }
     });

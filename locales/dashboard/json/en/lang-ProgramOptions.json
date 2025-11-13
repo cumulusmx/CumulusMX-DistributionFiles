@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:07:56",
+    "_LAST_MODIFIED": "Last modified: 2025/09/28 14:11:55",
     "ENABLE_ACCESSIBILITY": "Enable accessibility features",
     "ENABLE_ACCESSIBILITY_HELP1": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting.",
     "STARTUP_DELAY_HELP1": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds",
@@ -48,6 +48,10 @@
     "LOG_SPIKE_HELP1": "Enable the logging of data spike and limit violations to MX diags files.",
     "DASHBOARD_ERROR_LOG_LEVEL": "Dashboard latest errors logging level",
     "DASHBOARD_ERROR_LOG_LEVEL_HELP1": "The default of Error only shows more serious issues, set to Warning to get more verbose logging",
+    "PATH_DATA_HELP1": "Set the path where the Cumulus data is stored. Defaults to 'data' which is in the Cumulus program folder",
+    "PATH_BACKUP_HELP1": "Set the path where the Cumulus backups are stored. Defaults to 'backup' which is in the Cumulus program folder",
+    "PATH_REPORTS_HELP1": "Set the path where the Cumulus NOAA reports are stored. Defaults to 'Reports' which is in the Cumulus program folder",
+    "PATH_HELP2": "If you change the default, you must specify a full path to the folder",
     "SECOND_INSTANCE": "Second Instance",
     "STOP_SECOND_INSTANCE": "Stop second instance",
     "STOP_SECOND_INSTANCE_HELP1": "Prevent multiple instances of Cumulus running. This setting requires a restart to take effect",

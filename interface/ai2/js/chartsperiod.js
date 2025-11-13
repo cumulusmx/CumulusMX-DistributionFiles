@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartsperiod.js        	Ver: aiX-1.0
     Author: M Crossley & N Thomas
-    Last Edit: 2025/09/03 17:58:10
+    Last Edit: 2025/10/04 16:06:27
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartsperiod.html
@@ -166,7 +166,7 @@ $(document).ready(function () {
 				avail[k].forEach(function (val) {
 					var option = $('<option />');
 					option.html(val);
-					if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness'].indexOf(k) === -1) {
+					if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
 						option.val(val);
 					} else {
 						option.val(k + '-' + val);
@@ -348,7 +348,10 @@ var updateChart = function (val, num, id) {
 	} else if (val.startsWith('LeafWetness-')) {
 		doLeafWet(num, val);
 		return;
-	}
+    } else if (val.startsWith('LaserDepth-')) {
+        doLaserDepth(num, val);
+        return;
+    }
 
 	// no? then do the "standard" data
 	switch (val) {
@@ -845,6 +848,24 @@ var addLeafWetAxis = function (idx) {
 	}, false, false);
 };
 
+var addLaserAxis = function (idx) {
+    // first check if we already have a laser axis
+    if (checkAxisExists('Laser'))
+        return;
+
+    // nope no existing axis, add one
+   chart.addAxis({
+        title: {text: 'Laser Depth (' + config.laser.units + ')'},
+        opposite: idx < settings.series.length / 2 ? false : true,
+        id: 'Laser',
+        showEmpty: false,
+        labels: {
+            align: idx < settings.series.length / 2 ? 'right' : 'left',
+        },
+        allowDecimals: false
+    }, false, false);
+
+};
 
 var doTemp = function (idx) {
 	chart.showLoading();
@@ -1993,6 +2014,51 @@ var doLeafWet = function (idx, val) {
 });
 		chart.hideLoading();
 	}
+};
+
+var doLaserDepth = function (idx, val) {
+    chart.showLoading();
+
+    addLaserAxis(idx);
+
+    // get the sensor name
+    var name = val.split('-').slice(1).join('-');
+
+    if (cache === null || cache.laserdepth === undefined)
+    {
+        $.ajax({
+            url: '/api/graphdata/intvlaserdepth.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+            dataType: 'json',
+            success: function (resp) {
+                cache.laserdepth = resp;
+                addSeries();
+            },
+            async: false
+        });
+    }
+    else
+    {
+        addSeries();
+    }
+
+    function addSeries() {
+        chart.addSeries({
+            index: idx,
+            data: cache.laserdepth[name],
+            id: val,
+            name: name,
+            yAxis: 'Laser',
+            type: 'line',
+            tooltip: {
+                valueSuffix: ' ' + config.laser.units,
+                valueDecimals: config.laser.decimals
+            },
+            visible: true,
+            color: settings.colours[idx],
+            zIndex: 100 - idx
+        });
+        chart.hideLoading();
+    }
 };
 
 function formatDateStr(inDate) {

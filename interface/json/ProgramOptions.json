@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2025/09/03 11:04:43",
+    "version": "Last Modified: 2025/09/28 14:11:16",
     "fields": {
         "accessible": {
             "rightLabel": "{{ENABLE_ACCESSIBILITY}}",
@@ -138,6 +138,30 @@
                     ],
                     "removeDefaultNone": true,
                     "helper": "{{DASHBOARD_ERROR_LOG_LEVEL_HELP1}}"
+                }
+            }
+        },
+        "paths": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "datapath": {
+                    "helpers": [
+                        "{{PATH_DATA_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
+                },
+                "backuppath": {
+                    "helpers": [
+                        "{{PATH_BACKUP_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
+                },
+                "reportspath": {
+                    "helpers": [
+                        "{{PATH_REPORTS_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
                 }
             }
         },
