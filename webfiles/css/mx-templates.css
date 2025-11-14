@@ -263,10 +263,6 @@ body {
 	touch-action: none;
 }
 
-canvas {
-	display: block;
-}
-
 .graphs-width {
 	max-width:1250px;
 	margin: auto
