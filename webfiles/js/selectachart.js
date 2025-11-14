@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2025/11/13 10:20:32
+// Last modified: 2025/11/14 16:54:58
 
 let settings;
 
@@ -132,6 +132,10 @@ $(document).ready(() => {
         Chart.defaults.plugins.title.font.color = '#000';
         Chart.defaults.plugins.decimation.enabled = true;
         Chart.defaults.plugins.chartAreaBorder = {borderColor: '#858585'}
+
+        document.getElementById('btnFullscreen').addEventListener('click', () => {
+            CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
+        });
 
         // Draw the basic chart
         mainChart = new Chart(document.getElementById('mainChart'), {

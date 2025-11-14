@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2025/11/11 22:32:01
+    Last modified: 2025/11/14 10:30:35
 */
 
 body {
@@ -143,10 +143,6 @@ body {
 
 .chartDescription {
     color: white;
-}
-
-canvas {
-	display: block;
 }
 
 .graphs-width {

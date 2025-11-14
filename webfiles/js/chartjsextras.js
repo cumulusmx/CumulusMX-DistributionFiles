@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/13 10:18:51
+// Last updated: 2025/11/14 16:52:55
 
 const CmxChartJsPlugins = {
 
@@ -96,8 +96,7 @@ const CmxChartJsHelpers = {
         const mainContainer = document.getElementById('mainChartContainer');
         const navContainer = document.getElementById('navChartContainer');
         if (!document.fullscreenElement) {
-            container.style.width = '100%';
-            container.style.height = '100%';
+            mainContainer.setAttribute('data-height', mainContainer.offsetHeight);
             mainContainer.style.height = '85%';
             navContainer.style.height = '12%';
             document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
@@ -118,15 +117,11 @@ const CmxChartJsHelpers = {
 
             // kludge to make the flex reflow and chartjs pick up change
             // otherwise the charts retain their full screen size
-            const main = document.getElementById('mainChart');
-            const nav = document.getElementById('navChart');
-            main.style.display = 'none';
-            nav.style.display = 'none';
-            // Get offsetHeight to force recalc
-            const x = main.offsetHeight;
+            mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
+
             setTimeout(() => {
-                document.getElementById('mainChart').style.display = null;
-                document.getElementById('navChart').style.display = null;
+                // make it responsive again
+                document.getElementById('mainChartContainer').style = null;
             }, 250);
         }
     },

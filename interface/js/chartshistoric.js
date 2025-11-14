@@ -1,4 +1,4 @@
-// Last modified: 2025/11/13 10:15:19
+// Last modified: 2025/11/14 14:54:52
 
 let mainChart, navChart, config, avail;
 
@@ -103,6 +103,10 @@ $(document).ready(() => {
         Chart.defaults.plugins.title.font.color = '#000';
         Chart.defaults.plugins.decimation.enabled = true;
         Chart.defaults.plugins.chartAreaBorder = {borderColor: '#858585'}
+
+        document.getElementById('btnFullscreen').addEventListener('click', () => {
+            CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
+        });
 
         const freezing = config.temp.units === 'C' ? 0 : 32;
         temperatureScale = {

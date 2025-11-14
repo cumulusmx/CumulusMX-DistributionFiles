@@ -1,4 +1,4 @@
-// Last modified: 2025/11/13 10:19:56
+// Last modified: 2025/11/14 16:54:35
 
 let mainChart, navChart, config, avail;
 
@@ -87,7 +87,6 @@ $(document).ready(() => {
         document.getElementById('btnFullscreen').addEventListener('click', () => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
-
 
         if (avail.Temperature === undefined || avail.Temperature.length == 0) {
             $('#mySelect option[value="temp"]').remove();

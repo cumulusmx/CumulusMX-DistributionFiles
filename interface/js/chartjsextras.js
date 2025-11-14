@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/13 10:18:40
+// Last updated: 2025/11/14 15:58:52
 
 const CmxChartJsPlugins = {
 
@@ -95,9 +95,12 @@ const CmxChartJsHelpers = {
         const container = document.getElementById('chartcontainer');
         const mainContainer = document.getElementById('mainChartContainer');
         const navContainer = document.getElementById('navChartContainer');
+        let mainChartHeight;
+
         if (!document.fullscreenElement) {
-            container.style.width = '100%';
-            container.style.height = '100%';
+            mainContainer.setAttribute('data-height', mainContainer.offsetHeight);
+            //container.style.width = '100%';
+            //container.style.height = '100%';
             mainContainer.style.height = '85%';
             navContainer.style.height = '12%';
             document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
@@ -106,28 +109,24 @@ const CmxChartJsHelpers = {
                 elem.requestFullscreen();
             }
         } else {
-            container.style.width = null;
-            container.style.height = null;
-            mainContainer.style.height = null;
-            navContainer.style.height = null;
+            //container.style.width = null;
+            //container.style.height = null;
+            mainContainer.style = null;
+            navContainer.style = null;
             document.getElementById('btnFullscreen').textContent = 'Fullscreen';
 
             if (document.exitFullscreen) {
                 document.exitFullscreen?.();
             }
-
             // kludge to make the flex reflow and chartjs pick up change
             // otherwise the charts retain their full screen size
-            const main = document.getElementById('mainChart');
-            const nav = document.getElementById('navChart');
-            main.style.display = 'none';
-            nav.style.display = 'none';
-            // Get offsetHeight to force recalc
-            const x = main.offsetHeight;
+            document.getElementById('mainChartContainer').style.height = document.getElementById('mainChartContainer').getAttribute('data-height') + 'px';
+
             setTimeout(() => {
-                document.getElementById('mainChart').style.display = null;
-                document.getElementById('navChart').style.display = null;
+                // make it responsive again
+                document.getElementById('mainChartContainer').style = null;
             }, 250);
+
         }
     },
 

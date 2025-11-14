@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/13 10:18:18
+// Last modified: 2025/11/14 14:54:30
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -139,6 +139,10 @@ $(document).ready(() => {
         Chart.defaults.plugins.title.font.color = '#000';
         Chart.defaults.plugins.decimation.enabled = true;
         Chart.defaults.plugins.chartAreaBorder = {borderColor: '#858585'}
+
+        document.getElementById('btnFullscreen').addEventListener('click', () => {
+            CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
+        });
 
         // Draw the basic chart
         mainChart = new Chart(document.getElementById('mainChart'), {
