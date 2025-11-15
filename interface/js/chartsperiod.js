@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/11/14 14:54:42
+// Last modified: 2025/11/15 16:55:43
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -44,7 +44,8 @@ let now = new Date();
 now.setHours(0,0,0,0);
 let then = new Date(now.setMonth(now.getMonth() - 1));
 
-let defaultEnd, defaultStart, selection;
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
 let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';
@@ -77,23 +78,23 @@ $(document).ready(() => {
     });
 
     toDate = $('#dateTo').datepicker({
-            dateFormat: 'dd-mm-yy',
-            maxDate: '0d',
-            firstDay: 1,
-            changeMonth: true,
-            changeYear: true,
-        }).val(formatUserDateStr(now))
-        .on('change', function() {
-            const date = toDate.datepicker('getDate');
-            settings.toDate = formatDateStr(date);
+        dateFormat: 'dd-mm-yy',
+        maxDate: '0d',
+        firstDay: 1,
+        changeMonth: true,
+        changeYear: true,
+    }).val(formatUserDateStr(now))
+    .on('change', function() {
+        const date = toDate.datepicker('getDate');
+        settings.toDate = formatDateStr(date);
 
-            if (fromDate.datepicker('getDate') < date) {
-                fromDate.datepicker('setDate', date);
-                settings.fromDate = formatDateStr(date);
-            }
+        if (fromDate.datepicker('getDate') < date) {
+            fromDate.datepicker('setDate', date);
+            settings.fromDate = formatDateStr(date);
+        }
 
-            storeSettings();
-        });
+        storeSettings();
+    });
 
     $.ajax({
         url: '/api/info/dateformat.txt',
@@ -238,10 +239,6 @@ $(document).ready(() => {
             plugins: [CmxChartJsPlugins.navigatorPlugin]
         });
 
-        selection = {
-            start: 0, end: 0
-        };
-
         const pendingCalls = [];
 
         // Set the dropdowns to defaults or previous values
@@ -259,12 +256,14 @@ $(document).ready(() => {
                 $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
                 $('#data' + i).val(settings.series[i]);
                 // Draw it on the chart
+                CmxChartJsHelpers.ShowLoading();
                 promise = updateChart(settings.series[i], i, 'data' + i);
                 pendingCalls.push(promise);
             }
         }
 
         Promise.all(pendingCalls).then(() => {
+            CmxChartJsHelpers.HideLoading();
             mainChart.config.update();
             mainChart.update();
             checkNavChartDataSet();
@@ -297,8 +296,11 @@ const procDataSelect = (sel) => {
     if (mainChart.data.datasets.length > 0)
         clearSeries(settings.series[num]);
 
+    CmxChartJsHelpers.ShowLoading();
     const x = updateChart(val, num, id);
+
     Promise.all([x]).then(() => {
+        CmxChartJsHelpers.HideLoading();
         mainChart.config.update();
         mainChart.update();
         checkNavChartDataSet();
@@ -511,12 +513,14 @@ const updateSeries = () => {
             $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
             $('#data' + i).val(settings.series[i]);
             // Draw it on the chart
+            CmxChartJsHelpers.ShowLoading();
             promise = updateChart(settings.series[i], i, 'data' + i);
             pendingCalls.push(promise);
         }
     }
 
     Promise.all(pendingCalls).then(() => {
+        CmxChartJsHelpers.HideLoading();
         mainChart.config.update();
         mainChart.update();
         checkNavChartDataSet();

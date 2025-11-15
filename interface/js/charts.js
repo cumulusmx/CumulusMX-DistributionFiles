@@ -1,4 +1,4 @@
-// Last modified: 2025/11/13 10:07:28
+// Last modified: 2025/11/15 16:06:06
 
 let mainChart, navChart, config, avail;
 
@@ -145,6 +145,8 @@ $(document).ready(() => {
     });
 
     doSelect = (sel) => {
+        CmxChartJsHelpers.ShowLoading();
+
         switch (sel) {
             case 'temp':
                 doTemp();
@@ -275,6 +277,8 @@ const doTemp = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -299,7 +303,7 @@ const doTemp = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -357,6 +361,8 @@ const doPress = () => {
             }
         };
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: [dataSet]},
@@ -381,7 +387,7 @@ const doPress = () => {
             data: resp.press,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -461,6 +467,8 @@ const doWindDir = () => {
             }
         }];
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'scatter',
             data: {datasets: dataSets},
@@ -485,7 +493,7 @@ const doWindDir = () => {
             data: resp.avgbearing,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -550,6 +558,8 @@ const doWind = () => {
             }
         }];
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -574,7 +584,7 @@ const doWind = () => {
             data: resp.wgust,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -653,6 +663,8 @@ const doRain = () => {
             order: 0
         }];
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -678,7 +690,7 @@ const doRain = () => {
             data: resp.rfall,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -749,6 +761,8 @@ const doHum = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -771,7 +785,7 @@ const doHum = () => {
         const navDataset = {
             label: 'Navigator',
             data: resp.hum,
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -864,6 +878,8 @@ const doSolar = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -889,7 +905,7 @@ const doSolar = () => {
             data: resp.SolarRad,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -947,6 +963,8 @@ const doSunHours = () => {
                 }
             }
         };
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
@@ -1019,6 +1037,8 @@ const doDailyRain = () => {
                 }
             }
         };
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
@@ -1093,6 +1113,8 @@ const doDailyTemp = () => {
                 });
             }
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1177,6 +1199,8 @@ const doAirQuality = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1201,7 +1225,7 @@ const doAirQuality = () => {
             data: resp.pm2p5,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1254,6 +1278,8 @@ const doExtraTemp = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1278,7 +1304,7 @@ const doExtraTemp = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1339,6 +1365,8 @@ const doExtraHum = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1363,7 +1391,7 @@ const doExtraHum = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1416,6 +1444,8 @@ const doExtraDew = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1440,7 +1470,7 @@ const doExtraDew = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1493,6 +1523,8 @@ const doSoilTemp = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1517,7 +1549,7 @@ const doSoilTemp = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1576,6 +1608,8 @@ const doSoilMoist = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1600,7 +1634,7 @@ const doSoilMoist = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1660,6 +1694,8 @@ const doLeafWet = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1684,7 +1720,7 @@ const doLeafWet = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1737,6 +1773,8 @@ const doUserTemp = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1761,7 +1799,7 @@ const doUserTemp = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1854,6 +1892,8 @@ const doCO2 = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1879,7 +1919,7 @@ const doCO2 = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 
@@ -1937,6 +1977,8 @@ const doLaserDepth = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1961,7 +2003,7 @@ const doLaserDepth = () => {
             data: resp[key],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
-            pointRadius: 0,
+            pointStyle: false,
             tension: 0.15
         };
 

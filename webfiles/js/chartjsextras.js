@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/14 16:52:55
+// Last updated: 2025/11/15 16:03:12
 
 const CmxChartJsPlugins = {
 
@@ -365,6 +365,25 @@ const CmxChartJsHelpers = {
         });
     },
 
+    ShowLoading: () => {
+        if (document.getElementById('spinnerContainer')) {
+            return;
+        }
+
+        const chartCont = document.getElementById('chartcontainer');
+        const newCont = document.createElement('div');
+        newCont.id = 'spinnerContainer';
+        newCont.className = 'spinner-container';
+        const newSpin = document.createElement('div');
+        newSpin.className = 'spinner'
+        newCont.append(newSpin);
+        chartCont.insertBefore(newCont, chartCont.firstChild);
+    },
+
+    HideLoading: () => {
+        document.getElementById('spinnerContainer').remove();
+    },
+
     NavChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -402,7 +421,7 @@ const CmxChartJsHelpers = {
         events: ['pointerdown', 'pointermove', 'pointerup']
     },
 
-        TimeScale: {
+    TimeScale: {
         type: 'time',
         ticks: {
             major: {

@@ -1,4 +1,4 @@
-// Last modified: 2025/11/14 16:54:35
+// Last modified: 2025/11/15 15:53:56
 
 let mainChart, navChart, config, avail;
 
@@ -146,6 +146,8 @@ $(document).ready(() => {
 
 
 const changeGraph = (graph) => {
+    CmxChartJsHelpers.ShowLoading();
+
     switch (graph) {
         case 'temp':
             doTemp();
@@ -268,6 +270,8 @@ const doTemp = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -349,6 +353,8 @@ const doPress = () => {
                 }
             }
         };
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -446,13 +452,10 @@ const doWindDir = () => {
             data: resp.bearing,
             borderColor:  config.series.bearing.colour,
             backgroundColor: config.series.bearing.colour,
-            yAxisID: 'y_bearing',
-            tooltip: {
-                callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y +'°'}`
-                }
-            }
+            yAxisID: 'y_bearing'
         }];
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'scatter',
@@ -468,7 +471,13 @@ const doWindDir = () => {
                     title: {
                         display: true,
                         text: 'Wind Direction'
+                    },
+                    tooltip: {
+                        filter: (item) => { return item.datasetIndex === 0; }
                     }
+                },
+                interaction: {
+                    mode: 'x'
                 }
             }
         });
@@ -542,6 +551,8 @@ const doWind = () => {
                 }
             }
         }];
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -646,6 +657,8 @@ const doRain = () => {
             order: 0
         }];
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -741,6 +754,8 @@ const doHum = () => {
                 });
             }
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -859,6 +874,8 @@ const doSolar = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -943,6 +960,8 @@ const doSunHours = () => {
             }
         };
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
             data: {datasets: [dataSet]},
@@ -1015,6 +1034,8 @@ const doDailyRain = () => {
             }
         };
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
             data: {datasets: [dataSet]},
@@ -1086,6 +1107,8 @@ const doDailyTemp = () => {
                 });
             }
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1170,6 +1193,8 @@ const doAirQuality = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1245,6 +1270,8 @@ const doExtraTemp = () => {
                 }
             });
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1330,6 +1357,8 @@ const doExtraHum = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1406,6 +1435,8 @@ const doExtraDew = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1481,6 +1512,8 @@ const doSoilTemp = () => {
                 }
             });
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1563,6 +1596,8 @@ const doSoilMoist = () => {
                 }
             });
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1647,6 +1682,8 @@ const doLeafWet = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1722,6 +1759,8 @@ const doUserTemp = () => {
                 }
             });
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1839,6 +1878,8 @@ const doCO2 = () => {
             });
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1920,6 +1961,8 @@ const doLaserDepth = () => {
                 }
             });
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',

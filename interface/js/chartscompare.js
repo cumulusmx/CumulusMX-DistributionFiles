@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/14 14:54:30
+// Last modified: 2025/11/15 16:08:29
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -201,12 +201,14 @@ $(document).ready(() => {
                 $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
                 $('#data' + i).val(settings.series[i]);
                 // Draw it on the chart
+                CmxChartJsHelpers.ShowLoading();
                 promise = updateChart(settings.series[i], i, 'data' + i);
                 pendingCalls.push(promise);
             }
         }
 
         Promise.all(pendingCalls).then(() => {
+            CmxChartJsHelpers.HideLoading();
             mainChart.config.update();
             mainChart.update();
             checkNavChartDataSet();
@@ -238,8 +240,11 @@ const procDataSelect = (sel) => {
     if (mainChart.data.datasets.length > 0)
         clearSeries(settings.series[num]);
 
+    CmxChartJsHelpers.ShowLoading();
     const x = updateChart(val, num, id);
+
     Promise.all([x]).then(() => {
+        CmxChartJsHelpers.HideLoading();
         mainChart.config.update();
         mainChart.update();
         checkNavChartDataSet();

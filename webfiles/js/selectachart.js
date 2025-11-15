@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2025/11/14 16:54:58
+// Last modified: 2025/11/15 16:56:19
 
 let settings;
 
@@ -31,7 +31,8 @@ const myRangeBtns = {
 
 const plotColours = ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
 
-let defaultEnd, defaultStart, selection;
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
 let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';
@@ -173,10 +174,6 @@ $(document).ready(() => {
             plugins: [CmxChartJsPlugins.navigatorPlugin]
         });
 
-        selection = {
-            start: 0, end: 0
-        };
-
         const pendingCalls = [];
 
         // Set the dropdowns to defaults or previous values
@@ -195,12 +192,14 @@ $(document).ready(() => {
                 $('#data' + i + ' option:contains(' + txtSelect +')').text(txtClear);
                 $('#data' + i).val(settings.series[i]);
                 // Draw it on the chart
+                CmxChartJsHelpers.ShowLoading();
                 promise = updateChart(settings.series[i], i, 'data' + i);
                 pendingCalls.push(promise);
             }
         }
 
         Promise.all(pendingCalls).then(() => {
+            CmxChartJsHelpers.HideLoading();
             mainChart.config.update();
             mainChart.update();
             checkNavChartDataSet();
@@ -233,7 +232,6 @@ let prefs = {
 };
 
 const procDataSelect = (sel) => {
-
     // compare the select value against the other selects, and update the chart if required
     const id = sel.id;
     const num = +id.slice(-1);
@@ -256,8 +254,11 @@ const procDataSelect = (sel) => {
     if (mainChart.data.datasets.length > 0)
         clearSeries(settings.series[num]);
 
+    CmxChartJsHelpers.ShowLoading();
     const x = updateChart(val, num, id);
+
     Promise.all([x]).then(() => {
+        CmxChartJsHelpers.HideLoading();
         mainChart.config.update();
         mainChart.update();
         checkNavChartDataSet();

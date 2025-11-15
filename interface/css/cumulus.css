@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2025/11/14 10:30:35
+    Last modified: 2025/11/15 16:36:05
 */
 
 body {
@@ -113,10 +113,11 @@ body {
 	justify-content: space-between;
 }
 
-.chart-buttons button{
+.chart-buttons button {
 	margin: 0 0 0 5px;
 	height: 25px;
 	font-size: 12px;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
 	flex: 0 1 auto;
 }
 
@@ -142,7 +143,7 @@ body {
 }
 
 .chartDescription {
-    color: white;
+	color: white;
 }
 
 .graphs-width {
@@ -154,4 +155,34 @@ body {
 	figure { margin-left: 0; margin-right: 0 }
 	.w3-panel { padding-left: 5px; padding-right: 5px}
 	.w3-col.s12 {padding-left: 0; padding-right: 0; }
+}
+
+.spinner-container {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	background-color: #adadad;
+}
+
+/* Define styles for the spinner */
+.spinner {
+	width: 100px;
+	height: 100px;
+	border: 10px solid #968f8f;
+	border-radius: 50%;
+	border-top-color: blue; /* Color for the spinning part */
+	animation: spin 2s linear infinite; /* Apply the spinning animation */
+}
+
+/* Define keyframe animation for spinning */
+@keyframes spin {
+	from {
+		transform: rotate(0deg); /* Start spinning from 0 degrees */
+	}
+	to {
+		transform: rotate(360deg); /* End spinning at 360 degrees (full rotation) */
+	}
 }

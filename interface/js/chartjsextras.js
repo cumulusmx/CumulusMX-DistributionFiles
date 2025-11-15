@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/14 15:58:52
+// Last updated: 2025/11/15 15:54:17
 
 const CmxChartJsPlugins = {
 
@@ -95,12 +95,9 @@ const CmxChartJsHelpers = {
         const container = document.getElementById('chartcontainer');
         const mainContainer = document.getElementById('mainChartContainer');
         const navContainer = document.getElementById('navChartContainer');
-        let mainChartHeight;
 
         if (!document.fullscreenElement) {
             mainContainer.setAttribute('data-height', mainContainer.offsetHeight);
-            //container.style.width = '100%';
-            //container.style.height = '100%';
             mainContainer.style.height = '85%';
             navContainer.style.height = '12%';
             document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
@@ -109,8 +106,6 @@ const CmxChartJsHelpers = {
                 elem.requestFullscreen();
             }
         } else {
-            //container.style.width = null;
-            //container.style.height = null;
             mainContainer.style = null;
             navContainer.style = null;
             document.getElementById('btnFullscreen').textContent = 'Fullscreen';
@@ -120,7 +115,7 @@ const CmxChartJsHelpers = {
             }
             // kludge to make the flex reflow and chartjs pick up change
             // otherwise the charts retain their full screen size
-            document.getElementById('mainChartContainer').style.height = document.getElementById('mainChartContainer').getAttribute('data-height') + 'px';
+            mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
 
             setTimeout(() => {
                 // make it responsive again
@@ -368,6 +363,25 @@ const CmxChartJsHelpers = {
                 mainChart.update('none');
             });
         });
+    },
+
+    ShowLoading: () => {
+        if (document.getElementById('spinnerContainer')) {
+            return;
+        }
+
+        const chartCont = document.getElementById('chartcontainer');
+        const newCont = document.createElement('div');
+        newCont.id = 'spinnerContainer';
+        newCont.className = 'spinner-container';
+        const newSpin = document.createElement('div');
+        newSpin.className = 'spinner'
+        newCont.append(newSpin);
+        chartCont.insertBefore(newCont, chartCont.firstChild);
+    },
+
+    HideLoading: () => {
+        document.getElementById('spinnerContainer').remove();
     },
 
     NavChartOptions: {
