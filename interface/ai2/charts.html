@@ -10,7 +10,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Chart Trends</title>
+		<title>{{CHARTS}} CumulusMX AI</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -24,12 +24,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
 		<!--	jQuery CDN	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
+        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	
 		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
 		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
@@ -37,7 +37,11 @@
 		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
 		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
 		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
-		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
+		<script src="lib/highcharts/ax-theme.js"></script>		Remove if you don't want the charts themed	-->
+		<!-- ChartJS -->
+    	<script src="/lib/chartjs/chart.umd.min.js"></script>
+    	<script src="/lib/luxon/luxon.min.js"></script>
+    	<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/theme.css">
@@ -48,23 +52,41 @@
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-manager.js"></script>
 		<script src="js/charts.js"></script>
+		<script src="/js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
 			#chartcontainer {
-				height: 60vh;
-				min-height: 450px;
+				/*height: 60vh;*/
+				/*min-height: 60vh;*/
 				margin: 1vh 0;
-				border: 1px solid var(--theme);
+				padding: 1em;
+				border: 1px solid var(--color5);
+				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
-			.cmxToolTip {
-				td {border:none;font-size:100%;}
-				i {font-size: 80%;padding-right:1em;}
-				h5 { margin:-0.5em -0.5em 0; padding:0 0.5em;background:var(--color1);color:var(--color9);}
+			.chart-buttons { display:flex; color: var(--color1); justify-content:space-between;}
+			#mainChart { 
+				min-height: 40vh;
+				background: white;
+				margin: 1vh 0;
 			}
-			g .highcharts-label text { fill: var(--color9)!important;}
+			#navChart {
+				background: white;
+				height: 6em;
+			}
+			/*#rangeButtons*/ button {
+				margin-left:.5vw;
+				border-radius: 1em;
+				border: thin solid var(--color5);
+				background: var(--gradient-up);
+				color: var(--color1);
+				padding: .1em 1em;
+			}
+			#rangeButtons button:hover {
+				background: var(--gradient-down);
+			}
 		</style>
 	</head>
 	<body class="ax-theme9">
@@ -91,7 +113,7 @@
 			<div class="siteWidth">
 				<!--	Page Title	-->
 				<div class="ax-titleBar">
-					<h1>Trend Charts</h1>
+					<h1>{{CHARTS}}</h1>
 					<p>Page updated: <span data-cmxData="update"></span></p>
 				</div>
 				<!--	One column layout section	-->
@@ -122,13 +144,22 @@
 						</div>
 					</div>
 					<!--	Chart	-->
-					<div class="w3-container" style="order:1;">
-						<div id="chartcontainer" style="order:1;"></div>
-					</div>
-					<!--	Information	-->
-					<div class="w3-container" style="order:1;">
-						<p class="w3-center" id="chartdescription" style="order:3;">Description</p>
-					</div>
+					<figure class="w3-container" style="order:1;">
+						<div id="chartcontainer" class="chart-wrap">
+        			        <div class="chart-buttons">
+                    			<div id="rangeButtons"></div>
+                    			<button id="btnFullscreen">Fullscreen</button>
+                			</div>
+                			<div id="mainChartContainer" class="mainChartContainer">
+                    			<canvas id="mainChart"></canvas>
+                			</div>
+                			<div id="navChartContainer" class="navChartContainer">
+                    			<canvas id="navChart"></canvas>
+                			</div>
+            			</div>
+            			<p id="chartdescription" class="chartDescription"></p>
+					</figure>
+					
 				</div>	<!--	End of one column layout	-->
 			</div>
 		</div>
