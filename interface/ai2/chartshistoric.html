@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Historic Charts
-	File:	chartshistoric.html			Ver: aiX-1.0
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Historic Charts		| File:	chartshistoric.html
 	Author:	D.N.C.Thomas			    	Mar 2025
-	Last Edit:	2025/07/24 22:49:39
+	Last Edit:	2025-11-16 09:14:04
 	Last Check:	2025/03/28
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -24,12 +23,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
 		<!--	jQuery CDN		-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
+        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	
 		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
 		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
@@ -37,7 +36,12 @@
 		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
 		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
 		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
-		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
+		<script src="lib/highcharts/ax-theme.js"></script>		Remove if you don't want the charts themed	-->
+
+				<!-- ChartJS -->
+    	<script src="/lib/chartjs/chart.umd.min.js"></script>
+    	<script src="/lib/luxon/luxon.min.js"></script>
+    	<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/theme.css">
@@ -48,23 +52,41 @@
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-manager.js"></script>
 		<script src="js/chartshistoric.js"></script>
+		<script src="/js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
 			#chartcontainer {
-				height: 60vh;
-				min-height: 450px;
+				/*height: 60vh;*/
+				/*min-height: 60vh;*/
 				margin: 1vh 0;
-				border: 1px solid var(--theme);
+				padding: 1em;
+				border: 1px solid var(--color5);
+				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
-			.cmxToolTip {
-				td {border:none;font-size:100%;}
-				i {font-size: 80%;padding-right:1em;}
-				h5 { margin:-0.5em -0.5em 0; padding:0 0.5em;background:var(--color1);color:var(--color9);}
+			.chart-buttons { display:flex; color: var(--color1); justify-content:space-between;}
+			#mainChart { 
+				min-height: 40vh;
+				background: white;
+				margin: 1vh 0;
 			}
-			g .highcharts-label text { fill: var(--color9)!important;}
+			#navChart {
+				background: white;
+				height: 6em;
+			}
+			/*#rangeButtons*/ button {
+				margin-left:.5vw;
+				border-radius: 1em;
+				border: thin solid var(--color5);
+				background: var(--gradient-up);
+				color: var(--color1);
+				padding: .1em 1em;
+			}
+			#rangeButtons button:hover {
+				background: var(--gradient-down);
+			}
 		</style>
 	</head>
 	<body class="ax-theme9">
@@ -99,22 +121,33 @@
 					<!--	Buttons	-->
 					<div class="w3-container" style="order:1;">
 						<div class="ax-btnBar" style="order:1;gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
-							<button id="temp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Temperatures">Temperature</button>
-							<button id="press" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Pressure">Pressure</button>
-							<button id="wind" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Wind speeds">Wind Speeds</button>
-							<button id="windDir" class="w3-btn ax-btn-gradient-up selectGraph w3-hide" aria-label="Wind direction"	>Wind Direction</button>
-							<button id="humidity" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Humidity">Humidity</button>
-							<button id="rain" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Rainfall">Rainfall</button>
-							<button id="solar" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Solar">Solar</button>
-							<button id="degdays" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Degree days" >Degree Days</button>
-							<button id="tempsum" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Temperature summation">Temperature Sum</button>
-							<button id="chillhrs" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Chill hours">Chill Hrs</button>
-							<button id="snow" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Snowfall">Snowfall</button>
+							<button id="temp" class="w3-btn ax-btn-gradient-up" aria-label="Temperatures">{{TEMPERATURE}}</button>
+							<button id="press" class="w3-btn ax-btn-gradient-up" aria-label="Pressure">{{PRESSURE}}</button>
+							<button id="wind" class="w3-btn ax-btn-gradient-up" aria-label="Wind speeds">{{WIND_SPEED}}</button>
+							<button id="windDir" class="w3-btn ax-btn-gradient-up w3-hide" aria-label="Wind direction">{{WIND_DIRECTION}}</button>
+							<button id="humidity" class="w3-btn ax-btn-gradient-up" aria-label="Humidity">{{HUMIDITY}}</button>
+							<button id="rain" class="w3-btn ax-btn-gradient-up" aria-label="Rainfall">{{RAINFALL}}</button>
+							<button id="solar" class="w3-btn ax-btn-gradient-up" aria-label="Solar">{{SOLAR}}</button>
+							<button id="degdays" class="w3-btn ax-btn-gradient-up" aria-label="Degree days" >{{DEGREE_DAYS}}</button>
+							<button id="tempsum" class="w3-btn ax-btn-gradient-up" aria-label="Temperature summation">{{TEMP_SUM}}</button>
+							<button id="chillhrs" class="w3-btn ax-btn-gradient-up" aria-label="Chill hours">{{CHILL_HOURS}}</button>
+							<button id="snow" class="w3-btn ax-btn-gradient-up" aria-label="Snowfall">{{SNOWFALL}}</button>
 						</div>
 					</div>
 					<!--	Chart	-->
 					<div class="w3-container" style="order:1;">
-						<div id="chartcontainer" style="order:1;"></div>
+						<div id="chartcontainer" class="chart-wrap">
+        			        <div class="chart-buttons">
+                    			<div id="rangeButtons"></div>
+                    			<button id="btnFullscreen">Fullscreen</button>
+                			</div>
+                			<div id="mainChartContainer" class="mainChartContainer">
+                    			<canvas id="mainChart"></canvas>
+                			</div>
+                			<div id="navChartContainer" class="navChartContainer">
+                    			<canvas id="navChart"></canvas>
+                			</div>
+            			</div>
 					</div>
 					<!--	Information	-->
 					<div class="w3-container" style="order:3;">
