@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2025/11/15 16:36:05
+    Last modified: 2025/11/17 10:21:38
 */
 
 body {
@@ -100,7 +100,6 @@ body {
 	width: 100%;
 	margin-top:16px;
 	margin-bottom: 16px;
-	background: #fff;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -162,6 +161,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+    top: 0;
+    left: 0;
 	height: 100%;
 	width: 100%;
 	background-color: #adadad;

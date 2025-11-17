@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/15 15:54:17
+// Last updated: 2025/11/17 10:32:18
 
 const CmxChartJsPlugins = {
 
@@ -92,7 +92,6 @@ const CmxChartJsHelpers = {
 
     ToggleFullscreen: elem => {
         elem = elem || document.documentElement;
-        const container = document.getElementById('chartcontainer');
         const mainContainer = document.getElementById('mainChartContainer');
         const navContainer = document.getElementById('navChartContainer');
 
@@ -106,22 +105,22 @@ const CmxChartJsHelpers = {
                 elem.requestFullscreen();
             }
         } else {
-            mainContainer.style = null;
-            navContainer.style = null;
-            document.getElementById('btnFullscreen').textContent = 'Fullscreen';
+            navContainer.style.height = null
 
             if (document.exitFullscreen) {
-                document.exitFullscreen?.();
+                document.exitFullscreen()
+                    .then(() => {
+                        document.getElementById('mainChart').style.height = mainContainer.getAttribute('data-height') + 'px';
+                        mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
+
+                        mainChart.update('none');
+                        navChart.update('none');
+                        mainContainer.style.height = null;
+                    })
+                    .catch((err) => console.error(err));
+
+                document.getElementById('btnFullscreen').textContent = 'Fullscreen';
             }
-            // kludge to make the flex reflow and chartjs pick up change
-            // otherwise the charts retain their full screen size
-            mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
-
-            setTimeout(() => {
-                // make it responsive again
-                document.getElementById('mainChartContainer').style = null;
-            }, 250);
-
         }
     },
 
@@ -172,6 +171,8 @@ const CmxChartJsHelpers = {
         const navChartElem = document.getElementById(navchart);
 
         navChartElem.addEventListener('pointerdown', (e) => {
+            if (navChart.scales == null || navChart.scales.x == null) return;
+
             const x = e.offsetX;
             const xScale = navChart.scales.x;
             const pxStart = xScale.getPixelForValue(selection.start);
@@ -190,6 +191,8 @@ const CmxChartJsHelpers = {
         });
 
         navChartElem.addEventListener('pointermove', (e) => {
+            if (navChart.scales == null || navChart.scales.x == null) return;
+
             const canvas = e.currentTarget;
             const x = e.offsetX;
             const xScale = navChart.scales.x;
@@ -268,13 +271,23 @@ const CmxChartJsHelpers = {
 
         window.addEventListener('pointerup', () => {
             dragging = null;
-            if (navChart) {
-                navChart.update('none'); // Force redraw to remove tooltip
+            if (currentCursor !== 'default') {
+                currentCursor = 'default';
+                document.getElementById('navChart').style.cursor = currentCursor;
+                if (navChart) {
+                    try {
+                        navChart.update('none'); // Force redraw to remove tooltip
+                    } catch {}
+                }
             }
         });
 
         document.querySelectorAll('#rangeButtons button').forEach(btn => {
             btn.addEventListener('click', () => {
+                if (navChart.data.datasets == null || navChart.data.datasets.length == 0 ||
+                    mainChart.data.datasets == null ||  mainChart.data.datasets.length == 0
+                ) return;
+
                 // helper to determine data format
                 // bar charts use data as [{x:ts,y:val}]
                 // all other charts use data as [[ts,val]]
@@ -381,7 +394,9 @@ const CmxChartJsHelpers = {
     },
 
     HideLoading: () => {
-        document.getElementById('spinnerContainer').remove();
+        try {
+            document.getElementById('spinnerContainer').remove();
+        } catch {}
     },
 
     NavChartOptions: {

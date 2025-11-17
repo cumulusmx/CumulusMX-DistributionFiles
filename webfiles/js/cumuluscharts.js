@@ -1,4 +1,4 @@
-// Last modified: 2025/11/15 15:53:56
+// Last modified: 2025/11/15 21:08:12
 
 let mainChart, navChart, config, avail;
 
@@ -22,7 +22,8 @@ const myRangeBtns = {
     selected: 1
 };
 
-let defaultEnd, defaultStart, selection;
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
 let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';

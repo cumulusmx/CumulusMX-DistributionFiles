@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/15 16:08:29
+// Last modified: 2025/11/15 21:20:20
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -39,7 +39,8 @@ const compassP = (deg) => {
     return compassPoints[Math.floor((deg + 22.5) / 45) % 8];
 };
 
-let defaultEnd, defaultStart, selection;
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
 let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';
