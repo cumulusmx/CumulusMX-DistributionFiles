@@ -29,16 +29,6 @@
 		<script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
-		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
-		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
-
 		<!-- ChartJS -->
 	    <script src="/lib/chartjs/chart.umd.min.js"></script>
 	    <script src="/lib/luxon/luxon.min.js"></script>
@@ -52,6 +42,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-manager.js"></script>
+		<!-- 	Page Scripts		-->
 		<script src="js/chartscompare.js"></script>
 		<script src="/js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
@@ -60,8 +51,10 @@
 		</script>
 		<style>
 			#chartcontainer {
-				/*height: 60vh;*/
-				/*min-height: 60vh;*/
+				display:flex;
+				flex-direction: column;
+				height: 60vh;
+				min-height: 450px;
 				margin: 1vh 0;
 				padding: 1em;
 				border: 1px solid var(--color5);
@@ -77,6 +70,7 @@
 				background: white;
 				height: 6em;
 			}
+			.chart-buttons button,
 			#rangeButtons button {
 				margin-left:.5vw;
 				border-radius: 1em;
@@ -142,7 +136,7 @@
 						<p>
 							The Select-a-chart allows you to configure your own graph to compare values together. Up to six different data
 							values can be selected using the drop-down selectors below the graph. Each data value has a further drop-down
-							selector to change the colour for that particular data plot.  You can edit the colours in the file 'lib/highcharts/ax-theme.js'.
+							selector to change the colour for that particular data plot.
 						</p>
 					</div>
 					<!--	Panel 2 - chart	-->

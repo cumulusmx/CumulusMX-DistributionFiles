@@ -10,3 +10,4 @@ hash_md5*.txt
 *.deps.json
 runtimes/
 CHANGELOG.md
+/interface/ai2/ows/
