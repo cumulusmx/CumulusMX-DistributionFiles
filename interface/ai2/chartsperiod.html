@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Charts Period
-	File:	chartsperiod.html			Ver: aiX-1.0
+	Page:	Charts Period		| File:	chartsperiod.html	
 	Author:	D.N.C.Thomas			    	Mar 2025
-	Last Edit:	2025/07/24 22:16:59
+	Last Edit:	2025-11-19 17:12:58
 	Last Check:	2025/03/28
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -23,21 +22,17 @@
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
-		<!--	jQuery CDN	-->
+		<!--	jQuery (CDN)	-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
-		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
-		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
+
+		<!-- ChartJS -->
+	    <script src="/lib/chartjs/chart.umd.min.js"></script>
+	    <script src="/lib/luxon/luxon.min.js"></script>
+    	<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
 		<!-- datepicker -->
 		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
@@ -54,17 +49,35 @@
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-manager.js"></script>
 		<script src="js/chartsperiod.js"></script>
+		<script src="/js/chartjsextras.js"></script>
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
 			#chartcontainer {
-				height: 57vh;
 				min-height: 450px;
+				display: flex;
+				flex-direction: column;
 				margin: 1vh 0;
-				border: 1px solid var(--theme);
+				padding: 1em;
+				border: 1px solid var(--color5);
+				background: linear-gradient( 30deg, var(--color8), var(--color9));
 			}
+			#mainChart { min-height: 40vh; margin-bottom:1vh;}
+			#navChart { height: 6em;}
+			canvas { background: white;}
+			.chart-buttons { display:flex; color: var(--color1); justify-content: space-between; margin-bottom:1vh;}
+			.chart-buttons button,
+			#rangeButtons button {
+				margin-left:.5em;
+				border-radius: 1em;
+				border:thin solid var(--color5);
+				background: var(--gradient-up);
+				color: var(--color1);
+				padding: .1em 1em;
+			}
+			button:hover { background: var(--gradient-down)}
 			select {
 				font-size: 82%;
 				max-width: 10em!important;
@@ -85,12 +98,7 @@
 			}
 			#dateFrom, #dateTo { max-width: 10em;}
 			.ax-grid {display:grid;grid-template-columns:1fr 45px;grid-template-rows:28px;gap:0px;}
-			.cmxToolTip {
-				td {border:none;font-size:100%;}
-				i {font-size: 80%;padding-right:1em;}
-				h5 { margin:-0.5em -0.5em 0; padding:0 0.5em;background:var(--color1);color:var(--color9);}
-			}
-			g .highcharts-label text { fill: var(--color9)!important;}
+			
 		</style>
 	</head>
 	<body class="ax-theme9">
@@ -128,12 +136,22 @@
 							The Select-a-chart allows you to configure your own graph to compare values together. You can select start and
 							end dates for the data. Up to six different data values can be selected using the drop-down selectors below
 							the graph. Each data value has a further drop-down selector to change the colour for that particular data plot.
-							You can edit the colours in the file 'lib/highcharts/ax-theme.js'.
 						</p>
 					</div>
 					<!--	Chart	-->
 					<div class="w3-container" style="order:1;">
-						<div id="chartcontainer" style="order:1;"></div>
+						<div id="chartcontainer" class="chart-wrap">
+        			        <div class="chart-buttons">
+                    			<div id="rangeButtons"></div>
+                    			<button id="btnFullscreen">Fullscreen</button>
+                			</div>
+                			<div id="mainChartContainer" class="mainChartContainer">
+                    			<canvas id="mainChart"></canvas>
+                			</div>
+                			<div id="navChartContainer" class="navChartContainer">
+                    			<canvas id="navChart"></canvas>
+                			</div>
+            			</div>
 					</div>
 					<!--	Buttons	-->
 					<div class="w3-container" style="order:1;">
