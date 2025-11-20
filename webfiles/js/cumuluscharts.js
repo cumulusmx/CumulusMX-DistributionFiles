@@ -1,4 +1,4 @@
-// Last modified: 2025/11/15 21:08:12
+// Last modified: 2025/11/20 13:56:11
 
 let mainChart, navChart, config, avail;
 
@@ -88,6 +88,8 @@ $(document).ready(() => {
         document.getElementById('btnFullscreen').addEventListener('click', () => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
+
+        CmxChartJsHelpers.AddPrintButtonHandler();
 
         if (avail.Temperature === undefined || avail.Temperature.length == 0) {
             $('#mySelect option[value="temp"]').remove();
@@ -749,7 +751,7 @@ const doHum = () => {
                     yAxisID: 'y_hum',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                         }
                     }
                 });
@@ -867,7 +869,7 @@ const doSolar = () => {
                     yAxisID: idx === 'UV' ? 'y_uv' : 'y_solar',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} ${chartConfig[idx].suffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${chartConfig[idx].suffix}`
                         }
                     },
                     order: chartConfig[idx].order
@@ -956,7 +958,7 @@ const doSunHours = () => {
             yAxisID: 'y_sun',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} hrs`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} hrs`
                 }
             }
         };
@@ -1187,7 +1189,7 @@ const doAirQuality = () => {
                     yAxisID: 'y_pm',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} ${valueSuffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
                         }
                     }
                 });
@@ -1352,7 +1354,7 @@ const doExtraHum = () => {
                 yAxisID: 'y_hum',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                     }
                 }
             });
@@ -1592,7 +1594,7 @@ const doSoilMoist = () => {
                 yAxisID: 'y_moist',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.soilmoisture.units[id]}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.soilmoisture.units[id]}`
                     }
                 }
             });
@@ -1677,7 +1679,7 @@ const doLeafWet = () => {
                 yAxisID: 'y_leaf',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.leafwet.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.leafwet.units}`
                     }
                 }
             });
@@ -1873,7 +1875,7 @@ const doCO2 = () => {
                 yAxisID: yaxis,
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${valueSuffix}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
                     }
                 }
             });
@@ -1957,7 +1959,7 @@ const doLaserDepth = () => {
                 yAxisID: 'y_depth',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.laser.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.laser.units}`
                     }
                 }
             });

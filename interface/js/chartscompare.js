@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/15 21:20:20
+// Last modified: 2025/11/20 13:41:46
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -145,6 +145,8 @@ $(document).ready(() => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
 
+        CmxChartJsHelpers.AddPrintButtonHandler();
+
         // Draw the basic chart
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -157,9 +159,12 @@ $(document).ready(() => {
                         display: true
                     },
                     title: {
-                        display: true,
-                        text: 'Recent Data Select-a-Chart'
+                        //display: true,
+                        //text: '{{CHART_RECENT_SELECTACHART}}'
                     }
+                },
+                interaction: {
+                    mode: 'DifferentTimeScalesMode'
                 }
             },
             plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
@@ -695,7 +700,7 @@ const doTemp = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -722,7 +727,7 @@ const doInTemp = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -749,7 +754,7 @@ const doHeatIndex = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -776,7 +781,7 @@ const doDewPoint = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -803,7 +808,7 @@ const doWindChill = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -830,7 +835,7 @@ const doAppTemp = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -857,7 +862,7 @@ const doFeelsLike = (idx) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -915,7 +920,7 @@ const doHumidity = (idx) => {
             yAxisID: 'y_hum',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                 }
             },
             order: idx
@@ -942,7 +947,7 @@ const doInHumidity = (idx) => {
             yAxisID: 'y_hum',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                 }
             },
             order: idx
@@ -971,7 +976,7 @@ const doSolarRad = (idx) => {
             yAxisID: 'y_solar',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} W/m²`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} W/m²`
                 }
             },
             order: idx
@@ -998,7 +1003,7 @@ const doUV = (idx) => {
             yAxisID: 'y_uv',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'}`
                 }
             },
             order: idx
@@ -1026,7 +1031,7 @@ const doPress = (idx) => {
             yAxisID: 'y_press',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.press.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.press.units}`
                 }
             },
             order: idx
@@ -1054,7 +1059,7 @@ const doWindSpeed = (idx) => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.wind.units}`
                 }
             },
             order: idx
@@ -1081,7 +1086,7 @@ const doWindGust = (idx) => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.wind.units}`
                 }
             },
             order: idx
@@ -1137,7 +1142,7 @@ const doRainfall = (idx) => {
             yAxisID: 'y_rain',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.rain.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}`
                 }
             },
             order: idx
@@ -1164,7 +1169,7 @@ const doRainRate = (idx) => {
             yAxisID: 'y_rainRate',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.rain.units}/hr`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}/hr`
                 }
             },
             order: idx
@@ -1192,7 +1197,7 @@ const doPm2p5 = (idx) => {
             yAxisID: 'y_pm',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} µg/m³`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} µg/m³`
                 }
             },
             order: idx
@@ -1219,7 +1224,7 @@ const doPm10 = (idx) => {
             yAxisID: 'y_pm',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} µg/m³`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} µg/m³`
                 }
             },
             order: idx
@@ -1248,7 +1253,7 @@ const doExtraTemp = (idx, val) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -1277,7 +1282,7 @@ const doUserTemp = (idx, val) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -1306,7 +1311,7 @@ const doExtraHum = (idx, val) => {
             yAxisID: 'y_hum',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                 }
             },
             order: idx
@@ -1335,7 +1340,7 @@ const doExtraDew = (idx, val) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -1364,7 +1369,7 @@ const doSoilTemp = (idx, val) => {
             yAxisID: 'y_temp',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} °${config.temp.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
                 }
             },
             order: idx
@@ -1395,7 +1400,7 @@ const doSoilMoist = (idx, val) => {
             yAxisID: 'y_moist',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${suffix}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${suffix}`
                 }
             },
             order: idx
@@ -1424,7 +1429,7 @@ const doLeafWet = (idx, val) => {
             yAxisID: 'y_leaf',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.leafwet.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.leafwet.units}`
                 }
             },
             order: idx
@@ -1453,7 +1458,7 @@ const doLaserDepth = (idx, val) => {
             yAxisID: 'y_laser',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.laser.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.laser.units}`
                 }
             },
             order: idx
@@ -1462,3 +1467,50 @@ const doLaserDepth = (idx, val) => {
         addLaserAxis(idx);
     });
 };
+
+Chart.Interaction.modes.DifferentTimeScalesMode = function(chart, e, options, useFinalPosition) {
+
+    // Given a sorted array of {x, y} points and a target timestamp (ms),
+    // return the index of the point within an optional tolerance window.
+    const findNearestPoint = (points, targetMs, indexObj, toleranceMs = 300000) => { // default ±5 minute
+        let nearest = null;
+        let minDiff = Infinity;
+
+        for (let i = 0; i < points.length; i++) {
+            const diff = Math.abs(points[i][0] - targetMs);
+            if (diff < minDiff) {
+                minDiff = diff;
+                nearest = i;
+            } else {
+                // Since the array is sorted, we can break early
+                break;
+            }
+        }
+
+        indexObj.val = nearest;
+
+        // Only return if within tolerance, else null
+        return minDiff <= toleranceMs ? true : false;;
+    }
+
+    const position = Chart.helpers.getRelativePosition(e, chart);
+    const dataX = chart.scales.x.getValueForPixel(position.x);
+
+    const dataSets = chart.getSortedVisibleDatasetMetas();
+    let indexObj = {val: null};
+    const items = [];
+
+    dataSets.forEach((dataset) => {
+        if (dataset.hidden != true) {
+            if (findNearestPoint(dataset._dataset.data, dataX, indexObj)) {
+                items.push({
+                    element: dataset.data[indexObj.val],
+                    datasetIndex: dataset.index,
+                    index: indexObj.val
+                });
+            }
+        }
+    });
+
+    return items;
+}

@@ -1,4 +1,4 @@
-// Last modified: 2025/11/17 09:54:26
+// Last modified: 2025/11/19 16:42:50
 
 let mainChart, navChart, config, avail;
 
@@ -134,6 +134,8 @@ $(document).ready(() => {
         document.getElementById('btnFullscreen').addEventListener('click', () => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
+
+        CmxChartJsHelpers.AddPrintButtonHandler();
 
         let value = parent.location.hash.replace('#', '');
 

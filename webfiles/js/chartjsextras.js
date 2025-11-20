@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/17 10:31:13
+// Last updated: 2025/11/19 16:33:40
 
 const CmxChartJsPlugins = {
 
@@ -95,32 +95,42 @@ const CmxChartJsHelpers = {
         const mainContainer = document.getElementById('mainChartContainer');
         const navContainer = document.getElementById('navChartContainer');
 
-        if (!document.fullscreenElement) {
+        if (document.fullscreenElement) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        } else {
             mainContainer.setAttribute('data-height', mainContainer.offsetHeight);
             mainContainer.style.height = '85%';
             navContainer.style.height = '12%';
-            document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
 
             if (elem.requestFullscreen) {
-                elem.requestFullscreen();
+                elem.requestFullscreen()
+                .catch((err) => console.error(err));
             }
+        }
+    },
+
+    FullScreenEventHandler: (event) => {
+        if (document.fullscreenElement) {
+            document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
         } else {
+            const mainContainer = document.getElementById('mainChartContainer');
+            const navContainer = document.getElementById('navChartContainer');
+            mainContainer.style.visibility = 'hidden';
+            navContainer.style.visibility = 'hidden';
             navContainer.style.height = null
+            document.getElementById('mainChart').style.height = mainContainer.getAttribute('data-height') + 'px';
+            mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
+            document.getElementById('btnFullscreen').textContent = 'Fullscreen';
 
-            if (document.exitFullscreen) {
-                document.exitFullscreen()
-                    .then(() => {
-                        document.getElementById('mainChart').style.height = mainContainer.getAttribute('data-height') + 'px';
-                        mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
-
-                        mainChart.update('none');
-                        navChart.update('none');
-                        mainContainer.style.height = null;
-                    })
-                    .catch((err) => console.error(err));
-
-                document.getElementById('btnFullscreen').textContent = 'Fullscreen';
-            }
+            setTimeout(() => {
+                mainChart.update('none');
+                navChart.update('none');
+                mainContainer.style.visibility = null;
+                navContainer.style.visibility = null;
+                mainContainer.style.height = null;
+            }, 250);
         }
     },
 
@@ -398,6 +408,19 @@ const CmxChartJsHelpers = {
         } catch {}
     },
 
+    AddPrintButtonHandler: (buttonId, chartId) => {
+        document.getElementById('btnPrint').addEventListener('click', () => {
+            const canv = document.getElementById('mainChart');
+            const imgUrl = canv.toDataURL('image/png', 1.0);
+            const win = window.open('', '', `left=0,top=0,width=${canv.width},height=${canv.height},menubar=0,toolbar=0,scrollbars=0,status=0`);
+            win.resizeTo(canv.width, canv.height);
+            const winContent = `<!DOCTYPE html><html><head><title>Print canvas</title></head><body><img src="${imgUrl}"></body>`;
+            win.document.write(winContent);
+            win.onafterprint = () => { win.close() };
+            setTimeout(() => { win.print(); }, 500);
+        });
+    },
+
     NavChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -473,3 +496,4 @@ const CmxChartJsHelpers = {
     }
 };
 
+document.addEventListener("fullscreenchange", CmxChartJsHelpers.FullScreenEventHandler);
