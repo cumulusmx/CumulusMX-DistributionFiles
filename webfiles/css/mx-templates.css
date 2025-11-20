@@ -1,6 +1,6 @@
 /*	-----------------------------------
  * 	Styles for CumulusMX Templates
- Last modified: 2025/11/17 10:35:55
+ Last modified: 2025/11/20 22:34:47
  * 	----------------------------------*/
 
 html, body, p, h1, h2, h3, h4, h5, h6, li, td, th {
@@ -293,9 +293,9 @@ body {
 
 /* Define styles for the spinner */
 .spinner {
-	width: 100px;
-	height: 100px;
-	border: 10px solid #968f8f;
+	width: 70px;
+	height: 70px;
+	border: 7px solid #968f8f;
 	border-radius: 50%;
 	border-top-color: blue; /* Color for the spinning part */
 	animation: spin 2s linear infinite; /* Apply the spinning animation */
