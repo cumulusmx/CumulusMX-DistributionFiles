@@ -2,7 +2,7 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Historic Charts		| File:	chartshistoric.html
 	Author:	D.N.C.Thomas			    	Mar 2025
-	Last Edit:	2025-11-16 09:14:04
+	Last Edit:	2025/11/21 16:01:39
 	Last Check:	2025/03/28
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -57,7 +57,7 @@
 				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
 			.chart-buttons { display:flex; color: var(--color1); justify-content:space-between;}
-			#mainChart { 
+			#mainChart {
 				min-height: 40vh;
 				background: white;
 				margin: 1vh 0;
@@ -129,7 +129,10 @@
 						<div id="chartcontainer" class="chart-wrap">
         			        <div class="chart-buttons">
                     			<div id="rangeButtons"></div>
-                    			<button id="btnFullscreen">Fullscreen</button>
+								<div>
+									<button id="btnPrint">{{PRINT}}</button>
+									<button id="btnFullscreen">{{FULLSCREEN}}</button>
+								</div>
                 			</div>
                 			<div id="mainChartContainer" class="mainChartContainer">
                     			<canvas id="mainChart"></canvas>

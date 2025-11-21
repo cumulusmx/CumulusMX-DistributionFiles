@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/14 14:54:30
+// Last modified: 2025/11/21 15:52:55
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -39,7 +39,8 @@ const compassP = (deg) => {
     return compassPoints[Math.floor((deg + 22.5) / 45) % 8];
 };
 
-let defaultEnd, defaultStart, selection;
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
 let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';
@@ -144,6 +145,8 @@ $(document).ready(() => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
 
+        CmxChartJsHelpers.AddPrintButtonHandler();
+
         // Draw the basic chart
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -159,6 +162,9 @@ $(document).ready(() => {
                         display: true,
                         text: 'Recent Data Select-a-Chart'
                     }
+                },
+                interaction: {
+                    mode: 'DifferentTimeScalesMode'
                 }
             },
             plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
@@ -179,10 +185,6 @@ $(document).ready(() => {
             options: CmxChartJsHelpers.NavChartOptions,
             plugins: [CmxChartJsPlugins.navigatorPlugin]
         });
-
-        selection = {
-            start: 0, end: 0
-        };
 
         const pendingCalls = [];
 
@@ -207,6 +209,7 @@ $(document).ready(() => {
         }
 
         Promise.all(pendingCalls).then(() => {
+            CmxChartJsHelpers.HideLoading();
             mainChart.config.update();
             mainChart.update();
             checkNavChartDataSet();
@@ -1457,6 +1460,52 @@ const doLaserDepth = (idx, val) => {
     });
 };
 
+Chart.Interaction.modes.DifferentTimeScalesMode = function(chart, e, options, useFinalPosition) {
+
+    // Given a sorted array of {x, y} points and a target timestamp (ms),
+    // return the index of the point within an optional tolerance window.
+    const findNearestPoint = (points, targetMs, indexObj, toleranceMs = 300000) => { // default ±5 minute
+        let nearest = null;
+        let minDiff = Infinity;
+
+        for (let i = 0; i < points.length; i++) {
+            const diff = Math.abs(points[i][0] - targetMs);
+            if (diff < minDiff) {
+                minDiff = diff;
+                nearest = i;
+            } else {
+                // Since the array is sorted, we can break early
+                break;
+            }
+        }
+
+        indexObj.val = nearest;
+
+        // Only return if within tolerance, else null
+        return minDiff <= toleranceMs ? true : false;;
+    }
+
+    const position = Chart.helpers.getRelativePosition(e, chart);
+    const dataX = chart.scales.x.getValueForPixel(position.x);
+
+    const dataSets = chart.getSortedVisibleDatasetMetas();
+    let indexObj = {val: null};
+    const items = [];
+
+    dataSets.forEach((dataset) => {
+        if (dataset.hidden != true) {
+            if (findNearestPoint(dataset._dataset.data, dataX, indexObj)) {
+                items.push({
+                    element: dataset.data[indexObj.val],
+                    datasetIndex: dataset.index,
+                    index: indexObj.val
+                });
+            }
+        }
+    });
+
+    return items;
+}
 
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartscompare.js        Ver: aiX-1.0
@@ -1464,7 +1513,7 @@ const doLaserDepth = (idx, val) => {
     (MC) Last Edit: 2025/10/04 16:03:21
     Last Edit (NT): 2025/03/21
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Role:   Charts for chartscompare.html 
+    Role:   Charts for chartscompare.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 var chart, avail, config, options;

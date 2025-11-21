@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/20 13:41:46
+// Last modified: 2025/11/21 15:53:32
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -185,10 +185,6 @@ $(document).ready(() => {
             options: CmxChartJsHelpers.NavChartOptions,
             plugins: [CmxChartJsPlugins.navigatorPlugin]
         });
-
-        selection = {
-            start: 0, end: 0
-        };
 
         const pendingCalls = [];
 

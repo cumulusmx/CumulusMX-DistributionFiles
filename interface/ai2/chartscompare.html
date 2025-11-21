@@ -3,7 +3,7 @@
 	Page:	Compare Charts
 	File:	chartscompare.html			 Ver: aiX-1.0
 	Author:	D.N.C.Thomas			    	 Mar 2025
-	Last Edit:	2025/09/06 12:45
+	Last Edit:	2025/11/21 15:54:06
 	Last Check:	2025/03/28
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -33,7 +33,7 @@
 	    <script src="/lib/chartjs/chart.umd.min.js"></script>
 	    <script src="/lib/luxon/luxon.min.js"></script>
     	<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
-		
+
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/theme.css">
 		<link rel="stylesheet" href="css/axPro.css">
@@ -58,12 +58,12 @@
 				border: 1px solid var(--color5);
 				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
-			.chart-buttons { 
-				display:flex; 
-				color: var(--color1); 
+			.chart-buttons {
+				display:flex;
+				color: var(--color1);
 				justify-content:space-between;
 			}
-			#mainChart, #navChart { 
+			#mainChart, #navChart {
 				height: 100%;
 				width:100%;
 				background: white;
@@ -142,7 +142,10 @@
 						<div id="chartcontainer" class="chart-wrap">
         			        <div class="chart-buttons">
                     			<div id="rangeButtons"></div>
-                    			<button id="btnFullscreen">Fullscreen</button>
+								<div>
+									<button id="btnPrint">{{PRINT}}</button>
+									<button id="btnFullscreen">{{FULLSCREEN}}</button>
+								</div>
                 			</div>
                 			<div id="mainChartContainer" class="mainChartContainer">
                     			<canvas id="mainChart"></canvas>

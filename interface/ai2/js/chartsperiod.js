@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/11/15 16:55:43
+// Last modified: 2025/11/21 15:56:45
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -222,6 +222,8 @@ $(document).ready(() => {
             },
             plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
         });
+
+        CmxChartJsHelpers.AddPrintButtonHandler();
 
         const navDataset = {
             label: 'Navigator',

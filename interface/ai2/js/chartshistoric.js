@@ -1,7 +1,7 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: chartshistoric.js
     Author: M Crossley & N Thomas
-    (MC) Last Edit: 2025/11/14 14:54:52
+    (MC) Last Edit: 2025/11/21 16:01:00
     Last Edit (NT): 2025-11-16 09:58:25
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Charts for chartshistoric.html
@@ -119,6 +119,8 @@ $().ready(() => {
             CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
 
+        CmxChartJsHelpers.AddPrintButtonHandler();
+
         const freezing = config.temp.units === 'C' ? 0 : 32;
         temperatureScale = {
             title: {
@@ -127,7 +129,7 @@ $().ready(() => {
             },
             grid: {
                 color: (line) => (line.tick.value === freezing ? 'blue' : 'rgba(0, 0, 0, 0.1)')
-				
+
             },
             ticks: {
                 color: (context) => {
@@ -142,7 +144,7 @@ $().ready(() => {
 		}
 		$('#' + current).addClass('w3-disabled');
 		doGraph( current );
-		
+
     });
 
     $.getJSON({url: '/api/info/version.json'})
@@ -154,6 +156,8 @@ $().ready(() => {
 });
 
 const doGraph = (value) => {
+    CmxChartJsHelpers.ShowLoading();
+
     switch (value) {
         case 'temp':
             doTemp();
@@ -297,6 +301,8 @@ const doTemp = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -390,6 +396,8 @@ const doPress = () => {
                 }
             }
         }];
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -507,6 +515,8 @@ const doWind = () => {
             },
             hidden: true
         }];
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -628,6 +638,8 @@ const doRain = () => {
             },
             order: 1
         }];
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
@@ -810,6 +822,7 @@ const doHum = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -977,6 +990,8 @@ const doSolar = () => {
                 });
             }
         });
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
@@ -1165,6 +1180,8 @@ const doDegDays = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1260,6 +1277,8 @@ const doTempSum = () => {
             }
         });
 
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1338,6 +1357,9 @@ const doChillHrs = () => {
 
         // make the last series visible
         dataSets[dataSets.length - 1].hidden = false;
+
+        CmxChartJsHelpers.HideLoading();
+
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {datasets: dataSets},
@@ -1439,6 +1461,8 @@ const doSnow = () => {
                 }
             });
         }
+
+        CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'bar',
