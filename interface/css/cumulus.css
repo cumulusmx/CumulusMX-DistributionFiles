@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2025/11/20 22:35:20
+    Last modified: 2025/11/21 10:28:53
 */
 
 body {
@@ -153,8 +153,8 @@ body {
 
 @media (max-width: 650px) {
 	figure { margin-left: 0; margin-right: 0 }
-	.w3-panel { padding-left: 5px; padding-right: 5px}
-	.w3-col.s12 {padding-left: 0; padding-right: 0; }
+	.w3-panel { padding-left: 5px; padding-right: 5px }
+	.w3-col.s12 { padding-left: 0; padding-right: 0; }
 }
 
 .spinner-container {
@@ -162,8 +162,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    top: 0;
-    left: 0;
+	top: 0;
+	left: 0;
 	height: 100%;
 	width: 100%;
 	background-color: #adadad;
@@ -171,20 +171,18 @@ body {
 
 /* Define styles for the spinner */
 .spinner {
-	width: 70px;
-	height: 70px;
-	border: 7px solid #968f8f;
-	border-radius: 50%;
-	border-top-color: blue; /* Color for the spinning part */
-	animation: spin 2s linear infinite; /* Apply the spinning animation */
+    display: inline-block;
+    aspect-ratio: 1 / 1;            /* keep it square */
+    padding: 3rem;               /* controls overall size */
+    box-sizing: border-box;         /* include border/padding in layout */
+    border: 7px solid #968f8f;
+    border-radius: 50%;
+    border-top-color: blue;         /* Color for the spinning part */
+    animation: spin 2s linear infinite;
 }
 
 /* Define keyframe animation for spinning */
 @keyframes spin {
-	from {
-		transform: rotate(0deg); /* Start spinning from 0 degrees */
-	}
-	to {
-		transform: rotate(360deg); /* End spinning at 360 degrees (full rotation) */
-	}
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }

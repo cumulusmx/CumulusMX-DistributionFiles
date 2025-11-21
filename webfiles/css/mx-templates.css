@@ -1,6 +1,6 @@
 /*	-----------------------------------
  * 	Styles for CumulusMX Templates
- Last modified: 2025/11/20 22:34:47
+ Last modified: 2025/11/21 10:28:43
  * 	----------------------------------*/
 
 html, body, p, h1, h2, h3, h4, h5, h6, li, td, th {
@@ -155,7 +155,7 @@ body {
 }
 
 @media screen and (max-height:768px) {
-	#Footer { position: unset; item: center;}
+	#Footer { position: unset;}
 	#Content {
 		margin-bottom: 5px!important;
 	}
@@ -286,6 +286,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	top: 0;
+	left: 0;
 	height: 100%;
 	width: 100%;
 	background-color: #adadad;
@@ -293,20 +295,18 @@ body {
 
 /* Define styles for the spinner */
 .spinner {
-	width: 70px;
-	height: 70px;
-	border: 7px solid #968f8f;
-	border-radius: 50%;
-	border-top-color: blue; /* Color for the spinning part */
-	animation: spin 2s linear infinite; /* Apply the spinning animation */
+    display: inline-block;
+    aspect-ratio: 1 / 1;            /* keep it square */
+    padding: 2rem;               /* controls overall size */
+    box-sizing: border-box;         /* include border/padding in layout */
+    border: 7px solid #968f8f;
+    border-radius: 50%;
+    border-top-color: blue;         /* Color for the spinning part */
+    animation: spin 2s linear infinite;
 }
 
 /* Define keyframe animation for spinning */
 @keyframes spin {
-	from {
-		transform: rotate(0deg); /* Start spinning from 0 degrees */
-	}
-	to {
-		transform: rotate(360deg); /* End spinning at 360 degrees (full rotation) */
-	}
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }
