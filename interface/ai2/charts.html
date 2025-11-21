@@ -51,7 +51,7 @@
 		<style>
 			#chartcontainer {
 				display: grid;
-				grid-template-rows: 1fr 42vh 6em;/* Use these to adjust the sizes of the charts */
+				grid-template-rows: 1fr 30em 7em;/* Use these to adjust the sizes of the charts */
 				gap: 1em;	/*	Use this to adjust the gap between the chart and navigation. */
 				padding: 1em;
 				border: 1px solid var(--color5);
@@ -66,6 +66,9 @@
 				height: 100%;
 				width: 100%;
 				background: white;
+			}
+			#navChart {
+				cursor: grab;
 			}
 			.chart-buttons button {
 				margin-left:.5vw;
@@ -112,30 +115,30 @@
 					<!--	Buttons - set order to 2 to force to the bottom of screen	-->
 					<div class="w3-container" style="order:1;">
 						<div class="ax-btnBar" style="order:1;gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
-							<button id="temp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Temperatures">{{TEMPERATURE}}</button>
-							<button id="dailytemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Daily temperature"	>{{DAILY_TEMPERATURE}}</button>
-							<button id="press" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Pressure">{{PRESSURE}}</button>
-							<button id="wind" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Wind speeds">{{WIND_SPEED}}</button>
-							<button id="windDir" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Wind direction">{{WIND_DIRECTION}}</button>
-							<button id="humidity" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Humidity">{{HUMIDITY}}</button>
-							<button id="rain" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Rainfall">{{RAINFALL}}</button>
-							<button id="dailyrain" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Daily rainfall">{{DAILY_RAIN}}</button>
-							<button id="solar" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Solar">{{SOLAR}}</button>
-							<button id="sunhours" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Sunshine hours">{{SUNSHINE_HOURS}}</button>
-							<button id="airquality"	class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Air quality">{{AIR_QUALITY}}</button>
-							<button id="extratemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra temperature"	>{{EXTRA_TEMPERATURE}}</button>
-							<button id="extrahum" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra humidity">{{EXTRA_HUMIDITY}}</button>
-							<button id="extradew" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra dew point">{{EXTRA_DEW_POINT}}</button>
-							<button id="soiltemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Soil temperature">{{SOIL_TEMPERATURE}}</button>
-							<button id="soilmoist" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Soil moisture">{{SOIL_MOISTURE}}</button>
-							<button id="leafwet" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Leaf Wetness">{{LEAF_WETNESS}}</button>
-							<button id="usertemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="User temperature">{{USER_TEMPERATURE}}</button>
-							<button id="co2" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Carbon dioxide">{{CO2_SENSOR}}</button>
-							<button id="laserdepth" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Laser Depth">{{LASER_SENSOR}}</button>
+							<button id="temp" class="w3-btn ax-btn-gradient-up " aria-label="Temperatures">{{TEMPERATURE}}</button>
+							<button id="dailytemp" class="w3-btn ax-btn-gradient-up" aria-label="Daily temperature"	>{{DAILY_TEMPERATURE}}</button>
+							<button id="press" class="w3-btn ax-btn-gradient-up " aria-label="Pressure">{{PRESSURE}}</button>
+							<button id="wind" class="w3-btn ax-btn-gradient-up " aria-label="Wind speeds">{{WIND_SPEED}}</button>
+							<button id="windDir" class="w3-btn ax-btn-gradient-up " aria-label="Wind direction">{{WIND_DIRECTION}}</button>
+							<button id="humidity" class="w3-btn ax-btn-gradient-up " aria-label="Humidity">{{HUMIDITY}}</button>
+							<button id="rain" class="w3-btn ax-btn-gradient-up " aria-label="Rainfall">{{RAINFALL}}</button>
+							<button id="dailyrain" class="w3-btn ax-btn-gradient-up " aria-label="Daily rainfall">{{DAILY_RAIN}}</button>
+							<button id="solar" class="w3-btn ax-btn-gradient-up " aria-label="Solar">{{SOLAR}}</button>
+							<button id="sunhours" class="w3-btn ax-btn-gradient-up " aria-label="Sunshine hours">{{SUNSHINE_HOURS}}</button>
+							<button id="airquality"	class="w3-btn ax-btn-gradient-up " aria-label="Air quality">{{AIR_QUALITY}}</button>
+							<button id="extratemp" class="w3-btn ax-btn-gradient-up " aria-label="Extra temperature"	>{{EXTRA_TEMPERATURE}}</button>
+							<button id="extrahum" class="w3-btn ax-btn-gradient-up " aria-label="Extra humidity">{{EXTRA_HUMIDITY}}</button>
+							<button id="extradew" class="w3-btn ax-btn-gradient-up " aria-label="Extra dew point">{{EXTRA_DEW_POINT}}</button>
+							<button id="soiltemp" class="w3-btn ax-btn-gradient-up " aria-label="Soil temperature">{{SOIL_TEMPERATURE}}</button>
+							<button id="soilmoist" class="w3-btn ax-btn-gradient-up " aria-label="Soil moisture">{{SOIL_MOISTURE}}</button>
+							<button id="leafwet" class="w3-btn ax-btn-gradient-up " aria-label="Leaf Wetness">{{LEAF_WETNESS}}</button>
+							<button id="usertemp" class="w3-btn ax-btn-gradient-up " aria-label="User temperature">{{USER_TEMPERATURE}}</button>
+							<button id="co2" class="w3-btn ax-btn-gradient-up " aria-label="Carbon dioxide">{{CO2_SENSOR}}</button>
+							<button id="laserdepth" class="w3-btn ax-btn-gradient-up " aria-label="Laser Depth">{{LASER_SENSOR}}</button>
 						</div>
 					</div>
 					<!--	Chart	-->
-					<figure class="w3-container" style="order:1;">
+					<div class="w3-container" style="order:1;">
 						<div id="chartcontainer" class="chart-wrap">
         			        <div class="chart-buttons">
                     			<div id="rangeButtons"></div>
@@ -149,7 +152,7 @@
                 			</div>
             			</div>
             			<p id="chartdescription" class="chartDescription w3-center"></p>
-					</figure>
+					</div>
 					
 				</div>	<!--	End of one column layout	-->
 			</div>
