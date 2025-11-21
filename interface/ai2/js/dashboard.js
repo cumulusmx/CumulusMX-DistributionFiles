@@ -203,6 +203,11 @@ $(document).ready(function () {
                         // upgrade?
                         if (alarm.Id == 'AlarmUpgrade') {
                             $(alarmtag).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+                        } else {
+                            $(alarmtag).on("click", function () {
+                                log("User clicked: " + $(this)[0].id);
+                                clearAlarm($(this)[0].id);
+                            });
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
@@ -375,6 +380,26 @@ $(document).ready(function () {
         })
         .done(function (data) {
             updateDisplay(data);
+        });
+    }
+
+    function clearAlarm(id) {
+        $.ajax({
+            url: '/api/utils/clearalarm.txt',
+            type: 'POST',
+            data: id,
+            contentType: 'plain/text; charset=UTF-8'
+        })
+        .done(function(result) {
+            if (result == "Cleared") {
+                log(id + ' Cleared');
+                alarmState[id] = false;
+                let alarmtag = '#' + id;
+                $(alarmtag).removeClass('ax-led-on');
+                $(alarmtag).prop("onclick", null).off("click");
+            } else {
+                log(id + ' error: ' + result);
+            }
         });
     }
 

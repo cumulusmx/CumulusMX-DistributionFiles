@@ -345,6 +345,7 @@ tr > td { border-bottom: thin solid var(--color5);}
 
 .ax-led-on {
 	animation: pulseRed 1.5s infinite;
+	cursor: pointer;
 }
 
 .ax-led-off {
