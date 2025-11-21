@@ -41,8 +41,8 @@ const configRes = $.getJSON({url: '/api/graphdata/graphconfig.json'});
 $(document).ready(() => {
 
 	$('.ax-btnBar').children().on('click', function() {
-        CMXSession.charts.Trends = this.id;
-        sessionStorage.addItem(axStore, JSON.stringify(CMXSession));
+        CMXSession.Charts.Trends = this.id;
+        sessionStorage.setItem(axStore, JSON.stringify(CMXSession));
         $('.ax-btnBar').children().removeClass('w3-disabled');
         $('#' + this.id).addClass('w3-disabled');
 		doSelect( this.id );

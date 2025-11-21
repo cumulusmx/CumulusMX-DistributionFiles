@@ -44,7 +44,7 @@ let temperatureScale;
 
 $().ready(() => {
 
-	$('.selectGraph').click( function() {
+	$('.ax-btnBar').children().click( function() {
 		CMXSession.Charts.Historic = this.id
 		sessionStorage.setItem(axStore, JSON.stringify(CMXSession));
 		//	Clear all buttons
