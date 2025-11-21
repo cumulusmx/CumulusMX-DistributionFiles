@@ -51,25 +51,22 @@
 		</script>
 		<style>
 			#chartcontainer {
-				display:flex;
-				flex-direction: column;
-				justify-content: space-evenly;
-				height: 60vh;
-				min-height: 450px;
-				margin: 1vh 0;
-				padding: 1em;
+				display:grid;
+				grid-template-rows: 1fr 30em 7em;/*	Adjust heights of graph an navigation here */
+				gap: 1em;	/* Adjust gap between canvas' here */
+				padding: 1em;/* This should be the same as gap above to balance the layout */
 				border: 1px solid var(--color5);
 				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
-			.chart-buttons { display:flex; color: var(--color1); justify-content:space-between;}
-			#mainChart { 
-				min-height: 40vh;
-				background: white;
-				margin: 1vh 0;
+			.chart-buttons { 
+				display:flex; 
+				color: var(--color1); 
+				justify-content:space-between;
 			}
-			#navChart {
+			#mainChart, #navChart { 
+				height: 100%;
+				width:100%;
 				background: white;
-				height: 6em;
 			}
 			.chart-buttons button,
 			#rangeButtons button {

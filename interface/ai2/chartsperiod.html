@@ -57,17 +57,18 @@
 		<style>
 			#chartcontainer {
 				min-height: 450px;
-				display: flex;
-				flex-direction: column;
-				margin: 1vh 0;
+				display: grid;
+				grid-template-rows: 1fr 25em 7em;/*flex-direction: column;*/
+				gap: 1em;
+				/*margin: 1vh 0;*/
 				padding: 1em;
 				border: 1px solid var(--color5);
 				background: linear-gradient( 30deg, var(--color8), var(--color9));
 			}
-			#mainChart { min-height: 40vh; margin-bottom:1vh;}
-			#navChart { height: 6em;}
+			#mainChart { height: 100%; width:100%;}
+			#navChart { height: 100%; width:100%;}
 			canvas { background: white;}
-			.chart-buttons { display:flex; color: var(--color1); justify-content: space-between; margin-bottom:1vh;}
+			.chart-buttons { display:flex; color: var(--color1); justify-content: space-between;}
 			.chart-buttons button,
 			#rangeButtons button {
 				margin-left:.5em;
