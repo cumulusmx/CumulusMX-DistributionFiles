@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 17:54:17
+// Last modified: 2025/11/22 11:32:26
 
 let accessMode;
 
@@ -28,96 +28,66 @@ $(document).ready(function() {
                     validate: {
                         title: '{{UPDATE}}',
                         click: function() {
-                            this.refreshValidationState(true);
-                            if (this.isValid(true)) {
-                                let form = $('form').alpaca('get');
-                                let startSel = form.getControlByPath('startsel')
-                                let json = this.getValue();
+                            $.when(this.refreshValidationState(true)).then(() => {
+                                if (this.isValid(true)) {
+                                    let form = $('form').alpaca('get');
+                                    let startSel = form.getControlByPath('startsel')
+                                    let json = this.getValue();
 
-                                if (startSel.getValue() == 'SpecificDay') {
-                                    let mon = form.getControlByPath('month').getValue();
-                                    let day = form.getControlByPath('day').getValue();
-                                    json.startsel = 'Day' + addLeadingZeros(mon) + addLeadingZeros(day);
-                                }
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/api/records/query/dayfile.json',
-                                    data: {json: JSON.stringify(json)},
-                                    dataType: 'text'
-                                })
-                                .done(function (result) {
-                                    let res = JSON.parse(result);
-                                    if (res.value.length == undefined) {
-                                        $('#resultValue').text(res.value.toFixed(2));
-                                    } else {
-                                        $('#resultValue').text(res.value);
+                                    if (startSel.getValue() == 'SpecificDay') {
+                                        let mon = form.getControlByPath('month').getValue();
+                                        let day = form.getControlByPath('day').getValue();
+                                        json.startsel = 'Day' + addLeadingZeros(mon) + addLeadingZeros(day);
                                     }
-                                    $('#resultTime').text(res.time);
-                                })
-                                .fail(function (jqXHR, textStatus) {
-                                    alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
-                                });
-                            } else {
-                                let firstErr = $('form').find('.has-error:first')
-                                let path = $(firstErr).attr('data-alpaca-field-path');
-                                let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
-                                if ($(firstErr).is(':visible')) {
-                                    let entry = $(firstErr).focus();
-                                    $(window).scrollTop($(entry).position().top);
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/api/records/query/dayfile.json',
+                                        data: {json: JSON.stringify(json)},
+                                        dataType: 'text'
+                                    })
+                                    .done(function (result) {
+                                        let res = JSON.parse(result);
+                                        if (res.value.length == undefined) {
+                                            $('#resultValue').text(res.value.toFixed(2));
+                                        } else {
+                                            $('#resultValue').text(res.value);
+                                        }
+                                        $('#resultTime').text(res.time);
+                                    })
+                                    .fail(function (jqXHR, textStatus) {
+                                        alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
+                                    });
                                 }
-                            }
+                            });
                         },
                         styles: 'alpaca-form-button-submit'
                     }
                 }
             },
             fields: {
-                where: {
+                value: {
                     validator: function(callback) {
                         let form = $('form').alpaca('get');
 
                         let value = this.getValue();
-                        let startSel = form.getControlByPath('startsel').getValue();
                         let func = form.getControlByPath('function').getValue();
+                        let where = form.getControlByPath('where').getValue();
 
-                        if (value.length == 0 && func == 'count') {
+                        if (isNaN(value) && func == 'count' && where != '') {
+                            this.focus();
                             callback({
                                 status: false,
-                                message: 'You must use a "where" condition when using the Count function'
+                                message: 'You must use a comparison value when using the Count function'
                             });
-                            return;
+                        } else {
+                            // all OK
+                            callback({
+                                status: true
+                            });
                         }
-                        // all OK
-                        callback({
-                            status: true
-                        });
                     }
                 },
-                countfunction: {
-                    validator: function(callback) {
-                        /*
-                        let form = $('form').alpaca('get');
-
-                        let value = this.getValue();
-                        let startSel = form.getControlByPath('startsel').getValue();
-                        let func = form.getControlByPath('function').getValue();
-
-                        if (value.length == 0 && func == 'count' && (startSel.startsWith('Month') || startSel =='Yearly')) {
-                            callback({
-                                status: false,
-                                message: 'You must use a count function when using the Count function with a recurring period (month/year)'
-                            });
-                            return;
-                        }
-                        */
-                        // all OK
-                        callback({
-                            status: true
-                        });
-                    }
-                }
             }
         },
         postRender: function (form) {
@@ -133,10 +103,6 @@ $(document).ready(function() {
             now.setDate(now.getDate() - 1);
             //var start = new Date(result.began)
 
-            // set initial values
-            form.getControlByPath('day').setValue(1);
-            form.getControlByPath('day').schema.maximum = 31;
-
             form.getControlByPath('month').on('change', function () {
                 let mon = form.getControlByPath('month').getValue();
                 let dayObj = form.getControlByPath('day');
@@ -146,9 +112,6 @@ $(document).ready(function() {
                 dayObj.refresh();
                 dayObj.refreshValidationState();
             });
-
-            // force a non-required field to have a default value
-            form.getControlByPath('countfunction').setValue('max');
 
             $.ajax({
                 url: '/api/tags/process.txt',
