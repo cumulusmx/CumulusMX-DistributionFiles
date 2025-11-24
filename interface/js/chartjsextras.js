@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/19 16:36:09
+// Last updated: 2025/11/24 09:51:29
 
 const CmxChartJsPlugins = {
 
@@ -113,7 +113,7 @@ const CmxChartJsHelpers = {
 
     FullScreenEventHandler: (event) => {
         if (document.fullscreenElement) {
-            document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
+            document.getElementById('btnFullscreen').textContent = '{{FULLSCREEN_EXIT}}';
         } else {
             const mainContainer = document.getElementById('mainChartContainer');
             const navContainer = document.getElementById('navChartContainer');
@@ -122,7 +122,7 @@ const CmxChartJsHelpers = {
             navContainer.style.height = null
             document.getElementById('mainChart').style.height = mainContainer.getAttribute('data-height') + 'px';
             mainContainer.style.height = mainContainer.getAttribute('data-height') + 'px';
-            document.getElementById('btnFullscreen').textContent = 'Fullscreen';
+            document.getElementById('btnFullscreen').textContent = '{{FULLSCREEN}}';
 
             setTimeout(() => {
                 mainChart.update('none');
@@ -130,7 +130,7 @@ const CmxChartJsHelpers = {
                 mainContainer.style.visibility = null;
                 navContainer.style.visibility = null;
                 mainContainer.style.height = null;
-            }, 250);
+            }, 500);
         }
     },
 
