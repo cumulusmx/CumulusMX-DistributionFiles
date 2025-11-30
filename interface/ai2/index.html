@@ -147,65 +147,65 @@
 				<div class="ax-column4">
 					<!--	Temperature	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Temperature</h4></div>
+						<div class="ax-titleBar"><h4>{{TEMPERATURE}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="OutdoorTemp" class="ax-reading">xx.x</span> <span class="TempUnit">&deg;K</span></h3>
 							<h4>
 								<img id="TempTrendImg" src="img/up.png" alt="up" class="ax-img-small">&nbsp;
-								<span><span id="TempTrend">-.-</span><span class="TempUnit">&deg;F</span>/hr</span>
+								<span><span id="TempTrend">-.-</span><span class="TempUnit">&deg;F</span>{{HOUR_SHORT_LC}}</span>
 							</h4>
-							<p><span>High</span>: <span id="HighTempToday" class="high">--.-</span><span class="TempUnit"></span><span class="ax-at" id="HighTempTodayTime">--:--</span><br>
-							<span>Low</span>: <span id="LowTempToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowTempTodayTime">--:--</span></p>
-							<p><span>Avg</span>: <span id="AvgTempToday" >--.-</span><span class="TempUnit"></span></p>
+							<p><span>{{HIGH}}</span>: <span id="HighTempToday" class="high">--.-</span><span class="TempUnit"></span><span class="ax-at" id="HighTempTodayTime">--:--</span><br>
+							<span>{{LOW}}</span>: <span id="LowTempToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowTempTodayTime">--:--</span></p>
+							<p><span>{{AVG}}</span>: <span id="AvgTempToday" >--.-</span><span class="TempUnit"></span></p>
 						</div>
 					</div>
 					<!-- 	Pressure	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Pressure</h4></div>
+						<div class="ax-titleBar"><h4>{{PRESSURE}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="Pressure" class="ax-reading">xxxx.x</span> <span class="PressUnit">mb</span></h3>
 							<h4>
 								<img id="PressTrendImg" src="img/up.png" alt="up" class="ax-img-small">&nbsp;
-								<span><span id="PressTrend">-.-</span><span class="PressUnit">mb</span>/hr</span>
+								<span><span id="PressTrend">-.-</span><span class="PressUnit">mb</span>{{HOUR_SORT_LC}}</span>
 							</h4>
-							<p><span>High</span>: <span id="HighPressToday" class="high">----.-</span><span class="PressUnit"></span><span class="ax-at" id ="HighPressTodayTime">--:--</span><br>
-							<span>Low</span>: <span id="LowPressToday" class="low">----.-</span><span class="PressUnit"></span><span class="ax-at" id="LowPressTodayTime">--:--</span></p>
+							<p><span>{{HIGH}}</span>: <span id="HighPressToday" class="high">----.-</span><span class="PressUnit"></span><span class="ax-at" id ="HighPressTodayTime">--:--</span><br>
+							<span>{{LOW}}</span>: <span id="LowPressToday" class="low">----.-</span><span class="PressUnit"></span><span class="ax-at" id="LowPressTodayTime">--:--</span></p>
 						</div>
 					</div>
 					<!--	Rainfall	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Rainfall</h4></div>
+						<div class="ax-titleBar"><h4>{{RAINFALL}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="RainToday" class="ax-reading">xx.x</span> <span class="RainUnit">in</span></h3>
 							<h4>
 								<img id="RainRateImg" src="img/rain0.png" alt="Rain?" class="ax-img-small">&nbsp;
-								<span>Rate: <span id="RainRate">x.x</span><span class="RainUnit">in</span>/hr</span>
+								<span>{{RATE}}: <span id="RainRate">x.x</span><span class="RainUnit">in</span>/hr</span>
 							</h4>
 							<p>
-								<span id="HighRainRate">High Rate</span>: <span id="HighRainRateToday" class="high">--.-</span><span class="RainUnit"></span>/hr<span class="ax-at" id="HighRainRateTodayTime">--:--</span>
+								<span id="HighRainRate">{{HIGH}}</span>: <span id="HighRainRateToday" class="high">--.-</span><span class="RainUnit"></span>/hr<span class="ax-at" id="HighRainRateTodayTime">--:--</span>
 							</p>
 							<div class="ax-grid" style="grid-template-columns:1fr 1fr;justify-items:end;row-gap:0em;">
-								This week: <span style="justify-self:start"><span id="RainWeek">--.-</span><span class="RainUnit"></span></span>
-								This month: <span style="justify-self:start;"><span id="RainMonth">-.-</span><span class="RainUnit">mm</span></span>
-								This year: <span style="justify-self:start;"><span id="RainYear">-.-</span><span class="RainUnit">mm</span></span>
+								{{THIS_WEEK}}: <span style="justify-self:start"><span id="RainWeek">--.-</span><span class="RainUnit"></span></span>
+								{{THIS_MONTH}}: <span style="justify-self:start;"><span id="RainMonth">-.-</span><span class="RainUnit">mm</span></span>
+								{{THIS_YEAR}}: <span style="justify-self:start;"><span id="RainYear">-.-</span><span class="RainUnit">mm</span></span>
 							</div>
 						</div>
 					</div>
 					<!--	Times	-->
 					<div class="w3-card ax-theme7 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Times</h4></div>
+						<div class="ax-titleBar"><h4>{{LOCAL_TIME}}</h4></div>
 						<div class="w3-center">
 							<h3><span class="digiclock">--:--:--</span></h3>
-							<h5>Last Cumulus update<br>
+							<h5>{{LAST_CUMULUS_UPDATE}}<br>
 							<span id="lastupdatetime" class="w3-large">xx:yy:zz</span>&nbsp;<img id="LastUpdateIcon" src="img/green.png" class="ax-img-small" alt="green"></h5>
-							<h5>Last station update<br>
+							<h5>{{LAST_STATION_UPDATE}}<br>
 							<span id="LastDataRead" class="bold w3-large">--:--:--</span>&nbsp;<img id="DataStoppedIcon" src="img/green.png" class="ax-img-small" alt="green"><br>
 							<span id="LastDataReadDate"></span></h5>
 						</div>
 					</div>
 					<!--	Windspeed	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Windspeed</h4></div>
+						<div class="ax-titleBar"><h4>{{WIND_SPEED}}</h4></div>
 						<div class="w3-center">
 							<div id="tip_6" class="gauge">
 								<canvas id="canvas_wind" class="ax-gaugeStandard"></canvas>
@@ -214,7 +214,7 @@
 					</div>
 					<!--	Wind Direction	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Wind Direction</h4></div>
+						<div class="ax-titleBar"><h4>{{WIND_DIRECTION}}</h4></div>
 						<div class="w3-center">
 							<div id="tip_7" class="gauge">
 								<canvas id="canvas_dir" class="ax-gaugeStandard"></canvas>
@@ -223,7 +223,7 @@
 					</div>
 					<!--	Wind Rose	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Wind Rose</h4></div>
+						<div class="ax-titleBar"><h4>{{WIND_ROSE}}</h4></div>
 						<div class="w3-center">
 							<div id="tip_10" class="gauge">
 								<canvas id="canvas_rose" class="ax-gaugeStandard"></canvas>
@@ -232,49 +232,49 @@
 					</div>
 					<!--	Wind Overview	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Wind Overview</h4></div>
+						<div class="ax-titleBar"><h4>{{WIND_SPEEDS}}</h4></div>
 						<div class="w3-center">
-							<h4>Average: <span id="WindAverage" class="ax-reading">-.-</span> <span class="WindUnit sup">---</span></h4>
-							<h4>Gust: <span id="Recentmaxgust" class="ax-reading">--.-</span> <span class="WindUnit">---</span></h4>
-							<p><span>High gust</span>: <span id="HighGustToday" class="high">--.-</span><span class="WindUnit ">---</span><span class="ax-at" id="HighGustTodayTime">--:--</span></p>
-							<p>Windrun: <span id="WindRunToday"></span> <span data-CMXData="WindRunUnit"></span></p>
+							<h4>{{AVERAGE}}: <span id="WindAverage" class="ax-reading">-.-</span> <span class="WindUnit sup">---</span></h4>
+							<h4>{{GUST}}: <span id="Recentmaxgust" class="ax-reading">--.-</span> <span class="WindUnit">---</span></h4>
+							<p><span>{{HIGH}}</span>: <span id="HighGustToday" class="high">--.-</span><span class="WindUnit ">---</span><span class="ax-at" id="HighGustTodayTime">--:--</span></p>
+							<p>{{WIND_RUN}}: <span id="WindRunToday"></span> <span data-CMXData="WindRunUnit"></span></p>
 							<p>Beaufort: <span id="Beaufort">??</span> (<span id="BeaufortDesc"></span>)</p>
 						</div>
 					</div>
 					<!--	Humidity	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Humidity</h4></div>
+						<div class="ax-titleBar"><h4>{{HUMIDITY}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="OutdoorHum" class="ax-reading">--.-</span>%</h3>
-							<p><span>High&nbsp;</span><span id="HighHumToday" class="high">--</span>%<span class="ax-at" id="HighHumTodayTime">--:--</span></p>
-							<p><span>Low&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span>%<span class="ax-at" id="LowHumTodayTime">--:--</span></p>
+							<p><span>{{HIGH}}&nbsp;</span><span id="HighHumToday" class="high">--</span>%<span class="ax-at" id="HighHumTodayTime">--:--</span></p>
+							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span>%<span class="ax-at" id="LowHumTodayTime">--:--</span></p>
 						</div>
 					</div>
 					<!--	Dew Point	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Dew Point</h4></div>
+						<div class="ax-titleBar"><h4>{{DEW_POINT}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="OutdoorDewpoint" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;F</span></h3>
-							<p><span>High&nbsp;</span><span id="HighDewpointToday" class="high">--.-</span><span class="TempUnit"></span><span class="ax-at" id="HighDewpointTodayTime">--:--</span></p>
-							<p><span>Low&nbsp;&nbsp;</span><span id="LowDewpointToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowDewpointTodayTime">--:--</span></p>
+							<p><span>{{HIGH}}&nbsp;</span><span id="HighDewpointToday" class="high">--.-</span><span class="TempUnit"></span><span class="ax-at" id="HighDewpointTodayTime">--:--</span></p>
+							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowDewpointToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowDewpointTodayTime">--:--</span></p>
 						</div>
 					</div>
 					<!--	Wind Chill	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar"><h4>Wind Chill</h4></div>
+						<div class="ax-titleBar"><h4>{{WIND_CHILL}}</h4></div>
 						<div class="w3-center">
 							<h3><span id="WindChill" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;C</span></h3>
-							<p><span>Low&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowWindChillTodayTime">--:--</span></p>
+							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ax-at" id="LowWindChillTodayTime">--:--</span></p>
 						</div>
 					</div>
 					<!--	Solar Radiation (Data dependant)	-->
 					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;" data-cmxData-Rad="">
-						<div class="ax-titleBar"><h4>Solar Radiation</h4></div>
+						<div class="ax-titleBar"><h4>{{SOLAR}}</h4></div>
 						<div class="w3-center">
-							<h3 data-cmxData-Solar="">Rad.&nbsp;<span id="SolarRad" class="ax-reading">---.-</span>&nbsp;W/m<sup>2</sup></h3>
-							<p data-cmxData-Solar=""><span>High&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ax-at" id="HighSolarRadTodayTime">--:--</span></p>
-							<h3 data-cmxData-UV="">UV Index&nbsp;<span id="UVindex" class="ax-reading">--</span></h3>
-							<p data-cmxData-UV=""><span>High&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ax-at" id="HighUVindexTodayTime">--:--</span></p>
+							<h3 data-cmxData-Solar="">{{RADIATION}}&nbsp;<span id="SolarRad" class="ax-reading">---.-</span>&nbsp;W/m<sup>2</sup></h3>
+							<p data-cmxData-Solar=""><span>{{HIGH}}&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ax-at" id="HighSolarRadTodayTime">--:--</span></p>
+							<h3 data-cmxData-UV="">{{UV_INDEX}}&nbsp;<span id="UVindex" class="ax-reading">--</span></h3>
+							<p data-cmxData-UV=""><span>{{HIGH}}&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ax-at" id="HighUVindexTodayTime">--:--</span></p>
 						</div>
 					</div>
 				</div>	<!--	End of four column variable layout -->
@@ -306,10 +306,10 @@
 					<div class="w3-container" style="padding-bottom:20px;">
 						<!--	Content for modal goes below	-->
 						<div class="ax-grid" style="grid-template-columns:repeat(4, 1fr);">
-							<div><h4 class="w3-center w3-bottombar ax-theme3-bdr">Sunrise<br><span id="Sunrise"></span></h4></div>
-							<div><h4 class="w3-center w3-bottombar ax-theme2-bdr">Sunset<br><span id="Sunset"></span></h4></div>
-							<div><h4 class="w3-center w3-bottombar ax-theme3-bdr">Moonrise<br><span id="Moonrise"></span></h4></div>
-							<div><h4 class="w3-center w3-bottombar ax-theme2-bdr">Moonset<br><span id="Moonset"></span></h4></div>
+							<div><h4 class="w3-center w3-bottombar ax-theme3-bdr">{{SUNRISE}}<br><span id="Sunrise"></span></h4></div>
+							<div><h4 class="w3-center w3-bottombar ax-theme2-bdr">{{SUNSET}}<br><span id="Sunset"></span></h4></div>
+							<div><h4 class="w3-center w3-bottombar ax-theme3-bdr">{{MOONRISE}}<br><span id="Moonrise"></span></h4></div>
+							<div><h4 class="w3-center w3-bottombar ax-theme2-bdr">{{MOONSET}}<br><span id="Moonset"></span></h4></div>
 						</div>
 						<!--	End of modal content	 -->
 					</div>

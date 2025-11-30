@@ -56,42 +56,52 @@
 		</script>
 		<style>
 			#chartcontainer {
-				min-height: 450px;
 				display: grid;
-				grid-template-rows: 1fr 25em 7em;/*flex-direction: column;*/
+				grid-template-rows: 1fr 28em;
+				grid-auto-rows: 7em;
 				gap: 1em;
-				/*margin: 1vh 0;*/
 				padding: 1em;
 				border: 1px solid var(--color5);
 				background: linear-gradient( 30deg, var(--color8), var(--color9));
 			}
-			#mainChart { height: 100%; width:100%;}
-			#navChart { height: 100%; width:100%;}
-			canvas { background: white;}
-			.chart-buttons { display:flex; color: var(--color1); justify-content: space-between;}
-			.chart-buttons button,
-			#rangeButtons button {
-				margin-left:.5em;
+			.chart-buttons {
+				display:flex;
+				justify-content: space-between;
+				color: var(--color1);
+			}
+			.chart-buttons button {
 				border-radius: 1em;
-				border:thin solid var(--color5);
+				border: thin solid var(--color5);
 				background: var(--gradient-up);
 				color: var(--color1);
 				padding: .1em 1em;
 			}
-			button:hover { background: var(--gradient-down)}
+			.chart-buttons button:hover {
+				background: var(--gradient-down);
+			}
+			#rangeButtons button {
+				margin-left:0.5em;
+			}
+			#mainChart, #navChart { 
+				height: 100%; 
+				width:100%;
+				background: white;
+			}
 			select {
 				font-size: 82%;
 				max-width: 10em!important;
 				padding: 4px 0 4px 0.5em!important;
+				border: thin solid var(--color5);
 			}
 			select[name^="colour"] {
 				width: 45px;
 				border-radius: 0 0.6em 0.6em 0;
-				border:1px solid transparent;
+				border-left: none;
 			}
 			select[name^="data"]{
 				border-radius: 0.6em 0 0 0.6em;
 				margin-right:-5px;
+				border-right: none!important;
 			}
 			input[type="text"]{
 				border-radius:1em;
