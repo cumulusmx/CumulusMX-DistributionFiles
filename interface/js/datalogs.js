@@ -1,4 +1,4 @@
-// Last modified: 2025/10/16 16:24:58
+// Last modified: 2025/11/26 17:00:56
 
 var myTable;
 var currMonth;
@@ -161,7 +161,7 @@ $(document).ready(function () {
             {title: '{{APPARENT_TEMP}}', type: 'number', step: tempStep},
             {title: '{{HIGH_SOLAR_RAD}}', type: 'number'},
             {title: '{{SUN_HOURS}}', type: 'number', step: 0.01},
-            {title: 'Wind bearing', type: 'number', min: 0, max: 360},
+            {title: '{{WIND_BEARING}}', type: 'number', min: 0, max: 360},
             {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep},
             {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep},
             {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep},
