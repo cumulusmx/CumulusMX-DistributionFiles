@@ -50,9 +50,10 @@
 		</script>
 		<style>
 			#chartcontainer {
-				display: grid;
-				grid-template-rows: 1fr 30em 7em;/* Use these to adjust the sizes of the charts */
-				gap: 1em;	/*	Use this to adjust the gap between the chart and navigation. */
+				display: grid;	/* Display as a vertical grid */
+				grid-template-rows: 1fr 30em;	/* Use to adjust the height of the chart */
+				grid-auto-rows: 7em; 			/* Use to adjust the height of the navigator */
+				gap: 1em;	/*	Gap between vertical elements. for aesthetics should be the same as padding. */
 				padding: 1em;
 				border: 1px solid var(--color5);
 				background: linear-gradient(30deg,var(--color8), var(--color9));
@@ -62,16 +63,7 @@
 				color: var(--color1); 
 				justify-content:space-between;
 			}
-			#mainChart, #navChart { 
-				height: 100%;
-				width: 100%;
-				background: white;
-			}
-			#navChart {
-				cursor: grab;
-			}
 			.chart-buttons button {
-				margin-left:.5vw;
 				border-radius: 1em;
 				border: thin solid var(--color5);
 				background: var(--gradient-up);
@@ -80,6 +72,14 @@
 			}
 			.chart-buttons button:hover {
 				background: var(--gradient-down);
+			}
+			#rangeButtons button {
+				margin-left:.5em;
+			}
+			#mainChart, #navChart { 
+				height: 100%;
+				width: 100%;
+				background: white;
 			}
 		</style>
 	</head>
@@ -142,7 +142,10 @@
 						<div id="chartcontainer" class="chart-wrap">
         			        <div class="chart-buttons">
                     			<div id="rangeButtons"></div>
-                    			<button id="btnFullscreen">Fullscreen</button>
+								<div>
+									<button id="btnPrint">{{PRINT}}</button>
+	                    			<button id="btnFullscreen">Fullscreen</button>
+								</div>
                 			</div>
                 			<div id="mainChartContainer" class="mainChartContainer">
                     			<canvas id="mainChart"></canvas>

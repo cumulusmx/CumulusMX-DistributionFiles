@@ -52,7 +52,8 @@
 		<style>
 			#chartcontainer {
 				display:grid;
-				grid-template-rows: 1fr 30em 7em;/*	Adjust heights of graph an navigation here */
+				grid-template-rows: 1fr 30em;/*	Adjust heights of graph an navigation here */
+				grid-auto-rows: 7em;
 				gap: 1em;	/* Adjust gap between canvas' here */
 				padding: 1em;/* This should be the same as gap above to balance the layout */
 				border: 1px solid var(--color5);
@@ -63,36 +64,37 @@
 				color: var(--color1);
 				justify-content:space-between;
 			}
-			#mainChart, #navChart {
-				height: 100%;
-				width:100%;
-				background: white;
-			}
-			.chart-buttons button,
-			#rangeButtons button {
-				margin-left:.5vw;
+			.chart-buttons button {
 				border-radius: 1em;
-				border: thin solid var(--color5);
+				border:thin solid var(--color5);
 				background: var(--gradient-up);
 				color: var(--color1);
 				padding: .1em 1em;
 			}
-			#rangeButtons button:hover {
+			.chart-buttons button:hover {
 				background: var(--gradient-down);
+			}
+			#rangeButtons button {
+				margin-left: .5em;
+			}
+			#mainChart, #navChart {
+				height: 100%;
+				width:100%;
+				background: white;
 			}
 
 			select {
 				font-size: 82%;
 				max-width: 10em!important;
 				padding: 4px 0 4px 0.5em!important;
-
 			}
 			select[name^="colour"] {
 				width: 45px;
 				border-radius: 0 0.6em 0.6em 0;
 				-webkit-border-radius: 0 0.6em 0.6em 0!important;
-				border:1px solid transparent;
-				}
+				border: thin solid var(--color5);
+				border-left: none;
+;				}
 			select[name^="data"]{
 				border-radius: 0.6em 0 0 0.6em;
 				-webkit-border-radius: 0.6em 0 0 0.6em;

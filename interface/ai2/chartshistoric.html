@@ -49,34 +49,40 @@
 		</script>
 		<style>
 			#chartcontainer {
-				/*height: 60vh;*/
-				/*min-height: 60vh;*/
-				margin: 1vh 0;
+				display: grid;	/* Display as verical grid	*/
+				grid-template-rows: 1fr 30em;/*	Use to set the height of the main chart */
+				grid-auto-rows: 7em; /*. Use to set the height of the navigator if displayed */
+				gap: 1em;	/* Gap between vertical elements, for aesthetics should be the same as padding */
 				padding: 1em;
 				border: 1px solid var(--color5);
 				background: linear-gradient(30deg,var(--color8), var(--color9));
 			}
-			.chart-buttons { display:flex; color: var(--color1); justify-content:space-between;}
-			#mainChart {
-				min-height: 40vh;
-				background: white;
-				margin: 1vh 0;
+
+			.chart-buttons { 
+				display:flex; 
+				color: var(--color1); 
+				justify-content:space-between;
 			}
-			#navChart {
-				background: white;
-				height: 6em;
-			}
-			/*#rangeButtons*/ button {
-				margin-left:.5vw;
+
+			.chart-buttons button {
 				border-radius: 1em;
 				border: thin solid var(--color5);
 				background: var(--gradient-up);
 				color: var(--color1);
 				padding: .1em 1em;
 			}
-			#rangeButtons button:hover {
+			#rangeButtons button {
+				margin-left: .5em;
+			}
+			.chart-buttons button:hover {
 				background: var(--gradient-down);
 			}
+			#mainChart, #navChart {
+				height: 100%;
+				width:100%;
+				background: white;
+			}
+
 		</style>
 	</head>
 	<body class="ax-theme9">
