@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/24 13:00:15",
+	"version": "Last Modified: 2025/12/01 14:37:34",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
@@ -706,7 +706,7 @@
 					}
 				},
 				"times": {
-					"label": "{{{POSTING_TIMES_FIXED}}}:",
+					"label": "{{POSTING_TIMES_FIXED}}:",
 					"collapsible": true,
 					"collapsed": false,
 					"items": {
