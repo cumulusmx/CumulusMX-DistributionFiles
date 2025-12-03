@@ -9,6 +9,7 @@ The MIT License (MIT)
 ===============================================================================================================
 
 FluentFTP
+FluentFTP.Logging
 Copyright (c) 2015 Robin Rodricks and FluentFTP Contributors
 
 MIT License
@@ -181,3 +182,54 @@ Copyright (c) 2013 Vitaliy Potapov
 Licensed MIT
 
 ===============================================================================================================
+
+BouncyCastle.Cryptography
+
+Copyright Legion of the Bouncy Castle Inc.
+MIT License
+
+===============================================================================================================
+
+DnsClient
+© 2025 by Michael Conrad
+Apache License 2.0
+
+===============================================================================================================
+
+HidSharp
+Copyright 2010-2025 James F. Bellinger
+Apache License, Version 2.0
+
+===============================================================================================================
+
+MailKit
+© 2023 Jeffrey Stedfast
+MIT License
+
+===============================================================================================================
+
+MySqlConnector
+Bradley Grainger
+MIT License
+
+===============================================================================================================
+
+NLog
+NLog.Extensions.Logging
+Jarek Kowalski,Kim Christensen,Julian Verdurmen
+BSD 3-Clause License
+
+===============================================================================================================
+
+SixLabors.ImageSharp
+Copyright (c) Six Labors
+Six Labors Split License - https://www.nuget.org/packages/SixLabors.ImageSharp/3.1.12/license
+
+===============================================================================================================
+
+SQLitePCLRaw
+Eric Sink
+Apache License 2.0
+
+===============================================================================================================
+
