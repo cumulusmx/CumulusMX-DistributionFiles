@@ -1,55 +1,84 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/11/24 09:51:29
+// Last updated: 2025/12/06 20:48:38
 
 const CmxChartJsPlugins = {
 
     navigatorPlugin: {
-      id: 'navigatorSelection',
-      afterDraw(chart) {
-        const { ctx, chartArea, scales } = chart;
-        const xScale = scales.x;
-        const x1 = xScale.getPixelForValue(selection.start);
-        const x2 = xScale.getPixelForValue(selection.end);
-        const y1 = chartArea.top;
-        const y2 = chartArea.bottom;
+        id: 'navigatorSelection',
+        afterDraw(chart) {
+            const { ctx, chartArea, scales } = chart;
+            const xScale = scales.x;
+            const x1 = xScale.getPixelForValue(selection.start);
+            const x2 = xScale.getPixelForValue(selection.end);
+            const y1 = chartArea.top;
+            const y2 = chartArea.bottom;
 
-        // Draw selection box
-        ctx.save();
-        ctx.fillStyle = 'rgba(66,133,244,0.12)';
-        ctx.strokeStyle = 'rgba(66,133,244,0.35)';
-        ctx.lineWidth = 1;
-        ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
-        ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+            const handle = (x) => {
+                const midPoint = chartArea.height / 2;
+                ctx.save();
+                // the rectangle
+                ctx.beginPath();
+                ctx.strokeStyle = 'grey';
+                ctx.fillStyle = 'white';
+                ctx.lineWidth = 1;
+                ctx.fillRect(x - 5, midPoint - 9, 10, 18);
+                ctx.strokeRect(x - 5, midPoint - 9, 10, 18);
 
-        // Draw handles
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.4);';
-        ctx.fillRect(x1 - 2, y1, 4, y2 - y1);
-        ctx.fillRect(x2 - 2, y1, 4, y2 - y1);
+                // the lines
+                ctx.beginPath();
+                ctx.strokeStyle = 'grey';
+                ctx.lineWidth = 1;
+                ctx.moveTo(x + 2, midPoint - 6);
+                ctx.lineTo(x + 2, midPoint + 6);
+                ctx.moveTo(x - 2, midPoint - 6);
+                ctx.lineTo(x - 2, midPoint + 6);
+                ctx.stroke();
+                ctx.restore();
+            };
 
-        // Draw tooltip if dragging
-        if (dragging) {
-          const midX = (x1 + x2) / 2;
-          const startStr = luxon.DateTime.fromMillis(selection.start).toFormat('HH:mm');
-          const endStr = luxon.DateTime.fromMillis(selection.end).toFormat('HH:mm');
-          const rangeStr = `${startStr} – ${endStr}`;
+            // Draw selection box
+            ctx.save();
+            ctx.fillStyle = 'rgba(66,133,244,0.12)';
+            ctx.strokeStyle = 'rgba(66,133,244,0.35)';
+            ctx.lineWidth = 1;
+            ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+            ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
 
-          ctx.font = '11px sans-serif';
-          const textWidth = ctx.measureText(rangeStr).width;
-          const padding = 6;
-          const boxWidth = textWidth + padding * 2;
-          const boxHeight = 20;
+            // Draw start-end borders
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4);';
+            ctx.fillRect(x1 - 2, y1, 4, y2 - y1);
+            ctx.fillRect(x2 - 2, y1, 4, y2 - y1);
 
-          ctx.fillStyle = 'rgba(0,0,0,0.7)';
-          ctx.fillRect(midX - boxWidth / 2, (y2 - y1) / 2 - boxHeight / 2, boxWidth, boxHeight);
-          ctx.globalAlpha = 1;
-          ctx.fillStyle = 'white';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(rangeStr, midX, (y2 - y1) / 2);
+            // Draw tooltip if dragging
+            /*
+            if (dragging) {
+                const midX = (x1 + x2) / 2;
+                const startStr = luxon.DateTime.fromMillis(selection.start).toFormat('HH:mm');
+                const endStr = luxon.DateTime.fromMillis(selection.end).toFormat('HH:mm');
+                const rangeStr = `${startStr} – ${endStr}`;
+
+                ctx.font = '11px sans-serif';
+                const textWidth = ctx.measureText(rangeStr).width;
+                const padding = 6;
+                const boxWidth = textWidth + padding * 2;
+                const boxHeight = 20;
+
+                ctx.fillStyle = 'rgba(0,0,0,0.7)';
+                ctx.fillRect(midX - boxWidth / 2, chartArea.height / 2 - boxHeight / 2, boxWidth, boxHeight);
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(rangeStr, midX, chartArea.height / 2);
+            }
+            */
+
+            ctx.restore();
+
+            // Draw the selection handles
+            handle(x1);
+            handle(x2);
         }
-
-        ctx.restore();
-      }
     },
 
     // Plugin to draw border around chart area
