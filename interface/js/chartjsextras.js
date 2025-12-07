@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/12/06 20:48:38
+// Last updated: 2025/12/07 15:44:56
 
 const CmxChartJsPlugins = {
 
@@ -11,7 +11,6 @@ const CmxChartJsPlugins = {
             const x1 = xScale.getPixelForValue(selection.start);
             const x2 = xScale.getPixelForValue(selection.end);
             const y1 = chartArea.top;
-            const y2 = chartArea.bottom;
 
             const handle = (x) => {
                 const midPoint = chartArea.height / 2;
@@ -21,17 +20,17 @@ const CmxChartJsPlugins = {
                 ctx.strokeStyle = 'grey';
                 ctx.fillStyle = 'white';
                 ctx.lineWidth = 1;
-                ctx.fillRect(x - 5, midPoint - 9, 10, 18);
-                ctx.strokeRect(x - 5, midPoint - 9, 10, 18);
+                ctx.fillRect(x - 4, midPoint - 8, 8, 16);
+                ctx.strokeRect(x - 4, midPoint - 8, 8, 16);
 
                 // the lines
                 ctx.beginPath();
                 ctx.strokeStyle = 'grey';
                 ctx.lineWidth = 1;
-                ctx.moveTo(x + 2, midPoint - 6);
-                ctx.lineTo(x + 2, midPoint + 6);
-                ctx.moveTo(x - 2, midPoint - 6);
-                ctx.lineTo(x - 2, midPoint + 6);
+                ctx.moveTo(x + 1.5, midPoint - 5);
+                ctx.lineTo(x + 1.5, midPoint + 5);
+                ctx.moveTo(x - 1.5, midPoint - 5);
+                ctx.lineTo(x - 1.5, midPoint + 5);
                 ctx.stroke();
                 ctx.restore();
             };
@@ -41,13 +40,13 @@ const CmxChartJsPlugins = {
             ctx.fillStyle = 'rgba(66,133,244,0.12)';
             ctx.strokeStyle = 'rgba(66,133,244,0.35)';
             ctx.lineWidth = 1;
-            ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
-            ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+            ctx.fillRect(x1, y1, x2 - x1, chartArea.height);
+            ctx.strokeRect(x1, y1, x2 - x1, chartArea.height);
 
             // Draw start-end borders
             ctx.fillStyle = 'rgba(0, 0, 0, 0.4);';
-            ctx.fillRect(x1 - 2, y1, 4, y2 - y1);
-            ctx.fillRect(x2 - 2, y1, 4, y2 - y1);
+            ctx.fillRect(x1 - 1, y1, 2, chartArea.height);
+            ctx.fillRect(x2 - 1, y1, 2, chartArea.height);
 
             // Draw tooltip if dragging
             /*
