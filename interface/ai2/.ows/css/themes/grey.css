@@ -1,0 +1,43 @@
+@charset "utf-8";
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Theme:  grey                  (#00332C)   v3.0
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  For:   ax websites
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Author:     DNC THomas
+ *  Last edit:  29/11/2024
+ *  ****   DO NOT EDIT THIS THEME   ****
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*  Theme colour variables */
+:root {
+    --baseR: 25; --baseG: 25; --baseB:25;
+    --color1: #191919;
+    --color2: #333333;
+    --color3: #4c4c4c;
+    --color4: #666666;
+    --color5: #7f7f7f;
+    --color6: #999999;
+    --color7: #b2b2b2;
+    --color8: #cccccc;
+    --color9: #e5e5e5;
+    --modal: rgba(var(--baseR), var(--baseG), var(--baseB), 0.3);
+    --gradient-down: linear-gradient(         var(--color7), var(--color6));
+	--gradient-up: linear-gradient( var(--color6), var(--color7));
+    --gradient-left: linear-gradient( to right,  var(--color7), var(--color6));
+	--gradient-right: linear-gradient( to left, var(--color7), var(--color6));
+
+    --gradientBar: linear-gradient(var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
+    --shadow:   0 0.15em 0.3em -0.1em var(--color1);
+    --shadows: 0 0.1em 0.3em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.3),0 0.1em 0.7em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.4);
+}
+
+/*	Theme colour combinations (Foreground / Background)	*/
+.ax-theme4	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5	{color: var(--color1); background: var(--color5);}
+.ax-theme6	{color: var(--color1); background-color: var(--color6);}
+
+/*	Theme colour combinations for HOVER effects (Foreground / Background)	*/
+.ax-theme4-hvr:hover	{color: var(--color9); background-color: var(--color4);}
+.ax-theme5-hvr:hover	{color: var(--color1); background-color: var(--color5);}
+.ax-theme6-hvr:hover 	{color: var(--color1); background-color: var(--color6);}
