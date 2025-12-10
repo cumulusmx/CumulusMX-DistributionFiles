@@ -69,7 +69,47 @@
 			.mylabel {
 				margin-left:1em;
 			}
-			#container .ows-titleFlex {margin-top:1vh;}
+			#customGrid {
+				display: grid;
+				gap: 1em 1vh;
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-areas: 
+				/* This list dictates how the various panels are arrainged	*/
+					"temp hums press derived" 
+					"wind rain solar derived" 
+					"degdays . . derived";
+				margin-bottom:1vh;
+			}
+			.tempPanel { grid-area: temp;}
+			.humsPanel { grid-area: hums;}
+			.pressPanel { grid-area: press;}
+			.extrasPanel { grid-area: derived;}
+			.windPanel { grid-area: wind;}
+			.rainPanel { grid-area: rain;}
+			.solarPanel { grid-area: solar;}
+			.degdaysPanel { grid-area: degdays;}
+			#customGrid .ows-titleFlex {margin-top:1vh;}
+			@media (max-width: 1000px) {
+				#customGrid {
+					grid-template-columns: repeat(3, 1fr);
+					grid-template-areas:
+						"temp solar derived"
+						"hums press derived"
+						"wind rain derived"
+						"degdays . derived";
+				}
+			}
+			@media (max-width: 800px) {
+				#customGrid {
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-areas: 
+						"temp derived"
+						"solar derived"
+						"degdays derived"
+						"wind rain"
+						"hums press"
+				}
+			}
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -98,7 +138,7 @@
 					</div>
 				</div>
 
-				<div class="ows-grid col3">
+				<div class="ows-grid col3" style="margin-bottom:0;">
 					<!--	Date / Time Range	-->
 					<div class="w3-container no-shadow" style="order:1;padding-bottom:0;">
 						<div class="ows-titleFlex"><h4>Date/Time Range</h4></div>
@@ -128,8 +168,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="container"></div>
-
+				<!-- New container inserted here -->
 			</section>
 		</section>
 		

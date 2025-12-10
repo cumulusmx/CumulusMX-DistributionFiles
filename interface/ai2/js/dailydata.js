@@ -22,7 +22,7 @@ $(document).ready(function () {
         // construct the checkboxes
         // checkbox id's are the field offsets in the day file
         // Under the AI, don't have to worry about rows - they are automatically accommodated
-        let cards = $('<div>', { class: 'ows-flex col4' });
+        let cards = $('<div>', { id: 'customGrid' });
 
         // temperature Data
         let tempBoxes = $('<div>');
@@ -51,7 +51,7 @@ $(document).ready(function () {
             let tempBlock = $('<div>')
                 .append($('<div>', { class: 'ows-titleFlex', html: '<h4>Temperature</h4>' }))
                 .append(tempBoxes)
-            cards.append($('<div>', { class: 'w3-container ows-theme8', style: 'order:0;' }).append(tempBlock));
+            cards.append($('<div>', { class: 'tempPanel w3-container ows-theme8' }).append(tempBlock));
         }
 
         // humidity Data
@@ -74,7 +74,7 @@ $(document).ready(function () {
             let humBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'ows-titleFlex', html: '<h4>Humidity</h4>' }))
                 .append(humBoxes);
-            cards.append($('<div>', {class: 'w3-container ows-theme8', style: 'order:0' }).append(humBlock));
+            cards.append($('<div>', {class: 'humsPanel w3-container ows-theme8' }).append(humBlock));
         }
 
         // pressure
@@ -92,7 +92,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
             .append($('<label>', { for: '9', class: 'mylabel', html: 'Min Pressure Time' }));
-        cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:0' }).append(pressBlock));
+        cards.append($('<div>', { class: 'pressPanel w3-container ows-theme8' }).append(pressBlock));
 
         // wind data
         let windBlock = $('<div>', { class: 'my-unit' })
@@ -118,7 +118,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
             .append($('<label>', { for: '16', class: 'mylabel', html: 'Wind Run' }));
-        cards.append($('<div>', { class: 'w3-container ows-theme8', style: 'order:0' }).append(windBlock));
+        cards.append($('<div>', { class: 'windPanel w3-container ows-theme8' }).append(windBlock));
 
         // rainfall
         let rainBlock = $('<div>', { class: 'my-unit' })
@@ -144,7 +144,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
             .append($('<label>', { for: '54', class: 'mylabel', html: 'High Rainfall 24 Hours Time' }));
-        cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:0' }).append(rainBlock));
+        cards.append($('<div>', { class: 'rainPanel w3-container ows-theme8'}).append(rainBlock));
 
         // solar
         let solarBoxes = $('<div>');
@@ -176,7 +176,7 @@ $(document).ready(function () {
             let solarBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'ows-titleFlex', html: '<h4>Solar<h4>' }))
                 .append(solarBoxes);
-            cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:0' }).append(solarBlock));
+            cards.append($('<div>', { class: 'solarPanel w3-container ows-theme8' }).append(solarBlock));
         }
 
         // derived temperatures
@@ -250,7 +250,7 @@ $(document).ready(function () {
                     .append($('<label>', { for: '30', class: 'mylabel', html: 'Low Apparent Time' }))
             }
 
-            cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:0' }).append(derivedTempBlock));
+            cards.append($('<div>', { class: 'extrasPanel w3-container ows-theme8' }).append(derivedTempBlock));
         }
 
         // degree days
@@ -263,10 +263,10 @@ $(document).ready(function () {
             .append($('<input>', { type: 'checkbox', id: '41' }))
             .append($('<label>', { for: '41', class: 'mylabel', html: 'Cooling Degree Days' }));
 
-        cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:0' }).append(degreeDayBlock));
+        cards.append($('<div>', { class: 'degdaysPanel w3-container ows-theme8', style:'order:0' }).append(degreeDayBlock));
 
-
-        $('#container').append(cards);
+        $('#subContent').append(cards);
+//        $('#container').append(cards);
         //$('#container').append(rows);
         // Phew!
     });
@@ -447,18 +447,18 @@ function createDataPage(result) {
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'DailyData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
     let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title>';
-    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/axPro.css">';
-    if(CMXConfig.Theme!='') { html += '<link rel="stylesheet" href="css/themes/' + CMXConfig.Theme + '.css">';}
+    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/w3v5.css">';
+    if(cmxConfig.Theme!='') { html += '<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme + '.css">';}
     html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
-    html += 'tr:hover>td{background: var(--gradientBar);</style></head>';
-    html += '<body class="ax-theme9"><div class="ows-titleFlex ax-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+    html += 'tr:hover>td{background: var(--gradient-databar);</style></head>';
+    html += '<body class="axows-theme9"><div class="ows-titleFlex ows-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Daily Data Viewer</h3></div></div>';
 
     if (format == 'CSV') {
-        html += '<div class="ax-container w3-responsive">' + convertToCSV(result, true) + '</div></body></html>';
+        html += '<div class="w3-container w3-responsive">' + convertToCSV(result, true) + '</div></body></html>';
     } else {
-        html += '<div class="ax-container">' + makeTable(result) + '</div></body></html>';
+        html += '<div class="w3-container">' + makeTable(result) + '</div></body></html>';
     }
     w.document.open().write(html);
     w.focus();
