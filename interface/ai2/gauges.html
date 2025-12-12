@@ -82,7 +82,7 @@
 			<section id="subContent" class="pageWidth">
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Gauges</h1>
+						<h1>{{MENU_GAUGES}}</h1>
 						<p class="tagline">Page updated: <span data-cmxData="Date"></span></p>
 					</div>
 				</section>
@@ -91,7 +91,7 @@
 					<!--	Panel 1 / column 1	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Temperature</h4>
+							<h4>{{TEMPERATURE}}</h4>
 						</div>
 						<div id="tip_0" class="gauge w3-center">
 							<canvas id="canvas_temp" class="ows-gaugeStd"></canvas>
@@ -104,25 +104,25 @@
 					<!--	Panel 2 / column 2	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Other Temps.</h4>
+							<h4>{{OTHER_TEMPS}}</h4>
 						</div>
 						<div id="tip_1" class="gauge w3-center">
 							<canvas id="canvas_dew" class="ows-gaugeStd"></canvas>
 						</div>
 						<div class="ows-btnBar" style="justify-content: center; margin-bottom:1vh;">
 							<select id="rad_dew" class="ows-theme-grad-down-hvr w3-small ows-theme9 ows-theme5-bdr " aria-label="Select for alternative temperature" onchange="gauges.doDew(this);">
-								<option id="lab_dew1" value="dew" selected="selected">Dew Point</option>
-								<option id="lab_dew6" value="feel">Feels Like</option>
-								<option id="lab_dew2" value="app">Apparent</option>
-								<option id="lab_dew3" value="wnd">Wind Chill</option>
-								<option id="lab_dew4" value="hea">Heat Index</option>
-								<option id="lab_dew5" value="hum">Humidex</option>
+								<option id="lab_dew1" value="dew" selected="selected">{{DEW_POINT}}</option>
+								<option id="lab_dew6" value="feel">{{FEELS_LIKE}}</option>
+								<option id="lab_dew2" value="app">{{APPARENT_TEMPERATURE}}</option>
+								<option id="lab_dew3" value="wnd">{{WIND_CHILL}}</option>
+								<option id="lab_dew4" value="hea">{{HEAT_INDEX}}</option>
+								<option id="lab_dew5" value="hum">{{HUMIDEX}}</option>
 							</select>
 						</div>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Humidity</h4>
+							<h4>{{HUMIDITY}}</h4>
 						</div>
 						<div id="tip_4" class="gauge w3-center">
 							<canvas id="canvas_hum" class="ows-gaugeStd"></canvas>
@@ -134,7 +134,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Windspeed</h4>
+							<h4>{{WIND_SPEED}}</h4>
 						</div>
 						<div id="tip_6" class="gauge w3-center">
 							<canvas id="canvas_wind" class="ows-gaugeStd"></canvas>
@@ -142,7 +142,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Wind Direction</h4>
+							<h4>{{WIND_DIRECTION}}</h4>
 						</div>
 						<div id="tip_7" class="gauge w3-center">
 							<canvas id="canvas_dir" class="ows-gaugeStd"></canvas>
@@ -150,7 +150,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Wind Rose</h4>
+							<h4>{{WIND_ROSE}}</h4>
 						</div>
 						<div id="tip_10" class="gauge w3-center">
 							<canvas id="canvas_rose" class="ows-gaugeStd"></canvas>
@@ -158,7 +158,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Pressure</h4>
+							<h4>{{PRESSURE}}</h4>
 						</div>
 						<div id="tip_5" class="gauge w3-center">
 							<canvas id="canvas_baro" class="ows-gaugeStd"></canvas>
@@ -166,7 +166,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Rainfall</h4>
+							<h4>{{RAINFALL}}</h4>
 						</div>
 						<div id="tip_2" class="gauge w3-center">
 							<canvas id="canvas_rain" class="ows-gaugeStd"></canvas>
@@ -174,7 +174,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Rainfall Rate</h4>
+							<h4>{{RAINFALL_RATE}}</h4>
 						</div>
 						<div id="tip_3" class="gauge w3-center">
 							<canvas id="canvas_rrate" class="ows-gaugeStd"></canvas>
@@ -182,7 +182,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>UV Index</h4>
+							<h4>{{UV_INDEX}}</h4>
 						</div>
 						<div id="tip_8" class="gauge w3-center">
 							<canvas id="canvas_uv" class="ows-gaugeStd"></canvas>
@@ -190,7 +190,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Solar Radiation</h4>
+							<h4>{{SOLAR_RADIATION}}</h4>
 						</div>
 						<div id="tip_9" class="gauge w3-center">
 							<canvas id="canvas_solar" class="ows-gaugeStd"></canvas>
@@ -198,7 +198,7 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex">
-							<h4>Cloudbase</h4>
+							<h4>{{CLOUD_BASE}}</h4>
 						</div>
 						<div id="tip_11" class="gauge w3-center">
 							<canvas id="canvas_cloud" class="ows-gaugeStd"></canvas>
@@ -214,9 +214,10 @@
 						<div class="w3-center" style="margin-top: 1vh;">
 							<canvas id="canvas_status" style="border: thin solid var(--sub5); height:2em; width: 100%;"></canvas>
 						</div>
-						<div class="ow-flexCenter w3-hide">
+						<div class="w3-hide" style="display:grid;grid-template-columns: 1fr 6em 4em 1fr;gap:1em; align-items: center;">
+							<p>&nbsp;</p>
 							<canvas id="canvas_timer" style="width:6em; height: 2em; border:thin solid var(--color5);"></canvas>
-							<p>Status:</p>
+							<p class="w3-right-align">{{STATUS}}:</p>
 							<canvas id="canvas_led" style="width:25px;height:25px;border:thin solid var(--color5);border-radius:50%;" width="25" height="25"></canvas>
 						</div>
 						<p class="w3-center w3-tiny">Scripts by Mark Crossley - version 2.7.6<br>Gauges drawn using Gerrit Grunwald's steelseries javascript library, wind rose drawn using rgraph</p>

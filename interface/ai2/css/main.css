@@ -133,7 +133,7 @@ input:focus, select:focus { outline: 0; background: inherit;}    /* Removes focu
 .tagline { font-style: italic;}
 .no-shadow { box-shadow:none!important;}
 .ows-image-small { width:1.2em; height: auto;} /* Use to adjust size of up/down/steady images */
-.ows-at:before { content: "@"; padding: inherit .5em; font-size: 80%; text-align: baseline;}
+.ows-at:before { content: "@"; padding: 0 .3em; font-size: 80%; text-align: baseline;}
 
 /*  ~~~~    TITLE BARS  ~~~~*/
 .ows-titleFlex {

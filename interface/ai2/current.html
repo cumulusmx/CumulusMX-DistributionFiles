@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CMX Current Readings</title>
+		<title>CMX Readings {{NOW}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -66,7 +66,7 @@
 			<section id="subContent" class="pageWidth">
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Current Readings</h1>
+						<h1>{{CURRENT_DATA}}</h1>
 						<p class="tagline">Page updated: <span data-cmxData="update"></span> <img id="LastUpdateIcon" src="img/green.png" class="ows-image-small" alt="Update Image"></p>
 					</div>
 				</section>
@@ -75,130 +75,130 @@
 					<!--	Temperatures Panel	-->
 					<section class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Temperatures</h3><i class="fa-solid fa-temperature-half"></i>
+							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-half"></i>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Temp">
-							<p>Outdoor temperature</p>
+							<p>{{OUTDOOR_TEMPERATURE}}</p>
 							<p><img id="TempTrendImg" class="ows-image-small" alt="trend" src="img/up.png"> <span id="OutdoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Today's Average Temp.</p>
+							<p>Today's {{AVERAGE_TEMPERATURE}}</p>
 							<p><span id="AvgTempToday">--.-</span><span class="TempUnit"></span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="DewPoint">
-							<p>Dew Point</p>
+							<p>{{DEW_POINT}}</p>
 							<p><span id="OutdoorDewpoint">--</span><span class="TempUnit"></span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="WindChill">
-							<p>Wind Chill</p>
+							<p>{{WIND_CHILL}}</p>
 							<p><span id="WindChill">--</span><span class="TempUnit"></span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="AppTemp">
-							<p>Apparent temperature</p>
+							<p>{{APPARENT_TEMPERATURE}}</p>
 							<p><span id="AppTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="FeelsLike">
-							<p>Feels like</p>
+							<p>{{FEELS_LIKE}}</p>
 							<p><span id="FeelsLike">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="HeatIndex">
-							<p>Heat Index</p>
+							<p>{{HEAT_INDEX}}</p>
 							<p><span id="HeatIndex">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Humidex">
-							<p>Humidex</p>
+							<p>{{HUMIDEX}}</p>
 							<p><span id="Humidex">--</span><span class="TempUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="InTemp">
-							<p>Indoor Temperature</p>
+							<p>{{INDOOR_TEMPERATURE}}</p>
 							<p><span id="IndoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
 					</section>
 					<!--	Rainfall Panel -->
 					<section class="w3-container ows-theme8 " style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Rainfall</h3><i class="fa-solid fa-droplet w3-text-blue"></i>
+							<h3>{{RAINFALL}}</h3><i class="fa-solid fa-droplet w3-text-blue"></i>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain today</p>
+							<p>{{RAIN_TODAY}}</p>
 							<p><span id="RainToday">--</span><span class="RainUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain rate</p>
+							<p>{{RAIN_RATE}}</p>
 							<p><img id="RainRateImg" src="img/rain0.png" alt="raindrop" class="ows-image-small"> <span id="RainRate">--</span><span class="RainUnit">--</span>/hr</p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain last hour</p>
+							<p>{{RAIN_LAST_HOUR}}</p>
 							<p><span id="RainLastHour">--</span><span class="RainUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain last 24 hours</p>
+							<p>{{RAIN_LAST_24_HOURS}}</p>
 							<p><span id="RainLast24Hour">--</span><span class="RainUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex w3-hide" data-cmxData="Last24h">
-							<p>Snow last 24 hours</p>
+							<p>{{SNOW_24H}}</p>
 							<p><span id="snow24h">--.-</span></p>
 						</div>
 						<div class="ows-dataRowFlex w3-hide" data-cmxData="Depth">
-							<p>Snow depth</p>
+							<p>{{SNOW_DEPTH}}</p>
 							<p><span id="depth">---</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain yesterday</p>
+							<p>{{RAIN_YESTERDAY}}</p>
 							<p><span id="RainYesterday">--</span><span class="RainUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Last rainfall</p>
+							<p>Last rainfall<sup>*</sup></p>
 							<p><span id="LastRainTip"></span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain this Month</p>
+							<p>{{RAIN_THIS_MONTH}}</p>
 							<p><span id="RainMonth">--</span><span class="RainUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Rain this Year</p>
+							<p>{{RAIN_THIS_YEAR}}</p>
 							<p><span id="RainYear">--</span><span class="RainUnit">--</span></p>
 						</div>
 					</section>
 					<!--	Winds Panel	-->
 					<section class="w3-container ows-theme8 " style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Winds</h3><i class="fa-solid fa-wind"></i>
+							<h3>{{WIND}}</h3><i class="fa-solid fa-wind"></i>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Wind latest</p>
+							<p>{{LATEST}}</p>
 							<p><span id="WindLatest">--</span><span class="WindUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Bearing</p>
+							<p>{{BEARING}}</p>
 							<p><span id="Bearing">--</span>&deg;&nbsp;<span id="BearingCP"></span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Average speed</p>
+							<p>{{AVERAGE_SPEED}}</p>
 							<p><span id="WindAverage">--</span><span class="WindUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Average bearing</p>
+							<p>{{AVERAGE_BEARING}}</p>
 							<p><span id="Avgbearing">--</span>&deg;&nbsp;<span id="AvgbearingCP"></span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Peak gust</p>
+							<p>{{PEAK_GUST}}</p>
 							<p><span id="Recentmaxgust">--</span><span class="WindUnit">--</span><span id="HighGustTodayTime" class="ows-at"></span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Peak gust bearing</p>
+							<p>Peak gust bearing<sup>*</sup></p>
 							<p><span id="HighGustBearingToday">--</span>&deg;&nbsp; (<span id="GustBearingCP"></span>)</p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Beaufort</p>
+							<p>Beaufort<sup>*</sup></p>
 							<p><span id="Beaufort">??</span> (<span id="BeaufortDesc"></span>)</p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Windrun</p>
+							<p>{{WIND_RUN_TODAY}}</p>
 							<p><span id="WindRunToday">??</span> <span class="WindRunUnit"></span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Cloudbase</p>
+							<p>{{CLOUD_BASE}}</p>
 							<p><span id="Cloudbase"></span> <span id="CloudbaseUnit"></span></p>
 						</div>
 
@@ -206,14 +206,14 @@
 					<!--	Humidity Panel	-->
 					<section class="w3-container ows-theme8 " style="order:1;" data-cmxData="humidity">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Humidity</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
+							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Hum">
-							<p>Outdoor</p>
+							<p>{{OUTDOOR_HUMIDITY}}</p>
 							<p><span id="OutdoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="InHum">
-							<p>Indoor</p>
+							<p>{{INDOOR_HUMIDITY}}</p>
 							<p><span id="IndoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
 
@@ -221,32 +221,32 @@
 					<!--	Pressure Panel	-->
 					<section class="w3-container ows-theme8 ax-growX2 " style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Pressure</h3><i class="fa-solid fa-compress w3-text-orange"></i>
+							<h3>{{PRESSURE}}</h3><i class="fa-solid fa-compress w3-text-orange"></i>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Pressure</p>
+							<p>{{PRESSURE}}</p>
 							<p><span id="Pressure">--</span><span class="PressUnit">--</span></p>
 						</div>
 						<div class="ows-dataRowFlex">
-							<p>Trend</p>
+							<p>{{TREND}}</p>
 							<p><img id="PressTrendImg" src="img/up.png" alt="trend" class="ows-image-small"> <span id="PressTrend">--</span><span class="PressUnit">--</span>/hr</p>
 						</div>
 					</section>				
 					<!--	Solar Radiation Panel	-->
 					<section class="w3-container ows-theme8 ows-animate-fadeIn" style="order:1;" data-cmxData="solar">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h3>Solar</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
+							<h3>{{SOLAR}}</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Solar">
-							<p>Solar radiation</p>
+							<p>{{SOLAR_RADIATION}}</p>
 							<p><span id="SolarRad">--</span>&nbsp;W/m<sup>2</sup></p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Sunshine">
-							<p>Sunshine Hours</p>
-							<p><span id="SunshineHours">--</span>&nbsp;hours</p>
+							<p>{{SUNSHINE_TODAY}}</p>
+							<p><span id="SunshineHours">--</span>&nbsp;{{HOURS}}</p>
 						</div>
 						<div class="ows-dataRowFlex" data-cmxData="Solar">
-							<p>UV radiation</p>
+							<p>{{UV_INDEX}}</p>
 							<p><span id="UVindex">--</span></p>
 						</div>
 					</section>				

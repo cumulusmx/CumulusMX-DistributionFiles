@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:		Compare Charts		| chartscompare.html
-	Author:		DNC Thomas			| Craeted: Mar 2025
-	Last Edit:	2025-12-09 10:22:27
+	Author:		DNC Thomas			| Created: Mar 2025
+	Last Edit:	2025-12-09 10:22:27.
 	Last Check:	2025-12-08 17:03:12
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Charts Compare</title>
+		<title>{{COMPARISON_CHARTS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -135,14 +135,14 @@
 			<div id="subContent" class="pageWidth">
 				<div class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Charts Compare</h1>
+						<h1>{{COMPARISON_CHARTS}}</h1>
 						<p class="tagline">Charts are based on your stations readings.</p>
 					</div>
 				</div>
 				<!--	Section of custom grid layouts	-->
 				<div id="customGrid">
 					<!--	Panel 1 - Information	-->
-					<div class="w3-container no-shadow" style="order:1; margin-bottom:0;">
+					<div class="w3-container no-shadow w3-hide" style="order:1; margin-bottom:0;">
 						<p>
 							The Select-a-chart allows you to configure your own graph to compare values together. Up to six different data
 							values can be selected using the drop-down selectors below the graph. Each data value has a further drop-down
@@ -172,29 +172,29 @@
 						<div class="ows-titleFlex" style="order:4;"><!--	Adjust gaps to suite	-->
 							<div class="ows-btnBar" style="column-gap: 0.5em; justify-content: flex-start;">
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvrp" style="margin-right:-5px;" name="data0" id="data0" aria-label="Choose graph" onChange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" style="margin-right:-5px;" name="data0" id="data0" aria-label="Choose graph" onChange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour0" id="colour0"  aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data1" id="data1" aria-label="Choose graph"  onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data1" id="data1" aria-label="Choose graph"  onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour1" id="colour1" aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data2" id="data2" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data2" id="data2" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour2" id="colour2" aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 							</div>
 							<div class="ows-btnBar" style="column-gap:0.5em; justify-content: flex-end;">
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data3" id="data3" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data3" id="data3" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour3" id="colour3" aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data4" id="data4" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data4" id="data4" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour4" id="colour4" aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data5" id="data5" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data5" id="data5" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour5" id="colour5" aria-label="Select its colour" onchange="updateColour(this)"></select>
 								</div>
 							</div>

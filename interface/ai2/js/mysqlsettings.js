@@ -2,7 +2,7 @@
     Script: mysqlsettings.js        | Ver:5.0.0
     Author: M Crossley & N Thomas
     Last Edit (MC): 2025/08/22 12:08:09
-    Last Edit (NT): 
+    Last Edit (NT): 2025/12/12 12:06
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for mysqlsettings.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
