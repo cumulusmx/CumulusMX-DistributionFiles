@@ -478,6 +478,7 @@ const doWind = () => {
             data: resp.maxWind,
             borderColor: config.series.wspeed.colour,
             backgroundColor: config.series.wspeed.colour,
+            tension:0.5,
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
@@ -489,6 +490,7 @@ const doWind = () => {
             data: resp.maxGust,
             borderColor: config.series.wgust.colour,
             backgroundColor: config.series.wgust.colour,
+            tension:0.5,
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
@@ -805,6 +807,7 @@ const doHum = () => {
                     data: resp[idx],
                     borderColor: config.series[idx.toLowerCase()].colour,
                     backgroundColor: config.series[idx.toLowerCase()].colour,
+                    tension:0.5,
                     yAxisID: 'y_hum',
                     tooltip: {
                         callbacks: {
@@ -971,6 +974,7 @@ const doSolar = () => {
                     type: types[idx],
                     fill: idx === 'solarRad',
                     data: dataPoints,
+                    tension:0.5,
                     borderColor: config.series[clrIdx].colour,
                     backgroundColor: config.series[clrIdx].colour + (idx === 'solarRad' ? '40' : ''),
                     yAxisID: idx === 'uvi' ? 'y_uv' : idx === 'solarRad' ? 'y_solar' : 'y_sun',
