@@ -160,7 +160,7 @@ $().ready(function () {
             },
             {
                 title: 'Date (dd/mm/yy)',
-                readonly: true
+                readonly: true,
             },
             {
                 title: 'Time',

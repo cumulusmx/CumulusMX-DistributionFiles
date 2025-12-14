@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:		Charts Period		| chartsperiod.html
 	Author:		DNC Thomas			| Mar 2025
-	Last Edit:	2025-12-09 10:23:38
+	Last Edit:	2025-12-12 15:52:40
 	Last Check:	2025-12-09 09:27:50
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Select-a-Chart Period</title>
+		<title>{{COMPARISON_CHARTS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -122,7 +122,7 @@
 			#dateFrom, #dateTo { max-width: 10em;}
 		</style>
 	</head>
-	<body class="ax-theme9">
+	<body class="ows-theme9">
 		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
 			<img src="img/seagull.png" id="Gull2" alt="Seagull">
 			<div id="subBanner" class="pageWidth">
@@ -152,7 +152,7 @@
 				<div id="customGrid">
 					<!--	Information	-->
 					<div class="w3-container no-shadow" style="order:1; padding-bottom:0; margin-bottom: -1vh;">
-						<p id="chartdescription">
+						<p id="chartdescription" class="w3-hide">
 							The Select-a-chart allows you to configure your own graph to compare values together. You can select start and
 							end dates for the data. Up to six different data values can be selected using the drop-down selectors below
 							the graph. Each data value has a further drop-down selector to change the colour for that particular data plot.
@@ -175,35 +175,36 @@
                     			<canvas id="navChart"></canvas>
                 			</div>
             			</div>
+						<p id="chartdescription" class="highcharts-description">{{SELECTACHART_DESC}}</p>
 					</div>
 					<!--	Buttons	-->
 					<div class="w3-container no-shadow" style="order:1;padding-bottom: 0;">
 						<div class="ows-titleFlex" style="margin-bottom:0;"><!--	Adjust gaps to suite	-->
 							<div class="ows-btnBar" style="column-gap: 0.5em; justify-content: flex-start;">
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data0" id="data0" aria-label="Choose graph" onChange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data0" id="data0" aria-label="Choose graph" onChange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour0" id="colour0"  aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data1" id="data1" aria-label="Choose graph"  onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data1" id="data1" aria-label="Choose graph"  onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour1" id="colour1" aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ows-theme-grad-down-hvr" name="data2" id="data2" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ows-theme-grad-down-hvr" name="data2" id="data2" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour2" id="colour2" aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 							</div>
 							<div class="ows-btnBar" style="column-gap:0.5em; justify-content: flex-end;">
 								<div class="ows-selectaGrid">
-									<select class="w3-select ax-btn-gradient-up" name="data3" id="data3" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ax-btn-gradient-up" name="data3" id="data3" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour3" id="colour3" aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ax-btn-gradient-up" name="data4" id="data4" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ax-btn-gradient-up" name="data4" id="data4" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour4" id="colour4" aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 								<div class="ows-selectaGrid">
-									<select class="w3-select ax-btn-gradient-up" name="data5" id="data5" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
+									<select class="w3-select ows-theme0 ax-btn-gradient-up" name="data5" id="data5" aria-label="Choose graph" onchange="procDataSelect(this)"></select>
 									<select class="w3-select" name="colour5" id="colour5" aria-label="Select its colour" style="color:var(--color9)" onchange="updateColour(this)"></select>
 								</div>
 							</div>
@@ -213,10 +214,10 @@
 					<div class="w3-container no-shadow" style="order:1;">
 						<div class="ows-btnBar" style=" justify-content: center; align-items: baseline;column-gap:2em;">
 							<div style="flex-grow:0">
-								<span id="datestart">Start Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom"  class="ax-btn-gradient-up" aria-labelledby="datestart">
+								<span id="datestart">Start Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateFrom"  class="ows-theme0 ows-theme-grad-down-hvr" aria-labelledby="datestart">
 							</div>
 							<div style="flex-grow:0">
-								<span id="dateend">End Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo" class="ax-btn-gradient-up" aria-labelledby="dateend">
+								<span id="dateend">End Date</span>:&nbsp;<input type="text" data-date-format="dd-mm-yyyy" id="dateTo" class="ows-theme0 ows-theme-grad-down-hvr" aria-labelledby="dateend">
 							</div>
 							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="max-width: 12em;" onclick="updateSeries()">Update</button>
 						</div>

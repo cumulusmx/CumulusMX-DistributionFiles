@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Records				| records.html
 	Author:		DNC Thomas		| Created: Nov 2025
-	Last Edit:	2025-12-09 11:53:38
+	Last Edit:	
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>All-Time Records</title>
+		<title>{{RECORDS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -22,11 +22,11 @@
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 		
-		<!--	jQuery CDN	(Use local for the Interface and public for the website)	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
 		<!--	Data Tables	-->
 		<script src="/lib/datatables/datatables.min.js"></script>
@@ -96,30 +96,33 @@
 					<div id="SelectPanel" class="no-shadow">
 					<!--	Buttons	-->
 						<div class="ows-btnBar" style="gap: 0.5em var(--rowGap);">
-							<button id="alltime" class="w3-button ows-theme-grad-down-hvr" name="alltime">All time</button>
-							<button id="btn1" class="w3-button ows-theme-grad-down-hvr" name="1">Jan</button>
-							<button id="btn2" class="w3-button ows-theme-grad-down-hvr" name="2">Feb</button>
-							<button id="btn3" class="w3-button ows-theme-grad-down-hvr" name="3">Mar</button>
-							<button id="btn4" class="w3-button ows-theme-grad-down-hvr" name="4">Apr</button>
-							<button id="btn5" class="w3-button ows-theme-grad-down-hvr" name="5">May</button>
-							<button id="btn6" class="w3-button ows-theme-grad-down-hvr" name="6">Jun</button>
-							<button id="btn7" class="w3-button ows-theme-grad-down-hvr" name="7">Jul</button>
-							<button id="btn8" class="w3-button ows-theme-grad-down-hvr" name="8">Aug</button>
-							<button id="btn9" class="w3-button ows-theme-grad-down-hvr" name="9">Sep</button>
-							<button id="btn10" class="w3-button ows-theme-grad-down-hvr" name="10">Oct</button>
-							<button id="btn11" class="w3-button ows-theme-grad-down-hvr" name="11">Nov</button>
-							<button id="btn12" class="w3-button ows-theme-grad-down-hvr" name="12">Dec</button>
-							<button id="thismonth" class="w3-button ows-theme-grad-down-hvr" name="thismonth">This Month</button>
-							<button id="thisyear" class="w3-button ows-theme-grad-down-hvr" name="thisyear">This Year</button>
+							<button id="alltime" class="w3-button ows-theme-grad-down-hvr" name="alltime">{{ALL_TIME}}</button>
+							<button id="btn1" class="w3-button ows-theme-grad-down-hvr" name="1">{{MONTH_SHORT_01}}</button>
+							<button id="btn2" class="w3-button ows-theme-grad-down-hvr" name="2">{{MONTH_SHORT_02}}</button>
+							<button id="btn3" class="w3-button ows-theme-grad-down-hvr" name="3">{{MONTH_SHORT_03}}</button>
+							<button id="btn4" class="w3-button ows-theme-grad-down-hvr" name="4">{{MONTH_SHORT_04}}</button>
+							<button id="btn5" class="w3-button ows-theme-grad-down-hvr" name="5">{{MONTH_SHORT_05}}</button>
+							<button id="btn6" class="w3-button ows-theme-grad-down-hvr" name="6">{{MONTH_SHORT_06}}</button>
+							<button id="btn7" class="w3-button ows-theme-grad-down-hvr" name="7">{{MONTH_SHORT_07}}</button>
+							<button id="btn8" class="w3-button ows-theme-grad-down-hvr" name="8">{{MONTH_SHORT_08}}</button>
+							<button id="btn9" class="w3-button ows-theme-grad-down-hvr" name="9">{{MONTH_SHORT_09}}</button>
+							<button id="btn10" class="w3-button ows-theme-grad-down-hvr" name="10">{{MONTH_SHORT_10}}</button>
+							<button id="btn11" class="w3-button ows-theme-grad-down-hvr" name="11">{{MONTH_SHORT_11}}</button>
+							<button id="btn12" class="w3-button ows-theme-grad-down-hvr" name="12">{{MONTH_SHORT_12}}</button>
+							<button id="thismonth" class="w3-button ows-theme-grad-down-hvr" name="thismonth">{{THIS_MONTH}}</button>
+							<button id="thisyear" class="w3-button ows-theme-grad-down-hvr" name="thisyear">{{THIS_YEAR}}</button>
 						</div>
 					</div>
 					<div id="TempsPanel" class="ows-theme8">
 						<div class="w3-container">
-							<div class="ows-titleFlex"><h4>Temperatures</h4><i class="fa-solid fa-temperature-half"></i></div>
-							<div class="w3-stretch ows-dataRowGrid threeC ows-theme1">
+							<div class="ows-titleFlex ows-theme7 w3-stretch">
+								<h4>{{TEMPERATURE}}</h4>
+								<i class="fa-solid fa-temperature-half"></i>
+							</div>
+							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
-								<h5 class="w3-right-align">Record</h5>
-								<h5 class="w3-center">Date &amp; Time</h5>
+								<h5 class="w3-right-align">{{RECORDS}}</h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Temperature"></div>
 						</div>
@@ -127,44 +130,56 @@
 
 					<div id="RainPanel" class="ows-theme8">
 						<div class="w3-container">
-							<div class="ows-titleFlex"><h4>Rainfall</h4><i class="fa-solid fa-droplet w3-text-blue"></i></div>
-							<div class="w3-stretch ows-dataRowGrid threeC ows-theme1">
+							<div class="ows-titleFlex ows-theme7 w3-stretch">
+								<h4>{{RAINFALL}}</h4>
+								<i class="fa-solid fa-droplet w3-text-blue"></i>
+							</div>
+							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
-								<h5 class="w3-right-align">Record</h5>
-								<h5 class="w3-center">Date &amp; Time</h5>
+								<h5 class="w3-right-align">{{RECORDS}}</h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Rainfall"></div>
 						</div>
 					</div>
 					<div id="WindsPanel" class="ows-theme8">
 						<div class="w3-container">
-							<div class="ows-titleFlex"><h4>Winds</h4><i class="fa-solid fa-wind"></i></div>
-							<div class="w3-stretch ows-dataRowGrid threeC ows-theme1">
+							<div class="ows-titleFlex ows-theme7 w3-stretch">
+								<h4>{{WIND}}</h4>
+								<i class="fa-solid fa-wind"></i>
+							</div>
+							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
-								<h5 class="w3-right-align">Record</h5>
-								<h5 class="w3-center">Date &amp; Time</h5>
+								<h5 class="w3-right-align">{{RECORDS}}</h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Winds"></div>
 						</div>
 					</div>
 					<div id="HumsPanel" class="ows-theme8">
 						<div class="w3-container">
-							<div class="ows-titleFlex"><h4>Humidity</h4><i class="fa-solid fa-cloud-rain w3-text-aqua"></i></div>
-							<div class="w3-stretch ows-dataRowGrid threeC ows-theme1">
+							<div class="ows-titleFlex ows-theme7 w3-stretch">
+								<h4>Humidity</h4>
+								<i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
+							</div>
+							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
-								<h5 class="w3-right-align">Record</h5>
-								<h5 class="w3-center">Date &amp; Time</h5>
+								<h5 class="w3-right-align">{{RECORDS}}</h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Humidity"></div>
 						</div>
 					</div>
 					<div id="PressPanel" class="ows-theme8">
 						<div class="w3-container">
-							<div class="ows-titleFlex"><h4>Barometric Pressure</h4><i class="fa-solid fa-temperature-half"></i></div>
-							<div class="w3-stretch ows-dataRowGrid threeC ows-theme1">
+							<div class="ows-titleFlex ows-theme7 w3-stretch">
+								<h4>Barometric Pressure</h4>
+								<i class="fa-solid fa-compress fa-beat w3-text-orange"></i>
+							</div>
+							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
-								<h5 class="w3-right-align">Record</h5>
-								<h5 class="w3-center">Date &amp; Time</h5>
+								<h5 class="w3-right-align">{{RECORDS}}</h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Pressure"></div>
 						</div>

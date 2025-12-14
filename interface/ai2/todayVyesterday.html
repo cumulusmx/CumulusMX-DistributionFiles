@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Today Vs Yesterday	| todayVyesterday.html
 	Author:	DDNC Thomas			| Created: 2025-11-29
-	Last Edit:	2025-12-09 11:45:40
+	Last Edit:	
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Today Vs Yesterday</title>
+		<title>{{TODAY_YESTERDAY}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -94,75 +94,75 @@
 			<section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Today Vs Yesterday</h1>
+						<h1>{{TODAY_AND_YESTERDAY}}</h1>
 						<p class="tagline">Page updated: <span data-cmxData="Date"></span></p>
 					</div>
 				</section>
 				
 				<section id="customGrid" style="margin-bottom:var(--rowGap)">
 					<div id="TempPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Temperatures</h3><i class="fa-solid fa-temperature-half"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-half"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Temp2"></div>
 					</div>
 					<div id="RainPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Rainfall</h3><i class="fa-solid fa-droplet w3-text-light-blue"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{RAINFALL}}</h3><i class="fa-solid fa-droplet w3-text-light-blue"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Rain2"></div>
 					</div>
 					<div id="WindPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Winds</h3><i class="fa-solid fa-wind"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{WIND}}</h3><i class="fa-solid fa-wind"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Wind2"></div>
 					</div>
 					<div id="HumsPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Humidity</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Hum2"></div>
 					</div>
 					<div id="PressPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Pressure</h3><i class="fa-solid fa-compress fa-beat-fade w3-text-orange"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{PRESSURE}}</h3><i class="fa-solid fa-compress fa-beat-fade w3-text-orange"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Press2"></div>
 					</div>
 					<div id="SolarPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex">
-							<h3>Solar</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{SOLAR}}</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
 						</div>
 						<div class="ows-dataRowGrid fiveC">
 							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">Today</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">Yesterday</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
+							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
 						</div>
 						<div id="Solar2"></div>
 					</div>

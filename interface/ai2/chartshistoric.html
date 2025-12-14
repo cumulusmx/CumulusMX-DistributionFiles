@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Historic Charts			| chartshistoric.html
 	Author:	D.N.C.Thomas			| Mar 2025
-	Last Edit:	2025-12-09 09:21:47
+	Last Edit:	2025-12-12 16:05:43
 	Last Check:	2025-12-09 09:21:53
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Historic Charts</title>
+		<title>{{HISTORIC_CHARTS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -63,22 +63,20 @@
 			}
 			.chart-buttons button {
 				border-radius: 1em;
-				border:thin solid var(--color5);
-				background: inherit;
-				min-width:3em;
+				border: thin solid var(--color5);
+				background: var(--gradient-up);
+				color: var(--color1);
 				padding: .1em 1em;
 			}
 			.chart-buttons button:hover {
 				background: var(--gradient-down);
 			}
-			#rangeButtons {
-				display: flex;
-				gap: .5em;
-				align-items: baseline;
+			#rangeButtons button {
+				margin-left:0.5em;
 			}
-			#mainChart, #navChart {
+			#mainChart, #navChart { 
 				height: 100%; 
-				width: 100%;
+				width:100%;
 				background: white;
 			}
 		</style>
@@ -105,7 +103,7 @@
  				<!--	Page Title	-->
 				<div class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Historic Charts</h1>
+						<h1>{{HISTORIC_CHARTS}}</h1>
 						<p class="tagline">Page updated: <span data-cmxData="update"></span></p>
 					</div>
 				</div>
@@ -131,14 +129,11 @@
 					<div class="w3-container" style="order:1; margin-bottom:1vh;">
 						<div id="chartcontainer" class="chart-wrap" style="margin-top:1vh">
 							<div class="chart-buttons">
-                    			<div id="rangeButtons" style="visibility: visible;">
-									Zoom:
-									<button data-count="12" data-type="hour">12h</button>
-									<button data-count="24" data-type="hour">24h</button>
-									<button data-count="2" data-type="day">2d</button>
-									<button data-count="0" data-type="all">All</button>
-								</div>
-                    			<button id="btnFullscreen">Fullscreen</button>
+								<div id="rangeButtons"></div>
+								<div>
+                        			<button id="btnPrint">{{PRINT}}</button>
+                        			<button id="btnFullscreen">{{FULLSCREEN}}</button>
+                    			</div>
                 			</div>
 							<div id="mainChartContainer" class="mainChartContainer">
                     			<canvas id="mainChart"></canvas>

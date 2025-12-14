@@ -75,6 +75,10 @@
 			#alpaca4, #alpaca5, #alpaca6, #alpaca7, #alpaca8, #alpaca10 { border-radius: 1em 0 0 1em; border:thin solid var(--color5);}
 			#startDate, #endDate, #alpaca9 { border-radius: 1em; border: thin solid var(--color5);}
 			*:focus {outline: none;}
+			.alpaca-form-button-submit {
+				background: inherit;
+				color: inherit;
+			}
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -97,7 +101,7 @@
             <div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right"></div>
 			<img src="img/seagull.png" id="Gull1" alt="Seagull">
 			<div id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
+				<section class="w3-container">
 					<div class="ows-titleFlex" style="margin-bottom: 1vh;">
 						<h1>Query the Day File</h1>
 						<p class="tagline">Select values stored for day summaries</p>
@@ -106,18 +110,21 @@
 
 				<div class="ows-flex col3 ows-fixed">
 					<div class="w3-container ows-theme8 ows-growX2 ax-animate-fadeIn" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch" style="padding: .5vh 1em">
+							<h3>Select a weather variable and appropriate criteria</h3>
+						</div>
 						<form></form>
 					</div>
 				</div>	<!--	End of one column layout	-->
 				
 				<div class="ows-flex col3 ows-fixed">
 					<div class="w3-container ows-theme7 ax-animate-drop" style="order:1;">
-						<div class="ows-titleFlex" style="margin: 1vh 0;"><h3>Results</h3></div>
+						<div class="ows-titleFlex" style="margin: 1vh 0;"><h3>Results</h3><p>No units</p></div>
 						<div class="ows-theme9 resultGrid">
 							<h4>Value:</h4>
-							<p><span id="resultValue">result</span></p>
+							<p><span id="resultValue">--</span></p>
 							<h4>Date:</h4>
-							<p><span id="resultTime">result date</span></p>
+							<p><span id="resultTime">----</span></p>
 						</div>
 					</div>
 				</div>	<!--	End of three column layout	-->
