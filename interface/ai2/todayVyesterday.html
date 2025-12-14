@@ -29,7 +29,7 @@
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
 		<!--	Data Tables	-->
-		<!--<script src="/lib/datatables/datatables.min.js"></script>-->
+		<script src="/lib/datatables/datatables.min.js"></script>
 
 		<!--	Sitewide Styles		-->
 		<link rel="stylesheet" href="css/theme.css" id="Theme">
@@ -63,10 +63,18 @@
 				grid-template-areas: "tempPanel" "rainPanel" "windPanel" "humsPanel" "pressPanel" "solarPanel";
 			}
 		}
+		table { border-collapse: collape; font-size: 90%}
+		td { padding: .3em 0;}
+		td:first-of-type { width: 16em!important;}
+		td:nth-of-type(3),td:nth-of-type(5) { width:6em!important;}
+
+		tr:hover td { background: var(--gradient-databar); font-weight:600;}
+		.left {text-align:left;}
+		.right {text-align:right; padding-right: .5em;}
 		</style>
 
 		<!--	Page Scripts	-->
-		<script src="js/todayVyesterday.js"></script>
+		<script src="/js/todayyest.js"></script>	<!-- DEFAULT SCRIPT -->
 
 		<!--	Local scripts & styles	-->
 		<script>
@@ -104,67 +112,270 @@
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-half"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Temp2"></div>
+
+						<table id="TempTable">
+							<thead>
+    		                    <tr class="w3-hide">
+            		                <th>&nbsp;{{TEMPERATURE}}</th>
+                    		        <th></th>
+                            		<th></th>
+                            		<th></th>
+                            		<th></th>
+                        		</tr>
+                        		<tr>
+                            		<th>&nbsp;</th>
+                            		<th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
+                            		<th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                        		</tr>
+                    		</thead>
+                    		<tr>
+                        		<td>{{HIGH_TEMPERATURE}}</td>
+                        		<td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
+                        <td>23:10</td>
+                        <td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
+                        <td>15:10</td>
+                    </tr>
+                    <tr>
+                        <td>{{DEW_POINT}}</td>
+                        <td><span id="OutdoorDewpoint">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{WIND_CHILL}}</td>
+                        <td><span id="WindChill">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{APPARENT_TEMPERATURE}}</td>
+                        <td><span id="AppTemp">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{FEELS_LIKE}}</td>
+                        <td><span id="FeelsLike">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{HEAT_INDEX}}</td>
+                        <td><span id="HeatIndex">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{HUMIDEX}}</td>
+                        <td><span id="Humidex">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{INDOOR_TEMPERATURE}}</td>
+                        <td><span id="IndoorTemp">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+						</table>
+
 					</div>
 					<div id="RainPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{RAINFALL}}</h3><i class="fa-solid fa-droplet w3-text-light-blue"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Rain2"></div>
+
+                <table id="RainTable" style="width:100%">
+                    <thead>
+                        <tr class="w3-hide">
+                            <th>&nbsp;{{RAINFALL}}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="center" colspan="2">{{TODAY}}</th>
+                            <th class="center" colspan="2">{{YESTERDAY}}</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>{{RAIN_TODAY}}</td>
+                        <td><span id="RainToday">--</span></td>
+                        <td><span class="RainUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{RAIN_RATE}}</td>
+                        <td><span id="RainRate">--</span></td>
+                        <td><span class="RainUnit">--</span>/{{HOUR_SHORT}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{RAIN_LAST_HOUR}}</td>
+                        <td><span id="RainLastHour">--</span></td>
+                        <td><span class="RainUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{RAIN_THIS_MONTH}}</td>
+                        <td><span id="RainMonth">--</span></td>
+                        <td><span class="RainUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{RAIN_THIS_YEAR}}</td>
+                        <td><span id="RainYear">--</span></td>
+                        <td><span class="RainUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{RAIN_YESTERDAY}}</td>
+                        <td><span id="RainYesterday">--</span></td>
+                        <td><span class="RainUnit">--</span></td>
+                    </tr>
+                </table>
+
+
 					</div>
 					<div id="WindPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{WIND}}</h3><i class="fa-solid fa-wind"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Wind2"></div>
+
+                <table id="WindTable" style="width:100%">
+                    <thead>
+                        <tr class="w3-hide">
+                            <th>&nbsp;{{WIND}}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
+                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>{{LATEST}}</td>
+                        <td><span id="WindLatest">--</span></td>
+                        <td><span class="WindUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{AVERAGE_SPEED}}</td>
+                        <td><span id="WindAverage">--</span></td>
+                        <td><span class="WindUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{PEAK_GUST}}</td>
+                        <td><span id="Recentmaxgust">--</span></td>
+                        <td><span class="WindUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{BEARING}}</td>
+                        <td><span id="Bearing">--</span></td>
+                        <td>&deg;</td>
+                    </tr>
+                    <tr>
+                        <td>{{AVERAGE_BEARING}}</td>
+                        <td><span id="Avgbearing">--</span></td>
+                        <td>&deg;</td>
+                    </tr>
+                </table>
+  
+
 					</div>
 					<div id="HumsPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Hum2"></div>
+
+                <table id="HumidityTable" style="width:100%">
+                    <thead>
+                        <tr class="w3-hide">
+                            <th>&nbsp;{{HUMIDITY}}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
+                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>{{OUTDOOR_HUMIDITY}}</td>
+                        <td><span id="OutdoorHum">--</span></td>
+                        <td><span>%</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{INDOOR_HUMIDITY}}</td>
+                        <td><span id="IndoorHum">--</span></td>
+                        <td><span>%</span></td>
+                    </tr>
+                </table>
+
+
 					</div>
 					<div id="PressPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{PRESSURE}}</h3><i class="fa-solid fa-compress fa-beat-fade w3-text-orange"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Press2"></div>
+
+                <table id="PressureTable" style="width:100%">
+                    <thead>
+                        <tr class="w3-hide">
+                            <th>&nbsp;{{PRESSURE}}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
+                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>{{PRESSURE}}</td>
+                        <td><span id="Pressure">--</span></td>
+                        <td><span class="PressUnit">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{TREND}}</td>
+                        <td><span id="PressTrend">--</span></td>
+                        <td><span class="PressUnit">--</span>/{{HOUR_SHORT}}</td>
+                    </tr>
+                </table>
+
+
 					</div>
 					<div id="SolarPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{SOLAR}}</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
 						</div>
-						<div class="ows-dataRowGrid fiveC">
-							<div>&nbsp;</div>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{TODAY}}</h5>
-							<h5 style="grid-column-start: span 2; text-align:center;">{{YESTERDAY}}</h5>
-						</div>
-						<div id="Solar2"></div>
+                <table id="SolarTable" style="width:100%">
+                    <thead>
+                        <tr class="w3-hide">
+                            <th>&nbsp;{{SOLAR}}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
+                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>{{SOLAR_RADIATION}}</td>
+                        <td><span id="SolarRad">--</span></td>
+                        <td>W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>{{SUNSHINE_TODAY}}</td>
+                        <td><span id="SunshineHours">--</span></td>
+                        <td>{{HOURS_SHORT}}</td>
+                    </tr>
+                </table>
+
+
 					</div>
 				</section><!-- End of custom Grid -->
 			</section>
