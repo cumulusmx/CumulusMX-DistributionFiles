@@ -364,6 +364,7 @@ const doPress = () => {
             data: resp.press,
             borderColor: config.series.press.colour,
             backgroundColor: config.series.press.colour,
+            tension:0.5,
             yAxisID: 'y_press',
             tooltip: {
                 callbacks: {
@@ -550,6 +551,7 @@ const doWind = () => {
             data: resp.wspeed,
             borderColor: config.series.wspeed.colour,
             backgroundColor: config.series.wspeed.colour,
+            tension:0.5,
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
@@ -561,6 +563,7 @@ const doWind = () => {
             data: resp.wgust,
             borderColor: config.series.wgust.colour,
             backgroundColor: config.series.wgust.colour,
+            tension:0.5,
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
@@ -652,6 +655,7 @@ const doRain = () => {
             fill: true,
             data: resp.rfall,
             borderColor: config.series.rfall.colour,
+            tension:0.5,
             backgroundColor: config.series.rfall.colour + '40', // add transparency
             yAxisID: 'y_rain',
             tooltip: {
@@ -665,6 +669,7 @@ const doRain = () => {
             data: resp.rrate,
             borderColor: config.series.rrate.colour,
             backgroundColor: config.series.rrate.colour,
+            tension:0.5,
             yAxisID: 'y_rainRate',
             tooltip: {
                 callbacks: {
