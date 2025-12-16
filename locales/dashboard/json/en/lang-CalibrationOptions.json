@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:15:42",
+    "_LAST_MODIFIED": "Last modified: 2025/12/16 10:10:34",
     "OFFSET": "Offset",
     "OFFSET_HELPER": "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount",
     "MULTIPLIER": "Multiplier",
@@ -20,7 +20,8 @@
     "RAIN_RATE_SPIKE": "Rain rate spike removal",
     "RAIN_HOUR_SPIKE": "Rain per hour spike removal",
     "MIN_INCREMENT": "Minimum increment",
-    "MIN_INCREMENT_HELPER1": "The minimum increase in the laser depth value between consecutive readings for the value to added to the daily snowfall accumulation",
-    "MIN_INCREMENT_HELPER2": "NOTE: This is set in laser measurement units, not snow depth units",
-    "SNOW_SPIKE_HELPER1": "If the change in the laser depth value between consecutive readings is greater than this value it will be ignored and not added to the daily snow accumulation"
+    "MIN_INCREMENT_HELPER1": "The minimum increase in the laser depth value for it to be added to the daily snowfall accumulation. The new depth value will then form the new baseline for future readings",
+    "MIN_INCREMENT_HELPER2": "This value is also applied to reductions in the baseline depth value (e.g. due to melting or compaction)",
+    "MIN_INCREMENT_HELPER3": "NOTE: This is set in laser measurement units, not snow depth units",
+    "SNOW_SPIKE_HELPER1": "If the change in the laser depth value between baseline and latest is greater than this value it will be ignored and not added to the daily snow accumulation"
 }

@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/11/26 17:10:00",
+    "_LAST_MODIFIED": "Last modified: 2025/12/16 10:05:13",
     "ACTION": "Action",
     "ACTION_PARAMS": "Action params",
     "ACTIONS": "Actions",
@@ -528,6 +528,7 @@
     "SNOW": "Snow",
     "SNOW_24H": "Snow 24h",
     "SNOW_DEPTH": "Snow Depth",
+    "SNOW_SPIKE_LESS_THAN_MININC": "Snow spike value is less than or equal to the minimum increment. This means no data will be recorded. The spike value should be much larger than the minimum increment.",
     "SNOWFALL_ANNUAL": "Snowfall Accumulation (Annual)",
     "SNOWFALL_LAST_24_HOURS": "Snowfall Accumulation (24h)",
     "SNOWFALL": "Snowfall",

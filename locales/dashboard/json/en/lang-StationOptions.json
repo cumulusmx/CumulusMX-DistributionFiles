@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/11/22 13:39:23",
+    "_LAST_MODIFIED": "Last modified: 2025/12/15 17:17:18",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -49,7 +49,7 @@
     "DAVIS_TCP_WAIT_TIME_HELP1": "Time to wait (ms) after establishing a connection to an IP logger before sending commands",
     "DAVIS_TCP_WAIT_TIME": "TCP/IP Initialisation Wait Time",
     "DAVIS_VP1_BARO_HELP1": "Force older Vantage Pro and Pro2 barometer to update once a minute instead of the default 15 minutes",
-    "DAVIS_VP1_BARO_HELP2": "his is not required for the majority of stations in use today",
+    "DAVIS_VP1_BARO_HELP2": "This is not required for the majority of stations in use today",
     "DAVIS_VP1_BARO_LABEL": "Davis VP 1-minute barometer update",
     "DAVIS_VP1_BARO": "VP1 barometer",
     "DECIMAL_AQ": "Air quality decimals",

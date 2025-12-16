@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/16 20:59:05",
+	"version": "Last Modified: 2025/12/16 10:11:30",
 	"definitions": {
 		"calibnospike": {
 			"fields": {
@@ -254,7 +254,8 @@
 					"label": "{{MIN_INCREMENT}}",
 					"helpers" : [
 						"{{MIN_INCREMENT_HELPER1}}",
-						"{{MIN_INCREMENT_HELPER2}}"
+						"{{MIN_INCREMENT_HELPER2}}",
+						"{{MIN_INCREMENT_HELPER3}}"
 					]
 				},
 				"spike": {
