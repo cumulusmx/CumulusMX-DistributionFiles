@@ -1,4 +1,4 @@
-// Last modified: 2025/11/09 15:52:02
+// Last modified: 2025/12/16 23:23:54
 
 var activeDates;
 var defaultSnowHour;
@@ -185,7 +185,7 @@ function applyEntry() {
         $('#status').text('{{ERROR_SELECT_DATE}}');
     } else {
         var body = '{"Date":"' + getDateString(date) + '",' +
-            '"Time":"' + $('#inputTime').val() + '",' +
+            '"Time":"' + ($('#inputTime').val() != '' ? $('#inputTime').val() : defaultSnowHour) + '",' +
             '"Entry":"' + $('#inputComment').val() + '",' +
             '"Snow24h":' + ($('#inputSnow24h').val() ? parseFloat($('#inputSnow24h').val()).toString() : 'null') + ',' +
             '"SnowDepth":' + ($('#inputSnowDepth').val() ? parseFloat($('#inputSnowDepth').val()).toString() : 'null') + ',' +
