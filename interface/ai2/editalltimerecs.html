@@ -56,7 +56,8 @@
 			tbody td:last-of-type {border-right:none;}
 			tbody td:nth-of-type(even) {text-align:center;}
 			tbody tr:nth-of-type(odd){ background:var(--color7);}
-			tbody tr:hover td {background:var(--gradientBar);}
+			tbody tr:nth-of-type(even) { background: var(--color9)}
+			tbody tr:hover td {background:var(--gradient-databar);}
 			.popover-title {background: var(--color1); color: var(--color9)}
 		</style>
 	</head>
@@ -98,7 +99,7 @@
 							<p><strong>Note</strong>: You can click on the Dayfile/Logfile values/timestamps to copy the value to your record fields</p>
 						</div>
 						<p></p>
-						<table id="alltime" class="w3-table w3-striped" role="grid" style="width: 100%;" tabindex="0">
+						<table id="alltime" class="w3-table" role="grid" style="width: 100%;" tabindex="0">
 							<thead>
 								<tr class="ows-theme6">
 									<th>Name</th>
