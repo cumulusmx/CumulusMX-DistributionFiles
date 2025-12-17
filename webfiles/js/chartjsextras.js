@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/12/07 15:44:52
+// Last updated: 2025/12/17 16:23:18
 
 const CmxChartJsPlugins = {
 
@@ -177,6 +177,7 @@ const CmxChartJsHelpers = {
     },
 
     SetInitialRange: (data) => {
+        if (data == null || data.length === 0) return;
         const type = myRangeBtns.buttons[myRangeBtns.selected].type;
         const defaultEnd = data[data.length - 1][0];
         const min = data[0][0];
@@ -337,11 +338,11 @@ const CmxChartJsHelpers = {
                 const firstDataSeries = mainChart.data.datasets[0].data;
 
                 if (isArrayFormat(mainChart.data.datasets[0].data[0])) {
-                    fullStart = firstDataSeries[0][0];
-                    fullEnd = firstDataSeries[firstDataSeries.length - 1][0];
+                    fullStart = firstDataSeries[0][0] ?? firstDataSeries[0].x;
+                    fullEnd = firstDataSeries[firstDataSeries.length - 1][0] ?? firstDataSeries[firstDataSeries.length - 1].x;
                 } else {
-                    fullStart = firstDataSeries[0].x;
-                    fullEnd = firstDataSeries[firstDataSeries.length - 1].x;
+                    fullStart = firstDataSeries[0][0] ?? firstDataSeries[0].x;
+                    fullEnd = firstDataSeries[firstDataSeries.length - 1][0] ?? firstDataSeries[firstDataSeries.length - 1].x;
                 }
 
                 const fullRange = fullEnd - fullStart;
