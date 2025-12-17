@@ -381,6 +381,7 @@ $().ready(function () {
             }
 
             $('#subContent').append(cards);
+            setPanelsStyles( cmxConfig.Panels );
             // Phew!
         });
 

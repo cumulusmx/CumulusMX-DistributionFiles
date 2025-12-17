@@ -78,6 +78,7 @@ h6 {font-size: 87.5%;}
 
 input:focus, select:focus { outline: 0; background: inherit;}    /* Removes focus highlight from ALL input fields */
 
+a:hover { text-decoration:none;}
 .pageWidth {
     max-width: calc( var(--pageWidth) * 1px);
     margin: auto;

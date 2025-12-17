@@ -266,6 +266,7 @@ $(document).ready(function () {
         cards.append($('<div>', { class: 'degdaysPanel w3-container ows-theme8', style:'order:0' }).append(degreeDayBlock));
 
         $('#subContent').append(cards);
+        setPanelsStyles( cmxConfig.Panels )
 //        $('#container').append(cards);
         //$('#container').append(rows);
         // Phew!
