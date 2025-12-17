@@ -25,7 +25,7 @@
 	border-radius:1em!important;
 	padding:0.2em 2em!important;
 	font-size: 90%;
-	/*background: var(--gradient-up);*/
+	background: var(--color0);
 }
 .alpaca-form-button:hover { background: var(--gradient-down);}
 
