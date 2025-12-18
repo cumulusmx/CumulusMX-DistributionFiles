@@ -571,7 +571,7 @@ function createDataPage(result) {
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'IntervalData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
     let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title></head>';
-    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/axPro.css">';
+    html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/w3v5.css">';
     if(cmxConfig.Theme != ''){html +='<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme + '.css">';}
     html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
     html += 'tr:hover>td{background: var(--gradientBar);}tbody td:first-of-type{white-space:nowrap;}thead th{text-align:center;}</style></head>';

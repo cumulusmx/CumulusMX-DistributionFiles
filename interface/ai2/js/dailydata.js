@@ -452,7 +452,7 @@ function createDataPage(result) {
     if(cmxConfig.Theme!='') { html += '<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme + '.css">';}
     html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
     html += 'tr:hover>td{background: var(--gradient-databar);</style></head>';
-    html += '<body class="axows-theme9"><div class="ows-titleFlex ows-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
+    html += '<body class="ows-theme9"><div class="ows-titleFlex ows-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
 	html += '<div><h3>Daily Data Viewer</h3></div></div>';
 
