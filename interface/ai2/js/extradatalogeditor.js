@@ -163,7 +163,8 @@ $(document).ready(function () {
             },
             {
                 title: "Time",
-                readonly: true
+                readonly: true,
+                width: '116px'
             },
             {title:"Temp 1", type: 'number', step: tempStep, className:'tempUnits'},
             {title:"Temp 2", type: 'number', step: tempStep, className:'tempUnits'},

@@ -165,7 +165,8 @@ $().ready(function () {
             },
             {
                 title: 'Time',
-                readonly: true
+                readonly: true,
+                width: '116px'
             },
             {title: 'Temp', type: 'number', step: tempStep, className:'tempUnits'},
             {title: 'Hum', type: 'number', min: 0, max: 100, className:'percent'},
