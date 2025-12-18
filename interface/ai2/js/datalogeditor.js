@@ -161,6 +161,7 @@ $().ready(function () {
             {
                 title: 'Date (dd/mm/yy)',
                 readonly: true,
+                width: '130px'
             },
             {
                 title: 'Time',

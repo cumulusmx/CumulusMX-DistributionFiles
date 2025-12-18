@@ -158,7 +158,8 @@ $(document).ready(function () {
             },
             {
                 title: "Date (dd/mm/yy)",
-                readonly: true
+                readonly: true,
+                width: '130px'
             },
             {
                 title: "Time",

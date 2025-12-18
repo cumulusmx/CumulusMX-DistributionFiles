@@ -340,7 +340,7 @@ a:hover { text-decoration:none;}
     grid-template-columns: 1fr minmax(5em,7em);
     grid-template-rows: auto;
     gap: 0 0;
-    align-items:baseline;
+    align-items:stretch;
     /*margin-top: 0.5vh;*/
     &.threeC { grid-template-columns:11em 5.5em 1fr; }
     &.fiveC { grid-template-columns: 1fr repeat(2, 5em 6em); }

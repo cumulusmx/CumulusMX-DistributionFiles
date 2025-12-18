@@ -69,7 +69,6 @@ input[type="search"] {
 .dt-paging .dt-paging-button.previous,
 .dt-paging .dt-paging-button.last { 
 	background:var(--color8)!important;
-	/*border:thin solid var(--color7);*/
 }
 
 .dt-buttons>.dt-button {
@@ -82,7 +81,8 @@ input[type="search"] {
 
 .dt-paging .dt-paging-button.current {background:var(--color7)!important;}
 
-#datalog tbody>tr.selected {mix-blend-mode: normal!important;}
+#datalog tbody>tr.selected,
+#recent tbody>tr.selected {mix-blend-mode: normal!important;}
 
 .dtfc-fixed-start { background-color: var(--color8)!important; z-index:0!important;}
 .dtfc-fixed-start:nth-of-type(3) { border-right:thin solid var(--color5); }
@@ -195,7 +195,7 @@ td.dataTables_empty { text-align: left!important;}
 
 #datalog tbody>tr.selected { mix-blend-mode: multiply; }
 #datalog thead th {vertical-align: bottom;}
-#datalog tbody tr {background-color: var(--color9)!important; color: var(--color1)!important;}
+#datalog tbody tr {color: var(--color1)!important;}
 #datalog tbody tr:hover { background: var(--gradient-databar)!important; font-weight:600;}
 
 #datalog_paginate { color: var(--color0)!important; white-space: nowrap;}
