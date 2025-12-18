@@ -51,6 +51,19 @@
 
 		<!--	Local scripts & styles	-->
 		<script>
+			let setTime = function() {
+				if( $('inputTime').val() == '9:00') {
+					var time = new Date;
+					var theTime = time.getHours() + ':' + time.getMinutes();
+					console.log("The time is: " + theTime);
+				
+					$('#inputTime').val( theTime);
+				}
+			};
+			$().ready( function() {
+				var delay = setTimeout( setTime, 400);
+			})
+			 
 		</script>
 		<style>
 			.ows-grid {display:grid;grid-template-rows:auto;gap: 0.25vh 1em;}
