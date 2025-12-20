@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/10/29 22:48:09",
+	"version": "Last Modified: 2025/12/20 15:41:10",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -704,6 +704,14 @@
 								"{{JSON_LASER_HELP4}}",
 								"{{JSON_LASER_HELP5}}"
 							]
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"helpers": [
+								"{{LASER_RESET_HELP1}}",
+								"{{LASER_RESET_HELP2}}"
+							]
 						}
 					}
 				},
@@ -711,6 +719,10 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}"
 						}
 					}
 				},
@@ -718,6 +730,10 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}"
 						}
 					}
 				},
@@ -725,6 +741,10 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}"
 						}
 					}
 				}
