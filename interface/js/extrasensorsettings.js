@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 11:57:21
+// Last modified: 2025/12/20 15:55:30
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
@@ -41,6 +41,10 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
+                                    form.getControlByPath('laser/sensor1/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor2/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor3/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor4/reset').setValue(false);
                                     alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
