@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/08/22 12:03:55
+// Last modified: 2025/12/24 13:50:20
 
 
 var fromDate, toDate;
@@ -74,6 +74,7 @@ $(document).ready(function () {
             if (dataVisibility.temperature.AppTemp > 0) {
                 tempBoxes.append($('<input>', { type: 'checkbox', id: '21' }))
                     .append($('<label>', { for: '21', class: 'mylabel', html: '{{APPARENT_TEMPERATURE}}' }))
+                    .append($('<br>'));
             }
             if (dataVisibility.temperature.InTemp > 0) {
                 tempBoxes.append($('<input>', { type: 'checkbox', id: '12' }))
