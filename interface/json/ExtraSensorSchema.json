@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/20 15:34:21",
+	"version": "Last Modified: 2025/12/28 13:31:26",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -417,9 +417,15 @@
 							"type": "number",
 							"minimum": -1
 						},
+						"snow": {
+							"type": "boolean"
+						},
 						"reset": {
 							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor2": {
@@ -430,9 +436,15 @@
 							"type": "number",
 							"minimum": -1
 						},
+						"snow": {
+							"type": "boolean"
+						},
 						"reset": {
 							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor3": {
@@ -443,9 +455,15 @@
 							"type": "number",
 							"minimum": -1
 						},
+						"snow": {
+							"type": "boolean"
+						},
 						"reset": {
 							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor4": {
@@ -456,9 +474,15 @@
 							"type": "number",
 							"minimum": -1
 						},
+						"snow": {
+							"type": "boolean"
+						},
 						"reset": {
 							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				}
 			}

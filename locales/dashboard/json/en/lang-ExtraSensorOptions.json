@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/20 15:43:55",
+    "_LAST_MODIFIED": "Last modified: 2025/12/28 13:37:52",
     "AL_ADDED_TO_STATION_LABEL": "This AirLink has been added as a Node to my main WLL station",
     "AL_ADDED_TO_STATION": "Added to station",
     "AL_AUTO_DISCOVERY_HELP1": "If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
@@ -84,6 +84,9 @@
     "JSON_LASER_HELP4": "Set to -1 (default) to disable the calculation",
     "JSON_LASER_HELP5": "Depth = Baseline - Sensor_Distance_Reading",
     "JSON_LASER_CALC_DEPTH": "Calculate depth",
+    "LASER_CALC_SNOW": "Snow sensor",
+    "LASER_CALC_SNOW_LABEL": "Calculate snow depth from laser distance readings",
+    "LASER_CALC_SNOW_HELP1": "You are using this laser sensor to measure snow depth and accumulation",
     "LASER_DIST_LABEL": "Use the laser distance data from your extra station",
     "LASER_DIST": "Laser Distance",
     "LASER_SNOWDEPTH_BASELINE": "Snow Depth Baseline",

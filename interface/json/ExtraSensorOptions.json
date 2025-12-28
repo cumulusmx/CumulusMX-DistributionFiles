@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/20 15:41:10",
+	"version": "Last Modified: 2025/12/28 13:37:50",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -705,13 +705,23 @@
 								"{{JSON_LASER_HELP5}}"
 							]
 						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}",
+							"helpers": [
+								"{{LASER_CALC_SNOW_HELP1}}"
+							]
+						},
 						"reset": {
 							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
 							"rightLabel": "{{LASER_RESET_DEPTH}}",
 							"helpers": [
 								"{{LASER_RESET_HELP1}}",
 								"{{LASER_RESET_HELP2}}"
-							]
+							],
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -720,9 +730,16 @@
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
 						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
 						"reset": {
 							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
-							"rightLabel": "{{LASER_RESET_DEPTH}}"
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -731,9 +748,16 @@
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
 						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
 						"reset": {
 							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
-							"rightLabel": "{{LASER_RESET_DEPTH}}"
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -742,9 +766,16 @@
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
 						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
 						"reset": {
 							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
-							"rightLabel": "{{LASER_RESET_DEPTH}}"
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				}
