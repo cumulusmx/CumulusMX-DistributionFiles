@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/28 13:31:26",
+	"version": "Last Modified: 2025/12/28 14:50:33",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -409,6 +409,10 @@
 			"title": "{{LASER_SENSOR_OPTIONS}}",
 			"type": "object",
 			"properties": {
+				"primary": {
+					"type": "number",
+					"enum": [0, 1, 2, 3, 4]
+				},
 				"sensor1": {
 					"title": "{{SENSOR}} 1",
 					"type": "object",

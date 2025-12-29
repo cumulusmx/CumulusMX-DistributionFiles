@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/28 13:37:52",
+    "_LAST_MODIFIED": "Last modified: 2025/12/28 14:55:46",
     "AL_ADDED_TO_STATION_LABEL": "This AirLink has been added as a Node to my main WLL station",
     "AL_ADDED_TO_STATION": "Added to station",
     "AL_AUTO_DISCOVERY_HELP1": "If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
@@ -89,6 +89,8 @@
     "LASER_CALC_SNOW_HELP1": "You are using this laser sensor to measure snow depth and accumulation",
     "LASER_DIST_LABEL": "Use the laser distance data from your extra station",
     "LASER_DIST": "Laser Distance",
+    "LASER_PRIMARY": "Primary Laser Snow Sensor",
+    "LASER_PRIMARY_HELP1": "Select the laser sensor to use for logging and sending snow data to third parties",
     "LASER_SNOWDEPTH_BASELINE": "Snow Depth Baseline",
     "LASER_RESET_DEPTH": "Reset snow depth value",
     "LASER_RESET_HELP1": "One-off action to reset the current snow depth value used for accumulation calculations to the current laser reading",

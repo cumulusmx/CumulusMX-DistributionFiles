@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/28 13:37:50",
+	"version": "Last Modified: 2025/12/28 14:54:55",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -693,6 +693,19 @@
 			"collapsible":true,
 			"collapsed": true,
 			"fields": {
+				"primary": {
+					"label": "{{LASER_PRIMARY}}:",
+					"optionLabels": [
+						"{{NONE}}",
+						"{{SENSOR}} 1",
+						"{{SENSOR}} 2",
+						"{{SENSOR}} 3",
+						"{{SENSOR}} 4"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helper": "{{LASER_PRIMARY_HELP1}}"
+				},
 				"sensor1": {
 					"fields": {
 						"depth": {

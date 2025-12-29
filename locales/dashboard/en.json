@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/16 10:05:13",
+    "_LAST_MODIFIED": "Last modified: 2025/12/28 15:26:06",
     "ACTION": "Action",
     "ACTION_PARAMS": "Action params",
     "ACTIONS": "Actions",
@@ -460,6 +460,7 @@
     "PLEASE_ENTER_VALUE_180_180_DEGREES": "Please enter a value between -180.0 and +180.0 degrees",
     "PLEASE_ENTER_VALUE_90_90_DEGREES": "Please enter a value between -90.0 and +90.0 degrees",
     "PLEASE_SELECT_STATION_TYPE": "Please select a station type",
+    "PRIMARY_SNOW_SENSOR_MUST_BE_SET": "The primary snow sensor must be set to an enabled snow sensor, or disabled if no laser sensor is set as a snow sensor",
     "PM_SIZE": "PM Size",
     "PRESSURE": "Pressure",
     "PRINT": "Print",
