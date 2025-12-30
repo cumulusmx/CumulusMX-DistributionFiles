@@ -106,7 +106,7 @@ $time_start = microtime(true);
 //
 //  Example URLs...
 //    http://www.myserver.com/ImportCumulusFile.php?type=dayfile&key=letmein&file=/data/dayfile.txt
-//    http://www.myserver.com/ImportCumulusFile.php?type=monthly&key=letmein&file=/data/Oct16log.txt
+//    http://www.myserver.com/ImportCumulusFile.php?type=monthly&key=letmein&file=/data/202512log.txt
 //    http://www.myserver.com/ImportCumulusFile.php?type=realtime&key=letmein&file=/realtime.txt&retainVal=10&retainUnit=hour
 //
 // COMMAND LINE
