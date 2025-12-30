@@ -10,7 +10,7 @@ $exePath = Join-Path -Path $PSScriptRoot -Childpath "..\..\CumulusMX.exe" | Reso
 
 $rules = @(
     @{ Name = "Allow CumulusMX TCP 8998"; Port = 8998; Protocol = "TCP" },
-    @{ Name = "Allow CumulusMX UDP 8998"; Port = 8998; Protocol = "UDP" }
+    @{ Name = "Allow CumulusMX UDP 8998"; Port = 8998; Protocol = "UDP" },
     @{ Name = "Allow CumulusMX UDP 22222"; Port = 22222; Protocol = "UDP" }
 )
 
