@@ -1,4 +1,4 @@
-// Last modified: 2025/10/08 17:29:01
+// Last modified: 2026/01/03 15:49:41
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -83,7 +83,7 @@ $(document).ready(function() {
         {title: '{{DOMINANT_DIRECTION}}', type: 'number', min: 0, max: 360},
         {title: '{{HEATING_DEGREE_DAYS}}', type: 'number', step: tempStep},
         {title: '{{COOLING_DEGREE_DAYS}}', type: 'number', step: tempStep},
-        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1200},
+        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1500},
         {title: '{{HIGH_SOLAR_RAD_TIME}}', type:'text', pattern: timeRegex},
         {title: '{{HIGH_UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
         {title: '{{HIGH_UV_INDEX_TIME}}', type:'text', pattern: timeRegex},
