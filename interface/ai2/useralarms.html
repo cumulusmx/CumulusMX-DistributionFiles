@@ -2,7 +2,7 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	User Alarms			| useralarms.html
 	Author:		DNC Thomas		| Created:  Mar 2025
-	Last Edit:	2025-12-09 11:44:47
+	Last Edit:	2026-01-11 11:08:02
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -50,7 +50,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-ctrl.js"></script>
-		<script src="js/useralarms.js"></script>	<!--	Modified getCSSRule() function only	-->
+		<script src="/js/useralarms.js"></script>	<!--	Uses default script	-->
 
 		<!--	Local scripts & styles	-->
 		<script>
@@ -85,9 +85,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -99,19 +99,19 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>User Custom Alarmss</h1>
-						<p class="tagline">Set your own alarms (and actions).</p>
+						<h1>{{USER_ALARMS}}</h1>
+						<p class="tagline"><!--{{USER_ALARMS_TAGLINE}}-->Set your own alarms (and actions).</p>
 					</div>
 				</section>
 
 				<div class="ows-grid col1">
 					<div class="w3-container ows-theme8" style="order:1; ">
 						<div class="ows-titleFlex" style="padding-top:1vh;margin-bottom:0;">
-							<h2>User Alarms</h2>
-							<p>Set up your own alarms to display on the dashboard and optionally send you emails / perform custom actions</p>
+							<h2>{{MENU_USER_ALARMS}}</h2>
+							<p class="tagline"><!--{{USER_ALARMS_TABLINE2}}-->Set up your own alarms to display on the dashboard and optionally send you emails / perform custom actions</p>
 						</div>
 						<form id="alarmsForm"></form>
-						<p class="w3-center">Please note that the above table scrolls sideways to reveal more columns</p>
+						<p class="w3-center tagline"><!--ALARM_SETTINGS_NOTE}}-->Please note that the above table scrolls sideways to reveal more columns</p>
 					</div>
 					<!--	Panel 2	-->
 					<div class="w3-container ows-theme9" style="order:1;">
@@ -151,8 +151,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Alarm Settings</title>
+		<title>{{ALARM_SETTINGS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -70,9 +70,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -84,35 +84,36 @@
             <section id="subContent" class="pageWidth">
 				<div class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Alarm Settings</h1>
+						<h1>{{ALARM}} & {{EMAIL}} {{SETTINGS}}</h1>
 						<p class="tagline">Use this page to configure alarms, notifications, actions and emails</p>
 					</div>
 				</div>
 
 				<div class="ows-grid col1">
-					<div class="w3-ontainer ows-theme8 w3-stretch" style="order:1;">
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex"><h2>{{ALARM_SETTINGS}}</h2></div>
 						<table id="alarms" class="w3-hoverable w3-responsive" role="grid">
 							<thead>
 								<tr>
-									<th>Enable</th>
-									<th>Alarm</th>
-									<th colspan="2">Value</th>
-									<th>Play<br>sound</th>
-									<th>Set sound file</th>
-									<th>Action</th>
-									<th>Action Params</th>
-									<th>Bluesky file</th>
+									<th>{{ENABLE}}</th>
+									<th>{{ALARM}}</th>
+									<th colspan="2">{{VALUE}}</th>
+									<th>{{PLAY_SOUND}}</th>
+									<th>{{SOUND_FILE}}</th>
+									<th>{{ACTION}}</th>
+									<th>{{ACTION_PARAMS}}</th>
+									<th>{{BLUESKY_FILE}}</th>
 									<th>Notify</th>
-									<th>Email</th>
-									<th>Latches</th>
-									<th>Latch hrs</th>
-									<th>Threshold</th>
+									<th>{{EMAIL}}</th>
+									<th>{{LATCHES}}</th>
+									<th>{{LATCH_HRS}}</th>
+									<th>{{THRESHOLD}}</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td><input id="tempBelowEnabled" type="checkbox" aria-label="Enable temperature below alarm"></td>
-									<td class="alarmName" aria-hidden>Temperature falls below:</td>
+									<td class="alarmName" aria-hidden>{{ALARM_SETTINGS_TEMP_BELOW}}:</td>
 									<td><input id="tempBelowVal" class="valInput" type="number" min="-50" max="50" step="0.1" aria-label="Temperature falls below value"></td>
 									<td class="tempUnits"></td>
 									<td><input id="tempBelowSoundEnabled" type="checkbox" aria-label="Enable temperature below sound"></td>
@@ -128,7 +129,7 @@
 								</tr>
 								<tr>
 									<td><input id="tempAboveEnabled" type="checkbox" aria-label="Enable temperature above alarm"></td>
-									<td aria-hidden>Temperature rises above:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_TEMP_ABOVE}}:</td>
 									<td><input id="tempAboveVal" class="valInput" type="number" min="-50" max="50" step="0.1" aria-label="Temperature rises above value"></td>
 									<td class="tempUnits"></td>
 									<td><input id="tempAboveSoundEnabled" type="checkbox"	aria-label="Enable temperature above sound"></td>
@@ -144,7 +145,7 @@
 								</tr>
 								<tr>
 									<td><input id="tempChangeEnabled" type="checkbox"	aria-label="Enable temperature change alarm"></td>
-									<td aria-hidden>Temperature changes by:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_TEMP_CHANGE}}:</td>
 									<td><input id="tempChangeVal" class="valInput" 	type="number" min="0" max="10" step="0.1" aria-label="Temperature changes more than value"></td>
 									<td><span class="tempUnits"></span>/hr</td>
 									<td><input id="tempChangeSoundEnabled" type="checkbox" aria-label="Enable temperature change sound"></td>
@@ -160,7 +161,7 @@
 								</tr>
 								<tr>
 									<td><input id="pressBelowEnabled" type="checkbox"	aria-label="Enable pressure below alarm"></td>
-									<td aria-hidden>Pressure falls below:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_PRESS_BELOW}}:</td>
 									<td><input id="pressBelowVal" class="valInput"	type="number" min="20" max="1050" aria-label="Pressure falls below value"></td>
 									<td class="pressUnits"></td>
 									<td><input id="pressBelowSoundEnabled" type="checkbox"	aria-label="Enable pressure below sound"></td>
@@ -176,7 +177,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="pressAboveEnabled" aria-label="Enable pressure above alarm"></td>
-									<td aria-hidden>Pressure rises above:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_PRESS_ABOVE}}:</td>
 									<td><input class="valInput" id="pressAboveVal" type="number" min="20" max="1050" aria-label="Pressure rises above value"></td>
 									<td class="pressUnits"></td>
 									<td><input type="checkbox" id="pressAboveSoundEnabled" aria-label="Enable pressure above sound"></td>
@@ -192,7 +193,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="pressChangeEnabled" aria-label="Enable pressure change alarm"></td>
-									<td aria-hidden>Pressure changes by:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_PRESS_CHANGE}}:</td>
 									<td><input class="valInput" id="pressChangeVal" type="number" min="0" max="20" step="0.1" aria-label="Pressure changes more than value"></td>
 									<td><span class="pressUnits"></span>/hr</td>
 									<td><input type="checkbox" id="pressChangeSoundEnabled" aria-label="Enable pressure change sound"></td>
@@ -208,7 +209,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="rainAboveEnabled" aria-label="Enable rainfall alarm"></td>
-									<td aria-hidden>Rainfall today more than:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_RAIN_ABOVE}}:</td>
 									<td><input class="valInput" id="rainAboveVal" type="number" min="0" max="200" step="0.1" aria-label="Rainfall today more than value"></td>
 									<td class="rainUnits"></td>
 									<td><input type="checkbox" id="rainAboveSoundEnabled" aria-label="Enable rainfall sound"></td>
@@ -224,7 +225,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="rainRateAboveEnabled" aria-label="Enable rain rate alarm"></td>
-									<td aria-hidden>Rainfall rate rises above:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_RAINRATE_ABOVE}}:</td>
 									<td><input class="valInput" id="rainRateAboveVal" type="number" min="0" max="200" step="0.1" aria-label="Rain rate today more than value"></td>
 									<td><span class="rainUnits"></span>/hr</td>
 									<td><input type="checkbox" id="rainRateAboveSoundEnabled" aria-label="Enable rain rate sound"></td>
@@ -240,7 +241,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="isRainingEnabled" aria-label="Enable is raining alarm"></td>
-									<td>Is Raining</td>
+									<td>{{ALARM_SETTINGS_IS_RAINING}}</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="isRainingSoundEnabled" aria-label="Enable is raining sound"></td>
@@ -256,7 +257,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="gustAboveEnabled" aria-label="Enable wind gust alarm"></td>
-									<td aria-hidden>Wind gust more than:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_WINDGUST_ABOVE}}:</td>
 									<td><input class="valInput" id="gustAboveVal" type="number" min="0" max="100" step="0.1" aria-label="Wind gust more than value"></td>
 									<td class="windUnits"></td>
 									<td><input type="checkbox" id="gustAboveSoundEnabled" aria-label="Enable wind gust sound"></td>
@@ -272,7 +273,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="windAboveEnabled" aria-label="Enable wind average alarm"></td>
-									<td aria-hidden>Average wind more than:</td>
+									<td aria-hidden>{{ALARM_SETTINGS_WINDAVG_ABOVE}}:</td>
 									<td><input class="valInput"  id="windAboveVal" type="number" min="0" max="100" step="0.1" aria-label="Wind average more than value"></td>
 									<td class="windUnits"></td>
 									<td><input type="checkbox" id="windAboveSoundEnabled" aria-label="Enable wind average sound"></td>
@@ -288,7 +289,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="newRecordEnabled" aria-label="Enable all-time record alarm"></td>
-									<td aria-hidden>New all-time record</td>
+									<td aria-hidden>{{ALARM_SETTINGS_ALLTIME}}</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="newRecordSoundEnabled" aria-label="Enable new record lost sound"></td>
@@ -304,7 +305,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="contactLostEnabled" aria-label="Enable sensor contact lost alarm"></td>
-									<td aria-hidden>Sensor contact lost</td>
+									<td aria-hidden>{{ALARM_SETTINGS_SENSORS_LOST}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="contactLostSoundEnabled" aria-label="Enable sensor contact lost sound"></td>
@@ -320,7 +321,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="dataStoppedEnabled" aria-label="Enable data stopped alarm"></td>
-									<td aria-hidden>Data connection is lost</td>
+									<td aria-hidden>{{ALARM_SETTINGS_DATA_LOST}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="dataStoppedSoundEnabled" aria-label="Enable data stopped sound"></td>
@@ -336,7 +337,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="batteryLowEnabled" aria-label="Enable battery low alarm"></td>
-									<td aria-hidden>Station batteries are low</td>
+									<td aria-hidden>{{ALARM_SETTINGS_BATTERIES}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="batteryLowSoundEnabled" aria-label="Enable battery low sound"></td>
@@ -352,7 +353,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="spikeEnabled" aria-label="Enable data spike alarm"></td>
-									<td aria-hidden>Data spike is detected</td>
+									<td aria-hidden>{{ALARM_SETTINGS_DATA_SPIKE}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="spikeSoundEnabled" aria-label="Enable data spike sound"></td>
@@ -368,7 +369,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="ftpUploadEnabled" aria-label="Enable web uploads alarm"></td>
-									<td aria-hidden>Web upload errors</td>
+									<td aria-hidden>{{ALARM_SETTINGS_UPLOAD_WEB}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="ftpUploadSoundEnabled" aria-label="Enable web uploads sound"></td>
@@ -384,7 +385,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="httpUploadEnabled" aria-label="Enable third party uploads alarm"></td>
-									<td aria-hidden>Third party upload errors</td>
+									<td aria-hidden>{{ALARM_SETTINGS_UPLOAD_THIRDPARTY}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="httpUploadSoundEnabled" aria-label="Enable third party uploads sound"></td>
@@ -400,7 +401,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="mySqlUploadEnabled" aria-label="Enable MySQL uploads alarm"></td>
-									<td aria-hidden>MySQL upload errors</td>
+									<td aria-hidden>{{ALARM_SETTINGS_UPLOAD_MYSQL}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="mySqlUploadSoundEnabled" aria-label="Enable MySQL uploads sound"></td>
@@ -416,7 +417,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="upgradeEnabled" aria-label="Enable Cumulus upgrade available alarm"></td>
-									<td aria-hidden>Cumulus upgrade available</td>
+									<td aria-hidden>{{ALARM_SETTINGS_UPGRADE_CMX}}:</td>
 									<td></td>
 									<td></td>
 									<td><input type="checkbox" id="upgradeSoundEnabled" aria-label="Enable Cumulus upgrade sound"></td>
@@ -432,7 +433,7 @@
 								</tr>
 								<tr>
 									<td><input id="firmwareEnabled"	type="checkbox" aria-label="Enable Station firmware upgrade available alarm"></td>
-									<td aria-hidden>Firmware upgrade available</td>
+									<td aria-hidden>{{ALARM_SETTINGS_UPGRADE_FIRMWARE}}:</td>
 									<td></td>
 									<td></td>
 									<td><input id="firmwareSoundEnabled" type="checkbox" aria-label="Enable firmware upgrade sound"></td>
@@ -450,33 +451,32 @@
 						</table>
 						<p class="w3-center">This table scrolls sideways to reveal more options</p>
 						<div class="ows-btnBar" style="margin:1vh 0; justify-content: center;">
-							<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="max-width: 15em;" onclick="updateAlarms()">Update Alarms</button>
+							<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="max-width: 15em;" onclick="updateAlarms()">{{ALARM_SETTINGS_UPDATE}}</button>
 						 </div>
 					</div>
 					<!--	Email SettingsPanel	-->
 					<div class="w3-container ows-theme8" style="order:1;">
-						<div class="ows-titleBar"><h2>Email Settings</h2></div>
+						<div class="ows-titleBar"><h2>{{EMAIL}} {{SETTINGS}}</h2></div>
 						<div class="" style="display:grid;grid-template-columns:repeat(2, 11em 1fr);grid-template-rows:auto;column-gap:1em;">
-							<label for="fromEmail">From email address:</label>
-							<input id="fromEmail"  aria-label="From email address">
-							<label for="destEmail">To email address(es):</label>
-							<input id="destEmail" aria-label="To email address or addresses. Separate multiple email addresses with a semicolon">
+							<label for="fromEmail">{{EMAIL_FROM}}:</label>
+							<input id="fromEmail"  aria-label="{{EMAIL_FROM}}">
+							<label for="destEmail">{{EMAIL_TO}}:</label>
+							<input id="destEmail" aria-label="{{EMAIL_TO}}">
 						</div>
 						<p>
-							The 'From email address' should usually be the same as the 'Username' in email server settings.<br>
-							Separate multiple email addresses with a semicolon ";". Eg: joe@somewhere.com; jane@here.net
+							{{EMAIL_TO_NOTE}}
 						</p>
 						 <div style="display:grid;grid-template-columns:1em 30% 1fr;grid-template-rows:auto; gap: 0.4vh 1vw; align-items:baseline;">
 							<input type="checkbox" id="useBcc">
-							<label for="useBcc">Put destination emails in the 'Bcc' list rather than 'To' list</label>
-							<span>By default the destination email addresses are put in the 'To' list and will be visible to every recepient, use this option to add them to the BCC list instead.</span>
+							<label for="useBcc">{{ALARM_SETTINGS_EMAIL_BCC_LABEL}}</label>
+							<span>{{ALARM_SETTINGS_EMAIL_BCC_NOTE}}</span>
 							<input type="checkbox" id="useHtml">
-							<label for="useHtml">Email uses HTML text formatting</label>
-							<span>By default the email messages use UTF-8 plain text, but you can define your own in strings.ini and use HTML if you wish</span>
+							<label for="useHtml">{{ALARM_SETTINGS_EMAIL_HTML_LABEL}}</label>
+							<span>{{ALARM_SETTINGS_EMAIL_HTML_NOTE}}</span>
 						 </div>
 
 						<div class="ows-btnBar" style="margin:1vh 0; justify-content: center;">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr"  style="max-width: 15em;" onclick="testEmail()">Send Test Email</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr"  style="max-width: 15em;" onclick="testEmail()">{{ALARM_SETTINGS_TEST_EMAIL}}</button>
 						 </div>
 					</div>
 				</div>	<!--	End of one column layout	-->	

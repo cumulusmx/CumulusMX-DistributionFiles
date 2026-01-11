@@ -2,7 +2,7 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Page:   Ai Configuration    | ai-config.html
     Author: DNC Thomas          | Created: 2025-11-27
-    Edit:   2025-12-08 16:55:31
+    Edit:   2026-01-09
     Check:  2025-12-08 16:55:35
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -90,9 +90,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -172,17 +172,17 @@
 
                     <div id="LEDs" class="w3-container ows-theme8">
                          <div class="ows-titleFlex">
-                            <h3>Alarm LEDs</h3>
+                            <h3>{{ALARM}} LEDs</h3>
                         </div>
                         <p>
 							You can change the LED shapes used for the alarms, both the default alarms and custom alarms can have 
 							their own LEDs.
 						</p>
 						<div style="display:grid;grid-template-columns:1fr 1fr 2.0rem;grid-template-rows: auto;gap:1vw 5px;align-items: baseline;">
-							<label for="AlarmDefault">Default alarm LED</label>
+							<label for="AlarmDefault">Default {{ALARM}} LED</label>
 							<select id="AlarmDefault" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 							<div class="ows-led" id="DefaultLED" style="place-self:center;"></div>
-							<label for="AlarmUser">User Alarm LED </label>
+							<label for="AlarmUser">User {{ALARM}} LED </label>
 							<select id="AlarmUser" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 							<div class="ows-led ows-led-on ows-diamond ows-small" id="UserLED" style="place-self:center;"></div>
 						</div>
@@ -194,13 +194,13 @@
                             <h3>Rain Rate Boundaries</h3>
                         </div>
                         <p>
-                            These rainrate values are used to determine which rainrate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/hr)</span>
+                            These rain rate values are used to determine which rain rate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/{{HOUR_SHORT_LC}})</span>
                         </p>
                         <div style="display:grid;grid-template-columns: 1fr 5em 1.5em;grid-template-rows:auto;gap:1vw;align-items:center;">
-							<label for="rainrateLight">Light rainfall rate:</label>
+							<label for="rainrateLight">Light {{RAINFALL}} {{RATE}}:</label>
 							<input type="number" min="0" step="0.1" name="rainrateLight" value="" id="rainrateLight" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Light rain image">
                             <img src="img/rain1.png" alt="Raindrop 1" class="w3-image">
-							<label for="rainrateMedium">Medium rainfall rate:</label>
+							<label for="rainrateMedium">Medium {{RAINFALL}} {{RATE}}:</label>
 							<input type="number" min="0" step="0.1" name="rainrateMedium" value="" id="rainrateMedium" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Medium rain image">
                             <img src="img/rain2.png" alt="Raindrop 2" class="w3-image">
                             <p class="w3-small w3-italic" style="grid-column-start: span 2;">Rates above the 'medium' value will use the 'Heavy' rainfall rate image</p>
@@ -229,11 +229,11 @@
 
                     <div id="Apply" class="w3-container ows-theme8" style="align-self:end;">
                         <div class="ows-titleFlex w3-stretch ows-theme5">
-                            <h3>Apply Settings</h3>
+                            <h3>{{APPLY_CHANGES}}</h3>
                         </div>
-						<P><strong>Note</strong>: If you used the '<em>Restore</em>'' button below, <strong><em>Everything</em></strong> gets reset back to the deafult styles.</P>
+						<P><strong>Note</strong>: If you used the '<em>Restore</em>'' button below, <strong><em>Everything</em></strong> gets reset back to the default styles.</P>
                         <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1vw;" role="menu">
-							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Apply</button>
+							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">{{APPLY_CHANGES}}</button>
 							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore</button>
 						</div>
 						<p class="w3-small">
@@ -270,8 +270,8 @@
         <!--    Footer  -->
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> V4.6.4 <span class="ows-theme9-txt w3-small">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> V4.6.4 <span class="ows-theme9-txt w3-small">b: 4127</span></h5>
                 </section>
         </footer>
 
@@ -288,7 +288,7 @@
                     <pre style="font-size:80%;">cmxConfig = <span id="cmxInfo"></span></pre>
                 </div>
                 <div class="ows-titleFlex ows-theme5" style="border-radius: 0 0 0.5em 0.5em; flex-direction:row-reverse;margin-bottom:0;">
-                    <p class="w3-small w3-italic" style="padding:0 1em 0 0;">Powered by CumulusMX</p>
+                    <p class="w3-small w3-italic" style="padding:0 1em 0 0;">{{POWERED_BY}} CumulusMX</p>
                 </div>
 			</div>
 		</div>

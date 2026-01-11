@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:		Airlink Sensors 	| airlinksensors.html
 	Author:		DNC Thomas			| Created: March 2025
-	Last Edit:	2025-12-08 16:57:37
+	Last Edit:	2026-01-09 18:23:34
 	Last Check:	2025-12-08 16:57:41
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Airlink Sensors</title>
+		<title>{{AIRLINK_SENSORS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -59,9 +59,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -74,9 +74,9 @@
 				<!--	Page Title	-->
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Airlink Sensors</h1>
+						<h1>{{AIRLINK_SENSORS}}</h1>
 						<p class="w3-hide">These are any AirLink extra sensors attached to your weather station.</p>
-						<p class="tagline">Page updated: <span data-cmxData="update"></span></p>
+						<p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
 					</div>
 				</section>
 
@@ -85,17 +85,17 @@
 					<!--	Particle Count Outdoor	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Particle Count</h3><h5>Outdoor</h5>
+							<h3>{{PARTICLE_COUNTS}}</h3><h5>{{OUTDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="CountsOutTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
@@ -105,37 +105,37 @@
 					<!--	Paarticle Count Intdoor	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Particle Count</h3><h5>Indoor</h5>
+							<h3>{{PARTICLE_COUNTS}}</h3><h5>{{INDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="CountsInTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
 							</table>
 						</div>
 					</div>
-					<!--	Air Quality Index Confidence - Outdoor	-->
+					<!--	Air Quality Index Confidence - {{OUTDOOR}}	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Air Quality Index Confidence (%)</h3><h5>Outdoor</h5>
+							<h3>{{AIR_QUALITY_INDEX_CONFIDENCE}} (%)</h3><h5>{{OUTDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="PctOutTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
@@ -145,57 +145,57 @@
 					<!--	Air Quality Index Confident - Indoor	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Air Quality Index Confidence (%)</h3><h5>Indoor</h5>
+							<h3>{{AIR_QUALITY_INDEX_CONFIDENCE}} (%)</h3><h5>{{INDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="PctInTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
 							</table>
 						</div>
 					</div>
-					<!--	Air Quality Index Outdoor	-->
+					<!--	Air Quality Index {{OUTDOOR}}	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Air Quality Index (%)</h3><h5>Outdoor</h5>
+							<h3>{{AIR_QUALITY_INDEX}} (%)</h3><h5>{{OUTDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="AqiOutTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
 							</table>
 						</div>
 					</div>
-					<!--	Air Quality Index Indoor	-->
+					<!--	Air Quality Index {{INDOOR}}	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Air Quality Index (%)</h3><h5>Indoor</h5>
+							<h3>{{AIR_QUALITY_INDEX}} (%)</h3><h5>{{INDOOR}}</h5>
 						</div>
 						<div class="w3-responsive">
 							<table id="AqiInTable" class="w3-table w3-hoverable">
 								<thead>
 									<tr>
-										<th>PM Size</th>
+										<th>{{PM_SIZE}}</th>
 										<th>1 Min</th>
-										<th>1 Hr</th>
-										<th>3 Hrs</th>
-										<th>24 Hrs</th>
+										<th>1 {{HOUR_SHORT}}</th>
+										<th>3 {{HOURS_SHORT}}</th>
+										<th>24 {{HOURS_SHORT}}</th>
 										<th>Nowcast</th>
 									</tr>
 								</thead>
@@ -208,8 +208,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
