@@ -10,7 +10,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Locale Options</title>
+		<title>{{LOCALE_STRINGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -65,9 +65,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -79,18 +79,15 @@
             <section id="subContent" class="pageWidth" style="min-height: 60em;">
 				<div class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Locale Strings</h1>
-						<p class="tagline">Configure language settings for your locale</p>
+						<h1><!--{{CONFIGURE}} -->{{LOCALE_STRINGS}}</h1>
+						<p class="tagline"><!--{{LOCALE_STRINGS_TAGLINE}}-->Configure language settings for your locale</p>
 					</div>
 				</div>
 				<!--	Section of one column layouts	-->
 				<div class="ows-grid col1">
 					<!--	Form Panel	-->
 					<div class="w3-container ows-theme8" style="order:1;">
-						<p class="tagline" style="margin: 1vh 0 0 0 ">
-							Click on sections marked <span style="font-size: 140%;">&#9656;</span> to expand them. Click again to collapse 
-							the section. Click the  &apos;Save Settings&apos; button to save the settings.
-						</p>
+						<p class="tagline" style="margin: 1vh 0 0 0 ">{{SETTINGS_USE_NOTE}}</p>
 						<form></form>
 					</div>
 				</div>	<!--	End of one column layout	-->
@@ -99,8 +96,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

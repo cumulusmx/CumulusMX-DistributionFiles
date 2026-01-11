@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Custom Logs</title>
+		<title>{{CUSTOM_LOG_SETTINGS}} CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -70,9 +70,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -84,44 +84,36 @@
             <section id="subContent" class="pageWidth">
 				<div class="w3-container">
 					<div class="ax-titleBar" style="margin-bottom:1vh;">
-						<h1>Custom Log Settings</h1>
+						<h1><!--{{CONFIGURE}} -->{{CUSTOM_LOG_SETTINGS}}</h1>
 					</div>
 				</div>
 
 				<div class="ows-grid col1">
 					<div class="w3-container ows-theme8" style="order:1;">
-						<div class="ows-titleFlex"><h2>Custom Interval Logs</h2><p>Logs created at any specified reading interval</p></div>
+						<div class="ows-titleFlex"><h2>{{CUSTOM_LOG_SETTINGS_LOGS_INTERVAL}}</h2><p><!--{{CUSTOM_LOG_SETTINGS_TAGLINE1}}-->Logs created at any specified reading interval</p></div>
 						<form id="intvlform"></form>
 					</div>
 					<!--	Daily Logs Panel	-->
 					<div class="w3-container ows-theme8" style="order:2;">
-						<div class="ows-titleFlex"><h2>Custom Daily Logs</h2><p>Logs created at the end of your defined day</p></div>
+						<div class="ows-titleFlex"><h2>{{CUSTOM_LOG_SETTINGS_LOGS_DAILY}}</h2><p><!--{{CUSTOM_LOG_SETTINGS_TAGLINE2}}-->Logs created at the end of your defined day</p></div>
 						<form id="dailyform"></form>
 					</div>
 					<!--	Notes Panel	-->
-					<div class="w3-container ows-theme9" style="order:21;">
+					<div class="w3-container ows-theme9 no-shadow" style="order:21;">
 						<div class="ows-titleFlex"><h3>Notes</h3></div>
 						<div class="ows-notes">
 							<p>Filename Root:</p>
-							<p>
-								This string is used to create the full log filename. It will be appended with the date, and suffixed with .txt<br>
-								For example, you enter "MyLog", the interval log filename will be MyLog-yyyyMM.txt, the daily log would just be MyLog.txt
-							</p>
+							<p>{{CUSTOM_LOG_SETTINGS_ROOT}}</p>
 							<p>Data Content:</p>
-							<p>
-								This string is used to create the data in the log file, you use webtags to specify the data.<br>
-								Your data string will be automatically prefixed with the date or date-time in the log file.
-							</p>
+							<p>{{CUSTOM_LOG_SETTINGS_DATA}}</p>
 							<p></p>
 							<p>
-								For example you could use the string: <span class="ows-theme5-txt w3-monospace">&nbsp;&lt;#temp&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1&gt;&nbsp;</span><br>
-								You can also use modifiers in the webtags for further control of the output like this: <span class="ows-theme5-txt w3-monospace">&nbsp;&lt;#temp&nbsp;rc=y&gt;<span data-csv></span>&lt;#hum&gt;<span data-csv></span>&lt;#SoilTemp1&nbsp;dp=2&nbsp;rc=y&gt;&nbsp;</span>
+								{{CUSTOM_LOG_SETTINGS_EXAMPLE1}}<br>
+								{{CUSTOM_LOG_SETTINGS_EXAMPLE2}}<br>
+								{{CUSTOM_LOG_SETTINGS_EXAMPLE3}}
 							</p>
 							<p style="font-size: 110%;font-style: italic;grid-column-start: 1;">Note:</p>
-							<p>
-								It is <strong>important</strong> to use the same field separator as CMX uses for the other data files.<br>
-								Your field separator is:- <strong>"<span data-csv></span>"</strong>
-							</p>
+							<p>{{CUSTOM_LOG_SETTINGS_NOTE1}}</p>
 						</div>
 					</div>
 				</div>	<!--	End of one column layout	-->
@@ -130,8 +122,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
