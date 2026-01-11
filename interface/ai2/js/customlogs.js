@@ -11,7 +11,7 @@ let accessMode;
 let csvChar;
 
 $(document).ready(function () {
-    $('#intvlForm').alpaca({
+    $('#intvlform').alpaca({
         'dataSource': '/api/settings/customlogsintvl.json',
         'optionsSource': '/json/CustomLogsIntvlOptions.json',
         'schemaSource': '/json/CustomLogsIntvlSchema.json',
@@ -82,7 +82,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#dailyForm').alpaca({
+    $('#dailyform').alpaca({
         'dataSource': '/api/settings/customlogsdaily.json',
         'optionsSource': '/json/CustomLogsDailyOptions.json',
         'schemaSource': '/json/CustomLogsDailySchema.json',

@@ -85,8 +85,8 @@ tbody td {border-color: var(--color7)!important;}
 
 #filesForm,
 #alarmsForm ,
-#intvlForm,
-#dailyForm{
+#intvlform,
+#dailyform{
 	thead tr {background-color:var(--color7);}
 	thead th {border-color: var(--color7);}
 	tbody tr {background: var(--color9);}
@@ -103,5 +103,5 @@ tbody td {border-color: var(--color7)!important;}
 	tbody td:last-of-type{ width:9.5rem;}
 }
 
-#intvlForm td:last-of-type { max-width:16rem!important; }
-#dailyForm td:last-of-type { max-width:14rem!important; }
+#intvlform td:last-of-type { max-width:16rem!important; }
+#dailyform td:last-of-type { max-width:14rem!important; }
