@@ -445,14 +445,14 @@ function createDataPage(result) {
     let width = Math.min(screen.width, 600);
     let height = Math.min(screen.height, 800);
     let w = window.open('', 'DailyData', 'status=no,location=no,toolbar=no,menubar=no,width=' + width + ',height=' + height);
-    let html = '<!DOCTYPE html><html><head><title>Daily Data Viewer</title>';
+    let html = '<!DOCTYPE html><html><head><title>{{DAILY_DATA_VIEWER}}</title>';
     html += '<link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/w3v5.css">';
     if(cmxConfig.Theme!='') { html += '<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme + '.css">';}
     html += '<link rel="stylesheet" href="css/main.css"><style>tbody td{text-align:center!important;}';
     html += 'tr:hover>td{background: var(--gradient-databar);</style></head>';
     html += '<body class="ows-theme9"><div class="ows-titleFlex ows-theme5" style="margin-bottom:1em; padding: 0 1em; border-bottom: 3px solid #f00;" >';
 	html += '<div><img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image"></div>';
-	html += '<div><h3>Daily Data Viewer</h3></div></div>';
+	html += '<div><h3>{{DAILY_DATA_VIEWER}}</h3></div></div>';
 
     if (format == 'CSV') {
         html += '<div class="w3-container w3-responsive">' + convertToCSV(result, true) + '</div></body></html>';
