@@ -238,16 +238,16 @@ $(document).ready(function () {
             }
             if (dataVisibility.temperature.AppTemp > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '27' }))
-                    .append($('<label>', { for: '27', class: 'mylabel', html: '{{HIGH_APPARENT}}' }))
+                    .append($('<label>', { for: '27', class: 'mylabel', html: '{{HIGH_APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '28' }))
-                    .append($('<label>', { for: '28', class: 'mylabel', html: '{{HIGH_APPARENT_TIME}}' }))
+                    .append($('<label>', { for: '28', class: 'mylabel', html: '{{HIGH_APPARENT_TEMPERATURE_TIME}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '29' }))
-                    .append($('<label>', { for: '29', class: 'mylabel', html: '{{LOW_APPARENT}}' }))
+                    .append($('<label>', { for: '29', class: 'mylabel', html: '{{LOW_APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '30' }))
-                    .append($('<label>', { for: '30', class: 'mylabel', html: '{{LOW_APPARENT_TIME}}' }))
+                    .append($('<label>', { for: '30', class: 'mylabel', html: '{{LOW_APPARENT_TEMPERATURE_TIME}}' }))
             }
 
             cards.append($('<div>', { class: 'extrasPanel w3-container ows-theme8' }).append(derivedTempBlock));
