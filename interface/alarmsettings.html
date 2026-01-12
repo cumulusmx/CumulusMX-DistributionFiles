@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/16 11:40:37
+Last modified: 2026/01/12 11:50:34
 -->
 <!doctype html>
 <html lang="en">
@@ -463,20 +463,23 @@ Last modified: 2025/08/16 11:40:37
                     </tbody>
                 </table>
                 <div style="margin-top: 35px">
-                    <span aria-hidden>{{EMAIL_FROM}}:</span> <input id="fromEmail" style="min-width: 200px; width: 50%" aria-label="From email address">
+                    <label for="fromEmail" aria-hidden>{{EMAIL_FROM}}:</label>
+                    <input id="fromEmail" style="min-width: 200px; width: 50%" aria-label="From email address">
                 </div>
                 <div style="margin-top: 10px">
-                    <span aria-hidden>{{EMAIL_TO}}:</span>
-                    <input id="destEmail" style="min-width: 200px; width: 50%" aria-label="To email address or addresses. Separate multiple email addresses with a semicolon"><br>
-                    <span aria-hidden>{{EMAIL_TO_NOTE}}</span>
+                    <label for="destEmail" aria-hidden>{{EMAIL_TO}}:</label>
+                    <input id="destEmail" style="min-width: 200px; width: 50%" aria-label="To email address or addresses. Separate multiple email addresses with a semicolon">
+                    <p>{{EMAIL_TO_NOTE}}</p>
                 </div>
                 <div style="margin-top: 10px">
-                    <label><input type="checkbox" id="useBcc"> {{ALARM_SETTINGS_EMAIL_BCC_LABEL}}</label><br>
-                    {{ALARM_SETTINGS_EMAIL_BCC_NOTE}}
+                    <input type="checkbox" id="useBcc">
+                    <label for="useBcc">{{ALARM_SETTINGS_EMAIL_BCC_LABEL}}</label>
+                    <p>{{ALARM_SETTINGS_EMAIL_BCC_NOTE}}</p>
                 </div>
                 <div style="margin-top: 10px">
-                    <label><input type="checkbox" id="useHtml"> {{ALARM_SETTINGS_EMAIL_HTML_LABEL}}</label><br>
-                    {{ALARM_SETTINGS_EMAIL_HTML_NOTE}}
+                    <input type="checkbox" id="useHtml">
+                    <label for="useHtml">{{ALARM_SETTINGS_EMAIL_HTML_LABEL}}</label>
+                    <p>{{ALARM_SETTINGS_EMAIL_HTML_NOTE}}</p>
                 </div>
                 </form>
             </div>
