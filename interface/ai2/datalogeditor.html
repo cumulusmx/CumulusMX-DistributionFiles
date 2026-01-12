@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:		Datalog Editor		| datalogeditor.html
-	Author:		DNC Thomas			| Created: Mar 2025
-	Last Edit:	
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:		Datalog Viewer/Editor	| datalogeditor.html
+	Author:		DNC Thomas				| Created: Mar 2025
+	Last Edit:	2026-01-12 10:38:03
 	Last Check:	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Monthly Data Logs</title>
+		<title>{{MONTHLY_DATA_LOGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -53,7 +53,7 @@
 		<script src="js/ai-page-ctrl.js"></script>
 
 		<!--	Local scripts & styles	-->
-		<script src="js/datalogeditor.js"></script>
+		<script src="js/datalogeditor.js"></script><!-- Custom script -->
 		<script>
 		</script>
 		<style>
@@ -93,9 +93,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -108,24 +108,24 @@
 				<!--	Page Title	-->
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Data Log Editor</h1>
-						<p class="tagline">View and edit the monthly data log</p>
+						<h1>{{DATA_LOG_VIEWER}}</h1>
+						<p class="tagline"><!--{{DATA_LOG_VIEWER_TAGLINE}}-->View and edit the monthly data log</p>
 					</div>
 				</section>
 				<!--	Section of one column layouts	-->
 				<section class="ows-grid col">
 					<div class="w3-container no-shadow" style="order:0; padding-bottom:0;">
 						<div class="ows-btnBar" style="justify-content: flex-start;margin-bottom:0;">
-							<p>Start Date:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
-							<p>End Date:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></p>
-							<button type="button" id="loadData" class="w3-button ows-theme-grad-down-hvr" onclick="load()" style="flex-grow:0;">Load</button>
-							<p class="w3-small">The table scrolls sideways to reveal your data.</p>
+							<p>{{START_DATE0}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
+							<p>{{END_DATE}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></p>
+							<button type="button" id="loadData" class="w3-button ows-theme-grad-down-hvr" onclick="load()" style="flex-grow:0;">{{LOAD}}</button>
+							<p class="w3-small"><!--{{ALARM_SETTINGS_NOTE}}-->The table scrolls sideways to reveal your data.</p>
 						</div>
 					</div>
 					<!--	Log Panel 2	-->
 					<div class="w3-container ows-theme8 w3-responsive" style="order:1;padding-top: 1vh;">
 						<table id="datalog" class="w3-hoverable"></table>
-						<p class="w3-small w3-center">This table scrolls sideways to reveal more readings</p>
+						<p class="w3-small w3-center"><!--{{ALARM_SETTINGS_NOTE}}-->This table scrolls sideways to reveal more readings</p>
 					</div>
 				</section>	<!--	End of one column layout	-->
 			</section>
@@ -133,8 +133,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

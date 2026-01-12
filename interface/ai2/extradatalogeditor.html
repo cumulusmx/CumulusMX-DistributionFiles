@@ -2,14 +2,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Extra Datalog Editor	| extradatalogeditor.html
 	Author:		DNC Thomas			| Created: Mar 2025
-	Last Edit:	2025-12-09 12:20:31
+	Last Edit:	
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Extra Data Logs</title>
+		<title>{{EXTRA_DATALOGS_VIEWER_EDITOR}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -51,7 +51,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-ctrl.js"></script>
-		<script src="js/extradatalogeditor.js"></script>
+		<script src="js/extradatalogeditor.js"></script><!-- Custom Script -->
 
 		<!--	Local scripts & styles	-->
 		<script>
@@ -96,9 +96,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -111,19 +111,19 @@
  			<!--	This is the page title - you probably want to keep this	-->
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Extra Data Log Editor</h1>
-						<p class="tagline">View and edit the Extra data log</p>
+						<h1>{{EXTRA_DATALOGS_VIEWER_EDITOR}}</h1>
+						<p class="tagline"><!--{{EXTRA_DATALOGS_VIEWER_EDITOR_TAGLINE}}-->View and edit the Extra data log</p>
 					</div>
 				</section>
 				<!--	This is the section of one column layouts	-->
 				<div class="ows-grid col1">
 					<div class="w3-container no-shadow" style="order:0;margin-bottom:0;">
 						<div class="ows-btnBar" style="justify-content: flex-start; margin-bottom:0;">
-							<p>Start Date:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
-							<p>End Date:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></p>
-							<button type="button" id="loadData" class="w3-button ows-theme-grad-down-hvr" onclick="load()" style="flex-grow:0;">Load</button>
+							<p>{{START_DATE}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
+							<p>{{END_DATE}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></p>
+							<button type="button" id="loadData" class="w3-button ows-theme-grad-down-hvr" onclick="load()" style="flex-grow:0;">{{LOAD}}</button>
 							<div>
-								<p class="w3-small w3-right-align">You can scroll the table sideways to reveal other readings.</p>
+								<p class="w3-small w3-right-align"><!--{{TABLE_SCROLL_NOTE}}-->You can scroll the table sideways to reveal other readings.</p>
 							</div>
 						</div>
 					</div>
@@ -137,8 +137,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

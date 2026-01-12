@@ -155,46 +155,46 @@ $().ready(function () {
 
         var columnDefs = [
             {
-                title: 'Line #',
+                title: '{{LINE_NO}}',
                 readonly: true
             },
             {
-                title: 'Date (dd/mm/yy)',
+                title: '{{DATE_DDMMYYHHMM}}',
                 readonly: true,
                 width: '130px'
             },
             {
-                title: 'Time',
+                title: '{{TIMESTAMP}}',
                 readonly: true,
                 width: '116px'
             },
-            {title: 'Temp', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Hum', type: 'number', min: 0, max: 100, className:'percent'},
-            {title: 'Dew point', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Wind speed', type: 'number', min: 0, step: windAvgStep, className:'windUnits'},
-            {title: 'Recent high gust', type: 'number', min: 0, step: windGustStep, className:'windUnits'},
-            {title: 'Average wind bearing', type: 'number', min: 0, max: 360, className:'bearing'},
-            {title: 'Rainfall rate', type: 'number', min: 0, step: rainStep, className:'rainRateUnits'},
-            {title: 'Rainfall so far', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
-            {title: 'Sea level pressure', type: 'number', min: 0, step: pressStep, className: 'pressUnits'},
-            {title: 'Rainfall counter', type: 'number', min: 0, step: rainStep},
-            {title: 'Inside temp', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Inside hum', type: 'number', min: 0, max: 100, className: 'percent'},
-            {title: 'Current gust', type: 'number', min: 0, step: windGustStep, className: 'windUnits'},
-            {title: 'Wind chill', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Heat Index', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'UV Index', type: 'number', min: 0, max: 16, step: 0.1},
-            {title: 'Solar Rad', type: 'number', min: 0, max: 1200, className:'solarUnits'},
-            {title: 'ET', type: 'number', min: 0, step: etStep, className:'ETUnits'},
-            {title: 'Annual ET', type: 'number', min: 0, step: etStep, className:'ETUnits'},
-            {title: 'Apparent temp', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Max Solar rad', type: 'number',className: 'solarUnits'},
-            {title: 'Sun hours', type: 'number', step: 0.01, className:'hours'},
-            {title: 'Wind bearing', type: 'number', min: 0, max: 360, className:'bearing'},
-            {title: 'RG-11 Rain', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
-            {title: 'Rain Since Midnight', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
-            {title: 'Feels like', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: 'Humidex', type: 'number', step: tempStep}
+            {title: '{{TEMPERATURE_SHORT}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{HUMIDITY_SHORT}}', type: 'number', min: 0, max: 100, className:'percent'},
+            {title: '{{DEW_POINT}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{WIND_SPEED}}', type: 'number', min: 0, step: windAvgStep, className:'windUnits'},
+            {title: '{{RECENT_HIGH_GUST}}', type: 'number', min: 0, step: windGustStep, className:'windUnits'},
+            {title: '{{AVERAGE_BEARING}}', type: 'number', min: 0, max: 360, className:'bearing'},
+            {title: '{{RAINFALL_RATE}}', type: 'number', min: 0, step: rainStep, className:'rainRateUnits'},
+            {title: '{{RAINFALL_SO_FAR}}', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
+            {title: '{{SEA_LEVEL_PRESSURE}}', type: 'number', min: 0, step: pressStep, className: 'pressUnits'},
+            {title: '{{RAINFALL_COUNTER}}', type: 'number', min: 0, step: rainStep},
+            {title: '{{INDOOR_TEMP}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{INDOOR_HUMIDITY}}', type: 'number', min: 0, max: 100, className: 'percent'},
+            {title: '{{CURRENT_GUST}}', type: 'number', min: 0, step: windGustStep, className: 'windUnits'},
+            {title: '{{WIND_CHILL}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{HEAT_INDEX}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
+            {title: '{{SOLAR_RAD}}', type: 'number', min: 0, max: 1200, className:'solarUnits'},
+            {title: '{{EVAPOTRANSPIRATION_SHORT}}', type: 'number', min: 0, step: etStep, className:'ETUnits'},
+            {title: '{{ANNUAL_ET}}', type: 'number', min: 0, step: etStep, className:'ETUnits'},
+            {title: '{{APPARENT_TEMP}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{HIGH_SOLAR_RAD}}', type: 'number',className: 'solarUnits'},
+            {title: '{{SUN_HOURS}}', type: 'number', step: 0.01, className:'hours'},
+            {title: '{{WIND_BEARING}}', type: 'number', min: 0, max: 360, className:'bearing'},
+            {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
+            {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
+            {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{HUMIDEX}}', type: 'number', step: tempStep}
         ];
 
         myTable = $('#datalog').dataTable({
@@ -228,25 +228,25 @@ $().ready(function () {
             buttons: [
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Edit',
+                    text: '{{EDIT}}',
                     name: 'edit'        // do not change name
                 },
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Delete',
+                    text: '{{DELETE}}',
                     name: 'delete'      // do not change name
                 },
                 {
-                    text: 'Refresh',
+                    text: '{{REFRESH}}',
                     name: 'refresh'      // do not change name
                 },
                 'pageLength'
             ],
             language: {
                 altEditor: {
-                    modalClose: 'Close',
+                    modalClose: '{{CLOSE}}',
                     edit: {
-                        title: 'Edit record',
+                        title: '{{EDIT_RECORD}}',
                         button: 'Save'
                     }
                 }
