@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CumulusMX - Utilities</title>
+		<title>{{UTILITIES}} - CumulsMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -59,7 +59,7 @@
 			/*.ows-grid >button {border-radius:1em;}*/
 			#logcontent { padding: 0.5vh 1vw; max-height:20em;overflow:scroll;}
 			#logcontent > div:hover {background: var(--gradientBar);}
-			.ows-statusBar:before{content:'Status:';color:var(--color6);padding-left:0.5em;}
+			.ows-statusBar:before{content:'{{STATUS}}:';color:var(--color6);padding-left:0.5em;}
 			#customGrid {
 				display:grid;
 				grid-template-columns: repeat(2, 1fr);
@@ -83,9 +83,9 @@
 				<img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
 				<div id="siteInfo">
 					<h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-					<p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-					<p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-					<p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
 				</div>
 				<nav id="MainMenu" class="ows-theme6"></nav>
 			</section>
@@ -97,87 +97,76 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Utilities</h1>
-						<p class="tagline">All the CMX Utilities in one place</p>
+						<h1><!--{{UTILITIES}}-->Utilities</h1>
+						<p class="tagline"><!--{{UTILITIES_TAGLINE}}-->All the CMX Utilities in one place</p>
 					</div>
 				</section>
 
 				<div id="customGrid">
 					<div class="w3-container ows-theme8" style="grid-area:ftp;">
 						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>Upload / Copy now!</h3>
+							<h3>{{UPLOAD_NOW}}</h3>
 						</div>
 						<!-- rest of content -->
-						<h4>Manually initiate the FTP / copy process</h4>
-						<p>You can use this utility to upload the default website data files.</p>
-						<p>
-							<strong>Please note</strong>:  The actual FTP process will be started, but it will be run as a background process. You wll have to check your
-							log files and/or FTP server to check whether it worked correctly or not.
-						</p>
+						<h4 style="padding-bottom:.75vh;">{{UPLOAD_NOW_TEXT1}}</h4>
+						<p class="w3-hide">You can use this utility to upload the default website data files.</p>
+						<p>{{UPLOAD_NOW_TEXT2}}</p>
 						<div style=" display:grid; grid-template-columns:auto 1fr;gap:.5vh 1vw; align-items:baseline;">
-							<input type="checkbox" id="graphs" aria-label="Reload complete graph data">
-							<label for="graphs">Re-upload full copies of the graph data files</label>
-							<input type="checkbox" id="dailygraphs" aria-label="Include daily graph data">
-							<label for="dailygraphs">Include regenerating and transfer of daily graph data files</label>
-							<input type="checkbox" id="noaa" aria-label="Include NOAA reports">
-							<label for="noaa">Include transfer of latest NOAA report files</label>
-							<input type="checkbox" id="logfiles" aria-label="Re-upload Extra Web Files incremental log files">
-							<label for="logfiles">Re-upload full copies of all Extra Web Files incremental log files</label>
+							<input type="checkbox" id="graphs" aria-label="{{UPLOAD_NOW_CB1}}">
+							<label for="graphs">{{UPLOAD_NOW_CB1}}</label>
+							<input type="checkbox" id="dailygraphs" aria-label="{{UPLOAD_NOW_CB2}}">
+							<label for="dailygraphs">{{UPLOAD_NOW_CB2}}</label>
+							<input type="checkbox" id="noaa" aria-label="{{UPLOAD_NOW_CB3}}">
+							<label for="noaa">{{UPLOAD_NOW_CB3}}</label>
+							<input type="checkbox" id="logfiles" aria-label="{{UPLOAD_NOW_CB4}}">
+							<label for="logfiles">{{UPLOAD_NOW_CB4}}</label>
 						</div>
 						<div style="display: grid;grid-template-columns:auto 1fr;gap:0.5vh 1vw; align-items:baseline;">
-							<button class="w3-button ows-theme0 ows-theme-grad-down-hvr" aria-label="Start FTP now" style="border:thin solid var(--color5);" id="startFTP" >Start FTP Now</button>
-							<p id="ftpStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.2vh 0.5vw;"></p>
+							<button class="w3-button ows-theme0 ows-theme-grad-down-hvr" aria-label="Start FTP now" style="border:thin solid var(--color5);" id="startFTP" >{{UPLOAD_NOW_START}}</button>
+							<p id="ftpStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
 						</div>
 					</div>
 
 					<div class="w3-container ows-theme8" style="grid-area: reload">
 						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>Reload the day file</h3>
+							<h3>{{RELOAD_DAYFILE}}</h3>
 						</div>
 						<!-- Rest of content -->
-						<h4>Force a reload of the Dayfile back into CMX memory</h4>
-						<p>
-							You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart
-							it to perform the reload.
-						</p>
+						<h4 style="padding-bottom:.75vh;">{{RELOAD_DAYFILE_TEXT1}}</h4>
+						<p>{{RELOAD_DAYFILE_TEXT2}}</p>
 						<div style="display:grid;grid-template-columns:auto 1fr; gap:0.5vh; align-items:baseline;">
-							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);" aria-label="Reload now now" id="reLoad" >Reload Dayfile</button>
-							<p id="dayFileStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.2vh 0.5vw;"></p>
+							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);" aria-label="Reload now now" id="reLoad" >{{RELOAD_DAYFILE}}</button>
+							<p id="dayFileStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
 						</div>
 					</div>
 
 					<div class="w3-container ows-theme8" style="grid-area: errors;">
 						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>Latest errors</h3>
-							<p class="tagline">The log content auto refreshes every 20 seconds. <i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
+							<h3>{{LATEST_ERRORS}}</h3>
+							<p class="tagline"><!--{{LATEST_ERRORS_TEXT1}}-->The log content auto refreshes every 20 seconds. <i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
 						</div>
 						<!-- Rest of content -->
 						<div class="ows-btnBar" style="justify-content: flex-start;">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onclick="selectText();" aria-label="Copy to clipboard">Copy to clipboard</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onClick="clearLog();" aria-label="Clear the log">Clear the log</button>
-							<p>You can scroll the log entries</p>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onclick="selectText();" aria-label="Copy to clipboard"><!--{{LATEST_ERRORS_COPY}}-->Copy to clipboard</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onClick="clearLog();" aria-label="Clear the log">{{LATEST_ERRORS_CLEAR}}</button>
+							<p><!--{{LATEST_ERRORS_TEXT2}}-->You can scroll the log entries</p>
 						</div>
-						<div  id="logcontent" class="ows-theme9" style="margin: 1vh 0;">
-							Loading...
-						</div>
+						<div  id="logcontent" class="ows-theme9" style="margin: 1vh 0;">{{LOADING}}</div>
 					</div>
 
 					<div class="w3-container ows-theme8" style="grid-area: sql">
 						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h3>The MySQL Database</h3>
+							<h3><!--{{PURGE_MYSQL}}-->The MySQL Database</h3>
 						</div>
 						<!-- Rest of content -->
-						<h4>Edit / Purge the failed MySQL command queue</h4>
-						<p>
-							If you have failed MySQL commands stuck in the upload queue, this panel allows you to either delete the entire
-							failed queue, or edit/delete individual entries.
-						</p>
+						<h4 style="padding-bottom:.75vh">{{PURGE_MYSQL_TEXT1}}</h4>
+						<p>{{PURGE_MYSQL_TEXT2}}</p>
 						<div style="margin:1vh 0;" >
 							<table id="sqlcache" class="w3-table w3-hoverable" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
 						</div>
 						<div style="display: grid;grid-template-columns:auto 1fr;gap:0.5vh">
-							<button id="reload" type="submit" class="w3-btn ax-btn-gradient-up" aria-label="Purge ALL MySQL statements">Purge all MySQL statements</button>
-							<p id="purgeStatus" class="ax-theme9 w3-border ax-theme5-bdr ax-statusBar" style="margin:0;padding: 0.2vh 0.5vw; flex-grow:2;"></p>
+							<button id="reload" type="submit" class="w3-button w3-border ows-theme5-bdr ows-theme-grad-down-hvr" aria-label="Purge ALL MySQL statements">{{PURGE_MYSQL_SUBMIT}}</button>
+							<p id="purgeStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
 						</div>
 					</div>
 				</div>
@@ -186,8 +175,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

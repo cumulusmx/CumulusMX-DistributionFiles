@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Diary and Conditions Editor</title>
+		<title>{{CURRENT_CONDITIONS}} & {{DIARY_EDITOR}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -114,9 +114,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -128,78 +128,75 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 	 				<div class="ows-titleFlex">
-						<h1>Weather Diary &amp; Conditions Editor</h1>
-						<p class="tagline">Update your Diary and publish the current conditions</p>
+						<h1>{{CURRENT_CONDITIONS}} &amp; {{DIARY_EDITOR}}</h1>
+						<p class="tagline"><!--{{DIARY_EDITOR_TAGLINE}}-->Update your Diary and publish the current conditions</p>
 					</div>
 				</section>
 
 				<div class="ows-flex col3 ows-fixed">
 					<div class="w3-container ows-theme8 ows-growX2">
 						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h2>Your diary entries</h2>
+							<h2>{{DIARY_EDITOR}}</h2>
 							<i class="fa-solid fa-calendar"></i>
 						</div>
 						<div style="display:grid; grid-template-columns: 7em 9em 3em 6em 1fr;column-gap: 1vw;align-items:baseline; margin-bottom:1vh;">
-							<p>Selected date:</p>
+							<p>{{SELECTED_DATE}}:</p>
 							<p><strong><span id="selectedDate">Sat Dec 06 2025</span></strong></p>
-							<label for="inputTime">Time</label>
+							<label for="inputTime">{{TIME}}</label>
 							<input type="time" id="inputTime" class="ows-theme0 ows-theme-grad-down-hvr" role="button" aria-label="Set the time" >
 						</div>
-						<div style="display:grid; grid-template-columns: 3em 1fr; column-gap:1vw; align-items:baseline; margin-bottom:1vh;">
-							<p>Entry:</p>
+						<div style="display:grid; grid-template-columns: 5em 1fr; column-gap:1vw; align-items:baseline; margin-bottom:1vh;">
+							<p>{{COMMENTS}}:</p>
 							<input type="text" id="inputComment" class="w3-input ows-theme9 w3-border ax-theme5-bdr" aria-label="Your diary entry">
 						</div>
 						<div style="display:grid; grid-template-columns:repeat(4, 1em 1fr);column-gap: 1vw; align-items:baseline; margin-bottom:1vh;">
 							<input type="checkbox" id="inputThunder">
-							<label for="inputThunder" class="c">Thunder</label>
+							<label for="inputThunder" class="c">{{THUNDER}}</label>
 							<input type="checkbox" id="inputHail">
-							<label for="inputHail" class="c">Hail</label>
+							<label for="inputHail" class="c">{{HAIL}}</label>
 							<input type="checkbox" id="inputFog">
-							<label for="inputFog" class="c">Fog</label>
+							<label for="inputFog" class="c">{{FOG}}</label>
 							<input type="checkbox" id="inputGales">
-							<label for="inputGales" class="c">Gales</label>
+							<label for="inputGales" class="c">{{GALES}}</label>
 						</div>
 						<div class="ows-titleFlex">
-							<h4>Snow Conditions</h4><i class="fa-solid fa-snowflake"></i>
+							<h4><!--{{SNOW_CONDITIONS}}-->Snow Conditions</h4><i class="fa-solid fa-snowflake w3-text-white"></i>
 						</div>
 						<div style="display: grid; grid-template-columns: repeat(2, 1fr 6em); column-gap:1vw; align-items:baseline; margin-bottom:1vh;">
-							<label for="inputSnow24h">Last 24 hrs snowfall (cm):</label>
+							<label for="inputSnow24h"><!--{{LAST_SNOW_24HR}}-->Last 24 hrs snowfall (cm):</label>
 							<input type="number" class="form-control ows-theme0 ows-theme-grad-down-hvr" id="inputSnow24h" min="0" step="0.1" placeholder="null">
-							<label for="inputSnowDepth" class="w3-right-align">Snow depth (cm):</label>
+							<label for="inputSnowDepth" class="w3-right-align">{{SNOW_DEPTH}}:</label>
 							<input type="number" class="ows-theme0 ows-theme-grad-down-hvr" id="inputSnowDepth" min="0" step="0.1" placeholder="null">
 						</div>
 						<div style="display:grid;grid-template-columns: 11em 1fr; column-gap:1vw; align-items:baseline; margin-bottom:1vh;">
 							<div>
-								<h5 class="w3-center" style="margin-bottom:.2em;">Automated Readings</h5>
+								<h5 class="w3-center" style="margin-bottom:.2em;">{{AUTOMATED_READINGS}}</h5>
 								<select class="form-control ows-theme0 ows-theme-grad-down-hvr" id="automated" style="border:thin solid var(--color5);border-radius: 1em 0 0 1em;" aria-label="Choose sensor to triger auto updates">
-									<option value="0">Disabled</option>
-									<option value="1">Laser Distance #1</option>
-									<option value="2">Laser Distance #2</option>
-									<option value="3">Laser Distance #3</option>
-									<option value="4">Laser Distance #4</option>
+									<option value="0">{{DISABLED}}</option>
+									<option value="1">{{LASER_DEPTH}} #1</option>
+									<option value="2">{{LASER_DEPTH}} #2</option>
+									<option value="3">{{LASER_DEPTH}} #3</option>
+									<option value="4">{{LASER_DEPTH}} #4</option>
 								</select>
 							</div>
-							<p class="w3-small">
-								Adds an automated reading to the database from the selected sensor at the snow 
-								reading time. This only creates the record if a manual record has not already been created.
-							</p>
+							<p class="w3-small">{{AUTOMATED_READINGS_DESC}}</p>
 						</div>
 						<div class="mnuDivider w3-stretch" style="background: var(--color5); margin-bottom:1vh;"></div>
-						<div class="ows-titleFlex"><h4>Diary Management</h4></div>
-						<div class="ows-btnBar" style="margin-top:1vh;">
-							<button class="w3-button ows-theme-grad-down-hvr" style="max-width:10em;" aria-label="Clear the current diary entry" onclick="deleteEntry()">Delete</button>
-							<div class="w3-button" style="max-width:10em;"><a href="/api/data/diaryexport.txt" download="">Eport All</a></div>
-							<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="max-width:10em;" aria-label="Upload diary entries" onclick="uploadFile()">Upload File</button>
+						<div class="ows-titleFlex"><h4><!--{{DIARY_MANAGEMENT}}-->Diary Management</h4></div>
+						<div class="ows-btnBar" style="margin-top:1vh; column-gap: 2px;">
+							<button class="w3-button ows-theme-grad-down-hvr" style="max-width:10em;" aria-label="Clear the current diary entry" onclick="deleteEntry()">{{DELETE}}</button>
+							<div class="w3-button" style="max-width:10em;"><a href="/api/data/diaryexport.txt" download="">{{EXPORT_ALL}}</a></div>
+							<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="max-width:10em;" aria-label="Upload diary entries" onclick="uploadFile()">{{UPLOAD_FILE}}</button>
 							<input type="file" class="w3-button" style="display: inline-block;" id="upFile" aria-label="Select your file" >
 						</div>
 						<div style="display:grid;grid-template-columns: auto 1fr;column-gap:1vw; align-items: baseline;">
-							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);border-radius: 1em; padding:.2em 1em" aria-label="Submit your diary entry" onclick="applyEntry();timeOut('status');">Apply</button>
+							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);border-radius: 1em; padding:.2em 1em" aria-label="Submit your diary entry" onclick="applyEntry();timeOut('status');">{{APPLY_CHANGES}}</button>
 							<p id="status" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar"></p>
 						</div>
 					</div>
 					<!-- CALENDAR -->
 					<div class="w3-container no-shadow" style="order:2">
-						<h4 class="w3-center" style="margin:1vh 0">Calendar</h4>
+						<h4 class="w3-center" style="margin:1vh 0"><!--{{CALENDAR}}-->Calendar</h4>
 						<div id="datepicker" style="width:274px;margin:auto;" ></div>
 						<input type="hidden" id="date_hidden_input">
 					</div>
@@ -208,16 +205,16 @@
 				<div class="ows-grid col1">
 					<div class="w3-container ows-theme8">
 						<div class="ows-titleFlex" style="padding-top:1vh;">
-							<h4 style="flex-shrink:0;">Current Conditions</h4>
-							<p class="w3-small w3-right-align tagline">
+							<h4 style="flex-shrink:0;">{{CURRENT_CONDITIONS}}</h4>
+							<p class="w3-small w3-right-align tagline"><!--{{CURENT_CONDITIONS_TAGLINE}}-->
 								The current conditions editor allows you to place your own observations on your website home page.<br>The observations
 								are uploaded with the next update cycle.
 							</p>
 						</div>
-						<p class="w3-center">Only plain text is supported and any 'newline' characters are converted to spaces.</p>
+						<p class="w3-center">{{CURRENT_CONDITIONS_DESC}}</p>
 						<p><textarea wrap="hard" cols="80" id="inputCurrCond" class="ows-theme9 " style="padding:8px; width:100%; max-width:100%; height: 100px;"></textarea></p>
 						<div style="display:grid;grid-template-columns:auto 1fr; column-gap:1vw; align-items: baseline;">
-							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);border-radius: 1em;padding: .2em 1em;" id="apply-button" onClick="applyCCEntry()" aria-label="Apply your comment">Apply</button>
+							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);border-radius: 1em;padding: .2em 1em;" id="apply-button" onClick="applyCCEntry()" aria-label="Apply your comment">{{APPLY_CHANGES}}</button>
 							<p id="CCstatus" style="min-height:1em; width:100%;" class="ows-theme9 ows-statusBar"></p>
 						</div>
 					</div>
@@ -227,8 +224,8 @@
 
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
