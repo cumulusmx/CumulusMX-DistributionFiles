@@ -1,4 +1,4 @@
-// Last modified: 2025/11/26 17:00:56
+// Last modified: 2026/01/13 14:25:23
 
 var myTable;
 var currMonth;
@@ -323,6 +323,8 @@ $(document).ready(function () {
             response = '{"action":"' + action + '","lines":' + lines + ',"extra":false,"data": ' + data + '}';
             return response;
         }
+
+        load();
     });
 });
 
