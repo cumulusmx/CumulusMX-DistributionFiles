@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/09/28 14:11:55",
+    "_LAST_MODIFIED": "Last modified: 2026/01/08 11:17:16",
     "ENABLE_ACCESSIBILITY": "Enable accessibility features",
     "ENABLE_ACCESSIBILITY_HELP1": "Changes the behaviour of the settings screens to make them more accessible. This will dynamically change this page, but you still need to save the setting.",
     "STARTUP_DELAY_HELP1": "Add a delay before the Cumulus tries to start reading the station. Set to zero to disable. Note if a start-up ping host is specified, this timer will run before the ping. Time in seconds",
@@ -46,6 +46,9 @@
     "SPIKES": "Spikes",
     "LOG_SPIKE": "Spike logging",
     "LOG_SPIKE_HELP1": "Enable the logging of data spike and limit violations to MX diags files.",
+    "SNOW": "Snow",
+    "LOG_SNOW": "Snow logging",
+    "LOG_SNOW_HELP1": "Enable the logging of snow related laser data",
     "DASHBOARD_ERROR_LOG_LEVEL": "Dashboard latest errors logging level",
     "DASHBOARD_ERROR_LOG_LEVEL_HELP1": "The default of Error only shows more serious issues, set to Warning to get more verbose logging",
     "PATH_DATA_HELP1": "Set the path where the Cumulus data is stored. Defaults to 'data' which is in the Cumulus program folder",
