@@ -457,10 +457,10 @@
 					<!--	Email SettingsPanel	-->
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleBar"><h2>{{EMAIL}} {{SETTINGS}}</h2></div>
-						<div class="" style="display:grid;grid-template-columns:repeat(2, 11em 1fr);grid-template-rows:auto;column-gap:1em;">
-							<label for="fromEmail">{{EMAIL_FROM}}:</label>
+						<div style="display:grid;grid-template-columns:repeat(2, 11em 1fr);grid-template-rows:auto;column-gap:1em;align-items:baseline;">
+							<label for="fromEmail" aria-hidden>{{EMAIL_FROM}}:</label>
 							<input id="fromEmail"  aria-label="{{EMAIL_FROM}}">
-							<label for="destEmail">{{EMAIL_TO}}:</label>
+							<label for="destEmail" aria-hidden>{{EMAIL_TO}}:</label>
 							<input id="destEmail" aria-label="{{EMAIL_TO}}">
 						</div>
 						<p>

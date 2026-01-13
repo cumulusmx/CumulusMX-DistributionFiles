@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Extra Sensors</title>
+		<title>{{EXTRA_SENSORS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -67,9 +67,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -81,88 +81,88 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container">
 					<div class="ows-titleFlex">
-						<h1>Extra Sensors</h1>
-						<p>These are any extra sensors you have attached to your weather station.</p>
-						<p class="tagline">Page updated: <span data-cmxData="update"></span></p>
+						<h1>{{EXTRA_SENSORS}}</h1>
+						<p><!--{{EXTRA_SENSORS_TAGLINE}}-->These are any extra sensors you have attached to your weather station.</p>
+						<p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
 					</div>
 				</section>
 
 				<div class="ows-flex col3 ows-fixed">
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Temperature</h3><i class="fa-solid fa-temperature-empty"></i>
+							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-empty"></i>
 						</div>
 						<table id="TempTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">	<!--	Remove this class to have the table header displayed	-->
-									<th>Temperature</th><th></th><th></th>
+									<th>{{TEMPERATURE}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Humidity</h3><i class="fa-solid fa-cloud-rain"></i>
+							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain"></i>
 						</div>
 						<table id="HumTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">
-									<th>Humidity</th><th></th><th></th>
+									<th>{{HUMIDITY}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Dew Point</h3><i class="fa-solid fa-vials"></i>
+							<h3>{{DEW_POINT}}</h3><i class="fa-solid fa-vials"></i>
 						</div>
 						<table id="DewTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Dewpoint</th><th></th><th></th>
+									<th>{{DEW_POINT}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Soil Temperature</h3><i class="fa-solid fa-seedling w3-text-green"></i>
+							<h3>{{SOIL_TEMPERATURE}}</h3><i class="fa-solid fa-seedling w3-text-green"></i>
 						</div>
 						<table id="SoilTempTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Soil Temperature</th><th></th><th></th>
+									<th>{{SOIL_TEMPERATURE}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Soil Moisture</h3><i class="fa-solid fa-sun-plant-wilt"></i>
+							<h3>{{SOIL_MOISTURE}}</h3><i class="fa-solid fa-sun-plant-wilt"></i>
 						</div>
 						<table id="SoilMoistureTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Soil Moisture</th><th></th><th></th>
+									<th>{{SOIL_MOISTURE}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Air Quality</h3><i class="fa-solid fa-spray-can-sparkles"></i>
+							<h3>{{AIR_QUALITY}}</h3><i class="fa-solid fa-spray-can-sparkles"></i>
 						</div>
 						<table id="AirQualityTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Air Quality</th><th></th><th></th>
+									<th>{{AIR_QUALITY}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Carbon Dioxide (CO<sub>2</sub>)</h3>
+							<h3>Carbon Dioxide (CO<sub>2</sub>) {{SENSOR}}</h3>
 						</div>
 						<table id="CO2Table" class="w3-table ">
 							<thead>
@@ -174,88 +174,88 @@
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>User Temperature</h3><i class="fa-solid fa-temperature-empty"></i>
+							<h3>{{USER_TEMPERATURE}}</h3><i class="fa-solid fa-temperature-empty"></i>
 						</div>
 						<table id="UserTempTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>User Temperatures</th><th></th><th></th>
+									<th>{{USER_TEMPERATURE}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Leaf Wetness</h3><i class="fa-solid fa-leaf w3-text-green"></i>
+							<h3>{{LEAF_WETNESS}}</h3><i class="fa-solid fa-leaf w3-text-green"></i>
 						</div>
 						<table id="LeafTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Leaf temp/Wetness</th><th></th><th></th>
+									<th>{{LEAF_WETNESS}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Lightning Strikes</h3><i class="fa-solid fa-bolt-lightning w3-text-deep-orange"></i>
+							<h3>{{LIGHTNING}}</h3><i class="fa-solid fa-bolt-lightning w3-text-deep-orange"></i>
 						</div>
 						<table id="LightningTable" class="w3-table ">
 							<thead>
 								<tr class="w3-hide">
-									<th>Lightning Strikes</th><th></th><th></th>
+									<th>{{LIGHTNING}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Laser Depth</h3>
+							<h3>{{LASER_DEPTH}}</h3>
 							<h4 class="w3-hide">Tagline</h4>
 						</div>
 						<table id="LaserDepthTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">
-									<th>Laser Depth</th><th></th><th></th>
+									<th>{{LASER_DEPTH}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Laser Distance</h3>
+							<h3>{{LASER_DISTANCE}}</h3>
 							<h4 class="w3-hide">Tagline</h4>
 						</div>
 						<table id="LaserDistTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">
-									<th>Laser Depth</th><th></th><th></th>
+									<th>{{LASER_DISTANCE}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Snowfall Accumulation</h3>
+							<h3>{{SNOWFALL_LAST_24_HOURS}}</h3>
 							<h4><i class="fa-regular fa-snowflake w3-text-sand"></i>&nbsp;24hr</h4>
 						</div>
 						<table id="Snow24hTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">
-									<th>Laser Depth</th><th></th><th></th>
+									<th>{{SNOWFALL_LAST_24_HOURS}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 					<div class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>Snowfall Accumulation</h3>
+							<h3>{{SNOWFALL_ANNUAL}}</h3>
 							<h4><i class="fa-regular fa-snowflake w3-text-sand"></i>&nbsp;Annual</h4>
 						</div>
 						<table id="SnowSeasonTable" class="w3-table">
 							<thead>
 								<tr class="w3-hide">
-									<th>Laser Depth</th><th></th><th></th>
+									<th>{{SNOWFALL_ANNUAL}}</th><th></th><th></th>
 								</tr>
 							</thead>
 						</table>
@@ -267,8 +267,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
