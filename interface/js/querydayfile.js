@@ -1,4 +1,4 @@
-// Last modified: 2025/11/22 11:32:26
+// Last modified: 2026/01/15 20:30:13
 
 let accessMode;
 
@@ -225,13 +225,15 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
-            }
-        }
-    }
+   		if (sheet.href != null && sheet.href.includes('alpaca')) {
+       		let rules = sheet.cssRules || sheet.rules;
+       		for (let rule of rules) {
+           		if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+               		return rule;
+           		}
+       		}
+   		}
+	}
     return null;
 }
 
