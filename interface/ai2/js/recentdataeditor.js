@@ -25,7 +25,7 @@ $().ready(function() {
         data: data
     })
     .done( function( result ) {
-        console.log('Processing units' + JSON.stringify(result));
+        //console.log('Processing units' + JSON.stringify(result));
         styles = "<style>\n";
         styles += "#recent tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
         styles += "#recent tbody .windUnits:after { content:\"" + result.WindUnit + "\";}\n";
