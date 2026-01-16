@@ -111,6 +111,8 @@ let setPageGeometry = function( geometry ) {
             $('#Gull1').css('bottom', 0);
         } else {
             $('#Content').css('height', windowHt + 'px');
+            //setTimeout($('#Gull1').css('position', 'fixed'), 1000);
+            //setTimeout($('#Gull1').css('bottom', $('#Footer').outerHeight( true) + 'px'),1000);
             $('#Gull1').css('position', 'fixed')
             $('#Gull1').css('bottom', $('#Footer').outerHeight( true ) + 'px');
         }
@@ -263,4 +265,7 @@ $().ready( function() {
     setPanelsStyles( cmxConfig.Panels );
     setGull( cmxConfig.Gull );
     setStaticData();
+    setTimeout(setPageGeometry(cmxConfig.Geometry),900);
 })
+
+$(window).on('resize', setPageGeometry( cmxConfig.Geometry));

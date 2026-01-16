@@ -7,7 +7,8 @@
     Role:   Data for records.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-var period = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+var period = ['','{{MONTH_01}}','{{MONTH_02}}','{{MONTH_03}}','{{MONTH_04}}','{{MONTH_05}}','{{MONTH_06}}','{{MONTH_07}}','{{MONTH_08}}','{{MONTH_09}}','{{MONTH_10}}','{{MONTH_11}}','{{MONTH_12}}'];
+var period = ['','January','February','March','April','May','June','July','August','September','October','Novermber','December','','']
 
 $().ready( function() {
 
@@ -34,11 +35,11 @@ $().ready( function() {
 		if ( startDate.getFullYear() == (dateNow.getFullYear() - 1) && startDate.getMonth() > dateNow.getMonth()){
 			console.log("Removing middle buttons.")
 			for (var btn = dateNow.getMonth() + 1; btn < startDate.getMonth(); btn++) {
-				console.log("Button to hide: " + btn);
+				//console.log("Button to hide: " + btn);
 				$('#btn' + (btn + 1)).remove();
 			}
 			var htmlX = '<span style="flex-grow:0;align-self:center;padding:0 3px;">';
-        	htmlX += '<i class="fa-solid fa-diamond ax-theme3-txt w3-small w3-hide-small"></i></span>';
+        	htmlX += '<i class="fa-solid fa-diamond ows-theme5-txt w3-hide-small" style="font-size:70%;"></i></span>';
 			//console.log("Insert after: " + parseInt(dateNow.getMonth() + 1));
         	$('#btn' + parseInt(dateNow.getMonth() + 1)).after(htmlX)
 		}
@@ -56,15 +57,15 @@ $().ready( function() {
 		switch( this.name ) {
 			case 'alltime':
 				urlPrefix = '/api/records/alltime/';
-				$('#recPeriod').text('All-time');
+				$('#recPeriod').text('{{ALL_TIME}}');
 				break;
 			case 'thismonth':
 				urlPrefix = '/api/records/thismonth/';
-				$('#recPeriod').text("This month's");
+				$('#recPeriod').text("{{THIS_MONTH}}");
 				break;
 			case 'thisyear':
 				urlPrefix = '/api/records/thisyear/';
-				$('#recPeriod').text("This year's");
+				$('#recPeriod').text("{{THIS_YEAR}}");
 				break;
 			default:
 				urlPrefix = '/api/records/month/' + this.name + '/';
@@ -105,6 +106,9 @@ $().ready( function() {
 	getData( urlPrefix + 'wind.json', 'Winds');
 	getData( urlPrefix + 'humidity.json', 'Humidity');
 	getData( urlPrefix + 'pressure.json', 'Pressure');
+
+	//	Reset Seagull
+	setPageGeometry( cmxConfig.Geometry );
 });
 
 

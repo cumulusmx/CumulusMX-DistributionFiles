@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>MySQL Settings</title>
+		<title>{{MYSQL_SETTINGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -46,16 +46,16 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-ctrl.js"></script>
-		<script src="/js/mysqlsettings.js"></script>	<!-- Uses default script -->
-		<script src="js/cssRule.js"></script>
+		<script src="js/mysqlsettings.js"></script>	<!-- Custom script - modified getCSSRule() -->
 
 		<!--	Local scripts & styles	-->
 		<script>
 		</script>
 		<style>
-			#results:before {content:"Status:"}
+			#results:before {content:"{{STATUS}}:"}
 			.alpaca-field button { border-radius:1em; background:var(--gradient-up); border:thin solid var(--color5);padding-left: 1em;padding-right:1em;}
 			.alpaca-field button:hover { background:var(--gradient-down);}
+			.alpaca-form-buttons-container {margin:0 1em 1vh 1em;;} 
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -65,9 +65,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -79,35 +79,36 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>MySQL Settings</h1>
-						<p class="tagline">Configure you MySQL settings for your own database</p>
+						<h1>{{MYSQL_SETTINGS}}</h1>
+						<p class="tagline"><!--{{MYSQL_SETTINGS_TAGLINE}}-->Configure you MySQL settings for your own database</p>
 					</div>
 				</section>
 				
 				<div class="ows-grid col1">
 					<div class="w3-card ows-theme8" style="order:1;">
+						<p style="padding:.75vh 1em 0 1em;">{{SETTINGS_USE_NOTE}}</p>
 						<form></form>
 					</div>
 				</div>
 
 				<div class="ows-flex col2">
 					<div class="w3-container ows-theme8" style="order:1; padding-top:1vh;">
-						<div class="ows-titleFlex"><h3>Create your Database</h3></div>
+						<div class="ows-titleFlex"><h3>{{MYSQL_SETTINGS_CREATE}}</h3></div>
 						<div class="ows-btnBar">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createmonthly" aria-label="Create the monthly database data">Create Monthly</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createdayfile" aria-label="Create the Dayfile database data">Create Dayfile</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createrealtime" aria-label="Create the Realtime database data">Create Realtime</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createmonthly" aria-label="Create the monthly database data">{{MYSQL_SETTINGS_CREATE_MONTHLY}}</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createdayfile" aria-label="Create the Dayfile database data">{{MYSQL_SETTINGS_CREATE_DAYFILE}}</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="createrealtime" aria-label="Create the Realtime database data">{{MYSQL_SETTINGS_CREATE_REALTIME}}</button>
 						</div>
 						<p class="w3-center">You <strong>MUST</strong> save your settings first</p>
 					</div>
 					<div class="w3-container ows-theme8" style="order:2; padding-top:1vh">
-						<div class="ows-titleFlex"><h3>Update database tables</h3></div>
+						<div class="ows-titleFlex"><h3>{{MYSQL_SETTINGS_UPDATE}}</h3></div>
 						<div class="ows-btnBar">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updatemonthly" aria-label="Update the monthly database table">Update Monthly</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updatedayfile" aria-label="Update the dayfile database table">Update Dayfile</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updaterealtime" aria-label="Update the realtime database table">Update Realtime</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updatemonthly" aria-label="Update the monthly database table">{{MYSQL_SETTINGS_UPDATE_MONTHLY}}</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updatedayfile" aria-label="Update the dayfile database table">{{MYSQL_SETTINGS_UPDATE_DAYFILE}}</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" id="updaterealtime" aria-label="Update the realtime database table">{{MYSQL_SETTINGS_UPDATE_REALTIME}}</button>
 						</div>
-						<p><strong>Note</strong>: This will add missing columns to the table, but will <strong>not</strong> update existing columns</p>
+						<p>{{MYSQL_SETTINGS_UPDATE_NOTE}}</p>
 					</div>
 					<div class="alert alert-success no-shadow" role="alert" id="results" style="order:3"></div>
 				</div>	<!--	End of one column layout	-->
@@ -116,8 +117,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

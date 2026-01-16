@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>NOAA Monthly Reports</title>
+		<title>{{NOAA_MONTHLY_REPORT}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -96,9 +96,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -110,19 +110,19 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>NOAA Monthly Reports</h1>
-						<p class="tagline">Generated at midnight each day.</p>
+						<h1>{{NOAA_MONTHLY_REPORT}}</h1>
+						<p class="tagline"><!--{{NOAA_REPORTS_TAGLINE}}-->Generated at midnight each day</p>
 					</div>
 
 					<div class="ows-btnBar">
-						<span>Year:&nbsp;<select class="ows-theme-grad-down-hvr" id="selYear" aria-label="select year"></select></span>
-						<span>month:&nbsp;<select class="ows-theme-grad-down-hvr" id="selMonth" aria-label="select month"></select></span>
-						<button type="button" class="w3-button ows-theme-grad-down-hvr" id="load-button" onclick="load()" style="flex-grow:0;">Load Report</button>
-						<button type="button" class="w3-button w3-khaki ows-theme-grad-down-hvr" id="generate-button" style="flex-grow:0;" onclick="generate()">(Re)Generate Report</button>
-						<button type="button" class="w3-button w3-lime ows-theme-grad-down-hvr" id="generateAll-button" style="flex-grow:0;" onclick="generateAll()">(Re)Generate all missing</button>
-						<button type="button" class="w3-button w3-pale-red ows-theme-grad-down-hvr" id="upload-button" style="flex-grow:0;" onClick="uploadRpt()">Re-upload Report</button>
+						<span>{{SELECT_YEAR}}:&nbsp;<select class="ows-theme-grad-down-hvr" id="selYear" aria-label="select year"></select></span>
+						<span>{{MONTH}}:&nbsp;<select class="ows-theme-grad-down-hvr" id="selMonth" aria-label="select month"></select></span>
+						<button type="button" class="w3-button ows-theme-grad-down-hvr" id="load-button" onclick="load()" style="flex-grow:0;">{{LOAD_REPORT}}</button>
+						<button type="button" class="w3-button w3-khaki ows-theme-grad-down-hvr" id="generate-button" style="flex-grow:0;" onclick="generate()">{{REGENERATE_THIS_REPORT}}</button>
+						<button type="button" class="w3-button w3-lime ows-theme-grad-down-hvr" id="generateAll-button" style="flex-grow:0;" onclick="generateAll()">{{REGENERATE_ALL_MISSING_REPORTS}}</button>
+						<button type="button" class="w3-button w3-pale-red ows-theme-grad-down-hvr" id="upload-button" style="flex-grow:0;" onClick="uploadRpt()">{{REUPLOAD_REPORT}}</button>
 					</div>
-					<p class="w3-center w3-small">Note that reports created with a different UTF-8 format option than current will not display the degree symbol correctly</p>
+					<p class="w3-center w3-small">{{NOAA_REPORTS_NOTE}}</p>
 				</section>
 
 				<section>
@@ -136,8 +136,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

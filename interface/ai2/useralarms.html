@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Configure User Alarms</title>
+		<title>{{USER_ALARMS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -50,7 +50,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-ctrl.js"></script>
-		<script src="/js/useralarms.js"></script>	<!--	Uses default script	-->
+		<script src="js/useralarms.js"></script>	<!-- Custom script - modified getCSSRule()	-->
 
 		<!--	Local scripts & styles	-->
 		<script>
@@ -99,7 +99,7 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>{{USER_ALARMS}}</h1>
+						<h1><!--{{CONFIGURE}} -->{{USER_ALARMS}}</h1>
 						<p class="tagline"><!--{{USER_ALARMS_TAGLINE}}-->Set your own alarms (and actions).</p>
 					</div>
 				</section>
@@ -118,31 +118,31 @@
 						<div class="ows-titleFlex w3-stretch"><h4>Notes</h4></div>
 						<div class="ows-notes">
 							<p>Name:</p>
-							<p>A descriptive name for the alarm, this will appear in emails, the dashboard and the diagnostic log.<br>
+							<p>{{USER_ALARMS_NAME}}<br>
 							- The name should be unique and short.</p>
 							<p>Bluesky Template:</p>
-							<p>Path to a Bluesky template file (see Third party uploads for template details) to create a post to Bluesky when the alarm occurs.<br>
-								Leaving this field blank suppresses the creation of a post.</p>
-							<p>Web Tag:</p>
-							<p>Enter a <b><i>single</i></b> valid numeric or boolean web tag to be tested.<br>
-								- If the tag is a decimal value and your locale uses comma decimals, you must use the rc=y web tag option.<br>
-								- You can use boolean web tags, they are treated as numeric values 0 (false) or 1 (true).</p>
+							<p>{{USER_ALARMS_BLUESKY}}<br>{{USER_ALARMS_BLUESKY_NOTE}}</p>
+							<p>{{USER_ALARMS_WEBTAG}}</p>
+							<p>{{USER_ALARMS_WEBTAG_NOTE1}}<br>
+								{{USER_ALARMS_WEBTAG_NOTE2}}<br>{{USER_ALARMS_WEBTAG_NOTE3}}<br>
+								{{USER_ALARMS_WEBTAG_NOTE4}}
+							</p>
 							<p>Latch:</p>
-							<p>Controls if the alarm is latched. If latched, the alarm will not be triggered again until the latch hours expire.</p>
-							<p>Type:</p>
-							<p>Determines if the alarm is triggered if the web tag value is above, below or equal to the alarm value.</p>
+							<p>{{USER_ALARMS_LATCH}}</p>
 							<p>Latch Hours:</p>
-							<p>The number of hours the alarm is latched for.</p>
+							<p>{{USER_ALARMS_LATCH_HOURS}}</p>
+							<p>Type:</p>
+							<p>{{USER_ALARMS_TYPE}}</p>
 							<p>Value:</p>
-							<p>The alarm threshold value to be tested against the web tag value.</p>
+							<p>{{USER_ALARMS_VALUE}}</p>
 							<p>Action:</p>
-							<p>If non-blank, a program or script that is executed when the alarm is triggered.</p>
+							<p>{{USER_ALARMS_ACTION}}</p>
 							<p><strong>Email</strong></p>
-							<p>Controls if the alarm sends an email when triggered. The email values from the standard alarms are used.</p>
+							<p>{{USER_ALARMS_EMAIL}}</p>
 							<p>Action Params:</p>
-							<p>Parameters to be passed to the action program or script, the parameters can contain web tags.</p>
+							<p>{{USER_ALARMS_ACTION_PARAMS}}</p>
 							<p>Email Msg</p>
-							<p>Text to send in the email, you can use the parameter {0} to represent the current web tag value.</p>
+							<p>{{USER_ALARMS_EMAIL_MSG}}</p>
 						</div>
 					</div>
 				</div>	<!--	End of one column layout	-->

@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Selected Period Records</title>
+		<title>{{THIS_PERIOD}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -66,7 +66,7 @@
 			#HumsPanel{ grid-area: hums;}
 			#PressPanel{ grid-area: press;}
 			.ows-titleGrid { margin-bottom:0;}
-			@media (max-width: 1000px) { /* Set this value to dictate when it goes to a single column */
+			@media (max-width: 2000px) { /* Set this value to dictate when it goes to a single column */
 				#customGrid { 
 					grid-template-columns: 1fr;
 					grid-template-areas: "select" "temps" "rain" "winds" "hums" "press";
@@ -92,9 +92,9 @@
 				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 				<div id="siteInfo">
 					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
-					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>Altitude:</p><p><span data-cmxData="altitude">zzm</span></p>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zzm</span></p>
 				</div>
 				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
@@ -106,100 +106,100 @@
 			<div id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Selected Period Records</h1>
-						<p class="tagline">Records for a user selected period</p>
+						<h1>{{THIS_PERIOD_HIGHS_AND_LOWS}}</h1>
+						<p class="tagline"><!--{{THIS_PERIOD_TAGLINE}}-->Records for a user selected period</p>
 					</div>
 				</section>
 
 				<section id="customGrid">
 					<div id="SelectPanel" class="w3-container ows-theme0 no-shadow">
 						<div class="ows-btnBar" style="justify-content: center; align-items:baseline;column-gap:2em; margin-bottom:0;">
-							<div style="flex-grow:0;">Start Date:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
-							<div style="flex-grow:0;">End Date:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0; width:160px;" onclick="load()">Load</button>
+							<div style="flex-grow:0;">{{START_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
+							<div style="flex-grow:0;">{{END_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0; width:160px;" onclick="load()">{{LOAD}}</button>
 						</div>
 					</div>
 					<div id="TempsPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>Temperatures</h2><i class="fa-solid fa-temperature-half"></i>
+							<h2>{{TEMPERATURES}}</h2><i class="fa-solid fa-temperature-half"></i>
 						</div>
 						<!-- Content -->
 						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
+							<p class="w3-right-align"><strong><!--{{READING}}-->Reading</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
 							<div class="ignore">
-								<p class="">High Temperature</p>
+								<p class="">{{HIGH_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highTempTimeDayfile" class=""></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low Temperature</p>
+								<p class="">{{LOW_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowTempTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High Dew Point</p>
+								<p class="">{{HIGH_DEW_POINT}}</p>
 								<p class="w3-right-align"><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highDewPointTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low Dew Point</p>
+								<p class="">{{LOW_DEW_POINT}}</p>
 								<p class="w3-right-align"><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowDewPointTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High apparent temp.</p>
+								<p class="">{{HIGH_APPARENT_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highApparentTempTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low apparent temp.</p>
+								<p class="">{{LOW_APPARENT_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowApparentTempTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High Feels Like</p>
+								<p class="">{{HIGH_FEELS_LIKE}}</p>
 								<p class="w3-right-align"><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highFeelsLikeTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low Feels like</p>
+								<p class="">{{LOW_FEELS_LIKE}}</p>
 								<p class="w3-right-align"><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowFeelsLikeTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High Humidex</p>
+								<p class="">{{HIGH_HUMIDEX}}</p>
 								<p class="w3-right-align"><span id="highHumidexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highHumidexTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low Wind Chill</p>
+								<p class="">{{LOW_WIND_CHILL}}</p>
 								<p class="w3-right-align"><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowWindChillTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High Heat Index</p>
+								<p class="">{{HIGH_HEAT_INDEX}}</p>
 								<p class="w3-right-align"><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highHeatIndexTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest minimum temp</p>
+								<p class="">{{HIGH_MINIMUM_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highMinTempTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low maximum temp</p>
+								<p class="">{{LOWEST_MAXIMUM_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowMaxTempTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">High daily temp range</p>
+								<p class="">{{HIGH_DAILY_TEMPERATURE_RANGE}}</p>
 								<p class="w3-right-align"><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highDailyTempRangeTimeDayfile"></span></p>
 							</div>
 							<div class="ignore">
-								<p class="">Low daily temp range</p>
+								<p class="">{{LOW_DAILY_TEMPERATURE_RANGE}}</p>
 								<p class="w3-right-align"><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowDailyTempRangeTimeDayfile"></span></p>
 							</div>
@@ -207,45 +207,45 @@
 					</div>
 					<div id="RainPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>Rainfall</h2><i class="fa-solid fa-droplet w3-text-blue"></i>
+							<h2>{{RAINFALL}}</h2><i class="fa-solid fa-droplet w3-text-blue"></i>
 						</div>
 						<!-- Content -->
 						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
+							<p class="w3-right-align"><strong><!--{{READING}}-->Reading</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
 							<div class="ignore">
-								<p class="">Highest rain rate</p>
+								<p class="">{{HIGH_RAIN_RATE}}</p>
 								<p class="w3-right-align"><span id="highRainRateValDayfile"></span><span class="unit-rain"></span>/hr</p>
 								<p class=" w3-right-align" id="highRainRateTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest hourly rain</p>
+								<p class="">{{HIGH_HOURLY_RAIN}}</p>
 								<p class="w3-right-align"><span id="highHourlyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highHourlyRainTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest daily rain</p>
+								<p class="">{{HIGH_DAILY_RAIN}}</p>
 								<p class="w3-right-align"><span id="highDailyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highDailyRainTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest 24hr rain</p>
+								<p class="">{{HIGH_24_HOUR_RAIN}}</p>
 								<p class="w3-right-align"><span id="highRain24hValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highRain24hTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest monthly rain</p>
+								<p class="">{{HIGH_MONTHLY_RAINFALL}}</p>
 								<p class="w3-right-align"><span id="highMonthlyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highMonthlyRainTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Longest dry period</p>
+								<p class="">{{LONGEST_DRY_PERIOD}}</p>
 								<p class="w3-right-align"><span id="longestDryPeriodValDayfile"></span> day(s)</p>
 								<p class="w3-right-align" id="longestDryPeriodTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Longest wet period</p>
+								<p class="">{{LONGEST_WET_PERIOD}}</p>
 								<p class="w3-right-align"><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
 								<p class="w3-right-align" id="longestWetPeriodTimeDayfile">-</p>
 							</div>
@@ -253,25 +253,25 @@
 					</div>
 					<div id="WindsPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>Winds</h2><i class="fa-solid fa-wind"></i>
+							<h2>{{WIND}}</h2><i class="fa-solid fa-wind"></i>
 						</div>
 						<!-- Content -->
 						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
+							<p class="w3-right-align"><strong><!--{{READING}}-->Reading</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
 							<div class="ignore">
-								<p class="">Highest gust speed</p>
+								<p class="">{{HIGH_GUST_SPEED}}</p>
 								<p class="w3-right-align"><span id="highGustValDayfile"></span><span class="unit-wind"></span></p>
 								<p class="w3-right-align" id="highGustTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Highest average speed</p>
+								<p class="">{{HIGH_WIND_SPEED}}</p>
 								<p class="w3-right-align"><span id="highWindValDayfile"></span><span class="unit-wind"></span></p>
 								<p class="w3-right-align" id="highWindTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Longest daily wind run</p>
+								<p class="">HIGH_DAILY_WIND_RUN</p>
 								<p class="w3-right-align"><span id="highWindRunValDayfile"></span><span class="unit-windrun"></span></p>
 								<p class="w3-right-align" id="highWindRunTimeDayfile"></p>
 							</div>
@@ -279,20 +279,20 @@
 					</div>
 					<div id="HumsPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>Relative Humidity</h2><i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
+							<h2>{{HUMIDITY}}</h2><i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
 						</div>
 						<!-- Content -->
 						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
+							<p class="w3-right-align"><strong><!--{{READING}}-->Reading</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
 							<div class="ignore">
-								<p class="">Highest humidity</p>
+								<p class="">{{HIGH_HUMIDITY}}</p>
 								<p class="w3-right-align"><span id="highHumidityValDayfile"></span>%</p>
 								<p class="w3-right-align" id="highHumidityTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Lowest humidity</p>
+								<p class="">{{LOW_HUMIDITY}}</p>
 								<p class="w3-right-align"><span id="lowHumidityValDayfile"></span>%</p>
 								<p class="w3-right-align" id="lowHumidityTimeDayfile"></p>
 							</div>
@@ -300,20 +300,20 @@
 					</div>
 					<div id="PressPanel" class="w3-container ows-theme8">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>Pressure</h2><i class="fa-solid fa-compress fa-beat w3-text-orange"></i>
+							<h2>{{PRESSURE}}</h2><i class="fa-solid fa-compress fa-beat w3-text-orange"></i>
 						</div>
 						<!-- Content -->
 						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
+							<p class="w3-right-align"><strong><!--{{READING}}-->Reading</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
 							<div class="ignore">
-								<p class="">Highest pressure</p>
+								<p class="">{{HIGH_PRESSURE}}</p>
 								<p class="w3-right-align"><span id="highBarometerValDayfile"></span><span class="unit-press"></span></p>
 								<p class="w3-right-align" id="highBarometerTimeDayfile"></p>
 							</div>
 							<div class="ignore">
-								<p class="">Lowest pressure</p>
+								<p class="">{{LOW_PRESSURE}}</p>
 								<p class="w3-right-align"><span id="lowBarometerValDayfile"></span><span class="unit-press"></span></p>
 								<p class="w3-right-align" id="lowBarometerTimeDayfile"></p>
 							</div>
@@ -325,8 +325,8 @@
 		
 		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
