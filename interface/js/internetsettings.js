@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 12:00:43
+// Last modified: 2026/01/16 15:59:23
 
 let accessMode;
 
@@ -466,10 +466,12 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
+        if (sheet.href.includes('alpaca')) {
+            const rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                    return rule;
+                }
             }
         }
     }
@@ -477,7 +479,7 @@ function getCSSRule(search) {
 }
 
 function onAccessChange(that, val) {
-    let mode = val == null ? that.getValue() : val;
+    const mode = val == null ? that.getValue() : val;
     if (mode == accessMode) {
         return;
     }
@@ -491,8 +493,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.removeProperty('display');
-        expanded.style.removeProperty('display');
+        expandable.style.setProperty('display','');
+        expanded.style.setProperty('display','');
         removeButtons();
     }
 }
