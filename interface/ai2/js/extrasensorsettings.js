@@ -1,9 +1,15 @@
-// Last modified: 2026/01/16 16:03:16
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: extrasensorsettings.js      Ver: 1.0.0
+    Author: DNC Thomas                  Jan 2026
+    Edited: 2026-01-16 13:30:48
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule()
+// Last modified: 2025/12/28 18:03:02
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
 
-$(document).ready(function () {
+$().ready(function () {
 
     $('form').alpaca({
         dataSource: '/api/settings/extrasensordata.json',
@@ -259,18 +265,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href.includes('alpaca')) {
-            const rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+  	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {
@@ -288,8 +308,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.setProperty('display','');
-        expanded.style.setProperty('display','');
+        expandable.style.removeProperty('display');
+        expanded.style.removeProperty('display');
         removeButtons();
     }
 }

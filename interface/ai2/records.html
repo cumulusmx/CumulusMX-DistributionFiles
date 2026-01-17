@@ -73,9 +73,9 @@
 				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
 				<div id="siteInfo">
 					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
-					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>Altitude:</p><p><span data-cmxData="altitude">zzm</span></p>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zzm</span></p>
 				</div>
 				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
@@ -87,8 +87,8 @@
 			<div id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1><span id="recPeriod"></span> Records</h1>
-						<p class="tagline">Records as of: <span data-cmxData="update"></span></p>
+						<h1><span id="recPeriod"></span> {{RECORDS}}</h1>
+						<p class="tagline"><!--{{RECORDS_AS_OF}}-->Records as of: <span data-cmxData="update"></span></p>
 					</div>
 				</section>
 
@@ -151,7 +151,7 @@
 							<div class="w3-stretch ows-dataRowGrid threeC ows-theme6">
 								<h5>&nbsp;</h5>
 								<h5 class="w3-right-align">{{RECORDS}}</h5>
-								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd d, mmmm YYYY hh:MM)</span></h5>
+								<h5 class="w3-center">{{DATE}} <span class="w3-tiny">(dddd, d mmmm YYYY hh:MM)</span></h5>
 							</div>
 							<div id="Winds"></div>
 						</div>
@@ -190,8 +190,8 @@
 		
 		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

@@ -1,10 +1,8 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: customlogs.js        	Ver: aiX-1.0
-    Author: M Crossley & N Thomas
+    Script: customlogs.js        	Ver: 1.0.0
+    Author: M Crossley & N Thomas   Jan 2026
     Last Edit (MC): 2024/09/27 10:20:45
-    Last Edit (NT): 2025/03/21
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Role:   Form for customlogs.html
+    Last Edit (NT): 2026-01-16 15:28:24
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
@@ -200,7 +198,7 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
         if (sheet.href != null && sheet.href.includes('alpaca')) {
             let rules = sheet.cssRules || sheet.rules;
@@ -212,6 +210,22 @@ function getCSSRule(search) {
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {

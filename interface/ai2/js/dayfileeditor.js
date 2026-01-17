@@ -27,7 +27,7 @@ $(document).ready(function() {
         data: data
     })
     .done( function( result ) {
-        console.log('Processing units' + JSON.stringify(result));
+        //console.log('Processing units' + JSON.stringify(result));
         styles = "<style>\n";
         styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
         styles += "#datalog tbody .windUnits:after { content:\"" + result.WindUnit + "\";}\n";

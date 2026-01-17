@@ -1,4 +1,8 @@
-// Last modified: 2026/01/16 15:54:26
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: calibrationsettings.js      Ver: 1.0.0
+    Author: DNC Thomas      			Jan 2026
+    Edited: 2026-01-10 17:04:06
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 let accessMode;
 
@@ -131,6 +135,7 @@ $(document).ready(() => {
             }
         });
     });
+	setPageGeometry( cmxConfig.Geometry);
 });
 
 const addButtons = () => {
@@ -165,8 +170,8 @@ const removeButtons = () => {
     });
 }
 
-function setCollapsed() {
-    $('form div.alpaca-container.collapse').each(function () {
+const setCollapsed = () => {
+    $('form div.alpaca-container.collapse').each(() => {
         let span = $(this).siblings('legend:first').children('span:first');
         if ($(this).hasClass('in')) {
             span.attr('role', 'treeitem');
@@ -179,19 +184,19 @@ function setCollapsed() {
     });
 }
 
+/*
 const getCSSRule = (search) => {
     for (let sheet of document.styleSheets) {
-        if (sheet.href.includes('alpaca')) {
-            const rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                    return rule;
-                }
+        const rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
 }
+*/
 
 const onAccessChange = (that, val) => {
     const mode = val == null ? that.getValue() : val;
@@ -208,8 +213,8 @@ const onAccessChange = (that, val) => {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.setProperty('display','');
-        expanded.style.setProperty('display','');
+        expandable.style.removeProperty('display');
+        expanded.style.removeProperty('display');
         removeButtons();
     }
 }
@@ -219,4 +224,21 @@ const setlabel = (that, val) => {
     label += ' (' + val + '):';
     that.options.label = label;
     that.refresh();
+}
+
+//	Modified getCSSRule() function
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }

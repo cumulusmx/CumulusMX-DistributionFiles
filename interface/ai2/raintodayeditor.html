@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Edit Today's Rain</title>
+		<title>{{TODAYS_RAIN_EDITOR}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -61,9 +61,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>ALTITUDE:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -75,31 +75,30 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Edit Today's Rain</h1>
+						<h1>{{TODAYS_RAIN_EDITOR}}</h1>
 					</div>
 				</section>
 
 				<div class="ows-flex col3 ows-fixed">
 					<div class="w3-container ows-theme8">
 						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h3>Adjust current rainfall</h3>
+							<h3><!--{{TODAYS_RAIN_EDITOR_TITLE}}-->Adjust current rainfall</h3>
 							<i class="fa-solid fa-droplet" style="color:#00f;"></i>
 						</div>
 						<form id="rainform">
 							<div id="rainGrid">
-								<label for="inputCurrentCounter">Current rainfall counter:</label>
+								<label for="inputCurrentCounter">{{CURRENT_RAIN_COUNTER}}:</label>
 								<input type="number" class="w3-right-align ows-theme1" id="inputCurrentCounter" step="0.01" readonly>
-								<label for="inputStartCounter">Start of day rain counter:</label>
+								<label for="inputStartCounter">{{START_OF_DAY_RAIN_COUNTER}}:</label>
 								<input type="number" class="w3-right-align ows-theme1" id="inputStartCounter" step="0.01" readonly>
-								<label for="inputRainMultiplier">Rain multiplier:</label>
+								<label for="inputRainMultiplier">{{RAIN_MULTIPLIER}}:</label>
 								<input type="number" class="w3-right-align ows-theme1" id="inputRainMultiplier" step="0.001" readonly>
 								<div class="mnuDivider" style="grid-column-start:span 2;"></div>
-								<label for="inputRainToday">Today's Rain</label>
+								<label for="inputRainToday">{{RAIN_TODAY}}</label>
 								<input type="number" class="w3-center ows-theme0 ows-theme-grad-down-hvr" id="inputRainToday" name="raintoday" step="0.01">
 								<div class="mnuDivider" style="grid-column-start:span 2;"></div>
-								<p>&nbsp;</p>
-								<div class="ows-btnBar" style="justify-items: stretch;">
-									<button type="submit" class="w3-button ows-theme-grad-down-hvr" aria-label="Apply">Apply</button>
+								<div class="ows-btnBar" style="justify-content: flex-end; grid-column-start: span 2;">
+									<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0;" aria-label="Apply">{{APPLY_CHANGES}}</button>
 								</div>
 							</div>
 						</form>
@@ -110,8 +109,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
  

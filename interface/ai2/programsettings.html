@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Program Settings</title>
+		<title>{{PROGRAM_SETTINGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -46,7 +46,7 @@
 
 		<!--	Sitewide Scripts	-->
 		<script src="js/ai-page-ctrl.js"></script>
-		<script src="/js/programsettings.js"></script>	<!-- Now using the default script	-->
+		<script src="js/programsettings.js"></script>	<!-- Custom script for getCSSRule() only	-->
 		<script src="js/cssRule.js"></script>
 
 		<!--	Local scripts & styles	-->
@@ -55,7 +55,7 @@
 		<style>
 			.alpaca-field button { border-radius:1em; background:var(--gradient-up); border:thin solid var(--color5);padding-left: 1em;padding-right:1em;}
 			.alpaca-field button:hover { background:var(--gradient-down);}
-			#results:before {content:"Status:"}			
+			#results:before {content:"{{STATUS}}:"}			
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -65,9 +65,9 @@
                 <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
                 <div id="siteInfo">
                     <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>Latitude:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>Longitude:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>Altitude:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
                 </div>
                 <nav id="MainMenu" class="ows-theme6"></nav>
             </section>
@@ -79,8 +79,8 @@
             <section id="subContent" class="pageWidth">
  				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Program Settings</h1>
-						<p class="tagline">Settings that affect the way CumulusMX itself works</p>
+						<h1>{{PROGRAM_SETTINGS}}</h1>
+						<p class="tagline"><!--{{PROGRAM_SETTINGS_TAGLINES}}-->Settings that affect the way CumulusMX itself works</p>
 					</div>
 				</section>
 
@@ -95,8 +95,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 

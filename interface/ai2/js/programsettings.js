@@ -1,14 +1,18 @@
-// Last modified: 2026/01/16 16:15:02
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: programsettings.js      Ver: 1.0.0
+    Author: DNC Thomas              Jan 2026
+    Edited: 2026-01-16 12:33:18
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule() function
 
 let accessMode;
 
-$(document).ready(function () {
+$().ready(function () {
     $('form').alpaca({
-        dataSource: '/api/settings/langdata.json',
-        optionsSource: '/json/LanguageOptions.json',
-        schemaSource: '/json/LanguageSchema.json',
+        dataSource: '/api/settings/programdata.json',
+        optionsSource: '/json/ProgramOptions.json',
+        schemaSource: '/json/ProgramSchema.json',
         view: 'bootstrap-edit-horizontal',
-        ui: 'bootstrap',
         options: {
             form: {
                 buttons: {
@@ -22,7 +26,7 @@ $(document).ready(function () {
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: '/api/setsettings/updatelanguage.json',
+                                    url: '/api/setsettings/updateprogramconfig.json',
                                     data: {json: JSON.stringify(json)},
                                     dataType: 'text'
                                 })
@@ -49,7 +53,7 @@ $(document).ready(function () {
             }
         },
         postRender: function (form) {
-            // Change if accessibility is enabled
+            // Change in accessibility is enabled
             let accessObj = form.childrenByPropertyId['accessible'];
             onAccessChange(null, accessObj.getValue());
             accessMode = accessObj.getValue();
@@ -58,19 +62,8 @@ $(document).ready(function () {
                 setCollapsed();  // sets the class and aria attribute missing on first load by Alpaca
             }
 
-            setCompassLabels(form);
-            setSensorLabels(form, 'extraTemp');
-            setSensorLabels(form, 'extraHum');
-            setSensorLabels(form, 'extraDP');
-            setSensorLabels(form, 'userTemp');
-            setSensorLabels(form, 'soilTemp');
-            setSensorLabels(form, 'soilMoist');
-            setSensorLabels(form, 'leafWet');
-            setSensorLabels(form, 'airQuality/sensor');
-            setSensorLabels(form, 'airQuality/sensorAvg');
-            setSensorLabels(form, 'airQuality/sensor10');
-            setSensorLabels(form, 'airQuality/sensor10Avg');
-            setSensorLabels(form, 'laser');
+            // Trigger changes is the accessibility mode is changed
+            accessObj.on('change', function() {onAccessChange(this)});
         }
     });
 });
@@ -122,18 +115,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href.includes('alpaca')) {
-            const rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {
@@ -151,31 +158,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.setProperty('display','');
-        expanded.style.setProperty('display','');
+        expandable.style.removeProperty('display');
+        expanded.style.removeProperty('display');
         removeButtons();
     }
 }
-
-function setCompassLabels(form) {
-    let i = 0;
-    let pnts = ['{{COMPASS_N}}','{{COMPASS_NNE}}','{{COMPASS_NE}}','{{COMPASS_ENE}}','{{COMPASS_E}}','{{COMPASS_ESE}}','{{COMPASS_SE}}','{{COMPASS_SSE}}','{{COMPASS_S}}','{{COMPASS_SSW}}','{{COMPASS_SW}}','{{COMPASS_WSW}}','{{COMPASS_W}}','{{COMPASS_WNW}}','{{COMPASS_NW}}','{{COMPASS_NNW}}'];
-
-    form.getControlByPath('compass')
-        .children
-        .forEach(sensor => {
-            sensor.options.label = pnts[i++];
-            sensor.refresh()
-        });
-}
-
-function setSensorLabels(form, path) {
-    let i = 1;
-    form.getControlByPath(path)
-        .children
-        .forEach(sensor => {
-            sensor.options.label = '{{SENSOR}} ' + i++;
-            sensor.refresh()
-        });
-}
-

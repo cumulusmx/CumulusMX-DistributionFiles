@@ -1,20 +1,19 @@
-// Last modified: 2026/01/16 16:08:43
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: mysqlsettings.js      Ver: 1.0.0
+    Author: DNC Thomas            Jan 2026
+    Edited: 2026-01-16 13:08:45
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule()
+// Last modified: 2025/08/22 12:08:09
 
 let accessMode;
 
-$(document).ready(function() {
-
-    $.ajax({url: '/api/info/version.json', dataType:'json', success: function (result) {
-        $('#Version').text(result.Version);
-        $('#Build').text(result.Build);
-    }});
-
-    // Create the form
-
+$().ready(function () {
     $('form').alpaca({
-        dataSource: '/api/settings/mqttdata.json',
-        optionsSource: '/json/MqttOptions.json',
-        schemaSource: '/json/MqttSchema.json',
+        dataSource: '/api/settings/mysqldata.json',
+        optionsSource: '/json/MySqlOptions.json',
+        schemaSource: '/json/MySqlSchema.json',
+        ui: 'bootstrap',
         view: 'bootstrap-edit-horizontal',
         options: {
             form: {
@@ -29,7 +28,7 @@ $(document).ready(function() {
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: '/api/setsettings/updatemqttconfig.json',
+                                    url: '/api/setsettings/updatemysqlconfig.json',
                                     data: {json: JSON.stringify(json)},
                                     dataType: 'text'
                                 })
@@ -68,13 +67,6 @@ $(document).ready(function() {
             // Trigger changes is the accessibility mode is changed
             //accessObj.on('change', function() {onAccessChange(this)});
 
-            // Set Aria attributes on table checkboxes
-            $('table input:checkbox').each(function () {
-                let text = $(this).closest('.form-group').find('label').html();
-                let file = $(this).closest('tr').find('input').val();
-                $(this).attr('aria-label', text + ' file ' + file);
-            });
-
             // Set password fields to 'reveal' when they have focus
             $(':password')
             .focusout(function() {
@@ -85,6 +77,92 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#createmonthly').click(function () {
+        $('#results').text('{{ATTEMPTING_CREATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/createmonthlysql.json',
+            success: function (msg) {
+                $('#results').text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $('#results').text(textStatus);
+            }
+        });
+    });
+
+    $('#createdayfile').click(function () {
+        $('#results').text('{{ATTEMPTING_CREATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/createdayfilesql.json',
+            success: function (msg) {
+                $('#results').text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $('#results').text(textStatus);
+            }
+        });
+    });
+
+    $('#createrealtime').click(function () {
+        $('#results').text('{{ATTEMPTING_CREATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/createrealtimesql.json'
+        })
+        .done(function (msg) {
+            $('#results').text(msg.result);
+        })
+        .fail(function (jqXHR, textStatus) {
+            alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
+        });
+    });
+
+
+    $('#updatemonthly').click(function () {
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/updatemonthlysql.json',
+            success: function (msg) {
+                $('#results').text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $('#results').text(textStatus);
+            }
+        });
+    });
+
+    $('#updatedayfile').click(function () {
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/updatedayfilesql.json',
+            success: function (msg) {
+                $('#results').text(msg.result);
+            },
+            error: function (xhr, textStatus, error) {
+                $('#results').text(textStatus);
+            }
+        });
+    });
+
+    $('#updaterealtime').click(function () {
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
+        $.ajax({
+            type: 'POST',
+            url: '/api/setsettings/updaterealtimesql.json'
+        })
+        .done(function (msg) {
+            $('#results').text(msg.result);
+        })
+        .fail(function (jqXHR, textStatus) {
+            alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
+        });
+    });
+
 });
 
 function addButtons() {
@@ -133,18 +211,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href.includes('alpaca')) {
-            const rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {
@@ -162,8 +254,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.setProperty('display','');
-        expanded.style.setProperty('display','');
+        expandable.style.removeProperty('display');
+        expanded.style.removeProperty('display');
         removeButtons();
     }
 }
