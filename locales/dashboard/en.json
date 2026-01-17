@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/01/15 22:18:44",
+    "_LAST_MODIFIED": "Last modified: 2026/01/16 21:04:29",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -71,6 +71,7 @@
     "BASE": "Base",
     "BASIC_SHADOW": "Basic shadows",
     "BEARING": "Bearing",
+    "BGT": "Black Globe Temp",
     "BLUESKY_FILE": "Bluesky file",
     "CALENDAR": "Calendar",
     "CALIB_SETTINGS_TAGLINE": "Settings that adjust anomalies in your data readings.",
@@ -731,6 +732,7 @@
     "VALUE": "Value",
     "VIEW_DATA": "View Data",
     "VIEWING_FORMAT": "Viewing Format",
+    "WBGT": "Wet Bulb Globe Temp",
     "WEATHER_CONDITIONS_EDITOR": "Weather Conditions Editor",
     "WEATHER_DATA": "Weather Data",
     "WEATHER_RECORDS": "Weather Records",

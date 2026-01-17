@@ -1,4 +1,4 @@
-// Last modified: 2026/01/13 14:25:23
+// Last modified: 2026/01/16 21:03:20
 
 var myTable;
 var currMonth;
@@ -165,7 +165,9 @@ $(document).ready(function () {
             {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep},
             {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep},
             {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep},
-            {title: '{{HUMIDEX}}', type: 'number', step: tempStep}
+            {title: '{{HUMIDEX}}', type: 'number', step: tempStep},
+            {title: '{{BGT}}', type: 'number', step: tempStep},
+            {title: '{{WBGT}}', type: 'number', step: tempStep}
         ];
 
         myTable = $('#datalog').dataTable({

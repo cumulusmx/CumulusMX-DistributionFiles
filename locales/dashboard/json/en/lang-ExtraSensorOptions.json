@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/28 14:55:46",
+    "_LAST_MODIFIED": "Last modified: 2026/01/17 17:46:17",
     "AL_ADDED_TO_STATION_LABEL": "This AirLink has been added as a Node to my main WLL station",
     "AL_ADDED_TO_STATION": "Added to station",
     "AL_AUTO_DISCOVERY_HELP1": "If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
@@ -34,6 +34,8 @@
     "AQI_LKI": "Netherlands - LKI",
     "AQI_BELAQI": "Belgium - BelAQI",
     "AQI": "Air Quality Index",
+    "BGT": "Black Globe Temp",
+    "BGT_LABEL": "Use the Black Globe Temperature data from your extra station",
     "BLAKE_LARSEN_HELP1": "Use an attached Blake-Larsen sun recorder to determine hours of sunshine - reads the SRsunshine.dat file",
     "BLAKE_LARSEN": "Use a Blake-Larsen sunshine recorder for sunshine hours",
     "CAMERA_LABEL": "Use the web cam URL for your Ecowitt camera",

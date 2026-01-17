@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/28 14:50:33",
+	"version": "Last Modified: 2026/01/17 17:39:15",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -175,6 +175,9 @@
 							"type": "boolean"
 						},
 						"useCamera": {
+							"type": "boolean"
+						},
+						"useBGT": {
 							"type": "boolean"
 						},
 						"setcustom": {
@@ -384,6 +387,9 @@
 							"type": "boolean"
 						},
 						"useLaserDist": {
+							"type": "boolean"
+						},
+						"useBGT": {
 							"type": "boolean"
 						}
 					}
