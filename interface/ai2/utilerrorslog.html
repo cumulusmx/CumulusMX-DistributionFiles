@@ -80,9 +80,9 @@
 							<p class="tagline w3-hide">The log content auto refreshes every 20 seconds. <i class="fa-solid fa-triangle-exclamation " style="color: #B00;font-size:150%"></i></p>
 						</div>
 						<div class="ows-btnBar" style="justify-content: start;">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0;" onclick="selectText();" aria-label="Copy to clipboard"><!--{{LATEST_ERRORS_COPY}}-->Copy to clipboard</button>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0;" onclick="selectText();" aria-label="Copy to clipboard">{{LATEST_ERRORS_COPY}}</button>
 							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0;" onClick="clearLog();" aria-label="Clear the log">{{LATEST_ERRORS_CLEAR}}</button>
-							<p><!--{{LATEST_ERRORS_TEXT2}}-->You can scroll the log entries</p>
+							<p>{{LATEST_ERRORS_TEXT2}}</p>
 						</div>
 						<div  id="logcontent" class="ows-theme9" style="margin: 1vh 0;">
 							{{LOADING}}

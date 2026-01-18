@@ -112,7 +112,7 @@
 				<section class="w3-container">
 					<div class="ows-titleFlex">
 						<h1>{{EXTRA_DATALOGS_VIEWER_EDITOR}}</h1>
-						<p class="tagline"><!--{{EXTRA_DATALOGS_VIEWER_EDITOR_TAGLINE}}-->View and edit the Extra data log</p>
+						<p class="tagline">{{EXTRA_DATALOGS_VIEWER_EDITOR_TAGLINE}}<!--View and edit the Extra data log--></p>
 					</div>
 				</section>
 				<!--	This is the section of one column layouts	-->
@@ -122,14 +122,12 @@
 							<p>{{START_DATE}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateFrom"></p>
 							<p>{{END_DATE}}:&nbsp;<input type="text" class="w3-button ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></p>
 							<button type="button" id="loadData" class="w3-button ows-theme-grad-down-hvr" onclick="load()" style="flex-grow:0;">{{LOAD}}</button>
-							<div>
-								<p class="w3-small w3-right-align"><!--{{TABLE_SCROLL_NOTE}}-->You can scroll the table sideways to reveal other readings.</p>
-							</div>
 						</div>
 					</div>
 					<!--	Panel 2	-->
 					<div class="w3-container ows-theme8" style="order:1;padding-top:1vh;">
 						<table id="datalog" class="w3-hoverable"></table>
+						<p class="w3-center w3-small w3-italic">{{TABLE_NOTE}}</p>
 					</div>
 				</div>	<!--	End of one column layout	-->
 			</section>

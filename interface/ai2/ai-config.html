@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
 		<!--<base href="/ai2/ows/">-->
-		<title>CumulusMX-AI Template Page</title>
+		<title>{{AI_SETTINGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -103,68 +103,63 @@
             <img src="img/Gull.png" alt="Seagull" id="Gull1"> <!--    Gull goes here  -->
             <div id="subContent" class="pageWidth"><!--     Start of real content   -->
                 <section class="ows-titleFlex">
-                    <h1>AI Configuration</h1>
-					<p class="tagline">Use this page to configure the Alternative Interface</p>
+                    <h1>{{AI_SETTINGS}}</h1>
+					<p class="tagline">{{AI_SETTINGS_TAGLINE}}</p>
                 </section>
 
                 <section id="customGrid">
                     <div id="Geometry" class="w3-container ows-theme8">
                         <div class="ows-titleFlex">
-                            <h3>Page Geometry</h3>
+                            <h3>{{PAGE_GEOMETRY}}</h3>
                         </div>
-                        <p>
-							Configure the top and bottom gap for the page content, and whether or not the header 
-							and footer are static.
-						</p>
+                        <p>{{PAGE_GEOMETRY_TEXT}}</p>
                         <div style="display:grid; grid-template-columns: repeat(2, 2em 1fr);align-items:center;row-gap:0.5em; margin-bottom:1vh;">
 							<input type="checkbox" id="BannerState" style="justify-self: start;" name="BannerState" value="false" aria-label="Static or scrolling banner">
-							<label for="BannerState">Static Banner</label>
+							<label for="BannerState">{{STATIC_BANNER}}</label>
 							<input type="checkbox" id="FooterState" style="justify-self: start;" name="FooterState" value="false" aria-label="Static or scrolling footer">
-							<label for="FooterState">Static Footer</label>
+							<label for="FooterState">{{STATIC_FOOTER}}</label>
 						</div>
 						<div style="display:grid; grid-template-columns: 1fr 5em; gap: 1vh var(--colGap); margin-bottom:1vh; align-items: center;">
-							<label for="TopGap">Gap below banner</label>
+							<label for="TopGap">{{BANNER_GAP}}</label>
 							<input type="number" id="TopGap" name="TopGap" value="0" min="0" step="0.1" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Gap below page">
-							<label for="BottomGap">Gap above footer</label>
+							<label for="BottomGap">{{FOOTER_GAP}}</label>
 							<input type="number" id="BottomGap" name="BottomGap" value="0" min="0" step="0.1" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Gap below page">
 						</div>
 						<div style="display:grid; grid-template-columns: 1fr 9em; column-gap: var(--colGap); align-items:center">
-							<label for="unitSelect">Units to use</label>
+							<label for="unitSelect">{{PAGE_UNITS}}</label>
 							<select id="unitSelect" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 						</div>
-						<p class="w3-small">
-							You should note that the footer will scroll automatically on small screens regardless of the above settings.
-						</p>
-                        <h4>Shadows</h4>
+						<p class="w3-small">{{PAGE_GEOMETRY_NOTE}}</p>
+                        <h4>{{SHADOWS}}</h4>
                         <div style="display:grid;grid-template-columns:repeat(2, 1fr); gap: 1em; align-items:baseline;">
                             <label for="shadowList"><h5>Shadow style:</h5></label>
                             <select id="shadowList" class="ows-theme0 ows-theme-grad-down-hvr">
-                                <option value="" selected>No shadow</option>
-                                <option value="ows-theme-shadow1">Basic shadow</option>
-                                <option value="ows-theme-shadow2">Enhanced shadow</option>
+                                <option value="" selected>{{NO_SHADOW}}</option>
+                                <option value="ows-theme-shadow1">{{BASIC_SHADOW}}</option>
+                                <option value="ows-theme-shadow2">{{ENHANCED_SHADOW}}</option>
                             </select>
                         </div>
-                        <p class="w3-small">The main panels can show shadows if required. Some panels will not show shadows regardless.</p>
-                        <h4>Panel Heights</h4>
-                        <div style="display:grid;grid-template-columns: 1fr 1fr; gap: 1em;align-items: baseline;">
-                            <label for="PanelHt">Variable height panels</label>
+                        <p class="w3-small">{{SHADOW_NOTE}}.</p>
+                        <h4>{{PANEL_HEIGHT}}</h4>
+                        <div style="display:grid;grid-template-columns: 2fr 1fr; gap: 1em;align-items: baseline;">
+                            <label for="PanelHt">{{PANEL_HEIGHT_OPT}}</label>
                             <input type="checkbox" id="PanelHt" value="start" style="place-self:center right">
                         </div>
-                        <p class="w3-small">All panels adopt the height of adjacent panels; checking this option will over-ride that feature.</p>
+                        <p class="w3-small">{{PANEL_HEIGHT_NOTE}}.</p>
                     </div>
                     <!--    Theme   -->
                     <div id="Theme" class="w3-container ows-theme8">
                         <div class="ows-titleFlex">
-                            <h3>Site Colour Theme</h3>
+                            <h3>{{THEME}}</h3>
                         </div>
 						<div style="display:grid;grid-template-columns: 1fr 1fr;grid-template-rows: auto;align-items:baseline;">
-							<label for="ThemeList"><h5>Theme colours:</h5></label>
+							<label for="ThemeList"><h5>{{THEME_COLOURS}}:</h5></label>
 							<select id="ThemeList" class="ows-theme0 ows-theme-grad-down-hvr">
-								<option value="" selected="selected">Default theme</option>
+								<option value="" selected="selected">{{DEFAULT}}</option>
 							</select>
 						</div>
-                        <p>This version of the AI comes with 14 NEW built-in themes.</p>
-                        <p class="w3-small">
+                        <p><!--{{THEME_NOTE1}}-->This version of the AI comes with 14 NEW built-in themes.</p>
+                        <p class="w3-small"><!--{{THEME_NOTE2}}-->
                             The themes in this version are slightly different to those on the 'Alternative 
                             Website' but should still be usable.
                         </p>
@@ -174,43 +169,38 @@
                          <div class="ows-titleFlex">
                             <h3>{{ALARM}} LEDs</h3>
                         </div>
-                        <p>
-							You can change the LED shapes used for the alarms, both the default alarms and custom alarms can have 
-							their own LEDs.
-						</p>
-						<div style="display:grid;grid-template-columns:1fr 1fr 2.0rem;grid-template-rows: auto;gap:1vw 5px;align-items: baseline;">
-							<label for="AlarmDefault">Default {{ALARM}} LED</label>
+                        <p>{{ALARM_NOTE}}</p>
+						<div style="display:grid;grid-template-columns:1fr 1fr 2.0rem;grid-template-rows: auto;gap:1vh 5px;align-items: baseline;">
+							<label for="AlarmDefault">{{DEFAULT}} {{ALARM}} LED</label>
 							<select id="AlarmDefault" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 							<div class="ows-led" id="DefaultLED" style="place-self:center;"></div>
-							<label for="AlarmUser">User {{ALARM}} LED </label>
+							<label for="AlarmUser">{{USER}} {{ALARM}} LED </label>
 							<select id="AlarmUser" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 							<div class="ows-led ows-led-on ows-diamond ows-small" id="UserLED" style="place-self:center;"></div>
 						</div>
-                        <p class="w3-small w3-italic">The user alarm is shown flashing just for information purposes. Neither can it be clicked.</p>
+                        <p class="w3-small w3-italic">{{ALARM_NOTE2}}</p>
                     </div>
 
                     <div id="Rain" class="w3-container ows-theme8">
                         <div class="ows-titleFlex">
-                            <h3>Rain Rate Boundaries</h3>
+                            <h3>{{RAIN+RATE_BOUNDARIES}}</h3>
                         </div>
-                        <p>
-                            These rain rate values are used to determine which rain rate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/{{HOUR_SHORT_LC}})</span>
-                        </p>
-                        <div style="display:grid;grid-template-columns: 1fr 5em 1.5em;grid-template-rows:auto;gap:1vw;align-items:center;">
-							<label for="rainrateLight">Light {{RAINFALL}} {{RATE}}:</label>
+                        <p>{{RAIN_RATE_NOTE}}</p>
+                        <div style="display:grid;grid-template-columns: 1fr 5em 1.5em;grid-template-rows:auto;gap:1vh;align-items:center;">
+							<label for="rainrateLight">{{LIGHT}} {{RAINFALL}} {{RATE}}:</label>
 							<input type="number" min="0" step="0.1" name="rainrateLight" value="" id="rainrateLight" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Light rain image">
                             <img src="img/rain1.png" alt="Raindrop 1" class="w3-image">
-							<label for="rainrateMedium">Medium {{RAINFALL}} {{RATE}}:</label>
+							<label for="rainrateMedium">{{MEDIUM}} {{RAINFALL}} {{RATE}}:</label>
 							<input type="number" min="0" step="0.1" name="rainrateMedium" value="" id="rainrateMedium" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Medium rain image">
                             <img src="img/rain2.png" alt="Raindrop 2" class="w3-image">
-                            <p class="w3-small w3-italic" style="grid-column-start: span 2;">Rates above the 'medium' value will use the 'Heavy' rainfall rate image</p>
+                            <p class="w3-small w3-italic" style="grid-column-start: span 2;">{{RAIN_RATE_NOTE2}}</p>
                             <img src="img/rain3.png" alt="Raindrop 3" class="w3-image">
 						</div>
                     </div>
 
                     <div id="Colours" class="w3-container ows-theme5 ows-animate-drop no-shadow">
                         <div class="ows-titleFlex ows-animate-drop">
-							<h3>Theme Colours</h3>
+							<h3>{{THEME_COLOURS}}</h3>
 						</div>
 						<div style="display:grid;grid-template-columns: repeat(4, 1fr);grid-template-rows: auto;gap:0.5em;">
 							<div class="ows-theme1 w3-center ">ows-theme1<br><em>var(--color1)</em></div>
@@ -223,7 +213,7 @@
 							<div class="ows-theme8 w3-center w3-border ows-theme5-bdr">ows-theme8<br><em>var(--color8)</em></div>
 							<div class="ows-theme9 w3-center ">ows-theme9<br><em>var(--color9)</em></div>
 						</div>
-						<p class="w3-small">There are 9 variation of each theme colour, classes or <em>style variables</em> can be used within any html element</p>
+						<p class="w3-small">{{THEME_NOTE3}}</p>
 
                     </div>
 
@@ -231,7 +221,7 @@
                         <div class="ows-titleFlex w3-stretch ows-theme5">
                             <h3>{{APPLY_CHANGES}}</h3>
                         </div>
-						<P><strong>Note</strong>: If you used the '<em>Restore</em>'' button below, <strong><em>Everything</em></strong> gets reset back to the default styles.</P>
+						<P><strong>Note</strong>: If you used the '<em>Restore</em>' button below, <strong><em>Everything</em></strong> gets reset back to the default styles.</P>
                         <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1vw;" role="menu">
 							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">{{APPLY_CHANGES}}</button>
 							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore</button>
@@ -245,21 +235,18 @@
                     </div>
                     <div id="Gull" class="w3-container ows-theme8">
                         <div class="ows-titleFlex">
-                            <h3>The Animated Gull</h3>
+                            <h3>{{GULL_ANIMATION}}</h3>
                         </div>
-                        <p>
-							The seagull at the bottom right of the page can be animated in different ways.  
-                            To stop the animation set the speed to '0'.
-						</p>
+                        <p>{{GULL_NOTE}}</p>
 						<div style="display:grid;grid-template-columns: 1fr 10em;grid-template-rows: auto;row-gap: 0.5em;align-items:center; margin-bottom:1vh;">
-							<label for="animationSelect">Animation</label>
+							<label for="animationSelect">{{GULL_ANIMATION}}</label>
 							<select id="animationSelect" class="ows-theme0 ows-theme-grad-down-hvr">
 							</select>
 						</div>
 						<div style="display: grid; grid-template-columns: 1fr 5em;gap: 1vw;">
-							<label for="animationSpeed">Animation speed (seconds)</label>
+							<label for="animationSpeed">{{GULL_SPEED}}</label>
 							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Animation speed">
-							<label for="stayOnTop">Stay on top of all elements</label>
+							<label for="stayOnTop">{{GULL_ON_TOP}}</label>
 							<input type="checkbox" name="stayOnTop" id="stayOnTop" value="false" style="justify-self:end" aria-label="Keep the seagull on top">
 						</div>
                     </div>
