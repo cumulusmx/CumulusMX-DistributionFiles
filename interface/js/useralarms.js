@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 18:02:01
+// Last modified: 2026/01/16 16:11:44
 
 let accessMode;
 let csvChar;
@@ -114,10 +114,12 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
+        if (sheet.href.includes('alpaca')) {
+            const rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                    return rule;
+                }
             }
         }
     }
@@ -139,8 +141,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.removeProperty('display');
-        expanded.style.removeProperty('display');
+        expandable.style.setProperty('display','');
+        expanded.style.setProperty('display','');
         removeButtons();
     }
 }

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/28 14:54:55",
+	"version": "Last Modified: 2026/01/17 17:36:37",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -300,6 +300,10 @@
 						"useCamera": {
 							"label": "{{CAMERA}}",
 							"rightLabel": "{{CAMERA_LABEL}}"
+						},
+						"useBGT": {
+							"label": "{{BGT}}",
+							"rightLabel": "{{BGT_LABEL}}"
 						},
 						"setcustom": {
 							"label": "{{GATEWAY_CONFIG}}:",
@@ -671,6 +675,10 @@
 						"useLaserDist": {
 							"label": "{{LASER_DIST}}",
 							"rightLabel": "{{LASER_DIST_LABEL}}"
+						},
+						"useBGT": {
+							"label": "{{BGT}}",
+							"rightLabel": "{{BGT_LABEL}}"
 						}
 					},
 					"dependencies": {
