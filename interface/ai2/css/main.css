@@ -363,7 +363,7 @@ a:hover { text-decoration:none;}
     & .ignore p:last-of-type { margin-right: -1vw; padding-right: 1vw;}
     & .ignore:hover p {
         background: var(--gradient-databar);
-        font-weight: 550;
+        font-weight: 500;
     }
 }
 
@@ -383,7 +383,7 @@ a:hover { text-decoration:none;}
     
 .ows-dataRowFlex:hover {
     background: var(--gradient-databar);
-    font-weight:600;
+    font-weight:500;
 }
 
 /*	~~~~~~~	  GRIDS   ~~~~~~~*/

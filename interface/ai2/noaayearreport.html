@@ -40,6 +40,12 @@
 		<!--	Local Scripts	-->
 		<script src="/js/noaayear.js"></script>	<!--	Uses DEFAULT script	-->
 		<script>
+			$().ready( function() {
+				$('#datepicker').on('change', function() {
+					console.log("Function called");
+					load();
+				})
+			})
 		</script>
 		<style>
 			select { 
