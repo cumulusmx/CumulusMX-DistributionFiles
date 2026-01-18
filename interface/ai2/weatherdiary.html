@@ -129,7 +129,7 @@
 				<section class="w3-container" style="padding-bottom:0;">
 	 				<div class="ows-titleFlex">
 						<h1>{{CURRENT_CONDITIONS}} &amp; {{DIARY_EDITOR}}</h1>
-						<p class="tagline"><!--{{DIARY_EDITOR_TAGLINE}}-->Update your Diary and publish the current conditions</p>
+						<p class="tagline">{{DIARY_EDITOR_TAGLINE}}</p>
 					</div>
 				</section>
 
@@ -182,7 +182,7 @@
 							<p class="w3-small">{{AUTOMATED_READINGS_DESC}}</p>
 						</div>
 						<div class="mnuDivider w3-stretch" style="background: var(--color5); margin-bottom:1vh;"></div>
-						<div class="ows-titleFlex"><h4><!--{{DIARY_MANAGEMENT}}-->Diary Management</h4></div>
+						<div class="ows-titleFlex"><h4>{{DIARY_MANAGEMENT}}</h4></div>
 						<div class="ows-btnBar" style="margin-top:1vh; column-gap: 2px;">
 							<button class="w3-button ows-theme-grad-down-hvr" style="max-width:10em;" aria-label="Clear the current diary entry" onclick="deleteEntry()">{{DELETE}}</button>
 							<div class="w3-button" style="max-width:10em;"><a href="/api/data/diaryexport.txt" download="">{{EXPORT_ALL}}</a></div>
@@ -196,7 +196,7 @@
 					</div>
 					<!-- CALENDAR -->
 					<div class="w3-container no-shadow" style="order:2">
-						<h4 class="w3-center" style="margin:1vh 0"><!--{{CALENDAR}}-->Calendar</h4>
+						<h4 class="w3-center" style="margin:1vh 0">{{CALENDAR}}</h4>
 						<div id="datepicker" style="width:274px;margin:auto;" ></div>
 						<input type="hidden" id="date_hidden_input">
 					</div>
@@ -206,10 +206,7 @@
 					<div class="w3-container ows-theme8">
 						<div class="ows-titleFlex" style="padding-top:1vh;">
 							<h4 style="flex-shrink:0;">{{CURRENT_CONDITIONS}}</h4>
-							<p class="w3-small w3-right-align tagline"><!--{{CURENT_CONDITIONS_TAGLINE}}-->
-								The current conditions editor allows you to place your own observations on your website home page.<br>The observations
-								are uploaded with the next update cycle.
-							</p>
+							<p class="w3-small w3-right-align tagline">{{CURRENT_CONDITIONS_TAGLINE}}</p>
 						</div>
 						<p class="w3-center">{{CURRENT_CONDITIONS_DESC}}</p>
 						<p><textarea wrap="hard" cols="80" id="inputCurrCond" class="ows-theme9 " style="padding:8px; width:100%; max-width:100%; height: 100px;"></textarea></p>

@@ -17,8 +17,6 @@ let ThemeNames = ["Dark Grey",
 				  "Spring Crocus",	"Dark Spring Crocus",	"Valiant Poppy",	"Dark Valiant Poppy",
 				  "Warren Tavern",	"Dark Warren Tavern"];
 
-let shadowsArray = {"None":"", "Basic": "ows-theme-shadow1", "Enhanced": "ows-theme-shadow2"};
-
 $( function () {
 	if( typeof( Storage ) == 'undefined' ) {
 		console.log( 'Local storage unavailable.' );
@@ -69,21 +67,6 @@ let setupTheme = function( activeTheme ) {
 			$('#Theme').after('<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme +'.css" id="altTheme">')
 		}
 	});
-
-	//	Build shadow list
-	var opts= '';
-	var AvailableShadows = {"None":"","Basic":"ows-theme-shadow1","Enhanced":"ows-theme-shadow2"} 
-	for( var opt in AvailableShadows) {
-		opts += '<option value="' + AvailableShadows[opt] + '" ' + (cmxConfig.Panels.Shadows == AvailableShadows[opt]? 'selected': '') + '>' + opt + '</option>';
-	}
-	$('#shadowList').html( opts )
-	$('#shadowList').on('change', function(){
-		var shadows = 'ows-theme-shadow1 ows-theme-shadow2';
-		var shadow = $('#shadowList').prop('value');
-		cmxConfig.Panels.Shadows = shadow;
-		$('.ows-flex, .ows-grid, #Page').children().removeClass( shadows ).addClass( shadow );
-		showConfig();
-	})
 
 	//	Set checkbox status
 	$('#PanelHt').prop('checked', ( cmxConfig.Panels.VariableHeights ? 'checked' : ''));
@@ -157,7 +140,7 @@ let setupGeometry = function( geometry ) {
 
 		//	Build shadow list
 	var opts= '';
-	var AvailableShadows = {"None":"","Basic":"ows-theme-shadow1","Enhanced":"ows-theme-shadow2"} 
+	var AvailableShadows = {"None":"","{{BASIC_SHADOW}}":"ows-theme-shadow1","{{ENHANCED_SHADOW}}":"ows-theme-shadow2"} 
 	for( var opt in AvailableShadows) {
 		opts += '<option value="' + AvailableShadows[opt] + '" ' + (cmxConfig.Panels.Shadows == AvailableShadows[opt]? 'selected': '') + '>' + opt + '</option>';
 	}

@@ -97,8 +97,8 @@
             <section id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1><!--{{UTILITIES}}-->Utilities</h1>
-						<p class="tagline"><!--{{UTILITIES_TAGLINE}}-->All the CMX Utilities in one place</p>
+						<h1>{{UTILITIES}}</h1>
+						<p class="tagline">{{UTILITIES_TAGLINE}}</p>
 					</div>
 				</section>
 
@@ -143,20 +143,20 @@
 					<div class="w3-container ows-theme8" style="grid-area: errors;">
 						<div class="ows-titleFlex" style="margin-top:1vh">
 							<h3>{{LATEST_ERRORS}}</h3>
-							<p class="tagline"><!--{{LATEST_ERRORS_TEXT1}}-->The log content auto refreshes every 20 seconds. <i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
+							<p class="tagline">{{LATEST_ERRORS_TEXT1}}<i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
 						</div>
 						<!-- Rest of content -->
 						<div class="ows-btnBar" style="justify-content: flex-start;">
 							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onclick="selectText();" aria-label="Copy to clipboard"><!--{{LATEST_ERRORS_COPY}}-->Copy to clipboard</button>
 							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onClick="clearLog();" aria-label="Clear the log">{{LATEST_ERRORS_CLEAR}}</button>
-							<p><!--{{LATEST_ERRORS_TEXT2}}-->You can scroll the log entries</p>
+							<p>{{LATEST_ERRORS_TEXT2}}</p>
 						</div>
 						<div  id="logcontent" class="ows-theme9" style="margin: 1vh 0;">{{LOADING}}</div>
 					</div>
 
 					<div class="w3-container ows-theme8" style="grid-area: sql">
 						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h3><!--{{PURGE_MYSQL}}-->The MySQL Database</h3>
+							<h3>{{PURGE_MYSQL}}</h3>
 						</div>
 						<!-- Rest of content -->
 						<h4 style="padding-bottom:.75vh">{{PURGE_MYSQL_TEXT1}}</h4>
