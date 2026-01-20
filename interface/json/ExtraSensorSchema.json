@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/17 17:39:15",
+	"version": "Last Modified: 2026/01/19 17:12:02",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -153,6 +153,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useLeafWet": {
 							"type": "boolean"
 						},
@@ -288,6 +291,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useAQI": {
 							"type": "boolean"
 						},
@@ -374,6 +380,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useLeafWet": {
 							"type": "boolean"
 						},
@@ -384,6 +393,9 @@
 							"type": "boolean"
 						},
 						"useCo2": {
+							"type": "boolean"
+						},
+						"useLightning": {
 							"type": "boolean"
 						},
 						"useLaserDist": {
