@@ -65,11 +65,10 @@
 			/*	This block adjusts the hover highlight.  Just delete if not wanted	*/
 			tr:hover > td {
 				background: var(--gradient-databar);
-				/*background: linear-gradient( var)*/
 			}
 			.dt-paging { display:flex; justify-content: center; gap:1em;}
 			.dt-paging-input input {background: var(--color1); color: var(--color9); max-width:5em;}
-			/*.dt-search input[type="search"] { background: var(--color1)!important; color:var(--color9)!important;}*/
+
 						/*	Units	*/
 			/*	Adjust size of units	*/
 			#recent tbody .tempUnits::after,
@@ -87,8 +86,8 @@
 			#recent tbody .percent::after   	{ content:"%"; }
 			#recent tbody .bearing::after    	{ content:"°"; }
 			#recent tbody .solarUnits::after 	{ content:"w/m\00b2"; }
-			#recent tbody .aq2-5Units::after	{ content:"*";}
-			#recent tbody .aq10Units::after		{ content:"*";}
+			#recent tbody .aq2-5Units::after	{ content:"-";}
+			#recent tbody .aq10Units::after		{ content:"-";}
 
 			/*	All other styles are in the file 'ai-editabletables.css'	*/
 		</style>
