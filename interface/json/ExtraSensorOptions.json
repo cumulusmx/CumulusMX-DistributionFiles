@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/17 17:36:37",
+	"version": "Last Modified: 2026/01/19 17:13:32",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -269,6 +269,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useLeafWet": {
 							"label": "{{LEAF_WETNESS}}",
 							"rightLabel": "{{LEAF_WETNESS_LABEL}}"
@@ -522,6 +526,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useAQI": {
 							"label": "{{AQ}}",
 							"rightLabel": "{{AQ_LABEL}}"
@@ -656,6 +664,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useLeafWet": {
 							"label": "{{LEAF_WETNESS}}",
 							"rightLabel": "{{LEAF_WETNESS_LABEL}}"
@@ -671,6 +683,10 @@
 						"useCo2": {
 							"label": "{{CO2}}",
 							"rightLabel": "{{CO2_LABEL}}"
+						},
+						"useLightning": {
+							"label": "{{LIGHTNING}}",
+							"rightLabel": "{{LIGHTNING_LABEL}}"
 						},
 						"useLaserDist": {
 							"label": "{{LASER_DIST}}",
