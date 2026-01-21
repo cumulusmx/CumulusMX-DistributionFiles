@@ -17,7 +17,7 @@ let alarmState = {};
 
 let playList = [];
 
-$(document).ready(function () {
+$().ready(function () {
 
     let lastUpdateTimer, ws;
 
@@ -39,6 +39,14 @@ $(document).ready(function () {
             }
         }
     })
+
+    if(! cmxConfig.ShowAlarms ) {
+        $('#AlarmsPanel').addClass('w3-hide');
+        $('#Alarms').text('{{SHOW}} {{ALARM}}');
+    } else {
+        $('#AlarmsPanel').removeClass('w3-hide');
+        $('#Alarms').text('{{HIDE}} {{ALARM}}');
+    }
 
     function playSound() {
         if (playList.length) {

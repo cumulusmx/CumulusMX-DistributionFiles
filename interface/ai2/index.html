@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>CMX AI Dashboard</title>
+		<title>AI {{DASHBOARD}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -107,9 +107,9 @@
 				<img src="img/AI-Logo.png" alt="AI Logo" id="siteLogo" class="w3-image" style="padding:1vh 0 .5vh 0;">
 				<div id="siteInfo">
 					<h4 style="grid-area:siteName"><span data-owsData="Station">Station Name</span></h4>
-					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>Altitude:</p><p><span data-cmxData="altitude">zz m</span></p>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zz m</span></p>
 				</div>
 				<nav id="MainMenu" class="ows-theme6"><!-- Main Menu inserted here --></nav>
 			</section>
@@ -122,12 +122,12 @@
 			<div id="subContent" class="pageWidth">
 				<section class="w3-container" style="padding-bottom:0;">
 					<div class="ows-titleFlex">
-						<h1>Dashboard for <span id="StationName"></span></h1>
+						<h1><span id="StationName"></span> {{MENU_DASHBOARD}}</h1>
 						<div class="ows-btnBar">
-							<button id="bt" type="button" class="w3-button ows-theme-grad-down-hvr" value="Play Alarm Sounds" style="display: none;">Play Alarm Sounds</button>
-							<button id="Davis" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">Hide Davis</button>
-							<button id="Alarms" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">Hide Alarms</button>
-							<button class="w3-button ows-theme-grad-down-hvr" onClick="toggleModal('Almanac5');">Show Almanac</button>
+							<button id="bt" type="button" class="w3-button ows-theme-grad-down-hvr" value="Play Alarm Sounds" style="display: none;">{{PLAY_SOUND}}</button>
+							<button id="Davis" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} Davis</button>
+							<button id="Alarms" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} {{ALARM}}</button>
+							<button class="w3-button ows-theme-grad-down-hvr" onClick="toggleModal('Almanac5');">{{SHOW}} {{ALMANAC}}</button>
 						</div>
 					</div>
 				</section>
@@ -136,7 +136,7 @@
 					<!--	Davis Panel	-->
 					<div id="DavisPanel" class="w3-container ows-theme7" style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h4>Davis Status</h4><i class="fa-solid fa-signal"></i>
+							<h4>Davis {{STATUS}}</h4><i class="fa-solid fa-signal"></i>
 						</div>
 						<div class="ows-grid col5" style="margin-bottom:1vh; row-gap: 1px;">
 							<div class="davisVP2 davisGrid">Packets Received:<span id="DavisPacketsReceived">nkn</span></div>
@@ -177,7 +177,7 @@
 					<!--	Alarm Panel	-->
 					<div id="AlarmsPanel" class="w3-container ows-theme7" style="order:1;">
 						<div class="ows-titleFlex w3-stretch ows-theme8">
-							<h4>Alarms</h4>
+							<h4>{{MENU_ALARMS}}</h4>
 							<i class="fa-solid fa-bell fa-shake"></i>
 						</div>
 						<div id="alarms" class="ows-grid col5" style="row-gap: 0.2em; margin-bottom:0;"></div>
@@ -185,7 +185,7 @@
 				</section>	<!--	End of one column layout	-->
 
 				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex"><h3>Weather overview</h3><p class="tagline">Page updated: <span data-cmxData="update"></span></p></div>
+					<div class="ows-titleFlex"><h3>{{WEATHER_OVERVIEW}}</h3><p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p></div>
 				</section>
 				<!--	Four column variable width layout	-->
 				<section class="ows-grid col4">
@@ -327,8 +327,8 @@
 		
         <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
             <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
             </section>
         </footer>
 
@@ -345,15 +345,15 @@
 					<div class="almanacGrid">
 						<p style="grid-area:sunrise">{{SUNRISE}}</p><p style="grid-area:sunriseVal"><span id="Sunrise"></span></p>
 						<p style="grid-area:sunset">{{SUNSET}}</p><p style="grid-area:sunsetVal"><span id="Sunset"></span></p>
-						<p style="grid-area:daylen">Day length</p><p style="grid-area:daylenVal"><span id="daylength"></span> hrs</p>
-						<p style="grid-area:dawn">Dawn:</p><p style="grid-area:dawnVal;"><span id="dawn"></span></p>
-						<p style="grid-area:dusk">Dusk</p><p style="grid-area:duskVal"><span id="dusk"></span></p>
-						<p style="grid-area: daylight">Daylight length</p><p style="grid-area:daylightVal"><span id="daylightlength"></span> hrs</p>
+						<p style="grid-area:daylen">{{DAY_LENGTH}}</p><p style="grid-area:daylenVal"><span id="daylength"></span> hrs</p>
+						<p style="grid-area:dawn">{{DAWN}}:</p><p style="grid-area:dawnVal;"><span id="dawn"></span></p>
+						<p style="grid-area:dusk">{{DUSK}}</p><p style="grid-area:duskVal"><span id="dusk"></span></p>
+						<p style="grid-area: daylight">{{DAYLIGHT_LENGTH}}</p><p style="grid-area:daylightVal"><span id="daylightlength"></span> hrs</p>
 						<p style="grid-area:moonrise">{{MOONRISE}}</p><p style="grid-area:moonriseVal;"><span id="Moonrise"></span></p>
 						<p style="grid-area:moonset">{{MOONSET}}</p><p style="grid-area:moonsetVal"><span id="Moonset"></span></p>
-						<p style="grid-area:moonpct">Moon percent</p><p style="grid-area:moonpctVal"><span id="MoonPercentAbs"></span>%</p>
-						<p style="grid-area:moonphase">Moon phase</p><p style="grid-area:moonphaseVal"><span id="moonphase">-</span></p>
-						<p style="grid-area:forecast;">Forcast</p><p style="grid-area:forecastVal;"><span id="Forecast">-</span></p>
+						<p style="grid-area:moonpct">{{MOON}} %</p><p style="grid-area:moonpctVal"><span id="MoonPercentAbs"></span>%</p>
+						<p style="grid-area:moonphase">{{MOON_PHASE}}</p><p style="grid-area:moonphaseVal"><span id="moonphase">-</span></p>
+						<p style="grid-area:forecast;">{{FORECAST}}</p><p style="grid-area:forecastVal;"><span id="Forecast">-</span></p>
 					</div><!--	End of modal content	 -->
 				</div>
                 <div class="ows-titleFlex ows-theme5" style="border-radius: 0 0 0.5em 0.5em; flex-direction:row-reverse;margin-bottom:0;">
