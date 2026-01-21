@@ -243,10 +243,10 @@ let togglePanel = function(el) {  // Show/hide Alarm or Davis panels
     var elId = el.id;
     $('#' + elId + 'Panel').toggleClass('w3-hide');
     if( $('#' + elId + 'Panel').hasClass('w3-hide')) {
-        $('#' + elId).text('Show ' + elId);
+        $('#' + elId).text('{{SHOW}} ' + elId);
         cmxConfig['Show' + elId] = false;
     } else {
-        $('#' + elId).text('Hide ' + elId);
+        $('#' + elId).text('{{HIDE}} ' + elId);
         cmxConfig['Show' + elId] = true;
     }
     localStorage.setItem(owsStore, JSON.stringify(cmxConfig));
