@@ -2,19 +2,18 @@
     Script: datalogeditor.js       	Ver: aiX-1.0
     Author: M Crossley & N Thomas
     Last Edit (MC): 2025/02/14 11:47:56
-    Last Edit (NT): 2025/03/21
+    Last Edit (NT): 2026-01-21 15:18:59
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for datalogeditor.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+    
 var myTable;
 var currMonth;
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
 $().ready(function () {
 
-    //Added by Neil
-//    var styles = "<style>\n";
+    //  Added by Neil
     var data = '{"TempUnit": "<#tempunitnodeg>", "PressUnit": "<#pressunit>", "WindUnit": "<#windunit>", "RainUnit": "<#rainunit>", "WindRunUnit":"<#windrununit>"}';
     $.ajax({ 
         url:  '/api/tags/process.txt',
@@ -194,7 +193,9 @@ $().ready(function () {
             {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
             {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep, className:'rainUnits'},
             {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep, className:'tempUnits'},
-            {title: '{{HUMIDEX}}', type: 'number', step: tempStep}
+            {title: '{{HUMIDEX}}', type: 'number', step: tempStep},
+            {title: '{{BGT}}', type: 'number', step: tempStep, class:'tempUnits'},
+            {title: '{{WBGT}}', type: 'number', step: tempStep, class:'tempUnits'}
         ];
 
         myTable = $('#datalog').dataTable({
@@ -347,6 +348,8 @@ $().ready(function () {
             response = '{"action":"' + action + '","lines":' + lines + ',"extra":"false","data": ' + data + '}';
             return response;
         }
+
+        load();
     });
 });
 
@@ -367,3 +370,4 @@ function formatUserDateStr(inDate) {
 function addLeadingZeros(n) {
     return n <= 9 ? '0' + n : n;
 }
+
