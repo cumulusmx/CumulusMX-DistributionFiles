@@ -533,6 +533,13 @@ let getStation = function() {
             case '11':
                 //$('#Davis').removeClass('w3-hide');
                 DavisStats();
+                if( cmxConfig.ShowDavis ) {
+                    $('#DavisPanel').removeClass('w3-hide');
+                    $('#Davis').text('{{HIDE}} Davis');
+                } else {
+                    $('#DavisPanel').addClass('w3-hide');
+                    $('#Davis').text('{{SHOW}} Davis');
+                }
                 break;
             default:
                 $('#Davis').addClass('w3-hide');
