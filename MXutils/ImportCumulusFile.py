@@ -163,8 +163,10 @@ MONTHLY_COLUMNS = [
     ("RainSinceMidnight",  "decimal(4,1)"),                            # 25
     ("FeelsLike",          "decimal(4,1)"),                            # 26
     ("Humidex",            "decimal(4,1)"),                            # 27
-    ("WindbearingSym",     "varchar(3)"),                              # 28 (derived)
-    ("CurrWindBearingSym", "varchar(3)"),                              # 29 (derived)
+    ("BlackGlobeTemp",     "decimal(4,1)"),                            # 28
+    ("WetBulbGlobeTemp",   "decimal(4,1)"),                            # 29
+    ("WindbearingSym",     "varchar(3)"),                              # 30 (derived)
+    ("CurrWindBearingSym", "varchar(3)"),                              # 31 (derived)
 ]
 
 # ------------------------------------------------------------
