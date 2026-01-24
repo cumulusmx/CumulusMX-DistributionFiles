@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:23",
+    "_LAST_MODIFIED": "Last modified: 2026/01/23 16:22:37",
     "AIR_QUALITY_HELP1": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
     "AIR_QUALITY_LABEL": "Include air quality data",
     "AIR_QUALITY": "Air Quality",
@@ -86,8 +86,7 @@
     "SOLAR_LABEL": "Include solar radiation",
     "SOLAR": "Solar",
     "STATION_ID": "Station ID",
-    "STATION_INDEX_HELP1": "Defines which station to upload to. The first station you define is 0 (default), the next 1 etc.",
-    "STATION_INDEX": "Station Index",
+    "STATION_ID_HELP1": "Defines which station to upload to. It will be something like 'f03ebac8'",
     "STATION_KEY_HELP1": "This used to be your password, but changed to the Station Key (case sensitive)",
     "STATION_KEY_HELP2": "NOTE: This is NOT the long API Key",
     "STATION_KEY": "Station Key",
@@ -103,8 +102,9 @@
     "WC_AIR_QUALITY_HELP1": "Include air quality PM values and US EPA AQI in the update",
     "WINDGURU_PASSWORD_HELP1": "The station login password or the special API password which you can also set during registration, either of these will work",
     "WINDGURU_RAINFALL_HELP1": "Include the rainfall in the last hour reading in the update",
-    "WINDY_API_KEY_HELP1": "This is a very long string and is used for all your Windy.com stations",
+    "WINDY_API_KEY_HELP1": "This is a long string and is used for all your Windy.com stations. Only required if you do not enter the Station Id above",
     "WINDY_INTERVAL_HELP1": "Interval in minutes between updates (min value = 5).",
+    "WINDY_PASSWORD": "Station Password",
     "WOW_SOIL_MOIST_HELP2": "NOTE: The sensor must supply data in percentage, not centibars",
     "WU_EXTRA_TEMP": "Select the MX extra sensor number to map to the Wunderground sensor",
     "WU_INTERVAL_HELP1": "Interval in minutes between updates. Not used if rapid fire is enabled (5 seconds is used)"
