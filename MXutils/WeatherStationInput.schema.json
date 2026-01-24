@@ -2,7 +2,7 @@
     "$id": "https://github.com/cumulusmx/CumulusMX-DistributionFiles/tree/master/MXutils/WeatherStationInput.schema.json",
     "description": "JSON Weather STation Data Schema",
     "type": "object",
-    "required": ["lastupdated", "units"],
+    "required": ["lastupdated"],
     "properties": {
         "lastupdated": {
             "type": "integer",
@@ -10,7 +10,7 @@
         },
         "units": {
             "type": "object",
-            "description": "Units of measurement for various weather parameters.",
+            "description": "Units of measurement for various weather parameters. Required when sending data that can have multiple units.",
             "properties": {
                 "temperature": {
                     "type": "string",
@@ -141,6 +141,7 @@
             "extratemp": {
                 "type": "array",
                 "maxItems": 10,
+                "required": ["index"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -152,13 +153,14 @@
                     },
                     "humidity": {
                         "type": "integer",
-                        "description": "Relative humidity reading."
+                        "description": "Relative humidity reading. Optional."
                     }
                 }
             },
             "usertemp": {
                 "type": "array",
                 "maxItems": 8,
+                "required": ["index", "temperature"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -173,6 +175,7 @@
             "soiltemp": {
                 "type": "array",
                 "maxItems": 16,
+                "required": ["index", "temperature"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -187,6 +190,7 @@
             "soilmoisture": {
                 "type": "array",
                 "maxItems": 16,
+                "required": ["index", "moisture"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -201,6 +205,7 @@
             "leafwetness": {
                 "type": "array",
                 "maxItems": 8,
+                "required": ["index", "wetness"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -215,6 +220,7 @@
             "airquality": {
                 "type": "array",
                 "maxItems": 4,
+                "required": ["index"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -240,6 +246,7 @@
             },
             "co2": {
                 "type": "object",
+                "required": ["co2"],
                 "properties": {
                     "co2": {
                         "type": "integer",
@@ -270,6 +277,7 @@
             "laserdistance": {
                 "type": "array",
                 "maxItems": 4,
+                "required": ["index"],
                 "items": {
                     "index": {
                         "type": "integer",
@@ -287,6 +295,7 @@
             },
             "lightning": {
                 "type": "object",
+                "required": ["time", "distance", "strikes"],
                 "properties": {
                     "time": {
                         "type": "integer",
