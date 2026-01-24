@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/01/23 16:22:37",
+    "_LAST_MODIFIED": "Last modified: 2026/01/24 16:01:59",
     "AIR_QUALITY_HELP1": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
     "AIR_QUALITY_LABEL": "Include air quality data",
     "AIR_QUALITY": "Air Quality",
@@ -102,7 +102,7 @@
     "WC_AIR_QUALITY_HELP1": "Include air quality PM values and US EPA AQI in the update",
     "WINDGURU_PASSWORD_HELP1": "The station login password or the special API password which you can also set during registration, either of these will work",
     "WINDGURU_RAINFALL_HELP1": "Include the rainfall in the last hour reading in the update",
-    "WINDY_API_KEY_HELP1": "This is a long string and is used for all your Windy.com stations. Only required if you do not enter the Station Id above",
+    "WINDY_API_KEY_HELP1": "This is a long string and is used for all your Windy.com stations. Only required if you do not enter the Station Password above",
     "WINDY_INTERVAL_HELP1": "Interval in minutes between updates (min value = 5).",
     "WINDY_PASSWORD": "Station Password",
     "WOW_SOIL_MOIST_HELP2": "NOTE: The sensor must supply data in percentage, not centibars",
