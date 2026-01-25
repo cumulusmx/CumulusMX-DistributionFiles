@@ -76,7 +76,7 @@
 				},
 				"graphdays": {
 					"label": "{{CHART_DAYS}}:",
-					"helper": "{{CHART_HOURS_HELP1}}"
+					"helper": "{{CHART_DAYS_HELP1}}"
 				},
 				"colour": {
 					"collapsible": true,
