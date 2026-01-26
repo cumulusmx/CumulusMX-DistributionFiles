@@ -66,7 +66,7 @@ $time_start = microtime(true);
 //			* Added Humidex in dayfile and monthly
 // ver 4.3 -  01/0809/2020, Steinar Utne
 //			* If monthly and $auto_month=true then construct filename from date (i.e. <dir>MonYYlog.txt) rather than read from parameters
-// ver 5.0 - 18/12/2025, Mark Crossley
+// ver 5.0 - 24/01/2026, Mark Crossley
 //          * Updated for CumulusMX 4.7.0 - Note this is not backward compatible with earlier Cumulus versions
 //-----------------------------------------------------------------
 //
@@ -545,10 +545,12 @@ function prepareQueries($queryType, $table, $retainVal, $retainUnit)
             array('CurrWindBearing',    'varchar(3)'),                              // 23 - 24
             array('RG11rain',           'decimal(4,1)'),                            // 24 - 25
             array('RainSinceMidnight',  'decimal(4,1)'),                            // 25 - 26
-            array('FeelsLike',          'decimal(4,1)'),                            // 27
-            array('Humidex',             'decimal(4,1)'),                           // 30
-            array('WindbearingSym',     'varchar(3)'),                              // 28
-            array('CurrWindBearingSym', 'varchar(3)')                               // 29
+            array('FeelsLike',          'decimal(4,1)'),                            // 26 - 27
+            array('Humidex',            'decimal(4,1)'),                            // 27 - 28
+            array('BlackGlobeTemp',     'decimal(4,1)'),                            // 28 - 29
+            array('WetBulbGlobeTemp',   'decimal(4,1)'),                            // 29 - 30
+            array('WindbearingSym',     'varchar(3)'),                              // 30
+            array('CurrWindBearingSym', 'varchar(3)')                               // 31
         );
 
         // Construct the SQL strings from the array

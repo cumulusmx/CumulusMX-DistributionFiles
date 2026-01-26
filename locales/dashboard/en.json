@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/01/18 14:15:37",
+    "_LAST_MODIFIED": "Last modified: 2026/01/22 14:24:06",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -754,6 +754,7 @@
     "WBGT": "Wet Bulb Globe Temp",
     "WEATHER_CONDITIONS_EDITOR": "Weather Conditions Editor",
     "WEATHER_DATA": "Weather Data",
+    "WEATHER_OVERVIEW": "Weather Overview",
     "WEATHER_RECORDS": "Weather Records",
     "WEATHER_STATION_DESC": "Configure your Weather Station",
     "WEATHER_STATION": "Weather Station",

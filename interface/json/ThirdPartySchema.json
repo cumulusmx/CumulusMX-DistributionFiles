@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/24 12:59:35",
+	"version": "Last Modified: 2026/01/23 16:53:29",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -82,10 +82,9 @@
 				"enabled": {
 					"type": "boolean"
 				},
-				"stationidx": {
-					"type": "integer",
-					"minimum": 0,
-					"maximum": 9
+				"stationid": {
+				},
+				"password": {
 				},
 				"apikey": {
 				},
@@ -93,17 +92,19 @@
 					"type": "integer",
 					"minimum": 5
 				},
-				"includeuv": {
+				"includesolar": {
 					"type": "boolean"
 				},
-				"catchup": {
+				"includeuv": {
 					"type": "boolean"
 				}
 			},
 			"dependencies": {
-				"stationidx": ["enabled"],
+				"stationid": ["enabled"],
 				"apikey": ["enabled"],
+				"password": ["enabled"],
 				"interval": ["enabled"],
+				"includesolar": ["enabled"],
 				"includeuv": ["enabled"],
 				"catchup": ["enabled"]
 			}

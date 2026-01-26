@@ -24,7 +24,7 @@
     "CHART_HOURS": "Chart hours",
     "CHART_HOURS_HELP1": "The number of hours shown on the minute-by-minute charts",
     "CHART_DAYS": "Chart days",
-    "CHART_HOURS_HELP1": "The number of days shown on the daily charts",
+    "CHART_DAYS_HELP1": "The number of days shown on the daily charts",
     "COLOUR_HELP1": "Select the data series colours on the dashboard and web site charts",
     "COLOUR_HELP2": "You can also enter any of 140 standard HTML colour names and they will be translated to hex values",
     "COLOUR_HELP3": "See the colours here: https://www.w3schools.com/colors/colors_names.asp",
