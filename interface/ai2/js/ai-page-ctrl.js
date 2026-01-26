@@ -8,7 +8,7 @@
 
 let cmxConfig = {};
 let cmxSession = {};
-let build = 1.105;
+let build = 1.107;
 
 //  Construct variable to access Local, and Session storage 
 var url=document.baseURI.split('/');
