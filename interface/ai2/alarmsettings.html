@@ -447,6 +447,22 @@
 									<td><input id="firmwareLatchHrs" class="valInput" type="number" min="0" max="999" step="any" aria-label="Firmware upgrade latching hours"></td>
 									<td>&nbsp;</td>
 								</tr>
+								<tr>
+									<td><input id="genErrorEnable"	type="checkbox" aria-label="Enable general CumulusMX Error alarm"></td>
+									<td aria-hidden>{{ALARM_SETTINGS_GENERAL}}:</td>
+									<td></td>
+									<td></td>
+									<td><input id="genErrorSoundEnabled" type="checkbox" aria-label="Enable general error sound"></td>
+									<td><input id="genErrorSound" type="text" aria-label="General error sound filename"></td>
+									<td><input id="genErroreAction" type="text" aria-label="General error action"></td>
+									<td><input id="genErrorActionParams" type="text" aria-label="General error action parameters"></td>
+									<td><input id="genErrorBsky" type="text" aria-label="General error Bluesky file"></td>
+									<td><input id="genErrorNotify" type="checkbox" aria-label="General error upgrade notifications"></td>
+									<td><input id="genErrorEmail" type="checkbox" aria-label="General error upgrade emails"></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
 							</tbody>
 						</table>
 						<p class="w3-center">This table scrolls sideways to reveal more options</p>
