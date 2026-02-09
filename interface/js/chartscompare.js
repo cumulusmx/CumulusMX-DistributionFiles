@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/11/21 15:53:32
+// Last modified: 2026/02/08 19:48:54
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -77,7 +77,7 @@ $(document).ready(() => {
 
         // then the real series options
         for (var k in avail) {
-            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow', 'ChillHours'].indexOf(k) === -1) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'ChillHours'].indexOf(k) === -1) {
                 let optgrp = $('<optgroup />');
                 optgrp.attr('label', k);
                 avail[k].forEach(function (val) {
@@ -328,6 +328,9 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
+
+        case 'Snowfall 24h':
+            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);
@@ -678,6 +681,21 @@ const addLaserAxis = (idx) => {
     }
 };
 
+const addSnowAxis = (idx) => {
+    // first check if we already have a snow axis
+    if (checkAxisExists('y_snow'))
+        return;
+
+    // nope no existing axis, add one
+    mainChart.options.scales.y_snow = {
+        title: {
+            display: true,
+            text: `{{SNOWFALL}} (${config.snow.units})`
+        },
+        min: 0,
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    }
+};
 
 const doTemp = (idx) => {
     return $.getJSON({
@@ -1229,6 +1247,34 @@ const doPm10 = (idx) => {
         addAQAxis(idx);
     });
 };
+
+const doSnow24h = (idx) => {
+    return $.getJSON({
+        url: '/api/graphdata/snow24h.json',
+    })
+    .done((resp) => {
+        const key = Object.keys(resp)[0];
+        setInitialRange(resp[key]);
+
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: key,
+            type: 'line',
+            data: resp[key],
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_snow',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.snow.units}`
+                }
+            },
+            order: idx
+        });
+
+        addSnowAxis(idx);
+    });
+}
 
 const doExtraTemp = (idx, val) => {
     return $.getJSON({

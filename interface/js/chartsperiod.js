@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2025/11/20 13:45:00
+// Last modified: 2026/02/06 11:31:22
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -135,7 +135,7 @@ $(document).ready(() => {
 
         // then the real series options
         for (var k in avail) {
-            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'Snow', 'ChillHours'].indexOf(k) === -1) {
+            if (['DailyTemps', 'Sunshine', 'DegreeDays', 'TempSum', 'CO2', 'ChillHours'].indexOf(k) === -1) {
                 var optgrp = $('<optgroup />');
                 optgrp.attr('label', k);
                 avail[k].forEach(function (val) {
@@ -384,6 +384,9 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
+
+        case 'Snowfall 24h':
+            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);
@@ -756,6 +759,22 @@ const addLaserAxis = (idx) => {
             display: true,
             text: `{{LASER_DEPTH}} (${config.laser.units})`
         },
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    }
+};
+
+const addSnowAxis = (idx) => {
+    // first check if we already have a snow axis
+    if (checkAxisExists('y_snow'))
+        return;
+
+    // nope no existing axis, add one
+    mainChart.options.scales.y_snow = {
+        title: {
+            display: true,
+            text: `{{SNOWFALL}} (${config.snow.units})`
+        },
+        min:0,
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     }
 };
@@ -1464,7 +1483,7 @@ const doPm10 = (idx) => {
         addAQAxis(idx);
     };
 
-    if (cache === null || cache.hum === undefined) {
+    if (cache === null || cache.pm === undefined) {
         return $.getJSON({
             url: '/api/graphdata/intvairquality.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
         })
@@ -1476,6 +1495,45 @@ const doPm10 = (idx) => {
         addSeries();
     }
 };
+
+const doSnow24h = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.snow.snow24h);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: '{{SNOW_24H}}',
+            type: 'line',
+            data: cache.snow.snow24h,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_snow',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.snow.units}`
+                }
+            },
+            order: idx
+        });
+
+        addSnowAxis(idx);
+    };
+
+    if (cache === null || cache.snow === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsnow24h.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            const key = Object.keys(resp)[0];
+            cache.snow = {
+                "snow24h": resp[key]
+            };
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+}
+
 
 var doExtraTemp = function (idx, val) {
     const addSeries = () => {

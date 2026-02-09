@@ -1,4 +1,4 @@
-// Last modified: 2025/11/20 13:56:11
+// Last modified: 2026/02/06 12:13:26
 
 let mainChart, navChart, config, avail;
 
@@ -136,6 +136,9 @@ $(document).ready(() => {
         if (avail.LaserDepth == undefined || avail.LaserDepth.length == 0) {
             $('#mySelect option[value="laserdepth"]').remove();
         }
+        if (avail.Snow === undefined || avail.Snow.length == 0) {
+            $('#mySelect option[value="snowdepth"]').remove();
+        }
 
         let value = parent.location.hash.replace('#', '');
 
@@ -211,6 +214,9 @@ const changeGraph = (graph) => {
             break;
         case 'laserdepth':
             doLaserDepth();
+            break;
+        case 'snowdepth':
+            doSnowDepth();
             break;
         default:
             doTemp();
@@ -1993,6 +1999,86 @@ const doLaserDepth = () => {
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
             tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
+const doSnowDepth = () => {
+    removeOldCharts(true);
+
+    $.getJSON({
+        url: 'snow24hdata.json',
+    })
+    .done(resp => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScale;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_depth: {
+                title: {
+                    display: true,
+                    text: `Snowfall (${config.snow.units})`
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        dataSets.push({
+            label: key,
+            data: resp[key],
+            borderColor: config.series.snow24h.colour,
+            backgroundColor: config.series.snow24h.colour,
+            yAxisID: 'y_depth',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.snow.units}`
+                }
+            }
+        });
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Snowfall Accumulation (24h)'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: resp[key],
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.15
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
