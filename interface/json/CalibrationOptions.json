@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/12/16 10:11:30",
+	"version": "Last Modified: 2026/02/05 14:15:31",
 	"definitions": {
 		"calibnospike": {
 			"fields": {
@@ -254,7 +254,6 @@
 					"label": "{{MIN_INCREMENT}}",
 					"helpers" : [
 						"{{MIN_INCREMENT_HELPER1}}",
-						"{{MIN_INCREMENT_HELPER2}}",
 						"{{MIN_INCREMENT_HELPER3}}"
 					]
 				},
@@ -264,6 +263,27 @@
 						"{{SNOW_SPIKE_HELPER1}}",
 						"{{MIN_INCREMENT_HELPER2}}"
 					]
+				},
+				"filter": {
+					"fields": {
+						"explanation": {
+							"type": "textarea",
+							"rows": 8,
+							"validate": false
+						},
+						"median": {
+							"label": "{{MEDIAN_FILTER}}",
+							"helper": "{{MEDIAN_FILTER_HELPER1}}"
+						},
+						"clip": {
+							"label": "{{CLIP_FILTER}}",
+							"helper": "{{CLIP_FILTER_HELPER1}}"
+						},
+						"ema": {
+							"label": "{{EMA_FILTER}}",
+							"helper": "{{EMA_FILTER_HELPER1}}"
+						}
+					}
 				}
 			}
 		}

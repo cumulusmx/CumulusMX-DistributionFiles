@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/16 21:14:26",
+	"version": "Last Modified: 2026/02/05 12:24:40",
 	"definitions": {
 		"OM": {
 			"properties": {
@@ -215,6 +215,30 @@
 				},
 				"spike": {
 					"type": "number"
+				},
+				"filter": {
+					"type": "object",
+					"title": "{{SNOW_FILTER}}",
+					"properties": {
+						"explanation": {
+							"default": "{{SNOW_FILTER_EXPLANATION}}",
+							"readonly": true
+						},
+						"median": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"clip": {
+							"type": "number",
+							"minimum": 0
+						},
+						"ema": {
+							"type": "number",
+							"minimum": 0.01,
+							"maximum": 30
+						}
+					}
 				}
 			}
 		}

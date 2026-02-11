@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2025/12/17 16:23:18
+// Last updated: 2026/02/08 16:34:07
 
 const CmxChartJsPlugins = {
 
@@ -139,7 +139,7 @@ const CmxChartJsHelpers = {
         }
     },
 
-    FullScreenEventHandler: (event) => {
+    FullScreenEventHandler: (e) => {
         if (document.fullscreenElement) {
             document.getElementById('btnFullscreen').textContent = 'Exit fullscreen';
         } else {
@@ -158,7 +158,7 @@ const CmxChartJsHelpers = {
                 mainContainer.style.visibility = null;
                 navContainer.style.visibility = null;
                 mainContainer.style.height = null;
-            }, 250);
+            }, 500);
         }
     },
 
@@ -198,7 +198,6 @@ const CmxChartJsHelpers = {
             defaultStart = start.getTime();
         }
 
-
         selection = {
             start: Math.max(min, defaultStart),
             end: defaultEnd
@@ -236,7 +235,7 @@ const CmxChartJsHelpers = {
             const xScale = navChart.scales.x;
             const pxStart = xScale.getPixelForValue(selection.start);
             const pxEnd = xScale.getPixelForValue(selection.end);
-            const handlePxThreshold = 8;
+            const handlePxThreshold = 4;
 
             let newCursor = 'default';
             if (Math.abs(x - pxStart) < handlePxThreshold || Math.abs(x - pxEnd) < handlePxThreshold) {
@@ -258,7 +257,9 @@ const CmxChartJsHelpers = {
             const dx = e.offsetX - dragStartX;
             const dt = dx / (xScale.right - xScale.left) * (xScale.max - xScale.min);
             const max = xScale.max, min = xScale.min;
-            const minWidthMs = (max - min) * 0.03; // 3% of range
+            // convert minimum width in pixels to ms
+            const minWidthPx = 10;
+            const minWidthMs = minWidthPx / (xScale.right - xScale.left) * (xScale.max - xScale.min);
 
             if (dragging === 'start') {
                 selection.start += dt;
@@ -318,6 +319,40 @@ const CmxChartJsHelpers = {
                     } catch {}
                 }
             }
+        });
+
+        navChartElem.addEventListener('click', (e) => {
+            // if click outside the selector, shift the whole selector by the width of the selector, in the direction of the click
+            if (navChart.scales == null || navChart.scales.x == null) return;
+
+            const x = e.offsetX;
+            const xScale = navChart.scales.x;
+            const pxStart = xScale.getPixelForValue(selection.start);
+            const pxEnd = xScale.getPixelForValue(selection.end);
+            const selectorWidth = selection.end - selection.start;
+
+            if (x < pxStart) {
+                // Shift left
+                selection.start -= selectorWidth;
+                selection.end -= selectorWidth;
+                if (selection.start < xScale.min) {
+                    selection.start = xScale.min;
+                    selection.end = selection.start + selectorWidth;
+                }
+            } else if (x > pxEnd) {
+                // Shift right
+                selection.start += selectorWidth;
+                selection.end += selectorWidth;
+                if (selection.end > xScale.max) {
+                    selection.end = xScale.max;
+                    selection.start = selection.end - selectorWidth;
+                }
+            }
+
+            navChart.update('none');
+            mainChart.options.scales.x.min = selection.start;
+            mainChart.options.scales.x.max = selection.end;
+            mainChart.update('none');
         });
 
         document.querySelectorAll('#rangeButtons button').forEach(btn => {
