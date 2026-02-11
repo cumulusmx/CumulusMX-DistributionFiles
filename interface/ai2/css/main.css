@@ -228,16 +228,23 @@ a:hover { text-decoration:none;}
     height: 5em;
     width:auto;
 }
+#flyingGull {
+    position:absolute;
+    bottom: 3vw;
+    right:7em;
+    height: 3vw;
+    min-height: 10px;
+}
 
-@media (max-width: 1400px) {
-    #Gull2 {
+@media (max-width: 1550px) {
+    #Gull2, #flyingGull {
          animation: gull2-fade 1s forwards;
     }
 }
 
 @keyframes gull2-fade {
     0% { opacity:100%;}
-    100% { opacity: 0;}
+    100% { opacity: 0.2;}
 }
 
 /*  ~~~~    THE MENUS   ~~~~*/
