@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/16 17:56:27",
+	"version": "Last Modified: 2026/02/11 16:43:29",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -521,6 +521,10 @@
 							"minimum": 0,
 							"maximum": 65536
 						},
+						"sunshine": {
+							"type": "number",
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
 						"datastopped": {
 							"type": "boolean"
 						},
@@ -529,6 +533,9 @@
 						}
 					},
 					"dependencies": {
+						"sunshine": [
+							"stationid"
+						],
 						"tcpport": [
 							"stationid"
 						],

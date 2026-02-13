@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/03 11:04:51",
+	"version": "Last Modified: 2026/02/11 16:44:41",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -753,6 +753,20 @@
 						"tcpport": {
 							"label": "{{UDP_PORT}}:",
 							"helper": "{{WLL_UDP_PORT_HELP1}}",
+							"dependencies": {
+								"stationid": 11
+							}
+						},
+						"sunshine": {
+							"label": "{{WLL_SUNSHINE}}:",
+							"type": "select",
+							"sort": false,
+							"removeDefaultNone": true,
+							"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+							"helpers": [
+								"{{WLL_SUNSHINE_HELP1}}",
+								"{{WLL_SUNSHINE_HELP2}}"
+							],
 							"dependencies": {
 								"stationid": 11
 							}

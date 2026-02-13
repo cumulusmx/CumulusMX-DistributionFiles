@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/15 17:17:18",
+    "_LAST_MODIFIED": "Last modified: 2026/02/11 16:49:41",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -458,6 +458,9 @@
     "WLL_TH_TX_HELP1": "Select the ISS transmitter ID for your Temperature/Humidity sensor",
     "WLL_TH_TX": "Temperature/Humidity Tx ID",
     "WLL_UDP_PORT_HELP1": "The UDP multicast port used by the WLL, this will normally be discovered from the WLL",
+    "WLL_SUNSHINE": "Sunshine sensor Tx ID",
+    "WLL_SUNSHINE_HELP1": "Optional: Select the ISS transmitter ID to which your Sunshine sensor (eg Instromet) is connected",
+    "WLL_SUNSHINE_HELP2": "If you have a sunshine recorder that counts in 1/100th hours connected to the Rain sensor socket, then select the Rain sensor Tx ID above and the sunshine data will be read from that",
     "WLL_UV_TX_HELP1": "Optional: Select the ISS transmitter ID for your UV sensor",
     "WLL_UV_TX": "UV sensor Tx ID",
     "WLL_WIND_TX_HELP1": "Select the ISS transmitter ID for your Wind sensor",
