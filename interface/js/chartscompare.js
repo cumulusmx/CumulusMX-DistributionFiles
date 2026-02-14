@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/02/08 19:48:54
+// Last modified: 2026/02/14 01:33:44
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -84,7 +84,7 @@ $(document).ready(() => {
                     if (['Humidex'].indexOf(val) === -1) {
                         let option = $('<option />');
                         option.html(val);
-                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
+                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth', 'Snow'].indexOf(k) === -1) {
                             option.val(val);
                         } else {
                             option.val(k + '-' + val);
@@ -275,6 +275,8 @@ const updateChart = (val, num, id) => {
         return doLeafWet(num, val);
     } else if (val.startsWith('LaserDepth-')) {
        return doLaserDepth(num, val);
+    } else if (val.startsWith('Snow-')) {
+        return doSnow24h(num);
     }
 
     // no? then do the "standard" data
@@ -328,9 +330,6 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
-
-        case 'Snowfall 24h':
-            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);
