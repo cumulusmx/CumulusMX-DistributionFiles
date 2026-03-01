@@ -58,6 +58,26 @@
 			tbody tr:nth-of-type(odd){ background:var(--color7);}
 			tbody tr:hover td {background:var(--gradientBar);}
 			.popover-title {background: var(--color1); color: var(--color9)}
+            .loader {
+                --animation: spin 1.5s linear infinite;
+                margin: 0.5vh auto 1vh;
+                border: 0.7em solid var(--color7);
+                border-radius: 50%;
+                border-top: 0.7em dotted var(--color5);
+                width: 6em;
+                height: 6em;
+                -webkit-animation: var(--animation); /* Safari */
+                animation: var(--animation);
+            }
+            /* Safari */
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -385,7 +405,8 @@
 			<div class="w3-center w3-container ows-theme6" style="position:relative; top:35vh;left: 40vw; width:20vw; min-width:200px; border-radius: 1em; padding: 1vh 1vw;">
 				<img src="img/AI-Logo.png" class="w3-image" alt="CumulusMX Logo" style="width:100%;">
 				<h3>{{RECORDS_EDITOR_POPUP_TITLE}}</h3>
-				<img src="/img/loading.gif" alt="loading" class="w3-center">
+				<!--<img src="/img/loading.gif" alt="loading" class="w3-center">-->
+				<div class="loader"></div>
 			</div>
 		</div>
 		<!--	Updater Dialog	-->
