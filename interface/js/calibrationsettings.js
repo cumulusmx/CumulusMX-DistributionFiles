@@ -1,4 +1,4 @@
-// Last modified: 2026/01/16 15:54:26
+// Last modified: 2026/02/20 19:41:17
 
 let accessMode;
 
@@ -128,6 +128,7 @@ $(document).ready(() => {
 
                 setlabel(form.getControlByPath('snow/mininc'), units.laser);
                 setlabel(form.getControlByPath('snow/spike'), units.laser);
+                setlabel(form.getControlByPath('snow/filter/clip'), units.laser + '/min');
             }
         });
     });

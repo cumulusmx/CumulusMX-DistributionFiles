@@ -1,4 +1,4 @@
-// Last modified: 2026/02/06 12:13:26
+// Last modified: 2026/02/28 12:22:45
 
 let mainChart, navChart, config, avail;
 
@@ -35,13 +35,62 @@ const configRes = $.getJSON({ url: 'graphconfig.json' });
 
 $(document).ready(() => {
     $('#mySelect').change(() => {
-        changeGraph($('#mySelect').val());
+        doSelect($('#mySelect').val());
     });
 
     Promise.all([availRes, configRes])
     .then((results) => {
         avail = results[0];
         config = results[1];
+
+        if (avail.Temperature === undefined || avail.Temperature.length == 0) {
+            $('#mySelect option[value="temp"]').remove();
+        }
+        if (avail.DailyTemps === undefined || avail.DailyTemps.length == 0) {
+            $('#mySelect option[value="dailytemp"]').remove();
+        }
+        if (avail.Humidity === undefined || avail.Humidity.length == 0) {
+            $('#mySelect option[value="humidity"]').remove();
+        }
+        if (avail.Solar === undefined || avail.Solar.length == 0) {
+            $('#mySelect option[value="solar"]').remove();
+        }
+        if (avail.Sunshine === undefined || avail.Sunshine.length == 0) {
+            $('#mySelect option[value="sunhours"]').remove();
+        }
+        if (avail.AirQuality === undefined || avail.AirQuality.length == 0) {
+            $('#mySelect option[value="airquality"]').remove();
+        }
+        if (avail.ExtraTemp == undefined || avail.ExtraTemp.length == 0) {
+            $('#mySelect option[value="extratemp"]').remove();
+        }
+        if (avail.ExtraHum == undefined || avail.ExtraHum.length == 0) {
+            $('#mySelect option[value="extrahum"]').remove();
+        }
+        if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.length == 0) {
+            $('#mySelect option[value="extradew"]').remove();
+        }
+        if (avail.SoilTemp == undefined || avail.SoilTemp.length == 0) {
+            $('#mySelect option[value="soiltemp"]').remove();
+        }
+        if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
+            $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
+            $('#mySelect option[value="leafwet"]').remove();
+        }
+        if (avail.UserTemp == undefined || avail.UserTemp.length == 0) {
+            $('#mySelect option[value="usertemp"]').remove();
+        }
+        if (avail.CO2 == undefined || avail.CO2.length == 0) {
+            $('#mySelect option[value="co2"]').remove();
+        }
+        if (avail.LaserDepth == undefined || avail.LaserDepth.length == 0) {
+            $('#mySelect option[value="laserdepth"]').remove();
+        }
+        if (avail.Snow === undefined || avail.Snow.length == 0) {
+            $('#mySelect option[value="snowdepth"]').remove();
+        }
 
         CmxChartJsHelpers.SetRangeButtons('rangeButtons', myRangeBtns.buttons);
         CmxChartJsHelpers.SetupNavigatorSelection('navChart')
@@ -91,147 +140,73 @@ $(document).ready(() => {
 
         CmxChartJsHelpers.AddPrintButtonHandler();
 
-        if (avail.Temperature === undefined || avail.Temperature.length == 0) {
-            $('#mySelect option[value="temp"]').remove();
-        }
-        if (avail.DailyTemps === undefined || avail.DailyTemps.length == 0) {
-            $('#mySelect option[value="dailytemp"]').remove();
-        }
-        if (avail.Humidity === undefined || avail.Humidity.length == 0) {
-            $('#mySelect option[value="humidity"]').remove();
-        }
-        if (avail.Solar === undefined || avail.Solar.length == 0) {
-            $('#mySelect option[value="solar"]').remove();
-        }
-        if (avail.Sunshine === undefined || avail.Sunshine.length == 0) {
-            $('#mySelect option[value="sunhours"]').remove();
-        }
-        if (avail.AirQuality === undefined || avail.AirQuality.length == 0) {
-            $('#mySelect option[value="airquality"]').remove();
-        }
-        if (avail.ExtraTemp == undefined || avail.ExtraTemp.length == 0) {
-            $('#mySelect option[value="extratemp"]').remove();
-        }
-        if (avail.ExtraHum == undefined || avail.ExtraHum.length == 0) {
-            $('#mySelect option[value="extrahum"]').remove();
-        }
-        if (avail.ExtraDewPoint == undefined || avail.ExtraDewPoint.length == 0) {
-            $('#mySelect option[value="extradew"]').remove();
-        }
-        if (avail.SoilTemp == undefined || avail.SoilTemp.length == 0) {
-            $('#mySelect option[value="soiltemp"]').remove();
-        }
-        if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
-            $('#mySelect option[value="soilmoist"]').remove();
-        }
-        if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
-            $('#mySelect option[value="leafwet"]').remove();
-        }
-        if (avail.UserTemp == undefined || avail.UserTemp.length == 0) {
-            $('#mySelect option[value="usertemp"]').remove();
-        }
-        if (avail.CO2 == undefined || avail.CO2.Count == 0) {
-            $('#mySelect option[value="co2"]').remove();
-        }
-        if (avail.LaserDepth == undefined || avail.LaserDepth.length == 0) {
-            $('#mySelect option[value="laserdepth"]').remove();
-        }
-        if (avail.Snow === undefined || avail.Snow.length == 0) {
-            $('#mySelect option[value="snowdepth"]').remove();
-        }
-
         let value = parent.location.hash.replace('#', '');
 
         if (value == '') value = 'temp';
 
-        changeGraph(value);
+        doSelect(value);
         // set the correct option
         $('#mySelect option[value="' + value + '"]').attr('selected', true);
     });
-});
 
+    const doSelect = (sel) => {
+        CmxChartJsHelpers.ShowLoading();
+        parent.location.hash = sel;
 
-const changeGraph = (graph) => {
-    CmxChartJsHelpers.ShowLoading();
-
-    switch (graph) {
-        case 'temp':
-            doTemp();
-            break;
-        case 'dailytemp':
-            doDailyTemp();
-            break;
-        case 'press':
-            doPress();
-            break;
-        case 'wind':
-            doWind();
-            break;
-        case 'windDir':
-            doWindDir();
-            break;
-        case 'rain':
-            doRain();
-            break;
-        case 'dailyrain':
-            doDailyRain();
-            break;
-        case 'humidity':
-            doHum();
-            break;
-        case 'solar':
-            doSolar();
-            break;
-        case 'sunhours':
-            doSunHours();
-            break;
-        case 'airquality':
-            doAirQuality();
-            break;
-        case 'extratemp':
-            doExtraTemp();
-            break;
-        case 'extrahum':
-            doExtraHum();
-            break;
-        case 'extradew':
-            doExtraDew();
-            break;
-        case 'soiltemp':
-            doSoilTemp();
-            break;
-        case 'soilmoist':
-            doSoilMoist();
-            break;
-        case 'leafwet':
-            doLeafWet();
-            break;
-        case 'usertemp':
-            doUserTemp();
-            break;
-        case 'co2':
-            doCO2();
-            break;
-        case 'laserdepth':
-            doLaserDepth();
-            break;
-        case 'snowdepth':
-            doSnowDepth();
-            break;
-        default:
-            doTemp();
-            break;
+        switch (sel) {
+            case 'temp':
+                return doTemp();
+            case 'dailytemp':
+                return doDailyTemp();
+            case 'press':
+                return doPress();
+            case 'wind':
+                return doWind();
+            case 'windDir':
+                return doWindDir();
+            case 'rain':
+                return doRain();
+            case 'dailyrain':
+                return doDailyRain();
+            case 'humidity':
+                return doHum();
+            case 'solar':
+                return doSolar();
+            case 'sunhours':
+                return doSunHours();
+            case 'airquality':
+                return doAirQuality();
+            case 'extratemp':
+                return doExtraTemp();
+            case 'extrahum':
+                return doExtraHum();
+            case 'extradew':
+                return doExtraDew();
+            case 'soiltemp':
+                return doSoilTemp();
+            case 'soilmoist':
+                return doSoilMoist();
+            case 'leafwet':
+                return doLeafWet();
+            case 'usertemp':
+                return doUserTemp();
+            case 'co2':
+                return doCO2();
+            case 'laserdepth':
+                return doLaserDepth();
+            case 'snowdepth':
+                return doSnowDepth();
+            default:
+                return doTemp();
         }
-        parent.location.hash = graph;
-}
+    }
+});
 
 const doTemp = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'tempdata.json',
-        cache: false,
-        dataType: 'json'
+    $.getJSON({
+        url: 'tempdata.json'
     })
     .done(resp => {
         const titles = {
@@ -302,7 +277,7 @@ const doTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -321,10 +296,8 @@ const doTemp = () => {
 const doPress = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'pressdata.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'pressdata.json'
     })
    .done(resp => {
         // Initial x-range
@@ -413,10 +386,8 @@ const compassP = deg => {
 const doWindDir = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'wdirdata.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'wdirdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -512,10 +483,8 @@ const doWindDir = () => {
 const doWind = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'winddata.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'winddata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -603,10 +572,8 @@ const doWind = () => {
 const doRain = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'raindata.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'raindata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -713,9 +680,7 @@ const doHum = () => {
     removeOldCharts(true);
 
     $.ajax({
-        url: 'humdata.json',
-        dataType: 'json',
-        cache: false
+        url: 'humdata.json'
     })
     .done(resp => {
         const titles = {
@@ -806,10 +771,8 @@ const doHum = () => {
 const doSolar = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'solardata.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'solardata.json'
     })
    .done(resp => {
         const chartConfig = {
@@ -929,10 +892,8 @@ const doSolar = () => {
 const doSunHours = () => {
     removeOldCharts(false);
 
-    $.ajax({
-        url: 'sunhours.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'sunhours.json'
     })
     .done(resp => {
         let scales = {
@@ -1003,10 +964,8 @@ const doSunHours = () => {
 const doDailyRain = () => {
     removeOldCharts(false);
 
-    $.ajax({
-        url: 'dailyrain.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'dailyrain.json'
     })
     .done(resp => {
         let scales = {
@@ -1077,10 +1036,8 @@ const doDailyRain = () => {
 const doDailyTemp = () => {
     removeOldCharts(false);
 
-    $.ajax({
-        url: 'dailytemp.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'dailytemp.json'
     })
     .done(resp => {
         const titles = {
@@ -1151,10 +1108,8 @@ const doDailyTemp = () => {
 const doAirQuality = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'airquality.json',
-        dataType: 'json',
-        cache: false
+    $.getJSON({
+        url: 'airquality.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1244,9 +1199,8 @@ const doAirQuality = () => {
 const doExtraTemp = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'extratempdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'extratempdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1303,7 +1257,7 @@ const doExtraTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1322,9 +1276,8 @@ const doExtraTemp = () => {
 const doExtraHum = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'extrahumdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'extrahumdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1389,7 +1342,7 @@ const doExtraHum = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1408,9 +1361,8 @@ const doExtraHum = () => {
 const doExtraDew = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'extradewdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'extradewdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1467,7 +1419,7 @@ const doExtraDew = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1486,9 +1438,8 @@ const doExtraDew = () => {
 const doSoilTemp = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'soiltempdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'soiltempdata.json'
     })
     .done (resp => {
         // Initial x-range
@@ -1545,7 +1496,7 @@ const doSoilTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1564,9 +1515,8 @@ const doSoilTemp = () => {
 const doSoilMoist = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'soilmoistdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'soilmoistdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1629,7 +1579,7 @@ const doSoilMoist = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1714,7 +1664,7 @@ const doLeafWet = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1733,9 +1683,8 @@ const doLeafWet = () => {
 const doUserTemp = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'usertempdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'usertempdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1792,7 +1741,7 @@ const doUserTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1811,9 +1760,8 @@ const doUserTemp = () => {
 const doCO2 = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'co2sensordata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'co2sensordata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1911,7 +1859,7 @@ const doCO2 = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: resp['CO2'],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -1930,9 +1878,8 @@ const doCO2 = () => {
 const doLaserDepth = () => {
     removeOldCharts(true);
 
-    $.ajax({
-        url: 'laserdepthdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'laserdepthdata.json'
     })
     .done(resp => {
         // Initial x-range
@@ -1994,7 +1941,7 @@ const doLaserDepth = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
@@ -2074,11 +2021,11 @@ const doSnowDepth = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
