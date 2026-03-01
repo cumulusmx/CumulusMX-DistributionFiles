@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/19 17:13:32",
+	"version": "Last Modified: 2026/02/11 10:25:36",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -56,7 +56,7 @@
 				},
 				"apiKey": {
 					"label": "{{WL_API_KEY}}:",
-					"helpers": ["{{WL_API_HELP}}"],
+					"helpers": ["{{WL_API_HELP1}}"],
 					"dependencies": {
 						"isNode": false
 					}

@@ -1,5 +1,5 @@
 // Helper plugins and useful functions for ChartJS
-// Last updated: 2026/02/08 16:34:07
+// Last updated: 2026/02/28 12:25:02
 
 const CmxChartJsPlugins = {
 
@@ -8,8 +8,9 @@ const CmxChartJsPlugins = {
         afterDraw(chart) {
             const { ctx, chartArea, scales } = chart;
             const xScale = scales.x;
-            const x1 = xScale.getPixelForValue(selection.start);
-            const x2 = xScale.getPixelForValue(selection.end);
+            // constrain x1 and x2 to be within the plot area
+            const x1 = Math.max(xScale.getPixelForValue(selection.start), chartArea.left);
+            const x2 = Math.max(Math.min(xScale.getPixelForValue(selection.end), chartArea.right), chartArea.left);
             const y1 = chartArea.top;
 
             const handle = (x) => {
@@ -207,31 +208,13 @@ const CmxChartJsHelpers = {
     SetupNavigatorSelection: navchart => {
         const navChartElem = document.getElementById(navchart);
 
-        navChartElem.addEventListener('pointerdown', (e) => {
+        let lastNavOffsetX = null;
+        let rafPending = false;
+
+        const updateChartsFromEvent = (x) => {
             if (navChart.scales == null || navChart.scales.x == null) return;
 
-            const x = e.offsetX;
-            const xScale = navChart.scales.x;
-            const pxStart = xScale.getPixelForValue(selection.start);
-            const pxEnd = xScale.getPixelForValue(selection.end);
-            const handleThreshold = 8;
-
-            if (Math.abs(x - pxStart) < handleThreshold) {
-                dragging = 'start';
-            } else if (Math.abs(x - pxEnd) < handleThreshold) {
-                dragging = 'end';
-            } else if (x > Math.min(pxStart, pxEnd) && x < Math.max(pxStart, pxEnd)) {
-                dragging = 'move';
-            }
-
-            dragStartX = x;
-        });
-
-        navChartElem.addEventListener('pointermove', (e) => {
-            if (navChart.scales == null || navChart.scales.x == null) return;
-
-            const canvas = e.currentTarget;
-            const x = e.offsetX;
+            const canvas = navChart.canvas;
             const xScale = navChart.scales.x;
             const pxStart = xScale.getPixelForValue(selection.start);
             const pxEnd = xScale.getPixelForValue(selection.end);
@@ -254,7 +237,7 @@ const CmxChartJsHelpers = {
                 return;
             }
 
-            const dx = e.offsetX - dragStartX;
+            const dx = x - dragStartX;
             const dt = dx / (xScale.right - xScale.left) * (xScale.max - xScale.min);
             const max = xScale.max, min = xScale.min;
             // convert minimum width in pixels to ms
@@ -285,7 +268,7 @@ const CmxChartJsHelpers = {
                 if (selection.end - selection.start < minWidthMs) {
                     selection.end = selection.start + minWidthMs;
                 }
-            } else if (dragging === 'move') {
+            } else if (dragging === 'drag') {
                 selection.start += dt;
                 selection.end += dt;
 
@@ -301,16 +284,82 @@ const CmxChartJsHelpers = {
                 }
             }
 
-            dragStartX = e.offsetX;
+            dragStartX = x;
             navChart.update('none');
             mainChart.options.scales.x.min = selection.start;
             mainChart.options.scales.x.max = selection.end;
             mainChart.update('none');
+        };
+
+        navChartElem.addEventListener('pointerdown', (e) => {
+            if (navChart.scales == null || navChart.scales.x == null) return;
+
+            const x = e.offsetX;
+            const xScale = navChart.scales.x;
+            const pxStart = xScale.getPixelForValue(selection.start);
+            const pxEnd = xScale.getPixelForValue(selection.end);
+            const handleThreshold = 6; // handle width is 8px (+-4px from center), so threshold is 4px + some padding
+
+            if (Math.abs(x - pxStart) < handleThreshold) {
+                dragging = 'start';
+            } else if (Math.abs(x - pxEnd) < handleThreshold) {
+                dragging = 'end';
+            } else if (x > Math.min(pxStart, pxEnd) && x < Math.max(pxStart, pxEnd)) {
+                dragging = 'drag';
+            } else {
+                dragging = 'move';
+            }
+
+            dragStartX = x;
         });
 
-        window.addEventListener('pointerup', () => {
-            dragging = null;
-            if (currentCursor !== 'default') {
+        navChartElem.addEventListener('pointermove', (e) => {
+            lastNavOffsetX = e.offsetX;
+
+            if (dragging != null && !rafPending) {
+                rafPending = true;
+                requestAnimationFrame(() => {
+                    rafPending = false;
+                    updateChartsFromEvent(lastNavOffsetX);
+                });
+            }
+        });
+
+        window.addEventListener('pointerup', (e) => {
+            if (dragging =='move') {
+                // if click outside the selector, shift the whole selector by the width of the selector, in the direction of the click
+                if (navChart.scales == null || navChart.scales.x == null) return;
+
+                const x = e.offsetX;
+                const xScale = navChart.scales.x;
+                const pxStart = xScale.getPixelForValue(selection.start);
+                const pxEnd = xScale.getPixelForValue(selection.end);
+                const selectorWidth = selection.end - selection.start;
+
+                if (x < pxStart) {
+                    // Shift left
+                    selection.start -= selectorWidth;
+                    selection.end -= selectorWidth;
+                    if (selection.start < xScale.min) {
+                        selection.start = xScale.min;
+                        selection.end = selection.start + selectorWidth;
+                    }
+                } else if (x > pxEnd) {
+                    // Shift right
+                    selection.start += selectorWidth;
+                    selection.end += selectorWidth;
+                    if (selection.end > xScale.max) {
+                        selection.end = xScale.max;
+                        selection.start = selection.end - selectorWidth;
+                    }
+                }
+
+                navChart.update('none');
+                mainChart.options.scales.x.min = selection.start;
+                mainChart.options.scales.x.max = selection.end;
+                mainChart.update('none');
+
+            } else if (currentCursor !== 'default') {
                 currentCursor = 'default';
                 document.getElementById('navChart').style.cursor = currentCursor;
                 if (navChart) {
@@ -318,41 +367,13 @@ const CmxChartJsHelpers = {
                         navChart.update('none'); // Force redraw to remove tooltip
                     } catch {}
                 }
-            }
-        });
-
-        navChartElem.addEventListener('click', (e) => {
-            // if click outside the selector, shift the whole selector by the width of the selector, in the direction of the click
-            if (navChart.scales == null || navChart.scales.x == null) return;
-
-            const x = e.offsetX;
-            const xScale = navChart.scales.x;
-            const pxStart = xScale.getPixelForValue(selection.start);
-            const pxEnd = xScale.getPixelForValue(selection.end);
-            const selectorWidth = selection.end - selection.start;
-
-            if (x < pxStart) {
-                // Shift left
-                selection.start -= selectorWidth;
-                selection.end -= selectorWidth;
-                if (selection.start < xScale.min) {
-                    selection.start = xScale.min;
-                    selection.end = selection.start + selectorWidth;
-                }
-            } else if (x > pxEnd) {
-                // Shift right
-                selection.start += selectorWidth;
-                selection.end += selectorWidth;
-                if (selection.end > xScale.max) {
-                    selection.end = xScale.max;
-                    selection.start = selection.end - selectorWidth;
-                }
+            } else {
+                // we were dragging, ensure final position is updated
+                lastNavOffsetX = e.offsetX;
+                updateChartsFromEvent(lastNavOffsetX); // final update
             }
 
-            navChart.update('none');
-            mainChart.options.scales.x.min = selection.start;
-            mainChart.options.scales.x.max = selection.end;
-            mainChart.update('none');
+            dragging = null;
         });
 
         document.querySelectorAll('#rangeButtons button').forEach(btn => {
@@ -383,7 +404,6 @@ const CmxChartJsHelpers = {
                 const fullRange = fullEnd - fullStart;
 
                 const selMid = (selection.start + selection.end) / 2;
-                const selRange = selection.end - selection.start;
 
                 const relStart = (selection.start - fullStart + 1) / fullRange;
                 const relEnd = (fullEnd - selection.end + 1) / fullRange;

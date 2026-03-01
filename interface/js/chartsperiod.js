@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2026/02/06 11:31:22
+// Last modified: 2026/02/14 01:33:16
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -331,6 +331,8 @@ const updateChart = (val, num, id) => {
         return doLeafWet(num, val);
     } else if (val.startsWith('LaserDepth-')) {
        return doLaserDepth(num, val);
+    } else if (val.startsWith('Snow-')) {
+        return doSnow24h(num);
     }
 
     // no? then do the "standard" data
@@ -384,9 +386,6 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
-
-        case 'Snowfall 24h':
-            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);

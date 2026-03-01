@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/02/05 14:14:38",
+    "_LAST_MODIFIED": "Last modified: 2026/02/20 19:56:59",
     "OFFSET": "Offset",
     "OFFSET_HELPER": "Adds or subtracts a constant value from the raw reading, this shifts the value a constant amount",
     "MULTIPLIER": "Multiplier",
@@ -21,12 +21,12 @@
     "RAIN_HOUR_SPIKE": "Rain per hour spike removal",
     "MIN_INCREMENT": "Minimum increment",
     "MIN_INCREMENT_HELPER1": "The minimum increase in the laser depth value for it to be added to the daily snowfall accumulation. The new depth value will then form the new baseline for future readings",
-    "MIN_INCREMENT_HELPER3": "NOTE: This is set in laser measurement units, not snow depth units",
+    "MIN_INCREMENT_HELPER2": "NOTE: This is set in laser measurement units, not snow depth units",
     "SNOW_SPIKE_HELPER1": "If the change in the laser depth value between baseline and latest is greater than this value it will be ignored and not added to the daily snow accumulation",
-    "MEDIAN_FILTER": "Median filter window:",
+    "MEDIAN_FILTER": "Median filter window",
     "MEDIAN_FILTER_HELPER1": "The number of minutes of depth readings to be used in the median filter",
-    "CLIP_FILTER": "Clip filter limit:",
-    "CLIP_FILTER_HELPER1": "The maximum allowed change in depth per reading after the median filter",
-    "EMA_FILTER": "EMA filter window:",
+    "CLIP_FILTER": "Clip filter limit",
+    "CLIP_FILTER_HELPER1": "The maximum allowed change in depth per minute after the median filter",
+    "EMA_FILTER": "EMA filter window",
     "EMA_FILTER_HELPER1": "The number of minutes of depth readings to be used in the exponential moving average (EMA) filter"
 }

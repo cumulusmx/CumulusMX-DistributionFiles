@@ -1,4 +1,4 @@
-// Last modified: 2026/02/05 22:55:46
+// Last modified: 2026/02/28 12:21:54
 
 let mainChart, navChart, config, avail;
 
@@ -32,14 +32,14 @@ let temperatureScale;
 const availRes = $.getJSON({url: '/api/graphdata/availabledata.json'});
 const configRes = $.getJSON({url: '/api/graphdata/graphconfig.json'});
 
+
 $(document).ready(() => {
-    $('#mySelect').change(function () {
+    $('#mySelect').change(() => {
         doSelect($('#mySelect').val());
     });
 
     Promise.all([availRes, configRes])
     .then((results) => {
-        // available data
         avail = results[0];
         config = results[1];
 
@@ -147,82 +147,58 @@ $(document).ready(() => {
         doSelect(value);
         // set the correct option
         $('#mySelect option[value="' + value + '"]').attr('selected', true);
-
     });
 
-    doSelect = (sel) => {
+    const doSelect = (sel) => {
         CmxChartJsHelpers.ShowLoading();
+        parent.location.hash = sel;
 
         switch (sel) {
             case 'temp':
-                doTemp();
-                break;
+                return doTemp();
             case 'dailytemp':
-                doDailyTemp();
-                break;
+                return doDailyTemp();
             case 'press':
-                doPress();
-                break;
+                return doPress();
             case 'wind':
-                doWind();
-                break;
+                return doWind();
             case 'windDir':
-                doWindDir();
-                break;
+                return doWindDir();
             case 'rain':
-                doRain();
-                break;
+                return doRain();
             case 'dailyrain':
-                doDailyRain();
-                break;
+                return doDailyRain();
             case 'humidity':
-                doHum();
-                break;
+                return doHum();
             case 'solar':
-                doSolar();
-                break;
+                return doSolar();
             case 'sunhours':
-                doSunHours();
-                break;
+                return doSunHours();
             case 'airquality':
-                doAirQuality();
-                break;
+                return doAirQuality();
             case 'extratemp':
-                doExtraTemp();
-                break;
+                return doExtraTemp();
             case 'extrahum':
-                doExtraHum();
-                break;
+                return doExtraHum();
             case 'extradew':
-                doExtraDew();
-                break;
+                return doExtraDew();
             case 'soiltemp':
-                doSoilTemp();
-                break;
+                return doSoilTemp();
             case 'soilmoist':
-                doSoilMoist();
-                break;
+                return doSoilMoist();
             case 'leafwet':
-                doLeafWet();
-                break;
+                return doLeafWet();
             case 'usertemp':
-                doUserTemp();
-                break;
+                return doUserTemp();
             case 'co2':
-                doCO2();
-                break;
+                return doCO2();
             case 'laserdepth':
-                doLaserDepth();
-                break;
+                return doLaserDepth();
             case 'snowdepth':
-                doSnowDepth();
-                break;
+                return doSnowDepth();
             default:
-                doTemp();
-                break;
+                return doTemp();
         }
-
-        parent.location.hash = sel;
     };
 
     $.getJSON({url: '/api/info/version.json'})
@@ -309,11 +285,11 @@ const doTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -397,7 +373,7 @@ const doPress = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -413,7 +389,7 @@ const compassP = (deg) => {
     if (deg === 0) {
         return '{{WIND_CALM}}';
     }
-    var a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
+    const a = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
@@ -460,7 +436,7 @@ const doWindDir = () => {
             yAxisID: 'y_bearing',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y +'°'}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y +'°'}`
                 }
             }
         }, {
@@ -468,12 +444,7 @@ const doWindDir = () => {
             data: resp.bearing,
             borderColor:  config.series.bearing.colour,
             backgroundColor: config.series.bearing.colour,
-            yAxisID: 'y_bearing',
-            tooltip: {
-                callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y +'°'}`
-                }
-            }
+            yAxisID: 'y_bearing'
         }];
 
         CmxChartJsHelpers.HideLoading();
@@ -492,7 +463,13 @@ const doWindDir = () => {
                     title: {
                         display: true,
                         text: '{{WIND_DIRECTION}}'
+                    },
+                    tooltip: {
+                        filter: (item) => { return item.datasetIndex === 0; }
                     }
+                },
+                interaction: {
+                    mode: 'x'
                 }
             }
         });
@@ -503,7 +480,7 @@ const doWindDir = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -594,7 +571,7 @@ const doWind = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -700,7 +677,7 @@ const doRain = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         let navOptions = CmxChartJsHelpers.NavChartOptions;
@@ -763,7 +740,7 @@ const doHum = () => {
                     yAxisID: 'y_hum',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                         }
                     }
                 });
@@ -794,6 +771,8 @@ const doHum = () => {
         const navDataset = {
             label: 'Navigator',
             data: resp.hum,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
             tension: 0.15
         };
@@ -879,7 +858,7 @@ const doSolar = () => {
                     yAxisID: idx === 'UV' ? 'y_uv' : 'y_solar',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} ${chartConfig[idx].suffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${chartConfig[idx].suffix}`
                         }
                     },
                     order: chartConfig[idx].order
@@ -915,7 +894,7 @@ const doSolar = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         var opts = CmxChartJsHelpers.NavChartOptions;
@@ -968,7 +947,7 @@ const doSunHours = () => {
             yAxisID: 'y_sun',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} {{HOURS_SHORT}}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} {{HOURS_SHORT}}`
                 }
             }
         };
@@ -1079,8 +1058,6 @@ const doDailyRain = () => {
 };
 
 const doDailyTemp = () => {
-    const freezing = config.temp.units === 'C' ? 0 : 32;
-
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_DAILYTEMP_DESC}}');
@@ -1201,7 +1178,7 @@ const doAirQuality = () => {
                     yAxisID: 'y_pm',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y} ${valueSuffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
                         }
                     }
                 });
@@ -1235,7 +1212,7 @@ const doAirQuality = () => {
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1310,11 +1287,11 @@ const doExtraTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1368,7 +1345,7 @@ const doExtraHum = () => {
                 yAxisID: 'y_hum',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} %`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
                     }
                 }
             });
@@ -1397,11 +1374,11 @@ const doExtraHum = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1476,11 +1453,11 @@ const doExtraDew = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1555,11 +1532,11 @@ const doSoilTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1611,7 +1588,7 @@ const doSoilMoist = () => {
                 yAxisID: 'y_moist',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.soilmoisture.units[id]}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.soilmoisture.units[id]}`
                     }
                 }
             });
@@ -1640,11 +1617,11 @@ const doSoilMoist = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1726,11 +1703,11 @@ const doLeafWet = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1805,11 +1782,11 @@ const doUserTemp = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1895,7 +1872,7 @@ const doCO2 = () => {
                 yAxisID: yaxis,
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${valueSuffix}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
                     }
                 }
             });
@@ -1925,11 +1902,11 @@ const doCO2 = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: resp['CO2'],
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -1980,7 +1957,7 @@ const doLaserDepth = () => {
                 yAxisID: 'y_depth',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.laser.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.laser.units}`
                     }
                 }
             });
@@ -2009,11 +1986,11 @@ const doLaserDepth = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {
@@ -2031,7 +2008,7 @@ const doSnowDepth = () => {
     $('#chartdescription').text('{{CHART_RECENT_SNOWACCUM_DESC}}');
 
     $.getJSON({
-        url: '/api/graphdata/snow24h.json',
+        url: '/api/graphdata/snow24h.json'
     })
     .done(resp => {
         // Initial x-range
@@ -2091,11 +2068,11 @@ const doSnowDepth = () => {
 
         const navDataset = {
             label: 'Navigator',
-            data: resp[key],
+            data: dataSets[0].data,
             borderColor: 'rgba(33,133,208,0.6)',
             backgroundColor: 'rgba(33,133,208,0.04)',
             pointStyle: false,
-            tension: 0.15
+            tension: 0.1
         };
 
         navChart = new Chart(document.getElementById('navChart'), {

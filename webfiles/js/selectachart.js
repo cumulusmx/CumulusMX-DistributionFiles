@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2026/02/09 09:49:10
+// Last modified: 2026/02/14 01:36:02
 
 let settings;
 
@@ -77,7 +77,7 @@ $(document).ready(() => {
                     if (['Humidex'].indexOf(val) === -1) {
                         let option = $('<option />');
                         option.html(val);
-                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
+                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth', 'Snow'].indexOf(k) === -1) {
                             option.val(val);
                         } else {
                             option.val(k + '-' + val);
@@ -295,6 +295,8 @@ const updateChart = (val, num, id) => {
         return doLeafWet(num, val);
     } else if (val.startsWith('LaserDepth-')) {
         return doLaserDepth(num, val);
+    } else if (val.startsWith('Snow-')) {
+        return doSnow24h(num);
     }
 
     switch (val) {
@@ -345,9 +347,6 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
-
-        case 'Snowfall 24h':
-            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);
