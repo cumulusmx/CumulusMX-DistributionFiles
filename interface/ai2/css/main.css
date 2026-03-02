@@ -18,6 +18,7 @@
     --rowGap: 2vh;
     --colGap: 1vw;
     --ledOff: darkslategrey;
+    --ledOn: #F44;
 }
 /*  End of user editable variables
 
@@ -333,11 +334,11 @@ a:hover { text-decoration:none;}
         -moz-box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
     }
 	20%, 70% { 
-        background-color: #F44; 
+        background-color: var(--ledOn); 
         /*box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px rgba(109, 25, 25, 1);*/
-        box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px #F44;
-        -webkit-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px #F44;
-        -moz-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px #F44;
+        box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
+        -webkit-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
+        -moz-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
     }
 }
 

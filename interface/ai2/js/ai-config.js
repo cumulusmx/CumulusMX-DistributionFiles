@@ -262,3 +262,8 @@ var setScheme = function() {
 function showConfig() {
 	$('#cmxInfo').html(JSON.stringify(cmxConfig, null, 2));
 }
+
+/* Testing	*/
+function testColourChange() {
+	$('html').get(0).style.setProperty('--ledOn', 'hotPink');
+}
