@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2026/02/14 01:36:02
+// Last modified: 2026/03/07 13:34:33
 
 let settings;
 
@@ -317,6 +317,10 @@ const updateChart = (val, num, id) => {
             return doAppTemp(num);
         case 'Feels Like':
             return doFeelsLike(num);
+        case 'BGT':
+            return doBGT(num);
+        case 'WBGT':
+            return doWBGT(num);
 
         case 'Humidity':
             return doHumidity(num);
@@ -886,6 +890,60 @@ const doFeelsLike = (idx) => {
             label: 'Feels Like',
             type: 'line',
             data: resp.feelslike,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    });
+};
+
+const doBGT = (idx) => {
+    return $.getJSON({
+        url: 'tempdata.json',
+    })
+    .done((resp) => {
+        setInitialRange(resp.bgt);
+
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'BGT',
+            type: 'line',
+            data: resp.bgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    });
+};
+
+const doWBGT = (idx) => {
+    return $.getJSON({
+        url: 'tempdata.json',
+    })
+    .done((resp) => {
+        setInitialRange(resp.wbgt);
+
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'WBGT',
+            type: 'line',
+            data: resp.wbgt,
             borderColor: settings.colours[idx],
             backgroundColor: settings.colours[idx],
             yAxisID: 'y_temp',
