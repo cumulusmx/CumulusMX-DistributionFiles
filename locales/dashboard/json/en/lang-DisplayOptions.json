@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:01",
+    "_LAST_MODIFIED": "Last modified: 2026/03/07 09:17:26",
     "OPTION_HIDDEN": "Hidden",
     "OPTION_VISIBLE": "Visible",
     "OPTION_DASHBOARD": "Dashboard Only",
@@ -80,5 +80,6 @@
     "DAILY_TEMP_MIN": "Daily Minimum Temperature",
     "GDD": "Growing Degree Days series",
     "TEMP_SUM": "Annual Temperature Sum",
-    "CHILL_HRS": "Chill Hours"
+    "CHILL_HRS": "Chill Hours",
+    "BGT_WBGT": "BGT & WBGT"
 }

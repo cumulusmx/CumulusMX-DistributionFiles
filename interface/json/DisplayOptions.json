@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/10/04 15:39:14",
+	"version": "Last Modified: 2026/03/06 20:58:30",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -522,6 +522,10 @@
 						},
 						"MinTemp": {
 							"label": "{{DAILY_TEMP_MIN}}",
+							"$ref": "#/definitions/visibility"
+						},
+						"BGT": {
+							"label": "{{BGT_WBGT}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}

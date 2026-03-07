@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/10/04 15:37:40",
+	"version": "Last Modified: 2026/03/06 20:58:28",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -418,6 +418,10 @@
 							"enum": [0,1,2]
 						},
 						"MinTemp": {
+							"type": "number",
+							"enum": [0,1,2]
+						},
+						"BGT": {
 							"type": "number",
 							"enum": [0,1,2]
 						}
