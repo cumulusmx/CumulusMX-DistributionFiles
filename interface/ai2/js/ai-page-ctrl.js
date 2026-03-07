@@ -268,4 +268,6 @@ $().ready( function() {
     setTimeout(setPageGeometry(cmxConfig.Geometry),900);
 })
 
-$(window).on('resize', setPageGeometry( cmxConfig.Geometry));
+$(window).on('resize', function() {
+    setPageGeometry( cmxConfig.Geometry);
+})
