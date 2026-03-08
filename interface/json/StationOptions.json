@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/02/11 16:44:41",
+	"version": "Last Modified: 2026/03/08 22:20:21",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1163,14 +1163,22 @@
 					"sort": false,
 					"optionLabels": [
 						"{{DEFAULT}}",
-						"{{EXTRA_TH_CHAN1}}",
-						"{{EXTRA_TH_CHAN2}}",
-						"{{EXTRA_TH_CHAN3}}",
-						"{{EXTRA_TH_CHAN4}}",
-						"{{EXTRA_TH_CHAN5}}",
-						"{{EXTRA_TH_CHAN6}}",
-						"{{EXTRA_TH_CHAN7}}",
-						"{{EXTRA_TH_CHAN8}}"
+						"{{EXTRA_TH}} 1",
+						"{{EXTRA_TH}} 2",
+						"{{EXTRA_TH}} 3",
+						"{{EXTRA_TH}} 4",
+						"{{EXTRA_TH}} 5",
+						"{{EXTRA_TH}} 6",
+						"{{EXTRA_TH}} 7",
+						"{{EXTRA_TH}} 8",
+						"{{EXTRA_TH}} 9",
+						"{{EXTRA_TH}} 10",
+						"{{EXTRA_TH}} 11",
+						"{{EXTRA_TH}} 12",
+						"{{EXTRA_TH}} 13",
+						"{{EXTRA_TH}} 14",
+						"{{EXTRA_TH}} 15",
+						"{{EXTRA_TH}} 16"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
@@ -1182,7 +1190,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 1","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 1","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan2": {
@@ -1190,7 +1198,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 2","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 2","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan3": {
@@ -1198,7 +1206,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 3","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 3","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan4": {
@@ -1206,7 +1214,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 4","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 4","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan5": {
@@ -1214,7 +1222,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 5","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 5","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan6": {
@@ -1222,7 +1230,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 6","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 6","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan7": {
@@ -1230,7 +1238,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 7","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 7","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan8": {
@@ -1238,7 +1246,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 8","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 8","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"stationid": {
