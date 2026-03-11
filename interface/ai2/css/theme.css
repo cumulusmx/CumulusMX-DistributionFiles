@@ -26,8 +26,9 @@
     --color9: #e5e5e5;
     --modal: rgba( var(--baseR), var(--baseG), var(--baseB), 0.3);
     --menu: rgba( var(--baseR), var(--baseG), var(--baseB), 0.8);
-    --shadow1: 0 0.3em 0.3em -1px var(--color5);
-    --shadow2: 0.2em 0.2em rgb(var(--baseR), var(--baseG), var(--baseB), 80%), 0.6em 0.6em 0.6em rgb(var(--baseR), var(--baseG), var(--baseB), 50%);
+    --shadow1: 0px 7px 6px -4px var(--color5);
+    --shadow2: 2px 2px 0px 0px rgb(var(--baseR), var(--baseG), var(--baseB), 1), 8px 8px 8px 0px rgb(var(--baseR), var(--baseG), var(--baseB), 70%);
+    --shadow3: -8px 0px 8px -6px rgba(var(--baseR), var(--baseG), var(--baseB)), 6px 0px 6px -3px rgba(var(--baseR), var(--baseG), var(--baseB)); 
 
     --gradient-down: linear-gradient( 0deg, var(--color7), var(--color5));
     --gradient-up: linear-gradient( 0deg,  var(--color5), var(--color7));
