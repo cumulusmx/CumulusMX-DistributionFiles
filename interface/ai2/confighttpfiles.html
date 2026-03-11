@@ -96,29 +96,30 @@
 						<div class="ows-titleFlex w3-stretch"><h4>Notes</h4></div>
 						<div class="ax-notes" style="display:grid;grid-template-columns:10em 1fr; gap: var(--colGap) var(--rowGap);">
 							<p>URL:</p>
-							<p>This is the url used to access your source file.</p>
+							<p>T{{HTTP_FILE_SETTINGS_URL1}}<br>
+							{{HTTP_FILE_SETTINGS_URL2}}</p>
 							<p>Destination Filename:</p>
 							<p>
-								This is the path and file name where you want your downloaded file to be saved.&nbsp; 
-								This is either a path on your web server, or a local path where Cumulus is running - the Upload Enabled option controls which.
+								{{HTTP_FILE_SETTINGS_DEST1}}<br>
+								{{HTTP_FILE_SETTINGS_DEST2}}
 							</p>
 							<p>Download Interval:</p>
 							<p>
-								This is a multiple of your web interval, or at the End of Day rollover.&nbsp; 
-								For example, if your web interval is 5 minutes and you select "x12", then the download will occur once an hour.
+								{{HTTP_FILE_SETTINGS_DOWN1}}<br>
+								{{HTTP_FILE_SETTINGS_DOWN2}}
 							</p>
 							<p>Upload Enabled:</p>
 							<p>
-								This controls if the file is just downloaded to the local file system, or it is then uploaded to your web site.
+								{{HTTP_FILE_SETTINGS_UP1}}
 							</p>
 							<p>Timed Downloads:</p>
 							<p>
-								If this is disabled, then the file will be downloaded at the set interval, starting whenever Cumulus is started.&nbsp; 
-								If you enable this option, then the downloads will start at First Download and repeat each interval
+								{{HTTP_FILE_SETTINGS_TIMED1}}<br>
+								{{HTTP_FILE_SETTINGS_TIMED2}}
 							</p>
 							<p>First Download:</p>
 							<p>
-								If timed uploads are enabled, then the first download of the day will occur at this time and repeat at each interval until the end of the day
+								{{HTTP_FILE_SETTINGS_FIRST1}}
 							</p>
 						</div>
 					</div>
