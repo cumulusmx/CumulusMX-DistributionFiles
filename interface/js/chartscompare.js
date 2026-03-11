@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/02/14 01:33:44
+// Last modified: 2026/03/07 11:50:24
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -300,6 +300,10 @@ const updateChart = (val, num, id) => {
             return doFeelsLike(num);
         case 'Humidex':
             return doHumidex(num);
+        case 'BGT':
+            return doBGT(num);
+        case 'WBGT':
+            return doWBGT(num);
 
         case 'Humidity':
             return doHumidity(num);
@@ -915,6 +919,61 @@ var doHumidex = function (idx) {
     });
 };
 */
+
+const doBGT = (idx) => {
+    return $.getJSON({
+        url: '/api/graphdata/tempdata.json',
+    })
+    .done((resp) => {
+        setInitialRange(resp.bgt);
+
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'BGT',
+            type: 'line',
+            data: resp.bgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    });
+};
+
+const doWBGT = (idx) => {
+    return $.getJSON({
+        url: '/api/graphdata/tempdata.json',
+    })
+    .done((resp) => {
+        setInitialRange(resp.wbgt);
+
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'WBGT',
+            type: 'line',
+            data: resp.wbgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    });
+};
+
 
 const doHumidity = (idx) => {
     return $.getJSON({

@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/10 17:26:58
+Last modified: 2026/03/09 15:44:03
 -->
 <!doctype html>
 <html lang="en">
@@ -53,15 +53,15 @@ Last modified: 2025/08/10 17:26:58
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-            <div class="row top-buffer">
+        <div class="row top-buffer">
             <div class="col-md-12">
-            <h1>{{EXTRA_SENSORS}}</h1>
+                <h1>{{EXTRA_SENSORS}}</h1>
             </div>
         </div>
-        <div class="row top-buffer">
+        <div id="tables-container">
 
             <!-- TEMPERATURE BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="TempTable" style="width:100%">
                     <thead>
                         <tr>
@@ -79,7 +79,7 @@ Last modified: 2025/08/10 17:26:58
             </div>
 
             <!-- HUMIDITY BLOCK-->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="HumTable" style="width:100%">
                     <thead>
                         <tr>
@@ -97,7 +97,7 @@ Last modified: 2025/08/10 17:26:58
             </div>
 
             <!-- DEW POINT BLOCK-->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="DewTable" style="width:100%">
                     <thead>
                         <tr>
@@ -113,11 +113,9 @@ Last modified: 2025/08/10 17:26:58
                     </tr>
                 </table>
             </div>
-        </div>
 
-        <div class="row top-buffer">
             <!-- SOIL TEMP BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="SoilTempTable" style="width:100%">
                     <thead>
                         <tr>
@@ -135,7 +133,7 @@ Last modified: 2025/08/10 17:26:58
             </div>
 
             <!-- SOIL MOISTURE BLOCK-->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="SoilMoistureTable" style="width:100%">
                     <thead>
                         <tr>
@@ -152,18 +150,8 @@ Last modified: 2025/08/10 17:26:58
                 </table>
             </div>
 
-            <!-- AIR QUALITY BLOCK -->
-            <div class="col-md-4">
-                <table id="AirQualityTable" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>&nbsp;{{AIR_QUALITY}}</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-                <br>
+            <!-- CO2 BLOCK -->
+            <div class="table-block">
                 <table id="CO2Table" style="width:100%">
                     <thead>
                         <tr>
@@ -174,11 +162,9 @@ Last modified: 2025/08/10 17:26:58
                     </thead>
                 </table>
             </div>
-        </div>
 
-        <div class="row top-buffer">
             <!-- USER TEMPS BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="UserTempTable" style="width:100%">
                     <thead>
                         <tr>
@@ -196,7 +182,7 @@ Last modified: 2025/08/10 17:26:58
             </div>
 
             <!-- LEAF WETNESS BLOCK-->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="LeafTable" style="width:100%">
                     <thead>
                         <tr>
@@ -213,8 +199,8 @@ Last modified: 2025/08/10 17:26:58
                 </table>
             </div>
 
-            <!-- LIGHTNING BLOCK-->
-            <div class="col-md-4">
+                <!-- LIGHTNING BLOCK-->
+            <div class="table-block">
                 <table id="LightningTable" style="width:100%">
                     <thead>
                         <tr>
@@ -225,11 +211,27 @@ Last modified: 2025/08/10 17:26:58
                     </thead>
                 </table>
             </div>
-        </div>
 
-        <div class="row top-buffer">
+            <!-- Blac Globe Temperature BLOCK-->
+            <div class="table-block">
+                <table id="BGTTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;{{BGT}}</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="BGTempSensor1">--</span></td>
+                        <td><span class="TempUnit">&deg;C</span></td>
+                    </tr>
+                </table>
+            </div>
+
             <!-- LASER DEPTH BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="LaserDepthTable" style="width:100%">
                     <thead>
                         <tr>
@@ -245,8 +247,9 @@ Last modified: 2025/08/10 17:26:58
                     </tr>
                 </table>
             </div>
+
             <!-- LASER DIST BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="LaserDistTable" style="width:100%">
                     <thead>
                         <tr>
@@ -262,8 +265,9 @@ Last modified: 2025/08/10 17:26:58
                     </tr>
                 </table>
             </div>
+
             <!-- SNOW BLOCK -->
-            <div class="col-md-4">
+            <div class="table-block">
                 <table id="Snow24hTable" style="width:100%">
                     <thead>
                         <tr>
@@ -278,6 +282,10 @@ Last modified: 2025/08/10 17:26:58
                         <td><span class="SnowUnit"></span></td>
                     </tr>
                 </table>
+            </div>
+
+            <!-- SNOW SEASON BLOCK -->
+            <div class="table-block">
                 <table id="SnowSeasonTable" style="width:100%">
                     <thead>
                         <tr>

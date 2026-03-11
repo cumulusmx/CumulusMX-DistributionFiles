@@ -1,4 +1,4 @@
-// Last modified: 2026/02/28 12:21:54
+// Last modified: 2026/03/07 11:46:09
 
 let mainChart, navChart, config, avail;
 
@@ -225,10 +225,12 @@ const doTemp = () => {
             'wchill'   : '{{WIND_CHILL}}',
             'heatindex': '{{HEAT_INDEX}}',
             'humidex'  : '{{HUMIDEX}}',
-            'intemp'   : '{{INDOOR}}'
+            'intemp'   : '{{INDOOR}}',
+            'bgt'      : 'BGT',
+            'wbgt'     : 'WBGT'
         };
 
-        const idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp'];
+        const idxs = ['temp', 'dew', 'apptemp', 'feelslike', 'wchill', 'heatindex', 'humidex', 'intemp', 'bgt', 'wbgt'];
 
         // Initial x-range
         const key = Object.keys(resp)[0];

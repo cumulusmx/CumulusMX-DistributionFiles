@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2026/02/14 01:33:16
+// Last modified: 2026/03/07 11:53:13
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -142,7 +142,7 @@ $(document).ready(() => {
                     if (['Humidex'].indexOf(val) === -1) {
                         let option = $('<option />');
                         option.html(val);
-                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth'].indexOf(k) === -1) {
+                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth', 'Snow'].indexOf(k) === -1) {
                             option.val(val);
                         } else {
                             option.val(k + '-' + val);
@@ -215,10 +215,6 @@ $(document).ready(() => {
                 plugins: {
                     legend: {
                         display: true
-                    },
-                    title: {
-                        display: true,
-                        text: '{{CHART_SELECTA_PERIOD}}'
                     }
                 }
             },
@@ -332,7 +328,7 @@ const updateChart = (val, num, id) => {
     } else if (val.startsWith('LaserDepth-')) {
        return doLaserDepth(num, val);
     } else if (val.startsWith('Snow-')) {
-        return doSnow24h(num);
+        return doSnow24h(num, val);
     }
 
     // no? then do the "standard" data
@@ -356,6 +352,10 @@ const updateChart = (val, num, id) => {
             return doFeelsLike(num);
         case 'Humidex':
             return doHumidex(num);
+        case 'BGT':
+            return doBGT(num);
+        case 'WBGT':
+            return doWBGT(num);
 
         case 'Humidity':
             return doHumidity(num);
@@ -386,6 +386,9 @@ const updateChart = (val, num, id) => {
             return doPm2p5(num);
         case 'PM 10':
             return doPm10(num);
+
+        case 'Snowfall 24h':
+            return doSnow24h(num);
 
         default:
             $('#' + id).val(txtSelect);
@@ -1068,6 +1071,76 @@ var doHumidex = function (idx) {
 };
 */
 
+const doBGT = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.bgt);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'BGT',
+            type: 'line',
+            data: cache.temp.bgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doWBGT = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.wbgt);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'WBGT',
+            type: 'line',
+            data: cache.temp.wbgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
 const doHumidity = (idx) => {
     const addSeries = () => {
         setInitialRange(cache.hum.hum);
@@ -1322,7 +1395,7 @@ const doWindDir = (idx) => {
         setInitialRange(cache.wind.avgbearing);
         mainChart.data.datasets.push({
             id: settings.series[idx],
-            label: 'WIND_BEARING',
+            label: '{{WIND_BEARING}}',
             type: 'scatter',
             data: cache.wind.avgbearing,
             borderColor: settings.colours[idx] + '60',
@@ -1495,12 +1568,14 @@ const doPm10 = (idx) => {
     }
 };
 
-const doSnow24h = (idx) => {
+const doSnow24h = (idx, val) => {
     const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-')[1];
         setInitialRange(cache.snow.snow24h);
         mainChart.data.datasets.push({
             id: settings.series[idx],
-            label: '{{SNOW_24H}}',
+            label: name,
             type: 'line',
             data: cache.snow.snow24h,
             borderColor: settings.colours[idx],
@@ -1537,7 +1612,7 @@ const doSnow24h = (idx) => {
 var doExtraTemp = function (idx, val) {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.extratemp[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1574,7 +1649,7 @@ var doExtraTemp = function (idx, val) {
 var doUserTemp = function (idx, val) {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.usertemp[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1611,7 +1686,7 @@ var doUserTemp = function (idx, val) {
 const doExtraHum = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.extrahum[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1648,7 +1723,7 @@ const doExtraHum = (idx, val) => {
 const doExtraDew = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.extradew[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1685,7 +1760,7 @@ const doExtraDew = (idx, val) => {
 const doSoilTemp = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.soiltemp[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1722,7 +1797,7 @@ const doSoilTemp = (idx, val) => {
 const doSoilMoist = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         const unitIdx = config.series.soilmoist.name.indexOf(name);
         const suffix = unitIdx == -1 ? '' : ' ' + config.soilmoisture.units[unitIdx];
         setInitialRange(cache.soilmoist[name]);
@@ -1761,7 +1836,7 @@ const doSoilMoist = (idx, val) => {
 const doLeafWet = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.leafwet[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],
@@ -1798,7 +1873,7 @@ const doLeafWet = (idx, val) => {
 const doLaserDepth = (idx, val) => {
     const addSeries = () => {
         // get the sensor name
-        const name = val.split('-').slice(1).join('-');
+        const name = val.split('-')[1];
         setInitialRange(cache.laserdepth[name]);
         mainChart.data.datasets.push({
             id: settings.series[idx],

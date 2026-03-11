@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 17:20:48
+// Last modified: 2026/03/06 23:05:35
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -63,6 +63,10 @@ $(document).ready(function () {
         ajax: '/api/extra/lightning.json'
     });
 
+    var bgtTable = $('#BGTTable').DataTable({
+        ajax: '/api/extra/bgt.json'
+    });
+
     var userTempTable = $('#UserTempTable').DataTable({
         ajax: '/api/extra/usertemp.json'
     });
@@ -93,6 +97,7 @@ $(document).ready(function () {
         airqualTable.ajax.url('/api/extra/airqual.json').load();
         co2Table.ajax.url('/api/extra/co2sensor.json').load();
         lightningTable.ajax.url('/api/extra/lightning.json').load();
+        bgtTable.ajax.url('/api/extra/bgt.json').load();
         userTempTable.ajax.url('/api/extra/usertemp.json').load();
         laserDepthTable.ajax.url('/api/extra/laserdepth.json').load();
         laserDistTable.ajax.url('/api/extra/laserdistance.json').load();
