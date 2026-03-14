@@ -14,4 +14,5 @@ interface/ai2/template*.html
 interface/ai2/js/ai-page-ctrl2.js
 interface/ai2/js/ai-settings.js
 interface/ai2/css/ai-*.css
-
+interface/ai2/menu-side.html
+interface/ai2/*2.*

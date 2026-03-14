@@ -26,8 +26,9 @@
     --color9: #e5e5e5;
     --modal: rgba( var(--baseR), var(--baseG), var(--baseB), 0.3);
     --menu: rgba( var(--baseR), var(--baseG), var(--baseB), 0.8);
-    --shadow1: 0 0.3em 0.3em -1px var(--color5);
-    --shadow2: 0.2em 0.2em rgb(var(--baseR), var(--baseG), var(--baseB), 80%), 0.6em 0.6em 0.6em rgb(var(--baseR), var(--baseG), var(--baseB), 50%);
+    --shadow1: 0px 7px 6px -4px var(--color5);
+    --shadow2: 2px 2px 0px 0px var(--color3), 5px 5px 5px 0px var(--color5);
+    --shadow3: -8px 0px 8px -6px var(--color5), 6px 0px 6px -3px var(--color5); 
 
     --gradient-down: linear-gradient( 0deg, var(--color7), var(--color5));
     --gradient-up: linear-gradient( 0deg,  var(--color5), var(--color7));
@@ -102,6 +103,6 @@
 /*  Extras */
 .ows-theme-modal { background-color: var(--modal);}
 .ows-theme-menu  { background-color: var(--menu);}
-.ows-theme-shadow1, .ows-theme-shadow1-hvr:hover {box-shadow: var(--shadow1)!important;}
-.ows-theme-shadow2, .ows-theme-shadow2-hvr:hover { box-shadow: var(--shadow2)!important;}
-
+.ows-theme-shadow1, .ows-theme-shadow1-hvr:hover { box-shadow: var(--shadow1);}
+.ows-theme-shadow2, .ows-theme-shadow2-hvr:hover { box-shadow: var(--shadow2);}
+.ows-theme-shadow3, .ows-theme-shadow3-hvr:hover { box-shadow: var(--shadow3);}
