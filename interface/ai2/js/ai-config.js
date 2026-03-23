@@ -105,7 +105,7 @@ let setupGeometry = function( geometry ) {
 		showConfig();	//	Temp
 		if(geometry.StaticFoot ){
 			$('#Content').css('margin-bottom', $('#Footer').outerHeight( true ) + 'px');
-			$('#Footer').addClass('w3-bottom')
+			$('#Footer').addClass('w3-bottom');
 		} else {
 			$('#Content').css('margin-bottom', 0);
 			$('#Footer').removeClass('w3-bottom');

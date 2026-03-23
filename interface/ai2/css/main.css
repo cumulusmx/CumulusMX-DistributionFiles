@@ -532,10 +532,10 @@ a:hover { text-decoration:none;}
 
 .ows-animate-entryOne {
     transform-origin: top center;
-    animation: entryOne 1s;
+    animation: entryOne 0.5s;
 }
 @keyframes entryOne {
-    0% { translate: 0 3em ;scale: 1 .1; opacity: .1;}
+    0% { translate: 0 1em ;scale: 1 .1; opacity: .1;}
     20% { scale: 1 1; }
     80% { translate: 0 0;}
     100% { opacity: 1;}

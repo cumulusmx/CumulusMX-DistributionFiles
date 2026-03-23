@@ -221,6 +221,7 @@ $().ready(function () {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
                         $(alarmtag).removeClass('ows-led-on')/*.addClass('ax-led-off')*/;
+                        $(alarmtag).prop("onClick", null).off('click');
                     }
                 });
             } else {
