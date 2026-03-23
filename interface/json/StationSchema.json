@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/08 22:21:14",
+	"version": "Last Modified: 2026/03/17 17:22:18",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -581,6 +581,7 @@
 					"minimum": 0
 				},
 				"token": {},
+				"serialno": {},
 				"dayshistory": {
 					"type": "integer",
 					"minimum": 0,

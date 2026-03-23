@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/14 13:49:49",
+	"version": "Last Modified: 2026/03/17 17:21:45",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -845,6 +845,10 @@
 					"label": "{{TEMPEST_SECURITY_TOKEN}}",
 					"type": "password",
 					"helper": "{{TEMPEST_SECURITY_TOKEN_HELP1}}"
+				},
+				"serialno": {
+					"label": "{{TEMPEST_SERIAL_NO}}",
+					"helper": "{{TEMPEST_SERIAL_NO_HELP1}}"
 				},
 				"dayshistory": {
 					"label": "{{TEMPEST_HISTORY_DAYS}}",

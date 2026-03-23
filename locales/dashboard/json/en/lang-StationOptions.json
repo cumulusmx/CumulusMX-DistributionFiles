@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/03/08 22:18:43",
+    "_LAST_MODIFIED": "Last modified: 2026/03/17 17:25:08",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -395,6 +395,8 @@
     "TEMPEST_HISTORY_DAYS": "History Days Import",
     "TEMPEST_SECURITY_TOKEN_HELP1": "Personal Access Token from your weatherflow account. See https://weatherflow.github.io/Tempest/api/ for instructions",
     "TEMPEST_SECURITY_TOKEN": "Security Token",
+    "TEMPEST_SERIAL_NO": "Decvice Serial No",
+    "TEMPEST_SERIAL_NO_HELP1": "If you have multiple devices connected to your hub, enter the serial number of the device you want to use. If you only have one device you can leave this blank",
     "TEMPEST_UDP_PORT_HELP1": "UDP port to listen on. Don't change unless you know what you're doing.",
     "TEMPSUM_BASE_1_HELP1": "The first series base temperature which is subtracted from the annual temperature sum",
     "TEMPSUM_BASE_1_HELP2": "Default = 5°C / 40°F",
