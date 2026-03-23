@@ -160,7 +160,7 @@ $().ready(function () {
             {
                 title: '{{DATE_DDMMYYHHMM}}',
                 readonly: true,
-                width: '130px'
+                width: '140px'
             },
             {
                 title: '{{TIMESTAMP}}',

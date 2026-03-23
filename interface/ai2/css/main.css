@@ -527,7 +527,7 @@ a:hover { text-decoration:none;}
 }
 .ows-animate-slideDown {
     transform-origin: top center;
-    animation: slideVertical 1s;
+    animation: slideVertical 0.7s;
 }
 
 .ows-animate-entryOne {
