@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/08 22:20:21",
+	"version": "Last Modified: 2026/03/14 13:49:49",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1593,6 +1593,7 @@
 						"snowdepthhour": {
 							"label": "{{OPT_ADV_SNOW_HOUR}}:",
 							"helper": "{{OPT_ADV_SNOW_HOUR_HELP1}}",
+							"optionLabels": ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
 							"removeDefaultNone": true
 						},
 						"raindaythreshold": {
