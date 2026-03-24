@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/22 21:43:06",
+	"version": "Last Modified: 2026/03/06 20:58:30",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -76,7 +76,7 @@
 				},
 				"graphdays": {
 					"label": "{{CHART_DAYS}}:",
-					"helper": "{{CHART_HOURS_HELP1}}"
+					"helper": "{{CHART_DAYS_HELP1}}"
 				},
 				"colour": {
 					"collapsible": true,
@@ -452,6 +452,19 @@
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
+						},
+						"laserdepth": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
 						}
 					}
 				}
@@ -509,6 +522,10 @@
 						},
 						"MinTemp": {
 							"label": "{{DAILY_TEMP_MIN}}",
+							"$ref": "#/definitions/visibility"
+						},
+						"BGT": {
+							"label": "{{BGT_WBGT}}",
 							"$ref": "#/definitions/visibility"
 						}
 					}

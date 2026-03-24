@@ -1,8 +1,8 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: current.js        		Ver: aiX-1.0
+    Script: current.js 
     Author: M Crossley & N Thomas
     Last Edit (MC): 2024/09/27 10:21:36
-    Last Edit (NT): 2025/03/21
+    Last Edit (NT): 2025-11-18 12:36:00
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Data for current.html
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -26,14 +26,30 @@ $(document).ready(function () {
 		dataType: 'json',
 		success: function (results) {
 			var dataVisible = results.DataVisibility;
-			if( dataVisible.temperature.Temp      == 0 ) { $('[data-cmxData="Temp"]').addClass('w3-hide');}
-			if( dataVisible.temperature.InTemp    == 0 ) { $('[data-cmxData="InTemp"]').addClass('w3-hide');}
-			if( dataVisible.temperature.DewPoint  == 0 ) { $('[data-cmxData="DewPoint"]').addClass('w3-hide');}
-			if( dataVisible.temperature.HeatIndex == 0 ) { $('[data-cmxData="HeatIndex"]').addClass('w3-hide');}
-			if( dataVisible.temperature.WindChill == 0 ) { $('[data-cmxData="WindChill"]').addClass('w3-hide');}
-			if( dataVisible.temperature.AppTemp   == 0 ) { $('[data-cmxData="AppTemp"]').addClass('w3-hide');}
-			if( dataVisible.temperature.FeelsLike == 0 ) { $('[data-cmxData="FeelsLike"]').addClass('w3-hide');}
-			if( dataVisible.temperature.Humidex   == 0 ) { $('[data-cmxData="Humidex"]').addClass('w3-hide');}
+			if( dataVisible.temperature.Temp      == 0 ) { 
+				$('[data-cmxData="Temp"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.InTemp    == 0 ) { 
+				$('[data-cmxData="InTemp"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.DewPoint  == 0 ) { 
+				$('[data-cmxData="DewPoint"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.HeatIndex == 0 ) { 
+				$('[data-cmxData="HeatIndex"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.WindChill == 0 ) { 
+				$('[data-cmxData="WindChill"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.AppTemp   == 0 ) { 
+				$('[data-cmxData="AppTemp"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.FeelsLike == 0 ) { 
+				$('[data-cmxData="FeelsLike"]').addClass('w3-hide');
+			}
+			if( dataVisible.temperature.Humidex   == 0 ) { 
+				$('[data-cmxData="Humidex"]').addClass('w3-hide');}
+
 			if( dataVisible.humidity.InHum        == 0 && dataVisible.humidity.Hum == 0 ) { 
 				$('[data-cmxData="humidity"]').addClass('w3-hide');
 			} else {
@@ -47,8 +63,12 @@ $(document).ready(function () {
 				if( dataVisible.solar.Solar == 0 ) { $('[data-cmxData="Solar"]').addClass('w3-hide');}
 				if( dataVisible.solar.Sunshine == 0 ) { $('[data-cmxData="Sunshine"]').addClass('w3-hide')}
 			}
-			if( dataVisible.snow.Depth == 0) { $('[data-cmxData="Depth"]').addClass('w3-hide');}
-			if( dataVisible.snow.Last24h == 0 ) { $('[data-cmxData="Last24h"]').addClass('w3-hide');}
+			if( dataVisible.snow.Depth == 0) { 
+				$('[data-cmxData="Depth"]').addClass('w3-hide');
+			}
+			if( dataVisible.snow.Last24h == 0 ) { 
+				$('[data-cmxData="Last24h"]').addClass('w3-hide');
+			}
 		}
 	})
 

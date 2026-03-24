@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 16:58:02
+// Last modified: 2026/01/04 15:22:05
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
         var columnDefs = [
         {
-            title: '{{LINE_#}}',
+            title: '{{LINE_NO}}',
             readonly: true
         },
         {
@@ -83,7 +83,7 @@ $(document).ready(function() {
         {title: '{{DOMINANT_DIRECTION}}', type: 'number', min: 0, max: 360},
         {title: '{{HEATING_DEGREE_DAYS}}', type: 'number', step: tempStep},
         {title: '{{COOLING_DEGREE_DAYS}}', type: 'number', step: tempStep},
-        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1200},
+        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1800},
         {title: '{{HIGH_SOLAR_RAD_TIME}}', type:'text', pattern: timeRegex},
         {title: '{{HIGH_UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
         {title: '{{HIGH_UV_INDEX_TIME}}', type:'text', pattern: timeRegex},
@@ -149,7 +149,7 @@ $(document).ready(function() {
             ],
             language: {
                 altEditor: {
-                    modalClose: '{{Close}}',
+                    modalClose: '{{CLOSE}}',
                     edit: {
                         title: '{{EDIT_RECORD}}',
                         button: 'Save'
@@ -242,7 +242,7 @@ $(document).ready(function() {
             lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
             // don't include the first element = line number
-            data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
         }
         // remove trailing commas
         lines = lines.slice(0, -1);

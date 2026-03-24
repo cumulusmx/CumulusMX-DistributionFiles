@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/03 11:04:51",
+	"version": "Last Modified: 2026/03/17 17:21:45",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -757,6 +757,20 @@
 								"stationid": 11
 							}
 						},
+						"sunshine": {
+							"label": "{{WLL_SUNSHINE}}:",
+							"type": "select",
+							"sort": false,
+							"removeDefaultNone": true,
+							"optionLabels": ["{{NONE}}", "1", "2", "3", "4", "5", "6", "7","8"],
+							"helpers": [
+								"{{WLL_SUNSHINE_HELP1}}",
+								"{{WLL_SUNSHINE_HELP2}}"
+							],
+							"dependencies": {
+								"stationid": 11
+							}
+						},
 						"datastopped": {
 							"rightLabel": "{{WLL_DATA_STOPPED}}",
 							"helpers": [
@@ -831,6 +845,10 @@
 					"label": "{{TEMPEST_SECURITY_TOKEN}}",
 					"type": "password",
 					"helper": "{{TEMPEST_SECURITY_TOKEN_HELP1}}"
+				},
+				"serialno": {
+					"label": "{{TEMPEST_SERIAL_NO}}",
+					"helper": "{{TEMPEST_SERIAL_NO_HELP1}}"
 				},
 				"dayshistory": {
 					"label": "{{TEMPEST_HISTORY_DAYS}}",
@@ -1149,14 +1167,22 @@
 					"sort": false,
 					"optionLabels": [
 						"{{DEFAULT}}",
-						"{{EXTRA_TH_CHAN1}}",
-						"{{EXTRA_TH_CHAN2}}",
-						"{{EXTRA_TH_CHAN3}}",
-						"{{EXTRA_TH_CHAN4}}",
-						"{{EXTRA_TH_CHAN5}}",
-						"{{EXTRA_TH_CHAN6}}",
-						"{{EXTRA_TH_CHAN7}}",
-						"{{EXTRA_TH_CHAN8}}"
+						"{{EXTRA_TH}} 1",
+						"{{EXTRA_TH}} 2",
+						"{{EXTRA_TH}} 3",
+						"{{EXTRA_TH}} 4",
+						"{{EXTRA_TH}} 5",
+						"{{EXTRA_TH}} 6",
+						"{{EXTRA_TH}} 7",
+						"{{EXTRA_TH}} 8",
+						"{{EXTRA_TH}} 9",
+						"{{EXTRA_TH}} 10",
+						"{{EXTRA_TH}} 11",
+						"{{EXTRA_TH}} 12",
+						"{{EXTRA_TH}} 13",
+						"{{EXTRA_TH}} 14",
+						"{{EXTRA_TH}} 15",
+						"{{EXTRA_TH}} 16"
 					],
 					"removeDefaultNone": true,
 					"helpers": [
@@ -1168,7 +1194,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 1","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 1","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan2": {
@@ -1176,7 +1202,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 2","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 2","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan3": {
@@ -1184,7 +1210,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 3","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 3","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan4": {
@@ -1192,7 +1218,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 4","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 4","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan5": {
@@ -1200,7 +1226,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 5","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 5","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan6": {
@@ -1208,7 +1234,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 6","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 6","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan7": {
@@ -1216,7 +1242,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 7","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 7","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"wn34chan8": {
@@ -1224,7 +1250,7 @@
 					"type": "select",
 					"sort": false,
 					"removeDefaultNone": true,
-					"optionLabels": ["{{USER}} 8","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8"],
+					"optionLabels": ["{{USER}} 8","{{SOIL}} 1", "{{SOIL}} 2", "{{SOIL}} 3", "{{SOIL}} 4", "{{SOIL}} 5", "{{SOIL}} 6", "{{SOIL}} 7","{{SOIL}} 8","{{SOIL}} 9","{{SOIL}} 10","{{SOIL}} 11","{{SOIL}} 12","{{SOIL}} 13","{{SOIL}} 14","{{SOIL}} 15","{{SOIL}} 16"],
 					"helper": "{{ECOMAP_WN32_HELP1}}"
 				},
 				"stationid": {
@@ -1571,6 +1597,7 @@
 						"snowdepthhour": {
 							"label": "{{OPT_ADV_SNOW_HOUR}}:",
 							"helper": "{{OPT_ADV_SNOW_HOUR_HELP1}}",
+							"optionLabels": ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
 							"removeDefaultNone": true
 						},
 						"raindaythreshold": {

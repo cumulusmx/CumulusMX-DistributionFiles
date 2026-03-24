@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Gauges
-	File:	gauges.html			Ver: aiX-1.0
-	Author:	D.N.C.Thomas			Mar 2024
-	Last Edit:	2025/03/21 16:08
-	Last Check:	2025/03/28
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	Gauges			| gauges.html
+	Author:	DNC Thomas		| Created: 2025-11-29
+	Last Edit:	2026/03/24 11:04:14
+	Last Check:	2025-12-09
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Gauges</title>
+		<title>CMX Gauges</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -22,12 +21,12 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-		
-		<!--	jQuery CDN	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
 		<!-- SteelSeries -->
 		<script src="/lib/steelseries/scripts/steelseries_tween.min.js"></script>
@@ -35,234 +34,203 @@
 		<script src="/lib/steelseries/scripts/RGraph.common.core.min.js"></script>
 		<script src="/lib/steelseries/scripts/RGraph.rose.min.js"></script>
 		<script src="lib/steelseries/scripts/gauges.js"></script>
-		
+
 		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/axPro.css">
-		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/theme.css" id="Theme">
+		<link rel="stylesheet" href="css/w3v5.css">
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/gauges.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-manager.js"></script>
-		<script src="/js/gaugefeed.js"></script>	<!-- Uses DEFAULT script	-->
+		<script src="js/ai-page-ctrl.js"></script>
 
-		<!--	Local scripts & styles	-->
-		<script>
-		</script>
+		<!--	Local Styles	-->
+		<link rel="stylesheet" href="css/gauges.css">
 		<style>
 			select{
-				width: 120px!important; 
-				height:30px;
+				width: 12em;
+				height: 2.3em;
 				text-align:center;
-				border-radius:1em
+				border-radius:1em 0 0 1em;
 			}
 		</style>
-	</head>
-	<body class="ax-theme9">
-		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
-			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
-			<div class="pageWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
-				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				
-				<div class="ax-theme7-bak" style="z-index:5">
-					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
-					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
-					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
-					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
-				</div>
-			</div>
 
-			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
-				<div id="Menus" class="pageWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
+		<!--	Local Scripts	-->
+		<script src="/js/gaugefeed.js"></script>	<!-- Uses DEFAULT script	-->
+		<script>
+
+		</script>
+	</head>
+	<body class="ows-theme9">
+		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
+			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+			<div id="subBanner" class="pageWidth">
+				<!--	Logo	-->
+				<img src="img/AI-Logo.png" alt="AI Logo" id="siteLogo" class="w3-image" style="padding:1vh 0 .5vh 0;">
+				<div id="siteInfo">
+					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
+					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>Altitude:</p><p><span data-cmxData="altitude">zzm</span></p>
+				</div>
+				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
 		</header>
 
-		<div id="content">
-			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
-			<div id="subContent" class="pageWidth">
-				<!--	Page title	-->
-				<div class="ax-titleBar">
-					<h1>Gauges</h1>
-					<p>Page updated: <span data-cmxData="Date"></span></p>
-				</div>
+		<section id="Content">
+			<div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right"><!-- Mobile menu inserted herer --></div>
+			<img src="img/seagull.png" id="Gull1" alt="Seagull">
+			<section id="subContent" class="pageWidth">
+				<section class="w3-container">
+					<div class="ows-titleFlex">
+						<h1>{{MENU_GAUGES}}</h1>
+						<p class="tagline">Page updated: <span data-cmxData="Date"></span></p>
+					</div>
+				</section>
 
-				<div class="ax-titleBar w3-hide"><h3>Four Column Layout</h3><h4>Variable width</h4></div>
-				<!--	Four column fixed width layout	-->
-				<div class="ax-column4 ax-fixedwidth">
+				<section class="ows-grid col4">
 					<!--	Panel 1 / column 1	-->
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Temperature</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{TEMPERATURE}}</h4>
 						</div>
-						<div id="tip_0" class="gauge">
-							<canvas id="canvas_temp" class="ax-gaugeStandard"></canvas>
+						<div id="tip_0" class="gauge w3-center">
+							<canvas id="canvas_temp" class="ows-gaugeStd"></canvas>
 						</div>
-						<div class="ax-titleBar">
-							<div><input id="rad_temp1" class="w3-radio" type="radio" name="rad_temp" value="out" aria-label="Outside temperature" onclick="gauges.doTemp(this);" checked ><label id="lab_temp1" for="rad_temp1">Outside</label></div>
-							<div><input id="rad_temp2" class="w3-radio" type="radio" name="rad_temp" value="in" aria-label="Inside temperature" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label></div>
-						</div>
-						<div class="ax-btnBar w3-hide">
-							<button id="Outside" class="w3-btn ax-theme9">Outside</button><button id="Inside" class="w3-btn ax-theme9">Inside</button>
+						<div class="ows-titleFlex">
+							<div><input id="rad_temp1" type="radio" name="rad_temp" value="out" aria-label="Outside temperature" onclick="gauges.doTemp(this);" checked ><label id="lab_temp1" for="rad_temp1">Outside</label></div>
+							<div><input id="rad_temp2" type="radio" name="rad_temp" value="in" aria-label="Inside temperature" onclick="gauges.doTemp(this);"><label id="lab_temp2" for="rad_temp2">Inside</label></div>
 						</div>
 					</div>
 					<!--	Panel 2 / column 2	-->
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Other Temps.</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{OTHER_TEMPS}}</h4>
 						</div>
-						<div id="tip_1" class="gauge">
-							<canvas id="canvas_dew" class="ax-gaugeStandard"></canvas>
+						<div id="tip_1" class="gauge w3-center">
+							<canvas id="canvas_dew" class="ows-gaugeStd"></canvas>
 						</div>
-						<div class="ax-btnBar" style="justify-content: center;">
-							<select id="rad_dew" class="w3-select ax-btn-gradient-up w3-small" aria-label="Select for alternative temperature" onchange="gauges.doDew(this);">
-								<option id="lab_dew1" value="dew" selected="selected">Dew Point</option>
-								<option id="lab_dew6" value="feel">Feels Like</option>
-								<option id="lab_dew2" value="app">Apparent</option>
-								<option id="lab_dew3" value="wnd">Wind Chill</option>
-								<option id="lab_dew4" value="hea">Heat Index</option>
-								<option id="lab_dew5" value="hum">Humidex</option>
+						<div class="ows-btnBar" style="justify-content: center; margin-bottom:1vh;">
+							<select id="rad_dew" class="ows-theme-grad-down-hvr w3-small ows-theme9 ows-theme5-bdr " aria-label="Select for alternative temperature" onchange="gauges.doDew(this);">
+								<option id="lab_dew1" value="dew" selected="selected">{{DEW_POINT}}</option>
+								<option id="lab_dew6" value="feel">{{FEELS_LIKE}}</option>
+								<option id="lab_dew2" value="app">{{APPARENT_TEMPERATURE}}</option>
+								<option id="lab_dew3" value="wnd">{{WIND_CHILL}}</option>
+								<option id="lab_dew4" value="hea">{{HEAT_INDEX}}</option>
+								<option id="lab_dew5" value="hum">{{HUMIDEX}}</option>
 							</select>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Humidity</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{HUMIDITY}}</h4>
 						</div>
-						<div id="tip_4" class="gauge">
-							<canvas id="canvas_hum" class="ax-gaugeStandard"></canvas>
+						<div id="tip_4" class="gauge w3-center">
+							<canvas id="canvas_hum" class="ows-gaugeStd"></canvas>
 						</div>
-						<div class="ax-titleBar" >
-							<div><input id="rad_hum1" type="radio" name="rad_hum" class="w3-radio" value="out" aria-label="Outside" onclick="gauges.doHum(this);" checked><label id="lab_hum1" for="rad_hum1">Outside</label></div>
-							<div><input id="rad_hum2" type="radio" name="rad_hum" class="w3-radio" value="in" aria-label="Inside" onclick="gauges.doHum(this);"><label id="lab_hum2" for="rad_hum2">Inside</label></div>
-						</div>
-						<div class="ax-btnBar w3-hide">
-							<button id="OutHum" class="w3-btn ax-theme9">Outside</button><button id="InHum" class="w3-btn ax-theme9">Inside</button>
+						<div class="ows-titleFlex" >
+							<div><input id="rad_hum1" type="radio" name="rad_hum" value="out" aria-label="Outside" onclick="gauges.doHum(this);" checked><label id="lab_hum1" for="rad_hum1">Outside</label></div>
+							<div><input id="rad_hum2" type="radio" name="rad_hum" value="in" aria-label="Inside" onclick="gauges.doHum(this);"><label id="lab_hum2" for="rad_hum2">Inside</label></div>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Windspeed</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{WIND_SPEED}}</h4>
 						</div>
-						<div id="tip_6" class="gauge">
-							<canvas id="canvas_wind" class="ax-gaugeStandard"></canvas>
-						</div>
-					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Wind Direction</h4>
-						</div>
-						<div id="tip_7" class="gauge">
-							<canvas id="canvas_dir" class="ax-gaugeStandard"></canvas>
+						<div id="tip_6" class="gauge w3-center">
+							<canvas id="canvas_wind" class="ows-gaugeStd"></canvas>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Wind Rose</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{WIND_DIRECTION}}</h4>
 						</div>
-						<div id="tip_10" class="gauge">
-							<canvas id="canvas_rose" class="ax-gaugeStandard"></canvas>
-						</div>
-					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Pressure</h4>
-						</div>
-						<div id="tip_5" class="gauge">
-							<canvas id="canvas_baro" class="ax-gaugeStandard"></canvas>
+						<div id="tip_7" class="gauge w3-center">
+							<canvas id="canvas_dir" class="ows-gaugeStd"></canvas>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Rainfall</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{WIND_ROSE}}</h4>
 						</div>
-						<div id="tip_2" class="gauge">
-							<canvas id="canvas_rain" class="ax-gaugeStandard"></canvas>
-						</div>
-					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Rainfall Rate</h4>
-						</div>
-						<div id="tip_3" class="gauge">
-							<canvas id="canvas_rrate" class="ax-gaugeStandard"></canvas>
+						<div id="tip_10" class="gauge w3-center">
+							<canvas id="canvas_rose" class="ows-gaugeStd"></canvas>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>UV Index</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{PRESSURE}}</h4>
 						</div>
-						<div id="tip_8" class="gauge">
-							<canvas id="canvas_uv" class="ax-gaugeStandard"></canvas>
-						</div>
-					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Solar Radiation</h4>
-						</div>
-						<div id="tip_9" class="gauge">
-							<canvas id="canvas_solar" class="ax-gaugeStandard"></canvas>
+						<div id="tip_5" class="gauge w3-center">
+							<canvas id="canvas_baro" class="ows-gaugeStd"></canvas>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 w3-center" style="order:1;">
-						<div class="ax-titleBar">
-							<h4>Cloudbase</h4>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{RAINFALL}}</h4>
 						</div>
-						<div id="tip_11" class="gauge">
-							<canvas id="canvas_cloud" class="ax-gaugeStandard"></canvas>
+						<div id="tip_2" class="gauge w3-center">
+							<canvas id="canvas_rain" class="ows-gaugeStd"></canvas>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 ax-growX3" style="order:21;">
-						<div class="ax-titleBar">
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{RAINFALL_RATE}}</h4>
+						</div>
+						<div id="tip_3" class="gauge w3-center">
+							<canvas id="canvas_rrate" class="ows-gaugeStd"></canvas>
+						</div>
+					</div>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{UV_INDEX}}</h4>
+						</div>
+						<div id="tip_8" class="gauge w3-center">
+							<canvas id="canvas_uv" class="ows-gaugeStd"></canvas>
+						</div>
+					</div>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{SOLAR_RADIATION}}</h4>
+						</div>
+						<div id="tip_9" class="gauge w3-center">
+							<canvas id="canvas_solar" class="ows-gaugeStd"></canvas>
+						</div>
+					</div>
+					<div class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h4>{{CLOUD_BASE}}</h4>
+						</div>
+						<div id="tip_11" class="gauge w3-center">
+							<canvas id="canvas_cloud" class="ows-gaugeStd"></canvas>
+						</div>
+					</div>
+				</section>
+
+				<section class="ows-flex col4 ows-fixed">
+					<div class="w3-container ows-theme8 ows-growX2" style="order:21;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h4><i class="fa-solid fa-circle-info"></i>&nbsp;Information</h4><span data-OWData="Date"></span>
 						</div>
 						<div class="w3-center" style="margin-top: 1vh;">
 							<canvas id="canvas_status" style="border: thin solid var(--sub5); height:2em; width: 100%;"></canvas>
 						</div>
-						<div class="ow-flexCenter w3-hide">
+						<div class="w3-hide" style="display:grid;grid-template-columns: 1fr 6em 4em 1fr;gap:1em; align-items: center;">
+							<p>&nbsp;</p>
 							<canvas id="canvas_timer" style="width:6em; height: 2em; border:thin solid var(--color5);"></canvas>
-							<p>Status:</p>
+							<p class="w3-right-align">{{STATUS}}:</p>
 							<canvas id="canvas_led" style="width:25px;height:25px;border:thin solid var(--color5);border-radius:50%;" width="25" height="25"></canvas>
 						</div>
-						<p class="w3-center w3-small">Scripts by Mark Crossley - version 2.7.6<br>Gauges drawn using Gerrit Grunwald's steelseries javascript library, wind rose drawn using rgraph</p>
+						<p class="w3-center w3-tiny">Scripts by Mark Crossley - version 2.7.6<br>Gauges drawn using Gerrit Grunwald's steelseries javascript library, wind rose drawn using rgraph</p>
 					</div>
+				</section>
+			</section>
+		</section>
 
-				</div>
-			</div>
-		</div>
-		
-		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
-			<div class="pageWidth">
-				<div class="ax-titleBar ax-padding-small" >
-					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h5 class="w3-right-align ax-theme7-txt">
-						Powered by <span class="ax-theme9-txt">CumulusMX</span>
-						V<span data-cmxData="Version">X.YY.Z</span>
-						(b:<span data-cmxData="Build">xxxx</span>)
-					</h5>
-				</div>
-			</div>
-		</footer>
-
-		<!--	Modal -->
-		<!--	The ID below should be used in the function call to make this work 	-->
-		<div id="Popup1" class="w3-modal w3-theme-modal">
-			<!-- 	You can set the max-width in the 'div' below as well as the background colour -->
-			<div class="w3-modal-content ax-theme1 w3-round-large">
-				<div class="ax-theme7 w3-round-large">
-					<div class="ax-titleBar ax-theme2" style="border-radius:8px 8px 0 0;"><h4 style="padding:0.25em 0.75em;">Title</h4></div>
-					<!--	The 'onClick()' function must use the ID of the modal	-->
-					<div class="w3-btn ax-theme2 w3-display-topright w3-round-large" onClick="showModal('Popup1');"><i class="fa-solid fa-xmark fa-lg"></i></div>
-					<div class="w3-container" style="padding-bottom:20px;">
-						<!--	Content for modal goes below	-->	
-						<p>Some text</p>
-						<p>Some more text</p>
-						<!--	End of modal content	 -->
-					</div>
-				</div>
-				<span class="w3-display-bottomright" style="padding:0.25em 0.75em;">Powered by <span class="ax-theme3-txt">Cumulus MX</span></span>
-			</div>
-		</div>
-
+		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+            </section>
+        </footer>
 	</body>
 </html>

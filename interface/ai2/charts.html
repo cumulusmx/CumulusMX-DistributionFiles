@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Charts
-	File:	charts.html					Ver: aiX-1.0
-	Author:	D.N.C.Thomas			   		Mar 2025
-	Last Edit:	2025/07/24 19:15:33
-	Last Check:	2025/03/28
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	Page:		Trend Charts		| charts.html
+	Author:		DNC Thomas			| Nov 2025
+	Last Edit:	2026/03/24 10:57:00
+	Last Check:	2025-12-08 17:01:41
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Chart Trends</title>
+		<title>{{TREND}} {{CHARTS}}</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -23,127 +22,159 @@
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
-		<!--	jQuery CDN	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-        <!-- Highcharts 	- Source: CDN (Change to default library if Internet not available	-->
-		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
-		<script src="lib/highcharts/ax-theme.js"></script>	<!--	Remove if you don't want the charts themed	-->
+        <!--	chartsjs (Local)	-->
+		<script src="/lib/chartjs/chart.umd.min.js"></script>
+		<script src="/lib/luxon/luxon.min.js"></script>
+		<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
 		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/axPro.css">
-		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/theme.css" id="Theme">
+		<link rel="stylesheet" href="css/w3v5.css">
 		<link rel="stylesheet" href="css/main.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-manager.js"></script>
-		<script src="js/charts.js"></script>
+		<script src="js/ai-page-ctrl.js"></script>
 
-		<!--	Local scripts & styles	-->
-		<script>
-		</script>
+		<!--	Page Scripts	-->
+		<script src="js/charts.js"></script>			<!-- Custom Script		-->
+		<script src="/js/chartjsextras.js"></script>	<!--	Default script	-->
+
+		<script></script>
+		<!--	Page styles	-->
 		<style>
 			#chartcontainer {
-				height: 60vh;
-				min-height: 450px;
-				margin: 1vh 0;
-				border: 1px solid var(--theme);
+				display: grid;
+				grid-template-rows: 1fr 30em;
+				grid-auto-rows: 7em;
+				gap: 1em;
+				padding: 1em;
+				border: 1px solid var(--color5);
+				background: linear-gradient( 33deg, var(--color8), var(--color9));
 			}
-			.cmxToolTip {
-				td {border:none;font-size:100%;}
-				i {font-size: 80%;padding-right:1em;}
-				h5 { margin:-0.5em -0.5em 0; padding:0 0.5em;background:var(--color1);color:var(--color9);}
+			.chart-buttons {
+				display: flex;
+				justify-content: space-between;
 			}
-			g .highcharts-label text { fill: var(--color9)!important;}
+			.chart-buttons button {
+				border-radius: 1em;
+				border:thin solid var(--color5);
+				background: inherit;
+				color: var(--color1);
+				min-width:3em;
+				padding: .1em 1em;
+			}
+			.chart-buttons button:hover {
+				background: var(--gradient-down);
+			}
+			#rangeButtons {
+				display: flex;
+				gap: 0.5vw;
+				align-items: baseline;
+			}
+			#mainChart, #navChart {
+				height: 100%;
+				width:100%;
+				background: white;
+			}
 		</style>
 	</head>
-	<body class="ax-theme9">
-		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
-			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
-			<div class="pageWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
+	<body class="ows-theme9">
+		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
+			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+			<div id="subBanner" class="pageWidth">
+				<!--	Logo	-->
 				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-
-				<div class="ax-theme7-bak" style="z-index:5">
-					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
-					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
-					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
-					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
+				<div id="siteInfo">
+					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
+					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>Altitude:</p><p><span data-cmxData="altitude">zzm</span></p>
 				</div>
-			</div>
-
-			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
-				<div id="Menus" class="pageWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
+				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
 		</header>
 
-		<div id="content">
-			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
+		<div id="Content">
+			<div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right"><!-- Mobile menu inserted herer --></div>
+			<img src="img/seagull.png" id="Gull1" alt="Seagull">
 			<div id="subContent" class="pageWidth">
 				<!--	Page Title	-->
-				<div class="ax-titleBar">
-					<h1>Trend Charts</h1>
-					<p>Page updated: <span data-cmxData="update"></span></p>
-				</div>
+				<section class="w3-container">
+					<div class="ows-titleFlex">
+						<h1>{{TREND}} {{CHARTS}}</h1>
+						<p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
+					</div>
+				</section>
 				<!--	One column layout section	-->
-				<div class="ax-column1" style="gap: 0;">
+				<div class="ows-grid col1" style="gap: 0;">
 					<!--	Buttons - set order to 2 to force to the bottom of screen	-->
-					<div class="w3-container" style="order:1;">
-						<div class="ax-btnBar" style="order:1;gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
-							<button id="temp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Temperatures">Temperature</button>
-							<button id="dailytemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Daily temperature"	>Daily Temperatures</button>
-							<button id="press" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Pressure">Pressure</button>
-							<button id="wind" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Wind speeds">Wind Speeds</button>
-							<button id="windDir" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Wind direction">Wind Direction</button>
-							<button id="humidity" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Humidity">Humidity</button>
-							<button id="rain" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Rainfall">Rainfall</button>
-							<button id="dailyrain" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Daily rainfall">Daily Rain</button>
-							<button id="solar" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Solar">Solar</button>
-							<button id="sunhours" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Sunshine hours">Sunshine Hours</button>
-							<button id="airquality"	class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Air quality">Air Quality</button>
-							<button id="extratemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra temperature"	>Extra Temp</button>
-							<button id="extrahum" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra humidity">Extra Humidity</button>
-							<button id="extradew" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Extra dew point">Extra Dew Point</button>
-							<button id="soiltemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Soil temperature">Soil Temperatures</button>
-							<button id="soilmoist" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Soil moisture">Soil Moisture</button>
-							<button id="leafwet" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Leaf Wetness">Leaf Wetness</button>
-							<button id="usertemp" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="User temperature">User Temperatures</button>
-							<button id="co2" class="w3-btn ax-btn-gradient-up selectGraph" aria-label="Carbon dioxide">CO&#8322; Sensors</button>
+					<div class="w3-container no-shadow" style="order:1; padding-bottom:0;">
+						<div class="ows-btnBar" style="order:1;gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
+							<button id="temp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{TEMPERATURE}}">{{TEMPERATURE}}</button>
+							<button id="dailytemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{DAILY_TEMPERATURE}}">{{DAILY_TEMPERATURE}}</button>
+							<button id="press" class="w3-button ows-theme-grad-down-hvr" aria-label="{{PRESSURE}}">{{PRESSURE}}</button>
+							<button id="wind" class="w3-button ows-theme-grad-down-hvr" aria-label="{{WINDSPEEDS}}">{{WIND_SPEED}}</button>
+							<button id="windDir" class="w3-button ows-theme-grad-down-hvr" aria-label="{{WIND_DIRECTION}}">{{WIND_DIRECTION}}</button>
+							<button id="humidity" class="w3-button ows-theme-grad-down-hvr" aria-label="{{HUMIDITY}}">{{HUMIDITY}}</button>
+							<button id="rain" class="w3-button ows-theme-grad-down-hvr" aria-label="{{RAINFALL}}">{{RAINFALL}}</button>
+							<button id="dailyrain" class="w3-button ows-theme-grad-down-hvr" aria-label="{{DAILY_RAIN}}">{{DAILY_RAIN}}</button>
+							<button id="solar" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOLAR}}">{{SOLAR}}</button>
+							<button id="sunhours" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SUNSHINE_HOURS}}">{{SUNSHINE_HOURS}}</button>
+							<button id="airquality"	class="w3-button ows-theme-grad-down-hvr" aria-label="{{AIR_QUALITY}}">{{AIR_QUALITY}}</button>
+							<button id="extratemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_TEMPERATURE}}">{{EXTRA_TEMPERATURE}}</button>
+							<button id="extrahum" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_HUMIDITY}}">{{EXTRA_HUMIDITY}}</button>
+							<button id="extradew" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_DEW_POINT}}">{{EXTRA_DEW_POINT}}</button>
+							<button id="soiltemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOIL_TEMPERATURE}}">{{SOIL_TEMPERATURE}}</button>
+							<button id="soilmoist" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOIL_MOISTURE}}">{{SOIL_MOISTURE}}</button>
+							<button id="leafwet" class="w3-button ows-theme-grad-down-hvr" aria-label="{{LEAF_WETNESS}}">{{LEAF_WETNESS}}</button>
+							<button id="usertemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{USER_TEMPERATURE}}">{{USER_TEMPERATURE}}</button>
+							<button id="co2" class="w3-button ows-theme-grad-down-hvr" aria-label="{{CO2_SENSOR}}e">{{CO2_SENSOR}}</button>
+							<button id="laserdepth" class="w3-button ows-theme-grad-down-hvr" aria-label="{{LASER_DEPTH}}">{{LASER_DEPTH}}</button>
+							<button id="snowdepth" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SNOWFALL}}">{{SNOWFALL}}</button>
 						</div>
 					</div>
 					<!--	Chart	-->
 					<div class="w3-container" style="order:1;">
-						<div id="chartcontainer" style="order:1;"></div>
+						<div id="chartcontainer" class="chart-wrap" style="margin-top:1vh">
+							<div class="chart-buttons">
+                    			<div id="rangeButtons" style="visibility: visible;">
+									Zoom:
+									<button data-count="12" data-type="hour">12h</button>
+									<button data-count="24" data-type="hour">24h</button>
+									<button data-count="2" data-type="day">2d</button>
+									<button data-count="0" data-type="all">All</button>
+								</div>
+                    			<button id="btnFullscreen">Fullscreen</button>
+                			</div>
+							<div id="mainChartContainer" class="mainChartContainer">
+                    			<canvas id="mainChart"></canvas>
+                			</div>
+							<div id="navChartContainer" class="navChartContainer">
+                    			<canvas id="navChart"></canvas>
+                			</div>
+
+						</div>
 					</div>
 					<!--	Information	-->
-					<div class="w3-container" style="order:1;">
+					<div class="w3-container no-shadow" style="order:1;">
 						<p class="w3-center" id="chartdescription" style="order:3;">Description</p>
 					</div>
 				</div>	<!--	End of one column layout	-->
 			</div>
 		</div>
 
-		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
-			<div class="pageWidth">
-				<div class="ax-titleBar ax-padding-small" >
-					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h5 class="w3-right-align ax-theme7-txt">
-						Powered by <span class="ax-theme9-txt">CumulusMX</span>
-						V<span data-cmxData="Version">X.YY.Z</span>
-						(b:<span data-cmxData="Build">xxxx</span>)
-					</h5>
-				</div>
-			</div>
-		</footer>
+		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+            </section>
+        </footer>
 
 	</body>
 </html>

@@ -1,243 +1,285 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	AI Configuration 
-	File:	ai-config.html				Ver: aiX-1.0
-	Author:	D.N.C.Thomas			      March 2025
-	Last Edit:	2025/03/22 10:06
-	Last Check:	2025/04/24 09:17
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Page:   Ai Configuration    | ai-config.html
+    Author: DNC Thomas          | Created: 2025-11-27
+    Edit:   2026-01-09
+    Check:  2025-12-08 16:55:35
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>CumulusMX AI Configuration</title>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{AI_SETTINGS}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2025">
+		<meta name="author" content="DNC Thomas 2025">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-		
-		<!--	jQuery CDN	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/axPro.css">
-		<link rel="stylesheet" href="css/dummy.css" id="theme">
-		<link rel="stylesheet" href="css/main.css">
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-manager.js"></script>
-		<!--<script src="js/current.js"></script>-->
-		<script src="js/ai-config.js"></script>
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="css/theme.css" id="Theme">
+        <link rel="stylesheet" href="css/w3v5.css">
+        <link rel="stylesheet" href="css/main.css">
 
-		<!--	Local scripts & styles	-->
-		<script>
-			/*
-			$().ready(function() {
-				$.ajax({
-        			url: '/api/graphdata/units.json',
-        			dataType: 'json',
-       				 success: function (result) {
-            			$.each(result, function(key, value) {
-							console.log('Unit: ' + key + ' = ' + value);
-                			$('.unit-' + key).text(value);
-            			});
-        			}
-   				 });
-			});*/
-		</script>
-		<style>
-			input[type="number"], select  {border-radius: 0.7em 0 0 0.7em; border:thin solid var(--color5); text-align:center;}
-		</style>
-	</head>
-	<body class="ax-theme9">
-		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
-			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
-			<div class="pageWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
-				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				
-				<div class="ax-theme7-bak" style="z-index:5">
-					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
-					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
-					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
-					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
-				</div>
-			</div>
+        <!--    Site Scripts    -->
+        <script src="js/ai-page-ctrl.js"></script>
 
-			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
-				<div id="Menus" class="pageWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
-			</div>
-		</header>
+        <!--    Page Styles     -->
+        <style>
+            input[type="number"],
+            select {
+                border-radius: 0.7em 0 0 0.7em;
+                border: thin solid var(--color2);
+                text-align: center;
+                padding: 0.2em 0;
+            }
+            select { padding: 0.3em 0;}
 
-		<div id="content">
-			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
-			<div id="subContent" class="pageWidth">
-				<!--	Page Title	-->
-				<div class="ax-titleBar">
-					<h1>AI Configuration</h1>
-					<p>Use this page to configure the Alternative Interface</p>
-				</div>
-				<!--	Three column variable width section	-->
-				<div class="ax-column3">
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar ax-animate-drop">
-							<h3>Page Geometry</h3>
+            #customGrid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas: "Geometry Theme Gull" "Geometry LEDs Rain" "Colours Colours Apply";
+                gap: var(--rowGap) var(--colGap);
+                margin-bottom: 1em;
+            }
+            #Geometry{ grid-area: Geometry; }
+            #Theme {   grid-area: Theme;    }
+            #Gull {    grid-area: Gull; }
+            #LEDs {    grid-area: LEDs; }
+            #Rain {    grid-area: Rain; }
+            #Apply {   grid-area: Apply; }
+            #Colours { grid-area: Colours; }
+            @media( max-width: 790px) {
+                #Page {
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-areas: "Geometry Theme" "Geometry Gull" "Geometry LEDs" "Rain Apply" "Colours Colours";
+                }
+            }
+            @media (max-width: 470px) {
+                #Page {
+                    grid-template-columns: 1fr;
+                    grid-template-areas: "Geometry" "Theme" "Gull" "LEDs" "Rain" "Apply" "Colours";
+                }
+                #Colours { display: none;}
+            }
+        </style>
+        <!--    Page Scripts    -->
+        <script src="js/ai-config.js"></script>
+        <script>
+
+        </script>
+    </head>
+
+    <body class="ows-theme9">
+        <header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+            <section id="subBanner" class="pageWidth" >
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
+                <div id="siteInfo">
+                    <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                </div>
+                <nav id="MainMenu" class="ows-theme6"></nav>
+            </section>
+        </header>
+
+        <div id="Content">
+            <div id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme4 w3-animate-right"><!-- Sidebar Here     --></div>
+            <img src="img/Gull.png" alt="Seagull" id="Gull1"> <!--    Gull goes here  -->
+            <div id="subContent" class="pageWidth"><!--     Start of real content   -->
+                <section class="ows-titleFlex">
+                    <h1>{{AI_SETTINGS}}</h1>
+					<p class="tagline">{{AI_SETTINGS_TAGLINE}}</p>
+                </section>
+
+                <section id="customGrid">
+                    <div id="Geometry" class="w3-container ows-theme8">
+                        <div class="ows-titleFlex">
+                            <h3>{{PAGE_GEOMETRY}}</h3>
+                        </div>
+                        <p>{{PAGE_GEOMETRY_TEXT}}</p>
+                        <div style="display:grid; grid-template-columns: repeat(2, 2em 1fr);align-items:center;row-gap:0.5em; margin-bottom:1vh;">
+							<input type="checkbox" id="BannerState" style="justify-self: start;" name="BannerState" value="false" aria-label="Static or scrolling banner">
+							<label for="BannerState">{{STATIC_BANNER}}</label>
+							<input type="checkbox" id="FooterState" style="justify-self: start;" name="FooterState" value="false" aria-label="Static or scrolling footer">
+							<label for="FooterState">{{STATIC_FOOTER}}</label>
 						</div>
-						<p>
-							Configure the top and bottom gap for the page content, and whether or not the header 
-							and footer are static.
-						</p>
-						<div style="display:grid; grid-template-columns: repeat(2, 2em 1fr);align-items:center;row-gap:0.5em; margin-bottom:1vh;">
-							<input type="checkbox" class="w3-check" name="BannerState" id="BannerState" value="false" aria-label="Static or scrolling banner">
-							<label for="BannerState">Static Banner</label>
-							<input type="checkbox" class="w3-check" name="FooterState" id="FooterState" value="false" aria-label="Static or scrolling footer">
-							<label for="FooterState">Static Footer</label>
+						<div style="display:grid; grid-template-columns: 1fr 5em; gap: 1vh var(--colGap); margin-bottom:1vh; align-items: center;">
+							<label for="TopGap">{{BANNER_GAP}}</label>
+							<input type="number" id="TopGap" name="TopGap" value="0" min="0" step="0.1" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Gap below page">
+							<label for="BottomGap">{{FOOTER_GAP}}</label>
+							<input type="number" id="BottomGap" name="BottomGap" value="0" min="0" step="0.1" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Gap below page">
 						</div>
-						<div style="display:grid; grid-template-columns: 1fr 5em; gap: 1vh var(--colGap); margin-bottom:1vh;">
-							<label for="paddingTop">Gap below banner</label>
-							<input type="number" min="0" step="0.1" name="paddingTop" value="0" id="paddingTop" class="ax-gradient-up" aria-label="Gap below page">
-							<label for="paddingBottom">Gap above footer</label>
-							<input type="number" min="0" step="0.1" name="paddingBottom" value="0" id="paddingBottom" class="ax-gradient-up" aria-label="Gap below page">
+						<div style="display:grid; grid-template-columns: 1fr 9em; column-gap: var(--colGap); align-items:center">
+							<label for="unitSelect">{{PAGE_UNITS}}</label>
+							<select id="unitSelect" class="ows-theme0 ows-theme-grad-down-hvr"></select>
 						</div>
-						<div style="display:grid; grid-template-columns: 1fr 9em; column-gap: var(--colGap);">
-							<label for="unitSelect">Units to use</label>
-							<select id="unitSelect" class="ax-gradient-up" style="border:thin solid var(--color5);height: 1.5em;text-align:center;"></select>
-						</div>
-						<p class="w3-small">
-							You should note that the footer will scroll automatically on small screens regardless of the above settings. Also, 
-							when changing the state of the banner, this screen will jump down slightly but will correct itself when the settings are stored.
-						</p>
-					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h3>Theme</h3>
-						</div>
-						<p>
-							This version of the AI comes with 14 NEW built-in themes. Use the dropdown to select 
-							a theme - this page will instantly change to show your choice.
-						</p>
-						<div style="display:grid;grid-template-columns: 1fr 1fr;grid-template-rows: auto;align-items:center;">
-							<label for="ThemeList">Chosen theme</label>
-							<select id="ThemeList" class="w3-select ax-btn-gradient-up" style="border:thin solid var(--color5);">
-								<option value="" selected="selected">Default theme</option>
+						<p class="w3-small">{{PAGE_GEOMETRY_NOTE}}</p>
+                        <h4>{{SHADOWS}}</h4>
+                        <div style="display:grid;grid-template-columns:repeat(2, 1fr); gap: 1em; align-items:baseline;">
+                            <label for="shadowList"><h5>Shadow style:</h5></label>
+                            <select id="shadowList" class="ows-theme0 ows-theme-grad-down-hvr">
+                                <option value="" selected>{{NO_SHADOW}}</option>
+                                <option value="ows-theme-shadow1">{{BASIC_SHADOW}}</option>
+                                <option value="ows-theme-shadow2">{{ENHANCED_SHADOW}}</option>
+                            </select>
+                        </div>
+                        <p class="w3-small">{{SHADOW_NOTE}}.</p>
+                        <h4>{{PANEL_HEIGHT}}</h4>
+                        <div style="display:grid;grid-template-columns: 2fr 1fr; gap: 1em;align-items: baseline;">
+                            <label for="PanelHt">{{PANEL_HEIGHT_OPT}}</label>
+                            <input type="checkbox" id="PanelHt" value="start" style="place-self:center right">
+                        </div>
+                        <p class="w3-small">{{PANEL_HEIGHT_NOTE}}.</p>
+                    </div>
+                    <!--    Theme   -->
+                    <div id="Theme" class="w3-container ows-theme8">
+                        <div class="ows-titleFlex">
+                            <h3>{{THEME}}</h3>
+                        </div>
+						<div style="display:grid;grid-template-columns: 1fr 1fr;grid-template-rows: auto;align-items:baseline;">
+							<label for="ThemeList"><h5>{{THEME_COLOURS}}:</h5></label>
+							<select id="ThemeList" class="ows-theme0 ows-theme-grad-down-hvr">
+								<option value="" selected="selected">{{DEFAULT}}</option>
 							</select>
 						</div>
-						<p class="w3-small">
-							This facility only works on browsers that support 'local storage'. If you are using an old browser 
-							to view your Interface then please consider updating if possible. (You can also use the 'CMXConfig' 
-							settings below to manually change your theme.)
-						</p>
-					</div>
-					<!--	The Gull	-->
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar ax-animate-drop">
-							<h3>The Seagull</h3>
+                        <p><!--{{THEME_NOTE1}}-->This version of the AI comes with 14 NEW built-in themes.</p>
+                        <p class="w3-small"><!--{{THEME_NOTE2}}-->
+                            The themes in this version are slightly different to those on the 'Alternative
+                            Website' but should still be usable.
+                        </p>
+                    </div>
+
+                    <div id="LEDs" class="w3-container ows-theme8">
+                         <div class="ows-titleFlex">
+                            <h3>{{ALARM}} LEDs</h3>
+                        </div>
+                        <p>{{ALARM_NOTE}}</p>
+						<div style="display:grid;grid-template-columns:1fr 1fr 2.0rem;grid-template-rows: auto;gap:1vh 5px;align-items: baseline;">
+							<label for="AlarmDefault">{{DEFAULT}} {{ALARM}} LED</label>
+							<select id="AlarmDefault" class="ows-theme0 ows-theme-grad-down-hvr"></select>
+							<div class="ows-led" id="DefaultLED" style="place-self:center;"></div>
+							<label for="AlarmUser">{{USER}} {{ALARM}} LED </label>
+							<select id="AlarmUser" class="ows-theme0 ows-theme-grad-down-hvr"></select>
+							<div class="ows-led ows-led-on ows-diamond ows-small" id="UserLED" style="place-self:center;"></div>
+
 						</div>
-						<p>
-							The seagull at the bottom right of the page can be animated in different ways.  By setting to 'No animation' the seagull will
-							just appear in its current position.
+                        <p class="w3-small w3-italic">{{ALARM_NOTE2}}</p>
+                    </div>
+
+                    <div id="Rain" class="w3-container ows-theme8">
+                        <div class="ows-titleFlex">
+                            <h3>{{RAIN_RATE_BOUNDARIES}}</h3>
+                        </div>
+                        <p>{{RAIN_RATE_NOTE}}</p>
+                        <div style="display:grid;grid-template-columns: 1fr 5em 1.5em;grid-template-rows:auto;gap:1vh;align-items:center;">
+							<label for="rainrateLight">{{LIGHT}} {{RAINFALL}} {{RATE}}:</label>
+							<input type="number" min="0" step="0.1" name="rainrateLight" value="" id="rainrateLight" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Light rain image">
+                            <img src="img/rain1.png" alt="Raindrop 1" class="w3-image">
+							<label for="rainrateMedium">{{MEDIUM}} {{RAINFALL}} {{RATE}}:</label>
+							<input type="number" min="0" step="0.1" name="rainrateMedium" value="" id="rainrateMedium" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Medium rain image">
+                            <img src="img/rain2.png" alt="Raindrop 2" class="w3-image">
+                            <p class="w3-small w3-italic" style="grid-column-start: span 2;">{{RAIN_RATE_NOTE2}}</p>
+                            <img src="img/rain3.png" alt="Raindrop 3" class="w3-image">
+						</div>
+                    </div>
+
+                    <div id="Colours" class="w3-container ows-theme5 ows-animate-drop no-shadow">
+                        <div class="ows-titleFlex ows-animate-drop">
+							<h3>{{THEME_COLOURS}}</h3>
+						</div>
+						<div style="display:grid;grid-template-columns: repeat(4, 1fr);grid-template-rows: auto;gap:0.5em;">
+							<div class="ows-theme1 w3-center ">ows-theme1<br><em>var(--color1)</em></div>
+							<div class="ows-theme2 w3-center ">ows-theme2<br><em>var(--color2)</em></div>
+							<div class="ows-theme3 w3-center ">ows-theme3<br><em>var(--color3)</em></div>
+							<div class="ows-theme4 w3-center ">ows-theme4<br><em>var(--color4)</em></div>
+							<div class="ows-theme5 w3-center " style="grid-column-start:span 4;">ows-theme5, <em>var(--color5)</em></div>
+							<div class="ows-theme6 w3-center ">ows-theme6<br><em>var(--color6)</em></div>
+							<div class="ows-theme7 w3-center ">ows-theme7<br><em>var(--color7)</em></div>
+							<div class="ows-theme8 w3-center w3-border ows-theme5-bdr">ows-theme8<br><em>var(--color8)</em></div>
+							<div class="ows-theme9 w3-center ">ows-theme9<br><em>var(--color9)</em></div>
+						</div>
+						<p class="w3-small">{{THEME_NOTE3}}</p>
+
+                    </div>
+
+                    <div id="Apply" class="w3-container ows-theme8" style="align-self:end;">
+                        <div class="ows-titleFlex w3-stretch ows-theme5">
+                            <h3>{{APPLY_CHANGES}}</h3>
+                        </div>
+						<P><strong>Note</strong>: If you used the '<em>Restore</em>' button below, <strong><em>Everything</em></strong> gets reset back to the default styles.</P>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1vw;" role="menu">
+							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">{{APPLY_CHANGES}}</button>
+							<button class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr" onclick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore</button>
+						</div>
+						<p class="w3-small">
+							If you cannot store configuration details in your browser, you can still use this page
+							to configure your AI and then copy the cmxConfig object directly into the
+                            <span class="ai-monospaced"><strong>ai-page-ctrl.js</strong></span> file.
 						</p>
+						<button  onClick="toggleModal('cmxConfig')" class="w3-button ows-theme0 w3-border ows-theme1-bdr ows-theme-grad-down-hvr w3-small" style="margin-bottom:1vh; font-weight:700;">Show cmxConfig</button>
+                    </div>
+                    <div id="Gull" class="w3-container ows-theme8">
+                        <div class="ows-titleFlex">
+                            <h3>{{GULL_ANIMATION}}</h3>
+                        </div>
+                        <p>{{GULL_NOTE}}</p>
 						<div style="display:grid;grid-template-columns: 1fr 10em;grid-template-rows: auto;row-gap: 0.5em;align-items:center; margin-bottom:1vh;">
-							<label for="animationSelect">Animation</label>
-							<select id="animationSelect" class="w3-select ax-gradient-up" style="border:thin solid var(--color5);">
-								<option value="none" selected="">None</option>
-								<option value="floatDownRight">Float down screen</option>
-								<option value="slideRight">Slide across screen</option>
+							<label for="animationSelect">{{GULL_ANIMATION}}</label>
+							<select id="animationSelect" class="ows-theme0 ows-theme-grad-down-hvr">
 							</select>
 						</div>
 						<div style="display: grid; grid-template-columns: 1fr 5em;gap: 1vw;">
-							<label for="animationSpeed">Animation speed (seconds)</label>
-							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ax-gradient-up " aria-label="Animation speed">
-							<label for="stayOnTop">Stay on top of all elements</label>
-							<input type="checkbox" class="w3-check" name="stayOnTop" id="stayOnTop" value="" style="justify-self:end" aria-label="Keep the seagull on top">
+							<label for="animationSpeed">{{GULL_SPEED}}</label>
+							<input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed" class="ows-theme0 ows-theme-grad-down-hvr" aria-label="Animation speed">
+							<label for="stayOnTop">{{GULL_ON_TOP}}</label>
+							<input type="checkbox" name="stayOnTop" id="stayOnTop" value="false" style="justify-self:end" aria-label="Keep the seagull on top">
 						</div>
-						<p class="w3-small">In order to see changes dependant on numeric values, you need to click elsewhere on the page.</p>
-					</div>				
-					<div class="w3-card ax-theme5 ax-animate-fadeIn" style="order:6;">
-						<div class="ax-titleBar ax-animate-drop">
-							<h3>Theme Colours</h3>
-						</div>
-						<div style="display:grid;grid-template-columns: repeat(2, 1fr);grid-template-rows: auto;gap:0.5em;">
-							<div class="ax-theme1 w3-center w3-padding">ax-theme1<br><em>var(--color1)</em></div>
-							<div class="ax-theme2 w3-center w3-padding">ax-theme2<br><em>var(--color2)</em></div>
-							<div class="ax-theme3 w3-center w3-padding">ax-theme3<br><em>var(--color3)</em></div>
-							<div class="ax-theme4 w3-center w3-padding">ax-theme4<br><em>var(--color4)</em></div>
-							<div class="ax-theme5 w3-center w3-padding" style="grid-column-start:span 2;">ax-theme5, <em>var(--color5)</em></div>
-							<div class="ax-theme6 w3-center w3-padding">ax-theme6<br><em>var(--color6)</em></div>
-							<div class="ax-theme7 w3-center w3-padding">ax-theme7<br><em>var(--color7)</em></div>
-							<div class="ax-theme8 w3-center w3-padding w3-border ax-theme5-bdr">ax-theme8<br><em>var(--color8)</em></div>
-							<div class="ax-theme9 w3-center w3-padding">ax-theme9<br><em>var(--color9)</em></div>
-						</div>
-						<p class="w3-small">There are 9 variation of each theme colour, classes or <em>style variables</em> can be used within any html element</p>
-					</div>				
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:5;">
-						<div class="ax-titleBar">
-							<h3>Change Settings</h3>
-						</div>
-						<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:1vw;" role="menu">
-							<button class="w3-btn ax-btn-gradient-up w3-round-xlarge" onclick="setScheme();" role="menuitem" aria-label="Set AI Configuration">Use Configuration</button>
-							<button class="w3-btn ax-btn-gradient-up w3-round-xlarge" onclick="clearScheme();" role="menuitem" aria-label="Restore defaults">Restore default</button>
-						</div>
-						<P><strong>Note</strong>: If you used the '<em>Restore default</em> button above, <strong><em>Everything</em></strong> gets reset back to the deafult styles.</P>
-						<p class="w3-small">
-							If you cannot store configuration details in your browser, you can still use this page
-							to configure your AI and then copy the CMXConfig object shown below directly into the
-							<span class="ai-monospaced"><strong>ai-page-manager.js</strong></span> file.
-						</p>
-						<p class="w3-monospace w3-small">CMXConfig = <span id="CMXInfo"></span></p>
-					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1">
-						<div class="ax-titleBar"><h3>Alarm LEDs</h3></div>
-						<p>
-							You can change the LED shapes used for the alarms, both the default alarms and custom alarms can have 
-							their own LEDs.
-						</p>
-						<div style="display:grid;grid-template-columns:50% 3em 1fr;grid-template-rows: auto;row-gap:0.5em;align-items: center;">
-							<label for="AlarmDef">Default alarm LED</label>
-							<div class="ax-led " id="defaultLED"></div>
-							<select id="AlarmDef" class="w3-select ax-gradient-up" style="border:thin solid var(--color5);"><option value="ax-brick">Default</option></select>
-							<label for="AlarmUsr">User Alarm LED </label>
-							<div class="ax-led " id="userLED"></div>
-							<select id="AlarmUsr" class="w3-select ax-gradient-up" style="border:thin solid var(--theme5);"><option value="ax-brick">Default</option></select>
-						</div>
-						<!--	Rain Rate demarcation boundries	-->
-						<div class="ax-titleBar" style="margin-top:1vh;"><h4>RainRate ranges</h4></div>
-						<div style="display:grid;grid-template-columns: 1fr 5em;grid-template-rows:auto;row-gap:0.5em;">
-							<span style="grid-column-start: span 2;">These rainrate values are used to determine which rainrate image to use. <span class="w3-small">(Units: <span class="unit-rain"></span>/hr)</span></span>
-							<label for="rrLight">Light rainfale rate:</label>
-							<input type="number" min="0" step="0.1" name="rrLight" value="5" id="rrLight" class="ax-gradient-up" aria-label="Light rain image">
-							<label for="rrMedium">Medium rainfall rate:</label>
-							<input type="number" min="0" step="0.1" name="rrMedium" value="10" id="rrMedium" class="ax-gradient-up" aria-label="Medium rain image">
-							<span style="grid-column-start: span 2">Above this value will use the 'Heavy' rainfall rate image</span>
-						</div>
-					</div>
-				</div>	<!--	End of three column layout	-->
+                    </div>
+                </section>
 
+            </div>
+        </div>  <!--    End of Content  -->
+        <!--    Footer  -->
+        <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> V4.6.4 <span class="ows-theme9-txt w3-small">b: 4127</span></h5>
+                </section>
+        </footer>
+
+		<!--	Modal -->
+		<!--	The ID below should be used in the function call to make this work 	-->
+		<div id="cmxConfig" class="w3-modal w3-theme-modal"><!--   Cover panel -->
+			<!-- 	You can set the max-width in the 'div' below as well as the background colour -->
+			<div class="w3-modal-content ows-theme8 ows-theme-shadow1 w3-border ows-theme3-bdr ows-animate-entryOne" style="border-radius: 0.5em; width: 50%">
+				<div class="ows-titleFlex ows-theme5" style="border-radius: 0.5em 0.5em 0 0;">
+                    <h4 style="padding: .15em 1em;">cmxConfig <span class="w3-small">(in memory)</span></h4>
+                    <button class="w3-button" style="place-self:start end; border-radius: 0 0.5em 0 0;" onClick="toggleModal('cmxConfig')">X</button>
+                </div>
+                <div class="w3-container" style="min-height:4em;">
+                    <pre style="font-size:80%;">cmxConfig = <span id="cmxInfo"></span></pre>
+                </div>
+                <div class="ows-titleFlex ows-theme5" style="border-radius: 0 0 0.5em 0.5em; flex-direction:row-reverse;margin-bottom:0;">
+                    <p class="w3-small w3-italic" style="padding:0 1em 0 0;">{{POWERED_BY}} CumulusMX</p>
+                </div>
 			</div>
 		</div>
-		
-		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
-			<div class="pageWidth">
-				<div class="ax-titleBar ax-padding-small" >
-					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h5 class="w3-right-align ax-theme7-txt">
-						Powered by <span class="ax-theme9-txt">CumulusMX</span>
-						V<span data-cmxData="Version">X.YY.Z</span>
-						(b:<span data-cmxData="Build">xxxx</span>)
-					</h5>
-				</div>
-			</div>
-		</footer>
 
-	</body>
+    </body>
 </html>

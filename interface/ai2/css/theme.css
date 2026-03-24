@@ -1,17 +1,20 @@
 @charset "utf-8";
-/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 	Theme:  theme             (#00332C)   v3.0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  For:   a?x websites
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 	Theme:  ows-theme       Base colour: grey (#7f7f7f)
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  For:   OWS websites         version: 5.0.0
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  Author:     DNC THomas
- *  Last edit:  29/11/2024
+ *  Last edit:  2025-08-19 12:29:54
  *  ****   DO NOT EDIT THIS THEME   ****
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/*  Theme colour variables */
 :root {
-    --baseR: 127; --baseG: 127; --baseB:127;
+    --baseR: 127;
+    --baseG: 127;
+    --baseB: 127;
+
+    --color0: transparent;
     --color1: #191919;
     --color2: #333333;
     --color3: #4c4c4c;
@@ -21,104 +24,85 @@
     --color7: #b2b2b2;
     --color8: #cccccc;
     --color9: #e5e5e5;
-    --modal: rgba(var(--baseR), var(--baseG), var(--baseB), 0.3);
-    --gradient-down: linear-gradient(         var(--color7), var(--color6));
-	--gradient-up: linear-gradient( var(--color6), var(--color7));
-    --gradient-left: linear-gradient( to right,  var(--color7), var(--color6));
-	--gradient-right: linear-gradient( to left, var(--color7), var(--color6));
+    --modal: rgba( var(--baseR), var(--baseG), var(--baseB), 0.3);
+    --menu: rgba( var(--baseR), var(--baseG), var(--baseB), 0.8);
+    --shadow1: 0px 7px 6px -4px var(--color5);
+    --shadow2: 2px 2px 0px 0px var(--color3), 5px 5px 5px 0px var(--color5);
+    --shadow3: -8px 0px 8px -6px var(--color5), 6px 0px 6px -3px var(--color5); 
 
-    --gradientBar: linear-gradient(var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
-    --shadow:   0 0.15em 0.3em -0.1em var(--color1);
-    --shadows: 0 0.1em 0.3em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.3),0 0.1em 0.7em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.4);
+    --gradient-down: linear-gradient( 0deg, var(--color7), var(--color5));
+    --gradient-up: linear-gradient( 0deg,  var(--color5), var(--color7));
+    --gradient-ltr: linear-gradient( 90deg,  var(--color7), var(--color5));
+    --gradient-rtl: linear-gradient( 90deg,  var(--color5), var(--color7));
+    --gradient-databar: linear-gradient( var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
 }
 
-/*	Theme colour combinations (Foreground / Background)	*/
-.ax-theme1	{color: var(--color9); background-color: var(--color1)!important;}
-.ax-theme2	{color: var(--color9); background-color: var(--color2);}
-.ax-theme3	{color: var(--color9); background-color: var(--color3);}
-.ax-theme4	{color: var(--color9); background-color: var(--color4);}
-.ax-theme5	{color: var(--color9); background: var(--color5);}
-.ax-theme6	{color: var(--color1); background-color: var(--color6);}
-.ax-theme7	{color: var(--color1); background-color: var(--color7);}
-.ax-theme8	{color: var(--color1); background-color: var(--color8);}
-.ax-theme9	{color: var(--color1); background-color: var(--color9);}
+/*  Combination colours foreground/background */
+.ows-theme0 { color: inherit; background: inherit;}
+.ows-theme1, .ows-theme1-hvr:hover { color: var(--color9); background-color: var(--color1)!important;}
+.ows-theme2, .ows-theme2-hvr:hover { color: var(--color9); background-color: var(--color2)!important;}
+.ows-theme3, .ows-theme3-hvr:hover { color: var(--color9); background-color: var(--color3)!important;}
+.ows-theme4, .ows-theme4-hvr:hover { color: var(--color9); background-color: var(--color4)!important;}
+.ows-theme5, .ows-theme5-hvr:hover { color: var(--color9); background-color: var(--color5)!important;}
+.ows-theme6, .ows-theme6-hvr:hover { color: var(--color1); background-color: var(--color6)!important;}
+.ows-theme7, .ows-theme7-hvr:hover { color: var(--color1); background-color: var(--color7)!important;}
+.ows-theme8, .ows-theme8-hvr:hover { color: var(--color1); background-color: var(--color8)!important;}
+.ows-theme9, .ows-theme9-hvr:hover { color: var(--color1); background-color: var(--color9)!important}
 
-/*	Theme colour combinations for HOVER effects (Foreground / Background)	*/
-.ax-theme1-hvr:hover	{color: var(--color9); background-color: var(--color1);}
-.ax-theme2-hvr:hover	{color: var(--color9); background-color: var(--color2);}
-.ax-theme3-hvr:hover	{color: var(--color9); background-color: var(--color3);}
-.ax-theme4-hvr:hover	{color: var(--color9); background-color: var(--color4);}
-.ax-theme5-hvr:hover	{color: var(--color1); background-color: var(--color5);}
-.ax-theme6-hvr:hover 	{color: var(--color1); background-color: var(--color6);}
-.ax-theme7-hvr:hover	{color: var(--color1); background-color: var(--color7);}
-.ax-theme8-hvr:hover	{color: var(--color1); background-color: var(--color8);}
-.ax-theme9-hvr:hover	{color: var(--color1); background-color: var(--color9);}
+/* Gradients ~ You may wish to adjust the foreground colours used */
+.ows-theme-grad-down            { background-color: var(--gradient-down);color: var(--color1)!important}
+.ows-theme-grad-down-hvr:hover  { background-color: var(--gradient-down);color: var(--color9)!important}
+.ows-theme-grad-up              { background-color: var(--gradient-up);color: var(--color1)!important}
+.ows-theme-grad-up-hvr:hover    { background-color: var(--gradient-up);color: var(--color9)!important}
+.ows-theme-grad-ltr             { background-color: var(--gradient-ltr);color: var(--color1)!important}
+.ows-theme-grad-ltr-hvr:hover   { background-color: var(--gradient-ltr);color: var(--color9)!important}
+.ows-theme-grad-rtl             { background-color: var(--gradient-rtl);color: var(--color1)!important}
+.ows-theme-grad-rtl-hvr:hover   { background-color: var(--gradient-rtl);color: var(--color9)!important}
 
-/*	Theme TEXT only colours	*/
-.ax-theme1-txt	{color: var(--color1);}
-.ax-theme2-txt	{color: var(--color2);}
-.ax-theme3-txt	{color: var(--color3);}
-.ax-theme4-txt	{color: var(--color4);}
-.ax-theme5-txt	{color: var(--color5);}
-.ax-theme6-txt	{color: var(--color6);}
-.ax-theme7-txt	{color: var(--color7);}
-.ax-theme8-txt	{color: var(--color8);}
-.ax-theme9-txt	{color: var(--color9);}
+/*  Gradients */
+.ows-theme-grad-down, .ows-theme-grad-down-hvr:hover { background: var(--gradient-down)!important; color: var(--color2)!important;}
+.ows-theme-grad-up, .ows-theme-grad-up-hvr:hover     { background: var(--gradient-up)!important; color: var(--color2)!important;}
+.ows-theme-grad-rtl, .ows-theme-grad-rtl-hvr:hover   { background: var(--gradient-rtl)!important; color: var(--color2)!important;}
+.ows-theme-grad-ltr, .ows-theme-grad-ltr-hvr:hover   { background: var(--gradient-ltr)!important; color: var(--color2)!important;}
 
-/*	Theme TEXT only HOVER colours	*/
-.ax-theme1-txt-hvr:hover	{color: var(--theme1);}
-.ax-theme2-txt-hvr:hover    {color: var(--theme2);}
-.ax-theme3-txt-hvr:hover    {color: var(--theme3);}
-.ax-theme4-txt-hvr:hover    {color: var(--theme4);}
-.ax-theme5-txt-hvr:hover 	{color: var(--theme5);}
-.ax-theme6-txt-hvr:hover    {color: var(--theme6);}
-.ax-theme7-txt-hvr:hover    {color: var(--theme7);}
-.ax-theme8-txt-hvr:hover    {color: var(--theme8);}
-.ax-theme9-txt-hvr:hover	{color: var(--theme9);}
+/*  Colors for text only settings */
+.ows-theme0-txt, .ows-theme0-txt-hvr:hover { color: inherit};
+.ows-theme1-txt, .ows-theme1-txt-hvr:hover { color: var(--color1)!important;}
+.ows-theme2-txt, .ows-theme2-txt-hvr:hover { color: var(--color2)!important;}
+.ows-theme3-txt, .ows-theme3-txt-hvr:hover { color: var(--color3)!important;}
+.ows-theme4-txt, .ows-theme4-txt-hvr:hover { color: var(--color4)!important;}
+.ows-theme5-txt, .ows-theme5-txt-hvr:hover { color: var(--color5)!important;}
+.ows-theme6-txt, .ows-theme6-txt-hvr:hover { color: var(--color6)!important;}
+.ows-theme7-txt, .ows-theme7-txt-hvr:hover { color: var(--color7)!important;}
+.ows-theme8-txt, .ows-theme8-txt-hvr:hover { color: var(--color8)!important;}
+.ows-theme9-txt, .ows-theme9-txt-hvr:hover { color: var(--color9)!important;}
 
-/*  Theme BACKGROUND only colours */
-.ax-theme1-bak	{background-color: var(--color1);}
-.ax-theme2-bak	{background-color: var(--color2);}
-.ax-theme3-bak	{background-color: var(--color3);}
-.ax-theme4-bak	{background-color: var(--color4);}
-.ax-theme5-bak	{background: var(--color5);}
-.ax-theme6-bak	{background-color: var(--color6);}
-.ax-theme7-bak	{background-color: var(--color7);}
-.ax-theme8-bak	{background-color: var(--color8);}
-.ax-theme9-bak	{background-color: var(--color9);}
+/* Border only colours */
+.ows-theme1-bdr, .ows-theme1-bdr-hvr:hover { border-color: var(--color1)!important;}
+.ows-theme2-bdr, .ows-theme2-bdr-hvr:hover { border-color: var(--color2)!important;}
+.ows-theme3-bdr, .ows-theme3-bdr-hvr:hover { border-color: var(--color3)!important;}
+.ows-theme4-bdr, .ows-theme4-bdr-hvr:hover { border-color: var(--color4)!important;}
+.ows-theme5-bdr, .ows-theme5-bdr-hvr:hover { border-color: var(--color5)!important;}
+.ows-theme6-bdr, .ows-theme6-bdr-hvr:hover { border-color: var(--color6)!important;}
+.ows-theme7-bdr, .ows-theme7-bdr-hvr:hover { border-color: var(--color7)!important;}
+.ows-theme8-bdr, .ows-theme8-bdr-hvr:hover { border-color: var(--color8)!important;}
+.ows-theme9-bdr, .ows-theme9-bdr-hvr:hover { border-color: var(--color9)!important;}
 
-/*	Theme BORDER only colours	*/
-.ax-theme1-bdr	{border-color: var(--color1)!important;}
-.ax-theme2-bdr	{border-color: var(--color2)!important;}
-.ax-theme3-bdr	{border-color: var(--color3)!important;}
-.ax-theme4-bdr	{border-color: var(--color4)!important;}
-.ax-theme5-bdr	{border-color: var(--color5)!important;}
-.ax-theme6-bdr	{border-color: var(--color6)!important;}
-.ax-theme7-bdr	{border-color: var(--color7)!important;}
-.ax-theme8-bdr	{border-color: var(--color8)!important;}
-.ax-theme9-bdr	{border-color: var(--color9)!important;}
+/* Background only colours */
+.ows-theme1-bkg, .ows-theme1-bkg-hvr:hover { background-color: var(--color1)!important;}
+.ows-theme2-bkg, .ows-theme2-bkg-hvr:hover { background-color: var(--color2)!important;}
+.ows-theme3-bkg, .ows-theme3-bkg-hvr:hover { background-color: var(--color3)!important;}
+.ows-theme4-bkg, .ows-theme4-bkg-hvr:hover { background-color: var(--color4)!important;}
+.ows-theme5-bkg, .ows-theme5-bkg-hvr:hover { background-color: var(--color5)!important;}
+.ows-theme6-bkg, .ows-theme6-bkg-hvr:hover { background-color: var(--color6)!important;}
+.ows-theme7-bkg, .ows-theme7-bkg-hvr:hover { background-color: var(--color7)!important;}
+.ows-theme8-bkg, .ows-theme8-bkg-hvr:hover { background-color: var(--color8)!important;}
+.ows-theme9-bkg, .ows-theme9-bkg-hvr:hover { background-color: var(--color9)!important;}
 
-/*	Theme BORDER only HOVER colours	*/
-.ax-theme1-bdr-hvr:hover 	{border-color: var(--color1)!important;}
-.ax-theme5-bdr-hvr:hover	{border-color: var(--color5)!important;}
-.ax-theme9-bdr-hvr:hover	{border-color: var(--color9)!important;}
 
-/*  Theme modal background colour	*/
-.ax-theme-modal {
-	background-color: var(--theme);
-	background-color: var(--modal);
-}
-
-/*  ~~~~~~  Gradients  ~~~~~~*/
-.ax-gradient-left { background: var(--gradient-left);}
-.ax-btn-gradient-left { background: var(--gradient-left); border: thin solid var(--color5)!important;}
-.ax-btn-gradient-left:hover {background: var(--gradient-right);}
-.ax-gradient-right { background: var(--gradient-right);}
-.ax-btn-gradient-right { background: var(--gradient-right);border:thin solid var(--color5)!important;}
-.ax-btn-gradient-right:hover{background: var(--gradient-left);}
-.ax-gradient-down { background: var(--gradient-down);}
-.ax-btn-gradient-down { background: var(--gradient-down); border: thin solid var(--color5)!important;}
-.ax-btn-gradient-down:hover{ background: var(--gradient-up);}
-.ax-gradient-up { background: var(--gradient-up);}
-.ax-btn-gradient-up { background: var(--gradient-up);border:thin solid var(--color5)!important;}
-.ax-btn-gradient-up:hover { background: var(--gradient-down);}
+/*  Extras */
+.ows-theme-modal { background-color: var(--modal);}
+.ows-theme-menu  { background-color: var(--menu);}
+.ows-theme-shadow1, .ows-theme-shadow1-hvr:hover { box-shadow: var(--shadow1);}
+.ows-theme-shadow2, .ows-theme-shadow2-hvr:hover { box-shadow: var(--shadow2);}
+.ows-theme-shadow3, .ows-theme-shadow3-hvr:hover { box-shadow: var(--shadow3);}

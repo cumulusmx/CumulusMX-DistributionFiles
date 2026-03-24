@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/24 17:20:34",
+	"version": "Last Modified: 2026/02/11 10:25:36",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -13,7 +13,7 @@
 					"optionLabels": [
 						"{{AQ_PRIMARY_NONE}}",
 						"{{AQ_PRIMARY_AIRLINK_OUT}}",
-						"{{AQ_PRIMARY_AIRLINK_OUT}}",
+						"{{AQ_PRIMARY_AIRLINK_IN}}",
 						"{{AQ_SENSOR}} 1",
 						"{{AQ_SENSOR}} 2",
 						"{{AQ_SENSOR}} 3",
@@ -56,7 +56,7 @@
 				},
 				"apiKey": {
 					"label": "{{WL_API_KEY}}:",
-					"helpers": ["{{WL_API_HELP}}"],
+					"helpers": ["{{WL_API_HELP1}}"],
 					"dependencies": {
 						"isNode": false
 					}
@@ -269,6 +269,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useLeafWet": {
 							"label": "{{LEAF_WETNESS}}",
 							"rightLabel": "{{LEAF_WETNESS_LABEL}}"
@@ -300,6 +304,10 @@
 						"useCamera": {
 							"label": "{{CAMERA}}",
 							"rightLabel": "{{CAMERA_LABEL}}"
+						},
+						"useBGT": {
+							"label": "{{BGT}}",
+							"rightLabel": "{{BGT_LABEL}}"
 						},
 						"setcustom": {
 							"label": "{{GATEWAY_CONFIG}}:",
@@ -518,6 +526,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useAQI": {
 							"label": "{{AQ}}",
 							"rightLabel": "{{AQ_LABEL}}"
@@ -652,6 +664,10 @@
 							"label": "{{SOIL_MOIST}}",
 							"rightLabel": "{{SOIL_MOIST_LABEL}}"
 						},
+						"useSoilTemp": {
+							"label": "{{SOIL_TEMP}}",
+							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
 						"useLeafWet": {
 							"label": "{{LEAF_WETNESS}}",
 							"rightLabel": "{{LEAF_WETNESS_LABEL}}"
@@ -668,9 +684,17 @@
 							"label": "{{CO2}}",
 							"rightLabel": "{{CO2_LABEL}}"
 						},
+						"useLightning": {
+							"label": "{{LIGHTNING}}",
+							"rightLabel": "{{LIGHTNING_LABEL}}"
+						},
 						"useLaserDist": {
 							"label": "{{LASER_DIST}}",
 							"rightLabel": "{{LASER_DIST_LABEL}}"
+						},
+						"useBGT": {
+							"label": "{{BGT}}",
+							"rightLabel": "{{BGT_LABEL}}"
 						}
 					},
 					"dependencies": {
@@ -693,6 +717,19 @@
 			"collapsible":true,
 			"collapsed": true,
 			"fields": {
+				"primary": {
+					"label": "{{LASER_PRIMARY}}:",
+					"optionLabels": [
+						"{{NONE}}",
+						"{{SENSOR}} 1",
+						"{{SENSOR}} 2",
+						"{{SENSOR}} 3",
+						"{{SENSOR}} 4"
+					],
+					"sort": false,
+					"removeDefaultNone": true,
+					"helper": "{{LASER_PRIMARY_HELP1}}"
+				},
 				"sensor1": {
 					"fields": {
 						"depth": {
@@ -704,6 +741,24 @@
 								"{{JSON_LASER_HELP4}}",
 								"{{JSON_LASER_HELP5}}"
 							]
+						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}",
+							"helpers": [
+								"{{LASER_CALC_SNOW_HELP1}}"
+							]
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"helpers": [
+								"{{LASER_RESET_HELP1}}",
+								"{{LASER_RESET_HELP2}}"
+							],
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -711,6 +766,17 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -718,6 +784,17 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				},
@@ -725,6 +802,17 @@
 					"fields": {
 						"depth": {
 							"label": "{{JSON_LASER_CALC_DEPTH}}:"
+						},
+						"snow": {
+							"label": "{{LASER_CALC_SNOW}}:",
+							"rightLabel": "{{LASER_CALC_SNOW_LABEL}}"
+						},
+						"reset": {
+							"label": "{{LASER_SNOWDEPTH_BASELINE}}:",
+							"rightLabel": "{{LASER_RESET_DEPTH}}",
+							"dependencies": {
+								"snow": true
+							}
 						}
 					}
 				}

@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:05",
+    "_LAST_MODIFIED": "Last modified: 2025/10/04 15:37:37",
     "GENERAL_OPTIONS": "General Options",
     "CHARTS": "Charts",
     "DATA_COLOURS": "Data Series Colours",
@@ -30,6 +30,7 @@
     "CHILL_HOURS": "Chill Hours",
     "SENSOR": "Sensor",
     "SNOW_ACCUMULATION": "Current 24hr Accumulation per Sensor",
+    "LASER_DEPTH": "Laser Depth",
     "LASER_SENSORS": "Laser Sensors",
     "DEPTH": "Depth",
     "DISTANCE": "Distance"

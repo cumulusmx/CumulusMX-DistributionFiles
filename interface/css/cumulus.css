@@ -1,6 +1,6 @@
 /*
     CSS overrides for Cumulus UI
-    Last modified: 2023/09/22 19:17:05
+    Last modified: 2025/11/21 10:28:53
 */
 
 body {
@@ -91,22 +91,98 @@ body {
     border-color: #ca2e2b;
 }
 
-.highcharts-data-table > table {
-    background-color:white;
+/* 	----------------------------------------
+ * 	ChartJS stuff
+ * 	---------------------------------------*/
+
+#chartcontainer  {
+	height: 600px;
+	width: 100%;
+	margin-top:16px;
+	margin-bottom: 16px;
+	background: #fff;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
-.highcharts-data-table > table > caption {
-    background-color:white;
-    color: #000;
-    font-weight: bold;
+.chart-buttons {
+	height: 25px;
+	font-size: 12px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
-.highcharts-data-table th, .highcharts-data-table td {
-    padding-left: 3px;
-    padding-right: 3px;
-    text-align: right;
+
+.chart-buttons button {
+	margin: 0 0 0 5px;
+	height: 25px;
+	font-size: 12px;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+	flex: 0 1 auto;
 }
-.highcharts-data-table th {
-    background-color: rgb(214, 214, 214)
+
+.chart-buttons-column {
+	display: flex;
 }
-.highcharts-description {
-    color: white;
+
+.mainChartContainer {
+	position: relative;
+	flex: 1 1 auto;
+    margin: 5px;
+}
+
+.navChartContainer {
+	height: 90px;
+	margin-top: 10px;
+	position: relative;
+	flex: 0 1 auto;
+}
+
+#navChart {
+	touch-action: none;
+}
+
+.chartDescription {
+	color: white;
+}
+
+.graphs-width {
+	max-width:1250px;
+	margin: auto
+}
+
+@media (max-width: 650px) {
+	figure { margin-left: 0; margin-right: 0 }
+	.w3-panel { padding-left: 5px; padding-right: 5px }
+	.w3-col.s12 { padding-left: 0; padding-right: 0; }
+}
+
+.spinner-container {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #adadad;
+}
+
+/* Define styles for the spinner */
+.spinner {
+    display: inline-block;
+    aspect-ratio: 1 / 1;            /* keep it square */
+    padding: 3rem;               /* controls overall size */
+    box-sizing: border-box;         /* include border/padding in layout */
+    border: 7px solid #968f8f;
+    border-radius: 50%;
+    border-top-color: blue;         /* Color for the spinning part */
+    animation: spin 2s linear infinite;
+}
+
+/* Define keyframe animation for spinning */
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }

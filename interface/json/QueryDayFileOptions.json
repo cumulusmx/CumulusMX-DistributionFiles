@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/22 21:57:43",
+	"version": "Last Modified: 2025/11/22 11:21:46",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -61,15 +61,28 @@
 		},
 		"where": {
 			"label": "{{WHERE}}",
-			"type": "text",
+			"type": "select",
+			"sort": false,
+			"removeDefaultNone": true,
+			"optionLabels": [">", "<", ">=", "<=", "=", "All"],
 			"helpers": [
 				"{{WHERE_HELP1}}",
 				"{{WHERE_HELP2}}",
-				"{{WHERE_HELP3}}",
 				"{{WHERE_HELP4}}"
 			],
 			"dependencies": {
 				"function": ["count"]
+			}
+		},
+		"value": {
+			"label": "{{VALUE}}",
+			"type": "number",
+			"helpers": [
+				"{{VALUE_HELP1}}"
+			],
+			"dependencies": {
+				"function": ["count"],
+				"where": ["<", "<=", ">", ">=", "="]
 			}
 		},
 		"startsel": {

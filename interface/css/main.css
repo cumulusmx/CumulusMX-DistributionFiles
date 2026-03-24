@@ -1,7 +1,7 @@
 /*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Last modified: 2025/09/18 21:44:42
+ * Last modified: 2026/03/09 15:53:05
  *
  * Hey! Thanks for download this theme!
  * This bootstrap theme is totally free. You can edit, share, distribute, use and whatever you want.
@@ -917,4 +917,17 @@ a:hover {
     .info-aapl ul {
         margin-left:40%;
     }
+}
+
+
+/* Tables for Extra Sensors */
+#tables-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.table-block {
+    margin-top: 10px;
 }

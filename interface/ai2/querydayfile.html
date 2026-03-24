@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Query Day File
-	File:	querydayfile.html		Ver: aiX-1.0
-	Author:	D.N.C.Thomas			    Mar 2025
-	Last Edit:	2025/03/22 10:28
-	Last Check:	2025/03/28
+	Page:	Query Day File		| querydayfile.html
+	Author:	DNC Thomas			| Mar 2025
+	Last Edit:	2026/03/24 11:10:36
+	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Query the Day File</title>
+		<title>{{QUERY_DAY_FILE}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -22,16 +21,15 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-		
-		<!--	jQuery CDN	(Use local for the Interface and public for the website)	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
 		<!-- Bootstrap -->
 	    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    	<!--<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />-->
     	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Alpaca -->
@@ -46,98 +44,99 @@
     	<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
 		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/axPro.css">
-		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/theme.css" id="Theme">
+		<link rel="stylesheet" href="css/w3v5.css">
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/alpacaforms.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-manager.js"></script>
+		<script src="js/ai-page-ctrl.js"></script>
 		<script src="js/querydayfile.js"></script>	<!-- Used to correct getCSSRule() function	-->
 
-		<!--	Local scripts & styles	-->
+		<!--	Local Scripts	-->
+		<link rel="stylesheet" href="css/alpacaforms.css">
 		<script>
+			function test() { alert("Test worked")}
 		</script>
+		<!--	Local Styles	-->
 		<style>
 			#ui-datepicker-div {min-width:340px; max-width:370px;}
 			#ui-datepicker-div > table{ min-width: 340px;max-width:370px;}
 			#ui-datepicker-div > div > div > select.ui-datepicker-month{ max-width:300px!important;}
 			#ui-datepicker-div > div > div > select.ui-datepicker-year{max-width:300px!important;}
 			input[type="text"], select { width: 18em!important; }
-			.ax-grid {
+			.resultGrid {
 				display:grid;
-				grid-template-columns: 1fr  2fr;
-				gap:1vh 1vw;
-				font-size:120%;
-				font-weight: 700;
+				grid-template-columns:1fr 2fr;
+				gap: 1vh 2vh;
+				padding: 0 1vw;
+				margin-bottom:1vh;
+				align-items: baseline;
+			}.resultGrid > * {margin:0.2em;}
+			#alpaca4, #alpaca5, #alpaca6, #alpaca7, #alpaca8, #alpaca10 { border-radius: 1em 0 0 1em; border:thin solid var(--color5);}
+			#startDate, #endDate, #alpaca9 { border-radius: 1em; border: thin solid var(--color5);}
+			*:focus {outline: none;}
+			.alpaca-form-button-submit {
+				background: inherit;
+				color: inherit;
 			}
-			.ax-grid > * {margin:0.25em;}
 		</style>
 	</head>
-	<body class="ax-theme9">
-		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
-			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
-			<div class="pageWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
+	<body class="ows-theme9">
+		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
+			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+			<div id="subBanner" class="pageWidth">
+				<!--	Logo	-->
 				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				
-				<div class="ax-theme7-bak" style="z-index:5">
-					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
-					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
-					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
-					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
+				<div id="siteInfo">
+					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zzm</span></p>
 				</div>
-			</div>
-
-			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
-				<div id="Menus" class="pageWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
+				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
 		</header>
 
-		<div id="content">
-			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
+		<div id="Content">
+            <div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right"></div>
+			<img src="img/seagull.png" id="Gull1" alt="Seagull">
 			<div id="subContent" class="pageWidth">
-				<!--	This is the page title - you probably want to keep this	-->
-				<div class="ax-titleBar" style="margin-bottom: 1vh;">
-					<h1>Query the Day File</h1>
-					<p>Select values stored for day summaries</p>
-				</div>
-				<!--	This is the section of one column layouts	-->
-				<div class="ax-column3 ax-fixedwidth">
-					<!--	Panel 1	-->
-					<div class="w3-card ax-theme8 ax-growX2 ax-animate-fadeIn" style="order:1;">
+				<section class="w3-container">
+					<div class="ows-titleFlex" style="margin-bottom: 1vh;">
+						<h1>{{QUERY_DAY_FILE}}</h1>
+						<p class="tagline">{{CLICK_UPDATE_TO_REFRESH}}</p>
+					</div>
+				</section>
+
+				<div class="ows-flex col3 ows-fixed">
+					<div class="w3-container ows-theme8 ows-growX2 ax-animate-fadeIn" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch" style="padding: .5vh 1em">
+							<h3>Select a weather variable and appropriate criteria</h3>
+						</div>
 						<form></form>
 					</div>
 				</div>	<!--	End of one column layout	-->
-				
-				<!--	Three column variable width section	-->
-				<div class="ax-column3 ax-fixedwidth">
-					<!--	Panel 1 / column 1	-->
-					<div class="w3-card ax-theme7 ax-animate-drop" style="order:1;">
-						<div class="ax-titleBar"><h3>Results</h3></div>
-						<div class="w3-card ax-theme3 ax-grid" >
+
+				<div class="ows-flex col3 ows-fixed">
+					<div class="w3-container ows-theme7 ax-animate-drop" style="order:1;">
+						<div class="ows-titleFlex" style="margin: 1vh 0;"><h3>Results</h3><p>No units</p></div>
+						<div class="ows-theme9 resultGrid">
 							<h4>Value:</h4>
-							<h4><span id="resultValue">--</span></h4>
+							<p><span id="resultValue">--</span></p>
 							<h4>Date:</h4>
-							<h4><span id="resultTime">--</span></h4>
+							<p><span id="resultTime">----</span></p>
 						</div>
 					</div>
 				</div>	<!--	End of three column layout	-->
 			</div>
 		</div>
-		
-		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
-			<div class="pageWidth">
-				<div class="ax-titleBar ax-padding-small" >
-					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h5 class="w3-right-align ax-theme7-txt">
-						Powered by <span class="ax-theme9-txt">CumulusMX</span>
-						V<span data-cmxData="Version">X.YY.Z</span>
-						(b:<span data-cmxData="Build">xxxx</span>)
-					</h5>
-				</div>
-			</div>
-		</footer>
+
+		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+            </section>
+        </footer>
 
 	</body>
 </html>

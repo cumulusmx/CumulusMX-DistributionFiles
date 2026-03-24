@@ -1,6 +1,6 @@
 <!--
 	historic.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2025/09/18 15:24:07
+	Last modified: 2025/11/19 16:38:46
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -27,27 +27,16 @@
 
 		<!--	Scripts	-->
 		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
-		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5/dist/chart.umd.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/luxon@3.7/build/global/luxon.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3/dist/chartjs-adapter-luxon.umd.min.js"></script>
 		<script src="js/historiccharts.js"></script>
+		<script src="js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
 		<style>
-			#chartcontainer  {
-				min-height: 550px;
-				margin-top:16px;
-				margin-bottom: 16px;
-			}
 			.mx-button {
 				margin-bottom: 5px;
 				border-radius: 4px;
-			}
-			.graphs-width {
-				max-width:1250px;
-				margin: auto
 			}
 		</style>
 	</head>
@@ -79,7 +68,21 @@
 				<div class="w3-col s12">	<!--	Main column of first row	-->
 					<div class="w3-panel w3-card w3-theme-white">
 						<figure>
-							<div id="chartcontainer"></div>
+							<div id="chartcontainer" class="chart-wrap">
+								<div class="chart-buttons">
+									<div id="rangeButtons"></div>
+									<div>
+										<button id="btnPrint">Print</button>
+										<button id="btnFullscreen">Fullscreen</button>
+									</div>
+								</div>
+								<div id="mainChartContainer" class="mainChartContainer">
+									<canvas id="mainChart"></canvas>
+								</div>
+								<div id="navChartContainer" class="navChartContainer">
+									<canvas id="navChart"></canvas>
+								</div>
+							</div>
 						</figure>
 					</div>
 				</div>	<!--	End of first column of first row	-->

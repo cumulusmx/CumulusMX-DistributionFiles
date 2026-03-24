@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:17:11",
+    "_LAST_MODIFIED": "Last modified: 2025/11/22 11:19:11",
     "DATA_PARAMETER": "Data Parameter",
     "DATA_HIGH_GUST": "Highest Gust",
     "DATA_WIND_RUN": "Wind Run",
@@ -42,7 +42,9 @@
     "WHERE_HELP1": "Comparison string for the data. Only include values in the result that match this where condition",
     "WHERE_HELP2": "Example: <= 10",
     "WHERE_HELP3": "Allowed operators: >, >=, <, <=, =",
-    "WHERE_HELP4": "Leave blank to include all values",
+    "WHERE_HELP4": "Set it to 'All' to include all values",
+    "VALUE": "Comparison value",
+    "VALUE_HELP1": "The value to compare the data against to be included in the count",
     "START_DATE_PRESET": "Start Date Preset",
     "START_DATE": "Start Date",
     "END_DATE": "End Date",

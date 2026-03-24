@@ -1,27 +1,102 @@
-// Last modified: 2025/09/15 21:55:34
+// Last modified: 2025/11/20 14:01:48
 
-var chart, config, available;
+let mainChart, navChart, config, avail;
 
-$(document).ready(function () {
-    const availRes = $.ajax({ url: 'availabledata.json', dataType: 'json' });
-    const configRes = $.ajax({ url: 'graphconfig.json', dataType: 'json' });
+const myRangeBtns = {
+    buttons: [{
+        count: 1,
+        type: 'month',
+        text: '1m'
+    }, {
+        count: 3,
+        type: 'month',
+        text: '3m'
+    }, {
+        count: 6,
+        type: 'month',
+        text: '6m'
+    }, {
+        type: 'ytd',
+        text: 'YTD'
+    }, {
+        count: 1,
+        type: 'year',
+        text: '1y'
+    }, {
+        type: 'all',
+        text: 'All'
+    }],
+    selected: 1
+};
+
+let defaultEnd, defaultStart;
+let selection = { start: 0, end: 0 };
+let dragging = null;
+let dragStartX = 0;
+let currentCursor = 'default';
+let temperatureScale;
+
+$(document).ready(() => {
+    const availRes = $.getJSON({ url: 'availabledata.json' });
+    const configRes = $.getJSON({ url: 'graphconfig.json' });
 
     Promise.all([availRes, configRes])
-    .then(function (results) {
+    .then((results) => {
         available = results[0];
         config = results[1];
 
-        Highcharts.setOptions({
-            time: {
-                timezone: config.tz
+        CmxChartJsHelpers.SetRangeButtons('rangeButtons', myRangeBtns.buttons);
+        CmxChartJsHelpers.SetupNavigatorSelection('navChart')
+
+        // Global plugins
+        Chart.register(CmxChartJsPlugins.chartAreaBorder);
+
+        Chart.defaults.locale = config.locale;
+        Chart.defaults.scales.time.adapters = {date: {zone: config.tz}}
+        Chart.defaults.datasets.line.pointRadius = 0;
+        Chart.defaults.datasets.line.pointHoverRadius = 5;
+        Chart.defaults.datasets.line.borderWidth = 2;
+        Chart.defaults.scales.linear.title = {font: {weight: 'bold', size: 14}};
+        Chart.defaults.scales.linear.ticks.precision = 0;
+        Chart.defaults.scales.linear.grace = '2.5%';
+        // set legend to use point style of line
+        Chart.defaults.plugins.legend.labels.usePointStyle = true;
+        Chart.defaults.plugins.legend.labels.pointStyle = 'line';
+        // set legend to show a common tooltip for all data series
+        Chart.defaults.interaction.mode = 'index';
+        Chart.defaults.interaction.intersect = false;
+        Chart.defaults.plugins.tooltip.boxHeight = 2;
+        Chart.defaults.plugins.tooltip.callbacks.title =
+            (context) => {
+                const date = new Date(context[0].parsed.x);
+                return date.toLocaleString(config.locale, { day: '2-digit', month: 'long', year: 'numeric' });
+            };
+        Chart.defaults.plugins.title.font.size = 18;
+        Chart.defaults.plugins.title.font.color = '#000';
+        Chart.defaults.plugins.decimation.enabled = true;
+        Chart.defaults.plugins.chartAreaBorder = {borderColor: '#858585'}
+
+        const freezing = config.temp.units === 'C' ? 0 : 32;
+        temperatureScale = {
+            title: {
+                display: true,
+                text: `Temperature (°${config.temp.units})`
             },
-            chart: {
-                style: {
-                    fontSize: '1rem'
+            grid: {
+                color: (line) => (line.tick.value === freezing ? 'blue' : 'rgba(0, 0, 0, 0.1)')
+            },
+            ticks: {
+                color: (context) => {
+                    return context.tick.value <= freezing ? 'blue' : 'red'
                 }
             }
+        };
+
+        document.getElementById('btnFullscreen').addEventListener('click', () => {
+            CmxChartJsHelpers.ToggleFullscreen(document.getElementById('chartcontainer'));
         });
 
+        CmxChartJsHelpers.AddPrintButtonHandler();
 
         if (available.Temperature === undefined || available.Temperature.Count == 0) {
             $('#btnTemp').remove();
@@ -42,7 +117,7 @@ $(document).ready(function () {
             $('#btnChillHrs').remove();
         }
         if (available.Snow === undefined || available.Snow.Count == 0) {
-            $('#btnsnow').parent().remove();
+            $('#btnSnow').remove();
         }
 
         changeGraph(parent.location.hash.replace('#', ''));
@@ -50,7 +125,9 @@ $(document).ready(function () {
 });
 
 
-function changeGraph(graph) {
+const changeGraph = (graph) => {
+    CmxChartJsHelpers.ShowLoading();
+
     switch (graph) {
         case 'temp':
             doTemp();
@@ -89,107 +166,14 @@ function changeGraph(graph) {
     parent.location.hash = graph;
 }
 
-var doTemp = function () {
-    var freezing = config.temp.units === 'C' ? 0 : 32;
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: false
-        },
-        title: {text: 'Temperature'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Temperature (°' + config.temp.units + ')'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= freezing ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                },
-                plotLines: [{
-                    // freezing line
-                    value: freezing,
-                    color: 'rgb(0, 0, 180)',
-                    width: 1,
-                    zIndex: 2
-                }]
-            }, {
-                // right
-                gridLineWidth: 0,
-                opposite: true,
-                linkedTo: 0,
-                labels: {
-                    align: 'left',
-                    x: 5,
-                    formatter: function () {
-                        return '<span style="fill: ' + (this.value <= 0 ? 'blue' : 'red') + ';">' + this.value + '</span>';
-                    }
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueSuffix: ' °' + config.temp.units,
-            valueDecimals: config.temp.decimals,
-            xDateFormat: '%e %b %y'
-        },
-        series: [],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
+const doTemp = () => {
+    removeOldCharts(true);
 
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'alldailytempdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'alldailytempdata.json'
     })
-    .done(function (resp) {
-        var titles = {
+    .done((resp) => {
+        const titles = {
             'minTemp'  : 'Min Temp',
             'maxTemp'  : 'Max Temp',
             'avgTemp'  : 'Avg Temp',
@@ -203,645 +187,631 @@ var doTemp = function () {
             'humidex'  : 'Humidex',
             'windChill': 'Wind Chill'
         };
-        var visibility = {
-            'minTemp'  : true,
-            'maxTemp'  : true,
-            'avgTemp'  : false,
-            'heatIndex': false,
-            'minApp'   : false,
-            'maxApp'   : false,
-            'minDew'   : false,
-            'maxDew'   : false,
-            'minFeels' : false,
-            'maxFeels' : false,
-            'humidex'  : false,
-            'windChill': false
-            };
-        var idxs = ['minTemp', 'maxTemp', 'avgTemp', 'heatIndex', 'minApp', 'maxApp', 'minDew', 'maxDew', 'minFeels', 'maxFeels', 'windChill', 'humidex'];
+        const hidden = {
+            'minTemp'  : false,
+            'maxTemp'  : false,
+            'avgTemp'  : true,
+            'heatIndex': true,
+            'minApp'   : true,
+            'maxApp'   : true,
+            'minDew'   : true,
+            'maxDew'   : true,
+            'minFeels' : true,
+            'maxFeels' : true,
+            'humidex'  : true,
+            'windChill': true
+        };
+        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex'];
 
-        idxs.forEach(function(idx) {
-            var valueSuffix = ' °' + config.temp.units;
-            yaxis = 0;
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
 
+        let xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        const scales = {
+            x: xscale,
+            y_temp: temperatureScale
+        };
+
+        let dataSets = [];
+
+        idxs.forEach((idx) => {
             if (idx in resp) {
-                var clrIdx = idx.toLowerCase();
+                let clrIdx = idx.toLowerCase();
+
                 if ('heatIndex' === idx || 'humidex' === idx) {
                     clrIdx = 'max' + clrIdx;
                 } else if ('windChill' === idx) {
                     clrIdx = 'min' + clrIdx;
                 }
 
+                let yaxis, suffix;
+
                 if (idx === 'humidex') {
-                    valueSuffix = null;
+                    suffix = 'y_temp';
                     // Link Humidex and temp scales if using Celsius
                     // For Fahrenheit use separate scales
                     if (config.temp.units === 'F') {
-                        chart.yAxis[1].remove();
-                        chart.addAxis({
-                            id: 'humidex',
-                            title:{text: 'Humidex'},
-                            opposite: true,
-                            labels: {
-                                align: 'left'
+                        scales.y_humidex = {
+                            title: {
+                                display: true,
+                                text: 'Humidex'
                             },
-                            alignTicks: true,
-                            gridLineWidth: 0, // Not working?
-                            gridZIndex: -10, // Hides the grid lines for this axis
-                            showEmpty: false
-                        });
-                        yaxis = 'humidex';
+                            position: 'right'
+                        };
+                        yaxis = 'y_humidex';
                     }
+                } else {
+                    suffix = `°${config.temp.units}`;
+                    yaxis = 'y_temp';
                 }
 
-                chart.addSeries({
-                    name: titles[idx],
+                dataSets.push({
+                    label: config.series[clrIdx].name,
                     data: resp[idx],
-                    color: config.series[clrIdx].colour,
-                    visible: visibility[idx],
-                    showInNavigator: visibility[idx],
-                    yAxis: yaxis,
-                    tooltip: {valueSuffix: valueSuffix}
-                }, false);
+                    borderColor: config.series[clrIdx].colour,
+                    backgroundColor: config.series[clrIdx].colour,
+                    yAxisID: yaxis,
+                    tooltip: {
+                        callbacks: {
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${suffix}`
+                        }
+                    },
+                    hidden: hidden[idx]
+                });
             }
         });
-        chart.hideLoading();
-        chart.redraw();
-    });
-};
 
-var doPress = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
-            alignTicks: false
-        },
-        title: {text: 'Pressure'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Pressure (' + config.press.units + ')'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -5
-                }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Temperature'
                     }
                 }
             },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueSuffix: ' ' + config.press.units,
-            valueDecimals: config.press.decimals,
-            xDateFormat: '%e %b %y'
-        },
-        series: [{
-                name: 'High Pressure',
-                color: config.series.maxpress.colour,
-                showInNavigator: true
-            }, {
-                name: 'Low Pressure',
-                color: config.series.minpress.colour,
-                showInNavigator: true
-            }],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
+            plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
+        });
 
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
+        const navDataset = {
+            label: 'Navigator',
+            data: resp[key],
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
 
-    $.ajax({
-        url: 'alldailypressdata.json',
-        dataType: 'json'
-    })
-    .done(function (resp) {
-        chart.hideLoading();
-        chart.series[0].setData(resp.maxBaro);
-        chart.series[1].setData(resp.minBaro);
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
     });
 };
 
-var compassP = function (deg) {
-    var a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+const doPress = () => {
+    removeOldCharts(true);
+
+    $.getJSON({
+        url: 'alldailypressdata.json'
+    })
+    .done((resp) => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        let xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        const scales = {
+            x: xscale,
+            y_press: {
+                id: 'press',
+                title: {
+                    display: true,
+                    text: `Pressure (${config.press.units})`
+                },
+                ticks: {
+                    // suppress thousands separator for hPa
+                    callback: (value, index, ticks) => { return Number(value); }
+                }
+            }
+        };
+
+        const dataSets = [{
+            label: config.series.maxpress.name,
+            data: resp.maxBaro,
+            borderColor: config.series.maxpress.colour,
+            backgroundColor: config.series.maxpress.colour,
+            yAxisID: 'y_press',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.press.units}`
+                }
+            }
+        }, {
+            label: config.series.minpress.name,
+            data: resp.minBaro,
+            borderColor: config.series.minpress.colour,
+            backgroundColor: config.series.minpress.colour,
+            yAxisID: 'y_press',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.press.units}`
+                }
+            }
+        }];
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pressure'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: resp.maxBaro,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
+const compassP = (deg) => {
+    if (deg === 0) {
+        return 'calm';
+    }
+    const a = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
     return a[Math.floor((deg + 22.5) / 45) % 8];
 };
 
-var doWind = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: false
-        },
-        title: {text: 'Wind Speed'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
+const doWind = () => {
+    removeOldCharts(true);
+
+    $.getJSON({
+        url: 'alldailywinddata.json'
+    })
+    .done((resp) => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        let xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        const scales = {
+            x: xscale,
+            y_wind: {
+                title: {
+                    display: true,
+                    text: `Wind Speed (${config.wind.units})`
+                },
+                min: 0
+            },
+            y_run: {
+                title: {
+                    display: true,
+                    text: `Wind Run (${config.wind.rununits})`
+                },
+                min: 0,
+                position: 'right'
             }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Wind Speed (' + config.wind.units + ')'},
-                opposite: false,
-                min: 0,
-                labels: {
-                    align: 'right',
-                    x: -5
+        };
+
+        const dataSets = [{
+            label: 'Wind Speed',
+            data: resp.maxWind,
+            borderColor: config.series.wspeed.colour,
+            backgroundColor: config.series.wspeed.colour,
+            yAxisID: 'y_wind',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.avgdecimals)} ${config.wind.units}`
                 }
-            }, {
-                // right
-                //linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                min: 0,
-                title: {text: 'Wind Run (' + config.wind.rununits + ')'},
-                labels: {
-                    align: 'left',
-                    x: 5
-                },
-                showEmpty: false
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
+            }
+        }, {
+            label: 'Wind Gust',
+            data: resp.maxGust,
+            borderColor: config.series.wgust.colour,
+            backgroundColor: config.series.wgust.colour,
+            yAxisID: 'y_wind',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.gustdecimals)} ${config.wind.units}`
+                }
+            }
+        }, {
+            label: 'Wind Run',
+            data: resp.windRun,
+            borderColor: config.series.windrun.colour,
+            backgroundColor: config.series.windrun.colour,
+            yAxisID: 'y_run',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.wind.rununits}`
+                }
+            },
+            hidden: true
+        }];
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Wind Speed'
                     }
                 }
             },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueSuffix: ' ' + config.wind.units,
-            xDateFormat: '%e %b %y'
-        },
-        series: [{
-                name: 'Wind Speed',
-                color: config.series.wspeed.colour,
-                showInNavigator: true,
-                tooltip: {
-                    valueDecimals: config.wind.avgdecimals
-                }
-            }, {
-                name: 'Wind Gust',
-                color: config.series.wgust.colour,
-                showInNavigator: true,
-                tooltip: {
-                    valueDecimals: config.wind.gustdecimals
-                }
-            }, {
-                name: 'Wind Run',
-                type: 'column',
-                color: config.series.windrun.colour,
-                yAxis: 1,
-                visible: false,
-                tooltip: {
-                    valueSuffix: ' ' + config.wind.rununits,
-                    valueDecimals: 0
-                },
-                zIndex: -1
-            }],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
+            plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
+        });
 
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
+        const navDataset = {
+            label: 'Navigator',
+            data: resp.maxGust,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
 
-    $.ajax({
-        url: 'alldailywinddata.json',
-        dataType: 'json'
-    })
-    .done(function (resp) {
-        chart.hideLoading();
-        chart.series[0].setData(resp.maxWind);
-        chart.series[1].setData(resp.maxGust);
-        chart.series[2].setData(resp.windRun);
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
     });
 };
 
-var doRain = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'column',
-            alignTicks: true
-        },
-        title: {text: 'Rainfall'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Rainfall (' + config.rain.units + ')'},
-                opposite: false,
-                min: 0,
-                labels: {
-                    align: 'right',
-                    x: -5
-                }
-            }, {
-                // right
-                title: {text: 'Rainfall rate (' + config.rain.units + '/hr)'},
-                opposite: true,
-                min: 0,
-                labels: {
-                    align: 'left',
-                    x: 5
-                },
-                showEmpty: false
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                pointPadding: 0,
-                groupPadding: 0.1,
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
+const doRain = () => {
+    removeOldCharts(true);
 
-                    }
+    $.getJSON({
+        url: 'alldailyraindata.json'
+    })
+    .done((resp) => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        let xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+        xscale.time = {unit: 'day'};
+
+        const scales = {
+            x: xscale,
+            y_rain: {
+                id: 'rain',
+                title: {
+                    display: true,
+                    text: `${config.series.rfall.name} (${config.rain.units})`
                 },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
+                categoryPercentage: 1,
+                barPercentage: 1,
+                min: 0
+            },
+            y_rainRate: {
+                id: 'rate',
+                title: {
+                    display: true,
+                    text: `${config.series.rrate.name} (${config.rain.units}/hr)`
+                },
+                grid: {display: false},
+                categoryPercentage: 1,
+                barPercentage: 1,
+                min: 0,
+                position: 'right'
+            }
+        };
+
+        // normalize incoming data to explicit {x, y} points
+        // Not sure why this is needed for bar charts - not needed for the nav chart
+        const rainData = resp.rain.map(p => {
+            return { x: p[0], y: p[1] };
+        });
+        const rateData = resp.maxRainRate.map(p => {
+            return { x: p[0], y: p[1] };
+        });
+
+        const dataSets = [{
+            label: config.series.rrate.name,
+            fill: true,
+            data: rateData,
+            borderColor: config.series.rrate.colour,
+            backgroundColor: config.series.rrate.colour,
+            yAxisID: 'y_rainRate',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}/hr`
+                }
+            },
+            order: 0,
+            hidden: true
+        }, {
+            label: config.series.rfall.name,
+            fill: true,
+            data: rainData,
+            borderColor: config.series.rfall.colour,
+            backgroundColor: config.series.rfall.colour,
+            yAxisID: 'y_rain',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}`
+                }
+            },
+            order: 1
+        }];
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'bar',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            usePointStyle: false
                         }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Rainfall'
                     }
                 }
             },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueDecimals: config.rain.decimals,
-            xDateFormat: '%e %b %y'
-        },
-        series: [{
-                name: 'Daily rain',
-                type: 'column',
-                color: config.series.rfall.colour,
-                yAxis: 0,
-                tooltip: {valueSuffix: ' ' + config.rain.units}
-            }, {
-                name: 'Rain rate',
-                type: 'column',
-                color: config.series.rrate.colour,
-                yAxis: 1,
-                tooltip: {valueSuffix: ' ' + config.rain.units + '/hr'},
-                visible: false
-            }],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
+            plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
+        });
 
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
+        const navDataset = {
+            label: 'Navigator',
+            data: resp.rain,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
 
-    $.ajax({
-        url: 'alldailyraindata.json',
-        dataType: 'json'
-    })
-    .done(function (resp) {
-        chart.hideLoading();
-        chart.series[0].setData(resp.rain);
-        chart.series[1].setData(resp.maxRainRate);
+        let navOptions = CmxChartJsHelpers.NavChartOptions;
+        navOptions.scales.y.min = 0;
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: navOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
     });
+
 };
 
-var doHum = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: false
-        },
-        title: {text: 'Relative Humidity'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Humidity (%)'},
-                opposite: false,
-                min: 0,
-                max: 100,
-                labels: {
-                    align: 'right',
-                    x: -5
-                }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                min: 0,
-                max: 100,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 5
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
+const doHum = () => {
+    removeOldCharts(true);
 
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueSuffix: ' %',
-            valueDecimals: config.hum.decimals,
-            xDateFormat: '%e %b %y'
-        },
-        series: [],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
-
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'alldailyhumdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'alldailyhumdata.json'
     })
-    .done(function (resp) {
-        var titles = {
+    .done((resp) => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_hum: {
+                id: 'hum',
+                title: {
+                    display: true,
+                    text: 'Humidity (%)'
+                },
+                min: 0,
+                max: 100
+            }
+        };
+
+        const titles = {
             'minHum'  : 'Minimum Humidity',
             'maxHum': 'Maximum Humidity'
+        };
+        const idxs = ['minHum', 'maxHum'];
+        let dataSets = [];
+
+        idxs.forEach((idx) => {
+            if (idx in resp) {
+                dataSets.push({
+                    label: titles[idx],
+                    data: resp[idx],
+                    borderColor: config.series[idx.toLowerCase()].colour,
+                    backgroundColor: config.series[idx.toLowerCase()].colour,
+                    yAxisID: 'y_hum',
+                    tooltip: {
+                        callbacks: {
+                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
+                        }
+                    }
+                });
             }
-            var idxs = ['minHum', 'maxHum'];
-            var cnt = 0;
-            idxs.forEach(function(idx) {
-                if (idx in resp) {
-                    chart.addSeries({
-                        name: titles[idx],
-                        color: config.series[idx.toLowerCase()].colour,
-                        data: resp[idx],
-                        showInNavigator: true
-                    }, false);
+        });
 
-                    cnt++;
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Relative Humidity'
+                    }
                 }
-            });
+            }
+        });
 
-        chart.hideLoading();
-        chart.redraw();
+        const navDataset = {
+            label: 'Navigator',
+            data: resp[key],
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
     });
 };
 
-var doSolar = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: true
-        },
-        title: {text: 'Solar'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [],
-        legend: {enabled: true},
-        plotOptions: {
-            boostThreshold: 0,
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                pointPadding: 0,
-                groupPadding: 0.1,
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
+const doSolar = () => {
+    removeOldCharts(true);
 
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            xDateFormat: '%e %b %y'
-        },
-        series: [],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        }
-    };
-
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'alldailysolardata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'alldailysolardata.json'
     })
-    .done(function (resp) {
-        var titles = {
+    .done((resp) => {
+        const titles = {
             solarRad: 'Solar Radiation',
             uvi     : 'UV Index',
             sunHours: 'Sunshine Hours'
         };
-        var types = {
-            solarRad: 'area',
+        const types = {
+            solarRad: 'line',
             uvi     : 'line',
-            sunHours: 'column'
+            sunHours: 'bar'
         };
-        var tooltips = {
+        const tooltips = {
             solarRad: {
-                valueSuffix: ' W/m\u00B2',
+                valueSuffix: 'W/m²',
                 valueDecimals: 0
             },
             uvi: {
-                valueSuffix: ' ',
+                valueSuffix: '',
                 valueDecimals: config.uv.decimals
             },
             sunHours: {
-                valueSuffix: ' hours',
-                valueDecimals: 0
+                valueSuffix: 'hours',
+                valueDecimals: 1
             }
         };
-        var indexes = {
+        const indexes = {
             solarRad: 1,
-            uvi     : 2,
-            sunHours: 0
+            uvi     : 0,
+            sunHours: 1
         }
-        var fillColor = {
-            solarRad: {
-                linearGradient: {
-                    x1: 0,
-                    y1: 0,
-                    x2: 0,
-                    y2: 1
-                },
-                stops: [
-                    [0, config.series.solarrad.colour],
-                    [1, Highcharts.color(config.series.solarrad.colour).setOpacity(0).get('rgba')]
-                ]
-            },
-            uvi     : null,
-            sunHours: null
-        };
-        var idxs = ['solarRad', 'uvi', 'sunHours'];
+        const idxs = ['solarRad', 'uvi', 'sunHours'];
 
-        idxs.forEach(function(idx) {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_uv: {
+                title: {
+                    display: true,
+                    text: 'UV Index'
+                },
+                min: 0,
+                position: 'right'
+            },
+            y_solar: {
+                title: {
+                    display: true,
+                    text: 'Solar Radiation (W/m²)'
+                },
+                min: 0
+            },
+            y_sun: {
+                title: {
+                    display: true,
+                    text: 'Sunshine Hours'
+                },
+                min: 0,
+                position: 'right'
+            }
+        };
+
+        let dataSets = [];
+
+        idxs.forEach((idx) => {
             if (idx in resp) {
-                var clrIdx;
+                let clrIdx;
                 if (idx === 'uvi')
                     clrIdx ='uv';
                 else if (idx === 'solarRad')
@@ -849,152 +819,87 @@ var doSolar = function () {
                 else if (idx === 'sunHours')
                     clrIdx = 'sunshine';
 
-                if (idx === 'uvi') {
-                    chart.addAxis({
-                        id: idx,
-                        title: {text: 'UV Index'},
-                        opposite: true,
-                        min: 0,
-                        labels: {
-                            align: 'left'
-                        },
-                        showEmpty: false
+                let dataPoints = [];
+                if (idx === 'sunHours') {
+                    dataPoints = resp[idx].map(p => {
+                        return { x: p[0], y: p[1] };
                     });
-                } else if (idx === 'sunHours') {
-                    chart.addAxis({
-                        id: idx,
-                        title: {text: 'Sunshine Hours'},
-                        opposite: true,
-                        min: 0,
-                        labels: {
-                            align: 'left'
-                        },
-                        showEmpty: false
-                    });
-                } else if (idx === 'solarRad') {
-                    chart.addAxis({
-                        id: idx,
-                        title: {text: 'Solar Radiation (W/m\u00B2)'},
-                        min: 0,
-                        opposite: false,
-                        labels: {
-                            align: 'right',
-                            x: -5
-                        },
-                        showEmpty: false
-                    });
+                } else {
+                    dataPoints = resp[idx]
                 }
-                chart.addSeries({
-                    name: titles[idx],
+
+                dataSets.push({
+                    label: titles[idx],
                     type: types[idx],
-                    yAxis: idx,
-                    tooltip: tooltips[idx],
-                    data: resp[idx],
-                    color: config.series[clrIdx].colour,
-                    showInNavigator: idx !== 'sunHours',
-                    index: indexes[idx],
-                    fillColor: fillColor[idx],
-                    zIndex: idx === 'uvi' ? 99 : null
-                }, false);
+                    fill: idx === 'solarRad',
+                    data: dataPoints,
+                    borderColor: config.series[clrIdx].colour,
+                    backgroundColor: config.series[clrIdx].colour + (idx === 'solarRad' ? '40' : ''),
+                    yAxisID: idx === 'uvi' ? 'y_uv' : idx === 'solarRad' ? 'y_solar' : 'y_sun',
+                    tooltip: {
+                        callbacks: {
+                            label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(tooltips[idx].valueDecimals)} ${tooltips[idx].valueSuffix}`
+                        }
+                    },
+                    order: indexes[idx]
+                });
             }
         });
 
-        chart.hideLoading();
-        chart.redraw();
-    });
-};
+        CmxChartJsHelpers.HideLoading();
 
-var doDegDays = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
+        mainChart = new Chart(document.getElementById('mainChart'), {
             type: 'line',
-            alignTicks: false,
-            zoomType: 'x'
-        },
-        title: {text: 'Degree Days'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b',
-                month: '%b',
-                year: ''
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: '°' + config.temp.units + ' days'},
-                opposite: false,
-                min: 0,
-                labels: {
-                    align: 'right',
-                    x: -10
-                }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                min: 0,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 10
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            usePointStyle: false
                         }
-
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Solar'
                     }
                 }
             },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            xDateFormat: '%e %B',
-            useHTML: true,
-            headerFormat: '{point.key}<table>',
-            pointFormat: '<tr><td style="font: 9pt Trebuchet MS, Verdana, sans-serif"><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
-            '<td style="text-align: right; font-weight: 900; font-size: 1.2em; font-family: monospace">{point.y:.1f}</td></tr>',
-            footerFormat: '</table>'
-        },
-        series: []
-    };
+            plugins: [CmxChartJsPlugins.hideUnusedAxesPlugin]
+        });
 
-    chart = new Highcharts.Chart(options);
-    chart.showLoading();
+        const navDataset = {
+            label: 'Navigator',
+            data: resp.solarRad,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
 
-    $.ajax({
-        url: 'alldailydegdaydata.json',
-        dataType: 'json'
+        var opts = CmxChartJsHelpers.NavChartOptions;
+        opts.scales.y.min = 0;
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: opts,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
+const doDegDays = () => {
+    removeOldCharts(false);
+
+    $.getJSON({
+        url: 'alldailydegdaydata.json'
     })
-    .done(function (resp) {
-        var subtitle = '';
+    .done((resp) => {
+        let subtitle = '';
         if (available.DegreeDays.indexOf('GDD1') != -1) {
             subtitle = 'GDD#1 base: ' + resp.options.gddBase1 + '°' + config.temp.units;
             if (available.DegreeDays.indexOf('GDD2') != -1) {
@@ -1005,116 +910,90 @@ var doDegDays = function () {
             subtitle += 'GDD#2 base: ' + resp.options.gddBase2 + '°' + config.temp.units;
         }
 
-        chart.setSubtitle({text: subtitle});
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.time = {displayFormats: {month: 'MMM'}};
+        xscale.min = null;
+        xscale.max = null;
 
-        available.DegreeDays.forEach(idx => {
-                if (idx in resp) {
+        let scales = {
+            x: xscale,
+            y_gdd: {
+                title: {
+                    display: true,
+                    text: `°${config.temp.units} days`
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        available.DegreeDays.forEach((idx) => {
+            if (idx in resp) {
                 Object.keys(resp[idx]).forEach(yr => {
-                    chart.addSeries({
-                        name: idx + '-' + yr,
-                        visible: false,
-                        data: resp[idx][yr]
-                    }, false);
+                    dataSets.push({
+                        label: idx + '-' + yr,
+                        data: resp[idx][yr],
+                        //borderColor: config.series[idx].colour,
+                        //backgroundColor: config.series[idx].colour,
+                        yAxisID: 'y_gdd',
+                        tooltip: {
+                            callbacks: {
+                                label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'}`
+                            }
+                        },
+                        hidden: true
+                    });
                 });
-                // make the last series visible
-                chart.series[chart.series.length -1].visible = true;
-                }
-            });
 
-        chart.hideLoading();
-        chart.redraw();
+                // make the last series visible
+                dataSets[dataSets.length -1].hidden = false;
+            }
+        });
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Degree Days'
+                    },
+                    subtitle: {
+                        display: true,
+                        text: subtitle
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: (context) => {
+                                const date = new Date(context[0].parsed.x);
+                                return date.toLocaleString(config.locale, { day: '2-digit', month: 'long' });
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 };
 
-var doTempSum = function () {
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: false,
-            zoomType: 'x'
-        },
-        title: {text: 'Temperature Sum'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b',
-                month: '%b',
-                year: ''
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Total °' + config.temp.units},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -10
-                }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 10
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
+const doTempSum = () => {
+    removeOldCharts(false);
 
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            xDateFormat: '%e %B',
-            useHTML: true,
-            headerFormat: '{point.key}<table>',
-            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
-            '<td style="text-align: right; font-weight: 900; font-size: 1.2em; font-family: monospace">{point.y:0f}</td></tr>',
-            footerFormat: '</table>'
-        },
-        series: []
-    };
-
-    chart = new Highcharts.Chart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'alltempsumdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'alltempsumdata.json'
     })
-    .done(function (resp) {
-        var subtitle = '';
+    .done((resp) => {
+        let subtitle = '';
         if (available.TempSum.indexOf('Sum0') != -1) {
             subtitle = 'Sum#0 base: 0°' + config.temp.units;
             if (available.TempSum.indexOf('Sum1') != -1 || available.TempSum.indexOf('Sum2') != -1) {
@@ -1131,249 +1010,275 @@ var doTempSum = function () {
             subtitle += 'Sum#2 base: ' + resp.options.sumBase2 + '°' + config.temp.units;
         }
 
-        chart.setSubtitle({text: subtitle});
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.time = {displayFormats: {month: 'MMM'}};
+        xscale.min = null;
+        xscale.max = null;
 
-        available.TempSum.forEach(idx => {
+        let tempScale = temperatureScale;
+        tempScale.title.text = `Total °${config.temp.units}`
+        tempScale.beginAtZero = true;
+        let scales = {
+            x: xscale,
+            y_sum: tempScale
+        };
+
+        let dataSets = [];
+
+        available.TempSum.forEach((idx) => {
             if (idx in resp) {
                 Object.keys(resp[idx]).forEach(yr => {
-                    chart.addSeries({
-                        name: idx + '-' + yr,
-                        visible: false,
-                        data: resp[idx][yr]
-                    }, false);
+                    dataSets.push({
+                        label: idx + '-' + yr,
+                        data: resp[idx][yr],
+                        yAxisID: 'y_sum',
+                        tooltip: {
+                            callbacks: {
+                                label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'}`
+                            }
+                        },
+                        hidden: true
+                    });
                 });
+
                 // make the last series visible
-                chart.series[chart.series.length -1].visible = true;
+                dataSets[dataSets.length -1].hidden = false;
             }
         });
 
-        chart.hideLoading();
-        chart.redraw();
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Temperature Sum'
+                    },
+                    subtitle: {
+                        display: true,
+                        text: subtitle
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: (context) => {
+                                const date = new Date(context[0].parsed.x);
+                                return date.toLocaleString(config.locale, { day: '2-digit', month: 'long' });
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 };
 
-var doChillHrs = function () {
-    $('#chartdescription').text('Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern.');
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'line',
-            alignTicks: false,
-            zoomType: 'x'
-        },
-        title: {text: 'Chill Hours'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b',
-                week: '%e %b',
-                month: '%b',
-                year: ''
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Total Hours'},
-                opposite: false,
-                labels: {
-                    align: 'right',
-                    x: -10
-                }
-            }, {
-                // right
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,
-                title: {text: null},
-                labels: {
-                    align: 'left',
-                    x: 10
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            series: {
-                dataGrouping: {
-                    enabled: false
-                },
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
+const doChillHrs = () => {
+    removeOldCharts(false);
 
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-            line: {lineWidth: 2}
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            xDateFormat: '%e %B',
-            useHTML: true,
-            headerFormat: '{point.key}<table>',
-            pointFormat: '<tr style="font: 9pt Trebuchet MS, Verdana, sans-serif"><td><span style="color:{series.color}">\u25CF</span> {series.name}: </td>' +
-            '<td style="text-align: right; font-weight: bold;">{point.y:0f} hrs</td></tr>',
-            footerFormat: '</table>'
-        },
-        series: []
-    };
-
-    chart = new Highcharts.Chart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'allchillhrsdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'allchillhrsdata.json'
     })
-    .done(function (resp) {
-        var subtitle = 'Threshold: ' + resp.options.threshold + '°' + config.temp.units + ' Base: ' + resp.options.basetemp + '°' + config.temp.units;
-        chart.setSubtitle({text: subtitle});
+    .done((resp) => {
+        const subtitle = 'Threshold: ' + resp.options.threshold + '°' + config.temp.units + ' Base: ' + resp.options.basetemp + '°' + config.temp.units;
 
-        for (var yr in resp.data) {
-            chart.addSeries({
-                name: yr,
-                visible: false,
-                data: resp.data[yr]
-            }, false);
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.time = {displayFormats: {month: 'MMM'}};
+        xscale.min = null;
+        xscale.max = null;
+
+        let scales = {
+            x: xscale,
+            y_sum: {
+                title: {
+                    display: true,
+                    text: 'Total Hours'
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        for (let yr in resp.data) {
+            dataSets.push({
+                label: yr.toString(),
+                data: resp.data[yr],
+                yAxisID: 'y_sum',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} hrs`
+                    }
+                },
+                hidden: true
+            });
         }
 
         // make the last series visible
-        chart.series[chart.series.length -1].visible = true;
-    })
-    .always(function() {
-        chart.hideLoading();
-        chart.redraw();
+        dataSets[dataSets.length - 1].hidden = false;
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chill Hours'
+                    },
+                    subtitle: {
+                        display: true,
+                        text: subtitle
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: (context) => {
+                                const date = new Date(context[0].parsed.x);
+                                return date.toLocaleString(config.locale, { day: '2-digit', month: 'long' });
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 };
 
+const doSnow = () => {
+    removeOldCharts(true);
 
-var doSnow = function () {
-    $('#chartdescription').text('Chart showing daily snow depth and last 24 hours snowfall.');
-    var options = {
-        chart: {
-            renderTo: 'chartcontainer',
-            type: 'column',
-            alignTicks: true
-        },
-        title: {text: 'Snow'},
-        credits: {enabled: true},
-        xAxis: {
-            type: 'datetime',
-            ordinal: false,
-            dateTimeLabelFormats: {
-                day: '%e %b %y',
-                week: '%e %b %y',
-                month: '%b %y',
-                year: '%Y'
-            }
-        },
-        yAxis: [{
-                // left
-                title: {text: 'Snow (' + config.snow.units + ')'},
-                opposite: false,
-                min: 0,
-                labels: {
-                    align: 'right',
-                    x: -5
-                }
-            }],
-        legend: {enabled: true},
-        plotOptions: {
-            column: {
-                dataGrouping: {
-                    enabled: false
-                }
-            },
-            series: {
-                grouping: false,
-                pointPadding: 0,
-                groupPadding: 0.05,
-                states: {
-                    hover: {
-                        halo: {
-                            size: 5,
-                            opacity: 0.25
-                        }
-
-                    }
-                },
-                cursor: 'pointer',
-                marker: {
-                    enabled: false,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            radius: 0.1
-                        }
-                    }
-                }
-            },
-        },
-        tooltip: {
-            shared: true,
-            split: false,
-            valueDecimals: 1,
-            xDateFormat: '%e %b %y'
-        },
-        series: [],
-        rangeSelector: {
-            inputEnabled: false,
-            selected: 1
-        },
-        navigator: {
-            series: {
-                type: 'column'
-            }
-        }
-
-    };
-
-    chart = new Highcharts.StockChart(options);
-    chart.showLoading();
-
-    $.ajax({
-        url: 'alldailysnowdata.json',
-        dataType: 'json'
+    $.getJSON({
+        url: 'alldailysnowdata.json'
     })
-    .done(function (resp) {
+    .done((resp) => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScaleDaily;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_snow: {
+                title: {
+                    display: true,
+                    text: `Snow (${config.snow.units})`
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
         if ('SnowDepth' in resp && resp.SnowDepth.length > 0) {
-            chart.addSeries({
-                name: 'Snow Depth',
-                type: 'column',
-                color: config.series.snowdepth.colour,
-                tooltip: {valueSuffix: ' ' + config.snow.units},
-                data: resp.SnowDepth,
-                showInNavigator: true
+            const dataPoints = resp.SnowDepth.map(p => {
+                return { x: p[0], y: p[1] };
+            });
+
+            dataSets.push({
+                label: config.series.snowdepth.name,
+                data: dataPoints,
+                borderColor: config.series.snowdepth.colour,
+                backgroundColor: config.series.snowdepth.colour,
+                yAxisID: 'y_snow',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.snow.units}`
+                    }
+                }
             });
         }
 
         if ('Snow24h' in resp && resp.Snow24h.length > 0) {
-            chart.addSeries({
-                name: 'Snowfall 24h',
-                type: 'column',
-                color: config.series.snow24h.colour,
-                tooltip: {valueSuffix: ' ' + config.snow.units},
-                data: resp.Snow24h,
-                showInNavigator: true
+            const dataPoints = resp.Snow24h.map(p => {
+                return { x: p[0], y: p[1] };
+            });
+
+            dataSets.push({
+                label: config.series.snow24h.name,
+                data: dataPoints,
+                borderColor: config.series.snow24h.colour,
+                backgroundColor: config.series.snow24h.colour,
+                yAxisID: 'y_snow',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y === null ? '-' : item.parsed.y} ${config.snow.units}`
+                    }
+                }
             });
         }
-    })
-    .always(function() {
-        chart.hideLoading();
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'bar',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            usePointStyle: false
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Snow'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: dataSets[dataSets.length - 1].data,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.6)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        var opts = CmxChartJsHelpers.NavChartOptions;
+        opts.scales.y.min = 0;
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'bar',
+            data: {datasets: [navDataset]},
+            options: opts,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
     });
+};
+
+const removeOldCharts = (showButtons) => {
+    if (mainChart) {
+        mainChart.destroy();
+    }
+    if (navChart) {
+        navChart.destroy();
+    }
+
+    document.getElementById('rangeButtons').style.visibility = showButtons ? 'visible' : 'hidden';
+    document.getElementById('navChartContainer').style.display = showButtons ? null : 'none';
 };

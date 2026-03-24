@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:	Records this period
-	File:	recsthisperiod.html		Ver: aiX-1.0
-	Author:	D.N.C.Thomas			    Mar 2025
-	Last Edit:	2025/02/21 17:20
-	Last Check:	2025/03/28
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:	User period records	| recsthisperiod.html
+	Author:		DNC Thomas		| Created: Mar 2025
+	Last Edit:	2026/03/24 11:11:26
+	Last Check:	2025-12-09
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Selected Period Records</title>
+		<title>{{THIS_PERIOD}} - CumulusMX</title>
 		<link rel="icon" type="image/png" href="img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
@@ -22,12 +21,12 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-		
-		<!--	jQuery CDN	-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!--	If your Weather Station System does NOT have Internet access uncomment these 2 lines	-->
-		<!--<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>-->
+
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
 		<!-- datepicker -->
 		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
@@ -36,284 +35,300 @@
 		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
 		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/axPro.css">
-		<link rel="stylesheet" href="css/dummy.css" id="theme">
+		<link rel="stylesheet" href="css/theme.css" id="Theme">
+		<link rel="stylesheet" href="css/w3v5.css">
 		<link rel="stylesheet" href="css/main.css">
 
 		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-manager.js"></script>
-		<script src="/js/thisperiod.js"></script>	<!-- Uses the DEFAULT script	-->
+		<script src="js/ai-page-ctrl.js"></script>
 
-		<!--	Local scripts & styles	-->
-		<script>
-			$().ready( function() {
-				load();
-			})
-		</script>
+		<!--	Local Styles	-->
 		<style>
-			.ax-btnBar > button { max-width: 8em;}/*  Stops buttons stretching across all available space */
 			input[type=text] {
 				max-width: 10em;
 				text-align: center;
 				border-radius: 1em;
 				padding: 0.25em;
+				border:thin solid var(--color5);
 			}
-			.ax-ignore { display:contents;}
-			.ax-ignore > p {padding:0.3em 0;margin: 0;border-bottom: thin solid var(--color5); font-size:90%;}
-			.ax-ignore:hover >p { background: var(--gradientBar)}
-		</style>
-	</head>
-	<body class="ax-theme9">
-		<header id="PageHead" class="ax-theme7 w3-bottombar ax-theme6-bdr">
-			<img src="img/seagull.png" class="gull2 w3-hide-medium w3-hide-small" alt="Seagull" style="position:absolute;bottom:2em; right:40px;">
-			<div class="pageWidth" style="display:grid; grid-template-columns: 3fr 1fr; column-gap:1vw; align-items:flex-end;">
-				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				
-				<div class="ax-theme7-bak" style="z-index:5">
-					<h5 class="w3-right-align"><span data-OWData="Station">--</span></h5>
-					<h5 class="w3-smaller w3-right-align">Latitude:&nbsp;<span data-cmxData="latitude">xx.xxxx</span></h5>
-					<h5 class="w3-smaller w3-right-align">Longitude:&nbsp;<span data-cmxData="longitude">y.yyyy</span></h5>
-					<h5 class="w3-smaller w3-right-align">Altitude:&nbsp;<span data-cmxData="altitude">zzm</span></h5>
-				</div>
-			</div>
 
-			<div class="ax-theme5" style="border-top: 1px solid var(--color3);">
-				<div id="Menus" class="pageWidth w3-bar" role="menubar"><!--	Menu inserted here	--></div>
+			#customGrid {
+				display: grid;
+				grid-template-columns:repeat(2, 1fr);
+				gap: 1vw 1em;
+				grid-template-areas: "select select" "temps rain" "temps winds" "hums press";
+				margin-bottom: 1em;
+			}
+			#SelectPanel{ grid-area:select;}
+			#TempsPanel{ grid-area: temps;}
+			#RainPanel{ grid-area: rain;}
+			#WindsPanel{ grid-area:winds;}
+			#HumsPanel{ grid-area: hums;}
+			#PressPanel{ grid-area: press;}
+			.ows-titleGrid { margin-bottom:0;}
+			@media (max-width: 2000px) { /* Set this value to dictate when it goes to a single column */
+				#customGrid {
+					grid-template-columns: 1fr;
+					grid-template-areas: "select" "temps" "rain" "winds" "hums" "press";
+				}
+				.ows-dataRowGrid.threeC {
+					grid-template-columns: 1fr 6em 20em;
+				}
+			}
+		</style>
+		<!-- Local Scripts	-->
+ 		<script src="/js/thisperiod.js"></script>	<!-- Uses the DEFAULT script	-->
+		<script>
+			$().ready( function() {
+				load();
+			})
+		</script>
+	</head>
+	<body class="ows-theme9">
+		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
+			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+			<div id="subBanner" class="pageWidth">
+				<!--	Logo	-->
+				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
+				<div id="siteInfo">
+					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
+					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
+					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
+					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zzm</span></p>
+				</div>
+				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
 			</div>
 		</header>
 
-		<div id="content">
-			<img src="img/seagull.png" id="ax-gull" alt="Seagull">
+		<section id="Content">
+            <div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right" ><!-- Mobile menu inserted herer --></div>
+			<img src="img/seagull.png" id="Gull1" alt="Seagull">
 			<div id="subContent" class="pageWidth">
-				<!--	This is the page title - you probably want to keep this	-->
-				<div class="ax-titleBar">
-					<h1>Selected Period Records</h1>
-					<p>Records for a user selected period</p>
-				</div>
-				<!--	This is the section of one column layouts	-->
-				<div class="ax-column1" style="row-gap:1vh;margin-bottom:1vh;">
-					<!--	Panel 1	-->
-					<div class="w3-container" style="order:1;">
-						<div class="ax-btnBar" style="justify-content: center; margin-bottom: 1vh; align-items:baseline;column-gap:2em;">
-							<div>Start Date:&nbsp;<input type="text" class="ax-btn-gradient-up" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
-							<div>End Date:&nbsp;<input type="text" class="ax-btn-gradient-up" data-date-format="dd-mm-yyyy" id="dateTo"></div>
-							<button type="button" class="w3-btn ax-btn-gradient-up" onclick="load()">Load</button>
+				<section class="w3-container" style="padding-bottom:0;">
+					<div class="ows-titleFlex">
+						<h1>{{THIS_PERIOD_HIGHS_AND_LOWS}}</h1>
+						<p class="tagline">{{THIS_PERIOD_TAGLINE}}</p>
+					</div>
+				</section>
+
+				<section id="customGrid">
+					<div id="SelectPanel" class="w3-container ows-theme0 no-shadow">
+						<div class="ows-btnBar" style="justify-content: center; align-items:baseline;column-gap:2em; margin-bottom:0;">
+							<div style="flex-grow:0;">{{START_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
+							<div style="flex-grow:0;">{{END_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
+							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0; width:160px;" onclick="load()">{{LOAD}}</button>
 						</div>
 					</div>
-				</div>
-				<div class="ax-column2 ax-fixedwidth">
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h2>Temperatures</h2><i class="fa-solid fa-temperature-half"></i>
+					<div id="TempsPanel" class="w3-container ows-theme8">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h2>{{TEMPERATURE}}</h2><i class="fa-solid fa-temperature-half"></i>
 						</div>
 						<!-- Content -->
-						<div style="display:grid;grid-template-columns:11em 5em 1fr;grid-template-rows:auto;margin-bottom:1vh;">
-							<p class="w3-right-align" style="grid-column-start:2"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
-							<div class="ax-ignore">
-								<p class="">High Temperature</p>
+						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+							<p>&nbsp;</p>
+							<p class="w3-right-align"><strong>{{READING}}</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+							<div class="ignore">
+								<p class="">{{HIGH_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highTempTimeDayfile" class=""></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low Temperature</p>
+							<div class="ignore">
+								<p class="">{{LOW_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowTempTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High Dew Point</p>
+							<div class="ignore">
+								<p class="">{{HIGH_DEW_POINT}}</p>
 								<p class="w3-right-align"><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highDewPointTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low Dew Point</p>
+							<div class="ignore">
+								<p class="">{{LOW_DEW_POINT}}</p>
 								<p class="w3-right-align"><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowDewPointTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High apparent temperature</p>
+							<div class="ignore">
+								<p class="">{{HIGH_APPARENT_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highApparentTempTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low apparent temp.</p>
+							<div class="ignore">
+								<p class="">{{LOW_APPARENT_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowApparentTempTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High Feels Like</p>
+							<div class="ignore">
+								<p class="">{{HIGH_FEELS_LIKE}}</p>
 								<p class="w3-right-align"><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highFeelsLikeTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low Feels like</p>
+							<div class="ignore">
+								<p class="">{{LOW_FEELS_LIKE}}</p>
 								<p class="w3-right-align"><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowFeelsLikeTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High Humidex</p>
+							<div class="ignore">
+								<p class="">{{HIGH_HUMIDEX}}</p>
 								<p class="w3-right-align"><span id="highHumidexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highHumidexTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low Wind Chill</p>
+							<div class="ignore">
+								<p class="">{{LOW_WIND_CHILL}}</p>
 								<p class="w3-right-align"><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowWindChillTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High Heat Index</p>
+							<div class="ignore">
+								<p class="">{{HIGH_HEAT_INDEX}}</p>
 								<p class="w3-right-align"><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highHeatIndexTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest minimum temp</p>
+							<div class="ignore">
+								<p class="">{{HIGH_MINIMUM_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highMinTempTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low maximum temp</p>
+							<div class="ignore">
+								<p class="">{{LOWEST_MAXIMUM_TEMPERATURE}}</p>
 								<p class="w3-right-align"><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowMaxTempTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">High daily temp range</p>
+							<div class="ignore">
+								<p class="">{{HIGH_DAILY_TEMPERATURE_RANGE}}</p>
 								<p class="w3-right-align"><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="highDailyTempRangeTimeDayfile"></span></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Low daily temp range</p>
+							<div class="ignore">
+								<p class="">{{LOW_DAILY_TEMPERATURE_RANGE}}</p>
 								<p class="w3-right-align"><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
 								<p class="w3-right-align"><span id="lowDailyTempRangeTimeDayfile"></span></p>
 							</div>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h2>Rainfall</h2><i class="fa-solid fa-droplet" style="color: #0060ff;"></i>
+					<div id="RainPanel" class="w3-container ows-theme8">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h2>{{RAINFALL}}</h2><i class="fa-solid fa-droplet w3-text-blue"></i>
 						</div>
 						<!-- Content -->
-						<div style="display:grid;grid-template-columns:11em 5em 1fr;grid-template-rows:auto;margin-bottom:1vh;">
-							<p class="w3-right-align" style="grid-column-start:2"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
-							<div class="ax-ignore">
-								<p class="">Highest rain rate</p>
+						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+							<p>&nbsp;</p>
+							<p class="w3-right-align"><strong>{{READING}}</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+							<div class="ignore">
+								<p class="">{{HIGH_RAIN_RATE}}</p>
 								<p class="w3-right-align"><span id="highRainRateValDayfile"></span><span class="unit-rain"></span>/hr</p>
 								<p class=" w3-right-align" id="highRainRateTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest hourly rain</p>
+							<div class="ignore">
+								<p class="">{{HIGH_HOURLY_RAIN}}</p>
 								<p class="w3-right-align"><span id="highHourlyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highHourlyRainTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest daily rain</p>
+							<div class="ignore">
+								<p class="">{{HIGH_DAILY_RAIN}}</p>
 								<p class="w3-right-align"><span id="highDailyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highDailyRainTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest 24hr rain</p>
+							<div class="ignore">
+								<p class="">{{HIGH_24_HOUR_RAIN}}</p>
 								<p class="w3-right-align"><span id="highRain24hValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highRain24hTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest monthly rain</p>
+							<div class="ignore">
+								<p class="">{{HIGH_MONTHLY_RAINFALL}}</p>
 								<p class="w3-right-align"><span id="highMonthlyRainValDayfile"></span><span class="unit-rain"></span></p>
 								<p class="w3-right-align" id="highMonthlyRainTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Longest dry period</p>
+							<div class="ignore">
+								<p class="">{{LONGEST_DRY_PERIOD}}</p>
 								<p class="w3-right-align"><span id="longestDryPeriodValDayfile"></span> day(s)</p>
 								<p class="w3-right-align" id="longestDryPeriodTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Longest wet period</p>
+							<div class="ignore">
+								<p class="">{{LONGEST_WET_PERIOD}}</p>
 								<p class="w3-right-align"><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
 								<p class="w3-right-align" id="longestWetPeriodTimeDayfile">-</p>
 							</div>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h2>Winds</h2><i class="fa-solid fa-wind"></i>
+					<div id="WindsPanel" class="w3-container ows-theme8">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h2>{{WIND}}</h2><i class="fa-solid fa-wind"></i>
 						</div>
 						<!-- Content -->
-						<div style="display:grid;grid-template-columns:11em 5em 1fr;grid-template-rows:auto;margin-bottom:1vh;">
-							<p class="w3-right-align" style="grid-column-start:2"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
-							<div class="ax-ignore">
-								<p class="">Highest gust speed</p>
+						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+							<p>&nbsp;</p>
+							<p class="w3-right-align"><strong>{{READING}}</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+							<div class="ignore">
+								<p class="">{{HIGH_GUST_SPEED}}</p>
 								<p class="w3-right-align"><span id="highGustValDayfile"></span><span class="unit-wind"></span></p>
 								<p class="w3-right-align" id="highGustTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Highest average speed</p>
+							<div class="ignore">
+								<p class="">{{HIGH_WIND_SPEED}}</p>
 								<p class="w3-right-align"><span id="highWindValDayfile"></span><span class="unit-wind"></span></p>
 								<p class="w3-right-align" id="highWindTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Longest daily wind run</p>
+							<div class="ignore">
+								<p class="">{{HIGH_DAILY_WIND_RUN}}</p>
 								<p class="w3-right-align"><span id="highWindRunValDayfile"></span><span class="unit-windrun"></span></p>
 								<p class="w3-right-align" id="highWindRunTimeDayfile"></p>
 							</div>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h2>Relative Humidity</h2><i class="fa-solid fa-cloud-rain" style="color: #0060ff;"></i>
+					<div id="HumsPanel" class="w3-container ows-theme8">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h2>{{HUMIDITY}}</h2><i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
 						</div>
 						<!-- Content -->
-						<div style="display:grid;grid-template-columns:11em 5em 1fr;grid-template-rows:auto;margin-bottom:1vh;">
-							<p class="w3-right-align" style="grid-column-start:2"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
-							<div class="ax-ignore">
-								<p class="">Highest humidity</p>
+						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+							<p>&nbsp;</p>
+							<p class="w3-right-align"><strong>{{READING}}</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+							<div class="ignore">
+								<p class="">{{HIGH_HUMIDITY}}</p>
 								<p class="w3-right-align"><span id="highHumidityValDayfile"></span>%</p>
 								<p class="w3-right-align" id="highHumidityTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Lowest humidity</p>
+							<div class="ignore">
+								<p class="">{{LOW_HUMIDITY}}</p>
 								<p class="w3-right-align"><span id="lowHumidityValDayfile"></span>%</p>
 								<p class="w3-right-align" id="lowHumidityTimeDayfile"></p>
 							</div>
 						</div>
 					</div>
-					<div class="w3-card ax-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ax-titleBar">
-							<h2>Pressure</h2><i class="fa-solid fa-compress" style="color: #ffaa00;"></i>
+					<div id="PressPanel" class="w3-container ows-theme8">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h2>{{PRESSURE}}</h2><i class="fa-solid fa-compress fa-beat w3-text-orange"></i>
 						</div>
 						<!-- Content -->
-						<div style="display:grid;grid-template-columns:11em 5em 1fr;grid-template-rows:auto;margin-bottom:1vh;">
-							<p class="w3-right-align" style="grid-column-start:2"><strong>Reading</strong></p>
-							<p class="w3-center"><strong>Date &amp; time</strong></p>
-							<div class="ax-ignore">
-								<p class="">Highest pressure</p>
+						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+							<p>&nbsp;</p>
+							<p class="w3-right-align"><strong>{{READING}}</strong></p>
+							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+							<div class="ignore">
+								<p class="">{{HIGH_PRESSURE}}</p>
 								<p class="w3-right-align"><span id="highBarometerValDayfile"></span><span class="unit-press"></span></p>
 								<p class="w3-right-align" id="highBarometerTimeDayfile"></p>
 							</div>
-							<div class="ax-ignore">
-								<p class="">Lowest pressure</p>
+							<div class="ignore">
+								<p class="">{{LOW_PRESSURE}}</p>
 								<p class="w3-right-align"><span id="lowBarometerValDayfile"></span><span class="unit-press"></span></p>
 								<p class="w3-right-align" id="lowBarometerTimeDayfile"></p>
 							</div>
 						</div>
 					</div>
-				</div>	<!--	End of one column layout	-->
+				</section>
 			</div>
-		</div>
-		
-		<footer id="PageFoot" class="w3-topbar ax-theme5 ax-theme7-bdr">
-			<div class="pageWidth">
-				<div class="ax-titleBar ax-padding-small" >
-					<h6 class="w3-small ax-theme7-txt" style="padding:1vh 0 0.5vh 0;"><em>Template <span class="w3-hide-small"> design</span> v<span data-OWdata="Version"></span> by N Thomas</em></h6>
-					<h5 class="w3-right-align ax-theme7-txt">
-						Powered by <span class="ax-theme9-txt">CumulusMX</span>
-						V<span data-cmxData="Version">X.YY.Z</span>
-						(b:<span data-cmxData="Build">xxxx</span>)
-					</h5>
-				</div>
-			</div>
-		</footer>
+		</section>
+
+		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+            </section>
+        </footer>
 
 	</body>
 </html>

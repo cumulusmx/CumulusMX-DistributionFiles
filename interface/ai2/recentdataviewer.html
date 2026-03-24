@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Page:		Recent data Editor	| recentdataviewer.html
+	Author:		DNC Thomas			| Created: Dec 2025
+	Last Edit:	
+	Last Check:	
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{{RECENT_DATA_VIEWER_EDITOR}}</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="Neil Thomas 2025">
+
+		<!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<!--	FontAwsome CDN	-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+		
+		<!--	jQuery (CDN)	-->
+		!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		<!--	jQuery (Local)	-->
+		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+		<!-- Bootstrap -->
+		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--	Data Tables	-->
+		<script src="/lib/datatables/datatables.min.js"></script>
+		<script src="/lib/datatables/dataTables.inputPaging.min.js"></script>
+		<script src="/lib/datatableseditor/dataTables.altEditor.free.js"></script>
+
+		<!-- datepicker -->
+		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
+
+		<!--	Sitewide Styles		-->
+		<link rel="stylesheet" href="css/theme.css" id="Theme">
+		<link rel="stylesheet" href="css/w3v5.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="/lib/datatables/datatables.min.css">
+		<link rel="stylesheet" href="css/ai-editabletables.css">
+
+		<!--	Sitewide Scripts	-->
+		<script src="js/ai-page-ctrl.js"></script>
+
+		<!--	Local scripts & styles	-->
+		<script src="js/recentdataeditor.js"></script>
+		<script>
+		</script>
+		<style>
+			input[type=text] { max-width: 8em;}
+			#recent tr >td {border-bottom: thin dotted var(--color6)!important;}
+			#recent tbody tr:last-of-type{border-bottom: 1px solid var(--color5)!important;}
+			.dtfc-fixed-start:nth-of-type(2) { border-right: thin solid var(--color5);}
+			/*	This block adjusts the hover highlight.  Just delete if not wanted	*/
+			tr:hover > td {
+				background: var(--gradient-databar);
+			}
+			.dt-paging { display:flex; justify-content: center; gap:1em;}
+			.dt-paging-input input {background: var(--color1); color: var(--color9); max-width:5em;}
+
+						/*	Units	*/
+			/*	Adjust size of units	*/
+			#recent tbody .tempUnits::after,
+			#recent tbody .percent::after,
+			#recent tbody .bearing::after		{ font-size: 0.6em; padding-left: 0.3em; vertical-align: top;}
+			#recent tbody .windUnits::after,
+			#recent tbody .windRunUnits::after,
+			#recent tbody .rainUnits::after,
+			#recent tbody .rainRateUnits::after,
+			#recent tbody .pressUnits::after,
+			#recent tbody .hours::after,
+			#recent tbody .solarUnits::after	{ font-size: 0.6em; padding-left: 0.3em; vertical-align: baseline;}
+
+			/*	You MAY need to manually edit the following styles to match your units	*/
+			#recent tbody .percent::after   	{ content:"%"; }
+			#recent tbody .bearing::after    	{ content:"°"; }
+			#recent tbody .solarUnits::after 	{ content:"w/m\00b2"; }
+			#recent tbody .aq2-5Units::after	{ content:"-";}
+			#recent tbody .aq10Units::after		{ content:"-";}
+
+			/*	All other styles are in the file 'ai-editabletables.css'	*/
+		</style>
+	</head>
+	<body class="ows-theme9">
+        <header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
+            <section id="subBanner" class="pageWidth" >
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
+                <div id="siteInfo">
+                    <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
+                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
+                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
+                    <p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
+                </div>
+                <nav id="MainMenu" class="ows-theme6"></nav>
+            </section>
+        </header>
+
+        <section id="Content">
+            <div  id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme4 w3-animate-right"><!-- Sidebar Here     --></div>
+            <img src="img/Gull.png" alt="Seagull" id="Gull1"> <!--    Gull goes here  -->
+            <section id="subContent" class="pageWidth">
+				<!--	Page Title	-->
+				<section class="w3-container">
+					<div class="ows-titleFlex">
+						<h1>{{RECENT_DATA_VIEWER_EDITOR}}</h1>
+						<p class="tagline">{{RECENT_DATA_VIEWER_EDITOR_TAGLINE}}</p>
+					</div>
+				</section>
+				<!--	Section of one column layouts	-->
+				<section class="ows-grid col1">
+					</div>
+					<div class="w3-container ows-theme8 w3-responsive" style="order:1;padding-top: 1vh;">
+						<table id="recent" class="w3-hoverable"></table>
+						<p class="w3-small w3-center">{{TABLE_NOTE}}</p>
+					</div>
+				</section>	<!--	End of one column layout	-->
+			</section>
+		</section>
+		
+        <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
+            <section id="subFooter" class="pageWidth">
+                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
+                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+            </section>
+        </footer>
+
+	</body>
+</html>

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/16 17:56:27",
+	"version": "Last Modified: 2026/03/17 17:22:18",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -521,6 +521,10 @@
 							"minimum": 0,
 							"maximum": 65536
 						},
+						"sunshine": {
+							"type": "number",
+							"enum": [0,1,2,3,4,5,6,7,8]
+						},
 						"datastopped": {
 							"type": "boolean"
 						},
@@ -529,6 +533,9 @@
 						}
 					},
 					"dependencies": {
+						"sunshine": [
+							"stationid"
+						],
 						"tcpport": [
 							"stationid"
 						],
@@ -574,6 +581,7 @@
 					"minimum": 0
 				},
 				"token": {},
+				"serialno": {},
 				"dayshistory": {
 					"type": "integer",
 					"minimum": 0,
@@ -803,39 +811,39 @@
 				},
 				"primaryIndoorTHsensor": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan1": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan2": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan3": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan4": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan5": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan6": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan7": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"wn34chan8": {
 					"type": "number",
-					"enum": [0,1,2,3,4,5,6,7,8]
+					"enum": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 				},
 				"stationid": {
 					"type": "integer"

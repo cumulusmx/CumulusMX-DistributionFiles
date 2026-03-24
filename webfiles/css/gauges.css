@@ -11,8 +11,8 @@
     position: absolute;
     top: 67%;
     left: 50%;
-    transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .gaugeSmall {
     max-width:181px;
@@ -54,7 +54,7 @@
 	.at-gaugeMedium{ width:100%;}
 }
 
-@media screenand (max-width:640px) {
+@media screen and (max-width:640px) {
 	.at-gaugeLarge { width:100%;}
 	}
 

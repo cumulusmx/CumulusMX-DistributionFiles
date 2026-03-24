@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2025/08/16 23:10:47
+ Last modified: 2025/11/26 16:44:09
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -38,6 +38,7 @@ let menuSrc = [
 		{title: "{{MONTHLY_DATA_LOGS}}", menu: "b", label: "{{MENU_LOGS_MONTHLY_LABEL}}",      url: "datalogs.html"},
 		{title: "{{MENU_LOGS_EXTRA}}",   menu: "b", label: "{{EXTRA_DATALOGS_VIEWER_EDITOR}}", url: "extradatalogs.html"},
 		{title: "{{DAYFILE}}",           menu: "b", label: "{{DAYFIILE_VIEWER/EDITOR}}",       url: "dayfileviewer.html"},
+		{title: "{{RECENT_DATA}}",       menu: "b", label: "{{RECENT_DATA_VIEWER_EDITOR}}",    url: "recentdataviewer.html"},
 		{title: "{{MENU_LOGS_INTERVAL}}",menu: "b", label: "{{MENU_LOGS_INTERVAL}}",           url: "intervaldata.html"},
 		{title: "{{MENU_LOGS_DAILY}}",   menu: "b", label: "{{MENU_LOGS_DAILY}}",              url: "dailydata.html"}
 	]},

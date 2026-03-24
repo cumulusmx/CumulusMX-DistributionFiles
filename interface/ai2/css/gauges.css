@@ -13,23 +13,26 @@
 .gauge {
   padding: 5px;
   text-align: center;
-  display: inline-block;
+  /*display: inline-block;*/
   vertical-align: top;
   position: relative;
   margin-top: 1vh;
 }
 .gaugeSizeSml,
-.ax-gaugeSmall {
+.ax-gaugeSmall,
+.ows-gaugeSml {
   width: 181px;
   height: 181px;
 }
 .gaugeSizeStd,
-.ax-gaugeStandard {
+.ax-gaugeStandard,
+.ows-gaugeStd {
   width: 221px;
   height: 221px;
 }
 .gaugeSizeLrg,
-.ax-gaugeLarge {
+.ax-gaugeLarge,
+.ows-gaugeLrg {
   width: 261px;
   height: 261px;
 }
@@ -76,7 +79,7 @@ label {
 
 .ddimgtooltip{
   z-index: 2000;
-  box-shadow: var(--shadows); /*shadow for CSS3 capable browsers.*/
+  box-shadow: var(--shadows2); /*shadow for CSS3 capable browsers.*/
   max-width:25em;
   border-radius: 10px;
   display: none;
@@ -89,7 +92,7 @@ label {
   font-size: 82%;
 }
 
-.ddimgtooltip h5 {
+.ddimgtooltip h4 {
 	line-height:1em;
 	padding: 0;
 }
@@ -99,6 +102,7 @@ label {
   padding: 3px 0 3px 2px;
 }
 
+.tipinfo .ows-titleFlex { margin-bottom:0;}
 .tipimg{
   width: 438px;
   height: 175px;

@@ -65,7 +65,7 @@ $(document).ready(function () {
                                 validator: function(callback) {
                                     let value = this.getValue();
                                     // check for URL format or <ecowittcameraurl>
-                                    if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl>)$/.test(value)) {
+                                    if (value != '' && !/^(https?:\/\/[^\s/$.?#].[^\s]*)|(<ecowittcameraurl[1-8]?>)$/.test(value)) {
                                         callback({
                                             status: false,
                                             message: 'That is not a valid URL!'

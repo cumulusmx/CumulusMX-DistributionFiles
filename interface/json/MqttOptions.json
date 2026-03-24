@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/08/19 12:49:58",
+	"version": "Last Modified: 2026/01/16 16:10:29",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -19,7 +19,7 @@
 		"password": {
 			"type": "password",
 			"label": "{{PASSWORD}}:",
-			"helper": "{{Enter your MQTT server password - if required}}"
+			"helper": "{{PASSWORD_HELP1}}"
 		},
 		"advanced": {
 			"collapsible": true,
@@ -34,7 +34,7 @@
 					"label": "{{IP_VERSION}}:",
 					"helper": "{{IP_VERSION_HELP}}",
 					"type": "select",
-                    "sort": false,
+					"sort": false,
 					"optionLabels": [
 						"{{IP_VERSION_OPT1}}",
 						"{{IP_VERSION_OPT2}}",
@@ -46,7 +46,7 @@
 					"label": "{{PROTOCOL_VERSION}}:",
 					"helper": "{{PROTOCOL_VERSION_HELP1}}",
 					"type": "select",
-                    "sort": false,
+					"sort": false,
 					"optionLabels": [
 						"v3.1.0",
 						"v3.1.1",

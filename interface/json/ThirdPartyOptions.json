@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/24 13:00:15",
+	"version": "Last Modified: 2026/01/23 18:19:59",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
@@ -126,9 +126,16 @@
 				"enabled": {
 					"rightLabel": "{{ENABLED}}"
 				},
-				"stationidx": {
-					"label": "{{STATION_INDEX}}:",
-					"helper": "{{STATION_INDEX_HELP1}}",
+				"stationid": {
+					"label": "{{STATION_ID}}:",
+					"helper": "{{STATION_ID_HELP1}}",
+					"dependencies": {
+						"enabled": true
+					}
+				},
+				"password": {
+					"label": "{{WINDY_PASSWORD}}:",
+					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
@@ -136,6 +143,7 @@
 				"apikey": {
 					"label": "{{API_KEY}}:",
 					"helper": "{{WINDY_API_KEY_HELP1}}",
+					"type": "password",
 					"dependencies": {
 						"enabled": true
 					}
@@ -147,18 +155,18 @@
 						"enabled": true
 					}
 				},
-				"includeuv": {
-					"label": "{{UV_I}}:",
-					"rightLabel": "{{UV_I_LABEL}}",
-					"helper": "{{UV_I_HELP1}}",
+				"includesolar": {
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
 				},
-				"catchup": {
-					"label": "{{CATCH_UP}}:",
-					"rightLabel": "{{CATCH_UP_LABEL}}",
-					"helper": "{{CATCH_UP_HELP1}}",
+				"includeuv": {
+					"label": "{{UV_I}}:",
+					"rightLabel": "{{UV_I_LABEL}}",
+					"helper": "{{UV_I_HELP1}}",
 					"dependencies": {
 						"enabled": true
 					}
@@ -611,7 +619,7 @@
 					}
 				},
 				"interval": {
-					"label": "{{INTERVAL}}l:",
+					"label": "{{INTERVAL}}:",
 					"helper":  "{{INTERVAL_HELP1}}",
 					"dependencies": {
 						"enabled": true
@@ -706,7 +714,7 @@
 					}
 				},
 				"times": {
-					"label": "{{{POSTING_TIMES_FIXED}}}:",
+					"label": "{{POSTING_TIMES_FIXED}}:",
 					"collapsible": true,
 					"collapsed": false,
 					"items": {

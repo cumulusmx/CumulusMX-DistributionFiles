@@ -27,7 +27,7 @@ $(document).ready(function() {
         data: data
     })
     .done( function( result ) {
-        console.log('Processing units' + JSON.stringify(result));
+        //console.log('Processing units' + JSON.stringify(result));
         styles = "<style>\n";
         styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
         styles += "#datalog tbody .windUnits:after { content:\"" + result.WindUnit + "\";}\n";
@@ -68,60 +68,60 @@ $(document).ready(function() {
             title: 'Date (dd/mm/yy)',
             readonly: true
         },
-        {title: 'Max gust', type: 'number', min: 0, step: windGustStep,className:"windUnits"},
-        {title: 'Max gust bearing', type: 'number', min: 0, max: 360, className:'bearing'},
-        {title: 'Max gust time', type:'text', pattern: timeRegex, className:'hours'},
-        {title: 'Min temp', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Min temp time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Max temp', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Max temp time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Min pressure', type: 'number', min: pressMin, max: pressMax, step: pressStep, className:'pressUnits'},
-        {title: 'Min pressure time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Max pressure', type: 'number', min: pressMin, max: pressMax, step: pressStep, className:'pressUnits'},
-        {title: 'Max pressure time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Max rainfall rate', type: 'number', step: rainStep, className:'rainRateUnits'},
-        {title: 'Max rainfall rate time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Total rainfall', type: 'number', step: rainStep, className:'rainUnits'},
-        {title: 'Avg temp', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Total wind run', type: 'number', min: 0, step: 0.001, className:'windRunUnits'},
-        {title: 'High avg wind speed', type: 'number', min: 0, step: windAvgStep, className:'windUnits'},
-        {title: 'High avg wind speed time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Low humidity', type: 'number', min: 0, max: 100, className:'percent'},
-        {title: 'Low humidity time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High humidity', type: 'number', min: 0, max: 100, className:'percent'},
-        {title: 'High humidity time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Total ET', type: 'number', min: 0, step: etStep},
-        {title: 'Total hours of sunshine', type: 'number', min: 0, step: 0.01, className:'hours'},
-        {title: 'High heat index', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'High heat index time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High apparent temp', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'High apparent temp time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Low apparent temp', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Low apparent temp time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High hourly rain', type: 'number', step: rainStep, className:'rainUnits'},
-        {title: 'High hourly rain time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Low wind chill', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Low wind chill time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High dew point', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'High dew point time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Low dew point', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Low dew point time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Dominant wind bearing', type: 'number', min: 0, max: 360, className:'bearing'},
-        {title: 'Heating degree days', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Cooling degree days', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'High solar rad', type: 'number', min: 0, max: 1200, className:'solarUnits'},
-        {title: 'High solar rad time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High UV-I', type: 'number', min: 0, max: 16, step: 0.1},
-        {title: 'High UV-I time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High feels like', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'High feels like time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Low feels like', type: 'number', step: tempStep, className:"tempUnits"},
-        {title: 'Low feels like time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'High humidex', type: 'number', step: tempStep},
-        {title: 'High humidex time', type:'text', pattern: timeRegex, className:"hours"},
-        {title: 'Chill hours', type: 'number', min: 0, step: tempStep, className:"tempUnits"},
-        {title: 'High 24 hour rain', type: 'number', step: rainStep, className:'rainUnits'},
-        {title: 'High 24 hour rain time', type:'text', pattern: timeRegex, className:"hours"}
+        {title: '{{HIGH_GUST}}', type: 'number', min: 0, step: windGustStep,className:"windUnits"},
+        {title: '{{HIGH_GUST_BEARING}}', type: 'number', min: 0, max: 360, className:'bearing'},
+        {title: '{{HIGH_GUST_TIME}}', type:'text', pattern: timeRegex, className:'hours'},
+        {title: '{{LOW_TEMP}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{LOW_TEMP_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_TEMP}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_TEMP_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_PRESS}}', type: 'number', min: pressMin, max: pressMax, step: pressStep, className:'pressUnits'},
+        {title: '{{LOW_PRESS_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_PRESS}}', type: 'number', min: pressMin, max: pressMax, step: pressStep, className:'pressUnits'},
+        {title: '{{HIGH_PRESS_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_RAIN_RATE}}', type: 'number', step: rainStep, className:'rainRateUnits'},
+        {title: '{{HIGH_RAIN_RATE_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{DAILY_RAIN}}', type: 'number', step: rainStep, className:'rainUnits'},
+        {title: '{{TEMP_AVG}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{WIND_RUN}}', type: 'number', min: 0, step: 0.001, className:'windRunUnits'},
+        {title: '{{HIGH_WIND_SPEED}}', type: 'number', min: 0, step: windAvgStep, className:'windUnits'},
+        {title: '{{HIGH_WIND_SPEED_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_HUMIDITY}}', type: 'number', min: 0, max: 100, className:'percent'},
+        {title: '{{LOW_HUMIDITY_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_HUMIDITY}}', type: 'number', min: 0, max: 100, className:'percent'},
+        {title: '{{HIGH_HUMIDITY_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{EVAPOTRANSPIRATION_SHORT}}', type: 'number', min: 0, step: etStep},
+        {title: '{{SUNSHINE_HOURS}}', type: 'number', min: 0, step: 0.01, className:'hours'},
+        {title: '{{HIGH_HEAT_INDEX}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_HEAT_INDEX_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_APPARENT_TEMP}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_APPARENT_TEMP_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_APPARENT_TEMP}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{LOW_APPARENT_TEMP_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_RAINFALL_1HR}}', type: 'number', step: rainStep, className:'rainUnits'},
+        {title: '{{HIGH_RAINFALL_1HR_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_WIND_CHILL}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{LOW_WIND_CHILL_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_DEW_POINT}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_DEW_POINT_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_DEW_POINT}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{LOW_DEW_POINT_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{DOMINANT_DIRECTION}}', type: 'number', min: 0, max: 360, className:'bearing'},
+        {title: '{{HEATING_DEGREE_DAYS}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{COOLING_DEGREE_DAYS}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_SOLAR_RAD}}', type: 'number', min: 0, max: 1200, className:'solarUnits'},
+        {title: '{{HIGH_SOLAR_RAD_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_UV_INDEX}}', type: 'number', min: 0, max: 16, step: 0.1},
+        {title: '{{HIGH_UV_INDEX_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_FEELS_LIKE}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_FEELS_LIKE_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{LOW_FEELS_LIKE}}', type: 'number', step: tempStep, className:"tempUnits"},
+        {title: '{{LOW_FEELS_LIKE_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_HUMIDEX}}', type: 'number', step: tempStep},
+        {title: '{{HIGH_HUMIDEX_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{CHILL_HOURS}}', type: 'number', min: 0, step: tempStep, className:"tempUnits"},
+        {title: '{{HIGH_RAINFALL_24HR}}', type: 'number', step: rainStep, className:'rainUnits'},
+        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex, className:"hours"}
         ];
 
         var myTable = $('#datalog').DataTable({
@@ -154,25 +154,25 @@ $(document).ready(function() {
             buttons: [
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Edit',
+                    text: '{{EDIT}}',
                     name: 'edit'        // do not change name
                 },
                 {
                     extend: 'selected', // Bind to Selected row
-                    text: 'Delete',
+                    text: '{{DELETE}}',
                     name: 'delete'      // do not change name
                 },
                 {
-                    text: 'Refresh',
+                    text: '{{REFRESH}}',
                     name: 'refresh'      // do not change name
                 },
                 'pageLength'
             ],
             language: {
                 altEditor: {
-                    modalClose: 'Close',
+                    modalClose: '{{CLOSE}}',
                     edit: {
-                        title: 'Edit record',
+                        title: '{{EDIT_RECORD}}',
                         button: 'Save'
                     }
                 }

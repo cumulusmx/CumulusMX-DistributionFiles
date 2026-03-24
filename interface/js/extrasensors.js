@@ -1,4 +1,4 @@
-// Last modified: 2025/08/11 17:20:48
+// Last modified: 2026/03/09 16:48:46
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -20,84 +20,268 @@ $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
 };
 
 $(document).ready(function () {
-    var emptyTable = '{{NO_SENSORS_ENABLED_DESC}}';
-
     $.ajax({url: '/api/info/version.json', dataType:'json', success: function (result) {
         $('#Version').text(result.Version);
         $('#Build').text(result.Build);
     }});
 
     var tempTable = $('#TempTable').DataTable({
-        ajax: '/api/extra/temp.json'
+        ajax: {
+            url: '/api/extra/temp.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#TempTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#TempTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var humTable = $('#HumTable').DataTable({
-        ajax: '/api/extra/hum.json'
+        ajax: {
+            url: '/api/extra/hum.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#HumTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#HumTableBlock').hide();
+                    return [];
+                }
+            }
+        }
+
     });
 
     var dewTable = $('#DewTable').DataTable({
-        ajax: '/api/extra/dew.json'
+        ajax: {
+            url: '/api/extra/dew.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#DewTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#DewTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var soiltempTable = $('#SoilTempTable').DataTable({
-        ajax: '/api/extra/soiltemp.json'
+        ajax: {
+            url: '/api/extra/soiltemp.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#SoilTempTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#SoilTempTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var soilmoistureTable = $('#SoilMoistureTable').DataTable({
-        ajax: '/api/extra/soilmoisture.json'
+        ajax: {
+            url: '/api/extra/soilmoisture.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#SoilMoistureTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#SoilMoistureTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var leafTable = $('#LeafTable').DataTable({
-        ajax: '/api/extra/leaf8.json'
+        ajax: {
+            url: '/api/extra/leaf8.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#LeafTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#LeafTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var airqualTable = $('#AirQualityTable').DataTable({
-        ajax: '/api/extra/airqual.json'
+        ajax: {
+            url: '/api/extra/airqual.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#AirQualityTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#AirQualityTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var co2Table = $('#CO2Table').DataTable({
-        ajax: '/api/extra/co2sensor.json'
+        ajax: {
+            url: '/api/extra/co2sensor.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#CO2TableBlock').show();
+                    return json.data;
+                } else {
+                    $('#CO2TableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var lightningTable = $('#LightningTable').DataTable({
-        ajax: '/api/extra/lightning.json'
+        ajax: {
+            url: '/api/extra/lightning.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#LightningTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#LightningTableBlock').hide();
+                    return [];
+                }
+            }
+        }
+    });
+
+    var bgtTable = $('#BGTTable').DataTable({
+        ajax: {
+            url: '/api/extra/bgt.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#BGTTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#BGTTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var userTempTable = $('#UserTempTable').DataTable({
-        ajax: '/api/extra/usertemp.json'
+        ajax: {
+            url: '/api/extra/usertemp.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#UserTempTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#UserTempTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var laserDepthTable = $('#LaserDepthTable').DataTable({
-        ajax: '/api/extra/laserdepth.json'
+        ajax: {
+            url: '/api/extra/laserdepth.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#LaserDepthTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#LaserDepthTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var laserDistTable = $('#LaserDistTable').DataTable({
-        ajax: '/api/extra/laserdistance.json'
+        ajax: {
+            url: '/api/extra/laserdistance.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#LaserDistTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#LaserDistTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var snow24hTable = $('#Snow24hTable').DataTable({
-        ajax: '/api/extra/snow24h.json'
+        ajax: {
+            url: '/api/extra/snow24h.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#Snow24hTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#Snow24hTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     var snowSeasonTable = $('#SnowSeasonTable').DataTable({
-        ajax: '/api/extra/snowseason.json'
+        ajax: {
+            url: '/api/extra/snowseason.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#SnowSeasonTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#SnowSeasonTableBlock').hide();
+                    return [];
+                }
+            }
+        }
     });
 
     setInterval(function () {
-        tempTable.ajax.url('/api/extra/temp.json').load();
-        humTable.ajax.url('/api/extra/hum.json').load();
-        dewTable.ajax.url('/api/extra/dew.json').load();
-        soiltempTable.ajax.url('/api/extra/soiltemp.json').load();
-        soilmoistureTable.ajax.url('/api/extra/soilmoisture.json').load();
-        leafTable.ajax.url('/api/extra/leaf8.json').load();
-        airqualTable.ajax.url('/api/extra/airqual.json').load();
-        co2Table.ajax.url('/api/extra/co2sensor.json').load();
-        lightningTable.ajax.url('/api/extra/lightning.json').load();
-        userTempTable.ajax.url('/api/extra/usertemp.json').load();
-        laserDepthTable.ajax.url('/api/extra/laserdepth.json').load();
-        laserDistTable.ajax.url('/api/extra/laserdistance.json').load();
-        snow24hTable.ajax.url('/api/extra/snow24h.json').load();
-        snowSeasonTable.ajax.url('/api/extra/snowseason.json').load();
+        tempTable.ajax.reload();
+        humTable.ajax.reload();
+        dewTable.ajax.reload();
+        soiltempTable.ajax.reload();
+        soilmoistureTable.ajax.reload();
+        leafTable.ajax.reload();
+        airqualTable.ajax.reload();
+        co2Table.ajax.reload();
+        lightningTable.ajax.reload();
+        bgtTable.ajax.reload();
+        userTempTable.ajax.reload();
+        laserDepthTable.ajax.reload();
+        laserDistTable.ajax.reload();
+        snow24hTable.ajax.reload();
+        snowSeasonTable.ajax.reload();
     }, 10000);
 
 });

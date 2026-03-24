@@ -19,12 +19,13 @@ $( function () {
 			dataType: 'text'
 		})
 		.done(function (response) {
-			$('#dayFileStatus').html( prompt + response)
+			$('#dayFileStatus').html( prompt + response);
+			timeOut( ' dayFileStatus' );
 		})
 		.fail(function (jqXHR, response) {
 			$('#dayFileStatus').html( prompt + response)
 		});
-		timeOut( 'dayFileStatus' );
+//		timeOut( 'dayFileStatus' );
 	});
 
 	//	Start FTP/Copy process
@@ -32,16 +33,17 @@ $( function () {
 		$('#ftpStatus').text('');
 		$.post(
 			"/api/utils/ftpnow.json",
-			'{"dailygraphs":' + $('#dailygraphs').prop('checked') +
-				',"noaa":' + $('#noaa').prop('checked') +
-				',"graphs":' + $('#graphs').prop('checked') + '}' +
-				',"logfiles":' + $('#logfiles').prop('checked') + '}',
+            '{"dailygraphs":' + $('#dailygraphs').prop('checked') +
+            	',"noaa":' + $('#noaa').prop('checked') +
+            	',"graphs":' + $('#graphs').prop('checked') +
+                ',"logfiles":' + $('#logfiles').prop('checked') + '}',
 		).done(function (response) {
 			$('#ftpStatus').html( response);
+			timeOut( 'ftpStatus' );
 		}).fail(function (jqXHR, response) {
 			$('#ftpStatus').html( response);
 		});
-		timeOut( 'ftpStatus' );
+//		timeOut( 'ftpStatus' );
 	});
 });
 

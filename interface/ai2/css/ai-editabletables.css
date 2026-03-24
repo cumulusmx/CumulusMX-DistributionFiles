@@ -11,18 +11,19 @@
 
 input[type="text"] {
 	background-color: var(--gradient-up);
-	border: none;
+	background: var(--color0);
+	/*border: none;*/
 	color: var(--color9);
 	/*font-size: 14px;*/
 	max-width:8em;
-	padding: 0.5em 1em;
-	border-radius: 0.5em;
+	padding: 0.3em 1em!important;
+	border-radius: 0.75em;
 	text-align: center;
 	margin-left:5px;
 }
 
 input[type="search"] { 
-	background:var(--gradient-up)!important;
+	background:var(--color9)!important;
 	color: var(--color1)!important; 
 	margin-left:2em!important;
 	border-radius:1em!important;
@@ -31,9 +32,10 @@ input[type="search"] {
 }
 
 #dateFrom, #dateTo, #loadBtn {
-	background-color: var(--gradient-up);
+	background-color: var(--color0);
 	color: var(--color1)!important;
 	border-radius: 1em;
+	border: thin solid var(--color5);
 	padding:0.4em;
 }
 
@@ -52,9 +54,14 @@ input[type="search"] {
 .dt-paging {text-align:center; margin-bottom:0.5vh;}
 
 .dt-paging .dt-paging-button {
-	background : var(--gradient-up)!important;
-	margin:0.1vh;
+	background : var(--color0)!important;
+	margin:0.1vh 0.5vw;
 	border-radius:1em!important;
+	padding: .3em 1em!important;
+}
+
+.dt-paging .dt-paging-button:hover {
+	background: var(--gradient-down)!important;
 }
 
 .dt-paging .dt-paging-button.first,
@@ -62,19 +69,20 @@ input[type="search"] {
 .dt-paging .dt-paging-button.previous,
 .dt-paging .dt-paging-button.last { 
 	background:var(--color8)!important;
-	/*border:thin solid var(--color7);*/
 }
 
 .dt-buttons>.dt-button {
-	background:var(--gradient-up)!important;
+	background:var(--color0)!important;
 	border:thin solid var(--color5)!important;
 	border-radius: 1em!important;
-	padding:0.4em 1em!important;
+	padding:0.3em 1em!important;
 }
+.dt-buttons>.dt-button:hover { background: var(--gradient-down)!important;}
 
-.dt-paging .dt-paging-button.current {background:var(--gradient-down)!important;}
+.dt-paging .dt-paging-button.current {background:var(--color7)!important;}
 
-#datalog tbody>tr.selected {mix-blend-mode: normal!important;}
+#datalog tbody>tr.selected,
+#recent tbody>tr.selected {mix-blend-mode: normal!important;}
 
 .dtfc-fixed-start { background-color: var(--color8)!important; z-index:0!important;}
 .dtfc-fixed-start:nth-of-type(3) { border-right:thin solid var(--color5); }
@@ -109,7 +117,10 @@ thead tr {background: var(--color6);}
 .modal-header {
 	background: var(--color5);
 	border-radius: 1em 1em 0 0;
-	border-bottom:3px solid var(--color1);}
+	border-bottom:3px solid var(--color1);
+	padding: .7vh 1vw;
+}
+	
 
 .modal-header h4 {
 	/*margin: 1em!important;*/
@@ -163,7 +174,7 @@ thead tr {background: var(--color6);}
 
 .modal-body div.form-group { margin:0;padding:0;}
 
-.modal-footer {min-height: 2em;border-radius: 0 0 1em 1em!important; background:var(--color5)}
+.modal-footer {min-height: 1em;border-radius: 0 0 1em 1em!important; background:var(--color5); padding: .5vh 1vw!important;}
 
 .modal-footer button { border-radius: 2em!important; padding: 0.2em 2em; }
 .modal-footer .btn-primary {
@@ -184,9 +195,15 @@ td.dataTables_empty { text-align: left!important;}
 
 #datalog tbody>tr.selected { mix-blend-mode: multiply; }
 #datalog thead th {vertical-align: bottom;}
-#datalog tbody tr {background-color: var(--add5)!important; color: var(--sub5)!important;}
-#datalog tbody tr:hover { background-color: var(--add3)!important; font-weight:600;}
+#datalog tbody tr {color: var(--color1)!important;}
+#datalog tbody tr:hover,
+#recent tbody tr:hover { background: var(--gradient-databar)!important; font-weight:500;}
 
-#datalog_paginate { color: var(--sub3)!important; white-space: nowrap;}
-#datalog_paginate .w3-btn {border: 1px solid var(--theme);margin: 0 0.5%;}
-#datalog_paginate .paginate_input {background-color: var(--add3);color: var(--sub3);}
+#datalog_paginate { color: var(--color0)!important; white-space: nowrap;}
+/*#datalog_paginate .w3-button {border: thin solid var(--color5);margin: 0 0.5%;}*/
+#datalog_paginate .paginate_input {background-color: var(--color7);color: var(--color3);}
+
+table.dataTable>tbody>tr.selected>* {
+	box-shadow: inset 0 0 0 99px rgba(var(--baseR), var(--baseG), var(--baseB), 0.5);
+	color: var(--color9);
+}

@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 19:06:01
+// Last modified: 2026/01/16 15:58:17
 
 let StashedStationId;
 let accessMode;
@@ -415,10 +415,12 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
+        if (sheet.href.includes('alpaca')) {
+            const rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                    return rule;
+                }
             }
         }
     }
@@ -426,7 +428,7 @@ function getCSSRule(search) {
 }
 
 function onAccessChange(that, val) {
-    let mode = val == null ? that.getValue() : val;
+    const mode = val == null ? that.getValue() : val;
     if (mode == accessMode) {
         return;
     }
@@ -440,8 +442,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.removeProperty('display');
-        expanded.style.removeProperty('display');
+        expandable.style.setProperty('display','');
+        expanded.style.setProperty('display','');
         removeButtons();
     }
 }
@@ -459,41 +461,13 @@ function setDavisStationTitle(that, val) {
     }
 }
 
-let allStations = {
-    '{{SELECT_STATION_TYPE}}': -1,
-    '{{STN_SIMULATED}}': 17,
-    'Vantage Pro': 0,
-    'Vantage Pro2/Vue': 1,
-    'WeatherLink Live': 11,
-    'WeatherLink Cloud (WLL/WLC)': 19,
-    'WeatherLink Cloud (VP2)': 20,
-    '{{STN_ECO_BINARY}}': 12,
-    'Ecowitt.net Cloud': 18,
-    'HTTP Local API': 22,
-    'HTTP (Ecowitt)': 14,
-    'HTTP (Wunderground)': 13,
-    'HTTP (Ambient)': 15,
-    'Tempest': 16,
-    '{{STN_JSON_DATA}}': 21,
-    'Fine Offset': 5,
-    '{{STN_FO_SOLAR}}': 7,
-    '{{STN_EW_FILE}}': 4,
-    'Instromet': 10,
-    'LaCrosse WS2300': 6,
-    'WMR100': 8,
-    'WMR200': 9,
-    'WM-918': 3,
-    'WMR-928': 2
-};
-
-
 let davisStations = {'{{SELECT_STATION_TYPE}}': -1, 'Vantage Pro': 0, 'Vantage Pro 2': 1, 'WeatherLink Live': 11, 'WeatherLink Cloud (WLL/WLC)': 19,'WeatherLink Cloud (VP2/Vue)': 20};
 let ewStations = {'{{SELECT_STATION_TYPE}}': -1, 'FineOffset': 5, '{{STN_FO_SOLAR}}': 7, '{{STN_EW_FILE}}': 4};
 let oregonStations = {'{{SELECT_STATION_TYPE}}': -1, 'WMR-928': 2, 'WMR-918': 3};
 let lacrosseStations = {'WS2300': 6};
 let oregonUsbStations = {'{{SELECT_STATION_TYPE}}': -1 , 'WMR200': 9, 'WMR100': 8};
 let instrometStations = {'Instromet': 10};
-let ecowittStations = {'{{SELECT_STATION_TYPE}}': -1, 'HTTP Local API': 22, '{{STN_ECO_BINARY}}': 12, 'HTTP (Ecowitt)': 14, 'Ecowitt.net Cloud': 18};
+let ecowittStations = {'{{SELECT_STATION_TYPE}}': -1, 'HTTP Local API (Recommended)': 22, '{{STN_ECO_BINARY}}': 12, 'HTTP (Ecowitt)': 14, 'Ecowitt.net Cloud': 18};
 let httpStations = {'HTTP (WUnderground)': 13};
 let ambientStations = {'HTTP (Ambient)': 15};
 let weatherflowStations = {'Tempest': 16};

@@ -1,5 +1,5 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: dashboard.js        	Ver: ai2-1.0
+    Script: dashboard.js            | Ver: 5.0.0
     Author: M Crossley & N Thomas
     Last Edit (MC): 2025/04/24 11:27:47
     Last Edit (NT): 2025/05/05
@@ -17,7 +17,7 @@ let alarmState = {};
 
 let playList = [];
 
-$(document).ready(function () {
+$().ready(function () {
 
     let lastUpdateTimer, ws;
 
@@ -39,6 +39,14 @@ $(document).ready(function () {
             }
         }
     })
+
+    if(! cmxConfig.ShowAlarms ) {
+        $('#AlarmsPanel').addClass('w3-hide');
+        $('#Alarms').text('{{SHOW}} {{ALARM}}');
+    } else {
+        $('#AlarmsPanel').removeClass('w3-hide');
+        $('#Alarms').text('{{HIDE}} {{ALARM}}');
+    }
 
     function playSound() {
         if (playList.length) {
@@ -182,7 +190,7 @@ $(document).ready(function () {
                         alarmState[alarm.id] = true;
 
                         // set the indicator
-                        $(alarmtag).removeClass('ax-led-off').addClass('ax-led-on');
+                        $(alarmtag).addClass('ows-led-on');
 
                         // make a sound?
                         if (alarmSettings[alarm.id].SoundEnabled) {
@@ -203,11 +211,17 @@ $(document).ready(function () {
                         // upgrade?
                         if (alarm.Id == 'AlarmUpgrade') {
                             $(alarmtag).parent().wrap('<a href="https://cumulus.hosiene.co.uk/viewtopic.php?f=40&t=17887&start=9999#bottom" target="_blank"></a>');
+                        } else {
+                            $(alarmtag).on("click", function () {
+                                log("User clicked: " + $(this)[0].id);
+                                clearAlarm($(this)[0].id);
+                            });
                         }
                    } else if (!alarm.triggered && alarmState[alarm.id] == true) {
                         log(alarm.id + ' Cleared');
                         alarmState[alarm.id] = false;
-                        $(alarmtag).removeClass('ax-led-on')/*.addClass('ax-led-off')*/;
+                        $(alarmtag).removeClass('ows-led-on')/*.addClass('ax-led-off')*/;
+                        $(alarmtag).prop("onClick", null).off('click');
                     }
                 });
             } else {
@@ -248,11 +262,11 @@ $(document).ready(function () {
 
         trends = Number(data.RainRate.replace(',','.'));
         if( trends > 0 ) {
-            if( trends < CMXConfig.RainRate.low && $('#RainRateImg').attr('src') != 'img/rain1.png') {
+            if( trends < cmxConfig.RainRate.Low && $('#RainRateImg').attr('src') != 'img/rain1.png') {
                 $('#RainRateImg').attr('src', 'img/rain1.png');
-            } else if ( trends < CMXConfig.RainRate.medium && $('#RainRateImg').attr('src') != 'img/rain2.png') {
+            } else if ( trends < cmxConfig.RainRate.Medium && $('#RainRateImg').attr('src') != 'img/rain2.png') {
                 $('#RainRateImg').attr('src', 'img/rain2.png');
-            } else if ( trends >= CMXConfig.RainRate.medium && $('#RainRateImg').attr('src') != 'img/rain3.png') {
+            } else if ( trends >= cmxConfig.RainRate.Medium && $('#RainRateImg').attr('src') != 'img/rain3.png') {
                 $('#RainRateImg').attr('src', 'img/rain3.png');
             }
         } else {
@@ -378,6 +392,26 @@ $(document).ready(function () {
         });
     }
 
+    function clearAlarm(id) {
+        $.ajax({
+            url: '/api/utils/clearalarm.txt',
+            type: 'POST',
+            data: id,
+            contentType: 'plain/text; charset=UTF-8'
+        })
+        .done(function(result) {
+            if (result == "Cleared") {
+                log(id + ' Cleared');
+                alarmState[id] = false;
+                let alarmtag = '#' + id;
+                $(alarmtag).removeClass('ows-led-on');
+                $(alarmtag).prop("onclick", null).off("click");
+            } else {
+                log(id + ' error: ' + result);
+            }
+        });
+    }
+
     // Get the alarm settings - only do this on page load
     $.ajax({
         url: '/api/info/alarms.json',
@@ -395,9 +429,9 @@ $(document).ready(function () {
             alarmState[alarmTag] = false;
 
             if(!alarm.Id.search('User')) {
-                $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDUserAlarm + '" id="' + alarmTag + '"></div>' + alarm.Name + '</div>');
+                $('#alarms').append('<div class="ledGrid"><div class="ows-led ' + cmxConfig.LEDs.User + '" id="' + alarmTag + '"></div><p>' + alarm.Name + '</p></div>');
             } else {
-                $('#alarms').append('<div><div class="ax-led ' + CMXConfig.LEDAlarm + '" id="' + alarmTag + '"></div>' + alarm.Name + '</div>');
+                $('#alarms').append('<div class="ledGrid"><div class="ows-led ' + cmxConfig.LEDs.Default + '" id="' + alarmTag + '"></div>' + alarm.Name + '</div>');
             }
 
             if (alarm.SoundEnabled) {
@@ -493,16 +527,42 @@ let getStation = function() {
         //dataType: 'json'
     })
     .done(function(result) {
+        //  Get enhanced almanac data
+        getAlmanac();
         switch( result.stationId){
             case '1':
             case '11':
                 //$('#Davis').removeClass('w3-hide');
                 DavisStats();
+                if( cmxConfig.ShowDavis ) {
+                    $('#DavisPanel').removeClass('w3-hide');
+                    $('#Davis').text('{{HIDE}} Davis');
+                } else {
+                    $('#DavisPanel').addClass('w3-hide');
+                    $('#Davis').text('{{SHOW}} Davis');
+                }
                 break;
             default:
                 $('#Davis').addClass('w3-hide');
                 $('#DavisPanel').addClass('w3-hide')
         }
+    })
+}
+
+let getAlmanac = function() {
+    $.ajax( {
+        url: '/api/tags/process.txt',
+        dataType: 'json',
+        type: 'POST',
+        data: AlmanacData
+    })
+    .done( function( data ){
+        $('#daylightlength').html(data.daylightlength);
+        $('#daylength').html(data.daylength);
+        $('#moonphase').html(data.moonphase);
+        $('#MoonPercentAbs').html(data.MoonPercentAbs);
+        $('#dawn').html(data.dawn);
+        $('#dusk').html( data.dusk);
     })
 }
 
@@ -546,6 +606,11 @@ let DavisStats = function() {
         setTimeout(DavisStats, 60000);
     });
 }
+const AlmanacData = '{' +
+'"daylightlength": "<#daylightlength>","daylength":"<#daylength>", ' +
+'"moonphase":"<#moonphase>", "MoonPercentAbs":"<#MoonPercentAbs>", ' +
+'"dawn":"<#dawn format=\"%h:mm tt\">","dusk":"<#dusk format=\"%h:MM tt\">"' +
+'}';
 
 const DavisData = '{' +
 '"DavisTotalPacketsReceived": <#DavisTotalPacketsReceived>, ' +

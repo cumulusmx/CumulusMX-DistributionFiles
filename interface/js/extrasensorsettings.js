@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 11:57:21
+// Last modified: 2026/01/16 16:03:16
 
 let accessMode;
 let stashedAirLinkIn, stashedAirLinkOut, stashedExtra;
@@ -41,6 +41,10 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
+                                    form.getControlByPath('laser/sensor1/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor2/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor3/reset').setValue(false);
+                                    form.getControlByPath('laser/sensor4/reset').setValue(false);
                                     alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
@@ -114,6 +118,40 @@ $(document).ready(function () {
                             }
                         }
                     }
+                },
+                "laser": {
+                    fields: {
+                        "primary": {
+                            "validator": function(callback) {
+                                let form = $('form').alpaca('get');
+                                let primary = this.getValue();
+                                let ok = false;
+                                let enabled = false;
+                                for (let i = 1; i <=4; i++) {
+                                    let snow = form.getControlByPath('laser/sensor' + i + '/snow').getValue();
+                                    if (snow) {
+                                        enabled = true;
+                                        if (primary == i) {
+                                            ok = true;
+                                        }
+                                    }
+                                }
+                                if (!ok && primary == 0 && !enabled) {
+                                    ok = true;
+                                }
+                                if (!ok) {
+                                    callback({
+                                        'status': false,
+                                        'message': '{{PRIMARY_SNOW_SENSOR_MUST_BE_SET}}'
+                                    });
+                                    return;
+                                }
+                                callback({
+                                    'status': true
+                                });
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -133,7 +171,7 @@ $(document).ready(function () {
             // Get the extra sensor station type
             let stationIdObj = form.getControlByPath('httpSensors/extraStation');
 
-            // Set the inital value in the ecowitt subsection
+            // Set the initial value in the Ecowitt subsection
             form.getControlByPath('httpSensors/ecowitt/stationid').setValue(stationIdObj.getValue());
 
             // On changing the station type, propagate down to sub-sections
@@ -158,6 +196,19 @@ $(document).ready(function () {
             stashedAirLinkIn = form.getControlByPath('airLink/indoor/enabled').getValue();
             stashedAirLinkOut = form.getControlByPath('airLink/outdoor/enabled').getValue();
             stashedExtra = form.getControlByPath('httpSensors/extraStation').getValue();
+
+            form.getControlByPath('laser/sensor1/snow').on('change', function () {
+                form.getControlByPath('laser/primary').refreshValidationState(true);
+            });
+            form.getControlByPath('laser/sensor2/snow').on('change', function () {
+                form.getControlByPath('laser/primary').refreshValidationState(true);
+            });
+            form.getControlByPath('laser/sensor3/snow').on('change', function () {
+                form.getControlByPath('laser/primary').refreshValidationState(true);
+            });
+            form.getControlByPath('laser/sensor4/snow').on('change', function () {
+                form.getControlByPath('laser/primary').refreshValidationState(true);
+            });
         }
     });
 });
@@ -210,10 +261,12 @@ function setCollapsed() {
 
 function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        let rules = sheet.cssRules || sheet.rules;
-        for (let rule of rules) {
-            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
-                return rule;
+        if (sheet.href.includes('alpaca')) {
+            const rules = sheet.cssRules || sheet.rules;
+            for (let rule of rules) {
+                if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                    return rule;
+                }
             }
         }
     }
@@ -235,8 +288,8 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','none');
         addButtons();
     } else {
-        expandable.style.removeProperty('display');
-        expanded.style.removeProperty('display');
+        expandable.style.setProperty('display','');
+        expanded.style.setProperty('display','');
         removeButtons();
     }
 }

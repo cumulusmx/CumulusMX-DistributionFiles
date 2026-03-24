@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2025/09/03 11:04:43",
+    "version": "Last Modified: 2026/01/08 11:15:47",
     "fields": {
         "accessible": {
             "rightLabel": "{{ENABLE_ACCESSIBILITY}}",
@@ -128,6 +128,11 @@
                     "rightLabel": "{{LOG_SPIKE}}",
                     "helper": "{{LOG_SPIKE_HELP1}}"
                 },
+                "snowlogging": {
+                    "label": "{{SNOW}}:",
+                    "rightLabel": "{{LOG_SNOW}}",
+                    "helper": "{{LOG_SNOW_HELP1}}"
+                },
                 "errorlistlevel": {
                     "label": "{{DASHBOARD_ERROR_LOG_LEVEL}}",
                     "type": "select",
@@ -138,6 +143,30 @@
                     ],
                     "removeDefaultNone": true,
                     "helper": "{{DASHBOARD_ERROR_LOG_LEVEL_HELP1}}"
+                }
+            }
+        },
+        "paths": {
+            "collapsible": true,
+            "collapsed": true,
+            "fields": {
+                "datapath": {
+                    "helpers": [
+                        "{{PATH_DATA_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
+                },
+                "backuppath": {
+                    "helpers": [
+                        "{{PATH_BACKUP_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
+                },
+                "reportspath": {
+                    "helpers": [
+                        "{{PATH_REPORTS_HELP1}}",
+                        "{{PATH_HELP2}}"
+                    ]
                 }
             }
         },

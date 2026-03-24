@@ -1,4 +1,4 @@
-// Last modified: 2025/09/16 11:40:25
+// Last modified: 2025/12/16 23:23:54
 
 var activeDates;
 var defaultSnowHour;
@@ -185,10 +185,10 @@ function applyEntry() {
         $('#status').text('{{ERROR_SELECT_DATE}}');
     } else {
         var body = '{"Date":"' + getDateString(date) + '",' +
-            '"Time":"' + $('#inputTime').val() + '",' +
+            '"Time":"' + ($('#inputTime').val() != '' ? $('#inputTime').val() : defaultSnowHour) + '",' +
             '"Entry":"' + $('#inputComment').val() + '",' +
-            '"Snow24h":' + ($('#inputSnow24h').val() ? $('#inputSnow24h').val() : 'null') + ',' +
-            '"SnowDepth":' + ($('#inputSnowDepth').val() ? $('#inputSnowDepth').val() : 'null') + ',' +
+            '"Snow24h":' + ($('#inputSnow24h').val() ? parseFloat($('#inputSnow24h').val()).toString() : 'null') + ',' +
+            '"SnowDepth":' + ($('#inputSnowDepth').val() ? parseFloat($('#inputSnowDepth').val()).toString() : 'null') + ',' +
             '"Thunder":' + $('#inputThunder').prop('checked') + ',' +
             '"Hail":' + $('#inputHail').prop('checked') + ',' +
             '"Fog":' + $('#inputFog').prop('checked') + ',' +

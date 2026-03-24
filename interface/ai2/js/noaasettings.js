@@ -1,8 +1,14 @@
-// Last modified: 2024/10/29 11:13:44
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: noaasettings.js      Ver: 1.0.0
+    Author: DNC Thomas           Jan 2026
+    Edited: 2026-01-16 13:25:55
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule()
+// Last modified: 2025/08/11 17:47:39
 
 let accessMode;
 
-$(document).ready(function() {
+$().ready(function() {
 
     $('form').alpaca({
         dataSource: '/api/settings/noaadata.json',
@@ -15,7 +21,7 @@ $(document).ready(function() {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -28,7 +34,7 @@ $(document).ready(function() {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -37,7 +43,7 @@ $(document).ready(function() {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -147,18 +153,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href != null && sheet.href.includes('alpaca')) {
-            let rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {

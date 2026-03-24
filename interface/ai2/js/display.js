@@ -1,15 +1,14 @@
-/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: display.js       	Ver: aiX-1.0
-    Author: M Crossley & N Thomas
-    Last Edit (MC): 2025/01/14 15:28:09
-    Last Edit (NT): 2025/03/21
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Role:   Data for configdisplay.html
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: display.js      Ver: 1.0.0
+    Author: DNC Thomas      Jan 2026
+    Edited: 2026-01-16 12:47:09
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule()
+//  Last modified: 2025/08/22 11:48:11
 
 let accessMode;
 
-$(document).ready(function () {
+$().ready(function () {
     $('form').alpaca({
         dataSource: '/api/settings/displayoptions.json',
         optionsSource: '/json/DisplayOptions.json',
@@ -21,7 +20,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -34,7 +33,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -43,7 +42,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -97,11 +96,10 @@ function addButtons() {
 
         let butt = $('<button type="button" data-toggle="collapse" data-target="' +
             $(span).attr('data-target') +
-            '" role="treeitem" aria-expanded="false" class="w3-btn ax-btn-gradient-up collapsed" style="flex:none;">' +
+            '" role="treeitem" aria-expanded="false" class="collapsed">' +
             $(span).text() +
             '</button>');
         $(span).remove();
-        $(this).addClass('ax-btnBar')
         $(this).prepend(butt);
     });
 }
@@ -118,7 +116,6 @@ function removeButtons() {
             $(butt).text() +
             '</span>');
         $(butt).remove();
-        $(this).removeClass('ax-btnBar')
         $(this).prepend(span);
     });
 }
@@ -137,18 +134,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href != null && sheet.href.includes('alpaca')) {
-            let rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {
@@ -177,7 +188,7 @@ function setSensorLabels(form, path) {
     form.getControlByPath(path)
         .children
         .forEach(sensor => {
-            sensor.options.label = 'Sensor ' + i++;
+            sensor.options.label = '{{SENSOR}} ' + i++;
             sensor.refresh()
         });
 }

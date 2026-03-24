@@ -23,9 +23,12 @@
 .btn-default,
 .alpaca-form-button { 
 	border-radius:1em!important;
-	padding:0.3em 2em!important;
-	background: var(--gradient-up);
+	padding:0.2em 2em!important;
+	font-size: 90%;
+	background: var(--color0);
+	border: thin solid var(--color5);
 }
+.alpaca-form-button:hover { background: var(--gradient-down);}
 
 .alpaca-field > legend > .collapsed::before {
 	content: '\25B8';
@@ -83,8 +86,8 @@ tbody td {border-color: var(--color7)!important;}
 
 #filesForm,
 #alarmsForm ,
-#intvlForm,
-#dailyForm{
+#intvlform,
+#dailyform{
 	thead tr {background-color:var(--color7);}
 	thead th {border-color: var(--color7);}
 	tbody tr {background: var(--color9);}
@@ -101,5 +104,5 @@ tbody td {border-color: var(--color7)!important;}
 	tbody td:last-of-type{ width:9.5rem;}
 }
 
-#intvlForm td:last-of-type { max-width:16rem!important; }
-#dailyForm td:last-of-type { max-width:14rem!important; }
+#intvlform td:last-of-type { max-width:16rem!important; }
+#dailyform td:last-of-type { max-width:14rem!important; }

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/16 17:26:47",
+	"version": "Last Modified: 2026/01/19 17:12:02",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -153,6 +153,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useLeafWet": {
 							"type": "boolean"
 						},
@@ -175,6 +178,9 @@
 							"type": "boolean"
 						},
 						"useCamera": {
+							"type": "boolean"
+						},
+						"useBGT": {
 							"type": "boolean"
 						},
 						"setcustom": {
@@ -285,6 +291,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useAQI": {
 							"type": "boolean"
 						},
@@ -371,6 +380,9 @@
 						"useSoilMoist": {
 							"type": "boolean"
 						},
+						"useSoilTemp": {
+							"type": "boolean"
+						},
 						"useLeafWet": {
 							"type": "boolean"
 						},
@@ -383,7 +395,13 @@
 						"useCo2": {
 							"type": "boolean"
 						},
+						"useLightning": {
+							"type": "boolean"
+						},
 						"useLaserDist": {
+							"type": "boolean"
+						},
+						"useBGT": {
 							"type": "boolean"
 						}
 					}
@@ -409,6 +427,10 @@
 			"title": "{{LASER_SENSOR_OPTIONS}}",
 			"type": "object",
 			"properties": {
+				"primary": {
+					"type": "number",
+					"enum": [0, 1, 2, 3, 4]
+				},
 				"sensor1": {
 					"title": "{{SENSOR}} 1",
 					"type": "object",
@@ -416,7 +438,16 @@
 						"depth": {
 							"type": "number",
 							"minimum": -1
+						},
+						"snow": {
+							"type": "boolean"
+						},
+						"reset": {
+							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor2": {
@@ -426,7 +457,16 @@
 						"depth": {
 							"type": "number",
 							"minimum": -1
+						},
+						"snow": {
+							"type": "boolean"
+						},
+						"reset": {
+							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor3": {
@@ -436,7 +476,16 @@
 						"depth": {
 							"type": "number",
 							"minimum": -1
+						},
+						"snow": {
+							"type": "boolean"
+						},
+						"reset": {
+							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				},
 				"sensor4": {
@@ -446,7 +495,16 @@
 						"depth": {
 							"type": "number",
 							"minimum": -1
+						},
+						"snow": {
+							"type": "boolean"
+						},
+						"reset": {
+							"type": "boolean"
 						}
+					},
+					"dependencies": {
+						"reset": ["snow"]
 					}
 				}
 			}

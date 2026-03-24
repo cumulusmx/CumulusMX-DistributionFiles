@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/09/16 17:42:53",
+    "_LAST_MODIFIED": "Last modified: 2025/12/30 22:57:31",
     "FORECAST_NOT_AVAIL_LABEL": "Not available",
     "FORECAST_NOT_AVAIL_HELP1": "Text to display whenever a forecast is not available",
     "FORECAST_EXCEPTIONAL_LABEL": "Exceptional",
@@ -11,9 +11,9 @@
     "MOON_FIRST_QUARTER": "First Quarter",
     "MOON_WAXING_GIBBOUS": "Waxing Gibbous",
     "MOON_FULL": "Full Moon",
-    "MOON_WANING_GIBBOUS": "Waninig Gibbous",
+    "MOON_WANING_GIBBOUS": "Waning Gibbous",
     "MOON_LAST_QUARTER": "Last Quarter",
-    "MOON_WANING_CRESCENT": "Waninig Crescent",
+    "MOON_WANING_CRESCENT": "Waning Crescent",
     "TREND_RISING_RAPIDLY": "Rising very rapidly",
     "TREND_RISING_QUICKLY": "Rising quickly",
     "TREND_RISING": "Rising",

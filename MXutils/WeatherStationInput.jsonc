@@ -1,5 +1,5 @@
 /*
-    Last Updated: 2025/09/02 00:12:00
+    Last Updated: 2026/01/16 21:37:11
 
     Proposed JSON Station format for feeding data into Cumulus MX
     Input can via one of the following:
@@ -28,7 +28,8 @@
     "temperature": {
         "outdoor": 99.9,            // float
         "indoor": 99.9,             // float
-        "dewpoint": 99.9            // float
+        "dewpoint": 99.9,           // float
+        "blackglobe": 99.9          // float
     },
     "humidity": {
         "outdoor": 99,              // int

@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/09/03 11:16:19",
+    "_LAST_MODIFIED": "Last modified: 2025/09/28 14:10:28",
     "STARTUP_OPTIONS": "Start-up Options",
     "STARTUP_DELAY": "Start-up delay (secs)",
     "MAX_UPTIME": "Max system uptime to apply the start-up delay",
@@ -15,6 +15,10 @@
     "SHUTDOWN_TASK_EXE": "Shutdown task executable",
     "SHUTDOWN_TASK_PARAMS": "Shutdown task parameters",
     "LOGGING_OPTIONS": "Logging Options",
+    "PATH_OPTIONS": "Path Options",
+    "PATH_DATA": "Data Path",
+    "PATH_BACKUP": "Backup Path",
+    "PATH_REPORTS": "Reports Path",
     "GENERAL_OPTIONS": "General Options",
     "CULTURE_OVERRIDES": "Culture Overrides",
     "SECURITY_SETTINGS": "Security Settings"

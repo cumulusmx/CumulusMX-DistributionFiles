@@ -1,15 +1,14 @@
-/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Script: mysqlsettings.js        	Ver: aiX-1.0
-    Author: M Crossley & N Thomas
-    Last Edit (MC): 2024/10/29 11:11:17
-    Last Edit (NT): 2025/03/21 
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Role:   Data for mysqlsettings.html
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Script: mysqlsettings.js      Ver: 1.0.0
+    Author: DNC Thomas            Jan 2026
+    Edited: 2026-01-16 13:08:45
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//  Modified getCSSRule()
+// Last modified: 2025/08/22 12:08:09
 
 let accessMode;
 
-$(document).ready(function () {
+$().ready(function () {
     $('form').alpaca({
         dataSource: '/api/settings/mysqldata.json',
         optionsSource: '/json/MySqlOptions.json',
@@ -21,7 +20,7 @@ $(document).ready(function () {
                 buttons: {
                     // don't use the Submit button because that is disabled on validation errors
                     validate: {
-                        title: 'Save Settings',
+                        title: '{{SAVE_SETTINGS}}',
                         click: function() {
                             this.refreshValidationState(true);
                             if (this.isValid(true)) {
@@ -34,7 +33,7 @@ $(document).ready(function () {
                                     dataType: 'text'
                                 })
                                 .done(function () {
-                                    alert('Settings updated');
+                                    alert('{{SETTINGS_UPDATED}}');
                                 })
                                 .fail(function (jqXHR, textStatus) {
                                     alert('Error: ' + jqXHR.status + '(' + textStatus + ') - ' + jqXHR.responseText);
@@ -43,7 +42,7 @@ $(document).ready(function () {
                                 let firstErr = $('form').find('.has-error:first')
                                 let path = $(firstErr).attr('data-alpaca-field-path');
                                 let msg = $(firstErr).children('.alpaca-message').text();
-                                alert('Invalid value in the form: ' + path + msg);
+                                alert('{{INVALID_VALUE_IN_FORM}}: ' + path + msg);
                                 if ($(firstErr).is(':visible')) {
                                     let entry = $(firstErr).focus();
                                     $(window).scrollTop($(entry).position().top);
@@ -67,11 +66,20 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             //accessObj.on('change', function() {onAccessChange(this)});
+
+            // Set password fields to 'reveal' when they have focus
+            $(':password')
+            .focusout(function() {
+                $(this).attr('type', 'password');
+            })
+            .focusin(function() {
+                $(this).attr('type', 'text');
+            });
         }
     });
 
     $('#createmonthly').click(function () {
-        $('#results').text('Attempting create...');
+        $('#results').text('{{ATTEMPTING_CREATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/createmonthlysql.json',
@@ -85,7 +93,7 @@ $(document).ready(function () {
     });
 
     $('#createdayfile').click(function () {
-        $('#results').text('Attempting create...');
+        $('#results').text('{{ATTEMPTING_CREATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/createdayfilesql.json',
@@ -99,7 +107,7 @@ $(document).ready(function () {
     });
 
     $('#createrealtime').click(function () {
-        $('#results').text('Attempting create...');
+        $('#results').text('{{ATTEMPTING_CREATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/createrealtimesql.json'
@@ -114,7 +122,7 @@ $(document).ready(function () {
 
 
     $('#updatemonthly').click(function () {
-        $('#results').text('Attempting update...');
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/updatemonthlysql.json',
@@ -128,7 +136,7 @@ $(document).ready(function () {
     });
 
     $('#updatedayfile').click(function () {
-        $('#results').text('Attempting update...');
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/updatedayfilesql.json',
@@ -142,7 +150,7 @@ $(document).ready(function () {
     });
 
     $('#updaterealtime').click(function () {
-        $('#results').text('Attempting update...');
+        $('#results').text('{{ATTEMPTING_UPDATE}}');
         $.ajax({
             type: 'POST',
             url: '/api/setsettings/updaterealtimesql.json'
@@ -203,18 +211,32 @@ function setCollapsed() {
     });
 }
 
-function getCSSRule(search) {
+/*function getCSSRule(search) {
     for (let sheet of document.styleSheets) {
-        if (sheet.href != null && sheet.href.includes('alpaca')) {
-            let rules = sheet.cssRules || sheet.rules;
-            for (let rule of rules) {
-                if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
-                    return rule;
-                }
+        let rules = sheet.cssRules || sheet.rules;
+        for (let rule of rules) {
+            if (rule.selectorText && rule.selectorText.lastIndexOf(search) === 0) {
+                return rule;
             }
         }
     }
     return null;
+}*/
+
+function getCSSRule(search) {
+   	for (let sheet of document.styleSheets) {
+		if( sheet.href != null) {
+			if( sheet.href.includes('alpaca')) {
+				let rules = sheet.cssRules;// || sheet.rules;
+				for ( let rule of rules ){
+					if (rule.selectorText && rule.selectorText.lastIndexOf(search) >= 0) {
+						return rule;
+					}
+				}
+			}
+		}
+	}
+	return null;
 }
 
 function onAccessChange(that, val) {

@@ -1,0 +1,316 @@
+{
+    "$id": "https://github.com/cumulusmx/CumulusMX-DistributionFiles/tree/master/MXutils/WeatherStationInput.schema.json",
+    "description": "JSON Weather STation Data Schema",
+    "type": "object",
+    "required": ["lastupdated"],
+    "properties": {
+        "lastupdated": {
+            "type": "integer",
+            "description": "The timestamp of the last update from the weather station."
+        },
+        "units": {
+            "type": "object",
+            "description": "Units of measurement for various weather parameters. Required when sending data that can have multiple units.",
+            "properties": {
+                "temperature": {
+                    "type": "string",
+                    "enum": ["C", "F"],
+                    "description": "The unit of temperature measurement."
+                },
+                "windSpeed": {
+                    "type": "string",
+                    "enum": ["mph", "ms", "kph", "knots"],
+                    "description": "The unit of wind speed measurement."
+                },
+                "rainfall": {
+                    "type": "string",
+                    "enum": ["mm", "in"],
+                    "description": "The unit of precipitation measurement."
+                },
+                "pressure": {
+                    "type": "string",
+                    "enum": ["hPa", "kPa", "inHg"],
+                    "description": "The unit of atmospheric pressure measurement."
+                },
+                "soilmoisture": {
+                    "type": "string",
+                    "enum": ["cb", "%"],
+                    "description": "The unit of soil moisture measurement."
+                },
+                "laserdistance": {
+                    "type": "string",
+                    "enum": ["mm", "cm", "in"],
+                    "description": "The unit of laser distance measurement."
+                },
+                "lightning": {
+                    "type": "string",
+                    "enum": ["km", "miles"],
+                    "description": "The unit of lightning distance measurement."
+                }
+            },
+            "temperature": {
+                "type": "object",
+                "properties": {
+                    "outdoor": {
+                        "type": "decimal",
+                        "description": "Outdoor temperature reading."
+                    },
+                    "indoor": {
+                        "type": "decimal",
+                        "description": "Indoor temperature reading."
+                    },
+                    "dewpoint": {
+                        "type": "decimal",
+                        "description": "Dew point temperature reading."
+                    }
+                }
+            },
+            "humidity": {
+                "type": "object",
+                "properties": {
+                    "outdoor": {
+                        "type": "integer",
+                        "description": "Outdoor humidity reading."
+                    },
+                    "indoor": {
+                        "type": "integer",
+                        "description": "Indoor humidity reading."
+                    }
+                }
+            },
+            "wind": {
+                "type": "object",
+                "properties": {
+                    "speed": {
+                        "type": "decimal",
+                        "description": "Wind speed reading."
+                    },
+                    "gust10m": {
+                        "type": "decimal",
+                        "description": "Wind 10 minute gust speed reading."
+                    },
+                    "direction": {
+                        "type": "integer",
+                        "description": "Wind direction reading in degrees."
+                    }
+                }
+            },
+            "rain": {
+                "type": "object",
+                "properties": {
+                    "counter": {
+                        "type": "decimal",
+                        "description": "Total rain counter reading."
+                    },
+                    "year": {
+                        "type": "decimal",
+                        "description": "Rain accumulation for the year."
+                    },
+                    "rate": {
+                        "type": "decimal",
+                        "description": "Rain rate reading."
+                    }
+                }
+            },
+            "pressure": {
+                "type": "object",
+                "properties": {
+                    "absolute": {
+                        "type": "decimal",
+                        "description": "Absolute pressure reading."
+                    },
+                    "seaLevel": {
+                        "type": "decimal",
+                        "description": "Sea level pressure reading."
+                    }
+                }
+            },
+            "solar": {
+                "type": "object",
+                "properties": {
+                    "irradiation": {
+                        "type": "integer",
+                        "description": "Solar radiation reading."
+                    },
+                    "uv": {
+                        "type": "decimal",
+                        "description": "UV index reading."
+                    }
+                }
+            },
+            "extratemp": {
+                "type": "array",
+                "maxItems": 10,
+                "required": ["index"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Extra Temp (&hum) sensor number."
+                    },
+                    "temperature": {
+                        "type": "decimal",
+                        "description": "Temperature reading."
+                    },
+                    "humidity": {
+                        "type": "integer",
+                        "description": "Relative humidity reading. Optional."
+                    }
+                }
+            },
+            "usertemp": {
+                "type": "array",
+                "maxItems": 8,
+                "required": ["index", "temperature"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "User Temp sensor number."
+                    },
+                    "temperature": {
+                        "type": "decimal",
+                        "description": "Temperature reading."
+                    }
+                }
+            },
+            "soiltemp": {
+                "type": "array",
+                "maxItems": 16,
+                "required": ["index", "temperature"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Soil sensor number."
+                    },
+                    "temperature": {
+                        "type": "decimal",
+                        "description": "Soil temperature reading."
+                    }
+                }
+            },
+            "soilmoisture": {
+                "type": "array",
+                "maxItems": 16,
+                "required": ["index", "moisture"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Soil moisture sensor number."
+                    },
+                    "moisture": {
+                        "type": "integer",
+                        "description": "Soil moisture reading."
+                    }
+                }
+            },
+            "leafwetness": {
+                "type": "array",
+                "maxItems": 8,
+                "required": ["index", "wetness"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Leaf wetness sensor number."
+                    },
+                    "wetness": {
+                        "type": "integer",
+                        "description": "Leaf wetness reading."
+                    }
+                }
+            },
+            "airquality": {
+                "type": "array",
+                "maxItems": 4,
+                "required": ["index"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Air quality sensor number."
+                    },
+                    "pm2p5": {
+                        "type": "decimal",
+                        "description": "PM2.5 reading."
+                    },
+                    "pm10": {
+                        "type": "decimal",
+                        "description": "PM10 reading."
+                    },
+                    "pm2p5avg24h": {
+                        "type": "decimal",
+                        "description": "24-hour average PM2.5 reading."
+                    },
+                    "pm10avg24h": {
+                        "type": "decimal",
+                        "description": "24-hour average PM10 reading."
+                    }
+                }
+            },
+            "co2": {
+                "type": "object",
+                "required": ["co2"],
+                "properties": {
+                    "co2": {
+                        "type": "integer",
+                        "description": "CO2 concentration reading."
+                    },
+                    "co2_24h": {
+                        "type": "integer",
+                        "description": "24-hour average CO2 concentration reading."
+                    },
+                    "pm2p5": {
+                        "type": "decimal",
+                        "description": "PM2.5 reading."
+                    },
+                    "pm10": {
+                        "type": "decimal",
+                        "description": "PM10 reading."
+                    },
+                    "pm2p5avg24h": {
+                        "type": "decimal",
+                        "description": "24-hour average PM2.5 reading."
+                    },
+                    "pm10avg24h": {
+                        "type": "decimal",
+                        "description": "24-hour average PM10 reading."
+                    }
+                }
+            },
+            "laserdistance": {
+                "type": "array",
+                "maxItems": 4,
+                "required": ["index"],
+                "items": {
+                    "index": {
+                        "type": "integer",
+                        "description": "Air quality sensor number."
+                    },
+                    "range": {
+                        "type": "decimal",
+                        "description": "Laser distance reading."
+                    },
+                    "depth": {
+                        "type": "decimal",
+                        "description": "Calculated depth reading."
+                    }
+                }
+            },
+            "lightning": {
+                "type": "object",
+                "required": ["time", "distance", "strikes"],
+                "properties": {
+                    "time": {
+                        "type": "integer",
+                        "description": "Unix Timestamp of the last lightning strike detected."
+                    },
+                    "distance": {
+                        "type": "decimal",
+                        "description": "Distance to the nearest lightning strike."
+                    },
+                    "strikes": {
+                        "type": "integer",
+                        "description": "Number of lightning strikes detected."
+                    }
+                }
+            }
+        }
+    }
+}

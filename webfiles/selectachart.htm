@@ -1,6 +1,6 @@
 <!--
 	selectachart.htm	v:0.0.1		d:Feb 2021	Neil Thomas
-	Last modified: 2025/09/18 15:23:26
+	Last modified: 2025/11/19 10:39:57
 	Page: 1 main panel plus a sidebar
 -->
 <!DOCTYPE html>
@@ -27,13 +27,11 @@
 
 		<!--	Scripts	-->
 		<script src="js/setpagedata.js"></script>	<!--	Utility javascripts for all pages.	-->
-		<script src="https://code.highcharts.com/stock/12.3.0/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/12.3.0/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/export-data.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/accessibility.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/modules/boost.js"></script>
-		<script src="https://code.highcharts.com/12.3.0/themes/grid.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5/dist/chart.umd.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/luxon@3.7/build/global/luxon.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3/dist/chartjs-adapter-luxon.umd.min.js"></script>
 		<script src="js/selectachart.js"></script>
+		<script src="js/chartjsextras.js"></script>	<!--	Script needed to run charts	-->
 
 		<style>
 			#chartcontainer {
@@ -84,7 +82,21 @@
 				<div class="w3-col s12">	<!--	Column of first row	-->
 					<div class="w3-panel w3-card w3-theme-white">
 						<figure>
-							<div id="chartcontainer"></div>
+							<div id="chartcontainer" class="chart-wrap">
+								<div class="chart-buttons">
+									<div id="rangeButtons"></div>
+									<div>
+										<button id="btnPrint">Print</button>
+										<button id="btnFullscreen">Fullscreen</button>
+									</div>
+								</div>
+								<div id="mainChartContainer" class="mainChartContainer">
+									<canvas id="mainChart"></canvas>
+								</div>
+								<div id="navChartContainer" class="navChartContainer">
+									<canvas id="navChart"></canvas>
+								</div>
+							</div>
 						</figure>
 					</div>
 				</div>
@@ -96,30 +108,30 @@
 						<div class="at-flex-between" style="flex-wrap:wrap"> <!--	Main flex container: between forces content left & right -->
 							<div class="at-flex-justify" style="max-width:550px;flex-wrap:wrap;flex:2">	<!--	Left bar for selectors	-->
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data0" id="data0" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour0" id="colour0" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data0" id="data0" onchange="procDataSelect(this)" title="data selector 1"></select>
+									<select class="w3-select select-color" name="colour0" id="colour0" onchange="updateColour(this)" title="colour selector 1"></select>
 								</div>
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data1" id="data1" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour1" id="colour1" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data1" id="data1" onchange="procDataSelect(this)" title="data selector 2"></select>
+									<select class="w3-select select-color" name="colour1" id="colour1" onchange="updateColour(this)" title="colour selector 2"></select>
 								</div>
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data2" id="data2" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour2" id="colour2" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data2" id="data2" onchange="procDataSelect(this)" title="data selector 3"></select>
+									<select class="w3-select select-color" name="colour2" id="colour2" onchange="updateColour(this)" title="colour selector 3"></select>
 								</div>
 							</div>
 							<div class="at-flex-justify" style="max-width:550px;flex-wrap:wrap;flex:2"> <!--	Right bar for selectors	-->
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data3" id="data3" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour3" id="colour3" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data3" id="data3" onchange="procDataSelect(this)" title="data selector 4"></select>
+									<select class="w3-select select-color" name="colour3" id="colour3" onchange="updateColour(this)" title="colour selector 4"></select>
 								</div>
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data4" id="data4" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour4" id="colour4" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data4" id="data4" onchange="procDataSelect(this)" title="data selector 5"></select>
+									<select class="w3-select select-color" name="colour4" id="colour4" onchange="updateColour(this)" title="colour selector 5"></select>
 								</div>
 								<div class="" style="max-width:170px;min-height:2.5em;">
-									<select class="w3-select select-value" name="data5" id="data5" onchange="procDataSelect(this)"></select>
-									<select class="w3-select select-color" name="colour5" id="colour5" onchange="updateColour(this)"></select>
+									<select class="w3-select select-value" name="data5" id="data5" onchange="procDataSelect(this)" title="data selector 6"></select>
+									<select class="w3-select select-color" name="colour5" id="colour5" onchange="updateColour(this)" title="colour selector 6"></select>
 								</div>
 							</div>
 						</div>

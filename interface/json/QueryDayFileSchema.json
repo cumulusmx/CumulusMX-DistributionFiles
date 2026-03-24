@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2024/10/05 17:33:16",
+	"version": "Last Modified: 2025/11/22 11:32:32",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -41,17 +41,15 @@
 			"required": true
 		},
 		"function": {
-			"enum": [
-				"min",
-				"max",
-				"avg",
-				"sum",
-				"count"
-			],
+			"enum": ["min", "max", "avg", "sum", "count"],
 			"required": true
 		},
 		"where": {
-			"type": "string"
+			"default": ">",
+			"enum": [">", "<", ">=", "<=", "=", ""]
+		},
+		"value": {
+			"type": "number"
 		},
 		"startsel": {
 			"enum": [
@@ -102,6 +100,8 @@
 		"day": {
 			"type": "integer",
 			"minimum": 1,
+			"maximum": 31,
+			"default": 1,
 			"required": true
 		},
 		"countfunction": {
@@ -113,6 +113,7 @@
 	},
 	"dependencies": {
 		"where": ["function"],
+		"value": ["function", "where"],
 		"function": ["startsel"],
 		"start": ["startsel"],
 		"end": ["startsel"],

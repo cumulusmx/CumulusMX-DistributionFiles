@@ -1,4 +1,4 @@
-// Last modified: 2025/08/15 22:38:16
+// Last modified: 2026/01/16 21:03:20
 
 var myTable;
 var currMonth;
@@ -127,15 +127,16 @@ $(document).ready(function () {
 
         var columnDefs = [
             {
-                title: '{{LINE_#}}',
+                title: '{{LINE_NO}}',
                 readonly: true
             },
             {
-                title: '{{DATE_DDMMYY}}',
-                readonly: true
+                title: '{{DATE_DDMMYYHHMM}}',
+                readonly: true,
+                width: '100px'
             },
             {
-                title: '{{TIME}}',
+                title: '{{TIMESTAMP}}',
                 readonly: true
             },
             {title: '{{TEMPERATURE_SHORT}}', type: 'number', step: tempStep},
@@ -160,11 +161,13 @@ $(document).ready(function () {
             {title: '{{APPARENT_TEMP}}', type: 'number', step: tempStep},
             {title: '{{HIGH_SOLAR_RAD}}', type: 'number'},
             {title: '{{SUN_HOURS}}', type: 'number', step: 0.01},
-            {title: 'Wind bearing', type: 'number', min: 0, max: 360},
+            {title: '{{WIND_BEARING}}', type: 'number', min: 0, max: 360},
             {title: '{{RAIN_RG11}}', type: 'number', min: 0, step: rainStep},
             {title: '{{RAIN_SINCE_MIDNIGHT}}', type: 'number', min: 0, step: rainStep},
             {title: '{{FEELS_LIKE}}', type: 'number', step: tempStep},
-            {title: '{{HUMIDEX}}', type: 'number', step: tempStep}
+            {title: '{{HUMIDEX}}', type: 'number', step: tempStep},
+            {title: '{{BGT}}', type: 'number', step: tempStep},
+            {title: '{{WBGT}}', type: 'number', step: tempStep}
         ];
 
         myTable = $('#datalog').dataTable({
@@ -300,7 +303,7 @@ $(document).ready(function () {
             data = data.slice(0, -1);
             data += ']]';
 
-            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":"false","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":false,"data": ' + data + '}';
             return response;
         }
 
@@ -311,7 +314,7 @@ $(document).ready(function () {
                 lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
                 // don't include the first element = line number
-                data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
             }
             // remove trailing commas
             lines = lines.slice(0, -1);
@@ -319,9 +322,11 @@ $(document).ready(function () {
             lines += ']';
             data += ']';
 
-            response = '{"action":"' + action + '","lines":' + lines + ',"extra":"false","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":' + lines + ',"extra":false,"data": ' + data + '}';
             return response;
         }
+
+        load();
     });
 });
 

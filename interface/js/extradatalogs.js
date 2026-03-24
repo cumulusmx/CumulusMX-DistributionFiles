@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 11:55:23
+// Last modified: 2026/01/13 14:25:44
 
 var myTable;
 var currMonth;
@@ -130,15 +130,16 @@ $(document).ready(function () {
 
         var columnDefs = [
             {
-                title: "{{LINE_#}}",
+                title: "{{LINE_NO}}",
                 readonly: true
             },
             {
-                title: "{{DATE_DDMMYY}}",
+                title: "{{DATE_DDMMYYHHMM}}",
+                width: '100px',
                 readonly: true
             },
             {
-                title: "{{TIME}}",
+                title: "{{TIMESTAMP}}",
                 readonly: true
             },
             {title:"{{TEMPERATURE_SHORT}} 1", type: 'number', step: tempStep},
@@ -235,10 +236,10 @@ $(document).ready(function () {
             {title:"{{LASER_DIST}}2", type: 'number', min: 0, step: laserStep},
             {title:"{{LASER_DIST}}3", type: 'number', min: 0, step: laserStep},
             {title:"{{LASER_DIST}}4", type: 'number', min: 0, step: laserStep},
-            {title:"{{LASER_DIST}} 1", type: 'number', step: laserStep},
-            {title:"{{LASER_DIST}} 2", type: 'number', step: laserStep},
-            {title:"{{LASER_DIST}} 3", type: 'number', step: laserStep},
-            {title:"{{LASER_DIST}} 4", type: 'number', step: laserStep},
+            {title:"{{LASER_DEPTH}} 1", type: 'number', step: laserStep},
+            {title:"{{LASER_DEPTH}} 2", type: 'number', step: laserStep},
+            {title:"{{LASER_DEPTH}} 3", type: 'number', step: laserStep},
+            {title:"{{LASER_DEPTH}} 4", type: 'number', step: laserStep},
             {title:"{{SNOW_24H}}", type: 'number', min: 0, step: snowStep},
             {title:"{{TEMPERATURE_SHORT}} 11", type: 'number', step: tempStep},
             {title:"{{TEMPERATURE_SHORT}} 12", type: 'number', step: tempStep},
@@ -401,7 +402,7 @@ $(document).ready(function () {
             data = data.slice(0, -1);
             data += ']]';
 
-            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":"true","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":[' + rowdata[0] + '],"extra":true,"data": ' + data + '}';
             return response;
         }
 
@@ -412,7 +413,7 @@ $(document).ready(function () {
                 lines +=  rowdata.rows(rowdata[0][i]).data()[0][0] + ',';
 
                 // don't include the first element = line number
-                data += '"' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join(',') + '",';
+                data += '["' + rowdata.rows(rowdata[0][i]).data()[0].slice(1).join('","') + '"],';
             }
             // remove trailing commas
             lines = lines.slice(0, -1);
@@ -420,9 +421,11 @@ $(document).ready(function () {
             lines += ']';
             data += ']';
 
-            response = '{"action":"' + action + '","lines":' + lines + ',"extra":"true","data": ' + data + '}';
+            response = '{"action":"' + action + '","lines":' + lines + ',"extra":true,"data": ' + data + '}';
             return response;
         }
+
+        load();
     });
 });
 
