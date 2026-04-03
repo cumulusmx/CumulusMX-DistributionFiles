@@ -1,4 +1,4 @@
-// Last modified: 2025/11/20 14:02:00
+// Last modified: 2026/04/02 21:31:33
 
 let mainChart, navChart, config, avail;
 
@@ -35,6 +35,16 @@ let dragging = null;
 let dragStartX = 0;
 let currentCursor = 'default';
 let temperatureScale;
+
+// Provide localised number formats
+Number.prototype.toFixedMX = function(decimals, grouping = true) {
+    return this.toLocaleString(config.locale, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: grouping,
+        trailingZeroDisplay: 'auto'
+    });
+}
 
 $(document).ready(() => {
     $('.btn').change(() => {
@@ -282,7 +292,7 @@ const doTemp = () => {
                     yAxisID: yaxis,
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${suffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} ${suffix}`
                         }
                     },
                     hidden: hidden[idx]
@@ -370,7 +380,7 @@ const doPress = () => {
             yAxisID: 'y_press',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.press.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.press.decimals, false) ?? '—'} ${config.press.units}`
                 }
             }
         }, {
@@ -381,7 +391,7 @@ const doPress = () => {
             yAxisID: 'y_press',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.press.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.press.decimals, false) ?? '—'} ${config.press.units}`
                 }
             }
         }];
@@ -477,7 +487,7 @@ const doWind = () => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.avgdecimals)} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.wind.avgdecimals) ?? '—'} ${config.wind.units}`
                 }
             }
         }, {
@@ -488,7 +498,7 @@ const doWind = () => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.gustdecimals)} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.wind.gustdecimals) ?? '—'} ${config.wind.units}`
                 }
             }
         }, {
@@ -499,7 +509,7 @@ const doWind = () => {
             yAxisID: 'y_run',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.wind.rununits}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—'} ${config.wind.rununits}`
                 }
             },
             hidden: true
@@ -608,7 +618,7 @@ const doRain = () => {
             yAxisID: 'y_rainRate',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}/{{HOUR_SHORT_LC}}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.rain.decimals) ?? '—'} ${config.rain.units}/{{HOUR_SHORT_LC}}`
                 }
             },
             order: 0,
@@ -622,7 +632,7 @@ const doRain = () => {
             yAxisID: 'y_rain',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.rain.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.rain.decimals) ?? '—'} ${config.rain.units}`
                 }
             },
             order: 1
@@ -804,7 +814,7 @@ const doHum = () => {
                     yAxisID: 'y_hum',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.hum.decimals) ?? '—'} %`
                         }
                     }
                 });
@@ -972,7 +982,7 @@ const doSolar = () => {
                     yAxisID: idx === 'uvi' ? 'y_uv' : idx === 'solarRad' ? 'y_solar' : 'y_sun',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(tooltips[idx].valueDecimals)} ${tooltips[idx].valueSuffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(tooltips[idx].valueDecimals) ?? '—'} ${tooltips[idx].valueSuffix}`
                         }
                     },
                     order: indexes[idx]
@@ -1157,7 +1167,7 @@ const doDegDays = () => {
                         yAxisID: 'y_gdd',
                         tooltip: {
                             callbacks: {
-                                label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'}`
+                                label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—'}`
                             }
                         },
                         hidden: true
@@ -1254,7 +1264,7 @@ const doTempSum = () => {
                         yAxisID: 'y_sum',
                         tooltip: {
                             callbacks: {
-                                label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'}`
+                                label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—'}`
                             }
                         },
                         hidden: true
@@ -1337,7 +1347,7 @@ const doChillHrs = () => {
                 yAxisID: 'y_sum',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} hrs`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—'} hrs`
                     }
                 },
                 hidden: true
@@ -1425,7 +1435,7 @@ const doSnow = () => {
                 yAxisID: 'y_snow',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.snow.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.snow.decimals) ?? '—'} ${config.snow.units}`
                     }
                 }
             });
@@ -1444,7 +1454,7 @@ const doSnow = () => {
                 yAxisID: 'y_snow',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.snow.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.snow.decimals) ?? '—'} ${config.snow.units}`
                     }
                 }
             });

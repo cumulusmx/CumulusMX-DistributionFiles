@@ -1,4 +1,4 @@
-// Last modified: 2026/03/07 11:46:09
+// Last modified: 2026/04/02 21:37:35
 
 let mainChart, navChart, config, avail;
 
@@ -32,6 +32,15 @@ let temperatureScale;
 const availRes = $.getJSON({url: '/api/graphdata/availabledata.json'});
 const configRes = $.getJSON({url: '/api/graphdata/graphconfig.json'});
 
+// Provide localised number formats
+Number.prototype.toFixedMX = function(decimals, grouping = true) {
+    return this.toLocaleString(config.locale, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: grouping,
+        trailingZeroDisplay: 'auto'
+    });
+}
 
 $(document).ready(() => {
     $('#mySelect').change(() => {
@@ -257,7 +266,7 @@ const doTemp = () => {
                     yAxisID: 'y_temp',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                         }
                     }
                 });
@@ -343,7 +352,7 @@ const doPress = () => {
             yAxisID: 'y_press',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.press.decimals)} ${config.press.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.press.decimals, false) ?? '—'} ${config.press.units}`
                 }
             }
         };
@@ -438,7 +447,7 @@ const doWindDir = () => {
             yAxisID: 'y_bearing',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y +'°'}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y?.toFixedMX(0) ?? '—'} '°'`
                 }
             }
         }, {
@@ -530,7 +539,7 @@ const doWind = () => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.avgdecimals)} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.wind.avgdecimals) ?? '—'} ${config.wind.units}`
                 }
             }
         }, {
@@ -541,7 +550,7 @@ const doWind = () => {
             yAxisID: 'y_wind',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.wind.gustdecimals)} ${config.wind.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.wind.gustdecimals) ?? '—'} ${config.wind.units}`
                 }
             }
         }];
@@ -633,7 +642,7 @@ const doRain = () => {
             yAxisID: 'y_rain',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.rain.decimals)} ${config.rain.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.rain.decimals) ?? '—'} ${config.rain.units}`
                 }
             },
             order: 1
@@ -645,7 +654,7 @@ const doRain = () => {
             yAxisID: 'y_rainRate',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.rain.decimals)} ${config.rain.units}/hr`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.rain.decimals) ?? '—'} ${config.rain.units}/hr`
                 }
             },
             order: 0
@@ -742,7 +751,7 @@ const doHum = () => {
                     yAxisID: 'y_hum',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.hum.decimals) ?? '—'} %`
                         }
                     }
                 });
@@ -949,7 +958,7 @@ const doSunHours = () => {
             yAxisID: 'y_sun',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} {{HOURS_SHORT}}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—' ?? '—'} {{HOURS_SHORT}}`
                 }
             }
         };
@@ -1023,7 +1032,7 @@ const doDailyRain = () => {
             yAxisID: 'y_rain',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.rain.decimals)} ${config.rain.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.rain.decimals) ?? '—'} ${config.rain.units}`
                 }
             }
         };
@@ -1095,7 +1104,7 @@ const doDailyTemp = () => {
                     yAxisID: 'y_temp',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                         }
                     }
                 });
@@ -1180,7 +1189,7 @@ const doAirQuality = () => {
                     yAxisID: 'y_pm',
                     tooltip: {
                         callbacks: {
-                            label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
+                            label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(1) ?? '—'} ${valueSuffix}`
                         }
                     }
                 });
@@ -1260,7 +1269,7 @@ const doExtraTemp = () => {
                 yAxisID: 'y_temp',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                     }
                 }
             });
@@ -1347,7 +1356,7 @@ const doExtraHum = () => {
                 yAxisID: 'y_hum',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} %`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.hum.decimals) ?? '—'} %`
                     }
                 }
             });
@@ -1426,7 +1435,7 @@ const doExtraDew = () => {
                 yAxisID: 'y_temp',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                     }
                 }
             });
@@ -1505,7 +1514,7 @@ const doSoilTemp = () => {
                 yAxisID: 'y_temp',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                     }
                 }
             });
@@ -1590,7 +1599,7 @@ const doSoilMoist = () => {
                 yAxisID: 'y_moist',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.soilmoisture.units[id]}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(0) ?? '—'} ${config.soilmoisture.units[id]}`
                     }
                 }
             });
@@ -1676,7 +1685,7 @@ const doLeafWet = () => {
                 yAxisID: 'y_leaf',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.leafwet.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.leafwet.decimals) ?? '—'} ${config.leafwet.units}`
                     }
                 }
             });
@@ -1755,7 +1764,7 @@ const doUserTemp = () => {
                 yAxisID: 'y_temp',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y.toFixed(config.temp.decimals)} °${config.temp.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
                     }
                 }
             });
@@ -1874,7 +1883,7 @@ const doCO2 = () => {
                 yAxisID: yaxis,
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${valueSuffix}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toLocaleString(config.locale) ?? '—'} ${valueSuffix}`
                     }
                 }
             });
@@ -1959,7 +1968,7 @@ const doLaserDepth = () => {
                 yAxisID: 'y_depth',
                 tooltip: {
                     callbacks: {
-                        label: item => ` ${item.dataset.label} ${item.parsed.y ?? '—'} ${config.laser.units}`
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.laser.decimals) ?? '—'} ${config.laser.units}`
                     }
                 }
             });
@@ -2042,7 +2051,7 @@ const doSnowDepth = () => {
             yAxisID: 'y_depth',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y} ${config.snow.units}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.snow.decimals) ?? '—'} ${config.snow.units}`
                 }
             }
         });

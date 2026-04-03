@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/17 17:21:45",
+	"version": "Last Modified: 2026/03/31 10:39:04",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1626,30 +1626,38 @@
 			"collapsed": true,
 			"fields": {
 				"usecumulusforecast": {
+					"type": "select",
+					"sort": false,
 					"label": "{{FORECAST_SOURCE}}",
-					"rightLabel": "{{FORECAST_SOURCE_LABEL}}",
-					"helper": "{{FORECAST_SOURCE_HELP1}}"
+					"optionLabels": [
+						"{{FORECAST_SOURCE_NONE}}",
+						"{{FORECAST_SOURCE_STATION}}",
+						"{{FORECAST_SOURCE_CUMULUS}}",
+						"{{FORECAST_SOURCE_FILE}}"
+					],
+					"helper": "{{FORECAST_SOURCE_HELP1}}",
+					"removeDefaultNone": true
 				},
 				"updatehourly": {
 					"label": "{{FORECAST_UPDATE}}:",
 					"rightLabel": "{{FORECAST_UPDATE_LABEL}}",
 					"helper": "{{FORECAST_UPDATE_HELP1}}",
 					"dependencies": {
-						"usecumulusforecast": true
+						"usecumulusforecast": 1
 					}
 				},
 				"lowpressureextreme": {
 					"label": "{{FORECAST_LOW_PRESS}}:",
 					"helper": "{{FORECAST_LOW_PRESS_HELP1}}",
 					"dependencies": {
-						"usecumulusforecast": true
+						"usecumulusforecast": 1
 					}
 				},
 				"highpressureextreme": {
 					"label": "{{FORECAST_HIGH_PRESS}}:",
 					"helper": "{{FORECAST_HIGH_PRESS_HELP1}}",
 					"dependencies": {
-						"usecumulusforecast": true
+						"usecumulusforecast": 1
 					}
 				},
 				"pressureunit": {
@@ -1657,7 +1665,7 @@
 					"removeDefaultNone": true,
 					"helper": "{{FORECAST_PRESS_UNITS_HELP1}}",
 					"dependencies": {
-						"usecumulusforecast": true
+						"usecumulusforecast": 1
 					}
 				}
 			}

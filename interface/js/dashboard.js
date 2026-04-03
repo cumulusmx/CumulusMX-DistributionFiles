@@ -1,4 +1,4 @@
-// Last modified: 2025/09/12 10:10:22
+// Last modified: 2026/03/29 19:17:30
 
 // Configuration section
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -195,7 +195,7 @@ $(document).ready(function () {
                 });
             } else {
                 if ($(id).length) {
-                    $(id).text(data[key]);
+                    $(id).html(data[key]);
                 }
             }
         });
