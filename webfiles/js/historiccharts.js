@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:24:20
+// Last modified: 2026/04/07 17:16:11
 
 let mainChart, navChart, config, avail;
 
@@ -195,7 +195,9 @@ const doTemp = () => {
             'minFeels' : 'Min Feels',
             'maxFeels' : 'Max Feels',
             'humidex'  : 'Humidex',
-            'windChill': 'Wind Chill'
+            'windChill': 'Wind Chill',
+            'bgt'      : 'BGT',
+            'wbgt'     : 'WBGT'
         };
         const hidden = {
             'minTemp'  : false,
@@ -209,9 +211,11 @@ const doTemp = () => {
             'minFeels' : true,
             'maxFeels' : true,
             'humidex'  : true,
-            'windChill': true
+            'windChill': true,
+            'bgt'      : true,
+            'wbgt'     : true
         };
-        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex'];
+        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex', 'bgt', 'wbgt'];
 
         // Initial x-range
         const key = Object.keys(resp)[0];

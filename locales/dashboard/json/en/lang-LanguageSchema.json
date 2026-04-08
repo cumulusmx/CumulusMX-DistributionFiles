@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:31",
+    "_LAST_MODIFIED": "Last modified: 2026/04/08 16:03:52",
     "ZAMBRETTI": "Zambretti Forecast Strings",
     "DAVIS": "Davis Forecast Strings",
     "MOON_PHASES": "Moon Phases",
@@ -12,6 +12,7 @@
     "USER_TEMP": "User Temperature Sensors",
     "SOIL_TEMP": "Soil Temperature Sensors",
     "SOIL_MOIST": "Soil Moisture Sensors",
+    "SOIL_EC": "Soil EC Sensors",
     "LEAF_WET": "Leaf Wetness Sensors",
     "AIR_QUALITY": "Air Quality",
     "SENSOR_PM25": "Sensors PM2.5",

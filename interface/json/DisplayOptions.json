@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/04/07 17:23:59",
+	"version": "Last Modified: 2026/04/08 16:56:38",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -383,6 +383,19 @@
 								}
 							}
 						},
+						"soilec": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
 						"leafwet": {
 							"collapsible": true,
 							"collapsed": true,
@@ -649,6 +662,15 @@
 					}
 				},
 				"soilmoist": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"soilec": {
 					"collapsible": true,
 					"collapsed": true,
 					"fields": {

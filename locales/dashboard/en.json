@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/04/07 10:57:32",
+    "_LAST_MODIFIED": "Last modified: 2026/04/08 17:04:41",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -103,6 +103,7 @@
     "CHART_RECENT_RAIN_DESC": "Line chart showing the cumulative daily rainfall and rainfall rate at a one minute resolution",
     "CHART_RECENT_SELECTACHART": "Recent Data Select-a-Chart",
     "CHART_RECENT_SNOWACCUM_DESC": "List chart showing recent 24-hour snowfall accumulation at the logging resolution",
+    "CHART_RECENT_SOILEC_DESC": "Line chart showing recent soil electrical conductivity sensor values at data logging resolution. These sensors are unique to the station and placed at depths to suit the station requirements.",
     "CHART_RECENT_SOILMOIST_DESC": "Line chart showing recent soil moisture sensor values at data logging resolution. These sensors are unique to the station and placed at depths to suit the station requirements.",
     "CHART_RECENT_SOILTEMP_DESC": "Line chart showing recent soil temperature sensor values at data logging resolution. These sensors are unique to the station and placed at depths to suit the station requirements.",
     "CHART_RECENT_SOLAR_DESC": "Line chart showing recent solar irradiation and UV index values at a one minute resolution. This station may not have both sensors. For comparison the chart also shows the calculated theoretical solar value.",
@@ -638,6 +639,7 @@
     "SNOWFALL_ANNUAL": "Snowfall Accumulation (Annual)",
     "SNOWFALL_LAST_24_HOURS": "Snowfall Accumulation (24h)",
     "SNOWFALL": "Snowfall",
+    "SOIL_EC": "Soil EC",
     "SOIL_MOIST": "Soil Moist",
     "SOIL_MOISTURE": "Soil Moisture",
     "SOIL_TEMP": "Soil Temp",

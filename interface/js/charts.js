@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:37:35
+// Last modified: 2026/04/08 17:11:11
 
 let mainChart, navChart, config, avail;
 
@@ -84,6 +84,9 @@ $(document).ready(() => {
         }
         if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
             $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.SoilEc == undefined || avail.SoilEc.length == 0) {
+            $('#mySelect option[value="soilec"]').remove();
         }
         if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
             $('#mySelect option[value="leafwet"]').remove();
@@ -195,6 +198,8 @@ $(document).ready(() => {
                 return doSoilTemp();
             case 'soilmoist':
                 return doSoilMoist();
+            case 'soilec':
+                return doSoilEc();
             case 'leafwet':
                 return doLeafWet();
             case 'usertemp':
@@ -1621,6 +1626,91 @@ const doSoilMoist = () => {
                     title: {
                         display: true,
                         text: '{{SOIL_MOISTURE}}'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: dataSets[0].data,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
+const doSoilEc = () => {
+    removeOldCharts(true);
+
+    $('#chartdescription').text('{{CHART_RECENT_SOILEC_DESC}}');
+
+    $.getJSON({
+        url: '/api/graphdata/soilmoist.json'
+    })
+    .done(resp => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScale;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_ec: {
+                title: {
+                    display: true,
+                    text: '{{CONDUCTIVITY}} (μS/cm)'
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        Object.entries(resp).forEach(([key, value]) => {
+            const id = config.series.soilec.name.findIndex(val => val == key);
+            dataSets.push({
+                label: key,
+                data: value,
+                borderColor: config.series.soilec.colour[id],
+                backgroundColor: config.series.soilec.colour[id],
+                yAxisID: 'y_ec',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(0) ?? '—'} μS/cm`
+                    }
+                }
+            });
+        });
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: '{{SOIL_EC}}'
                     }
                 }
             }
