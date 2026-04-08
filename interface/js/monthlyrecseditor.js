@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 17:38:29
+// Last modified: 2026/04/06 22:45:09
 
 var updateUrl = '/api/edit/monthly';
 var editFieldName;
@@ -82,7 +82,7 @@ $(document).ready(function() {
         $.fn.editable.defaults.step = 'any';
         $.fn.editable.defaults.unsavedclass = null;
         // add some accessibility to the default buttons
-        $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="{{SAVE}}"><i class="glyphicon glyphicon-ok"></i>{{SAVE}</button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="{{CANCEL}}"><i class="glyphicon glyphicon-remove"></i>{{SAVE}}</button>';
+        $.fn.editableform.buttons = '<button type="submit" class="btn btn-primary btn-sm editable-submit" aria-label="{{SAVE}}"><i class="glyphicon glyphicon-ok"></i>{{SAVE}}</button><button type="button" class="btn btn-default btn-sm editable-cancel" aria-label="{{CANCEL}}"><i class="glyphicon glyphicon-remove"></i>{{CANCEL}}</button>';
         $.fn.editable.defaults.success = function(response, newValue) {
             updateDirect(this, newValue);
         };
@@ -110,6 +110,10 @@ $(document).ready(function() {
             $('#' + m + '-highHeatIndexTime').editable();
             $('#' + m + '-lowWindChillVal').editable();
             $('#' + m + '-lowWindChillTime').editable();
+            $('#' + m + '-highBgtVal').editable();
+            $('#' + m + '-highBgtTime').editable();
+            $('#' + m + '-highWbgtVal').editable();
+            $('#' + m + '-highWbgtTime').editable();
             $('#' + m + '-highMinTempVal').editable();
             $('#' + m + '-highMinTempTime').editable();
             $('#' + m + '-lowMaxTempVal').editable();

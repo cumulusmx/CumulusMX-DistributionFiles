@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2026/01/08 11:15:47",
+    "version": "Last Modified: 2026/04/04 17:54:34",
     "fields": {
         "accessible": {
             "rightLabel": "{{ENABLE_ACCESSIBILITY}}",
@@ -166,6 +166,13 @@
                     "helpers": [
                         "{{PATH_REPORTS_HELP1}}",
                         "{{PATH_HELP2}}"
+                    ]
+                },
+                "diagspath": {
+                    "helpers": [
+                        "{{PATH_DIAGS_HELP1}}",
+                        "{{PATH_HELP2}}",
+                        "{{PATH_HELP3}}"
                     ]
                 }
             }

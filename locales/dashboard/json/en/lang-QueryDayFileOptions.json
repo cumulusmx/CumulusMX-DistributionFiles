@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/11/22 11:19:11",
+    "_LAST_MODIFIED": "Last modified: 2026/04/07 11:14:43",
     "DATA_PARAMETER": "Data Parameter",
     "DATA_HIGH_GUST": "Highest Gust",
     "DATA_WIND_RUN": "Wind Run",
@@ -31,6 +31,8 @@
     "DATA_HEATING_DEGREE_DAYS": "Heating Degree Days",
     "DATA_COOLING_DEGREE_DAYS": "Cooling Degree Days",
     "DATA_CHILL_HOURS": "Chill Hours",
+    "DATA_HIGH_BGT": "Highest BGT",
+    "DATA_HIGH_WBGT": "Highest WBGT",
     "FUNCTION": "Function",
     "FUNCTION_MINIMUM": "Minimum",
     "FUNCTION_MAXIMUM": "Maximum",

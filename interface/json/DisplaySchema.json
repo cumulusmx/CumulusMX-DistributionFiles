@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/06 20:58:28",
+	"version": "Last Modified: 2026/04/07 17:23:30",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -69,6 +69,12 @@
 									"type": "string"
 								},
 								"Humidex": {
+									"type": "string"
+								},
+								"BGT": {
+									"type": "string"
+								},
+								"WBGT": {
 									"type": "string"
 								}
 							}

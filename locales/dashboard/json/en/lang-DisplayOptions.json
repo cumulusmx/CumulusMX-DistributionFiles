@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/03/07 09:17:26",
+    "_LAST_MODIFIED": "Last modified: 2026/04/07 17:26:04",
     "OPTION_HIDDEN": "Hidden",
     "OPTION_VISIBLE": "Visible",
     "OPTION_DASHBOARD": "Dashboard Only",
@@ -81,5 +81,7 @@
     "GDD": "Growing Degree Days series",
     "TEMP_SUM": "Annual Temperature Sum",
     "CHILL_HRS": "Chill Hours",
-    "BGT_WBGT": "BGT & WBGT"
+    "BGT_WBGT": "BGT & WBGT",
+    "BGT": "Black Globe Temperature",
+    "WBGT": "Wet Bulb Globe Temperature"
 }

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/06 20:58:30",
+	"version": "Last Modified: 2026/04/07 17:23:59",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -122,6 +122,14 @@
 								},
 								"Humidex": {
 									"label": "{{HUMIDEX}}",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"BGT": {
+									"label": "{{BGT}}",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"WBGT": {
+									"label": "{{WBGT}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}

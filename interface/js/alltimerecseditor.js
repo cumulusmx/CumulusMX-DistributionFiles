@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 17:37:46
+// Last modified: 2026/04/06 22:47:21
 
 var updateUrl = '/api/edit/alltime';
 var editFieldName;
@@ -101,6 +101,10 @@ $(document).ready(function() {
         $('#highHumidexTime').editable();
         $('#lowWindChillVal').editable();
         $('#lowWindChillTime').editable();
+        $('#highBgtVal').editable();
+        $('#highBgtTime').editable();
+        $('#highWbgtVal').editable();
+        $('#highWbgtTime').editable();
         $('#highHeatIndexVal').editable();
         $('#highHeatIndexTime').editable();
         $('#highMinTempVal').editable();

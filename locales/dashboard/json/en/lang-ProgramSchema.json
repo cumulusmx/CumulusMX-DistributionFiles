@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/09/28 14:10:28",
+    "_LAST_MODIFIED": "Last modified: 2026/04/04 17:55:27",
     "STARTUP_OPTIONS": "Start-up Options",
     "STARTUP_DELAY": "Start-up delay (secs)",
     "MAX_UPTIME": "Max system uptime to apply the start-up delay",
@@ -19,6 +19,7 @@
     "PATH_DATA": "Data Path",
     "PATH_BACKUP": "Backup Path",
     "PATH_REPORTS": "Reports Path",
+    "PATH_DIAGS": "Diagnostics Path",
     "GENERAL_OPTIONS": "General Options",
     "CULTURE_OVERRIDES": "Culture Overrides",
     "SECURITY_SETTINGS": "Security Settings"

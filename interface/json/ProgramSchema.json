@@ -1,5 +1,5 @@
 {
-    "version": "Last Modified: 2026/01/08 11:15:48",
+    "version": "Last Modified: 2026/04/04 17:46:23",
     "type": "object",
     "properties": {
         "accessible": {
@@ -128,6 +128,10 @@
                 },
                 "reportspath": {
                     "title": "{{PATH_REPORTS}}",
+                    "type": "string"
+                },
+                "diagspath": {
+                    "title": "{{PATH_DIAGS}}",
                     "type": "string"
                 }
             }
