@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/19 17:12:02",
+	"version": "Last Modified: 2026/04/09 21:30:39",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -154,6 +154,9 @@
 							"type": "boolean"
 						},
 						"useSoilTemp": {
+							"type": "boolean"
+						},
+						"useSoilEc": {
 							"type": "boolean"
 						},
 						"useLeafWet": {
