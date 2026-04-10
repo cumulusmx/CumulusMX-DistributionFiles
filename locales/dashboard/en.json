@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/04/08 17:04:41",
+    "_LAST_MODIFIED": "Last modified: 2026/04/10 12:26:02",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -83,6 +83,7 @@
     "CHART_HIST_CHILL_HRS_DESC": "Line chart showing daily increments to the annual chill hours. These values increase over the year, the year normally starts in October for the northern hemisphere, and April in the southern.",
     "CHART_HIST_GDD_DESC": "Line chart showing daily increments to growing degree days. These values increase over the growing year, the year normally starts in January for the northern hemisphere, and July in the southern. Two ranges are defined for each year: range one incrementing when the temperature is above 5°C or 40°F, and range two incrementing when the temperature is above 10°C or 50°F. Though the station owner can override these values and define their own.",
     "CHART_HIST_HUM_DESC": "Line chart showing daily high and low relative humidity values.",
+    "CHART_HIST_PRESS_DESC": "Line chart showing daily high and low pressure values.",
     "CHART_HIST_RAIN_DESC": "Bar chart showing daily rainfall values.",
     "CHART_HIST_SNOW_DESC": "Chart showing daily snow depth and last 24 hours snowfall.",
     "CHART_HIST_SOLAR_DESC": "Combination line and bar chart showing daily high solar irradiation and sunshine hours.",

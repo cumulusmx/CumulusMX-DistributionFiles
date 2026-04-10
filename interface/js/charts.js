@@ -1,4 +1,4 @@
-// Last modified: 2026/04/08 17:11:11
+// Last modified: 2026/04/10 11:45:33
 
 let mainChart, navChart, config, avail;
 
@@ -226,6 +226,7 @@ const doTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_TEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/tempdata.json'
@@ -321,6 +322,7 @@ const doPress = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_PRESS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_PRESS_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/pressdata.json'
@@ -413,6 +415,7 @@ const doWindDir = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_WINDDIR_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_WINDDIR_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/wdirdata.json'
@@ -512,6 +515,7 @@ const doWind = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_WIND_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/winddata.json'
@@ -603,6 +607,7 @@ const doRain = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_RAIN_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_RAIN_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/raindata.json'
@@ -712,6 +717,7 @@ const doHum = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_HUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_HUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/humdata.json'
@@ -806,6 +812,7 @@ const doSolar = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOLAR_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOLAR_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/solardata.json'
@@ -929,6 +936,7 @@ const doSunHours = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_SUNSHOURS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SUNSHOURS_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/sunhours.json'
@@ -1003,6 +1011,7 @@ const doDailyRain = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_DAILYRAIN_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/dailyrain.json',
@@ -1077,6 +1086,7 @@ const doDailyTemp = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_DAILYTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_DAILYTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/dailytemp.json'
@@ -1151,6 +1161,7 @@ const doAirQuality = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_AQ_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_AQ_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/airqualitydata.json',
@@ -1244,6 +1255,7 @@ const doExtraTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRATEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRATEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extratemp.json'
@@ -1323,6 +1335,7 @@ const doExtraHum = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRAHUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRAHUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extrahum.json'
@@ -1410,6 +1423,7 @@ const doExtraDew = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRADEW_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRADEW_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extradew.json',
@@ -1489,6 +1503,7 @@ const doSoilTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOILTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/soiltemp.json',
@@ -1568,6 +1583,7 @@ const doSoilMoist = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOILMOIST_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILMOIST_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/soilmoist.json'
@@ -1653,6 +1669,7 @@ const doSoilEc = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOILEC_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILEC_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/soilmoist.json'
@@ -1738,6 +1755,7 @@ const doLeafWet = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_LEAFWET_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_LEAFWET_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/leafwetness.json',
@@ -1824,6 +1842,7 @@ const doUserTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_USERTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_USERTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/usertemp.json'
@@ -1903,6 +1922,7 @@ const doCO2 = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_CO2_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_CO2_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/co2sensor.json',
@@ -2023,6 +2043,7 @@ const doLaserDepth = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_LASERDEPTH_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_LASERDEPTH_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/laserdepth.json',
@@ -2107,6 +2128,7 @@ const doSnowDepth = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SNOWACCUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SNOWACCUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/snow24h.json'
