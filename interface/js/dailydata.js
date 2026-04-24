@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2025/08/11 16:20:44
+// Last modified: 2026/04/24 10:54:27
 
 var fromDate, toDate;
 
@@ -51,7 +51,15 @@ $(document).ready(function () {
                 .append($('<label>', { for: '15', class: 'mylabel', html: '{{TEMP_AVG}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '52' }))
-                .append($('<label>', { for: '52', class: 'mylabel', html: '{{CHILL_HOURS}}' }));
+                .append($('<label>', { for: '52', class: 'mylabel', html: '{{CHILL_HOURS}}' }))
+                .append($('<br>'))
+        }
+        if (dataVisibility.temperature.BGT > 0) {
+            tempBoxes.append($('<input>', { type: 'checkbox', id: '55' }))
+                .append($('<label>', { for: '55', class: 'mylabel', html: '{{HIGH_BGT}}' }))
+                .append($('<br>'))
+                .append($('<input>', { type: 'checkbox', id: '56' }))
+                .append($('<label>', { for: '56', class: 'mylabel', html: '{{HIGH_BGT_TIME}}' }))
         }
 
         if (tempBoxes.children().length > 0) {
@@ -75,7 +83,7 @@ $(document).ready(function () {
                 .append($('<label>', { for: '19', class: 'mylabel', html: '{{LOW_HUMIDITY}}' }))
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '20' }))
-                .append($('<label>', { for: '20', class: 'mylabel', html: '{{LOW_HUMIDITY_TIME}}' }));
+                .append($('<label>', { for: '20', class: 'mylabel', html: '{{LOW_HUMIDITY_TIME}}' }))
         }
 
         if (humBoxes.children().length > 0) {
@@ -100,7 +108,7 @@ $(document).ready(function () {
             .append($('<label>', { for: '8', class: 'mylabel', html: '{{LOW_PRESSURE}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
-            .append($('<label>', { for: '9', class: 'mylabel', html: '{{LOW_PRESSURE_TIME}}' }));
+            .append($('<label>', { for: '9', class: 'mylabel', html: '{{LOW_PRESSURE_TIME}}' }))
 
         group++;
         rows[row].append($('<div>', { class: 'col-md-3' }).append(pressBlock));
@@ -128,7 +136,7 @@ $(document).ready(function () {
             .append($('<label>', { for: '39', class: 'mylabel', html: '{{DOMINANT_DIRECTION}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
-            .append($('<label>', { for: '16', class: 'mylabel', html: '{{WIND_RUN}}' }));
+            .append($('<label>', { for: '16', class: 'mylabel', html: '{{WIND_RUN}}' }))
 
         group++;
         rows[row].append($('<div>', { class: 'col-md-3' }).append(windBlock));
@@ -156,7 +164,7 @@ $(document).ready(function () {
             .append($('<label>', { for: '53', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR}}' }))
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
-            .append($('<label>', { for: '54', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR_TIME}}' }));
+            .append($('<label>', { for: '54', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR_TIME}}' }))
 
         group++;
         if (group > 4) {
@@ -177,7 +185,7 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '23' }))
                 .append($('<label>', { for: '23', class: 'mylabel', html: '{{EVAPOTRANSPIRATION}}' }))
-                .append($('<br>'));
+                .append($('<br>'))
         }
         if (dataVisibility.solar.UV > 0) {
             solarBoxes.append($('<input>', { type: 'checkbox', id: '44' }))
@@ -185,11 +193,11 @@ $(document).ready(function () {
                 .append($('<br>'))
                 .append($('<input>', { type: 'checkbox', id: '45' }))
                 .append($('<label>', { for: '45', class: 'mylabel', html: '{{HIGH_UV_INDEX_TIME}}' }))
-                .append($('<br>'));
+                .append($('<br>'))
         }
         if (dataVisibility.solar.Sunshine > 0) {
             solarBoxes.append($('<input>', { type: 'checkbox', id: '24' }))
-                .append($('<label>', { for: '24', class: 'mylabel', html: '{{SUNSHINE_HOURS}}' }));
+                .append($('<label>', { for: '24', class: 'mylabel', html: '{{SUNSHINE_HOURS}}' }))
         }
 
         if (solarBoxes.children().length > 0) {
@@ -201,7 +209,7 @@ $(document).ready(function () {
                 rows[row] = $('<div>', { class: 'row top-buffer' });
                 group = 1;
             }
-            rows[row].append($('<div>', { class: 'col-md-3' }).append(solarBlock));
+            rows[row].append($('<div>', { class: 'col-md-3' }).append(solarBlock))
         }
 
         // derived temperatures
@@ -221,7 +229,7 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '38' }))
                     .append($('<label>', { for: '38', class: 'mylabel', html: '{{LOW_DEW_POINT_TIME}}' }))
-                    .append($('<br>'));
+                    .append($('<br>'))
             }
             if (dataVisibility.temperature.FeelsLike > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '46' }))
@@ -235,7 +243,7 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '49' }))
                     .append($('<label>', { for: '49', class: 'mylabel', html: '{{LOW_FEELS_LIKE_TIME}}' }))
-                    .append($('<br>'));
+                    .append($('<br>'))
             }
             if (dataVisibility.temperature.HeatIndex > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '25' }))
@@ -243,7 +251,7 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '26' }))
                     .append($('<label>', { for: '26', class: 'mylabel', html: '{{HIGH_HEAT_INDEX_TIME}}' }))
-                    .append($('<br>'));
+                    .append($('<br>'))
             }
             if (dataVisibility.temperature.Humidex > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '50' }))
@@ -251,7 +259,7 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '51' }))
                     .append($('<label>', { for: '51', class: 'mylabel', html: '{{HIGH_HUMIDEX_TIME}}' }))
-                    .append($('<br>'));
+                    .append($('<br>'))
             }
             if (dataVisibility.temperature.WindChill > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '33' }))
@@ -259,7 +267,7 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '34' }))
                     .append($('<label>', { for: '34', class: 'mylabel', html: '{{LOW_WIND_CHILL_TIME}}' }))
-                    .append($('<br>'));
+                    .append($('<br>'))
             }
             if (dataVisibility.temperature.AppTemp > 0) {
                 derivedTempBlock.append($('<input>', { type: 'checkbox', id: '27' }))
@@ -273,6 +281,14 @@ $(document).ready(function () {
                     .append($('<br>'))
                     .append($('<input>', { type: 'checkbox', id: '30' }))
                     .append($('<label>', { for: '30', class: 'mylabel', html: '{{LOW_APPARENT_TEMPERATURE_TIME}}' }))
+                    .append($('<br>'))
+            }
+            if (dataVisibility.temperature.BGT > 0) {
+                derivedTempBlock.append($('<input>', { type: 'checkbox', id: '57' }))
+                    .append($('<label>', { for: '57', class: 'mylabel', html: '{{HIGH_WBGT}}' }))
+                    .append($('<br>'))
+                    .append($('<input>', { type: 'checkbox', id: '58' }))
+                    .append($('<label>', { for: '58', class: 'mylabel', html: '{{HIGH_WBGT_TIME}}' }))
             }
 
             group++;
