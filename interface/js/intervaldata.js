@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/04/24 16:28:10
+// Last modified: 2026/04/24 17:02:47
 
 
 var fromDate, toDate;
@@ -72,11 +72,6 @@ $(document).ready(function () {
                     .append($('<label>', { for: '21', class: 'mylabel', html: '{{APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'));
             }
-            if (dataVisibility.temperature.InTemp > 0) {
-                tempBoxes.append($('<input>', { type: 'checkbox', id: '12' }))
-                    .append($('<label>', { for: '12', class: 'mylabel', html: '{{INDOOR_TEMPERATURE}}' }))
-                    .append($('<br>'));
-            }
             if (dataVisibility.temperature.BGT > 0) {
                 tempBoxes.append($('<input>', { type: 'checkbox', id: '29' }))
                     .append($('<label>', { for: '29', class: 'mylabel', html: '{{BGT}}' }))
@@ -84,6 +79,10 @@ $(document).ready(function () {
                     .append($('<input>', { type: 'checkbox', id: '30' }))
                     .append($('<label>', { for: '30', class: 'mylabel', html: '{{WBGT}}' }))
                     .append($('<br>'));
+            }
+            if (dataVisibility.temperature.InTemp > 0) {
+                tempBoxes.append($('<input>', { type: 'checkbox', id: '12' }))
+                    .append($('<label>', { for: '12', class: 'mylabel', html: '{{INDOOR_TEMPERATURE}}' }))
             }
 
             if (tempBoxes.children().length > 0) {

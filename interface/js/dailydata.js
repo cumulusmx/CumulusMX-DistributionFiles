@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/04/24 10:54:27
+// Last modified: 2026/04/24 17:00:49
 
 var fromDate, toDate;
 
@@ -24,12 +24,8 @@ $(document).ready(function () {
 
         // construct the checkboxes
         // checkbox id's are the field offsets in the day file
-        let group = 1; // we are allowed four groups per row
-        let row = 0;
-        let rows = [];
 
-        // start a row
-        rows[row] = $('<div>', { class: 'row top-buffer' });
+        let tables = $('#tables-container');
 
         // temperature Data
         let tempBoxes = $('<div>');
@@ -66,8 +62,7 @@ $(document).ready(function () {
             let tempBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'my-title', text: '{{TEMPERATURE}}' }))
                 .append(tempBoxes);
-            group++;
-            rows[row].append($('<div>', { class: 'col-md-3' }).append(tempBlock));
+            tables.append(tempBlock);
         }
 
         // humidity Data
@@ -90,8 +85,7 @@ $(document).ready(function () {
             let humBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'my-title', text: '{{LOW_HUMIDITY_TIME}}' }))
                 .append(humBoxes);
-            group++;
-            rows[row].append($('<div>', { class: 'col-md-3' }).append(humBlock));
+            tables.append(humBlock);
         }
 
         // pressure
@@ -109,9 +103,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '9' }))
             .append($('<label>', { for: '9', class: 'mylabel', html: '{{LOW_PRESSURE_TIME}}' }))
-
-        group++;
-        rows[row].append($('<div>', { class: 'col-md-3' }).append(pressBlock));
+        tables.append(pressBlock);
 
         // wind data
         let windBlock = $('<div>', { class: 'my-unit' })
@@ -137,9 +129,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '16' }))
             .append($('<label>', { for: '16', class: 'mylabel', html: '{{WIND_RUN}}' }))
-
-        group++;
-        rows[row].append($('<div>', { class: 'col-md-3' }).append(windBlock));
+        tables.append(windBlock);
 
         // rainfall
         let rainBlock = $('<div>', { class: 'my-unit' })
@@ -165,14 +155,7 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '54' }))
             .append($('<label>', { for: '54', class: 'mylabel', html: '{{HIGH_RAINFALL_24HR_TIME}}' }))
-
-        group++;
-        if (group > 4) {
-            row++;
-            rows[row] = $('<div>', { class: 'row top-buffer' });
-            group = 1;
-        }
-        rows[row].append($('<div>', { class: 'col-md-3' }).append(rainBlock));
+        tables.append(rainBlock);
 
         // solar
         let solarBoxes = $('<div>');
@@ -204,12 +187,7 @@ $(document).ready(function () {
             let solarBlock = $('<div>', { class: 'my-unit' })
                 .append($('<div>', { class: 'my-title', text: '{{SOLAR}}' }))
                 .append(solarBoxes);
-            if (group > 4) {
-                row++;
-                rows[row] = $('<div>', { class: 'row top-buffer' });
-                group = 1;
-            }
-            rows[row].append($('<div>', { class: 'col-md-3' }).append(solarBlock))
+            tables.append(solarBlock);
         }
 
         // derived temperatures
@@ -290,14 +268,7 @@ $(document).ready(function () {
                     .append($('<input>', { type: 'checkbox', id: '58' }))
                     .append($('<label>', { for: '58', class: 'mylabel', html: '{{HIGH_WBGT_TIME}}' }))
             }
-
-            group++;
-            if (group > 4) {
-                row++;
-                rows[row] = $('<div>', { class: 'row top-buffer' });
-                group = 1;
-            }
-            rows[row].append($('<div>', { class: 'col-md-3' }).append(derivedTempBlock));
+            tables.append(derivedTempBlock);
         }
 
         // degree days
@@ -309,16 +280,8 @@ $(document).ready(function () {
             .append($('<br>'))
             .append($('<input>', { type: 'checkbox', id: '41' }))
             .append($('<label>', { for: '41', class: 'mylabel', html: '{{COOLING_DEGREE_DAYS}}' }));
+        tables.append(degreeDayBlock);
 
-        if (group > 4) {
-            row++;
-            rows[row] = $('<div>', { class: 'row top-buffer' });
-            group = 1;
-        }
-        rows[row].append($('<div>', { class: 'col-md-3' }).append(degreeDayBlock));
-
-
-        $('#container').append(rows);
         // Phew!
     });
 
