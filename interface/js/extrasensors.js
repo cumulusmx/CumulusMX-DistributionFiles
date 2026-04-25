@@ -1,4 +1,4 @@
-// Last modified: 2026/03/09 16:48:46
+// Last modified: 2026/04/25 22:40:38
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -100,6 +100,22 @@ $(document).ready(function () {
                     return json.data;
                 } else {
                     $('#SoilMoistureTableBlock').hide();
+                    return [];
+                }
+            }
+        }
+    });
+
+    var soilEcTable = $('#SoilEcTable').DataTable({
+        ajax: {
+            url: '/api/extra/soilec.json',
+            method: 'GET',
+            dataSrc: function(json) {
+                if (json.data && json.data.length > 0) {
+                    $('#SoilEcTableBlock').show();
+                    return json.data;
+                } else {
+                    $('#SoilEcTableBlock').hide();
                     return [];
                 }
             }
@@ -272,6 +288,7 @@ $(document).ready(function () {
         dewTable.ajax.reload();
         soiltempTable.ajax.reload();
         soilmoistureTable.ajax.reload();
+        soilEcTable.ajax.reload();
         leafTable.ajax.reload();
         airqualTable.ajax.reload();
         co2Table.ajax.reload();
