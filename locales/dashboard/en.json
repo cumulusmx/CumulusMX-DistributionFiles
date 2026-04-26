@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/04/24 10:20:24",
+    "_LAST_MODIFIED": "Last modified: 2026/04/26 08:57:22",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -144,6 +144,7 @@
     "COMPASS_W": "W",
     "COMPASS_WNW": "WNW",
     "COMPASS_WSW": "WSW",
+    "CONDUCTIVITY": "Conductivity",
     "CONFIGURE": "Configure",
     "COOLING_DEGREE_DAYS": "Cooling Degree Days",
     "CUMULUS_MX_ALARM": "Cumulus MX Alarm",

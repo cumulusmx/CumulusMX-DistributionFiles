@@ -1,4 +1,4 @@
-// Last modified: 2026/04/10 11:45:33
+// Last modified: 2026/04/26 09:00:15
 
 let mainChart, navChart, config, avail;
 
@@ -1672,7 +1672,7 @@ const doSoilEc = () => {
     $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILEC_DESC}}');
 
     $.getJSON({
-        url: '/api/graphdata/soilmoist.json'
+        url: '/api/graphdata/soilec.json'
     })
     .done(resp => {
         // Initial x-range
