@@ -67,7 +67,9 @@ $time_start = microtime(true);
 // ver 4.3 -  01/0809/2020, Steinar Utne
 //			* If monthly and $auto_month=true then construct filename from date (i.e. <dir>MonYYlog.txt) rather than read from parameters
 // ver 5.0 - 24/01/2026, Mark Crossley
-//          * Updated for CumulusMX 4.7.0 - Note this is not backward compatible with earlier Cumulus versions
+//          * Updated for CumulusMX 5.0.0 - Note this is not backward compatible with earlier Cumulus versions
+// ver 5.1 - 08/04/2026, Mark Crossley
+//          * Added support for CumulusMX 5.1.0
 //-----------------------------------------------------------------
 //
 // USING THIS SCRIPT
@@ -481,17 +483,21 @@ function prepareQueries($queryType, $table, $retainVal, $retainUnit)
             array('THighSolarRad',  'varchar(5)'),                              // 43
             array('HighUV',         'decimal(3,1)'),                            // 44
             array('THighUV',        'varchar(5)'),                              // 45
-            array('MaxFeelsLike',   'decimal(4,1)'),                            // 48
-            array('TMaxFeelsLike',  'varchar(5)'),                              // 49
-            array('MinFeelsLike',   'decimal(4,1)'),                            // 50
-            array('TMinFeelsLike',  'varchar(5)'),                              // 51
-            array('MaxHumidex',     'decimal(5,1)'),                            // 52
-            array('TMaxHumidex',    'varchar(5)'),                              // 53
-            array('ChillHours',     'decimal(7,1)'),                            // 54
-            array('HighRain24h',    'decimal(6,,2)'),                           // 55
-            array('THighRain24h',   'varchar(5)'),                              // 56
-            array('HWindGBearSym',  'varchar(3)'),                              // 46
-            array('DomWindDirSym',  'varchar(3)')                               // 47
+            array('MaxFeelsLike',   'decimal(4,1)'),                            // 46
+            array('TMaxFeelsLike',  'varchar(5)'),                              // 47
+            array('MinFeelsLike',   'decimal(4,1)'),                            // 48
+            array('TMinFeelsLike',  'varchar(5)'),                              // 49
+            array('MaxHumidex',     'decimal(5,1)'),                            // 50
+            array('TMaxHumidex',    'varchar(5)'),                              // 51
+            array('ChillHours',     'decimal(7,1)'),                            // 52
+            array('HighRain24h',    'decimal(6,,2)'),                           // 53
+            array('THighRain24h',   'varchar(5)'),                              // 54
+            array('HighBgt',        'decimal(4,1)')                             // 55
+            array('THighBgt',       'varchar(5)')                               // 56
+            array('HighWbgt',       'decimal(4,1)')                             // 57
+            array('THighWbgt',      'varchar(5)'),                              // 58
+            array('HWindGBearSym',  'varchar(3)'),                              // 59
+            array('DomWindDirSym',  'varchar(3)')                               // 60
         );
         // Construct the SQL strings from the array
         // start
@@ -549,8 +555,8 @@ function prepareQueries($queryType, $table, $retainVal, $retainUnit)
             array('Humidex',            'decimal(4,1)'),                            // 27 - 28
             array('BlackGlobeTemp',     'decimal(4,1)'),                            // 28 - 29
             array('WetBulbGlobeTemp',   'decimal(4,1)'),                            // 29 - 30
-            array('WindbearingSym',     'varchar(3)'),                              // 30
-            array('CurrWindBearingSym', 'varchar(3)')                               // 31
+            array('WindbearingSym',     'varchar(3)'),                              // 30 - 31
+            array('CurrWindBearingSym', 'varchar(3)')                               // 31 - 32
         );
 
         // Construct the SQL strings from the array

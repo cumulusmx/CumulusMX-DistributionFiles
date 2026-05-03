@@ -1,4 +1,4 @@
-// Last modified: 2026/01/04 15:22:05
+// Last modified: 2026/04/06 22:52:10
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 
@@ -95,7 +95,11 @@ $(document).ready(function() {
         {title: '{{HIGH_HUMIDEX_TIME}}', type:'text', pattern: timeRegex},
         {title: '{{CHILL_HOURS}}', type: 'number', min: 0, step: tempStep},
         {title: '{{HIGH_RAINFALL_24HR}}', type: 'number', step: rainStep},
-        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex}
+        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_BGT}}', type: 'number', min: 0, step: tempStep},
+        {title: '{{HIGH_BGT_TIME}}', type:'text', pattern: timeRegex},
+        {title: '{{HIGH_WBGT}}', type: 'number', min: 0, step: tempStep},
+        {title: '{{HIGH_WBGT_TIME}}', type:'text', pattern: timeRegex}
         ];
 
         var myTable = $('#dayfile').DataTable({

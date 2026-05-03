@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:38:54
+// Last modified: 2026/04/10 13:16:31
 
 let mainChart, navChart, config, avail;
 
@@ -84,6 +84,9 @@ $(document).ready(() => {
         }
         if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
             $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.SoilEc == undefined || avail.SoilEc.length == 0) {
+            $('#mySelect option[value="soilec"]').remove();
         }
         if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
             $('#mySelect option[value="leafwet"]').remove();
@@ -195,6 +198,8 @@ $(document).ready(() => {
                 return doSoilTemp();
             case 'soilmoist':
                 return doSoilMoist();
+            case 'soilec':
+                return doSoilEc();
             case 'leafwet':
                 return doLeafWet();
             case 'usertemp':
@@ -213,6 +218,8 @@ $(document).ready(() => {
 
 const doTemp = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent temperature trends over time');
 
     $.getJSON({
         url: 'tempdata.json'
@@ -307,6 +314,8 @@ const doTemp = () => {
 const doPress = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent pressure trends over time');
+
     $.getJSON({
         url: 'pressdata.json'
     })
@@ -397,6 +406,8 @@ const compassP = deg => {
 const doWindDir = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Scatter chart showing recent wind direction trends over time');
+
     $.getJSON({
         url: 'wdirdata.json'
     })
@@ -435,7 +446,7 @@ const doWindDir = () => {
             yAxisID: 'y_bearing',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y?.ToFixedMX(0) +'°'}`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? 'calm' : item.parsed.y +'°'}`
                 }
             }
         }, {
@@ -493,6 +504,8 @@ const doWindDir = () => {
 
 const doWind = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent wind speed and gust trends over time');
 
     $.getJSON({
         url: 'winddata.json'
@@ -582,6 +595,8 @@ const doWind = () => {
 
 const doRain = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent rainfall trends over time');
 
     $.getJSON({
         url: 'raindata.json'
@@ -690,7 +705,9 @@ const doRain = () => {
 const doHum = () => {
     removeOldCharts(true);
 
-    $.ajax({
+    $('#mainChart').attr('aria-label', 'Line chart showing recent humidity trends over time');
+
+    $.getJSON({
         url: 'humdata.json'
     })
     .done(resp => {
@@ -781,6 +798,8 @@ const doHum = () => {
 
 const doSolar = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line and area chart showing recent solar radiation, UV index, and theoretical maximum trends over time');
 
     $.getJSON({
         url: 'solardata.json'
@@ -903,6 +922,8 @@ const doSolar = () => {
 const doSunHours = () => {
     removeOldCharts(false);
 
+    $('#mainChart').attr('aria-label', 'Bar chart showing recent sunshine hours over time');
+
     $.getJSON({
         url: 'sunhours.json'
     })
@@ -974,6 +995,8 @@ const doSunHours = () => {
 
 const doDailyRain = () => {
     removeOldCharts(false);
+
+    $('#mainChart').attr('aria-label', 'Bar chart showing recent daily rainfall over time');
 
     $.getJSON({
         url: 'dailyrain.json'
@@ -1047,6 +1070,8 @@ const doDailyRain = () => {
 const doDailyTemp = () => {
     removeOldCharts(false);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent daily temperature trends over time');
+
     $.getJSON({
         url: 'dailytemp.json'
     })
@@ -1118,6 +1143,8 @@ const doDailyTemp = () => {
 
 const doAirQuality = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent air quality trends over time');
 
     $.getJSON({
         url: 'airquality.json'
@@ -1210,6 +1237,8 @@ const doAirQuality = () => {
 const doExtraTemp = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent extratemperature trends over time');
+
     $.getJSON({
         url: 'extratempdata.json'
     })
@@ -1286,6 +1315,8 @@ const doExtraTemp = () => {
 
 const doExtraHum = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent humidity trends over time');
 
     $.getJSON({
         url: 'extrahumdata.json'
@@ -1372,6 +1403,8 @@ const doExtraHum = () => {
 const doExtraDew = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent dew point trends over time');
+
     $.getJSON({
         url: 'extradewdata.json'
     })
@@ -1449,6 +1482,8 @@ const doExtraDew = () => {
 const doSoilTemp = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent soil temperature trends over time');
+
     $.getJSON({
         url: 'soiltempdata.json'
     })
@@ -1525,6 +1560,8 @@ const doSoilTemp = () => {
 
 const doSoilMoist = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent soil moisture trends over time');
 
     $.getJSON({
         url: 'soilmoistdata.json'
@@ -1606,8 +1643,95 @@ const doSoilMoist = () => {
     });
 };
 
+const doSoilEc = () => {
+    removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent soil electrical conductivity trends over time');
+
+    $.getJSON({
+        url: 'soilecdata.json'
+    })
+    .done(resp => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScale;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_moist: {
+                title: {
+                    display: true,
+                    text: 'Conductivity (μS/cm)'
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        Object.entries(resp).forEach(([key, value]) => {
+            const id = config.series.soilec.name.findIndex(val => val == key);
+            dataSets.push({
+                label: key,
+                data: value,
+                borderColor: config.series.soilec.colour[id],
+                backgroundColor: config.series.soilec.colour[id],
+                yAxisID: 'y_moist',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(0) ?? '—'} μS/cm`
+                    }
+                }
+            });
+        });
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Soil Electrical Conductivity'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: dataSets[0].data,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
 const doLeafWet = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent leaf wetness trends over time');
 
     $.ajax({
         url: 'leafwetdata.json',
@@ -1694,6 +1818,8 @@ const doLeafWet = () => {
 const doUserTemp = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent user temperature trends over time');
+
     $.getJSON({
         url: 'usertempdata.json'
     })
@@ -1770,6 +1896,8 @@ const doUserTemp = () => {
 
 const doCO2 = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent CO₂ sensor data over time');
 
     $.getJSON({
         url: 'co2sensordata.json'
@@ -1894,6 +2022,8 @@ const doCO2 = () => {
 const doLaserDepth = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Line chart showing recent laser depth readings over time');
+
     $.getJSON({
         url: 'laserdepthdata.json'
     })
@@ -1975,6 +2105,8 @@ const doLaserDepth = () => {
 
 const doSnowDepth = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Line chart showing recent snowfall depth trends over time');
 
     $.getJSON({
         url: 'snow24hdata.json',

@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/02/11 10:25:36",
+	"version": "Last Modified: 2026/04/09 21:30:37",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -272,6 +272,10 @@
 						"useSoilTemp": {
 							"label": "{{SOIL_TEMP}}",
 							"rightLabel": "{{SOIL_TEMP_LABEL}}"
+						},
+						"useSoilEc": {
+							"label": "{{SOIL_EC}}",
+							"rightLabel": "{{SOIL_EC_LABEL}}"
 						},
 						"useLeafWet": {
 							"label": "{{LEAF_WETNESS}}",

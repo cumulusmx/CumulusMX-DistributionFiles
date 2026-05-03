@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:37:35
+// Last modified: 2026/04/26 09:00:15
 
 let mainChart, navChart, config, avail;
 
@@ -84,6 +84,9 @@ $(document).ready(() => {
         }
         if (avail.SoilMoist == undefined || avail.SoilMoist.length == 0) {
             $('#mySelect option[value="soilmoist"]').remove();
+        }
+        if (avail.SoilEc == undefined || avail.SoilEc.length == 0) {
+            $('#mySelect option[value="soilec"]').remove();
         }
         if (avail.LeafWetness == undefined || avail.LeafWetness.length == 0) {
             $('#mySelect option[value="leafwet"]').remove();
@@ -195,6 +198,8 @@ $(document).ready(() => {
                 return doSoilTemp();
             case 'soilmoist':
                 return doSoilMoist();
+            case 'soilec':
+                return doSoilEc();
             case 'leafwet':
                 return doLeafWet();
             case 'usertemp':
@@ -221,6 +226,7 @@ const doTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_TEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/tempdata.json'
@@ -316,6 +322,7 @@ const doPress = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_PRESS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_PRESS_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/pressdata.json'
@@ -408,6 +415,7 @@ const doWindDir = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_WINDDIR_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_WINDDIR_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/wdirdata.json'
@@ -507,6 +515,7 @@ const doWind = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_WIND_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/winddata.json'
@@ -598,6 +607,7 @@ const doRain = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_RAIN_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_RAIN_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/raindata.json'
@@ -707,6 +717,7 @@ const doHum = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_HUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_HUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/humdata.json'
@@ -801,6 +812,7 @@ const doSolar = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOLAR_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOLAR_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/solardata.json'
@@ -924,6 +936,7 @@ const doSunHours = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_SUNSHOURS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SUNSHOURS_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/sunhours.json'
@@ -998,6 +1011,7 @@ const doDailyRain = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_DAILYRAIN_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/dailyrain.json',
@@ -1072,6 +1086,7 @@ const doDailyTemp = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_RECENT_DAILYTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_DAILYTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/dailytemp.json'
@@ -1146,6 +1161,7 @@ const doAirQuality = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_AQ_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_AQ_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/airqualitydata.json',
@@ -1239,6 +1255,7 @@ const doExtraTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRATEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRATEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extratemp.json'
@@ -1318,6 +1335,7 @@ const doExtraHum = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRAHUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRAHUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extrahum.json'
@@ -1405,6 +1423,7 @@ const doExtraDew = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_EXTRADEW_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_EXTRADEW_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/extradew.json',
@@ -1484,6 +1503,7 @@ const doSoilTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOILTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/soiltemp.json',
@@ -1563,6 +1583,7 @@ const doSoilMoist = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SOILMOIST_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILMOIST_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/soilmoist.json'
@@ -1644,10 +1665,97 @@ const doSoilMoist = () => {
     });
 };
 
+const doSoilEc = () => {
+    removeOldCharts(true);
+
+    $('#chartdescription').text('{{CHART_RECENT_SOILEC_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SOILEC_DESC}}');
+
+    $.getJSON({
+        url: '/api/graphdata/soilec.json'
+    })
+    .done(resp => {
+        // Initial x-range
+        const key = Object.keys(resp)[0];
+        CmxChartJsHelpers.SetInitialRange(resp[key]);
+
+        const xscale = CmxChartJsHelpers.TimeScale;
+        xscale.min = selection.start;
+        xscale.max = selection.end;
+
+        let scales = {
+            x: xscale,
+            y_ec: {
+                title: {
+                    display: true,
+                    text: '{{CONDUCTIVITY}} (μS/cm)'
+                },
+                min: 0
+            }
+        };
+
+        let dataSets = [];
+
+        Object.entries(resp).forEach(([key, value]) => {
+            const id = config.series.soilec.name.findIndex(val => val == key);
+            dataSets.push({
+                label: key,
+                data: value,
+                borderColor: config.series.soilec.colour[id],
+                backgroundColor: config.series.soilec.colour[id],
+                yAxisID: 'y_ec',
+                tooltip: {
+                    callbacks: {
+                        label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(0) ?? '—'} μS/cm`
+                    }
+                }
+            });
+        });
+
+        CmxChartJsHelpers.HideLoading();
+
+        mainChart = new Chart(document.getElementById('mainChart'), {
+            type: 'line',
+            data: {datasets: dataSets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: scales,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: '{{SOIL_EC}}'
+                    }
+                }
+            }
+        });
+
+        const navDataset = {
+            label: 'Navigator',
+            data: dataSets[0].data,
+            borderColor: 'rgba(33,133,208,0.6)',
+            backgroundColor: 'rgba(33,133,208,0.04)',
+            pointStyle: false,
+            tension: 0.1
+        };
+
+        navChart = new Chart(document.getElementById('navChart'), {
+            type: 'line',
+            data: {datasets: [navDataset]},
+            options: CmxChartJsHelpers.NavChartOptions,
+            plugins: [CmxChartJsPlugins.navigatorPlugin]
+        });
+    });
+};
+
 const doLeafWet = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_LEAFWET_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_LEAFWET_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/leafwetness.json',
@@ -1734,6 +1842,7 @@ const doUserTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_USERTEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_USERTEMP_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/usertemp.json'
@@ -1813,6 +1922,7 @@ const doCO2 = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_CO2_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_CO2_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/co2sensor.json',
@@ -1933,6 +2043,7 @@ const doLaserDepth = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_LASERDEPTH_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_LASERDEPTH_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/laserdepth.json',
@@ -2017,6 +2128,7 @@ const doSnowDepth = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_RECENT_SNOWACCUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_RECENT_SNOWACCUM_DESC}}');
 
     $.getJSON({
         url: '/api/graphdata/snow24h.json'

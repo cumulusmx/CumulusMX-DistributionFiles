@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 12:15:06
+// Last modified: 2026/04/06 22:48:16
 
 var updateUrl = '/api/edit/thismonth';
 var editFieldName;
@@ -121,6 +121,10 @@ $(document).ready(function() {
         $('#lowWindChillTime').editable();
         $('#highHeatIndexVal').editable();
         $('#highHeatIndexTime').editable();
+        $('#highBgtVal').editable();
+        $('#highBgtTime').editable();
+        $('#highWbgtVal').editable();
+        $('#highWbgtTime').editable();
         $('#highMinTempVal').editable();
         $('#highMinTempTime').editable();
         $('#lowMaxTempVal').editable();

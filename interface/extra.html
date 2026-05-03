@@ -1,5 +1,5 @@
 <!--
-Last modified: 2026/03/09 16:48:51
+Last modified: 2026/04/25 22:39:20
 -->
 <!doctype html>
 <html lang="en">
@@ -150,12 +150,43 @@ Last modified: 2026/03/09 16:48:51
                 </table>
             </div>
 
+            <!-- SOIL MOISTURE BLOCK-->
+            <div id="SoilEcTableBlock" class="table-block">
+                <table id="SoilEcTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;{{SOIL_EC}}</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Sensor&nbsp;1&nbsp;</td>
+                        <td><span id="SoilEcSensor1">--</span></td>
+                        <td>cb</td>
+                    </tr>
+                </table>
+            </div>
+
             <!-- CO2 BLOCK -->
             <div id="CO2TableBlock" class="table-block">
                 <table id="CO2Table" style="width:100%">
                     <thead>
                         <tr>
                             <th>&nbsp;CO<sub>2</sub> Sensor</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <!-- AIR QUAL BLOCK -->
+            <div id="AirQualityTableBlock" class="table-block">
+                <table id="AirQualityTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;{{AIR_QUALITY}}</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -212,7 +243,7 @@ Last modified: 2026/03/09 16:48:51
                 </table>
             </div>
 
-            <!-- Blac Globe Temperature BLOCK-->
+            <!-- Black Globe Temperature BLOCK-->
             <div id="BGTTableBlock" class="table-block">
                 <table id="BGTTable" style="width:100%">
                     <thead>

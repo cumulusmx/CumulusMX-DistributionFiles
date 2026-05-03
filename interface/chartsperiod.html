@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/11/19 16:43:58
+Last modified: 2026/04/10 12:37:01
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -120,13 +120,13 @@ Last modified: 2025/11/19 16:43:58
                     </div>
                 </div>
                 <div id="mainChartContainer" class="mainChartContainer">
-                    <canvas id="mainChart"></canvas>
+                    <canvas id="mainChart" aria-label="Main chart which can show up to six user selected data series for the selected period" role="img"></canvas>
                 </div>
                 <div id="navChartContainer" class="navChartContainer">
-                    <canvas id="navChart"></canvas>
+                    <canvas id="navChart" aria-label="Navigation chart which shows the overall data range" role="img"></canvas>
                 </div>
             </div>
-            <p id="chartdescription" class="highcharts-description">{{SELECTACHART_DESC}}</p>
+            <p id="chartdescription" class="chartDescription" aria-hidden="true">{{SELECTACHART_DESC}}</p>
         </figure>
         <div class="selecta-area">
             <div class="selecta-1">

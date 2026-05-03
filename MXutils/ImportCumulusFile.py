@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------
-# Version 1.0
-# Last updated: 2025/12/30 22:52:03
+# Version 1.1
+# Last updated: 2026/04/09 15:50:05
+# ------------------------------------------------------------
 # Script to import data from Cumulus MX log files into a MySQL database
 # Compatible with data files from Cumulus MX v4.7.0 and later
 #
@@ -127,6 +128,10 @@ DAYFILE_COLUMNS = [
     ("ChillHours",     "decimal(7,1)"),                            # 54
     ("HighRain24h",    "decimal(6,2)"),                            # 55
     ("THighRain24h",   "varchar(5)"),                              # 56
+    ("HighBgt",        "decimal(4,1)"),                            # 57
+    ("THighBgt",       "varchar(5)"),                              # 58
+    ("HighWbgt",       "decimal(4,1)"),                            # 59
+    ("THighWbgt",      "varchar(5)"),                              # 60
     ("HWindGBearSym",  "varchar(3)"),                              # 46 (derived)
     ("DomWindDirSym",  "varchar(3)"),                              # 47 (derived)
 ]

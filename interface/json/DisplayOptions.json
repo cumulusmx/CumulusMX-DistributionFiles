@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/06 20:58:30",
+	"version": "Last Modified: 2026/04/08 16:56:38",
 	"definitions": {
 		"colorpicker": {
 			"type": "colorpicker",
@@ -122,6 +122,14 @@
 								},
 								"Humidex": {
 									"label": "{{HUMIDEX}}",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"BGT": {
+									"label": "{{BGT}}",
+									"$ref": "#/definitions/colorpicker"
+								},
+								"WBGT": {
+									"label": "{{WBGT}}",
 									"$ref": "#/definitions/colorpicker"
 								}
 							}
@@ -363,6 +371,19 @@
 							}
 						},
 						"soilmoist": {
+							"collapsible": true,
+							"collapsed": true,
+							"fields": {
+								"sensors": {
+									"type": "array",
+									"toolbarSticky": false,
+									"items": {
+										"$ref": "#/definitions/colorpicker"
+									}
+								}
+							}
+						},
+						"soilec": {
 							"collapsible": true,
 							"collapsed": true,
 							"fields": {
@@ -641,6 +662,15 @@
 					}
 				},
 				"soilmoist": {
+					"collapsible": true,
+					"collapsed": true,
+					"fields": {
+						"sensors": {
+							"$ref": "#/definitions/sensors"
+						}
+					}
+				},
+				"soilec": {
 					"collapsible": true,
 					"collapsed": true,
 					"fields": {

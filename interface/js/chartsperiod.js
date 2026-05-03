@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2026/04/02 21:38:30
+// Last modified: 2026/04/08 18:23:39
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -152,7 +152,7 @@ $(document).ready(() => {
                     if (['Humidex'].indexOf(val) === -1) {
                         let option = $('<option />');
                         option.html(val);
-                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'UserTemp', 'LeafWetness', 'LaserDepth', 'Snow'].indexOf(k) === -1) {
+                        if (['ExtraTemp', 'ExtraHum', 'ExtraDewPoint', 'SoilMoist', 'SoilTemp', 'SoilEc', 'UserTemp', 'LeafWetness', 'LaserDepth', 'Snow'].indexOf(k) === -1) {
                             option.val(val);
                         } else {
                             option.val(k + '-' + val);
@@ -331,6 +331,8 @@ const updateChart = (val, num, id) => {
         return doUserTemp(num, val);
     } else if (val.startsWith('SoilMoist-')) {
         return doSoilMoist(num, val);
+    } else if (val.startsWith('SoilEc-')) {
+        return doSoilEc(num, val);
     } else if (val.startsWith('SoilTemp-')) {
         return doSoilTemp(num, val);
     } else if (val.startsWith('LeafWetness-')) {
@@ -619,6 +621,22 @@ const addSoilMoistAxis = (idx) => {
         },
         min: 0,
         max: config.soilmoisture.units.includes('cb') ? 200 : 100, // Davis 0-200 cb, Ecowitt 0-100%
+        position: idx < settings.series.length / 2 ? 'left' : 'right'
+    };
+};
+
+const addSoilEcAxis = (idx) => {
+    // first check if we already have a soil moisture axis
+    if (checkAxisExists('y_soilec'))
+        return;
+
+    // nope no existing axis, add one
+    mainChart.options.scales.y_soilec = {
+        title: {
+            display: true,
+            text: '{{SOIL_EC}} (μS/cm)'
+        },
+        min: 0,
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };
 };
@@ -1836,6 +1854,44 @@ const doSoilMoist = (idx, val) => {
         })
         .done((resp) => {
             cache.soilmoist = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doSoilEc = (idx, val) => {
+    const addSeries = () => {
+        // get the sensor name
+        const name = val.split('-')[1];
+        const unitIdx = config.series.soilec.name.indexOf(name);
+        setInitialRange(cache.soilec[name]);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: name,
+            type: 'line',
+            data: cache.soilec[name],
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_soilec',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(0) ?? '—'} μS/cm`
+                }
+            },
+            order: idx
+        });
+
+        addSoilEcAxis(idx);
+    };
+
+    if (cache === null || cache.soilec === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvsoilec.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.soilec = resp;
             addSeries();
         });
     } else {

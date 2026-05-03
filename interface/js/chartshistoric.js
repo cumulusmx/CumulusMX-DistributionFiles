@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:31:33
+// Last modified: 2026/04/10 12:24:33
 
 let mainChart, navChart, config, avail;
 
@@ -203,6 +203,7 @@ const doTemp = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_HIST_TEMP_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_TEMP_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/tempdata.json',
@@ -220,7 +221,9 @@ const doTemp = () => {
             'minFeels' : '{{FEELS_LIKE_MIN}}',
             'maxFeels' : '{{FEELS_LIKE_MAX}}',
             'humidex'  : '{{HUMIDEX}}',
-            'windChill': '{{WIND_CHILL}}'
+            'windChill': '{{WIND_CHILL}}',
+            'bgt'      : '{{BGT}}',
+            'wbgt'     : '{{WBGT}}'
         };
         const hidden = {
             'minTemp'  : false,
@@ -234,9 +237,12 @@ const doTemp = () => {
             'minFeels' : true,
             'maxFeels' : true,
             'humidex'  : true,
-            'windChill': true
+            'windChill': true,
+            'bgt'      : true,
+            'wbgt'     : true
+
         };
-        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex'];
+        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex', 'bgt', 'wbgt'];
 
         // Initial x-range
         const key = Object.keys(resp)[0];
@@ -343,7 +349,8 @@ const doTemp = () => {
 const doPress = () => {
     removeOldCharts(true);
 
-    $('#chartdescription').text('Line chart showing daily high and low atmospheric pressure values.');
+    $('#chartdescription').text('{{CHART_HIST_PRESS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_PRESS_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/pressdata.json',
@@ -446,7 +453,8 @@ const compassP = (deg) => {
 const doWind = () => {
     removeOldCharts(true);
 
-    $('#chartdescription').text('{{CHART_HIST_RAIN_DESC}}');
+    $('#chartdescription').text('{{CHART_HIST_WIND_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_WIND_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/winddata.json',
@@ -559,6 +567,7 @@ const doRain = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_HIST_RAIN_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_RAIN_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/raindata.json',
@@ -688,6 +697,7 @@ const doHum = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_HIST_HUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_HUM_DESC}}');
 
     var options = {
         chart: {
@@ -864,6 +874,7 @@ const doSolar = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_HIST_SOLAR_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_SOLAR_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/solardata.json'
@@ -1040,6 +1051,7 @@ const doDegDays = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_HIST_GDD_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_GDD_DESC}}');
 
     var options = {
         chart: {
@@ -1218,6 +1230,7 @@ const doTempSum = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_HIST_TEMPSUM_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_TEMPSUM_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/tempsumdata.json',
@@ -1315,6 +1328,7 @@ const doChillHrs = () => {
     removeOldCharts(false);
 
     $('#chartdescription').text('{{CHART_HIST_CHILL_HRS_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_CHILL_HRS_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/chillhrsdata.json',
@@ -1396,6 +1410,7 @@ const doSnow = () => {
     removeOldCharts(true);
 
     $('#chartdescription').text('{{CHART_HIST_SNOW_DESC}}');
+    $('#mainChart').attr('aria-label', '{{CHART_HIST_SNOW_DESC}}');
 
     $.getJSON({
         url: '/api/dailygraphdata/dailysnow.json',

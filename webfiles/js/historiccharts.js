@@ -1,4 +1,4 @@
-// Last modified: 2026/04/02 21:24:20
+// Last modified: 2026/04/10 12:45:50
 
 let mainChart, navChart, config, avail;
 
@@ -179,6 +179,8 @@ const changeGraph = (graph) => {
 const doTemp = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Historical daily temperatures chart');
+
     $.getJSON({
         url: 'alldailytempdata.json'
     })
@@ -195,7 +197,9 @@ const doTemp = () => {
             'minFeels' : 'Min Feels',
             'maxFeels' : 'Max Feels',
             'humidex'  : 'Humidex',
-            'windChill': 'Wind Chill'
+            'windChill': 'Wind Chill',
+            'bgt'      : 'BGT',
+            'wbgt'     : 'WBGT'
         };
         const hidden = {
             'minTemp'  : false,
@@ -209,9 +213,11 @@ const doTemp = () => {
             'minFeels' : true,
             'maxFeels' : true,
             'humidex'  : true,
-            'windChill': true
+            'windChill': true,
+            'bgt'      : true,
+            'wbgt'     : true
         };
-        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex'];
+        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex', 'bgt', 'wbgt'];
 
         // Initial x-range
         const key = Object.keys(resp)[0];
@@ -318,6 +324,8 @@ const doTemp = () => {
 const doPress = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Historical daily pressure chart');
+
     $.getJSON({
         url: 'alldailypressdata.json'
     })
@@ -418,6 +426,8 @@ const compassP = (deg) => {
 
 const doWind = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Historical daily wind speeds chart');
 
     $.getJSON({
         url: 'alldailywinddata.json'
@@ -528,6 +538,8 @@ const doWind = () => {
 
 const doRain = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Historical daily rainfall chart');
 
     $.getJSON({
         url: 'alldailyraindata.json'
@@ -656,6 +668,8 @@ const doRain = () => {
 const doHum = () => {
     removeOldCharts(true);
 
+    $('#mainChart').attr('aria-label', 'Historical daily humidity chart');
+
     $.getJSON({
         url: 'alldailyhumdata.json'
     })
@@ -746,6 +760,8 @@ const doHum = () => {
 
 const doSolar = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Historical daily solar chart');
 
     $.getJSON({
         url: 'alldailysolardata.json'
@@ -905,6 +921,8 @@ const doSolar = () => {
 const doDegDays = () => {
     removeOldCharts(false);
 
+    $('#mainChart').attr('aria-label', 'Historical daily degree days chart');
+
     $.getJSON({
         url: 'alldailydegdaydata.json'
     })
@@ -998,6 +1016,8 @@ const doDegDays = () => {
 
 const doTempSum = () => {
     removeOldCharts(false);
+
+    $('#mainChart').attr('aria-label', 'Historical daily temperature sum chart');
 
     $.getJSON({
         url: 'alltempsumdata.json'
@@ -1094,6 +1114,8 @@ const doTempSum = () => {
 const doChillHrs = () => {
     removeOldCharts(false);
 
+    $('#mainChart').attr('aria-label', 'Historical daily chill hours chart');
+
     $.getJSON({
         url: 'allchillhrsdata.json'
     })
@@ -1172,6 +1194,8 @@ const doChillHrs = () => {
 
 const doSnow = () => {
     removeOldCharts(true);
+
+    $('#mainChart').attr('aria-label', 'Historical daily snowfall chart');
 
     $.getJSON({
         url: 'alldailysnowdata.json'

@@ -1,4 +1,4 @@
-// Last modified: 2025/11/27 15:12:57
+// Last modified: 2026/04/07 15:18:39
 
 var decimalToStep = [0, 0.1, 0.01, 0.001, 0.0001];
 var myTable;
@@ -64,7 +64,9 @@ $(document).ready(function() {
             {title: '{{INDOOR_TEMP}}', type: 'number', step: tempStep},
             {title: '{{INDOOR_HUMIDITY}}', type: 'number', min: 0, max: 100},
             {title: "AQ pm2.5", type: 'number', min: 0, step: 0.1},
-            {title: "AQ pm10", type: 'number', min: 0, step: 0.1}
+            {title: "AQ pm10", type: 'number', min: 0, step: 0.1},
+            {title: '{{BGT}}', type: 'number', step: tempStep},
+            {title: '{{WBGT}}', type: 'number', step: tempStep}
         ];
 
         myTable = $('#recent').DataTable({

@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/01/19 18:15:08",
+    "_LAST_MODIFIED": "Last modified: 2026/04/09 21:33:21",
     "AL_ADDED_TO_STATION_LABEL": "This AirLink has been added as a Node to my main WLL station",
     "AL_ADDED_TO_STATION": "Added to station",
     "AL_AUTO_DISCOVERY_HELP1": "If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
@@ -152,6 +152,8 @@
     "SENSOR": "Sensor",
     "SENSORS": "Sensors",
     "SERIAL_PORT": "Serial Port",
+    "SOIL_EC_LABEL": "Use the soil EC sensor data from your extra station",
+    "SOIL_EC": "Soil EC",
     "SOIL_MOIST_LABEL": "Use the soil moisture sensor data from your extra station",
     "SOIL_MOIST": "Soil Moisture",
     "SOIL": "Soil",

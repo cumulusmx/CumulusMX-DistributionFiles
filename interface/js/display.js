@@ -1,4 +1,4 @@
-// Last modified: 2026/01/16 16:13:37
+// Last modified: 2026/04/08 16:57:43
 
 let accessMode;
 
@@ -64,6 +64,7 @@ $(document).ready(function () {
             setSensorLabels(form, 'DataVisibility/extradew/sensors');
             setSensorLabels(form, 'DataVisibility/soiltemp/sensors');
             setSensorLabels(form, 'DataVisibility/soilmoist/sensors');
+            setSensorLabels(form, 'DataVisibility/soilec/sensors');
             setSensorLabels(form, 'DataVisibility/leafwet/sensors');
             setSensorLabels(form, 'DataVisibility/usertemp/sensors');
             setSensorLabels(form, 'DataVisibility/aq/sensors');
@@ -76,6 +77,7 @@ $(document).ready(function () {
             setSensorLabels(form, 'Graphs/colour/extradew/sensors');
             setSensorLabels(form, 'Graphs/colour/soiltemp/sensors');
             setSensorLabels(form, 'Graphs/colour/soilmoist/sensors');
+            setSensorLabels(form, 'Graphs/colour/soilec/sensors');
             setSensorLabels(form, 'Graphs/colour/usertemp/sensors');
         }
     });

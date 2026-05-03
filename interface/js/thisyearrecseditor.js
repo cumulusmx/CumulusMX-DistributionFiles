@@ -1,4 +1,4 @@
-// Last modified: 2025/08/22 17:39:20
+// Last modified: 2026/04/06 22:49:01
 
 var updateUrl = '/api/edit/thisyear';
 var newValue, newTime;
@@ -101,6 +101,10 @@ $(document).ready(function() {
         $('#lowWindChillTime').editable();
         $('#highHeatIndexVal').editable();
         $('#highHeatIndexTime').editable();
+        $('#highBgtVal').editable();
+        $('#highBgtTime').editable();
+        $('#highWbgtVal').editable();
+        $('#highWbgtTime').editable();
         $('#highMinTempVal').editable();
         $('#highMinTempTime').editable();
         $('#lowMaxTempVal').editable();

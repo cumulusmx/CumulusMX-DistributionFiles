@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2025/09/16 17:41:20",
+	"version": "Last modified: 2026/04/08 16:02:55",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -227,6 +227,12 @@
 			"toolbarSticky": false
 		},
 		"soilMoist": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "array",
+			"toolbarSticky": false
+		},
+		"soilEc": {
 			"collapsible": true,
 			"collapsed": true,
 			"type": "array",

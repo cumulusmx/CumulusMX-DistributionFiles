@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/03/06 20:58:28",
+	"version": "Last Modified: 2026/04/08 16:55:48",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -69,6 +69,12 @@
 									"type": "string"
 								},
 								"Humidex": {
+									"type": "string"
+								},
+								"BGT": {
+									"type": "string"
+								},
+								"WBGT": {
 									"type": "string"
 								}
 							}
@@ -277,6 +283,18 @@
 						},
 						"soilmoist" : {
 							"title": "{{SOIL_MOISTS}}",
+							"type": "object",
+							"properties": {
+								"sensors": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"soilec" : {
+							"title": "{{SOIL_EC}}",
 							"type": "object",
 							"properties": {
 								"sensors": {
@@ -555,6 +573,19 @@
 				},
 				"soilmoist" : {
 					"title": "{{SOIL_MOISTS}}",
+					"type": "object",
+					"properties": {
+						"sensors": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"enum": [0,1,2]
+							}
+						}
+					}
+				},
+				"soilec" : {
+					"title": "{{SOIL_EC}}",
 					"type": "object",
 					"properties": {
 						"sensors": {
