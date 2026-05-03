@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------
 # Version 1.1
-# Last updated: 2026/04/09 15:50:05
+# Last updated: 2026/05/03 16:58:08
 # ------------------------------------------------------------
 # Script to import data from Cumulus MX log files into a MySQL database
 # Compatible with data files from Cumulus MX v4.7.0 and later
@@ -261,7 +261,7 @@ def process_dayfile(filepath, cursor, insert_sql):
 
             fields = line.split(",")
 
-            # The file contains 55 fields; we add 2 derived fields
+            # The file contains 59 fields; we add 2 derived fields
             expected_file_fields = len(DAYFILE_COLUMNS) - 2
 
             # Validate field count
