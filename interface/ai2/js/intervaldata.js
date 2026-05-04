@@ -69,6 +69,14 @@ $().ready(function () {
                     .append($('<label>', { for: '21', class: 'mylabel', html: '{{APPARENT_TEMPERATURE}}' }))
                     .append($('<br>'));
             }
+            if (dataVisibility.temperature.BGT > 0) {
+                tempBoxes.append($('<input>', { type: 'checkbox', id: '29' }))
+                    .append($('<label>', { for: '29', class: 'mylabel', html: '{{BGT}}' }))
+                    .append($('<br>'))
+                    .append($('<input>', { type: 'checkbox', id: '30' }))
+                    .append($('<label>', { for: '30', class: 'mylabel', html: '{{WBGT}}' }))
+                    .append($('<br>'));
+            }
             if (dataVisibility.temperature.InTemp > 0) {
                 tempBoxes.append($('<input>', { type: 'checkbox', id: '12' }))
                     .append($('<label>', { for: '12', class: 'mylabel', html: '{{INDOOR_TEMPERATURE}}' }))
@@ -378,6 +386,37 @@ $().ready(function () {
                     .append($('<div>', { class: 'ows-titleFlex', html: '<h4>CO₂</h4>' }))
                     .append(co2Boxes);
                 cards.append($('<div>', { class: 'w3-container ows-theme8', style:'order:3;'}).append(co2Block));
+            }
+            // laser distance
+            let laserBoxes = $('<div>');
+            for (var i = 0; i < 8; i++) {
+                if (dataVisibility.laser.Dist.sensors[i] > 0) {
+                    laserBoxes.append($('<input>', { type: 'checkbox', id: 1000 + i + 92 }))
+                        .append($('<label>', { for: 1000 + i + 92, class: 'mylabel', html: localeStrings.laser[i] || 'Sensor ' + (i + 1) }))
+                        .append($('<br>'));
+                }
+            }
+
+            if (laserBoxes.children().length > 0) {
+                let laserBox = $('<div>', { class: 'my-unit' })
+                    .append($('<div>', { class: 'my-title', html: '<h4>Laser Distance</h4>' }))
+                    .append(laserBoxes);
+                cards.append($('<div>', {class:'w3-container ows-theme8', style: 'order:3'}).append(laserBox));
+            }
+
+            // snow 24h
+            let snowBoxes = $('<div>');
+            if (dataVisibility.snow.Last24h > 0) {
+                snowBoxes.append($('<input>', { type: 'checkbox', id: '1096' }))
+                    .append($('<label>', { for: '1096', class: 'mylabel', html: 'Snow 24h' }))
+                    .append($('<br>'));
+            }
+
+            if (snowBoxes.children().length > 0) {
+                let snowBox = $('<div>', { class:'my-unit'})
+                    .append($('<div>', { class: 'ows-titleFlex', html: '<h4>Snow 24h</h4>' }))
+                    .append(snowBoxes);
+                cards.append($('<div>', {class: 'w3-container ows-theme8', style:'order:3'}).append(snowBox));
             }
 
             $('#subContent').append(cards);
