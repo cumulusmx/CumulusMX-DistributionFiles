@@ -354,7 +354,10 @@ const updateChart = (val, num, id) => {
             return doFeelsLike(num);
         case 'Humidex':
             return doHumidex(num);
-
+        case 'BGT':
+            return doBGT(num);
+        case 'WBGT':
+            return doWBGT(num);
         case 'Humidity':
             return doHumidity(num);
         case 'Indoor Hum':
@@ -1048,6 +1051,76 @@ var doHumidex = function (idx) {
     }
 };
 */
+
+const doBGT = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.bgt);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'BGT',
+            type: 'line',
+            data: cache.temp.bgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
+
+const doWBGT = (idx) => {
+    const addSeries = () => {
+        setInitialRange(cache.temp.wbgt);
+        mainChart.data.datasets.push({
+            id: settings.series[idx],
+            label: 'WBGT',
+            type: 'line',
+            data: cache.temp.wbgt,
+            borderColor: settings.colours[idx],
+            backgroundColor: settings.colours[idx],
+            yAxisID: 'y_temp',
+            tooltip: {
+                callbacks: {
+                    label: item => ` ${item.dataset.label} ${item.parsed.y?.toFixedMX(config.temp.decimals) ?? '—'} °${config.temp.units}`
+                }
+            },
+            order: idx
+        });
+
+        addTemperatureAxis(idx);
+    };
+
+    if (cache === null || cache.temp === undefined) {
+        return $.getJSON({
+            url: '/api/graphdata/intvtemp.json?start=' + formatDateStr($('#dateFrom').datepicker('getDate')) + '&end=' + formatDateStr($('#dateTo').datepicker('getDate')),
+        })
+        .done((resp) => {
+            cache.temp = resp;
+            addSeries();
+        });
+    } else {
+        addSeries();
+    }
+};
 
 const doHumidity = (idx) => {
     const addSeries = () => {

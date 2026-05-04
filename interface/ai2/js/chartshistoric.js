@@ -211,7 +211,9 @@ const doTemp = () => {
             'minFeels' : '{{FEELS_LIKE_MIN}}',
             'maxFeels' : '{{FEELS_LIKE_MAX}}',
             'humidex'  : '{{HUMIDEX}}',
-            'windChill': '{{WIND_CHILL}}'
+            'windChill': '{{WIND_CHILL}}',
+            'bgt'      : 'BGT',
+            'wbgt'     : 'WBGT' 
         };
         const hidden = {
             'minTemp'  : false,
@@ -225,9 +227,11 @@ const doTemp = () => {
             'minFeels' : true,
             'maxFeels' : true,
             'humidex'  : true,
-            'windChill': true
+            'windChill': true,
+            'bgt': true,
+            'wbgt': true
         };
-        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex'];
+        const idxs = ['maxTemp', 'avgTemp', 'minTemp', 'heatIndex', 'maxApp', 'minApp', 'maxDew', 'minDew', 'maxFeels', 'minFeels', 'windChill', 'humidex', 'bgt','wbgt'];
 
         // Initial x-range
         const key = Object.keys(resp)[0];
