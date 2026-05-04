@@ -46,6 +46,14 @@ $(document).ready(function () {
                 .append($('<input>', { type: 'checkbox', id: '52' }))
                 .append($('<label>', { for: '52', class: 'mylabel', html: '{{CHILL_HOURS}}' }));
         }
+        if (dataVisibility.temperature.BGT > 0) {
+            tempBoxes.append($('<br>'))
+                .append($('<input>', { type: 'checkbox', id: '55' }))
+                .append($('<label>', { for: '55', class: 'mylabel', html: '{{HIGH_BGT}}' }))
+                .append($('<br>'))
+                .append($('<input>', { type: 'checkbox', id: '56' }))
+                .append($('<label>', { for: '56', class: 'mylabel', html: '{{HIGH_BGT_TIME}}' }))
+        }
 
         if (tempBoxes.children().length > 0) {
             let tempBlock = $('<div>')
