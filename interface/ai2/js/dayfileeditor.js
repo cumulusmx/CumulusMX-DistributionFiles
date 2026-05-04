@@ -121,7 +121,11 @@ $(document).ready(function() {
         {title: '{{HIGH_HUMIDEX_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
         {title: '{{CHILL_HOURS}}', type: 'number', min: 0, step: tempStep, className:"tempUnits"},
         {title: '{{HIGH_RAINFALL_24HR}}', type: 'number', step: rainStep, className:'rainUnits'},
-        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex, className:"hours"}
+        {title: '{{HIGH_RAINFALL_24HR_TIME}}', type:'text', pattern: timeRegex, className:"hours"},
+        {title: '{{HIGH_BGT}}', type: 'number', min: 0, step: tempStep, className:'tempUnits'},
+        {title: '{{HIGH_BGT_TIME}}', type:'text', pattern: timeRegex, className:'hours'},
+        {title: '{{HIGH_WBGT}}', type: 'number', min: 0, step: tempStep, className:'tempUnits'},
+        {title: '{{HIGH_WBGT_TIME}}', type:'text', pattern: timeRegex, className:'hours'}
         ];
 
         var myTable = $('#datalog').DataTable({
