@@ -291,6 +291,22 @@ $(document).ready(function () {
             {title:"AQ pm10 Avg 2", type: 'number', min: 0, step: 0.1, className:'pm10Units'},
             {title:"AQ pm10 Avg 3", type: 'number', min: 0, step: 0.1, className:'pm10Units'},
             {title:"AQ pm10 Avg 4", type: 'number', min: 0, step: 0.1, className:'pm10Units'},
+            {title:"{{SOIL_EC}} 1", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 2", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 3", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 4", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 5", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 6", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 7", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 8", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 9", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 10", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 11", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 12", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 13", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 14", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 15", type: 'number', min: 0, max: 10000, className:'ecUnits'},
+            {title:"{{SOIL_EC}} 16", type: 'number', min: 0, max: 10000, className:'ecUnits'}
         ];
 
         myTable = $('#datalog').dataTable({
