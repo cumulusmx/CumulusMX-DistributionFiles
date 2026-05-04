@@ -87,7 +87,9 @@ $().ready(function() {
             {title: '{{INDOOR_TEMP}}', type: 'number', step: tempStep, className: 'tempUnits'},
             {title: '{{INDOOR_HUMIDITY}}', type: 'number', min: 0, max: 100, className: 'windUnits'},
             {title: "AQ pm2.5", type: 'number', min: 0, step: 0.1, className: 'aq2-5Units'},
-            {title: "AQ pm10", type: 'number', min: 0, step: 0.1, className: 'aq10Units'}
+            {title: "AQ pm10", type: 'number', min: 0, step: 0.1, className: 'aq10Units'},
+            {title: '{{BGT}}', type: 'number', step: tempStep, className:'tempUnits'},
+            {title: '{{WBGT}}', type: 'number', step: tempStep, className:'tempUnits'}
         ];
 
         myTable = $('#recent').DataTable({
