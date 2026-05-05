@@ -17,7 +17,7 @@ MIT License
 ===============================================================================================================
 
 HIDSharp
-Copyright 2010-2024 James F. Bellinger <http://www.zer7.com/software/hidsharp>
+Copyright 2010-2025 James F. Bellinger <http://www.zer7.com/software/hidsharp>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -193,12 +193,6 @@ MIT License
 DnsClient
 © 2025 by Michael Conrad
 Apache License 2.0
-
-===============================================================================================================
-
-HidSharp
-Copyright 2010-2025 James F. Bellinger
-Apache License, Version 2.0
 
 ===============================================================================================================
 

@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/04/26 08:57:22",
+    "_LAST_MODIFIED": "Last modified: 2026/05/05 12:13:08",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -594,6 +594,7 @@
     "RECORD_VALUE": "Record Value",
     "RECORDS_AS_OF":"Records as of",
     "RECORDS_EDITOR_ALL_TIME": "All Time Records Editor",
+    "RECORDS_EDITOR_ALL_TIME_TAGLINE": "Check &amp; correct your all-time records",
     "RECORDS_EDITOR_CAUTION": "Caution, if you have lots of data this could be a lengthy process",
     "RECORDS_EDITOR_MONTHLY_TAGLINE": "Check &amp; correct your monthly records",
     "RECORDS_EDITOR_MONTHLY": "Monthly Records Editor",
