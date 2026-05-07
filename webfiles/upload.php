@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2026/05/07 15:53:58";
+$last_Modified="2026/05/07 18:00:02";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -302,7 +302,7 @@ function AppendJsondata() {
     }
 
     $firstNewKey = key((array)$dataObj);
-    $lastNewTs = end($dataObj->$firstNewKey)[0]
+    $lastNewTs = end($dataObj->$firstNewKey)[0];
     if ($debug) {
         echo "Last timestamp in data = $lastNewTs\n";
     }
