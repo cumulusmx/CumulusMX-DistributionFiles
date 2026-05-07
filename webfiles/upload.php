@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2025/09/03 10:09:37";
+$last_Modified="2026/05/07 15:53:58";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -178,55 +178,55 @@ if ($binary != '0' && $binary != '1') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $data = $_SERVER["HTTP_DATA"];
+    $newData = $_SERVER["HTTP_DATA"];
     // ALL (binary and text) GET data is encoded, only decode text before signature check
     if (!$binary) {
-        $data =  base64_decode($data);
+        $newData =  base64_decode($newData);
     }
 } else {
     if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
-        $data = $_SERVER['HTTP_RAW_POST_DATA'];
+        $newData = $_SERVER['HTTP_RAW_POST_DATA'];
     } else {
-        $data = file_get_contents('php://input');
+        $newData = file_get_contents('php://input');
     }
 
-    if (strlen($data) == 0) {
+    if (strlen($newData) == 0) {
         exitCode(422, 'Error: No data sent');
     }
 
     if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
         if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'br') {
             echo "Decompressing Brotli data\n";
-            $data = brotli_uncompress($data);
+            $newData = brotli_uncompress($newData);
         } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
             echo "Unzipping data\n";
-            $data = gzdecode($data);
+            $newData = gzdecode($newData);
         } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'deflate') {
             echo "Inflating data\n";
-            $data = gzinflate($data);
+            $newData = gzinflate($newData);
         }
     }
 }
 
 if ($debug) {
-    echo "Data:\n" . substr($data, 0, 500) ."\n";
+    echo "Data received: " . substr($newData, 0, 500) ."\n";
 }
 
 // ---------------------------------------------------------------
 // Check the signature sent matches what we calculate
 // ---------------------------------------------------------------
-$ourSignature = CalculateSignature($secret, $requestTime . $name . $data);
+$ourSignature = CalculateSignature($secret, $requestTime . $name . $newData);
 if ($signatureSent != $ourSignature) {
     $msg = "Error: Invalid signature\n" .
         "Data Sig   = $signatureSent\n" .
         "Server Sig = $ourSignature\n" .
-        "Server sig data = " . $requestTime . $name . substr($data, 0, 50);
+        "Server sig data = " . $requestTime . $name . substr($newData, 0, 50);
     exitCode(422, $msg);
 }
 
 // change encoding if required
 if ($utf8 == '0') {
-    $data = mb_convert_encoding($data, "ISO-8859-1", "UTF-8");
+    $newData = mb_convert_encoding($newData, "ISO-8859-1", "UTF-8");
 }
 
 // ---------------------------------------------------------------
@@ -238,9 +238,9 @@ if ($action === 'replace') {
     echo 'Opening ' . ($binary == '1' ? 'binary' : 'text') . " file $name for replacement\n";
     // Binary POST data is encoded - we send it as text/plain
     if ($binary) {
-        $data =  base64_decode($data);
+        $newData =  base64_decode($newData);
     }
-    WriteFile($name, $data, $binary == '1');
+    WriteFile($name, $newData, $binary == '1');
     exitCode(200);
 } else if ($action === 'append') {
     if ($fileType === 'json') {
@@ -259,11 +259,14 @@ exitCode(200);
 // ---------------------------------------------------------------
 
 function AppendJsondata() {
-    global $data, $name, $debug, $oldestTs;
+    global $newData, $name, $debug, $oldestTs;
 
     // first check we have some data to append!
-    $dataObj = json_decode($data, false);
+    $dataObj = json_decode($newData, false);
     if (is_null($dataObj)) {
+        if (!$debug){
+            echo "Received data: $newData\n";
+        }
         exitCode(500, 'No valid JSON data in the received data');
     }
 
@@ -272,7 +275,7 @@ function AppendJsondata() {
     echo "Opening text file $name for appending\n";
     if (!file_exists($name) || filesize($name) === 0) {
         echo "No existing file to append data - $name\n";
-        WriteFile($name, $data);
+        WriteFile($name, $newData);
         exitCode(200);
     }
 
@@ -288,16 +291,32 @@ function AppendJsondata() {
     if (is_null($fileObj)) {
         echo "No valid JSON data in - $name\n";
         echo "Writing data as a new file\n";
-        WriteFile($name, $data);
+        WriteFile($name, $newData);
         exitCode(200);
     }
 
     if ($debug) {
-        echo "New data:\n";
+        echo "New data object:\n";
         var_dump($dataObj);
         echo "\n";
     }
 
+    $firstNewKey = key((array)$dataObj);
+    $lastNewTs = end($dataObj->$firstNewKey)[0]
+    if ($debug) {
+        echo "Last timestamp in data = $lastNewTs\n";
+    }
+
+    $lastExistingKey = key((array)$fileObj);
+    $lastExistingTs = end($fileObj->$lastExistingKey)[0];
+    if ($debug) {
+        echo "Last timestamp in file  = $lastExistingTs\n";
+    }
+
+    if ($lastExistingTs >= $lastNewTs) {
+        echo "\n";
+        exitCode(406, "Error: There is no new data in the upload. Last new [$lastNewTs], last existing data [$lastExistingTs]");
+    }
 
     // remove the old data
     foreach ($fileObj as $key => $val) {
@@ -312,11 +331,6 @@ function AppendJsondata() {
 
         $arr = $val;
 
-        // test if the new data is older than latest value already in the file
-        if (end($val)[0] > $dataObj->$key[0][0]) {
-            exitCode(406, 'New data [' . $dataObj->$key[0][0] .'] is older than the existing data ['. end($val)[0] . ']');
-        }
-
         do {
             if (sizeof($arr) > 0 && $arr[0][0] < $oldestTs) {
                 if ($debug) {
@@ -327,6 +341,7 @@ function AppendJsondata() {
                 break;
             }
         } while(true);
+
         $fileObj->$key = $arr;
     }
 
@@ -336,11 +351,11 @@ function AppendJsondata() {
             continue;
         }
 
-        if ($debug) {
-            echo "Appending new data: $key - ".sizeof($val)."\n";
-        }
-
         if (sizeof($val) > 0) {
+            if ($debug) {
+                echo "Appending new data: $key - " . json_encode($val) . "\n";
+            }
+
             $fileObj->$key = array_merge($fileObj->$key,  $val);
         }
     }
@@ -351,10 +366,10 @@ function AppendJsondata() {
 }
 
 function AppendLogData() {
-    global $data, $name, $linecount;
+    global $newData, $name, $linecount;
 
     // first check we have some data to append!
-    if ($data == '') {
+    if ($newData == '') {
         exitCode(500, 'No data received');
     }
 
@@ -363,7 +378,7 @@ function AppendLogData() {
     echo "Opening text file $name for appending\n";
     if (!file_exists($name) || filesize($name) === 0) {
         echo "No existing file to append data - $name\n";
-        WriteFile($name, $data);
+        WriteFile($name, $newData);
         exitCode(200);
     }
 
@@ -376,7 +391,7 @@ function AppendLogData() {
     $file = null;
 
     // append the new data
-    AppendFile($name, $data);
+    AppendFile($name, $newData);
 }
 
 function CalculateSignature($secret, $data) {
