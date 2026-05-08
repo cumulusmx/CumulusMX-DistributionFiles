@@ -1,4 +1,4 @@
-// Last modified: 2026/04/10 12:24:33
+// Last modified: 2026/05/08 09:19:47
 
 let mainChart, navChart, config, avail;
 
@@ -272,7 +272,7 @@ const doTemp = () => {
                 let yaxis, suffix;
 
                 if (idx === 'humidex') {
-                    suffix = 'y_temp';
+                    suffix = '';
                     // Link Humidex and temp scales if using Celsius
                     // For Fahrenheit use separate scales
                     if (config.temp.units === 'F') {
