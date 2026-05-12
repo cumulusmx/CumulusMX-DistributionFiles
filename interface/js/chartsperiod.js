@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2026/04/08 18:23:39
+// Last modified: 2026/05/12 15:20:02
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -34,7 +34,7 @@ const plotColours = ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64
 const compassP = (deg) => {
     const compassPoints = ['{{COMPASS_N}}', '{{COMPASS_NE}}', '{{COMPASS_E}}', '{{COMPASS_SE}}', '{{COMPASS_S}}', '{{COMPASS_SW}}', '{{COMPASS_W}}', '{{COMPASS_NW}}'];
     if (deg === 0) {
-        return '{{CALM}}';
+        return '{{WIND_CALM}}';
     }
     return compassPoints[Math.floor((deg + 22.5) / 45) % 8];
 };
@@ -706,7 +706,7 @@ const addBearingAxis = (idx) => {
             callback: (val, index) => {
                 return compassP(val);
             },
-            stepSize: 45
+            stepSize: 22.5
         },
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };

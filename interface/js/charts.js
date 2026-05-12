@@ -1,4 +1,4 @@
-// Last modified: 2026/04/26 09:00:15
+// Last modified: 2026/05/12 15:16:24
 
 let mainChart, navChart, config, avail;
 
@@ -442,7 +442,7 @@ const doWindDir = () => {
                     callback: (val, index) => {
                         return compassP(val);
                     },
-                    stepSize: 30
+                    stepSize: 22.5
                 }
             }
         };

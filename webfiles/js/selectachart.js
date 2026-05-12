@@ -1,5 +1,5 @@
 // Created: 2021/01/26 13:54:44
-// Last modified: 2026/04/02 21:39:03
+// Last modified: 2026/05/12 15:23:01
 
 let settings;
 
@@ -615,7 +615,7 @@ const addBearingAxis = (idx) => {
             callback: (val, index) => {
                 return compassP(val);
             },
-            stepSize: 45
+            stepSize: 22.5
         },
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };

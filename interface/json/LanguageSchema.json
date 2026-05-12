@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2026/04/08 16:02:57",
+	"version": "Last modified: 2026/05/11 18:56:57",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -523,6 +523,24 @@
 			"type": "array",
 			"items": {
 				"type": "string"
+			}
+		},
+		"highlow": {
+			"title": "{{HIGH_LOW_CAPTIONS}}",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"key": {
+						"type": "string",
+						"title": "{{KEY}}",
+						"readonly": true
+					},
+					"caption": {
+						"type": "string",
+						"title": "{{CAPTION}}"
+					}
+				}
 			}
 		}
 	}

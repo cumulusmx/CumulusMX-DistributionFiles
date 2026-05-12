@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2026/04/08 16:02:55",
+	"version": "Last modified: 2026/05/11 18:42:12",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -631,6 +631,13 @@
 			"collapsed": true,
 			"type": "array",
 			"toolbarSticky": false
+		},
+		"highlow": {
+			"collapsible": true,
+			"collapsed": true,
+			"type": "table",
+			"toolbarSticky": false,
+			"showActionsColumn": false
 		}
 	}
 }
