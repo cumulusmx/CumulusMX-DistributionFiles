@@ -186,7 +186,7 @@ let setStaticData = function() {
             data: data
         })
         .done( function (result) {
-            //  Ser any elements affected
+            //  Set any elements affected
             $("[data-cmxData='latitude']").html( result.Latitude );
             $("[data-cmxData='longitude']").html( result.Longitude );
             $("[data-cmxData='altitude']").html( result.Altitude );
@@ -194,7 +194,7 @@ let setStaticData = function() {
             $("[data-cmxData='update']").html( result.update );
             $("[data-cmxData='WindRunUnit']").html( result.WindRunUnit );
             $("[data-owsData='Yesterday']").html( result.Yesterday );
-            $("[data-owsData='Station']").html( result.Location );
+            $("[data-owsData='Station']").html( result.Location + '<span style="font-size:80%;font-style:italic;"> on port ' + port + '</span>');
         })
         .fail( function() {
             console.log("Failed to get data");
