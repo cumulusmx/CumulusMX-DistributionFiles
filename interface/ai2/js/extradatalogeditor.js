@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     //Added by Neil
     var styles = "<style>\n";
-    var data = '{"TempUnit": "<#tempunitnodeg>"}';
+    var data = '{"TempUnit": "<#tempunitnodeg>","SnowUnit":"<#snowunit>"}';
     $.ajax({ 
         url:  '/api/tags/process.txt',
         dataType: 'json',
@@ -26,6 +26,9 @@ $(document).ready(function () {
         console.log('Processing units' + JSON.stringify(result));
         styles = "<style>\n";
         styles += "#datalog tbody .tempUnits:after { content:\"°" + result.TempUnit + "\";}\n";
+        styles += "#datalog tbody .SnowDepthUnits:after { content:\"" + result.SnowUnit + "\";}\n";
+        styles += "#datalog tbody .LaserDistUnits:after { content:\"" + result.SnowUnit + "\";}\n";
+        styles += "#datalog tbody .LaserDepthUnits:after { content:\"" + result.SnowUnit + "\";}\n";
         styles == "</styles>\n";
         $('head').append( styles );
     })
