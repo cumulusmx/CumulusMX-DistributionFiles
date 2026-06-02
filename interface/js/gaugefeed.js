@@ -1,4 +1,4 @@
-// Last modified: 2025/04/22 16:33:06
+// Last modified: 2026/06/02 10:16:28
 
 // Configuration section
 var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
@@ -9,11 +9,11 @@ var useWebSockets = true;
 
 window.addEventListener('load', function () {
 
-    function OpenWebSocket(wsport) {
+    function OpenWebSocket() {
 
         if ('WebSocket' in window) {
             // Open the web socket
-            var ws = new WebSocket('ws://' + location.hostname + ':' + wsport + '/ws');
+            var ws = new WebSocket('/ws');
             ws.onopen = function () {
 
                 // send a message to stop the server timing out the connection
@@ -155,7 +155,7 @@ window.addEventListener('load', function () {
     })
     .done(function (result) {
         if (result.UseWebSockets) {
-            OpenWebSocket(result.wsport);
+            OpenWebSocket();
         } else {
             // use Ajax
             doAjaxUpdate();
