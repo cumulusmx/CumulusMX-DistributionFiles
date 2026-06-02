@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/04/08 11:35:08",
+	"version": "Last Modified: 2026/06/02 17:27:38",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1487,6 +1487,14 @@
 					"helpers": [
 						"{{OPT_CMX_CALC_HELP1}}",
 						"{{OPT_SLP_HELP2}}"
+					]
+				},
+				"calcwbgt": {
+					"label": "{{OPT_WBGT}}:",
+					"rightLabel": "{{OPT_WBGT_LABEL}}",
+					"helpers": [
+						"{{OPT_WBGT_HELP1}}",
+						"{{OPT_WBGT_HELP2}}"
 					]
 				},
 				"cumuluspresstrendnames": {

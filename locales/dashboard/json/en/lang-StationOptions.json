@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/03/31 10:40:02",
+    "_LAST_MODIFIED": "Last modified: 2026/06/02 18:22:46",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -343,6 +343,10 @@
     "OPT_SPEED_HELP1": "Round wind speeds to the nearest whole number",
     "OPT_SPEED_LABEL": "Round wind speeds",
     "OPT_SPEED_ROUND": "Speed rounding",
+    "OPT_WBGT_HELP1": "Cumulus calculates the Wet Bulb Globe Temperature (WBGT) using BGT plus main station sensor values",
+    "OPT_WBGT_HELP2": "Use this if you want to use a BGT value from extra sensors along with the outdoor temperature/humidity from the main station to calculate the WBGT",
+    "OPT_WBGT_LABEL": "Calculate WBGT",
+    "OPT_WBGT": "WBGT",
     "OPT_WIND_CHILL_HELP2": "If your station does not supply a wind chill value, then you must enable this option",
     "OPT_WIND_CHILL_LABEL": "Calculate wind chill",
     "OPT_WIND_CHILL": "Wind chill",
