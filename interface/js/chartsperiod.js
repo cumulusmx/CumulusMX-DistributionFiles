@@ -1,5 +1,5 @@
 // Created: 2023/09/22 19:07:25
-// Last modified: 2026/05/12 15:20:02
+// Last modified: 2026/06/04 16:39:42
 
 let cache = {};
 let mainChart, navChart, config, avail, options;
@@ -725,6 +725,10 @@ const addRainAxis = (idx) => {
         },
         beginAtZero: true,
         grace: 0,
+        ticks: {
+            precision: config.rain.units === 'in' ? 1 : 0
+        },
+        suggestedMax: config.rain.units === 'in' ? 0.3 : null,
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };
 };
@@ -742,6 +746,10 @@ const addRainRateAxis = (idx) => {
         },
         beginAtZero: true,
         grace: 0,
+        suggestedMax: config.rain.units === 'in' ? 0.3 : null,
+        ticks: {
+            precision: config.rain.units === 'in' ? 1 : 0
+        },
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };
 };

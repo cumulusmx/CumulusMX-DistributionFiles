@@ -1,4 +1,4 @@
-// Last modified: 2026/05/08 09:19:47
+// Last modified: 2026/06/04 16:41:04
 
 let mainChart, navChart, config, avail;
 
@@ -592,7 +592,11 @@ const doRain = () => {
                 },
                 categoryPercentage: 1,
                 barPercentage: 1,
-                min: 0
+                min: 0,
+                suggestedMax: config.rain.units === 'in' ? 0.3 : null,
+                ticks: {
+                    precision: config.rain.units === 'in' ? 1 : 0
+                }
             },
             y_rainRate: {
                 id: 'rate',
@@ -604,6 +608,10 @@ const doRain = () => {
                 categoryPercentage: 1,
                 barPercentage: 1,
                 min: 0,
+                suggestedMax: config.rain.units === 'in' ? 0.3 : null,
+                ticks: {
+                    precision: config.rain.units === 'in' ? 1 : 0
+                },
                 position: 'right'
             }
         };

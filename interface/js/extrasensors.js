@@ -1,4 +1,4 @@
-// Last modified: 2026/04/25 22:40:38
+// Last modified: 2026/06/03 09:51:41
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -186,22 +186,6 @@ $(document).ready(function () {
         }
     });
 
-    var bgtTable = $('#BGTTable').DataTable({
-        ajax: {
-            url: '/api/extra/bgt.json',
-            method: 'GET',
-            dataSrc: function(json) {
-                if (json.data && json.data.length > 0) {
-                    $('#BGTTableBlock').show();
-                    return json.data;
-                } else {
-                    $('#BGTTableBlock').hide();
-                    return [];
-                }
-            }
-        }
-    });
-
     var userTempTable = $('#UserTempTable').DataTable({
         ajax: {
             url: '/api/extra/usertemp.json',
@@ -293,7 +277,6 @@ $(document).ready(function () {
         airqualTable.ajax.reload();
         co2Table.ajax.reload();
         lightningTable.ajax.reload();
-        bgtTable.ajax.reload();
         userTempTable.ajax.reload();
         laserDepthTable.ajax.reload();
         laserDistTable.ajax.reload();

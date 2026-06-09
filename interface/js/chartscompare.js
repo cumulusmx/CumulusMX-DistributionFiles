@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/05/12 15:18:57
+// Last modified: 2026/06/04 16:37:46
 
 let mainChart, navChart, config, avail, options;
 let settings;
@@ -644,6 +644,10 @@ const addRainAxis = (idx) => {
         },
         beginAtZero: true,
         grace: 0,
+        suggestedMax: config.rain.units === 'in' ? 0.3 : null,
+        ticks: {
+            precision: config.rain.units === 'in' ? 1 : 0
+        },
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };
 };
@@ -661,6 +665,10 @@ const addRainRateAxis = (idx) => {
         },
         beginAtZero: true,
         grace: 0,
+        suggestedMax: config.rain.units === 'in' ? 0.3 : null,
+        ticks: {
+            precision: config.rain.units === 'in' ? 1 : 0
+        },
         position: idx < settings.series.length / 2 ? 'left' : 'right'
     };
 };

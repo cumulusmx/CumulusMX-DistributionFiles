@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/11 22:27:10
+Last modified: 2026/06/03 00:11:15
 -->
 <!doctype html>
 <html lang="en">
@@ -67,47 +67,57 @@ Last modified: 2025/08/11 22:27:10
                             <th></th>
                         </tr>
                     </thead>
-                    <tr>
+                    <tr id="TemperatureRow">
                         <td>{{OUTDOOR_TEMPERATURE}}</td>
                         <td class="right"><span id="OutdoorTemp">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="DewPointRow">
                         <td>{{DEW_POINT}}</td>
                         <td class="right"><span id="OutdoorDewpoint">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="WindChillRow">
                         <td>{{WIND_CHILL}}</td>
                         <td class="right"><span id="WindChill">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id ="AverageTemperatureRow">
                         <td>{{AVERAGE_TEMPERATURE}}</td>
                         <td class="right"><span id="AvgTempToday">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="ApparentTempRow">
                         <td>{{APPARENT_TEMPERATURE}}</td>
                         <td class="right"><span id="AppTemp">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="FeelsLikeRow">
                         <td>{{FEELS_LIKE}}</td>
                         <td class="right"><span id="FeelsLike">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="HeatIndexRow">
                         <td>{{HEAT_INDEX}}</td>
                         <td class="right"><span id="HeatIndex">--</span></td>
                         <td><span class="TempUnit">--</span></td>
                     </tr>
-                    <tr>
+                    <tr id="HumidexRow">
                         <td>{{HUMIDEX}}</td>
                         <td class="right"><span id="Humidex">--</span></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr id="BGTRow">
+                        <td>{{BGT}}</td>
+                        <td class="right"><span id="BGT">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr id="WBGTRow">
+                        <td>{{WBGT}}</td>
+                        <td class="right"><span id="WBGT">--</span></td>
+                        <td><span class="TempUnit">--</span></td>
+                    </tr>
+                    <tr id="IndoorTempRow">
                         <td>{{INDOOR_TEMPERATURE}}</td>
                         <td class="right"><span id="IndoorTemp">--</span></td>
                         <td><span class="TempUnit">--</span></td>
@@ -220,12 +230,12 @@ Last modified: 2025/08/11 22:27:10
                             <th></th>
                         </tr>
                     </thead>
-                    <tr>
+                    <tr id="HumidityRow">
                         <td>{{OUTDOOR_HUMIDITY}}</td>
                         <td class="right"><span id="OutdoorHum">--</span></td>
                         <td><span>%</span></td>
                     </tr>
-                    <tr>
+                    <tr id="IndoorHumRow">
                         <td>{{INDOOR_HUMIDITY}}</td>
                         <td class="right"><span id="IndoorHum">--</span></td>
                         <td><span>%</span></td>
@@ -263,23 +273,21 @@ Last modified: 2025/08/11 22:27:10
                             <th></th>
                         </tr>
                     </thead>
-                    <tr>
+                    <tr id="SolarRadRow">
                         <td>{{SOLAR_RADIATION}}</td>
                         <td class="right"><span id="SolarRad">--</span></td>
                         <td>W/m<sup>2</sup></td>
                     </tr>
-                    <tr>
+                    <tr id="SunshineRow">
                         <td>{{SUNSHINE_TODAY}}</td>
                         <td class="right"><span id="SunshineHours">--</span></td>
                         <td>{{HOURS_SHORT}}</td>
                     </tr>
-                    <!--
-                    <tr>
-                        <td>UV</td>
+                    <tr id="UVindexRow">
+                        <td>{{UV_INDEX}}</td>
                         <td><span id="UVindex">--</span></td>
                         <td></td>
                     </tr>
-                    -->
                 </table>
             </div>
         </div>

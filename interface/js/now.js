@@ -1,13 +1,15 @@
-// Last modified: 2026/06/02 10:15:57
+// Last modified: 2026/06/03 09:40:13
 
 // Configuration section
-var updateInterval = 3;   // update interval in seconds, if Ajax updating is used
+const updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 // End of configuration section
 
 
-window.addEventListener('load', function() {
-    var lastUpdateTimer, keepAliveTimer, ws;
-    var cp = ['{{COMPASS_N}}', '{{COMPASS_NNE}}', '{{COMPASS_NE}}', '{{COMPASS_ENE}}', '{{COMPASS_E}}', '{{COMPASS_ESE}}', '{{COMPASS_SE}}', '{{COMPASS_SSE}}', '{{COMPASS_S}}', '{{COMPASS_SSW}}', '{{COMPASS_SW}}', '{{COMPASS_WSW}}', '{{COMPASS_W}}', '{{COMPASS_WNW}}', '{{COMPASS_NW}}', '{{COMPASS_NNW}}'];
+const availRes = $.getJSON({ url: '/api/graphdata/availabledata.json' });
+
+$(document).ready(() => {
+    let lastUpdateTimer, keepAliveTimer, ws;
+    let cp = ['{{COMPASS_N}}', '{{COMPASS_NNE}}', '{{COMPASS_NE}}', '{{COMPASS_ENE}}', '{{COMPASS_E}}', '{{COMPASS_ESE}}', '{{COMPASS_SE}}', '{{COMPASS_SSE}}', '{{COMPASS_S}}', '{{COMPASS_SSW}}', '{{COMPASS_SW}}', '{{COMPASS_WSW}}', '{{COMPASS_W}}', '{{COMPASS_WNW}}', '{{COMPASS_NW}}', '{{COMPASS_NNW}}'];
 
     $('[id$=Table]').DataTable({
         'paging': false,
@@ -16,8 +18,27 @@ window.addEventListener('load', function() {
         'ordering': false
     });
 
-    function OpenWebSocket() {
+    availRes.done(function (avail) {
+        if (avail.Temperature != undefined && avail.Temperature.length > 0) {
+            if (!avail.Temperature.includes('Dew Point')) $('#DewPointRow').remove();
+            if (!avail.Temperature.includes('Wind Chill')) $('#WindChillRow').remove();
+            if (!avail.Temperature.includes('Apparent Temp')) $('#ApparentTempRow').remove();
+            if (!avail.Temperature.includes('Feels Like')) $('#FeelsLikeRow').remove();
+            if (!avail.Temperature.includes('Heat Index')) $('#HeatIndexRow').remove();
+            if (!avail.Temperature.includes('Humidex')) $('#HumidexRow').remove();
+            if (!avail.Temperature.includes('BGT')) { $('#BGTRow').remove(); $('#WBGTRow').remove(); }
+            if (!avail.Temperature.includes('Indoor Temp')) $('#IndoorTempRow').remove();
+        }
+        if (avail.Humidity != undefined && avail.Humidity.length > 0) {
+            if (!avail.Humidity.includes('Indoor Hum')) $('#IndoorHumRow').remove();
+        }
+        if (avail.Solar != undefined && avail.Solar.length > 0) {
+            if (!avail.Solar.includes('Solar Rad')) { $('#SolarRadRow').remove(); $('#SunshineRow').remove(); }
+            if (!avail.Solar.includes('UV Index')) $('#UVindexRow').remove();
+        }
+    });
 
+    const OpenWebSocket = () => {
         if ('WebSocket' in window) {
             // Open the web socket
             ws = new WebSocket('/ws');
@@ -39,26 +60,26 @@ window.addEventListener('load', function() {
             // The browser doesn't support WebSocket
             alert('WebSocket NOT supported by your Browser!');
         }
-    }
+    };
 
-    function updateTimeout() {
+    const updateTimeout = () => {
         // Change the icon on the last update to show that there has been no update for a while
         $('#LastUpdateIcon').attr('src', 'img/down.png');
-    }
+    };
 
-    function keepAlive() {
+    const keepAlive = () => {
         // send a message to stop the server timing out the connection
         ws.send('Keep alive');
-    }
+    };
 
 
-    function onMessage(evt) {
-        var data = JSON.parse(evt.data);
+    const onMessage = (evt) => {
+        const data = JSON.parse(evt.data);
 
         updateDisplay(data);
-    }
+    };
 
-    function updateDisplay(data) {
+    const updateDisplay = (data) => {
         // restart the timer that checks for the last update
         window.clearTimeout(lastUpdateTimer);
         lastUpdateTimer = setTimeout(updateTimeout, 60000);
@@ -107,26 +128,24 @@ window.addEventListener('load', function() {
         var time = hours + ':' + minutes + ':' + seconds;
 
         $('#lastupdatetime').text(time);
-    }
+    };
 
-    function onClose() {
+    const onClose = () => {
         // websocket is closed.
         alert('Connection is closed...');
-    }
+    };
 
-    function doAjaxUpdate() {
-        $.ajax({
-            url: '/api/data/currentdata',
-            dataType: 'json'
+    const doAjaxUpdate = () => {
+        $.getJSON({
+            url: '/api/data/currentdata'
         })
         .done(function (data) {
             updateDisplay(data);
         });
-    }
+    };
 
-    $.ajax({
-        url: '/api/info/wsport.json',
-        dataType: 'json'
+    $.getJSON({
+        url: '/api/info/wsport.json'
     })
     .done(function (result) {
         if (result.UseWebSockets) {
