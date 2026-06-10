@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/16 17:46:01",
+	"version": "Last Modified: 2026/06/09 22:27:30",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -58,7 +58,7 @@
 					"type": "select",
 					"removeDefaultNone": "true",
 					"optionLabels": [
-						"{{HOUR_12}}",
+						"{{HOUR_24}}",
 						"{{HOUR_12}}"
 					],
 					"sort": false
