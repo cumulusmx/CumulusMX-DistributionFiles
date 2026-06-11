@@ -13,7 +13,7 @@ let updateInterval = 3;   // update interval in seconds, if Ajax updating is use
 let debug = false;
 
 
-var cp = ['{{COMPASS_N}}', '{{COMPASS_NNE}}', '{{COMPASS_NE}}', '{{COMPASS_ENE}}', '{{COMPASS_E}}', '{{COMPASS_ESE}}', '{{COMPASS_SE}}', '{{COMPASS_SSE}}', '{{COMPASS_S}}', '{{COMPPASS_SSW}}', '{{COMPASS_SW}}', '{{COMPASS_WSW}}', '{{COMPASS_W}}', '{{COMPASS_WNW}}', '{{COMPASS_NW}}', '{{COMPASS_NNW}}'];
+var cp = ['{{COMPASS_N}}', '{{COMPASS_NNE}}', '{{COMPASS_NE}}', '{{COMPASS_ENE}}', '{{COMPASS_E}}', '{{COMPASS_ESE}}', '{{COMPASS_SE}}', '{{COMPASS_SSE}}', '{{COMPASS_S}}', '{{COMPASS_SSW}}', '{{COMPASS_SW}}', '{{COMPASS_WSW}}', '{{COMPASS_W}}', '{{COMPASS_WNW}}', '{{COMPASS_NW}}', '{{COMPASS_NNW}}'];
 // End of configuration section
 
 $(document).ready(function () {
