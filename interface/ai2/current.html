@@ -77,7 +77,7 @@
 						<div class="ows-titleFlex w3-stretch ows-theme7">
 							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-half"></i>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Temp">
+						<div class="ows-dataRowFlex" id="OutTempRow">
 							<p>{{OUTDOOR_TEMPERATURE}}</p>
 							<p><img id="TempTrendImg" class="ows-image-small" alt="trend" src="img/up.png"> <span id="OutdoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
@@ -85,31 +85,39 @@
 							<p>{{AVERAGE_TEMPERATURE}}</p>
 							<p><span id="AvgTempToday">--.-</span><span class="TempUnit"></span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="DewPoint">
+						<div class="ows-dataRowFlex" id="DewPointRow">
 							<p>{{DEW_POINT}}</p>
 							<p><span id="OutdoorDewpoint">--</span><span class="TempUnit"></span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="WindChill">
+						<div class="ows-dataRowFlex" id="WindChillRow">
 							<p>{{WIND_CHILL}}</p>
 							<p><span id="WindChill">--</span><span class="TempUnit"></span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="AppTemp">
+						<div class="ows-dataRowFlex" id="AppTempRow">
 							<p>{{APPARENT_TEMPERATURE}}</p>
 							<p><span id="AppTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="FeelsLike">
+						<div class="ows-dataRowFlex" id="FeelsLikeRow">
 							<p>{{FEELS_LIKE}}</p>
 							<p><span id="FeelsLike">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="HeatIndex">
+						<div class="ows-dataRowFlex" id="HeatIndexRow">
 							<p>{{HEAT_INDEX}}</p>
 							<p><span id="HeatIndex">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Humidex">
+						<div class="ows-dataRowFlex" id="HumidexRow">
 							<p>{{HUMIDEX}}</p>
 							<p><span id="Humidex">--</span><span class="TempUnit">--</span></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="InTemp">
+						<div class="ows-dataRowFlex" id="BGTRow" >
+							<p>{{BGT}}</p>
+							<p><span id="BGT">--</span><span class="TempUnit">--</span></p>
+						</div>
+						<div class="ows-dataRowFlex" id="WBGTRow">
+							<p>{{WBGT}}</p>
+							<p><span id="WBGT">--</span><span id="TempUnit">--</span></p>
+						</div>
+						<div class="ows-dataRowFlex" id="InTempRow">
 							<p>{{INDOOR_TEMPERATURE}}</p>
 							<p><span id="IndoorTemp">--</span><span class="TempUnit">--</span></p>
 						</div>
@@ -135,11 +143,11 @@
 							<p>{{RAIN_LAST_24_HOURS}}</p>
 							<p><span id="RainLast24Hour">--</span><span class="RainUnit">--</span></p>
 						</div>
-						<div class="ows-dataRowFlex w3-hide" data-cmxData="Last24h">
+						<div class="ows-dataRowFlex" id="SnowRow">
 							<p>{{SNOW_24H}}</p>
 							<p><span id="snow24h">--.-</span></p>
 						</div>
-						<div class="ows-dataRowFlex w3-hide" data-cmxData="Depth">
+						<div class="ows-dataRowFlex" id="SnowDepthRow">
 							<p>{{SNOW_DEPTH}}</p>
 							<p><span id="depth">---</span></p>
 						</div>
@@ -204,15 +212,15 @@
 
 					</section>
 					<!--	Humidity Panel	-->
-					<section class="w3-container ows-theme8 " style="order:1;" data-cmxData="humidity">
+					<section class="w3-container ows-theme8 " style="order:1;" id="humidityPanel">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
 							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Hum">
+						<div class="ows-dataRowFlex" id="HumidityRow">
 							<p>{{OUTDOOR_HUMIDITY}}</p>
 							<p><span id="OutdoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="InHum">
+						<div class="ows-dataRowFlex" id="InHumRow">
 							<p>{{INDOOR_HUMIDITY}}</p>
 							<p><span id="IndoorHum">--</span><span class="HumsUnit"></span>&nbsp;%</p>
 						</div>
@@ -233,19 +241,19 @@
 						</div>
 					</section>
 					<!--	Solar Radiation Panel	-->
-					<section class="w3-container ows-theme8 ows-animate-fadeIn" style="order:1;" data-cmxData="solar">
+					<section class="w3-container ows-theme8 ows-animate-fadeIn" style="order:1;" id="solarPanel">
 						<div class="ows-titleFlex w3-stretch ows-theme7">
 							<h3>{{SOLAR}}</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Solar">
+						<div class="ows-dataRowFlex" id="SolarRadRow">
 							<p>{{SOLAR_RADIATION}}</p>
 							<p><span id="SolarRad">--</span>&nbsp;W/m<sup>2</sup></p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Sunshine">
+						<div class="ows-dataRowFlex" id="SunshineRow">
 							<p>{{SUNSHINE_TODAY}}</p>
 							<p><span id="SunshineHours">--</span>&nbsp;{{HOURS}}</p>
 						</div>
-						<div class="ows-dataRowFlex" data-cmxData="Solar">
+						<div class="ows-dataRowFlex" id="UVindexRow">
 							<p>{{UV_INDEX}}</p>
 							<p><span id="UVindex">--</span></p>
 						</div>
