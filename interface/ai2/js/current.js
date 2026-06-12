@@ -161,6 +161,8 @@ $(document).ready(function () {
 		$('.TempUnit').text(data.TempUnit);
 		$('.RainUnit').text(data.RainUnit);
 		$('.WindRunUnit').text( data.WindUnit.slice(0, -2) );
+		//console.log("Snow units: " + data.snowunit);
+		$('.SnowUnit').text( data.snowunit );
 
 		//Modified by Neil
 		var tmpTrend = Number(data.TempTrend.replace(',','.'));

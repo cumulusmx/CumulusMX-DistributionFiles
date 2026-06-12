@@ -162,7 +162,7 @@ $(document).ready(function () {
             {
                 title: "{{DATE_DDMMYYHHMM}}",
                 readonly: true,
-                width: '130px'
+                width: '10em'
             },
             {
                 title: "{{TIMESTAMP}}",
@@ -207,8 +207,8 @@ $(document).ready(function () {
             {title:"{{SOIL_MOIST}} 2", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
             {title:"{{SOIL_MOIST}} 3", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
             {title:"{{SOIL_MOIST}} 4", type: 'number', min: 0, max: 100, className:'SoilMoistUnits'},
-            {title:"{{NOT_USED}}", type: 'number', step: tempStep, className:'tempUnits'},
-            {title:"{{NOT_USED}}", type: 'number', step: tempStep, className:'tempUnits'},
+            {title:"{{NOT_USED}}", type: 'number', step: tempStep, className: 'not_used'},
+            {title:"{{NOT_USED}}", type: 'number', step: tempStep, className: 'not_used'},
             {title:"{{LEAF_WETNESS}} 1", type: 'number', min: 0, max: 100, className:'LeafWetUnits'},
             {title:"{{LEAF_WETNESS}} 2", type: 'number', min: 0, max: 100, className:'LeafWetUnits'},
             {title:"{{SOIL_TEMP}} 5", type: 'number', step: tempStep, className:'tempUnits'},

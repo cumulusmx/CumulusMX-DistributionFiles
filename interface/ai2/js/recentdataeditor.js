@@ -58,7 +58,8 @@ $().ready(function() {
             {
                 title: '{{DATE_DDMMYYHHMM}}',
                 width: '8em',
-                readonly: true
+                readonly: true,
+                className: 'w3-center'
             },
             {
                 title: '{{TIMESTAMP}}',

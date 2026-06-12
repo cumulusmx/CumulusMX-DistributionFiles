@@ -164,7 +164,7 @@ let setStaticData = function() {
     var data = '{"Latitude": "<#latitude>", "Longitude": "<#longitude>", "Altitude": "<#altitude>", ' +
                '"CurrentDate": "<#shortdayname>, <#day> <#monthname> <#year>", ' +
                '"Yesterday":"<#yesterday format=\"ddd dd MMM yyyy\">", "update":"<#update>", ' +
-               '"Station":"<#stationId>", "Location":"<#location>","WindRunUnit":"<#windrununit>"}';
+               '"Station":"<#stationId>", "Location":"<#location>","WindRunUnit":"<#windrununit>","SnowUnit":"<#snowunit>"}';
     if(port !='test') {
         //  Version & Build
         $.ajax({
@@ -193,6 +193,7 @@ let setStaticData = function() {
             $("[data-cmxData='Date']").html( result.CurrentDate );
             $("[data-cmxData='update']").html( result.update );
             $("[data-cmxData='WindRunUnit']").html( result.WindRunUnit );
+            $(".SnowUnit").html( ' ' + result.SnowUnit);
             $("[data-owsData='Yesterday']").html( result.Yesterday );
             $("[data-owsData='Station']").html( result.Location + '<span style="font-size:80%;font-style:italic;"> on port ' + port + '</span>');
         })
@@ -265,7 +266,7 @@ $().ready( function() {
     setPanelsStyles( cmxConfig.Panels );
     setGull( cmxConfig.Gull );
     setStaticData();
-    setTimeout(setPageGeometry(cmxConfig.Geometry),900);
+    setTimeout(setPageGeometry,900, cmxConfig.Geometry);
 })
 
 $(window).on('resize', function() {
