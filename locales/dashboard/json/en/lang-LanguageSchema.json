@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/05/12 11:41:09",
+    "_LAST_MODIFIED": "Last modified: 2026/06/15 17:17:37",
     "ZAMBRETTI": "Zambretti Forecast Strings",
     "DAVIS": "Davis Forecast Strings",
     "MOON_PHASES": "Moon Phases",
@@ -27,6 +27,7 @@
     "EMAIL_MSGS": "Email Messages",
     "TAGS": "Web Tags",
     "SNOW": "Snowfall",
+    "LIGHTNING": "Lightning",
     "HIGH_LOW_CAPTIONS": "Data Captions",
     "KEY": "Key",
     "CAPTION": "Caption"

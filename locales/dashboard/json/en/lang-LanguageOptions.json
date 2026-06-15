@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/12/30 22:57:31",
+    "_LAST_MODIFIED": "Last modified: 2026/06/15 17:21:46",
     "FORECAST_NOT_AVAIL_LABEL": "Not available",
     "FORECAST_NOT_AVAIL_HELP1": "Text to display whenever a forecast is not available",
     "FORECAST_EXCEPTIONAL_LABEL": "Exceptional",
@@ -85,5 +85,11 @@
     "SNOW_DEPTH": "Snow Depth",
     "SNOW_DEPTH_HELP1": "Text displayed for snow depth fields",
     "SNOW_24H": "Snowfall 24h",
-    "SNOW_24H_HELP1": "Text displayed for snowfall in last 24 hours fields"
+    "SNOW_24H_HELP1": "Text displayed for snowfall in last 24 hours fields",
+    "LIGHTNING_COUNT": "Count",
+    "LIGHTNING_COUNT_HELP1": "Text displayed for number of lightning strikes today",
+    "LIGHTNING_DISTANCE": "Distance",
+    "LIGHTNING_DISTANCE_HELP1": "Text displayed for lightning distance fields",
+    "LIGHTNING_TIME": "Time",
+    "LIGHTNING_TIME_HELP1": "Text displayed for lightning time fields"
 }

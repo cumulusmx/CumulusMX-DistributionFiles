@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2026/05/11 18:42:12",
+	"version": "Last modified: 2026/06/15 17:02:57",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -631,6 +631,27 @@
 			"collapsed": true,
 			"type": "array",
 			"toolbarSticky": false
+		},
+		"lightning": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"distance": {
+					"label": "{{LIGHTNING_DISTANCE}}",
+					"type": "text",
+					"helper": "{{LIGHTNING_DISTANCE_HELP1}}"
+				},
+				"time": {
+					"label": "{{LIGHTNING_TIME}}",
+					"type": "text",
+					"helper": "{{LIGHTNING_TIME_HELP1}}"
+				},
+				"count": {
+					"label": "{{LIGHTNING_COUNT}}",
+					"type": "text",
+					"helper": "{{LIGHTNING_COUNT_HELP1}}"
+				}
+			}
 		},
 		"highlow": {
 			"collapsible": true,

@@ -1,5 +1,5 @@
 {
-	"version": "Last modified: 2026/05/11 18:56:57",
+	"version": "Last modified: 2026/06/15 17:02:42",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -523,6 +523,21 @@
 			"type": "array",
 			"items": {
 				"type": "string"
+			}
+		},
+		"lightning": {
+			"title": "{{LIGHTNING}}",
+			"type": "object",
+			"properties": {
+				"distance": {
+					"type": "string"
+				},
+				"time": {
+					"type": "string"
+				},
+				"count": {
+					"type": "string"
+				}
 			}
 		},
 		"highlow": {
