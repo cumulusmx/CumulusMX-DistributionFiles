@@ -1,5 +1,5 @@
 // Created: 2021/01/21 17:10:29
-// Last modified: 2026/04/24 17:02:47
+// Last modified: 2026/06/21 16:50:49
 
 
 var fromDate, toDate;
@@ -52,7 +52,7 @@ $(document).ready(function () {
             }
             if (dataVisibility.temperature.HeatIndex > 0) {
                 tempBoxes.append($('<input>', { type: 'checkbox', id: '16' }))
-                    .append($('<label>', { for: '16', class: 'mylabel', html: '{{FEELS_LIKE}}' }))
+                    .append($('<label>', { for: '16', class: 'mylabel', html: '{{HEAT_INDEX}}' }))
                     .append($('<br>'));
             }
 
