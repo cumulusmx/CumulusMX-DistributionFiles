@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/06/02 17:27:36",
+	"version": "Last Modified: 2026/06/26 19:39:32",
 	"type": "object",
 	"properties": {
 		"stationid": {
@@ -984,6 +984,9 @@
 				},
 				"calcwbgt": {
 					"type": "boolean"
+				},
+				"wbgtthresholds": {
+					"type": "string"
 				},
 				"cumuluspresstrendnames": {
 					"type": "boolean"

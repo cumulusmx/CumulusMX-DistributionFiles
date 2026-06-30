@@ -1,12 +1,12 @@
 {
     "$id": "https://github.com/cumulusmx/CumulusMX-DistributionFiles/tree/master/MXutils/WeatherStationInput.schema.json",
-    "description": "JSON Weather STation Data Schema",
+    "description": "JSON Weather STation Data Schema. Last Updated: 2026/06/30 10:57:48",
     "type": "object",
     "required": ["lastupdated"],
     "properties": {
         "lastupdated": {
             "type": "integer",
-            "description": "The timestamp of the last update from the weather station."
+            "description": "The Unix timestamp of the last update from the weather station."
         },
         "units": {
             "type": "object",

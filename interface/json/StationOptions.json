@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/06/02 17:27:38",
+	"version": "Last Modified: 2026/06/26 19:54:55",
 	"definitions": {
 		"months": {
 			"optionLabels": [
@@ -1495,6 +1495,14 @@
 					"helpers": [
 						"{{OPT_WBGT_HELP1}}",
 						"{{OPT_WBGT_HELP2}}"
+					]
+				},
+				"wbgtthresholds": {
+					"label": "{{OPT_WBGT_CUSTOM_THRESH}}:",
+					"helpers": [
+						"{{OPT_WBGT_CUSTOM_THRESH_HELP1}}",
+						"{{OPT_WBGT_CUSTOM_THRESH_HELP2}}",
+						"{{OPT_WBGT_CUSTOM_THRESH_HELP3}}"
 					]
 				},
 				"cumuluspresstrendnames": {

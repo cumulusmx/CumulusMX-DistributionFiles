@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/06/02 18:22:46",
+    "_LAST_MODIFIED": "Last modified: 2026/06/28 10:07:22",
     "AMB_HELP1": "Configure your Ambient station, or WH2600/Observer IP device to send data to Cumulus using the Ambient protocol",
     "AMB_HELP2": "In the awnet app configure the Custom Server to use:-<br>Protocol: Ambient Weather<br>Server: CMX IP Address<br>Path: /station/ambient?<br>Port: 8998<br> Interval: 20",
     "AUTO_DISCOVERY_ENABLE": "Enable Auto-Discovery",
@@ -347,6 +347,10 @@
     "OPT_WBGT_HELP2": "Use this if you want to use a BGT value from extra sensors along with the outdoor temperature/humidity from the main station to calculate the WBGT",
     "OPT_WBGT_LABEL": "Calculate WBGT",
     "OPT_WBGT": "WBGT",
+    "OPT_WBGT_CUSTOM_THRESH": "WBGT Thresholds",
+    "OPT_WBGT_CUSTOM_THRESH_HELP1": "Your custom WBGT stress level thresholds for levels 1-4. Level 5 is >= the last value",
+    "OPT_WBGT_CUSTOM_THRESH_HELP2": "These are what the WBGT value must below to trigger each level. They must be Celsius, and use dot decimals",
+    "OPT_WBGT_CUSTOM_THRESH_HELP3": "Example: '25.0, 28.0, 30.0, 32.5'. This means level 1 is below 25.0, level 2 below 28.0 etc.",
     "OPT_WIND_CHILL_HELP2": "If your station does not supply a wind chill value, then you must enable this option",
     "OPT_WIND_CHILL_LABEL": "Calculate wind chill",
     "OPT_WIND_CHILL": "Wind chill",
