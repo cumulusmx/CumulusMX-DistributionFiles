@@ -44,21 +44,12 @@
 		<script>
 		</script>
 		<style>
+			table { border-collapse: collapse ;}
 			tr:hover > td {
 				background: var(--gradient-databar);
 			}
 			td:nth-of-type(2){text-align:right;}
-			.dt-empty {
-				background-color: var(--color8);
-				font-style:italic;
-				border-left:thin solid var(--color5);
-				border-top: thin solid var(--color5);
-				border-right: thin solid var(--color9);
-				border-bottom: thin solid var(--color9);
-			}
-			.dt-empty:hover {
-				background: var(--color8);
-			}
+			
 		</style>
 	</head>
 	<body class="ows-theme9">
@@ -90,7 +81,7 @@
 
 				<div class="ows-flex col3 ows-fixed">
 					<!--	Extra Temperature Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="TempTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-empty"></i>
 						</div>
@@ -103,7 +94,7 @@
 						</table>
 					</div>
 					<!-- 	Extra Humidity Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="HumTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain"></i>
 						</div>
@@ -116,7 +107,7 @@
 						</table>
 					</div>
 					<!--	Extra Dewpoint Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="DewTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{DEW_POINT}}</h3><i class="fa-solid fa-vials"></i>
 						</div>
@@ -129,7 +120,7 @@
 						</table>
 					</div>
 					<!-- Soil Temperature Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="SoilTempTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{SOIL_TEMPERATURE}}</h3><i class="fa-solid fa-seedling w3-text-green"></i>
 						</div>
@@ -142,7 +133,7 @@
 						</table>
 					</div>
 					<!--	Soil Moisture Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="SoilMoistureTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{SOIL_MOISTURE}}</h3><i class="fa-solid fa-sun-plant-wilt"></i>
 						</div>
@@ -153,9 +144,21 @@
 								</tr>
 							</thead>
 						</table>
+					</div><!--	Soil EC Block	-->
+					<div id="SoilEcTableBlock" class="w3-container ows-theme8" style="order:1;">
+						<div class="ows-titleFlex ows-theme7 w3-stretch">
+							<h3>{{SOIL_EC}}</h3><i class="fa-solid fa-sun-plant-wilt"></i>
+						</div>
+						<table id="SoilMoistureTable" class="w3-table ">
+							<thead>
+								<tr class="w3-hide">
+									<th>{{SOIL_EC}}</th><th></th><th></th>
+								</tr>
+							</thead>
+						</table>
 					</div>
 					<!--	Air Quality Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="AirQualityTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{AIR_QUALITY}}</h3><i class="fa-solid fa-spray-can-sparkles"></i>
 						</div>
@@ -168,7 +171,7 @@
 						</table>
 					</div>
 					<!--	CO2 Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="CO2TableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>Carbon Dioxide (CO<sub>2</sub>) {{SENSOR}}</h3>
 						</div>
@@ -181,7 +184,7 @@
 						</table>
 					</div>
 					<!-- User Temperature Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="UserTempTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{USER_TEMPERATURE}}</h3><i class="fa-solid fa-temperature-empty"></i>
 						</div>
@@ -194,7 +197,7 @@
 						</table>
 					</div>
 					<!-- 	Leaf Wetness Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="LeafTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{LEAF_WETNESS}}</h3><i class="fa-solid fa-leaf w3-text-green"></i>
 						</div>
@@ -207,7 +210,7 @@
 						</table>
 					</div>
 					<!--	Lightning Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="LightningTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{LIGHTNING}}</h3><i class="fa-solid fa-bolt-lightning w3-text-deep-orange"></i>
 						</div>
@@ -219,21 +222,8 @@
 							</thead>
 						</table>
 					</div>
-					<!-- Black Globe Temperature BLOCK-->
-					<div id="BGTTableBlock" class="w3-container ows-theme8 w3-hide" style="order:1;">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>{{BGT}}</h3>
-						</div>
-						<table id="BGTTable" class="w3-table">
-							<thead>
-								<tr class="w3-hide">
-									<th>{{BGT}}</th><th></th><th></th>
-								</tr>
-							</thead>
-						</table>
-					</div>
 					<!--	Laser Depth Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="LaserDepthTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{LASER_DEPTH}}</h3>
 							<h4 class="w3-hide">Tagline</h4>
@@ -247,7 +237,7 @@
 						</table>
 					</div>
 					<!--	Laser Distance Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="LaserDistTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{LASER_DISTANCE}}</h3>
 							<h4 class="w3-hide">Tagline</h4>
@@ -261,7 +251,7 @@
 						</table>
 					</div>
 					<!--	24hr Snowfall Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="Snow24hTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{SNOWFALL_LAST_24_HOURS}}</h3>
 							<h4><i class="fa-regular fa-snowflake w3-text-sand"></i></h4>
@@ -275,7 +265,7 @@
 						</table>
 					</div>
 					<!--	Annual Snowfall Block	-->
-					<div class="w3-container ows-theme8" style="order:1;">
+					<div id="SnowSeasonTableBlock" class="w3-container ows-theme8" style="order:1;">
 						<div class="ows-titleFlex ows-theme7 w3-stretch">
 							<h3>{{SNOWFALL_ANNUAL}}</h3>
 							<h4><i class="fa-regular fa-snowflake w3-text-sand"></i></h4>
