@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2026/05/07 19:57:04";
+$last_Modified="2026/07/12 11:55:13";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -153,7 +153,7 @@ if ($action === 'append' && $fileType === 'json') {
     if (isset($_SERVER['HTTP_OLDEST'])) {
         $oldestTs = (float)$_SERVER['HTTP_OLDEST'];
     } else {
-        exitCode(422, 'Error: No oldest timestamp');
+        exitCode(422, 'Error: No oldest timestamp for appending to JSON file');
     }
 }
 
@@ -162,7 +162,7 @@ if ($action === 'append' && $fileType === 'logfile') {
     if (isset($_SERVER['HTTP_LINECOUNT'])) {
         $linecount = (int)$_SERVER['HTTP_LINECOUNT'];
     } else {
-        exitCode(422, 'Error: No oldest timestamp');
+        exitCode(422, 'Error: No line count for appending to log file');
     }
 }
 
