@@ -51,25 +51,25 @@ input[type="search"] {
 
 .dt-info { margin:1vh 0;font-weight:700;}
 
-.dt-paging {text-align:center; margin-bottom:0.5vh;}
+.dt-paging {text-align:center; margin-bottom:0;}
 
 .dt-paging .dt-paging-button {
 	background : var(--color0)!important;
 	margin:0.1vh 0.5vw;
 	border-radius:1em!important;
 	padding: .3em 1em!important;
+	border:thin solid var(--color5)!important;
 }
 
 .dt-paging .dt-paging-button:hover {
 	background: var(--gradient-down)!important;
 }
 
-.dt-paging .dt-paging-button.first,
-.dt-paging .dt-paging-button.next,
-.dt-paging .dt-paging-button.previous,
-.dt-paging .dt-paging-button.last { 
-	background:var(--color8)!important;
-}
+.dt-paging-input { 
+	border: thin solid var(--color5)!important;
+	border-radius: 1em 0 0 1em!important;
+	padding-right: 1em;}
+.dt-paging-input input { color: var(--color1); }
 
 .dt-buttons>.dt-button {
 	background:var(--color0)!important;

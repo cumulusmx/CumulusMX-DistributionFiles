@@ -336,7 +336,14 @@ $(document).ready(function () {
             },
             deferLoading: 0,
             columns: columnDefs,
-            dom: '<"top"Bfip<"clear">>rt<"bottom"fip<"clear">>',
+            //dom: '<"top"Bfip<"clear">>rt<"bottom"fip<"clear">>',
+            layout: {
+                top: 'inputPaging',
+                topStart: 'buttons',
+                topEnd: 'search',
+                bottomStart: 'inputPaging',
+                bottomEnd: 'info'
+            },
             select: 'os',
             responsive: false,
             altEditor: true,     // Enable altEditor
@@ -462,6 +469,8 @@ $(document).ready(function () {
             response = '{"action":"' + action + '","lines":' + lines + ',"extra":"true","data": ' + data + '}';
             return response;
         }
+
+        load();
     });
 });
 
