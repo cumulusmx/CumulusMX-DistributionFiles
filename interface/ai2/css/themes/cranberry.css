@@ -41,11 +41,9 @@
 .ows-theme6, .ows-theme6-hvr:hover { color: var(--color1);}
 
 /* Gradients ~ You may wish to adjust the foreground colours used */
-.ows-theme-grad-down            { color: var(--color1)}
-.ows-theme-grad-down-hvr:hover  { color: var(--color9)}
-.ows-theme-grad-up              { color: var(--color1)}
-.ows-theme-grad-up-hvr:hover    { color: var(--color9)}
-.ows-theme-grad-ltr             { color: var(--color1)}
-.ows-theme-grad-ltr-hvr:hover   { color: var(--color9)}
-.ows-theme-grad-rtl             { color: var(--color1)}
-.ows-theme-grad-rtl-hvr:hover   { color: var(--color9)}
+.ow-theme-grad-down-hvr:hover,
+.ow-theme-grad-up-hvr:hover,
+.ow-theme-grad-ltr-hvr:hover,
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color9)!important;}

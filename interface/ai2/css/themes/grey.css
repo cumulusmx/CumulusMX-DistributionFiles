@@ -32,12 +32,17 @@
     --shadows: 0 0.1em 0.3em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.3),0 0.1em 0.7em 0 rgba(var(--baseR),var(--baseG),var(--baseB),0.4);
 }
 
-/*	Theme colour combinations (Foreground / Background)	*/
-.ax-theme4	{color: var(--color9); background-color: var(--color4);}
-.ax-theme5	{color: var(--color1); background: var(--color5);}
-.ax-theme6	{color: var(--color1); background-color: var(--color6);}
-
-/*	Theme colour combinations for HOVER effects (Foreground / Background)	*/
-.ax-theme4-hvr:hover	{color: var(--color9); background-color: var(--color4);}
-.ax-theme5-hvr:hover	{color: var(--color1); background-color: var(--color5);}
-.ax-theme6-hvr:hover 	{color: var(--color1); background-color: var(--color6);}
+/*	Theme colour combinations (Foreground / Background)	
+    You may wish to tweek these to improve contrast; you
+    should start by changing color1 to color9 and vica-versa */
+.ow-theme4, .ow-theme4-hvr:hover {color: var(--color9);}
+.ow-theme5, .ow-theme5-hvr:hover {color: var(--color9);}
+.ow-theme6, .ow-theme6-hvr:hover {color: var(--color1);}
+   
+/* Gradients ~ You may wish to adjust the foreground colours used */
+.ow-theme-grad-down-hvr:hover,
+.ow-theme-grad-up-hvr:hover,
+.ow-theme-grad-ltr-hvr:hover,
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color1)!important;}

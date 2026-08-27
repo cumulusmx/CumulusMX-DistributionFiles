@@ -44,4 +44,6 @@
 .ow-theme-grad-down-hvr:hover,
 .ow-theme-grad-up-hvr:hover,
 .ow-theme-grad-ltr-hvr:hover,
-.ow-theme-grad-rtl-hvr:hover { color: var(--color1)!important;}
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color9)!important;}

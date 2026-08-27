@@ -31,18 +31,17 @@
     --gradient-rtl: linear-gradient( 90deg,  var(--color5), var(--color7));
 }
 
-/*	Combinations colours (Foreground / Background) ~ You may wish to adjust these 
-    to improve contrast; you should start by changing color1 to color9 */
-.ows-theme4, .ows-theme4-hvr:hover { color: var(--color9);}
-.ows-theme5, .ows-theme5-hvr:hover { color: var(--color9);}
-.ows-theme6, .ows-theme6-hvr:hover { color: var(--color1);}
-
+/*	Theme colour combinations (Foreground / Background)	
+    You may wish to tweek these to improve contrast; you
+    should start by changing color1 to color9 and vica-versa */
+.ow-theme4, .ow-theme4-hvr:hover {color: var(--color9);}
+.ow-theme5, .ow-theme5-hvr:hover {color: var(--color1);}
+.ow-theme6, .ow-theme6-hvr:hover {color: var(--color1);}
+   
 /* Gradients ~ You may wish to adjust the foreground colours used */
-.ows-theme-grad-down            { color: var(--color1)}
-.ows-theme-grad-down-hvr:hover  { color: var(--color9)}
-.ows-theme-grad-up              { color: var(--color1)}
-.ows-theme-grad-up-hvr:hover    { color: var(--color9)}
-.ows-theme-grad-ltr             { color: var(--color1)}
-.ows-theme-grad-ltr-hvr:hover   { color: var(--color9)}
-.ows-theme-grad-rtl             { color: var(--color1)}
-.ows-theme-grad-rtl-hvr:hover   { color: var(--color9)}
+.ow-theme-grad-down-hvr:hover,
+.ow-theme-grad-up-hvr:hover,
+.ow-theme-grad-ltr-hvr:hover,
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color1)!important;}

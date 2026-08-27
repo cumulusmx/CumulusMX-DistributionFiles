@@ -38,4 +38,10 @@
 .ow-theme5, .ow-theme5-hvr:hover {color: var(--color1);}
 .ow-theme6, .ow-theme6-hvr:hover {color: var(--color1);}
    
-
+/* Gradients ~ You may wish to adjust the foreground colours used */
+.ow-theme-grad-down-hvr:hover,
+.ow-theme-grad-up-hvr:hover,
+.ow-theme-grad-ltr-hvr:hover,
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color1)!important;}

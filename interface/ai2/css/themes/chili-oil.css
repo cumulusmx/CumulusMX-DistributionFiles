@@ -40,8 +40,10 @@
 .ows-theme5, .ows-theme5-hvr:hover { color: var(--color9);}
 .ows-theme6, .ows-theme6-hvr:hover { color: var(--color1);}
 
-/* Gradient forground colours you might want to adjust */
-.ow-theme-grad-down-hvr:hover { color:var(--color1)!important;}
+/* Gradients ~ You may wish to adjust the foreground colours used */
+.ow-theme-grad-down-hvr:hover,
 .ow-theme-grad-up-hvr:hover,
 .ow-theme-grad-ltr-hvr:hover,
-.ow-theme-grad-rtl-hvr:hover  { color:var(--color1)!important;}
+.ow-theme-grad-rtl-hvr:hover,
+/* Include buttons in a btnBar*/
+.ow-btnBar button:hover {color: var(--color9)!important;}
