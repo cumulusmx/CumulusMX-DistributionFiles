@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Page:   AI configuration    | ai-configure.html
+    Author:     DNC Thomas      | Created: 2026-06-25
+    Last Edit:  2026-08-11 10:01:32
+    Last Check: 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--<base href="/ai2/ows/">-->
+    <title>{{AI_SETTINGS}} - CumulusMX</title>
+    <link rel="icon" type="image/png" href="img/ai-favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" id="metaDescription">
+    <meta name="author" content="DNC Thomas 2026">
+
+    <!--	Fonts	-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
+    <!--	FontAwsome CDN	-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!--	jQuery (CDN)	-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+    <!--    jQuery (Local)  -->
+    <script src="/lib/jquery/jquery-latest.min.js"></script>
+    <script src="/lib/jquery/jquery.tmpl.js"></script>
+
+    <!--    Site Styles     -->
+    <link rel="stylesheet" href="./css/ai-normalise.css">
+    <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+    <link rel="stylesheet" href="./css/ai-main.css">
+
+    <!--    Site Scripts    -->
+    <script src="./js/ai-settings.js"></script>
+    <script src="js/ai-page-ctrl.js"></script>
+
+    <!--    Page Styles     -->
+    <link rel="stylesheet" href="css/ai-LEDs.css">
+    <link rel="stylesheet" href="css/ai-configure.css">
+    <style>
+    </style>
+    <!--    Page Scripts    -->
+    <script src="./js/ai-configure.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body class="ow-theme9">
+    <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+        <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+        <section class="subHead">
+            <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo"
+                style="padding:1vh 0 .5vh 0;">
+            <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on
+                    <span data-cmxData="Port">--</span></span></div>
+            <div class="siteInfo">
+                <p class="w3-right-align">Latitude:</p>
+                <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                <p class="w3-right-align">Longitude:</p>
+                <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                <p class="w3-right-align">Altitude:</p>
+                <p><span data-cmxData="altitude">5000 m</span></p>
+            </div>
+            <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                onClick="toggleSideNav();"></i>
+        </section>
+        <nav id="myTopNav" class="topNav"
+            style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+            <div class="theMenu"></div>
+            <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav"
+                onClick="toggleTopNav();"></i>
+        </nav>
+    </header>
+
+    <main id="pageContent">
+        <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+        <nav id="mySideNav" class="sideNav" role="menu">
+            <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+            <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+            <div class="theMenu"></div>
+            <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+            <a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+        </nav>
+        <section class="subContent">
+            <section id="pageTitle">
+                <div class="ow-titleBar">
+                    <h1>{{AI_SETTINGS}}</h1>
+                    <p class="ow-tagline">{{AI_SETTINGS_TAGLINE}}</p>
+                </div>
+            </section>
+
+            <section class="ow-flex col3 ow-fixed">
+                <article class="ow-panel ow-theme8"> <!-- Geometry -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{PAGE_GEOMETRY}}</h4>
+                    </div>
+                    <p>{{PAGE_GEOMETRY_TEXT}}</p>
+                    <div class="geom-grid-1">
+                        <label for="BannerState">{{STATIC_BANNER}}</label>
+                        <input type="checkbox" id="BannerState" style="justify-self:start;" name="BannerState"
+                            value="false" aria-label="Static or scrolling banner">
+                        <label for="FooterState">{{STATIC_FOOTER}}</label>
+                        <input type="checkbox" id="FooterState" style="justify-self: start;" name="FooterState"
+                            value="false" aria-label="Static or scrolling footer">
+                    </div>
+                    <div class="geom-grid-2">
+                        <label for="TopGap">{{BANNER_GAP}}</label>
+                        <input type="number" id="TopGap" name="TopGap" value="0" min="0" step="0.1"
+                            class="ow-theme0 ow-theme-grad-down-hvr" aria-label="Gap below page">
+                        <label for="BottomGap">{{FOOTER_GAP}}</label>
+                        <input type="number" id="BottomGap" name="BottomGap" value="0" min="0" step="0.1"
+                            class="ow-theme0 ow-theme-grad-down-hvr" aria-label="Gap below page">
+                    </div>
+                    <div class="shadow-grid">
+                        <label for="unitSelect">{{PAGE_UNITS}}</label>
+                        <select id="unitSelect" class="ow-theme0 ow-theme-grad-down-hvr"></select>
+                    </div>
+                    <p class="ow-smaller ow-italic">{{PAGE_GEOMETRY_NOTE}}</p>
+                </article>
+                <article class="ow-panel ow-theme8" style="order:22"> <!-- Theme -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{THEME_COLOURS}} & {{MENU}}</h4>
+                    </div>
+                    <p>{{THEME_NOTE1}}</p><!--  Edit this language tag   -->
+                    <div class="shadow-grid">
+                        <label for="ThemeList">{{THEME_COLOURS}}</label>
+                        <select id="ThemeList" class="ow-theme0 ow-theme-grad-down-hvr">
+                            <option value="" selected="selected">{{DEFAULT}}</option>
+                        </select>
+                        <label for="MenuPosition"><!--{{MENU_POSITION}}-->Use a Side Menu</label>
+                        <input type="checkbox" id="MenuPosition" value="false" style="justify-self:end;"
+                            aria-label="{{MENU_POSITION}}">
+                    </div>
+                    <p class="ow-smaller ow-italic">{{THEME_NOTE2}}</p><!-- Edit this langauge tag -->
+                </article>
+                <article class="ow-panel ow-theme8"> <!-- Alarm LEDs -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{ALARM}} LEDs</h4>
+                    </div>
+                    <p>{{ALARM_NOTE}}</p>
+                    <div class="led-grid-1">
+                        <label for="AlarmDefault">{{DEFAULT}} {{ALARM}} LED</label>
+                        <select id="AlarmDefault" class="ow-theme0 ow-theme-grad-down-hvr"></select>
+                        <div class="ow-led" id="DefaultLED" style="place-self:center;"></div>
+                        <label for="AlarmUser">{{USER}} {{ALARM}} LED </label>
+                        <select id="AlarmUser" class="ow-theme0 ow-theme-grad-down-hvr"></select>
+                        <div class="ow-led ow-led-on ow-diamond ow-small" id="UserLED" style="place-self:center;"></div>
+                    </div>
+                    <div class="led-grid-2">
+                        <label for="AlarmOffColour">LED {{OFF_COLOUR}}</label>
+                        <input type="color" value="#3f3f3f" id="AlarmOffColour" style="justify-self:flex-end;">
+                    </div>
+                    <p class="ow-smaller ow-italic">{{ALARM_NOTE2}}</p>
+                </article>
+                <article class="ow-panel ow-theme8"> <!-- Shadows and Panel heights -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{SHADOWS}} & {{PANEL_HEIGHT}}</h4>
+                    </div>
+                    <p>{{SHADOW_NOTE}}</p>
+                    <div class="shadow-grid">
+                        <label for="shadowList">Shadow style:</label>
+                        <select id="shadowList" class="ow-theme0 ow-theme-grad-down-hvr"></select>
+                    </div>
+                    <p>{{PANEL_HEIGHT_NOTE}}</p>
+                    <div class="panel-grid">
+                        <label for="PanelHt">{{PANEL_HEIGHT_OPT}}</label>
+                        <input type="checkbox" id="PanelHt" value="start" style="place-self:center right">
+                    </div>
+
+                </article>
+                <article class="ow-panel ow-theme8"> <!-- Rain Rate Images -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{RAIN_RATE_BOUNDARIES}}</h4>
+                    </div>
+                    <p>{{RAIN_RATE_NOTE}}</p>
+                    <div class="rainrate-grid">
+                        <label for="rainrateLight">{{LIGHT}} {{RAINFALL}} {{RATE}}:</label>
+                        <input type="number" min="0" step="0.1" name="rainrateLight" value="0" id="rainrateLight"
+                            class="ow-theme0 ow-theme-grad-down-hvr" aria-label="Light rain image">
+                        <img src="img/rain1.png" alt="Raindrop 1" class="ow-image-small">
+                        <label for="rainrateMedium">{{MEDIUM}} {{RAINFALL}} {{RATE}}:</label>
+                        <input type="number" min="0" step="0.1" name="rainrateMedium" value="0" id="rainrateMedium"
+                            class="ow-theme0 ow-theme-grad-down-hvr" aria-label="Medium rain image">
+                        <img src="img/rain2.png" alt="Raindrop 2" class="ow-image-small">
+                        <p class="ow-smaller ow-italic" style="grid-column-start: span 2; margin:0;">{{RAIN_RATE_NOTE2}}
+                        </p>
+                        <img src="img/rain3.png" alt="Raindrop 3" class="ow-image-small">
+                    </div>
+                </article>
+                <article class="ow-panel ow-theme8"> <!-- Gull Animation -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{GULL_ANIMATION}}</h4>
+                    </div>
+                    <p>{{GULL_NOTE}}</p>
+                    <div class="animation-grid-1">
+                        <label for="animationSelect">{{GULL_ANIMATION}}</label>
+                        <select id="animationSelect" class="ow-theme0 ow-theme-grad-down-hvr"></select>
+                    </div>
+                    <div class="animation-grid-2">
+                        <label for="animationSpeed">{{GULL_SPEED}}</label>
+                        <input type="number" min="0" name="animationSpeed" value="0" step="0.1" id="animationSpeed"
+                            class="ow-theme0 ow-theme-grad-down-hvr" aria-label="Animation speed">
+                        <!--<label for="stayOnTop">{{GULL_ON_TOP}}</label>
+                        <input type="checkbox" name="stayOnTop" id="stayOnTop" value="false" style="justify-self:end" aria-label="Keep the seagull on top">-->
+                    </div>
+                </article>
+                <article class="ow-panel ow-theme8"> <!-- Miscelaneous -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{MISCELLANEOUS}}</h4>
+                    </div>
+                    <p>You can adjust both the size and the weight of the font used for data entries on the dashboard.
+                    </p>
+                    <div class="panel-grid">
+                        <label for="DataWeight">{{DATA_FONT_WEIGHT}}</label>
+                        <input type="number" min="100" max="900" step="50" value="400" id="DataWeight"
+                            class="ow-theme0 ow-theme-grad-down-hvr">
+                        <label for="DataHeight">{{DATA_VALUE_SIZE}}</label>
+                        <input type="number" min="100" max="500" step="25" value="150" id="DataHeight"
+                            class="ow-theme0 ow-theme-grad-down-hvr">
+                    </div>
+                    <p class="ow-center" style="margin:0.5em 0 0 0 ;"><span class="ow-smaller">Sample:</span> <span
+                            class="ow-reading">6</span></p>
+                </article>
+                <article class="ow-panel ow-theme8" style="order:50;"> <!-- Apply Changes -->
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{APPLY_CHANGES}}</h4>
+                    </div>
+                    <!--<p>{{APPLY_CHANGES_NOTE1}}</p>-->
+                    <p><strong>Note</strong>: If you used the '<em>Restore</em>' button below,
+                        <strong><em>Everything</em></strong> gets reset back to the default styles.</p>
+                    <div class="ow-btnBar" role="menu">
+                        <button class="ow-theme0 ow-theme0 ow-theme-grad-down-hvr" onclick="applyScheme();"
+                            role="menuitem" aria-label="Set AI Configuration">{{APPLY_CHANGES}}</button>
+                        <button class="ow-theme0 ow-theme0 ow-theme-grad-down-hvr" onclick="resetScheme();"
+                            role="menuitem" aria-label="Restore defaults">Restore</button>
+                    </div>
+                    <p class="ow-smaller ow-italic"><!--{{APPLY_CHANGES_NOTE2}}-->
+                        If you cannot store configuration details in your browser, you can still use this page
+                        to configure your AI and then copy the cmxConfig object directly into the
+                        <span class="ai-monospaced"><strong>ai-settings.js</strong></span> file.
+                    </p>
+                    <div class="ow-btnBar" style="justify-content:center">
+                        <button onClick="showCmxConfigs();" class="ow-theme0 ow-theme-grad-down-hvr ow-smaller"
+                            style="margin-bottom:0.5em; font-weight:700;">Show cmxConfig</button>
+                    </div>
+                </article>
+            </section>
+            <section class="ow-flex col2 ow-fixed">
+                <article class="ow-panel ow-theme5 ow-shadow-none">
+                    <div class="ow-titleBar ow-theme1">
+                        <h4>{{THEME_COLOURS}}</h4>
+                    </div>
+                    <div class="colour-grid">
+                        <div class="ow-theme1 ow-theme9-hvr ow-center">ow-theme1<br><em>var(--color1)</em></div>
+                        <div class="ow-theme2 ow-theme8-hvr ow-center">ow-theme2<br><em>var(--color2)</em></div>
+                        <div class="ow-theme3 ow-theme7-hvr ow-center">ow-theme3<br><em>var(--color3)</em></div>
+                        <div class="ow-theme4 ow-theme6-hvr ow-center">ow-theme4<br><em>var(--color4)</em></div>
+                        <div class="ow-theme5 ow-theme9-hvr ow-center"
+                            style="grid-column-start:span 4; border:thin solid var(--color9);">ow-theme5,
+                            <em>var(--color5)</em></div>
+                        <div class="ow-theme6 ow-theme4-hvr ow-center">ow-theme6<br><em>var(--color6)</em></div>
+                        <div class="ow-theme7 ow-theme3-hvr ow-center">ow-theme7<br><em>var(--color7)</em></div>
+                        <div class="ow-theme8 ow-theme2-hvr ow-center">ow-theme8<br><em>var(--color8)</em></div>
+                        <div class="ow-theme9 ow-theme1-hvr ow-center">ow-theme9<br><em>var(--color9)</em></div>
+                    </div>
+                </article>
+            </section>
+
+
+        </section>
+
+    </main>
+
+    <footer id="pageFoot" class="ow-theme5">
+        <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+        <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+        <section class="subFoot" class="ow-theme4">
+            <p>Site Design <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+            <p>Powered by <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
+        </section>
+    </footer>
+
+    <!--	Modal / Popup -->
+    <!--	The ID below should be used in the function call to make this work 	-->
+    <section id="cmxConfigTxt" class="ow-modal">
+        <!-- 	You can set the max-width in the 'div' below as well as the background colour -->
+        <div class="content" style="width: 50%;">
+            <article class="ow-panel">
+                <div class="ow-titleBar"><!-- You can set your own color if preferred -->
+                    <h4>The current cmxConfig object</h4>
+                    <div class="ow-btnBar"><button style="border:none;margin-right: -1em;" onClick="toggleModal('cmxConfigTxt')">X</button></div>
+                </div>
+                <div class="ow-panel" style="max-height: 80vh; overflow:scroll; margin-bottom:0;">
+                    <!-- Popup Content  -->
+                    <section class="shadow-grid">
+                        <div>
+                            <h4>Local Changes</h4>
+                            <pre id="cmxInfoValues"></pre>
+                        </div>
+                        <div>
+                            <h4>Current Configuration</h4>
+                            <pre id="storedCMX"></pre>
+                        </div>
+                </div>
+                <div class="ow-titleBar ow-theme3" style="flex-direction:row-reverse;margin-bottom:0;">
+                    <p class="ow-smaller " style="font-style:italic;padding:0 1em 0 0;">Powered by CumulusMX</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</body>
+
+</html>

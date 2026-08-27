@@ -1,160 +1,80 @@
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Script: ai-ctrlr.js                 Ver: 5.0.0
     Author: Neil Thomas                   Nov 2025
-    Edited: 
+    Edited: 2026-08-25 11:56:10
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Role:   Common scripts for all pages
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-let cmxConfig = {};
-let cmxSession = {};
-let build = 1.107;
-
-//  Construct variable to access Local, and Session storage 
-var url=document.baseURI.split('/');
-var port=url[2].split(':')[1] || 'test' ;
-let owsStore;
-//console.log("Full URL: " + document.URL);
-owsStore = port + '~' + (url.length < 5 ? 'root' : url[url.length - 2])
-console.log("Storage var: " + owsStore );
-
-//  ~~~~    Get or Set CumulusMX config    ~~~~~~
-let getConfig = function() {
-    // Get any stored config
-    var storedCFG = JSON.parse(localStorage.getItem(owsStore));
-    if( storedCFG === null || storedCFG.Build === null ){   //  Nothing stored so create
-        cmxConfig = {
-            "Build": 0.0,
-            "Geometry": {
-                "StaticHead": true,
-                "StaticFoot": true,
-                "PaddingHead": 1.5,
-                "PaddingFoot": 2,
-                "Units": "em",
-            },
-            "Gull": {
-                "Animation": "",
-                "Speed": 5,
-                "OnTop": true,
-            },
-            "LEDs": {
-                "Default":"ows-brick",
-                "User": "ows-brick",
-            },
-            "Panels": {
-                "Shadows": "None",
-                "VariableHeights": "",
-                "FixedWidths": "",
-            },
-            "RainRate": {
-                "Low": 5,
-                "Medium": 10,
-            },
-            "ShowAlarms": true,
-            "ShowDavis": true,
-            "Theme": "",
-        }
-        //  Store virgin configuration
-        localStorage.setItem( owsStore, JSON.stringify( cmxConfig ));
-    } else {
-        //  Use stored configuration
-        cmxConfig = storedCFG;
-        //  Check for latest version
-        if( cmxConfig.Build !== build || cmxConfig.Panels == null) {
-            cmxConfig.Build = build;
-            cmxConfig.Panels.Shadows = "None";
-            cmxConfig.Panels.VariableHeights = "";
-            cmxConfig.Panels.FixedWidths = "";
-            localStorage.setItem( owsStore, JSON.stringify(cmxConfig));
-        }
-    }
-}
-
-//  Get or set Session status. This is only needed on the charts pages
-let getSession = function(){
-    var storedSession = JSON.parse(sessionStorage.getItem(owsStore));
-    if( storedSession === null){    //  No charts selected this session
-        cmxSession = {
-            "Charts": {
-                "Trends": "",
-                "Historic": ""
-            },
-            "Records": {
-                "Monthly": "",
-                "All": ""
-            }
-        }
-        //  Store session status
-        sessionStorage.setItem( owsStore, JSON.stringify( cmxSession ));
-    } else {
-        //  Use session status
-        cmxSession = storedSession;
-    }
-}
-//  These must happen asap not when page has completed loading.
-getConfig();
-getSession();
-
 let setPageGeometry = function( geometry ) {
-    $('#MobileMenu').css('top', $('#Banner').outerHeight( true ) + 'px');
+    //  Configure the banner, footer and content gap
+    let bannerHeight = $('#pageHead').outerHeight( true );
+    let footerHeight = $('#pageFoot').outerHeight( true );
+    //  Header
     if( geometry.StaticHead ) {
-        $('#Banner').addClass('w3-top');
-        $('#Content').css( 'margin-top', $('#Banner').outerHeight(true) + 'px'); 
+        $('#pageHead').css({'position':'fixed', 'top':0});
+        $('#pageContent').css('margin-top', bannerHeight + 'px');
+    }  else {
+        $('#pageHead').css({'position':'relative','top':''});
+        $('#pageContent').css('margin-top','');
     }
-    var windowHt = $(window).height() - $('#Banner').outerHeight( true ) - $('#Footer').outerHeight( true );
-    if( geometry.StaticFoot ) {
-        //  Static footer
-        $('#Footer').addClass('w3-bottom');
-        $('#Content').css('margin-bottom', $('#Footer').outerHeight( true) + 'px');
-        if( $('#Content').outerHeight( true ) < windowHt) {
-            $('#Content').css('height',  windowHt + 'px');
-            $('#Gull1').css('bottom', 0);
-        } else {
-            $('#Content').css('height', windowHt + 'px');
-            //setTimeout($('#Gull1').css('position', 'fixed'), 1000);
-            //setTimeout($('#Gull1').css('bottom', $('#Footer').outerHeight( true) + 'px'),1000);
-            $('#Gull1').css('position', 'fixed')
-            $('#Gull1').css('bottom', $('#Footer').outerHeight( true ) + 'px');
-        }
+    //  Footer
+    if( geometry.StaticFoot && $(window).height() > 800 ) { 
+        $('#pageFoot').css({'position':'fixed', 'bottom':0});
+        $('#pageContent').css({'margin-bottom': footerHeight + 'px', 'height': $(window).outerHeight() - (bannerHeight + footerHeight) + 'px'} );
     } else {
-        //  Floating footer
-        $('#Content').css('height', 'auto');
+        $('#pageFoot').css({'position':'relative', 'bottom':''});
+        $('#pageContent').css('margin-bottom','');
     }
-    //  Set Padding
-    $('#Content').css('padding-top', geometry.PaddingHead + geometry.Units);
-    $('#Content').css('padding-bottom' , geometry.PaddingFoot + geometry.Units);
+    //  Top & Bottom margins
+    $('.subContent').css({'padding-top':geometry.PaddingHead + geometry.Units,'padding-bottom':geometry.PaddingFoot + geometry.Units});
+    //  Side navigation changes
+    if( $('.subContent').outerHeight( true ) > $('#pageContent').outerHeight( true) ) {
+        $('.sideNav').css('height', $('.subContent').outerHeight( true ));    
+    } else {
+        $('.sideNav').css('height', $('#pageContent').outerHeight( true ) );
+         $('.sideNav').css('height', '100%' );
+    }
 };
 
 let setPanelsStyles = function( panels ) {
-    if( panels.Shadows ) {
-        $('.ows-flex, .ows-grid, #customGrid').children().addClass( panels.Shadows );
-    } else {
-        $('.ows-flex, .ows-grid, #customGrid').children().removeClass('ows-theme-shadow1 ows-theme-shadow2');
+    $('.ow-grid, .ow-flex, .customGrid').css( 'align-items', (panels.VariableHeight ? 'start' : '' ));
+    if( panels.VariableHeight ) {
+        $('.gullPanel').css('display','none');
     }
-    if( panels.VariableHeights) {
-        $('.ows-flex, .ows-grid, #customGrid').css('align-items', 'start');
-    } else {
-        $('.ows-flex, .ows-grid, #customGrid').css('align-items', '');
+    let shadows = 'ow-theme-shadow1, ow-theme-shadow2, ow-theme-shadow3';
+    $('.davisGrid').addClass('ow-shadow-none');
+    $('.ledGrid').addClass('ow-shadow-none');
+    switch( panels.Shadow ){
+        case 'ow-theme-shadow1': $('.ow-flex, .ow-grid, .customGrid').children().addClass( 'ow-theme-shadow1');  break;
+        case 'ow-theme-shadow2': $('.ow-flex, .ow-grid, .customGrid').children().addClass( 'ow-theme-shadow2');  break;
+        case 'ow-theme-shadow3': $('.ow-grid, .ow.flex, .customGrid').chlidren().addClass( 'ow-theme-shadow3' ); break;
+        default:    $('.ow-grid, .ow-flex, .customGrid').children().removeClass( shadows ) 
     }
+    console.log('Panel styles set');
 }
 
 let setGull = function( gull ) {
-    $('[data-owsData=Build]').html( "(b:" + cmxConfig.Build + ")");
-    $('#Gull1').css('z-index', ( gull.OnTop ? 200 : -200 ))
-    //  Seagull animation
-    if( gull.Animation =='') {
-        $('#Gull1').css('animation', 'gull-FadeIn ' + gull.Speed + 's' );  // Default animation
-    } else {
-        $('#Gull1').css('animation', gull.Animation + ' ' + gull.Speed + 's');
+    let animation, prompt;
+    switch( gull.Animation) {
+        case 'Drop':        animation = 'gullDrop '     ; break;
+        case 'Slide LtR':   animation = 'gullSlideLtR ' ; break;
+        case 'Slide RtL':   animation = 'gullSlideRtL ' ; break;
+        case 'Grow':        animation = 'gullGrow '     ; break;
+        default:            animation = 'gullFadeIn '   ; break;
     }
+    prompt = (gull.Animation == '' ? 'default' : gull.Animation.toLowerCase()) + " animation";
+    //prompt += " and " + (gull.OnTop ? 'over' : 'below') + " other elements";
+    console.log('Gull set to ' + prompt );
+    $('#footImg').css({'animation': animation + gull.Speed + 's', 'z-index': (gull.OnTop ? 0 : -100)});
 }
 
 let setTheme = function() {
     //  If alternative theme chosen, change.
-    if( cmxConfig.Theme !== '') {
+    if( cmxConfig.Theme !== 'Default') {
         console.log("Setting theme to: " + cmxConfig.Theme);
         var theme = '<link rel="stylesheet" href="css/themes/' + cmxConfig.Theme + '.css" id="altTheme">';
-        $('#altTheme').remove();    // Remove any other 'alterntive' themes
+        $('#altTheme').remove();    // Remove any other 'alternative' themes
         $('#Theme').after( theme ); // Set chose alternative theme
     }
 }
@@ -164,7 +84,7 @@ let setStaticData = function() {
     var data = '{"Latitude": "<#latitude>", "Longitude": "<#longitude>", "Altitude": "<#altitude>", ' +
                '"CurrentDate": "<#shortdayname>, <#day> <#monthname> <#year>", ' +
                '"Yesterday":"<#yesterday format=\"ddd dd MMM yyyy\">", "update":"<#update>", ' +
-               '"Station":"<#stationId>", "Location":"<#location>","WindRunUnit":"<#windrununit>","SnowUnit":"<#snowunit>"}';
+               '"Station":"<#stationId>", "Location":"<#location>","WindRunUnit":"<#windrununit>"}';
     if(port !='test') {
         //  Version & Build
         $.ajax({
@@ -193,9 +113,9 @@ let setStaticData = function() {
             $("[data-cmxData='Date']").html( result.CurrentDate );
             $("[data-cmxData='update']").html( result.update );
             $("[data-cmxData='WindRunUnit']").html( result.WindRunUnit );
-            $(".SnowUnit").html( ' ' + result.SnowUnit);
             $("[data-owsData='Yesterday']").html( result.Yesterday );
-            $("[data-owsData='Station']").html( result.Location + '<span style="font-size:80%;font-style:italic;"> on port ' + port + '</span>');
+            $("[data-cmxData='location']").html( result.Location );
+            $("[data-cmxData='Port']").html( port );
         })
         .fail( function() {
             console.log("Failed to get data");
@@ -203,72 +123,146 @@ let setStaticData = function() {
     }
     $('[data-owsData=Build]').html('(b:' + cmxConfig.Build + ')');
 };
-
-let loadMenus = function() {
-    // Load Menus
-    var msg;
-    $('#MainMenu').load("menu-main.html", function( response, status, xhr) {
-        if( status == "error") {
-            msg = "Sorry but there was an error:  ";
-            console.log( msg + xhr.status + ": " + xhr.statusTxt );
-        }
-    });
-    $('#MobileMenu').load("menu-mobile.html", function( response, status, xhr) {
-        if( status == "error") {
-            msg = "Oops, could not load mobile menu: ";
-            console.log(msg + xhr.status + ': ' + xhr.statusTxt);
+//  NEW ****
+function createMenu(src, submenu, indent, navBar){
+    src.forEach( function(itm){
+        if( itm.subMenu || itm.megaMenu) {
+            menuHTML += '<div class="ow-dropdown">\n';
+            menuHTML += '\t<button type="button" class="ow-dropdownBtn" role="menuitem" name="' + itm.name + '" aria-expanded="false">' + itm.title + '&nbsp;<i class="fa-solid fa-caret-down"></i></button>\n';
+			menuHTML += '\t<div class="dropdown-container' + (itm.megaMenu ? ' megaMenu' : '') + '" style="z-index:2000;">\n';
+			// add the sub-menu items
+			createMenu(itm.items, true, '\t\t', navBar);
+			menuHTML += '\t</div>\n</div>\n' ;
+		} else {
+			infill = (itm.newWindow ? ' target="_blank"' : '');
+            order = ((Object.hasOwn( itm, 'order')) ? ' style="order:' + itm.order + '"':'');
+            icon = ((submenu && itm.icon) ? '<i class="' + itm.icon + (itm.position == 'left' ? ' iconLeft' : ' iconRight') +'"></i>' : '');
+            if ( itm.title == '-') {
+                menuHTML += '\t\t<div style="height:2px;background:var(--color5);"></div>\n';
+            } else {
+                menuHTML += indent + '<a href="' + itm.url + '"' + infill + ' role="menuitem"';
+                menuHTML += order + '>' + itm.title + icon + '</a>\n';
+            }
         }
     })
-};
+    // if we are processing a sub menu, return to the main loop
+	if (submenu)
+		return;
+   
+    if( cmxConfig.SideMenu == true ) {
+        $('#mySideNav').children('.theMenu').replaceWith( menuHTML );// Was replaceWith
+        $('#myTopNav').css('display', 'none');
 
-let toggleMenus = function() {
-    //  Switches between standard and mobile menu
-    if($('#MobileMenu').css('display') === 'none') {
-        //console.log('Menu is hidden');
-        $('#MobileMenu').css('display', 'block');
     } else {
-        $('#MobileMenu').css('animation', 'animateleft 0.4s reverse');
-        setTimeout( function() {
-            $('#MobileMenu').css('display','none')}, 390);
-    }
-};
+        console.log('Using top menu');
+        $('#myTopNav').children('.theMenu').replaceWith( menuHTML );
+        $('#NavBars').css('display','none');
+        }
+    console.log('Menu loaded');
+}
 
-let toggleDropDown = function( dropdown ){
-    //  Displayes / Hides dropdowns in menus
-    var show = !$('#mnu'+dropdown.id).hasClass('w3-show');
-    $('.w3-dropdown-content').removeClass('w3-show');
-    $('#mnu' + dropdown.id).toggleClass( 'w3-show', show );
-};
+function navClicks() {  //  Allocates a click function to all dropdown buttons
+    console.log('Allocating click event to navigation buttons')
+    //let count = 0;
+    $('.ow-dropdownBtn').each( function() {
+        $(this).on('click', function() {
+            var mnuBtn = this;
+            //  Check if this button is dispalying its panel
+            if( $(mnuBtn).hasClass('active')) {
+                //  Clear just this panel
+                $(mnuBtn).removeClass('active')
+                $(mnuBtn).attr('aria-expanded',false);
+                $(mnuBtn).next('.dropdown-container').css({'display': 'none'})
+            } else {
+                //  Clear all other panels
+                $('.ow-dropdownBtn').removeClass('active')
+                $('.ow-dropdownBtn').attr('aria-expanded', false);
+                $('.ow-dropdownBtn').next('.dropdown-container').css({'display': 'none','grid-template-columns':''})
+                //  Now configure and display this panel
+                $(mnuBtn).addClass('active').attr('aria-expanded',true);
+                if( $(mnuBtn).next('.dropdown-container').hasClass('megaMenu')) {
+                    $(mnuBtn).next('.dropdown-container').css({'display': 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(16em, 1fr))', 'column-gap':'1vw'});
+                } else {
+                    $(mnuBtn).next('.dropdown-container').css({'display': 'block'})
+                }
+            }
+        })
+    })
+}
+
+function toggleTopNav() {
+    console.log('Clicked top nav hamburger.');
+    $('.topNav').toggleClass('responsive');
+    
+}
+function toggleSideNav() {
+    event.preventDefault();
+    var width, minWidth = '410px';
+    if( $(window).outerWidth() < 600) { minWidth = '100%';}
+    width = parseInt($('#mySideNav').css('width'));
+    console.log("Width: " + width);
+    $('#mySideNav').css('width', ( width > 0 ) ? '0' : '40%' );
+    $('#mySideNav').css('min-width', ( width  > 0 ) ? '0' : minWidth );
+    console.log('Resetting menu length');
+    if( $('.subContent').outerHeight( true ) > $('#pageContent').outerHeight( false ) ) {
+        $('.sideNav').css('min-height', $('.subContent').outerHeight( true )); 
+        $('.backtotop').css('display','block');
+    } else {
+        $('.sideNav').css('height', '100%' );
+        $('.backtotop').css('display','none');
+    }
+}
+//  END OF NEW  ****
 
 let togglePanel = function(el) {  // Show/hide Alarm or Davis panels
-    var elId = el.id;
-    $('#' + elId + 'Panel').toggleClass('w3-hide');
-    if( $('#' + elId + 'Panel').hasClass('w3-hide')) {
-        $('#' + elId).text('{{SHOW}} ' + elId);
-        cmxConfig['Show' + elId] = false;
+    var elmt = '#' + el.id ;
+    $(elmt + 'Panel').toggleClass('ow-hide');
+    if( $(elmt + 'Panel').hasClass('ow-hide')) {
+        $(elmt).text('{{SHOW}} ' + elmt.slice(1,9));
+        cmxConfig['Show' + elmt.slice(1,9)] = false;
     } else {
-        $('#' + elId).text('{{HIDE}} ' + elId);
-        cmxConfig['Show' + elId] = true;
+        $(elmt).text('{{HIDE}} ' + elmt.slice(1,9));
+        cmxConfig['Show' + elmt.slice(1,9)] = true;
     }
-    localStorage.setItem(owsStore, JSON.stringify(cmxConfig));
+    localStorage.setItem(owStore, JSON.stringify(cmxConfig));
 };
 
 //  ~~~~    Show Modal Popups
 let toggleModal = function(PopUp){
     $('#' + PopUp).css( 'display', ($('#' + PopUp).css('display'))== 'none' ? 'block' : 'none');
 }
+function togglePopup( el ){
+    //  This controls the popups
+    $('#' + el).css( 'display', ($('#' + el).css('display') == 'none' ? 'block' : 'none'));
+}
 
 /*  Document ready */
 $().ready( function() {
     setTheme();
-    loadMenus();
+    menuHTML ='';
+    $.getScript( 'js/menu.js', function(){
+        createMenu( menuSrc, false, '',true);
+        navClicks();
+    })
     setPageGeometry( cmxConfig.Geometry );
     setPanelsStyles( cmxConfig.Panels );
     setGull( cmxConfig.Gull );
+    $('[data-owData="Version"]').text('5.21');
     setStaticData();
-    setTimeout(setPageGeometry,900, cmxConfig.Geometry);
+    setTimeout(setPageGeometry, 250, cmxConfig.Geometry);
+//    $('#pageContent').on('click', function() {
+//        var navWidth = parseInt( $('#mySideNav').css('width'));
+//       ( navWidth > 0 ? toggleSideNav() :'');
+//    })
 })
 
 $(window).on('resize', function() {
     setPageGeometry( cmxConfig.Geometry);
+    if($('#MobileMenu').css('display') != 'none') {
+        //console.log('Menu is hidden');
+        $('#MobileMenu').css('display', 'none');
+    }
+    $('.dropdown').children('.dropdown-container').css('display','none');
+    
 })
+

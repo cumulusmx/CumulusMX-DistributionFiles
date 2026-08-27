@@ -2,45 +2,46 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Edit Todays Rain	| raintodayeditor.html
 	Author:		DNC Thomas		| Created: Mar 2025
-	Last Edit:	2026/03/24 11:10:53
+	Last Edit:	2026-08-11 10:16:48
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{TODAYS_RAIN_EDITOR}} - CumulusMX</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{TODAYS_RAIN_EDITOR}} - CMX-AI</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2025">
+		<meta name="author" content="DNC Thomas 2026">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-
+		
 		<!--	jQuery (CDN)	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuedry (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
-		<script src="/js/raintodayeditor.js"></script><!-- 	Used DEFAULT script 	-->
-
-		<!--	Local scripts & styles	-->
-		<script>
-		</script>
-		<style>
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <!--<link rel="stylesheet" href="css/dashboard.css">-->
+        <link rel="stylesheet" href="css/ai-LEDs.css">
+        <link rel="stylesheet" href="./css/ai-dashboard.css">
+        <style>
 			#rainGrid {
 				display: grid;
 				grid-template-columns: 1fr 7em;
@@ -50,69 +51,90 @@
 			input[type=number] {
 				border-radius: 1em 0 0 1em;
 				border: thin solid var(--color5);
-				padding: .3em 0 .3em 1em
+				padding: .3em 0 .3em 1em;
+				text-align:right;
 			}
-		</style>
-	</head>
-	<body class="ows-theme9">
-        <header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr" style="min-height: 6em;">
-            <img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-            <section id="subBanner" class="pageWidth" >
-                <img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
-                <div id="siteInfo">
-                    <h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-                    <p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-                    <p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-                    <p>ALTITUDE:</p><p><span data-cmxData="altitude">2000 m</span></p>
+        </style>
+        <!--    Page Scripts    -->
+		<script src="/js/raintodayeditor.js"></script><!-- Default script -->
+        <script>
+
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
                 </div>
-                <nav id="MainMenu" class="ows-theme6"></nav>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
             </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
         </header>
 
-        <section id="Content">
-            <div  id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme4 w3-animate-right"><!-- Sidebar Here     --></div>
-            <img src="img/Gull.png" alt="Seagull" id="Gull1"> <!--    Gull goes here  -->
-            <section id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex">
-						<h1>{{TODAYS_RAIN_EDITOR}}</h1>
-					</div>
-				</section>
-
-				<div class="ows-flex col3 ows-fixed">
-					<div class="w3-container ows-theme8">
-						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h3>{{TODAYS_RAIN_EDITOR_TITLE}}</h3>
-							<i class="fa-solid fa-droplet" style="color:#00f;"></i>
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+                <a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>{{TODAYS_RAIN_EDITOR}}</h1>
+                    </div>
+                </section>
+				<!-- Content -->
+				<section class="ow-flex col3 ow-fixed">
+					<div class="ow-panel">
+						<div class="ow-titleBar">
+							<h2>{{TODAYS_RAIN_EDITOR_TITLE}}</h2>
+							<i class="fa-solid fa-droplet" style="color:var(--colourRain);"></i>
 						</div>
 						<form id="rainform">
 							<div id="rainGrid">
 								<label for="inputCurrentCounter">{{CURRENT_RAIN_COUNTER}}:</label>
-								<input type="number" class="w3-right-align ows-theme1" id="inputCurrentCounter" step="0.01" readonly>
+								<input type="number" class="ow-theme1" id="inputCurrentCounter" step="0.01" readonly>
 								<label for="inputStartCounter">{{START_OF_DAY_RAIN_COUNTER}}:</label>
-								<input type="number" class="w3-right-align ows-theme1" id="inputStartCounter" step="0.01" readonly>
+								<input type="number" class="ow-theme1" id="inputStartCounter" step="0.01" readonly>
 								<label for="inputRainMultiplier">{{RAIN_MULTIPLIER}}:</label>
-								<input type="number" class="w3-right-align ows-theme1" id="inputRainMultiplier" step="0.001" readonly>
-								<div class="mnuDivider" style="grid-column-start:span 2;"></div>
+								<input type="number" class="ow-theme1" id="inputRainMultiplier" step="0.001" readonly>
+								<div class="ow-divider" style="grid-column-start:span 2;"></div>
 								<label for="inputRainToday">{{RAIN_TODAY}}</label>
-								<input type="number" class="w3-center ows-theme0 ows-theme-grad-down-hvr" id="inputRainToday" name="raintoday" step="0.01">
-								<div class="mnuDivider" style="grid-column-start:span 2;"></div>
-								<div class="ows-btnBar" style="justify-content: flex-end; grid-column-start: span 2;">
-									<button type="submit" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0;" aria-label="Apply">{{APPLY_CHANGES}}</button>
+								<input type="number" class="w3-center ows-theme0" id="inputRainToday" name="raintoday" step="0.01">
+								<div class="ow-divider" style="grid-column-start:span 2;"></div>
+								<div class="ow-btnBar" style="justify-content: flex-end; grid-column-start: span 2;">
+									<button type="submit" style="max-width:60%;" aria-label="Apply">{{APPLY_CHANGES}}</button>
 								</div>
 							</div>
 						</form>
 					</div>
-				</div>	<!--	End of three column layout	-->
+				</section>
 			</section>
-		</section>
+		</main>
 
-        <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+		<footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot" class="ow-theme4">
+                <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
             </section>
         </footer>
-
 	</body>
 </html>

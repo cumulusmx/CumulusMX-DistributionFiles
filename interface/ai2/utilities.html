@@ -2,33 +2,33 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Utilities			| utilities.html
 	Author:		DNC Thomas		| Created: Mar 2025
-	Last Edit:	2026/03/24 11:13:51
+	Last Edit:	2026-08-11 10:19:06
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{UTILITIES}} - CumulsMX</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{UTILITIES}} - CMX-AI</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2025">
+		<meta name="author" content="DNC Thomas 2026">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-
+		
 		<!--	jQuery (CDN)	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!-- Bootstrap -->
+        <!-- Bootstrap -->
 		<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
@@ -39,79 +39,78 @@
 		<script src="lib/datatables/fixedColumns4-3-0.js"></script>
 		<script src="lib/datatables/dataTables.altEditor.free.js"></script>
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/ai-editabletables.css">
-		<link rel="stylesheet" href="/lib/datatables/dataTables.inputPaging.min.css">
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
-		<script src="js/utilities.js"></script>
-		<script src="/js/purgemysqlcache.js"></script>	<!-- Default Script -->
-		<script src="js/errorlog.js"></script>
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <link rel="stylesheet" href="css/ai-editable-tables.css">
+        <link rel="stylesheet" href="css/ai-utilities.css">
+        <style>
+			.statusBar:before { content: "{{STATUS}}"}
+        </style>
+        <!--    Page Scripts    -->
+        <script src="js/ai-utilities.js"></script>      <!-- Custom script -->
+        <script src="js/ai-errorlog.js"></script>       <!-- Custom script -->
+        <script src="/js/purgemysqlcache.js"></script>	<!-- Default Script -->
+        <script>
 
-		<!--	Local scripts & styles	-->
-		<script>
-		</script>
-		<style>
-			/*.ows-grid >button {border-radius:1em;}*/
-			#logcontent { padding: 0.5vh 1vw; max-height:20em;overflow:scroll;}
-			#logcontent > div:hover {background: var(--gradientBar);}
-			.ows-statusBar:before{content:'{{STATUS}}:';color:var(--color6);padding-left:0.5em;}
-			#customGrid {
-				display:grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: var(--rowGap) var(--colGap);
-				grid-template-areas: "ftp reload" "errors errors" "sql sql";
-			}
-			@media (max-width: 750px) {
-				#customGrid {
-					grid-template-columns: 1fr;
-					grid-template-areas: "ftp" "reload" "errors" "sql";
-				}
-			}
-			.dt-paging-input input[type="text"] { background: var(--color0); color: var(--color9);}
-		</style>
-	</head>
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
+                </div>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
 
-	<body class="ows-theme9">
-		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr" style="min-height: 6em;">
-			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-			<section id="subBanner" class="pageWidth" >
-				<img src="img/AI-Logo.png" id="#siteLogo" alt="AI Logo" class="w3-image" style="padding:1vh 0 .5vh 0;">
-				<div id="siteInfo">
-					<h4 style="grid-area:siteName;"><span data-owsData="Station">Site Name</span></h4>
-					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">N 179&deg; 59" 59'</span></p>
-					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">W 179&deg; 59" 50'</span></p>
-					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">2000 m</span></p>
-				</div>
-				<nav id="MainMenu" class="ows-theme6"></nav>
-			</section>
-		</header>
-
-        <section id="Content">
-            <div  id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme4 w3-animate-right"><!-- Sidebar Here --></div>
-            <img src="img/Gull.png" alt="Seagull" id="Gull1"> <!--    Gull goes here  -->
-            <section id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex">
-						<h1>{{UTILITIES}}</h1>
-						<p class="tagline">{{UTILITIES_TAGLINE}}</p>
-					</div>
-				</section>
-
-				<div id="customGrid">
-					<div class="w3-container ows-theme8" style="grid-area:ftp;">
-						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>{{UPLOAD_NOW}}</h3>
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+				<a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>{{UTILITIES}}</h1>
+                        <p class="ow-tagline">{{UTILITIES_TAGLINE}}</p>
+                    </div>
+                </section>
+				<!-- Content -->
+                <section class="customGrid">
+                    <div class="ow-panel ow-theme8" style="grid-area:ftp;"><!-- FTP/Upload Panel-->
+						<div class="ow-titleBar">
+							<h2>{{UPLOAD_NOW}}</h2>
 						</div>
 						<!-- rest of content -->
-						<h4 style="padding-bottom:.75vh;">{{UPLOAD_NOW_TEXT1}}</h4>
-						<p class="w3-hide">You can use this utility to upload the default website data files.</p>
+						<h4>{{UPLOAD_NOW_TEXT1}}</h4>
 						<p>{{UPLOAD_NOW_TEXT2}}</p>
-						<div style=" display:grid; grid-template-columns:auto 1fr;gap:.5vh 1vw; align-items:baseline;">
+						<div class="commentGrid" style="grid-template-columns:auto 1fr;">
 							<input type="checkbox" id="graphs" aria-label="{{UPLOAD_NOW_CB1}}">
 							<label for="graphs">{{UPLOAD_NOW_CB1}}</label>
 							<input type="checkbox" id="dailygraphs" aria-label="{{UPLOAD_NOW_CB2}}">
@@ -121,64 +120,63 @@
 							<input type="checkbox" id="logfiles" aria-label="{{UPLOAD_NOW_CB4}}">
 							<label for="logfiles">{{UPLOAD_NOW_CB4}}</label>
 						</div>
-						<div style="display: grid;grid-template-columns:auto 1fr;gap:0.5vh 1vw; align-items:baseline;">
-							<button class="w3-button ows-theme0 ows-theme-grad-down-hvr" aria-label="Start FTP now" style="border:thin solid var(--color5);" id="startFTP" >{{UPLOAD_NOW_START}}</button>
-							<p id="ftpStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
+						<div class="commentGrid" style="grid-template-columns:auto 1fr;">
+							<button class="ow-button" aria-label="Start FTP now" id="startFTP" >{{UPLOAD_NOW_START}}</button>
+							<p id="ftpStatus" class="statusBar"></p>
 						</div>
-					</div>
+					</div><!-- End Panel -->
 
-					<div class="w3-container ows-theme8" style="grid-area: reload">
-						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>{{RELOAD_DAYFILE}}</h3>
+                    <div class="ow-panel ow-theme8" style="grid-area: reload"><!-- Reload Dayfile panel -->
+						<div class="ow-titleBar">
+							<h2>{{RELOAD_DAYFILE}}</h2>
 						</div>
-						<!-- Rest of content -->
-						<h4 style="padding-bottom:.75vh;">{{RELOAD_DAYFILE_TEXT1}}</h4>
+						<h4>{{RELOAD_DAYFILE_TEXT1}}</h4>
 						<p>{{RELOAD_DAYFILE_TEXT2}}</p>
-						<div style="display:grid;grid-template-columns:auto 1fr; gap:0.5vh; align-items:baseline;">
-							<button class="w3-button ows-theme-grad-down-hvr" style="border:thin solid var(--color5);" aria-label="Reload now now" id="reLoad" >{{RELOAD_DAYFILE}}</button>
-							<p id="dayFileStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
+						<div class="commentGrid" style="grid-template-columns:auto 1fr;">
+							<button class="ow-button" aria-label="Reload now now" id="reLoad">{{RELOAD_DAYFILE}}</button>
+							<p id="dayFileStatus" class="statusBar"></p>
 						</div>
-					</div>
+					</div><!-- End Panel -->
 
-					<div class="w3-container ows-theme8" style="grid-area: errors;">
-						<div class="ows-titleFlex" style="margin-top:1vh">
-							<h3>{{LATEST_ERRORS}}</h3>
-							<p class="tagline">{{LATEST_ERRORS_TEXT1}}<i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
+                    <div class="ow-panel ow-theme8" style="grid-area: errors;"><!-- Errors Panel -->
+						<div class="ow-titleBar">
+							<h2>{{LATEST_ERRORS}}</h2>
+							<p class="ow-tagline">{{LATEST_ERRORS_TEXT1}}<i class="fa-solid fa-triangle-exclamation" style="color: #B00;font-size:150%;"></i></p>
 						</div>
-						<!-- Rest of content -->
-						<div class="ows-btnBar" style="justify-content: flex-start;">
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onclick="selectText();" aria-label="Copy to clipboard"><!--{{LATEST_ERRORS_COPY}}-->Copy to clipboard</button>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0" onClick="clearLog();" aria-label="Clear the log">{{LATEST_ERRORS_CLEAR}}</button>
+						<div class="ow-btnBar" style="justify-content: center;">
+							<button type="button" style="max-width:15em" onclick="selectText();" aria-label="Copy to clipboard">{{LATEST_ERRORS_COPY}}</button>
+							<button type="button" style="max-width:15em;" onClick="clearLog();" aria-label="Clear the log">{{LATEST_ERRORS_CLEAR}}</button>
 							<p>{{LATEST_ERRORS_TEXT2}}</p>
 						</div>
-						<div  id="logcontent" class="ows-theme9" style="margin: 1vh 0;">{{LOADING}}</div>
-					</div>
+						<div  id="logcontent" class="ow-theme9" style="margin: 1vh 0;">{{LOADING}}</div>
+					</div><!-- End Panel -->
 
-					<div class="w3-container ows-theme8" style="grid-area: sql">
-						<div class="ows-titleFlex" style="margin-top:1vh;">
-							<h3>{{PURGE_MYSQL}}</h3>
+                    <div class="ow-panel ow-theme8" style="grid-area: sql"><!-- MySQL Panel -->
+						<div class="ow-titleBar">
+							<h2>{{PURGE_MYSQL}}</h2>
+                            <!-- Icon required -->
 						</div>
-						<!-- Rest of content -->
 						<h4 style="padding-bottom:.75vh">{{PURGE_MYSQL_TEXT1}}</h4>
 						<p>{{PURGE_MYSQL_TEXT2}}</p>
-						<div style="margin:1vh 0;" >
-							<table id="sqlcache" class="w3-table w3-hoverable" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
+						<div>
+							<table id="sqlcache" style="width:100%; overflow: hidden!important; min-height:3vh;"></table>
 						</div>
-						<div style="display: grid;grid-template-columns:auto 1fr;gap:0.5vh">
-							<button id="reload" type="submit" class="w3-button w3-border ows-theme5-bdr ows-theme-grad-down-hvr" aria-label="Purge ALL MySQL statements">{{PURGE_MYSQL_SUBMIT}}</button>
-							<p id="purgeStatus" class="ows-theme9 w3-border ows-theme5-bdr ows-statusBar" style="margin:0;padding: 0.4vh 0.5vw;"></p>
+						<div class="commentGrid" style="grid-template-columns:auto 1fr;">
+							<button id="reload" type="submit" class="ow-button" aria-label="{{PURGE_MYSQL_SUBMIT}}">{{PURGE_MYSQL_SUBMIT}}</button>
+							<p id="purgeStatus" class="statusBar"></p>
 						</div>
-					</div>
-				</div>
+					</div><!-- End Panel -->
+                </section>
 			</section>
-		</section>
+		</main>
 
-        <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+		<footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot" class="ow-theme4">
+                <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
             </section>
         </footer>
-
 	</body>
 </html>

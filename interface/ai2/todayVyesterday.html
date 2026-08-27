@@ -2,121 +2,103 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	Today Vs Yesterday	| todayVyesterday.html
 	Author:	DDNC Thomas			| Created: 2025-11-29
-	Last Edit:	2026/03/24 11:13:01
-	Last Check:	2025-12-09
+	Last Edit:	2026-08-11 10:18:45
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{TODAY_YESTERDAY}}</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{TODAY_YESTERDAY}} - CMX-AI</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="DNC Thomas 2023">
+		<meta name="author" content="DNC Thomas 2026">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-
+		
 		<!--	jQuery (CDN)	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!--	Data Tables	-->
-		<script src="/lib/datatables/datatables.min.js"></script>
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
+        <!--    Data Tables     -->
+        <script src="/lib/datatables/datatables.min.js"></script>
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
-		<!--	Page Styles	-->
-		<style>
-		#customGrid {
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas:
-				"tempPanel tempPanel rainPanel rainPanel"
-				"tempPanel tempPanel windPanel windPanel"
-				"humsPanel humsPanel pressPanel pressPanel"
-				". solarPanel solarPanel .";
-			gap: var(--rowGap) var(--colGap);
-		}
-		#TempPanel { grid-area: tempPanel;}
-		#RainPanel { grid-area: rainPanel;}
-		#WindPanel { grid-area: windPanel;}
-		#HumsPanel { grid-area: humsPanel;}
-		#PressPanel { grid-area: pressPanel;}
-		#SolarPanel{ grid-area: solarPanel;}
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <link rel="stylesheet" href="css/ai-todayVyesterday.css">
+        <style>
+        </style>
+        <!--    Page Scripts    -->
+        <script src="/js/todayyest.js"></script>	<!-- DEFAULT SCRIPT -->
+        <script>
 
-		@media (max-width: 1000px){/* If you only ever want one column, change this width to > 1200px */
-			#customGrid {
-				grid-template-columns: 1fr;
-				grid-template-areas: "tempPanel" "rainPanel" "windPanel" "humsPanel" "pressPanel" "solarPanel";
-			}
-		}
-		table { border-collapse: collape; font-size: 90%}
-		td { padding: .3em 0;}
-		td:first-of-type { width: 16em!important;}
-		td:nth-of-type(3),td:nth-of-type(5) { width:6em!important;}
-
-		tr:hover td { background: var(--gradient-databar); font-weight:600;}
-		.left {text-align:left;}
-       
-		.right {text-align:right; padding-right: .5em;}
-		</style>
-
-		<!--	Page Scripts	-->
-		<script src="/js/todayyest.js"></script>	<!-- DEFAULT SCRIPT -->
-
-		<!--	Local scripts & styles	-->
-		<script>
-		</script>
-	</head>
-	<body class="ows-theme9">
-		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
-            <img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-            <div id="subBanner" class="pageWidth">
-                <!--    Logo    -->
-                <img src="img/AI-Logo.png" id="siteLogo" alt="CMX Logo" class="w3-image">
-                <div id="siteInfo">
-                    <h4 style="grid-area:siteName;"><span data-owsData="Station">Playground site</span></h4>
-                    <p>{{LATITUDE}}:</p><p><strong><span data-cmxData="latitude">N: 53` 23' 04"</span></strong></p>
-                    <p>{{LONGITUDE}}:</p><p><strong><span data-cmxData="longitude">W: 2` 06' 44"</span></strong></p>
-                    <p>{{ALTITUDE}}:</p><p><strong><span data-cmxData="altitude">17m</span></strong></p>
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
                 </div>
-                <div id="MainMenu" class="ows-theme6"><!-- Main menu inserted here --></div>
-            </div>
-		</header>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
 
-		<section id="Content">
-            <div  id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme6 w3-animate-right"><!-- Main menu inserted here --></div>
-			<img src="img/seagull.png" id="Gull1" alt="Seagull">
-			<section id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex">
-						<h1>{{TODAY_AND_YESTERDAY}}</h1>
-						<p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="Date"></span></p>
-					</div>
-				</section>
-
-				<section id="customGrid" style="margin-bottom:var(--rowGap)">
-					<div id="TempPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+                <a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>{{TODAY_YESTERDAY}}</h1>
+                        <p class="ow-tagline">{{PAGE_UPDATED}}: <span data-cmxData="Date"></span></p>
+                    </div>
+                </section>
+                <!-- Page Content -->
+                <section class="customGrid"><!-- Custom layout for panels -->
+                    <div id="TempPanel" class="ow-panel ow-theme8"><!-- Panel for Temperatures -->
+						<div class="ow-titleBar ow-theme7">
 							<h3>{{TEMPERATURE}}</h3><i class="fa-solid fa-temperature-half"></i>
 						</div>
 
 						<table id="TempTable">
 							<thead>
-    		                    <tr class="w3-hide">
+    		                    <tr class="ow-hide">
             		                <th>&nbsp;{{TEMPERATURE}}</th>
                     		        <th></th>
                             		<th></th>
@@ -125,269 +107,116 @@
                         		</tr>
                         		<tr>
                             		<th>&nbsp;</th>
-                            		<th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
-                            		<th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
+                            		<th colspan="2">{{TODAY}}</th>
+                            		<th colspan="2">{{YESTERDAY}}</th>
                         		</tr>
                     		</thead>
-                    		<tr>
-                        		<td>{{HIGH_TEMPERATURE}}</td>
-                        		<td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
-                        <td>23:10</td>
-                        <td><span id="OutdoorTemp">--</span>&nbsp;<span class="TempUnit">--</span></td>
-                        <td>15:10</td>
-                    </tr>
-                    <tr>
-                        <td>{{DEW_POINT}}</td>
-                        <td><span id="OutdoorDewpoint">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{WIND_CHILL}}</td>
-                        <td><span id="WindChill">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{APPARENT_TEMPERATURE}}</td>
-                        <td><span id="AppTemp">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{FEELS_LIKE}}</td>
-                        <td><span id="FeelsLike">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{HEAT_INDEX}}</td>
-                        <td><span id="HeatIndex">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{HUMIDEX}}</td>
-                        <td><span id="Humidex">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{INDOOR_TEMPERATURE}}</td>
-                        <td><span id="IndoorTemp">--</span></td>
-                        <td><span class="TempUnit">--</span></td>
-                    </tr>
 						</table>
+					</div><!-- End of Temperature panel -->
 
-					</div>
-					<div id="RainPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>{{RAINFALL}}</h3><i class="fa-solid fa-droplet w3-text-light-blue"></i>
+                    <div id="RainPanel" class="ow-panel ow-theme8">
+						<div class="ow-titleBar ows-theme7">
+							<h3>{{RAINFALL}}</h3><i class="fa-solid fa-droplet ow-Rain"></i>
 						</div>
 
-                <table id="RainTable" style="width:100%">
-                    <thead>
-                        <tr class="w3-hide">
-                            <th>&nbsp;{{RAINFALL}}</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="center" colspan="2">{{TODAY}}</th>
-                            <th class="center" colspan="2">{{YESTERDAY}}</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>{{RAIN_TODAY}}</td>
-                        <td><span id="RainToday">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{RAIN_RATE}}</td>
-                        <td><span id="RainRate">--</span></td>
-                        <td><span class="RainUnit">--</span>/{{HOUR_SHORT}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{RAIN_LAST_HOUR}}</td>
-                        <td><span id="RainLastHour">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{RAIN_THIS_MONTH}}</td>
-                        <td><span id="RainMonth">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{RAIN_THIS_YEAR}}</td>
-                        <td><span id="RainYear">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{RAIN_YESTERDAY}}</td>
-                        <td><span id="RainYesterday">--</span></td>
-                        <td><span class="RainUnit">--</span></td>
-                    </tr>
-                </table>
+                        <table id="RainTable">
+                            <thead>
+                                <tr class="ow-hide">
+                                    <th>&nbsp;{{RAINFALL}}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th class="center" colspan="2">{{TODAY}}</th>
+                                    <th class="center" colspan="2">{{YESTERDAY}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+					</div><!-- End Raiin Panel -->
 
-
-					</div>
-					<div id="WindPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
+                    <div id="WindPanel" class="ow-panel ow-theme8"><!-- Wind Panel -->
+						<div class="ow-titleBar ow-theme7">
 							<h3>{{WIND}}</h3><i class="fa-solid fa-wind"></i>
 						</div>
 
-                <table id="WindTable" style="width:100%">
-                    <thead>
-                        <tr class="w3-hide">
-                            <th>&nbsp;{{WIND}}</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
-                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>{{LATEST}}</td>
-                        <td><span id="WindLatest">--</span></td>
-                        <td><span class="WindUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{AVERAGE_SPEED}}</td>
-                        <td><span id="WindAverage">--</span></td>
-                        <td><span class="WindUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{PEAK_GUST}}</td>
-                        <td><span id="Recentmaxgust">--</span></td>
-                        <td><span class="WindUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{BEARING}}</td>
-                        <td><span id="Bearing">--</span></td>
-                        <td>&deg;</td>
-                    </tr>
-                    <tr>
-                        <td>{{AVERAGE_BEARING}}</td>
-                        <td><span id="Avgbearing">--</span></td>
-                        <td>&deg;</td>
-                    </tr>
-                </table>
+                        <table id="WindTable">
+                            <thead>
+                                <tr class="ow-hide">
+                                    <th>&nbsp;{{WIND}}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th colspan="2">{{TODAY}}</th>
+                                    <th colspan="2">{{YESTERDAY}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div><!-- End of Wind Panel -->
 
-
-					</div>
-					<div id="HumsPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain w3-text-blue"></i>
+                    <div id="HumsPanel" class="ow-panel ow-theme8"><!-- Humidity Panel -->
+						<div class="ow-titleBar ow-theme7">
+							<h3>{{HUMIDITY}}</h3><i class="fa-solid fa-cloud-rain ow-hums"></i>
 						</div>
 
-                <table id="HumidityTable" style="width:100%">
-                    <thead>
-                        <tr class="w3-hide">
-                            <th>&nbsp;{{HUMIDITY}}</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
-                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>{{OUTDOOR_HUMIDITY}}</td>
-                        <td><span id="OutdoorHum">--</span></td>
-                        <td><span>%</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{INDOOR_HUMIDITY}}</td>
-                        <td><span id="IndoorHum">--</span></td>
-                        <td><span>%</span></td>
-                    </tr>
-                </table>
+                        <table id="HumidityTable">
+                            <thead>
+                                <tr class="ow-hide">
+                                    <th>&nbsp;{{HUMIDITY}}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th colspan="2">{{TODAY}}</th>
+                                    <th colspan="2">{{YESTERDAY}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div><!-- End of Humidity panel -->
 
-
-					</div>
-					<div id="PressPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>{{PRESSURE}}</h3><i class="fa-solid fa-compress fa-beat-fade w3-text-orange"></i>
+                    <div id="PressPanel" class="ow-panel ow-theme8">
+						<div class="ow-titleBar ow-theme7">
+							<h3>{{PRESSURE}}</h3><i class="fa-solid fa-compress fa-beat-fade ow-press"></i>
 						</div>
 
-                <table id="PressureTable" style="width:100%">
-                    <thead>
-                        <tr class="w3-hide">
-                            <th>&nbsp;{{PRESSURE}}</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
-                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>{{PRESSURE}}</td>
-                        <td><span id="Pressure">--</span></td>
-                        <td><span class="PressUnit">--</span></td>
-                    </tr>
-                    <tr>
-                        <td>{{TREND}}</td>
-                        <td><span id="PressTrend">--</span></td>
-                        <td><span class="PressUnit">--</span>/{{HOUR_SHORT}}</td>
-                    </tr>
-                </table>
+                        <table id="PressureTable">
+                            <thead>
+                                <tr class="ow-hide">
+                                    <th>&nbsp;{{PRESSURE}}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th colspan="2">{{TODAY}}</th>
+                                    <th colspan="2">{{YESTERDAY}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </section>
 
-
-					</div>
-					<div id="SolarPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h3>{{SOLAR}}</h3><i class="fa-solid fa-sun-plant-wilt w3-text-amber"></i>
-						</div>
-                <table id="SolarTable" style="width:100%">
-                    <thead>
-                        <tr class="w3-hide">
-                            <th>&nbsp;{{SOLAR}}</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="w3-center" colspan="2"><h5>{{TODAY}}</h5></th>
-                            <th class="w3-center" colspan="2"><h5>{{YESTERDAY}}</h5></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>{{SOLAR_RADIATION}}</td>
-                        <td><span id="SolarRad">--</span></td>
-                        <td>W/m<sup>2</sup></td>
-                    </tr>
-                    <tr>
-                        <td>{{SUNSHINE_TODAY}}</td>
-                        <td><span id="SunshineHours">--</span></td>
-                        <td>{{HOURS_SHORT}}</td>
-                    </tr>
-                </table>
-
-
-					</div>
-				</section><!-- End of custom Grid -->
 			</section>
-		</section>
+		</main>
 
-		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+		<footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot" class="ow-theme4">
+                <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
             </section>
         </footer>
-
-	</body>
+    </body>
 </html>

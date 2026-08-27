@@ -1,147 +1,128 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:		Trend Charts		| charts.html
-	Author:		DNC Thomas			| Nov 2025
-	Last Edit:	2026/03/24 10:57:00
-	Last Check:	2025-12-08 17:01:41
+	Author:		DNC Thomas			| 2026-07-03
+	Last Edit:	2026-08-11 10:05:48
+	Last Check:	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{TREND}} {{CHARTS}}</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{CHARTS}} - CMX-AI</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2025">
+		<meta name="author" content="DNC Thomas 2026">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-
+		
 		<!--	jQuery (CDN)	-->
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
 
-        <!--	chartsjs (Local)	-->
+		<!--	chartsjs (Local)	-->
 		<script src="/lib/chartjs/chart.umd.min.js"></script>
 		<script src="/lib/luxon/luxon.min.js"></script>
 		<script src="/lib/chartjs/chartjs-adapter-luxon.umd.min.js"></script>
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
-
-		<!--	Page Scripts	-->
-		<script src="js/charts.js"></script>			<!-- Custom Script		-->
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <!--<link rel="stylesheet" href="css/dashboard.css">-->
+        <link rel="stylesheet" href="css/ai-charts.css">
+        <style>
+        </style>
+        <!--    Page Scripts    -->
+        <script src="js/ai-charts.js"></script>			<!-- Custom Script		-->
 		<script src="/js/chartjsextras.js"></script>	<!--	Default script	-->
+        <script>
 
-		<script></script>
-		<!--	Page styles	-->
-		<style>
-			#chartcontainer {
-				display: grid;
-				grid-template-rows: 1fr 30em;
-				grid-auto-rows: 7em;
-				gap: 1em;
-				padding: 1em;
-				border: 1px solid var(--color5);
-				background: linear-gradient( 33deg, var(--color8), var(--color9));
-			}
-			.chart-buttons {
-				display: flex;
-				justify-content: space-between;
-				font-size: 80%;
-			}
-			.chart-buttons button {
-				border-radius: 1em;
-				border:thin solid var(--color5);
-				background: inherit;
-				color: var(--color1);
-				min-width:3em;
-				padding: .1em 1em;
-			}
-			.chart-buttons button:hover {
-				background: var(--gradient-down);
-			}
-			#rangeButtons {
-				display: flex;
-				gap: 0.5vw;
-				align-items: baseline;
-			}
-			#mainChart, #navChart {
-				height: 100%;
-				width:100%;
-				background: white;
-			}
-		</style>
-	</head>
-	<body class="ows-theme9">
-		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
-			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-			<div id="subBanner" class="pageWidth">
-				<!--	Logo	-->
-				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<div id="siteInfo">
-					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
-					<p>Latitude:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>Longitude:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>Altitude:</p><p><span data-cmxData="altitude">zzm</span></p>
-				</div>
-				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
-			</div>
-		</header>
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
+                </div>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
 
-		<div id="Content">
-			<div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right"><!-- Mobile menu inserted herer --></div>
-			<img src="img/seagull.png" id="Gull1" alt="Seagull">
-			<div id="subContent" class="pageWidth">
-				<!--	Page Title	-->
-				<section class="w3-container">
-					<div class="ows-titleFlex">
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu"><!-- Sidebar Navigation - DO NOT REMOVE -->
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+				<a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+
+			<section class="subContent"><!-- Main Page Content -->
+                <section class="ow-panel" style="padding-bottom:0;"><!-- Page Title -->
+					<div class="ow-titleBar" style="background:var(--color0);">
 						<h1>{{TREND}} {{CHARTS}}</h1>
-						<p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
+						<p class="ow-tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
 					</div>
 				</section>
-				<!--	One column layout section	-->
-				<div class="ows-grid col1" style="gap: 0;">
-					<!--	Buttons - set order to 2 to force to the bottom of screen	-->
-					<div class="w3-container no-shadow" style="order:1; padding-bottom:0;">
-						<div class="ows-btnBar" style="order:1;gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
-							<button id="temp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{TEMPERATURE}}">{{TEMPERATURE}}</button>
-							<button id="dailytemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{DAILY_TEMPERATURE}}">{{DAILY_TEMPERATURE}}</button>
-							<button id="press" class="w3-button ows-theme-grad-down-hvr" aria-label="{{PRESSURE}}">{{PRESSURE}}</button>
-							<button id="wind" class="w3-button ows-theme-grad-down-hvr" aria-label="{{WINDSPEEDS}}">{{WIND_SPEED}}</button>
-							<button id="windDir" class="w3-button ows-theme-grad-down-hvr" aria-label="{{WIND_DIRECTION}}">{{WIND_DIRECTION}}</button>
-							<button id="humidity" class="w3-button ows-theme-grad-down-hvr" aria-label="{{HUMIDITY}}">{{HUMIDITY}}</button>
-							<button id="rain" class="w3-button ows-theme-grad-down-hvr" aria-label="{{RAINFALL}}">{{RAINFALL}}</button>
-							<button id="dailyrain" class="w3-button ows-theme-grad-down-hvr" aria-label="{{DAILY_RAIN}}">{{DAILY_RAIN}}</button>
-							<button id="solar" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOLAR}}">{{SOLAR}}</button>
-							<button id="sunhours" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SUNSHINE_HOURS}}">{{SUNSHINE_HOURS}}</button>
-							<button id="airquality"	class="w3-button ows-theme-grad-down-hvr" aria-label="{{AIR_QUALITY}}">{{AIR_QUALITY}}</button>
-							<button id="extratemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_TEMPERATURE}}">{{EXTRA_TEMPERATURE}}</button>
-							<button id="extrahum" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_HUMIDITY}}">{{EXTRA_HUMIDITY}}</button>
-							<button id="extradew" class="w3-button ows-theme-grad-down-hvr" aria-label="{{EXTRA_DEW_POINT}}">{{EXTRA_DEW_POINT}}</button>
-							<button id="soiltemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOIL_TEMPERATURE}}">{{SOIL_TEMPERATURE}}</button>
-							<button id="soilmoist" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SOIL_MOISTURE}}">{{SOIL_MOISTURE}}</button>
-							<button id="leafwet" class="w3-button ows-theme-grad-down-hvr" aria-label="{{LEAF_WETNESS}}">{{LEAF_WETNESS}}</button>
-							<button id="usertemp" class="w3-button ows-theme-grad-down-hvr" aria-label="{{USER_TEMPERATURE}}">{{USER_TEMPERATURE}}</button>
-							<button id="co2" class="w3-button ows-theme-grad-down-hvr" aria-label="{{CO2_SENSOR}}e">{{CO2_SENSOR}}</button>
-							<button id="laserdepth" class="w3-button ows-theme-grad-down-hvr" aria-label="{{LASER_DEPTH}}">{{LASER_DEPTH}}</button>
-							<button id="snowdepth" class="w3-button ows-theme-grad-down-hvr" aria-label="{{SNOWFALL}}">{{SNOWFALL}}</button>
+
+                <section class="ow-grid col1" style="gap:0;"><!-- area for buttons & chart -->
+                    <div class="ow-panel ow-shadow-none" style="order:0;"><!-- Chart BUTTONS -->
+                        <div class="ow-btnBar" style="gap:0.5em 0.25em; margin: 1vh 0;"><!--	Adjust gaps to suit	-->
+							<button id="temp" aria-label="{{TEMPERATURE}}">{{TEMPERATURE}}</button>
+							<button id="dailytemp" aria-label="{{DAILY_TEMPERATURE}}">{{DAILY_TEMPERATURE}}</button>
+							<button id="press" aria-label="{{PRESSURE}}">{{PRESSURE}}</button>
+							<button id="wind" aria-label="{{WINDSPEEDS}}">{{WIND_SPEED}}</button>
+							<button id="windDir" aria-label="{{WIND_DIRECTION}}">{{WIND_DIRECTION}}</button>
+							<button id="humidity" aria-label="{{HUMIDITY}}">{{HUMIDITY}}</button>
+							<button id="rain" aria-label="{{RAINFALL}}">{{RAINFALL}}</button>
+							<button id="dailyrain" aria-label="{{DAILY_RAIN}}">{{DAILY_RAIN}}</button>
+							<button id="solar" aria-label="{{SOLAR}}">{{SOLAR}}</button>
+							<button id="sunhours" aria-label="{{SUNSHINE_HOURS}}">{{SUNSHINE_HOURS}}</button>
+							<button id="airquality" aria-label="{{AIR_QUALITY}}">{{AIR_QUALITY}}</button>
+							<button id="extratemp" aria-label="{{EXTRA_TEMPERATURE}}">{{EXTRA_TEMPERATURE}}</button>
+							<button id="extrahum" aria-label="{{EXTRA_HUMIDITY}}">{{EXTRA_HUMIDITY}}</button>
+							<button id="extradew" aria-label="{{EXTRA_DEW_POINT}}">{{EXTRA_DEW_POINT}}</button>
+							<button id="soiltemp" aria-label="{{SOIL_TEMPERATURE}}">{{SOIL_TEMPERATURE}}</button>
+							<button id="soilmoist" aria-label="{{SOIL_MOISTURE}}">{{SOIL_MOISTURE}}</button>
+							<button id="leafwet" aria-label="{{LEAF_WETNESS}}">{{LEAF_WETNESS}}</button>
+							<button id="usertemp" aria-label="{{USER_TEMPERATURE}}">{{USER_TEMPERATURE}}</button>
+							<button id="co2" aria-label="{{CO2_SENSOR}}e">{{CO2_SENSOR}}</button>
+							<button id="laserdepth" aria-label="{{LASER_DEPTH}}">{{LASER_DEPTH}}</button>
+							<button id="snowdepth" aria-label="{{SNOWFALL}}">{{SNOWFALL}}</button>
 						</div>
-					</div>
-					<!--	Chart	-->
-					<div class="w3-container" style="order:1;">
+                    </div><!-- End of Buttons -->
+
+                    <div class="ow-panel" style="order:1;"><!-- Chart panel -->
 						<div id="chartcontainer" class="chart-wrap" style="margin-top:1vh">
 							<div class="chart-buttons">
                     			<div id="rangeButtons" style="visibility: visible;">
@@ -159,23 +140,21 @@
 							<div id="navChartContainer" class="navChartContainer">
                     			<canvas id="navChart"></canvas>
                 			</div>
-
 						</div>
-					</div>
-					<!--	Information	-->
-					<div class="w3-container no-shadow" style="order:1;">
-						<p class="w3-center" id="chartdescription" style="order:3;">Description</p>
-					</div>
-				</div>	<!--	End of one column layout	-->
-			</div>
-		</div>
+					</div><!-- End of chart poanel -->
+                </section>
 
-		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">Site design: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>Powered by <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+			</section>
+
+		</main>
+
+        <footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot" class="ow-theme4">
+                <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
             </section>
         </footer>
-
-	</body>
-</html>
+    </body>
+</html>	

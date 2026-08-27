@@ -2,31 +2,37 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Page:	User period records	| recsthisperiod.html
 	Author:		DNC Thomas		| Created: Mar 2025
-	Last Edit:	2026/03/24 11:11:26
+	Last Edit:	2026-08-11 10:17:13
 	Last Check:	2025-12-09
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{THIS_PERIOD}} - CumulusMX</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>{{THIS_PERIOD}} - CMX-AI</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="Neil Thomas 2025">
+		<meta name="author" content="DNC Thomas 2026">
 
-		<!--	Fonts	-->
+        <!--	Fonts	-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 		<!--	FontAwsome CDN	-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
-
+		
 		<!--	jQuery (CDN)	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
 		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+        <!-- datepicker -->
+		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.structure.min.css" rel="stylesheet">
+		<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
+		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
 		<!-- datepicker -->
 		<link href="/lib/jquery-ui-custom/jquery-ui.min.css" rel="stylesheet">
@@ -34,301 +40,296 @@
 		<link href="/lib/jquery-ui-custom/jquery-ui.theme.min.css" rel="stylesheet">
 		<script src="/lib/jquery-ui-custom/jquery-ui.min.js"></script>
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+		<link rel="stylesheet" href="css/ai-records.css">
+        <style>
+        </style>
+        <!--    Page Scripts    -->
+        <script src="/js/thisperiod.js"></script>	<!-- Default script	-->
+        <script>
+			$().ready( function() {load()} )
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
+                </div>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
 
-		<!--	Local Styles	-->
-		<style>
-			input[type=text] {
-				max-width: 10em;
-				text-align: center;
-				border-radius: 1em;
-				padding: 0.25em;
-				border:thin solid var(--color5);
-			}
-
-			#customGrid {
-				display: grid;
-				grid-template-columns:repeat(2, 1fr);
-				gap: 1vw 1em;
-				grid-template-areas: "select select" "temps rain" "temps winds" "hums press";
-				margin-bottom: 1em;
-			}
-			#SelectPanel{ grid-area:select;}
-			#TempsPanel{ grid-area: temps;}
-			#RainPanel{ grid-area: rain;}
-			#WindsPanel{ grid-area:winds;}
-			#HumsPanel{ grid-area: hums;}
-			#PressPanel{ grid-area: press;}
-			.ows-titleGrid { margin-bottom:0;}
-			@media (max-width: 2000px) { /* Set this value to dictate when it goes to a single column */
-				#customGrid {
-					grid-template-columns: 1fr;
-					grid-template-areas: "select" "temps" "rain" "winds" "hums" "press";
-				}
-				.ows-dataRowGrid.threeC {
-					grid-template-columns: 1fr 6em 20em;
-				}
-			}
-		</style>
-		<!-- Local Scripts	-->
- 		<script src="/js/thisperiod.js"></script>	<!-- Uses the DEFAULT script	-->
-		<script>
-			$().ready( function() {
-				load();
-			})
-		</script>
-	</head>
-	<body class="ows-theme9">
-		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
-			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-			<div id="subBanner" class="pageWidth">
-				<!--	Logo	-->
-				<img src="img/AI-Logo.png" alt="CMX Logo" id="siteLogo" class="w3-image">
-				<div id="siteInfo">
-					<h4 style="grid-area:siteName"><span data-owsData="Station">--</span></h4>
-					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zzm</span></p>
-				</div>
-				<div id="MainMenu" class="ows-theme6"><!-- Menu inserted here --></div>
-			</div>
-		</header>
-
-		<section id="Content">
-            <div id="MobileMenu" class="w3-sidebar w3-bar-block w3-card ows-theme6 w3-animate-right" ><!-- Mobile menu inserted herer --></div>
-			<img src="img/seagull.png" id="Gull1" alt="Seagull">
-			<div id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex">
-						<h1>{{THIS_PERIOD_HIGHS_AND_LOWS}}</h1>
-						<p class="tagline">{{THIS_PERIOD_TAGLINE}}</p>
-					</div>
-				</section>
-
-				<section id="customGrid">
-					<div id="SelectPanel" class="w3-container ows-theme0 no-shadow">
-						<div class="ows-btnBar" style="justify-content: center; align-items:baseline;column-gap:2em; margin-bottom:0;">
-							<div style="flex-grow:0;">{{START_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="mm-dd-yyyy" id="dateFrom"></div>
-							<div style="flex-grow:0;">{{END_DATE}}:&nbsp;<input type="text" class="ows-theme0 ows-theme-grad-down-hvr" data-date-format="dd-mm-yyyy" id="dateTo"></div>
-							<button type="button" class="w3-button ows-theme-grad-down-hvr" style="flex-grow:0; width:160px;" onclick="load()">{{LOAD}}</button>
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+				<a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>{{THIS_PERIOD}}</h1>
+                        <p class="ow-tagline">{{THIS_PERIOD_TAGLINE}}</p>
+                    </div>
+                </section>
+                
+				<!-- Content here -->
+				 <section class="ow-grid col1 ow-shadow-none">
+					<div class="ow-panel ow-shadow-none ow-theme9" style="margin-bottom:0; order:1;">
+						<div class="ow-btnBar" style="justify-content:center; column-gap:1em;">
+							<label for="dateFrom">{{START_DATE}}:</label>
+							<input type="text" data-date-format="mm-dd-yyyy" id="dateFrom" aria-label="{{DATE_FROM}}">
+							<label for="dateTo" style="margin-left:2em;">{{END_DATE}}:</label>
+							<input type="text" data-date-format="dd-mm-yyyy" id="dateTo">
+							<button type="button" onclick="load()">{{LOAD}}</button>
 						</div>
 					</div>
-					<div id="TempsPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>{{TEMPERATURE}}</h2><i class="fa-solid fa-temperature-half"></i>
+				 </section> 
+
+                 <section class="customGrid">
+                    <article id="TempsPanel" class="ow-panel ow-theme8">
+                        <div class="ow-titleBar ow-theme7">
+                            <h2>{{TEMPERATURE}}</h2>
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+                        <div class="ow-dataBar col3 ow-hover-none">
+                            <p>&nbsp;</p>
+							<p><strong>{{READING}}</strong></p>
+							<p><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+                        </div>
+                        <div class="ow-dataBar col3">
+                            <p>{{HIGH_TEMPERATURE}}</p>
+							<p><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highTempTimeDayfile" class=""></span></p>
+                        </div>
+                        <div class="ow-dataBar col3">
+							<p>{{LOW_TEMPERATURE}}</p>
+							<p><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowTempTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_DEW_POINT}}</p>
+							<p><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highDewPointTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_DEW_POINT}}</p>
+							<p><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowDewPointTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_APPARENT_TEMPERATURE}}</p>
+							<p><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highApparentTempTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_APPARENT_TEMPERATURE}}</p>
+							<p><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowApparentTempTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_FEELS_LIKE}}</p>
+							<p><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highFeelsLikeTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_FEELS_LIKE}}</p>
+							<p><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowFeelsLikeTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_HUMIDEX}}</p>
+							<p><span id="highHumidexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highHumidexTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_WIND_CHILL}}</p>
+							<p><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowWindChillTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_HEAT_INDEX}}</p>
+							<p><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highHeatIndexTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_MINIMUM_TEMPERATURE}}</p>
+							<p><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highMinTempTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOWEST_MAXIMUM_TEMPERATURE}}</p>
+							<p><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowMaxTempTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_DAILY_TEMPERATURE_RANGE}}</p>
+							<p><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="highDailyTempRangeTimeDayfile"></span></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_DAILY_TEMPERATURE_RANGE}}</p>
+							<p><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
+							<p><span id="lowDailyTempRangeTimeDayfile"></span></p>
+						</div>
+                    </article><!-- End of Temperature panel -->
+
+                    <article id="RainPanel" class="ow-panel ow-theme8">
+                        <div class="ow-titleBar ow-theme7">
+                            <h2>{{RAINFALL}}</h2>
+                            <i class="fa-solid fa-droplet ow-Rain"></i>
+                        </div>
+                        <div class="ow-dataBar col3 ow-hover-none">
+                            <p>&nbsp;</p>
+                            <p><strong>{{READING}}</strong></p>
+                            <p><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+                        </div>
+                        <div class="ow-dataBar col3">
+							<p>{{HIGH_RAIN_RATE}}</p>
+							<p><span id="highRainRateValDayfile"></span><span class="unit-rain"></span>/hr</p>
+							<p id="highRainRateTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_HOURLY_RAIN}}</p>
+							<p><span id="highHourlyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p id="highHourlyRainTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_DAILY_RAIN}}</p>
+							<p><span id="highDailyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p id="highDailyRainTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_24_HOUR_RAIN}}</p>
+							<p><span id="highRain24hValDayfile"></span><span class="unit-rain"></span></p>
+							<p id="highRain24hTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_MONTHLY_RAINFALL}}</p>
+							<p><span id="highMonthlyRainValDayfile"></span><span class="unit-rain"></span></p>
+							<p id="highMonthlyRainTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LONGEST_DRY_PERIOD}}</p>
+							<p><span id="longestDryPeriodValDayfile"></span> day(s)</p>
+							<p id="longestDryPeriodTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LONGEST_WET_PERIOD}}</p>
+							<p><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
+							<p id="longestWetPeriodTimeDayfile">-</p>
+						</div>
+                    </article><!-- End Rainfall Panel -->
+
+                    <article id="WindsPanel" class="ow-panel ow-theme8">
+						<div class="ow-titleBar ow-theme7">
+							<h2>{{WIND}}</h2>
+                            <i class="fa-solid fa-wind"></i>
+						</div>
+						<div class="ow-dataBar col3 ow-hover-none">
+							<p>&nbsp;</p>
+							<p><strong>{{READING}}</strong></p>
+							<p><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+                        </div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_GUST_SPEED}}</p>
+							<p><span id="highGustValDayfile"></span><span class="unit-wind"></span></p>
+							<p id="highGustTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_WIND_SPEED}}</p>
+							<p><span id="highWindValDayfile"></span><span class="unit-wind"></span></p>
+							<p id="highWindTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_DAILY_WIND_RUN}}</p>
+							<p><span id="highWindRunValDayfile"></span><span class="unit-windrun"></span></p>
+							<p id="highWindRunTimeDayfile"></p>
+						</div>
+					</article><!-- End Wind Panel -->
+
+                    <article id="HumsPanel" class="ow-panel ow-theme8">
+                        <div class="ow-titleBar ow-theme7">
+							<h2>{{HUMIDITY}}</h2>
+                            <i class="fa-solid fa-cloud-rain ow-Hums"></i>
 						</div>
 						<!-- Content -->
-						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
+						<div class="ow-dataBar col3 ow-hover-none">
 							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>{{READING}}</strong></p>
-							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
-							<div class="ignore">
-								<p class="">{{HIGH_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="highTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highTempTimeDayfile" class=""></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="lowTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowTempTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_DEW_POINT}}</p>
-								<p class="w3-right-align"><span id="highDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highDewPointTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_DEW_POINT}}</p>
-								<p class="w3-right-align"><span id="lowDewPointValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowDewPointTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_APPARENT_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="highApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highApparentTempTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_APPARENT_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="lowApparentTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowApparentTempTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_FEELS_LIKE}}</p>
-								<p class="w3-right-align"><span id="highFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highFeelsLikeTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_FEELS_LIKE}}</p>
-								<p class="w3-right-align"><span id="lowFeelsLikeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowFeelsLikeTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_HUMIDEX}}</p>
-								<p class="w3-right-align"><span id="highHumidexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highHumidexTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_WIND_CHILL}}</p>
-								<p class="w3-right-align"><span id="lowWindChillValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowWindChillTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_HEAT_INDEX}}</p>
-								<p class="w3-right-align"><span id="highHeatIndexValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highHeatIndexTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_MINIMUM_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="highMinTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highMinTempTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOWEST_MAXIMUM_TEMPERATURE}}</p>
-								<p class="w3-right-align"><span id="lowMaxTempValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowMaxTempTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_DAILY_TEMPERATURE_RANGE}}</p>
-								<p class="w3-right-align"><span id="highDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="highDailyTempRangeTimeDayfile"></span></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_DAILY_TEMPERATURE_RANGE}}</p>
-								<p class="w3-right-align"><span id="lowDailyTempRangeValDayfile"></span> &deg;<span class="unit-temp"></span></p>
-								<p class="w3-right-align"><span id="lowDailyTempRangeTimeDayfile"></span></p>
-							</div>
+							<p><strong>{{READING}}</strong></p>
+							<p><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+                        </div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_HUMIDITY}}</p>
+							<p><span id="highHumidityValDayfile"></span>%</p>
+							<p id="highHumidityTimeDayfile"></p>
 						</div>
-					</div>
-					<div id="RainPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>{{RAINFALL}}</h2><i class="fa-solid fa-droplet w3-text-blue"></i>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_HUMIDITY}}</p>
+							<p><span id="lowHumidityValDayfile"></span>%</p>
+							<p id="lowHumidityTimeDayfile"></p>
 						</div>
-						<!-- Content -->
-						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
-							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>{{READING}}</strong></p>
-							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
-							<div class="ignore">
-								<p class="">{{HIGH_RAIN_RATE}}</p>
-								<p class="w3-right-align"><span id="highRainRateValDayfile"></span><span class="unit-rain"></span>/hr</p>
-								<p class=" w3-right-align" id="highRainRateTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_HOURLY_RAIN}}</p>
-								<p class="w3-right-align"><span id="highHourlyRainValDayfile"></span><span class="unit-rain"></span></p>
-								<p class="w3-right-align" id="highHourlyRainTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_DAILY_RAIN}}</p>
-								<p class="w3-right-align"><span id="highDailyRainValDayfile"></span><span class="unit-rain"></span></p>
-								<p class="w3-right-align" id="highDailyRainTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_24_HOUR_RAIN}}</p>
-								<p class="w3-right-align"><span id="highRain24hValDayfile"></span><span class="unit-rain"></span></p>
-								<p class="w3-right-align" id="highRain24hTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_MONTHLY_RAINFALL}}</p>
-								<p class="w3-right-align"><span id="highMonthlyRainValDayfile"></span><span class="unit-rain"></span></p>
-								<p class="w3-right-align" id="highMonthlyRainTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LONGEST_DRY_PERIOD}}</p>
-								<p class="w3-right-align"><span id="longestDryPeriodValDayfile"></span> day(s)</p>
-								<p class="w3-right-align" id="longestDryPeriodTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LONGEST_WET_PERIOD}}</p>
-								<p class="w3-right-align"><span id="longestWetPeriodValDayfile">1</span> day(s)</p>
-								<p class="w3-right-align" id="longestWetPeriodTimeDayfile">-</p>
-							</div>
-						</div>
-					</div>
-					<div id="WindsPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>{{WIND}}</h2><i class="fa-solid fa-wind"></i>
-						</div>
-						<!-- Content -->
-						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
-							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>{{READING}}</strong></p>
-							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
-							<div class="ignore">
-								<p class="">{{HIGH_GUST_SPEED}}</p>
-								<p class="w3-right-align"><span id="highGustValDayfile"></span><span class="unit-wind"></span></p>
-								<p class="w3-right-align" id="highGustTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_WIND_SPEED}}</p>
-								<p class="w3-right-align"><span id="highWindValDayfile"></span><span class="unit-wind"></span></p>
-								<p class="w3-right-align" id="highWindTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{HIGH_DAILY_WIND_RUN}}</p>
-								<p class="w3-right-align"><span id="highWindRunValDayfile"></span><span class="unit-windrun"></span></p>
-								<p class="w3-right-align" id="highWindRunTimeDayfile"></p>
-							</div>
-						</div>
-					</div>
-					<div id="HumsPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>{{HUMIDITY}}</h2><i class="fa-solid fa-cloud-rain w3-text-aqua"></i>
-						</div>
-						<!-- Content -->
-						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
-							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>{{READING}}</strong></p>
-							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
-							<div class="ignore">
-								<p class="">{{HIGH_HUMIDITY}}</p>
-								<p class="w3-right-align"><span id="highHumidityValDayfile"></span>%</p>
-								<p class="w3-right-align" id="highHumidityTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_HUMIDITY}}</p>
-								<p class="w3-right-align"><span id="lowHumidityValDayfile"></span>%</p>
-								<p class="w3-right-align" id="lowHumidityTimeDayfile"></p>
-							</div>
-						</div>
-					</div>
-					<div id="PressPanel" class="w3-container ows-theme8">
-						<div class="ows-titleFlex ows-theme7 w3-stretch">
-							<h2>{{PRESSURE}}</h2><i class="fa-solid fa-compress fa-beat w3-text-orange"></i>
-						</div>
-						<!-- Content -->
-						<div class="ows-dataRowGrid threeC" style="align-items: stretch;">
-							<p>&nbsp;</p>
-							<p class="w3-right-align"><strong>{{READING}}</strong></p>
-							<p class="w3-center"><strong>{{DATE_DDMMYYHHMM}}</strong></p>
-							<div class="ignore">
-								<p class="">{{HIGH_PRESSURE}}</p>
-								<p class="w3-right-align"><span id="highBarometerValDayfile"></span><span class="unit-press"></span></p>
-								<p class="w3-right-align" id="highBarometerTimeDayfile"></p>
-							</div>
-							<div class="ignore">
-								<p class="">{{LOW_PRESSURE}}</p>
-								<p class="w3-right-align"><span id="lowBarometerValDayfile"></span><span class="unit-press"></span></p>
-								<p class="w3-right-align" id="lowBarometerTimeDayfile"></p>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-		</section>
+                    </article><!-- End Hums Panel -->
 
-		<footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
+                    <article id="PressPanel" class="ow-panel ow-theme8"><!-- Pressute Panel -->
+                        <div class="ow-titleBar ow-theme7">
+							<h2>{{PRESSURE}}</h2>
+                            <i class="fa-solid fa-compress fa-beat ow-Press"></i>
+						</div>
+						<!-- Content -->
+						<div class="ow-dataBar col3 ow-hover-none">
+							<p>&nbsp;</p>
+							<p><strong>{{READING}}</strong></p>
+							<p><strong>{{DATE_DDMMYYHHMM}}</strong></p>
+                        </div>
+						<div class="ow-dataBar col3">
+							<p>{{HIGH_PRESSURE}}</p>
+							<p><span id="highBarometerValDayfile"></span><span class="unit-press"></span></p>
+							<p id="highBarometerTimeDayfile"></p>
+						</div>
+						<div class="ow-dataBar col3">
+							<p>{{LOW_PRESSURE}}</p>
+							<p><span id="lowBarometerValDayfile"></span><span class="unit-press"></span></p>
+							<p id="lowBarometerTimeDayfile"></p>
+						</div>
+                    </article><!-- End Pressure panel -->
+                 </section>
+			</section>
+		</main>
+
+		<footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot" class="ow-theme4">
+                <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
             </section>
         </footer>
-
 	</body>
 </html>

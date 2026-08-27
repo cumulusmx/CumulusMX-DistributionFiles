@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Page:   Template            | template.html
+    Author:     DNC Thomas      | Created: 2026-06-23
+    Last Edit:  2026-08-11 10:01:54
+    Last Check: 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>CumulusMX-AI Template Page</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="DNC Thomas 2026">
+
+        <!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
+		<!--	FontAwsome CDN	-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+		
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script></script>-->
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
+
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <!--<link rel="stylesheet" href="css/dashboard.css">-->
+        <link rel="stylesheet" href="css/ai-LEDs.css">
+        <link rel="stylesheet" href="./css/ai-dashboard.css">
+        <style>
+        </style>
+        <!--    Page Scripts    -->
+        <script>
+
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
+                </div>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" role="navigation" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu" role="menu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
+
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+                <a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>Page Title</h1>
+                        <div class="ow-btnBar">
+                            <button id="bt" type="button" class="ow-theme-grad-down-hvr" value="Play Alarm Sounds" style="display: none;">{{PLAY_SOUND}}</button>
+                            <button id="Davis" class="ow-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} Davis</button>
+                            <button id="Alarms" class="ow-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} {{ALARM}}</button>
+                            <button class="ow-theme-grad-down-hvr" onClick="toggleModal('Almanac');">{{SHOW}} {{ALMANAC}}</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="ow-grid col1">
+                    <!--    Davis Panel -->
+                    <div id="DavisPanel" class="ow-panel ow-theme8">
+                        <div class="ow-titleBar ow-theme7">
+                            <h4>Davis {{STATUS}}</h4><i class="fa-solid fa-signal"></i>
+                        </div>
+                        <div class="ow-grid col5" style="margin-bottom:1vh; row-gap: 1px;">
+                            <div class="davisVP2 davisGrid">Packets Received:<span id="DavisPacketsReceived">nkn</span></div>
+                            <div class="davisVP2 davisGrid">Packets Missed:<span id="DavisPacketsMissed">nkn</span></div>
+                            <div class="davisVP2 davisGrid">Packet streak:<span id="DavisMaxInARow">nkn</span></div>
+                            <div class="davisVP2 davisGrid">Failure Rate:<span id="DavisSuccess">nkn</span></div>
+                            <div class="davisVP2 davisGrid">CRC Errors:<span id="DavisCRCErrors">nkn</span></div>
+                            <div class="davisGrid">Console Battery<span id="ConsoleBattery">nkn</span></div>
+                        </div>
+                        <div class="ow-divider" style="margin:0.25em 0;"></div>
+                        <div class="ow-grid col5" style="row-gap:1px; margin-bottom:0;">
+                            <div id="DavisXmt0" class="davisGrid rev">Xmt Batt 1:<span id="DavisTXBattery0">nkn</span></div>
+                            <div id="DavisXmt1" class="davisGrid rev">Xmt Batt 2:<span id="DavisTXBattery1">nkn</span></div>
+                            <div id="DavisXmt2" class="davisGrid rev">Xmt Batt 3:<span id="DavisTXBattery2">nkn</span></div>
+                            <div id="DavisXmt3" class="davisGrid rev">Xmt Batt 4:<span id="DavisTXBattery3">nkn</span></div>
+                            <div id="DavisXmt4" class="davisGrid rev">Xmt Batt 5:<span id="DavisTXBattery4">nkn</span></div>
+                            <div id="DavisXmt5" class="davisGrid rev">Xmt Batt 6:<span id="DavisTXBattery5">nkn</span></div>
+                            <div id="DavisXmt6" class="davisGrid rev">Xmt Batt 7:<span id="DavisTXBattery6">nkn</span></div>
+                            <div id="DavisXmt7" class="davisGrid rev">Xmt Batt 8:<span id="DavisTXBattery7">nkn</span></div>
+                            <div id="DavisPct0" class="davisWLL davisGrid rev">Percent Recv 1:<span id="DavisPercentReceived0">nkn</span></div>
+                            <div id="DavisPct1" class="davisWLL davisGrid rev">Percent Recv 2:<span id="DavisPercentReceived1">nkn</span></div>
+                            <div id="DavisPct2" class="davisWLL davisGrid rev">Percent Recv 3:<span id="DavisPercentReceived2">nkn</span></div>
+                            <div id="DavisPct3" class="davisWLL davisGrid rev">Percent Recv 4:<span id="DavisPercentReceived3">nkn</span></div>
+                            <div id="DavisPct4" class="davisWLL davisGrid rev">Percent Recv 5:<span id="DavisPercentReceived4">nkn</span></div>
+                            <div id="DavisPct5" class="davisWLL davisGrid rev">Percent Recv 6:<span id="DavisPercentReceived5">nkn</span></div>
+                            <div id="DavisPct6" class="davisWLL davisGrid rev">Percent Recv 7:<span id="DavisPercentReceived6">nkn</span></div>
+                            <div id="DavisPct7" class="davisWLL davisGrid rev">Percent Recv 8:<span id="DavisPercentReceived7">nkn</span></div>
+                            <div id="DavisRssi0" class="davisWLL davisGrid rev">RSSI 1:<span id="DavisTxRssi0">nkn</span></div>
+                            <div id="DavisRssi1" class="davisWLL davisGrid rev">RSSI 2:<span id="DavisTxRssi1">nkn</span></div>
+                            <div id="DavisRssi2" class="davisWLL davisGrid rev">RSSI 3:<span id="DavisTxRssi2">nkn</span></div>
+                            <div id="DavisRssi3" class="davisWLL davisGrid rev">RSSI 4:<span id="DavisTxRssi3">nkn</span></div>
+                            <div id="DavisRssi4" class="davisWLL davisGrid rev">RSSI 5:<span id="DavisTxRssi4">nkn</span></div>
+                            <div id="DavisRssi5" class="davisWLL davisGrid rev">RSSI 6:<span id="DavisTxRssi5">nkn</span></div>
+                            <div id="DavisRssi6" class="davisWLL davisGrid rev">RSSI 7:<span id="DavisTxRssi6">nkn</span></div>
+                            <div id="DavisRssi7" class="davisWLL davisGrid rev">RSSI 8:<span id="DavisTxRssi7">nkn</span></div>
+                        </div>
+                    </div>
+                    <!--	Alarm Panel	-->
+                    <div id="AlarmsPanel" class="ow-panel ow-theme7" style="order:1;">
+                        <div class="ow-titleBar ow-theme8">
+                            <h4>{{MENU_ALARMS}}</h4>
+                            <i class="fa-solid fa-bell fa-shake"></i>
+                        </div>
+                        <div id="alarms" class="ow-grid col5" style="row-gap: 0.2em; margin-bottom:0;"></div>
+                    </div>
+                </section>
+                
+                <section class="ow-grid col4">
+                    <article class="ow-panel ow-theme8">
+                        <div class="ow-titleBar ow-theme7">
+                            <h2>Panel title</h2>
+                            <i class="fa-solid fa-temperature-high"></i>
+                        </div>
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                </section>
+            
+                <section class="ow-flex col4 ow-fixed">
+                    <article class="ow-panel ow-theme8">
+                        <p>Content <span class="ow-reading">26</span></p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8 ow-shadow-none">
+                        <p>Content</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <p>Content</p>
+                    </article>
+                </section>
+                <section class="ow-btnBar">
+                    <!-- Set a max width for buttons -->
+                     <!--<style>button {max-width:15em;}</style>-->
+                    <button class="">Button</button>
+                    <button class="ow-theme5-hvr">Button</button>
+                    <button class="ow-theme-grad-down-hvr">Button</button>
+                    <button class="ow-theme5-hvr">Button</button>
+                    <button class="ow-theme-grad-down-hvr">Button</button>
+                    <button class="ow-theme5-hvr">Button</button>
+                    <button class="ow-theme-grad-down-hvr">Button</button>
+                    <button class="ow-theme5-hvr">Button</button>
+                </section>
+            </section>
+            
+        </main>
+
+        <footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot ow-theme4">
+                <p>{{SITE_DESIGN}} <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
+            </section>
+        </footer>
+
+        <!--	Modal / Popup -->
+        <!--	The ID below should be used in the function call to make this work 	-->
+        <section id="Almanac" class="ow-modal">
+            <!-- 	You can set the max-width in the 'div' below as well as the background colour -->
+            <div class="content">
+                <article class="ow-panel">
+                    <div class="ow-titleBar"><!-- You can set your own color if preferred -->
+                        <h4>Almanac Information</h4>
+                        <div class="ow-btnBar"><button style="border:none;margin-right: -1em;" onClick="toggleModal('Almanac')">X</button></div>
+                    </div>
+                    <div class="ow-panel" style="max-height: 80vh; overflow:scroll; margin-bottom:0;">
+                        <div class="almanacGrid">
+                            <p style="grid-area:sunrise">{{SUNRISE}}</p>
+                            <p style="grid-area:sunriseVal"><span id="Sunrise">--</span></p>
+                            <p style="grid-area:sunset">{{SUNSET}}</p>
+                            <p style="grid-area:sunsetVal"><span id="Sunset">--</span></p>
+                            <p style="grid-area:daylen">{{DAY_LENGTH}}</p>
+                            <p style="grid-area:daylenVal"><span id="daylength">--</span> hrs</p>
+                            <p style="grid-area:dawn">{{DAWN}}:</p>
+                            <p style="grid-area:dawnVal;"><span id="dawn">--</span></p>
+                            <p style="grid-area:dusk">{{DUSK}}</p>
+                            <p style="grid-area:duskVal"><span id="dusk">--</span></p>
+                            <p style="grid-area: daylight">{{DAYLIGHT_LENGTH}}</p>
+                            <p style="grid-area:daylightVal"><span id="daylightlength">--</span> hrs</p>
+                            <p style="grid-area:moonrise">{{MOONRISE}}</p>
+                            <p style="grid-area:moonriseVal;"><span id="Moonrise">--</span></p>
+                            <p style="grid-area:moonset">{{MOONSET}}</p>
+                            <p style="grid-area:moonsetVal"><span id="Moonset">--</span></p>
+                            <p style="grid-area:moonpct">{{MOON}} %</p>
+                            <p style="grid-area:moonpctVal"><span id="MoonPercentAbs">--</span>%</p>
+                            <p style="grid-area:moonphase">{{MOON_PHASE}}</p>
+                            <p style="grid-area:moonphaseVal"><span id="moonphase">-</span></p>
+                            <p style="grid-area:forecast;">{{FORECAST}}</p>
+                            <p style="grid-area:forecastVal;"><span id="Forecast">-</span></p>
+                        </div><!--	End of modal content	 -->
+                    </div>
+                    <div class="ow-titleBar ow-theme3" style="/*border-radius: 0 0 1em 1em;*/ flex-direction:row-reverse;margin-bottom:0;">
+                        <p class="ow-smaller " style="font-style:italic;padding:0 1em 0 0;">Powered by CumulusMX</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </body>
+</html>

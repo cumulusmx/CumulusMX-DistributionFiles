@@ -1,348 +1,331 @@
 <!DOCTYPE html>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Page:		Dashboard 		| index.html
-	Author:		DNC Thomas		| Created: 2025-11-29
-	Last Edit:	2026/03/24 11:04:27
-	Last Check:	2025-12-09
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
+    Page:   Dashboard           | ai-index.html
+    Author:     DNC Thomas      | Created: 2026-06-30
+    Last Edit:  2026-08-11 10:13:49
+    Last Check: 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>AI {{MENU_DASHBOARD}} - CumulusMX</title>
-		<link rel="icon" type="image/png" href="img/favicon.png">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="" id="metaDescription">
-		<meta name="author" content="DNC Thomas 2025">
 
-		<!--	Fonts	-->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Red+Rose:wght@400;500;600&display=swap">
-		<!--	FontAwsome CDN	-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+<head>
+    <meta charset="utf-8">
+    <!--<base href="/ai2/ows/">-->
+    <title>{{MENU_DASHBOARD}} - CMX-AI</title>
+    <link rel="icon" type="image/png" href="img/ai-favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" id="metaDescription">
+    <meta name="author" content="DNC Thomas 2026">
 
-		<!--	jQuery CDN	-->
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-		<!--	jQuery (Local)	-->
-		<script src="/lib/jquery/jquery-latest.min.js"></script>
-		<script src="/lib/jquery/jquery.tmpl.js"></script>
+    <!--	Fonts	-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
+    <!--	FontAwsome CDN	-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-		<!-- SteelSeries -->
-		<script src="/lib/steelseries/scripts/steelseries_tween.min.js"></script>
-		<script src="/lib/steelseries/scripts/language.min.js"></script>
-		<script src="/lib/steelseries/scripts/RGraph.common.core.min.js"></script>
-		<script src="/lib/steelseries/scripts/RGraph.rose.min.js"></script>
-		<script src="lib/steelseries/scripts/gauges.js"></script>
+    <!--	jQuery (CDN)	-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--    jQuery (Local)  -->
+    <script src="/lib/jquery/jquery-latest.min.js"></script>
+    <script src="/lib/jquery/jquery.tmpl.js"></script>
 
-		<!--	Sitewide Styles		-->
-		<link rel="stylesheet" href="css/theme.css" id="Theme">
-		<link rel="stylesheet" href="css/w3v5.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/gauges.css">
+    <!-- SteelSeries -->
+	<script src="/lib/steelseries/scripts/steelseries_tween.min.js"></script>
+	<script src="/lib/steelseries/scripts/language.min.js"></script>
+	<script src="/lib/steelseries/scripts/RGraph.common.core.min.js"></script>
+	<script src="/lib/steelseries/scripts/RGraph.rose.min.js"></script>
+	<script src="lib/steelseries/scripts/gauges.js"></script>
 
-		<!--	Sitewide Scripts	-->
-		<script src="js/ai-page-ctrl.js"></script>
-		<!-- Page Styles -->
-		<style>
-			#DavisPanel, #AlarmsPanel { margin-top:1vh;}
-			#DavisPanel span { float:right}
-			.ax-reading {color:var(--color1); font-style:italic;}/*	You can use this to change the style for the main readings on this page */
-			.ledGrid {
-				display:grid;
-				grid-template-columns: 1.6em 1fr;
-				grid-template-areas: "leds ledLabel";
-				column-gap: 0.75vw;
-				align-items:center;
-			}
-			.ows-led {grid-area: leds; justify-self: center }
-			.ledGrid p { margin:0;}
-			.ows-led-on:hover {cursor: pointer;}
-			.davisGrid{
-				display:grid;
-				grid-template-columns: 1fr 3.5em;
-				column-gap: 0.5vw;
-				align-items:baseline;
-				&.rev {grid-template-columns: 1fr 4em;}
-			}
-			.almanacGrid {
-				display: grid;
-				grid-template-columns:repeat(3, 1fr 6em);
-				grid-template-areas:
-					"sunrise sunriseVal sunset sunsetVal daylen daylenVal"
-					"dawn dawnVal dusk duskVal daylight daylightVal"
-					"moonrise moonriseVal moonset moonsetVal moonpct moonpctVal"
-					"moonphase moonphaseVal moonphaseVal . . ."
-					"forecast forecastVal forecastVal forecastVal forecastVal forecastVal";
-				gap: calc( var(--rowGap) / 3) var(--colGap);
-				margin: 1vh 0;
-			}
-			@media (max-width: 800px) {
-				.almanacGrid {
-					grid-template-columns: repeat(2, 1fr 10em);
-					grid-template-areas:
-						"sunrise sunriseVal sunset sunsetVal"
-						"dawn dawnVal dusk duskVal"
-						"daylen daylenVal daylight daylightVal"
-						"moonrise moonriseVal moonset moonsetVal"
-						"moonpct moonpctVal moonphase moonphaseVal"
-						"forecast forecastVal forecastVal forecastVal"
-				}
-				.w3-modal-content { min-width: 90%;}
-			}
-			.almanacGrid p { margin:0;}
-		</style>
+    <!--    Site Styles     -->
+    <link rel="stylesheet" href="./css/ai-normalise.css">
+    <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+    <link rel="stylesheet" href="./css/ai-main.css">
 
-		<!--	Page scripts	-->
-		<script src="js/dashboard.js"></script>
-		<script>
+    <!--    Site Scripts    -->
+    <script src="./js/ai-settings.js"></script>
+    <script src="js/ai-page-ctrl.js"></script>
 
-		</script>
-	</head>
-	<body class="ows-theme9">
-		<header id="Banner" class="ows-theme5 w3-bottombar ows-theme1-bdr">
-			<img src="img/flying-gull.png" alt="Seagull" id="flyingGull">
-			<section id="subBanner" class="pageWidth">
-				<!--	Logo	-->
-				<img src="img/AI-Logo.png" alt="AI Logo" id="siteLogo" class="w3-image" style="padding:1vh 0 .5vh 0;">
-				<div id="siteInfo">
-					<h4 style="grid-area:siteName"><span data-owsData="Station">Station Name</span></h4>
-					<p>{{LATITUDE}}:</p><p><span data-cmxData="latitude">xx.xxxx</span></p>
-					<p>{{LONGITUDE}}:</p><p><span data-cmxData="longitude">y.yyyy</span></p>
-					<p>{{ALTITUDE}}:</p><p><span data-cmxData="altitude">zz m</span></p>
-				</div>
-				<nav id="MainMenu" class="ows-theme6"><!-- Main Menu inserted here --></nav>
-			</section>
-		</header><!-- End of Header -->
+    <!--    Page Styles     -->
+    <link rel="stylesheet" href="css/ai-dashboard.css">
+    <link rel="stylesheet" href="css/ai-LEDs.css">
+    <link rel="stylesheet" href="css/ai-configure.css">
+    <link rel="stylesheet" href="css/ai-gauges.css">
+    <style>
+    </style>
+    <!--    Page Scripts    -->
+    <script src="./js/ai-dashboard.js"></script><!-- Custom script -->
+    <script>
 
-		<section id="Content">
-			<div id="MobileMenu" class="w3-sidebar w3-bar-block w3-container ows-theme6 w3-animate-right"><!-- Mobile menu inserted here --></div>
-			<img src="img/seagull.png" id="Gull1" alt="Seagull">
+    </script>
+</head>
 
-			<div id="subContent" class="pageWidth">
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex">
-						<h1><span id="StationName"></span> {{MENU_DASHBOARD}}</h1>
-						<div class="ows-btnBar">
-							<button id="bt" type="button" class="w3-button ows-theme-grad-down-hvr" value="Play Alarm Sounds" style="display: none;">{{PLAY_SOUND}}</button>
-							<button id="Davis" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} Davis</button>
-							<button id="Alarms" class="w3-button ows-theme-grad-down-hvr" onClick="togglePanel(this)">{{HIDE}} {{ALARM}}</button>
-							<button class="w3-button ows-theme-grad-down-hvr" onClick="toggleModal('Almanac5');">{{SHOW}} {{ALMANAC}}</button>
-						</div>
-					</div>
-				</section>
-				<!--	Section of one column layouts	-->
-				<section class="ows-grid col1">
-					<!--	Davis Panel	-->
-					<div id="DavisPanel" class="w3-container ows-theme7" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7">
-							<h4>Davis {{STATUS}}</h4><i class="fa-solid fa-signal"></i>
-						</div>
-						<div class="ows-grid col5" style="margin-bottom:1vh; row-gap: 1px;">
-							<div class="davisVP2 davisGrid">Packets Received:<span id="DavisPacketsReceived">nkn</span></div>
-							<div class="davisVP2 davisGrid">Packets Missed:<span id="DavisPacketsMissed">nkn</span></div>
-							<div class="davisVP2 davisGrid">Packet streak:<span id="DavisMaxInARow">nkn</span></div>
-							<div class="davisVP2 davisGrid">Failure Rate:<span id="DavisSuccess">nkn</span></div>
-							<div class="davisVP2 davisGrid">CRC Errors:<span id="DavisCRCErrors">nkn</span></div>
-							<div class="davisGrid">Console Battery<span id="ConsoleBattery">nkn</span></div>
-						</div>
-						<div class="mnuDivider" style="margin:0.25em 0;"></div>
-						<div class="ows-grid col5" style="row-gap:1px; margin-bottom:0;">
-							<div id="DavisXmt0" class="davisGrid rev">Xmt Batt 1:<span id="DavisTXBattery0">nkn</span></div>
-							<div id="DavisXmt1" class="davisGrid rev">Xmt Batt 2:<span id="DavisTXBattery1">nkn</span></div>
-							<div id="DavisXmt2" class="davisGrid rev">Xmt Batt 3:<span id="DavisTXBattery2">nkn</span></div>
-							<div id="DavisXmt3" class="davisGrid rev">Xmt Batt 4:<span id="DavisTXBattery3">nkn</span></div>
-							<div id="DavisXmt4" class="davisGrid rev">Xmt Batt 5:<span id="DavisTXBattery4">nkn</span></div>
-							<div id="DavisXmt5" class="davisGrid rev">Xmt Batt 6:<span id="DavisTXBattery5">nkn</span></div>
-							<div id="DavisXmt6" class="davisGrid rev">Xmt Batt 7:<span id="DavisTXBattery6">nkn</span></div>
-							<div id="DavisXmt7" class="davisGrid rev">Xmt Batt 8:<span id="DavisTXBattery7">nkn</span></div>
-							<div id="DavisPct0" class="davisWLL davisGrid rev">Percent Recv 1:<span id="DavisPercentReceived0">nkn</span></div>
-							<div id="DavisPct1" class="davisWLL davisGrid rev">Percent Recv 2:<span id="DavisPercentReceived1">nkn</span></div>
-							<div id="DavisPct2" class="davisWLL davisGrid rev">Percent Recv 3:<span id="DavisPercentReceived2">nkn</span></div>
-							<div id="DavisPct3" class="davisWLL davisGrid rev">Percent Recv 4:<span id="DavisPercentReceived3">nkn</span></div>
-							<div id="DavisPct4" class="davisWLL davisGrid rev">Percent Recv 5:<span id="DavisPercentReceived4">nkn</span></div>
-							<div id="DavisPct5" class="davisWLL davisGrid rev">Percent Recv 6:<span id="DavisPercentReceived5">nkn</span></div>
-							<div id="DavisPct6" class="davisWLL davisGrid rev">Percent Recv 7:<span id="DavisPercentReceived6">nkn</span></div>
-							<div id="DavisPct7" class="davisWLL davisGrid rev">Percent Recv 8:<span id="DavisPercentReceived7">nkn</span></div>
-							<div id="DavisRssi0" class="davisWLL davisGrid rev">RSSI 1:<span id="DavisTxRssi0">nkn</span></div>
-							<div id="DavisRssi1" class="davisWLL davisGrid rev">RSSI 2:<span id="DavisTxRssi1">nkn</span></div>
-							<div id="DavisRssi2" class="davisWLL davisGrid rev">RSSI 3:<span id="DavisTxRssi2">nkn</span></div>
-							<div id="DavisRssi3" class="davisWLL davisGrid rev">RSSI 4:<span id="DavisTxRssi3">nkn</span></div>
-							<div id="DavisRssi4" class="davisWLL davisGrid rev">RSSI 5:<span id="DavisTxRssi4">nkn</span></div>
-							<div id="DavisRssi5" class="davisWLL davisGrid rev">RSSI 6:<span id="DavisTxRssi5">nkn</span></div>
-							<div id="DavisRssi6" class="davisWLL davisGrid rev">RSSI 7:<span id="DavisTxRssi6">nkn</span></div>
-							<div id="DavisRssi7" class="davisWLL davisGrid rev">RSSI 8:<span id="DavisTxRssi7">nkn</span></div>
-						</div>
-					</div>
-					<!--	Alarm Panel	-->
-					<div id="AlarmsPanel" class="w3-container ows-theme7" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme8">
-							<h4>{{MENU_ALARMS}}</h4>
-							<i class="fa-solid fa-bell fa-shake"></i>
-						</div>
-						<div id="alarms" class="ows-grid col5" style="row-gap: 0.2em; margin-bottom:0;"></div>
-					</div>
-				</section>	<!--	End of one column layout	-->
+<body class="ow-theme9">
+    <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+        <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+        <section class="subHead">
+            <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo"
+                style="padding:1vh 0 .5vh 0;">
+            <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on
+                    <span data-cmxData="Port">--</span></span></div>
+            <div class="siteInfo">
+                <p>{{LATITUDE}}:</p>
+                <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                <p>{{LONGITUDE}}:</p>
+                <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                <p>{{ALTITUDE}}:</p>
+                <p><span data-cmxData="altitude">5000 m</span></p>
+            </div>
+            <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" aria-label="Navigation"
+                onClick="toggleSideNav();"></i>
+        </section>
+        <nav id="myTopNav" class="topNav"
+            style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+            <div class="theMenu"></div>
+            <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav"
+                onClick="toggleTopNav();"></i>
+        </nav>
+    </header>
 
-				<section class="w3-container" style="padding-bottom:0;">
-					<div class="ows-titleFlex"><h3>{{WEATHER_OVERVIEW}}</h3><p class="tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p></div>
-				</section>
-				<!--	Four column variable width layout	-->
-				<section class="ows-grid col4">
-					<!--	Temperature	-->
-					<div class="w3-container ows-theme8" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{TEMPERATURE}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="OutdoorTemp" class="ax-reading">xx.x</span> <span class="TempUnit">&deg;K</span></h3>
-							<h4>
-								<img id="TempTrendImg" src="img/up.png" alt="up" class="ows-image-small">&nbsp;
-								<span><span id="TempTrend">-.-</span><span class="TempUnit">&deg;F</span>/{{HOUR_SHORT_LC}}</span>
-							</h4>
-							<p><span>{{HIGH}}</span>: <span id="HighTempToday" class="high">--.-</span><span class="TempUnit"></span><span class="ows-at" id="HighTempTodayTime">--:--</span><br>
-							<span>{{LOW}}</span>: <span id="LowTempToday" class="low">--.-</span><span class="TempUnit"></span><span class="ows-at" id="LowTempTodayTime">--:--</span></p>
-							<p><span>{{AVG}}</span>: <span id="AvgTempToday" >--.-</span><span class="TempUnit"></span></p>
-						</div>
-					</div>
-					<!-- 	Pressure	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{PRESSURE}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="Pressure" class="ax-reading">xxxx.x</span> <span class="PressUnit">mb</span></h3>
-							<h4>
-								<img id="PressTrendImg" src="img/up.png" alt="up" class="ows-image-small">&nbsp;
-								<span><span id="PressTrend">-.-</span><span class="PressUnit">mb</span>/{{HOUR_SHORT_LC}}</span>
-							</h4>
-							<p><span>{{HIGH}}</span>: <span id="HighPressToday" class="high">----.-</span><span class="PressUnit"></span><span class="ows-at" id ="HighPressTodayTime">--:--</span><br>
-							<span>{{LOW}}</span>: <span id="LowPressToday" class="low">----.-</span><span class="PressUnit"></span><span class="ows-at" id="LowPressTodayTime">--:--</span></p>
-						</div>
-					</div>
-					<!--	Rainfall	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{RAINFALL}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="RainToday" class="ax-reading">xx.x</span> <span class="RainUnit">in</span></h3>
-							<h4>
-								<img id="RainRateImg" src="img/rain0.png" alt="Rain?" class="ows-image-small">&nbsp;
-								<span>{{RATE}}: <span id="RainRate">x.x</span><span class="RainUnit">in</span>/hr</span>
-							</h4>
-							<p>
-								<span id="HighRainRate">{{HIGH}} {{RATE}}</span>: <span id="HighRainRateToday" class="high">--.-</span><span class="RainUnit"></span>/hr<span class="ows-at" id="HighRainRateTodayTime">--:--</span>
-							</p>
-							<div class="w3-grid" style="grid-template-columns:1fr 1fr;justify-items:end;gap:0 1vw;">
-								{{THIS_WEEK}}: <span style="justify-self:start"><span id="RainWeek">--.-</span><span class="RainUnit"></span></span>
-								{{THIS_MONTH}}: <span style="justify-self:start;"><span id="RainMonth">-.-</span><span class="RainUnit">mm</span></span>
-								{{THIS_YEAR}}: <span style="justify-self:start;"><span id="RainYear">-.-</span><span class="RainUnit">mm</span></span>
-							</div>
-						</div>
-					</div>
-					<!--	Times	-->
-					<div class="w3-container ows-theme7 ows-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex ows-theme5 w3-stretch"><h4>Times</h4></div>
-						<div class="w3-center">
-							<h3><span class="digiclock">--:--:--</span></h3>
-							<h5>{{LAST_CUMULUS_UPDATE}}<br>
-							<span id="lastupdatetime" class="w3-large">xx:yy:zz</span>&nbsp;<img id="LastUpdateIcon" src="img/green.png" class="ows-image-small" alt="green"></h5>
-							<h5>{{LAST_STATION_UPDATE}}<br>
-							<span id="LastDataRead" class="bold w3-large">--:--:--</span>&nbsp;<img id="DataStoppedIcon" src="img/green.png" class="ows-image-small" alt="green"><br>
-							<span id="LastDataReadDate"></span></h5>
-						</div>
-					</div>
-					<!--	Windspeed	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{WIND_SPEED}}</h4></div>
-						<div class="w3-center">
-							<div id="tip_6" class="gauge">
-								<canvas id="canvas_wind" class="ax-gaugeStandard"></canvas>
-							</div>
-						</div>
-					</div>
-					<!--	Wind Direction	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{WIND_DIRECTION}}</h4></div>
-						<div class="w3-center">
-							<div id="tip_7" class="gauge">
-								<canvas id="canvas_dir" class="ax-gaugeStandard"></canvas>
-							</div>
-						</div>
-					</div>
-					<!--	Wind Rose	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{WIND_ROSE}}</h4></div>
-						<div class="w3-center">
-							<div id="tip_10" class="gauge">
-								<canvas id="canvas_rose" class="ax-gaugeStandard"></canvas>
-							</div>
-						</div>
-					</div>
-					<!--	Wind Overview	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{WIND_SPEEDS}} Overview</h4></div>
-						<div class="w3-center">
-							<h4>{{AVERAGE}}: <span id="WindAverage" class="ax-reading">-.-</span> <span class="WindUnit sup">---</span></h4>
-							<h4>{{GUST}}: <span id="Recentmaxgust" class="ax-reading">--.-</span> <span class="WindUnit">---</span></h4>
-							<p><span>{{HIGH}} {{GUST}}</span>: <span id="HighGustToday" class="high">--.-</span><span class="WindUnit ">---</span><span class="ows-at" id="HighGustTodayTime">--:--</span></p>
-							<p>{{WIND_RUN}}: <span id="WindRunToday"></span> <span data-CMXData="WindRunUnit"></span></p>
-							<p>Beaufort: <span id="Beaufort">??</span> (<span id="BeaufortDesc"></span>)</p>
-						</div>
-					</div>
-					<!--	Humidity	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{HUMIDITY}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="OutdoorHum" class="ax-reading">--.-</span>%</h3>
-							<p><span>{{HIGH}}&nbsp;</span><span id="HighHumToday" class="high">--</span>%<span class="ows-at" id="HighHumTodayTime">--:--</span></p>
-							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowHumToday" class="low">--</span>%<span class="ows-at" id="LowHumTodayTime">--:--</span></p>
-						</div>
-					</div>
-					<!--	Dew Point	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{DEW_POINT}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="OutdoorDewpoint" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;F</span></h3>
-							<p><span>{{HIGH}}&nbsp;</span><span id="HighDewpointToday" class="high">--.-</span><span class="TempUnit"></span><span class="ows-at" id="HighDewpointTodayTime">--:--</span></p>
-							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowDewpointToday" class="low">--.-</span><span class="TempUnit"></span><span class="ows-at" id="LowDewpointTodayTime">--:--</span></p>
-						</div>
-					</div>
-					<!--	Wind Chill	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{WIND_CHILL}}</h4></div>
-						<div class="w3-center">
-							<h3><span id="WindChill" class="ax-reading">--.-</span> <span class="TempUnit sup">&deg;C</span></h3>
-							<p><span>{{LOW}}&nbsp;&nbsp;</span><span id="LowWindChillToday" class="low">--.-</span><span class="TempUnit"></span><span class="ows-at" id="LowWindChillTodayTime">--:--</span></p>
-						</div>
-					</div>
-					<!--	Solar Radiation (Data dependant)	-->
-					<div class="w3-container ows-theme8 ax-animate-fadeIn" style="order:1;" data-cmxData-Rad="">
-						<div class="ows-titleFlex w3-stretch ows-theme7"><h4>{{SOLAR}}</h4></div>
-						<div class="w3-center">
-							<h3 data-cmxData-Solar="">{{RADIATION}}&nbsp;<span id="SolarRad" class="ax-reading">---.-</span>&nbsp;W/m<sup>2</sup></h3>
-							<p data-cmxData-Solar=""><span>{{HIGH}}&nbsp;</span><span id="HighSolarRadToday" class="high">--.-</span>&nbsp;W/m<sup>2</sup><span class="ows-at" id="HighSolarRadTodayTime">--:--</span></p>
-							<h3 data-cmxData-UV="">{{UV_INDEX}}&nbsp;<span id="UVindex" class="ax-reading">--</span></h3>
-							<p data-cmxData-UV=""><span>{{HIGH}}&nbsp;</span><span id="HighUVindexToday" class="high">--.-</span><span class="ows-at" id="HighUVindexTodayTime">--:--</span></p>
-						</div>
-					</div>
-				</section>	<!--	End of four column variable layout -->
-			</div>
-		</section>
-
-        <footer id="Footer" class="ows-theme5 w3-topbar ows-theme1-bdr">
-            <section id="subFooter" class="pageWidth">
-                <p style="margin:0">{{SITE_DESIGN}}: <span class="ows-theme7-txt">Oaktree Weather Systems</span> V5 <span class="ows-theme7-txt w3-small" data-owsData="Build">(b:0.0)</span></p>
-                <h5>{{POWERED_BY}} <span class="ows-theme9-txt">CumulusMX</span> <span data-cmxData="Version">V4.6.4</span> <span class="ows-theme9-txt w3-small" data-cmxData="Build">b: 4127</span></h5>
-            </section>
-        </footer>
-
-		<!--	Modal -->
-		<!--	The ID below should be used in the function call to make this work 	-->
-		<div id="Almanac5" class="w3-modal w3-theme-modal">
-			<!-- 	You can set the max-width in the 'div' below as well as the background colour -->
-			<div class="w3-modal-content ows-theme8 ows-theme-shadow1 w3-border ows-theme3-bdr ows-animate-entryOne" style="border-radius: 0.5em; width:60em;">
-				<div class="ows-titleFlex ows-theme5" style="border-radius: 0.5em 0.5em 0 0;">
-                    <h4 style="padding: .15em 1em;">Almanac Information</h4>
-                    <button class="w3-button" style="place-self:start end; border-radius: 0 0.5em 0 0;" onClick="toggleModal('Almanac5')">X</button>
+    <main id="pageContent">
+        <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+        <nav id="mySideNav" class="sideNav" role="menu">
+            <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+            <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+            <div class="theMenu"></div>
+            <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+			<a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+        </nav>
+        <section class="subContent">
+            <section id="pageTitle">
+                <div class="ow-titleBar">
+                    <h1><span id="StationName">~</span> {{MENU_DASHBOARD}}</h1>
+                    <div class="ow-btnBar">
+                        <button id="bt" type="button" value="Play Alarm Sounds" style="display: none;">{{PLAY_SOUND}}</button>
+						<button id="Davis" onClick="togglePanel(this)">{{HIDE}} Davis</button>
+						<button id="Alarms" onClick="togglePanel(this)">{{HIDE}} {{ALARM}}</button>
+						<button onClick="toggleModal('Almanac5');">{{SHOW}} {{ALMANAC}}</button>
+                    </div>
                 </div>
-                <div class="w3-container" style="max-height: 80vh; overflow:scroll; margin-bottom:0;">
-					<div class="almanacGrid">
+            </section>
+            <!--	Section of one column layouts	-->
+			<section class="ow-grid col1">
+				<!--	Davis Panel	-->
+				<div id="DavisPanel" class="ow-panel" style="order:1;"><!-- Change to re-order the two panels -->
+					<div class="ow-titleBar">
+						<h4>Davis {{STATUS}}</h4><i class="fa-solid fa-signal"></i>
+					</div>
+					<div class="ow-grid col5" style="margin-bottom:1vh; row-gap: 1px;">
+						<div class="davisVP2 davisGrid">Packets Received:<span id="DavisPacketsReceived">nkn</span></div>
+						<div class="davisVP2 davisGrid">Packets Missed:<span id="DavisPacketsMissed">nkn</span></div>
+						<div class="davisVP2 davisGrid">Packet streak:<span id="DavisMaxInARow">nkn</span></div>
+						<div class="davisVP2 davisGrid">Failure Rate:<span id="DavisSuccess">nkn</span></div>
+						<div class="davisVP2 davisGrid">CRC Errors:<span id="DavisCRCErrors">nkn</span></div>
+						<div class="davisGrid">Console Battery<span id="ConsoleBattery">nkn</span></div>
+					</div>
+					<div class="ow-divider" style="margin:-0.5em -1em 0.5em -1em;"></div>
+					<div class="ow-grid col5" style="row-gap:1px; margin-bottom:0;">
+						<div id="DavisXmt0" class="davisGrid rev">Xmt Batt 1:<span id="DavisTXBattery0">nkn</span></div>
+						<div id="DavisXmt1" class="davisGrid rev">Xmt Batt 2:<span id="DavisTXBattery1">nkn</span></div>
+						<div id="DavisXmt2" class="davisGrid rev">Xmt Batt 3:<span id="DavisTXBattery2">nkn</span></div>
+						<div id="DavisXmt3" class="davisGrid rev">Xmt Batt 4:<span id="DavisTXBattery3">nkn</span></div>
+						<div id="DavisXmt4" class="davisGrid rev">Xmt Batt 5:<span id="DavisTXBattery4">nkn</span></div>
+						<div id="DavisXmt5" class="davisGrid rev">Xmt Batt 6:<span id="DavisTXBattery5">nkn</span></div>
+						<div id="DavisXmt6" class="davisGrid rev">Xmt Batt 7:<span id="DavisTXBattery6">nkn</span></div>
+						<div id="DavisXmt7" class="davisGrid rev">Xmt Batt 8:<span id="DavisTXBattery7">nkn</span></div>
+						<div id="DavisPct0" class="davisWLL davisGrid rev">Percent Recv 1:<span id="DavisPercentReceived0">nkn</span></div>
+						<div id="DavisPct1" class="davisWLL davisGrid rev">Percent Recv 2:<span id="DavisPercentReceived1">nkn</span></div>
+						<div id="DavisPct2" class="davisWLL davisGrid rev">Percent Recv 3:<span id="DavisPercentReceived2">nkn</span></div>
+						<div id="DavisPct3" class="davisWLL davisGrid rev">Percent Recv 4:<span id="DavisPercentReceived3">nkn</span></div>
+						<div id="DavisPct4" class="davisWLL davisGrid rev">Percent Recv 5:<span id="DavisPercentReceived4">nkn</span></div>
+						<div id="DavisPct5" class="davisWLL davisGrid rev">Percent Recv 6:<span id="DavisPercentReceived5">nkn</span></div>
+						<div id="DavisPct6" class="davisWLL davisGrid rev">Percent Recv 7:<span id="DavisPercentReceived6">nkn</span></div>
+						<div id="DavisPct7" class="davisWLL davisGrid rev">Percent Recv 8:<span id="DavisPercentReceived7">nkn</span></div>
+						<div id="DavisRssi0" class="davisWLL davisGrid rev">RSSI 1:<span id="DavisTxRssi0">nkn</span></div>
+						<div id="DavisRssi1" class="davisWLL davisGrid rev">RSSI 2:<span id="DavisTxRssi1">nkn</span></div>
+						<div id="DavisRssi2" class="davisWLL davisGrid rev">RSSI 3:<span id="DavisTxRssi2">nkn</span></div>
+						<div id="DavisRssi3" class="davisWLL davisGrid rev">RSSI 4:<span id="DavisTxRssi3">nkn</span></div>
+						<div id="DavisRssi4" class="davisWLL davisGrid rev">RSSI 5:<span id="DavisTxRssi4">nkn</span></div>
+						<div id="DavisRssi5" class="davisWLL davisGrid rev">RSSI 6:<span id="DavisTxRssi5">nkn</span></div>
+						<div id="DavisRssi6" class="davisWLL davisGrid rev">RSSI 7:<span id="DavisTxRssi6">nkn</span></div>
+						<div id="DavisRssi7" class="davisWLL davisGrid rev">RSSI 8:<span id="DavisTxRssi7">nkn</span></div>
+					</div>
+				</div>
+				<!--	Alarm Panel	-->
+				<div id="AlarmsPanel" class="ow-panel ow-theme7" style="order:0;">
+					<div class="ow-titleBar ow-theme8">
+						<h4>{{MENU_ALARMS}}</h4>
+						<i class="fa-solid fa-bell fa-shake"></i>
+					</div>
+					<div id="alarms" class="ow-grid col5" style="row-gap: 0.2em; margin-bottom:0;"></div>
+				</div>
+			</section>	<!--	End of Panels section	-->
+
+            <section class="ow-titleBar"><!-- Page sub-title -->
+                <h3>{{WEATHER_OVERVIEW}}</h3>
+                <p class="ow-tagline">{{PAGE_UPDATED}}: <span data-cmxData="update"></span></p>
+			</section>  <!--    End of Page sub-title -->
+
+            <section class="ow-grid col4">  <!-- Four column GRID layout for panels -->
+				<div class="ow-panel ow-theme8" style="order:1;"> <!--	Temperature	-->
+					<div class="ow-titleBar ow-theme7"><h4>{{TEMPERATURE}}</h4></div>
+					<div class="panelGrid1">
+                        <p><span id="OutdoorTemp" class="ow-theme0 ow-reading">xx.y</span> <span class="TempUnit">&deg;K</span></p>
+                        <img id="TempTrendImg" src="img/up.png" alt="up" class="ow-image-small">
+						<span><span id="TempTrend">xx.y</span><span class="TempUnit">&deg;K</span>/{{HOUR_SHORT_LC}}</span>
+                        <span>{{HIGH}}:</span><span><span id="HighTempToday" class="high">xx.y</span><span class="TempUnit">&deg;K</span><span class="ow-at" id="HighTempTodayTime">24:00</span></span>
+						<span>{{LOW}}:</span><span><span id="LowTempToday" class="low">xx.y</span><span class="TempUnit">&deg;K</span><span class="ow-at" id="LowTempTodayTime">24:00</span></span>
+                        <p><span>{{AVG}}</span>: <span id="AvgTempToday" >xx.y</span><span class="TempUnit">&deg;K</span></p>
+                    </div>
+				</div>  <!-- End Temperature -->
+
+				<div class="ow-panel ow-theme8" style="order:1;"> <!-- 	Pressure	-->
+					<div class="ow-titleBar ow-theme7"><h4>{{PRESSURE}}</h4></div>
+					<div class="panelGrid1">
+						<p><span id="Pressure" class="ow-reading">xxxx.y</span> <span class="PressUnit">mb</span></p>
+						<img id="PressTrendImg" src="img/up.png" alt="up" class="ow-image-small">
+						<span><span id="PressTrend">x.yyy</span><span class="PressUnit">mb</span>/{{HOUR_SHORT_LC}}</span>
+						
+						<span>{{HIGH}}:</span><span><span id="HighPressToday" class="high">xxxx.y</span><span class="PressUnit"></span><span class="ow-at" id ="HighPressTodayTime">24:00</span></span>
+					    <span>{{LOW}}:</span><span><span id="LowPressToday" class="low">xxxx.y</span><span class="PressUnit"></span><span class="ow-at" id="LowPressTodayTime">24:00</span></span>
+					</div>
+				</div> <!-- End Pressure panel -->
+
+				<div class="ow-panel ow-theme8" style="order:1;"> <!--	Rainfall Panel -->
+					<div class="ow-titleBar ow-theme7"><h4>{{RAINFALL}}</h4></div>
+					<div class="panelGrid1">
+						<p><span id="RainToday" class="ow-reading">xx.y</span> <span class="RainUnit">in</span></p>
+    				    <span>{{RATE}}: <img id="RainRateImg" src="img/rain0.png" alt="Rainfall" class="ow-image-small"></span>
+                        <span><span id="RainRate">x.x</span>&nbsp;<span class="RainUnit">in</span>/hr</span>
+                        <span class="alignRight">{{HIGH}} {{RATE}}:</span>
+						<div><span id="HighRainRate"></span><span id="HighRainRateToday" class="high">xx.y</span><span class="RainUnit">mm</span>/hr<span class="ow-at" id="HighRainRateTodayTime">24:00</span></div>
+						
+						<span class="alignRight">{{THIS_WEEK}}:</span>
+                        <span><span id="RainWeek">xx.y</span><span class="RainUnit">mm</span></span>
+    					<span class="alignRight">{{THIS_MONTH}}:</span>
+                        <span><span id="RainMonth">xxx.y</span><span class="RainUnit">mm</span></span>
+						<span class="alignRight">{{THIS_YEAR}}:</span>
+                        <span><span id="RainYear">xxx.y</span><span class="RainUnit">mm</span></span>
+					</div>
+				</div> <!-- End Rainfall Panel -->
+
+				<div class="ow-panel ow-theme7 ow-animate-fadeIn ow-shadow-none" style="order:1;"> <!--	Times panel	-->
+					<div class="ow-titleBar ow-theme5"><h4>Times</h4></div>
+					<div class="ow-center">
+						<h3><span class="digiclock " style="font-size:130%">24:00:00</span></h3>
+                        <div class="timerGrid" >
+                            <h4 style="grid-column-start: span 2;margin:0;">{{LAST_CUMULUS_UPDATE}}</h4>
+                            <span id="lastupdatetime">24:00:00</span>
+                            <img id="LastUpdateIcon" src="img/green.png" class="ow-image-small" alt="green">
+                            <h4 style="grid-column-start:span 2;margin:0;">{{LAST_STATION_UPDATE}}</h4>
+                            <span id="LastDataRead">24:00:00</span>
+                            <img id="DataStoppedIcon" src="img/green.png" class="ow-image-small" alt="green">
+						    <span id="LastDataReadDate" style="grid-column-start: span 2"></span>
+                        </div>
+					</div>
+				</div> <!-- End of Times Panel -->
+
+				<div class="ow-panel ow-theme8 ow-animate-fadeIn" style="order:1;"> <!-- Windspeed gauge panel -->
+					<div class="ow-titleBar ows-theme7"><h4>{{WIND_SPEED}}</h4></div>
+					<div class="ow-center">
+						<div id="tip_6" class="gauge">
+							<canvas id="canvas_wind" class="ow-gaugeStd"></canvas>
+						</div>
+					</div>
+				</div> <!-- End Panel -->
+
+				<div class="ow-panel ow-theme8 ax-animate-fadeIn" style="order:1;"> <!-- Wind Direction guage panel -->
+					<div class="ow-titleBar ow-theme7"><h4>{{WIND_DIRECTION}}</h4></div>
+					<div class="ow-center">
+						<div id="tip_7" class="gauge">
+							<canvas id="canvas_dir" class="ow-gaugeStd"></canvas>
+						</div>
+					</div>
+				</div> <!-- End Panel -->
+				
+				<div class="ow-panel ow-theme8 ax-animate-fadeIn" style="order:1;"><!-- Wind Rose gauge panel -->
+					<div class="ow-titleBar ows-theme7"><h4>{{WIND_ROSE}}</h4></div>
+					<div class="ow-center">
+						<div id="tip_10" class="gauge">
+							<canvas id="canvas_rose" class="ow-gaugeStd"></canvas>
+						</div>
+					</div>
+				</div> <!-- End Panel -->
+
+				<div class="ow-panel ow-theme8 ow-animate-fadeIn" style="order:1;"> <!-- Wind Overview Panel -->
+					<div class="ow-titleBar ow-theme7"><h4>{{WIND_SPEEDS}} Overview</h4></div>
+					<div class="panelGrid1" style="grid-template-rows:3em 3em 1.6em;">
+						<p><strong>{{AVERAGE}}</strong>: <span id="WindAverage" class="ow-reading">xx.y</span> <span class="WindUnit">knots</span></p>
+						<p><strong>{{GUST}}</strong>: <span id="Recentmaxgust" class="ow-reading">xx.y</span> <span class="WindUnit">knots</span></p>
+						<span class="alignRight">{{HIGH}} {{GUST}}:</span><span><span id="HighGustToday" class="high">xx.y</span><span class="WindUnit ">knots</span><span class="ow-at" id="HighGustTodayTime">24:00</span></span>
+						<span class="alignRight">{{WIND_RUN}}:</span><span><span id="WindRunToday">xxx.y</span> <span data-CMXData="WindRunUnit">mts</span></span>
+						<span class="alignRight">Beaufort:</span><span><span id="Beaufort">Fx</span> (<span id="BeaufortDesc">Storm</span>)</span>
+					</div>
+				</div> <!-- End Panel -->
+
+                <div class="ow-panel ow-theme8 ax-animate-fadeIn" style="order:1;"> <!-- Humidity Panel -->
+					<div class="ow-titleBar ow-theme7"><h4>{{HUMIDITY}}</h4></div>
+					<div class="panelGrid1">
+						<p><span id="OutdoorHum" class="ow-reading">xx</span> %</p>
+						<span>{{HIGH}}:</span><span><span id="HighHumToday" class="high">xx</span> %<span class="ow-at" id="HighHumTodayTime">24:00</span></span>
+						<span>{{LOW}}:</span><span><span id="LowHumToday" class="low">xx</span> %<span class="ow-at" id="LowHumTodayTime">24:00</span></span>
+					</div>
+				</div> <!-- End Panel -->
+
+				<div class="ow-panel ow-theme8 ax-animate-fadeIn" style="order:1;"> <!-- Dewpoint Panel-->
+					<div class="ow-titleBar ow-theme7"><h4>{{DEW_POINT}}</h4></div>
+					<div class="panelGrid1">
+						<p><span id="OutdoorDewpoint" class="ow-reading">xx.y</span><span class="TempUnit">&deg;F</span></p>
+						<span>{{HIGH}}:</span><span><span id="HighDewpointToday" class="high">xx.y</span><span class="TempUnit"></span><span class="ow-at" id="HighDewpointTodayTime">24:00</span></span>
+						<span>{{LOW}}:</span><span><span id="LowDewpointToday" class="low">xx.y</span><span class="TempUnit"></span><span class="ow-at" id="LowDewpointTodayTime">24:00</span></span>
+					</div>
+				</div>
+
+                <div class="ow-panel ow-theme8 ax-animate-fadeIn" style="order:1;"> <!-- Windchill Panel-->
+					<div class="ow-titleBar ow-theme7"><h4>{{WIND_CHILL}}</h4></div>
+					<div class="panelGrid1">
+						<p><span id="WindChill" class="ow-reading">xx.y</span><span class="TempUnit">&deg;C</span></p>
+						<span>{{LOW}}:</span><span><span id="LowWindChillToday" class="low">xx.y</span><span class="TempUnit"></span><span class="ow-at" id="LowWindChillTodayTime">24:00</span></span>
+					</div>
+				</div><!-- End panel -->
+
+                <div class="ow-panel ow-theme8 ow-animate-fadeIn" style="order:1;" data-cmxData-Rad=""> <!-- Solar Panel -->
+					<div class="ow-titleBar ow-theme7"><h4>{{SOLAR}}</h4></div>
+					<div class="panelGrid1">
+						<span data-cmxData-Solar=""><strong>{{RADIATION}}</strong>:</span><span><span id="SolarRad" class="ow-reading">xxx</span> W/m<sup>2</sup></span></span>
+						<span data-cmxData-Solar="">{{HIGH}}:</span>
+                        <div data-cmxData-Solar="">
+                            <span id="HighSolarRadToday" class="high">xxxx</span> W/m<sup>2</sup><span class="ow-at" id="HighSolarRadTodayTime">24:00</span>
+                        </div>
+						<span data-cmxData-UV=""><strong>{{UV_INDEX}}</strong>:</span><span><span id="UVindex" class="ow-reading">xx.y</span></span>
+                        <span data-cmxData-UV="">{{HIGH}}:</span><span data-cmxData-UV=""><span id="HighUVindexToday" class="high">xx.y</span><span class="ow-at" id="HighUVindexTodayTime">24:00</span></span>
+					</div>
+				</div>
+            </section>
+        </section>
+    </main>
+
+    <footer id="pageFoot" class="ow-theme5">
+        <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+        <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+        <section class="subFoot" class="ow-theme4">
+            <p>{{SITE_DESIGN}}: <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+            <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
+        </section>
+    </footer>
+
+    <!--	Modal / Popup -->
+    <!--	The ID below should be used in the function call to make this work 	-->
+    <section id="Almanac5" class="ow-modal">
+        <!-- 	You can set the max-width in the 'div' below as well as the background colour -->
+        <div class="content" style="width: 60em">
+            <article class="ow-panel">
+                <div class="ow-titleBar"><!-- You can set your own color if preferred -->
+                    <h4>The current cmxConfig object</h4>
+                    <div class="ow-btnBar"><button style="border:none;margin-right: -1em;" onClick="toggleModal('Almanac5')">X</button></div>
+                </div>
+                <div class="ow-panel" style="max-height: 80vh; overflow:scroll; margin-bottom:0;">
+                    <!-- Popup Content  -->
+                    <div class="almanacGrid">
 						<p style="grid-area:sunrise">{{SUNRISE}}</p><p style="grid-area:sunriseVal"><span id="Sunrise"></span></p>
 						<p style="grid-area:sunset">{{SUNSET}}</p><p style="grid-area:sunsetVal"><span id="Sunset"></span></p>
 						<p style="grid-area:daylen">{{DAY_LENGTH}}</p><p style="grid-area:daylenVal"><span id="daylength"></span> hrs</p>
@@ -355,12 +338,13 @@
 						<p style="grid-area:moonphase">{{MOON_PHASE}}</p><p style="grid-area:moonphaseVal"><span id="moonphase">-</span></p>
 						<p style="grid-area:forecast;">{{FORECAST}}</p><p style="grid-area:forecastVal;"><span id="Forecast">-</span></p>
 					</div><!--	End of modal content	 -->
-				</div>
-                <div class="ows-titleFlex ows-theme5" style="border-radius: 0 0 0.5em 0.5em; flex-direction:row-reverse;margin-bottom:0;">
-                    <p class="w3-small w3-italic" style="padding:0 1em 0 0;">Powered by CumulusMX</p>
                 </div>
-			</div>
-		</div>
+                <div class="ow-titleBar ow-theme3" style="flex-direction:row-reverse;margin-bottom:0;">
+                    <p class="ow-smaller " style="font-style:italic;padding:0 1em 0 0;">Powered by CumulusMX</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</body>
 
-	</body>
 </html>
