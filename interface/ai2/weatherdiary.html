@@ -50,8 +50,8 @@
         
         <!--    Page Styles     -->
         <link rel="stylesheet" href="css/ai-weatherdiary.css">
-
         <style>
+            .statusBar:before { content: "{{STATUS}}:"; font-style:italic;}
         </style>
         <!--    Page Scripts    -->
         <script src="js/ai-weatherconditions.js"></script>	<!-- Custom script	-->
@@ -140,7 +140,7 @@
 	    			    			<label for="inputGales" class="c">{{GALES}}</label>
                                 </div>
                                 <div class="ow-divider"></div>
-                                <div class="ow-titleBar ow-theme9">
+                                <div class="ow-titleBar ow-theme8">
                                     <h3>{{SNOW_CONDITIONS}}</h3>
                                     <i class="fa-solid fa-snowflake" style="color:white"></i>
                                 </div>
@@ -164,7 +164,7 @@
                                     <p class="ow-smaller">{{AUTOMATED_READINGS_DESC}}</p>
                                 </div>
                                 <div class="ow-divider"></div>
-                                <div class="ow-titleBar ow-theme9">
+                                <div class="ow-titleBar ow-theme8">
                                     <h3>{{DIARY_MANAGEMENT}}</h3>
                                 </div>
                                 <div class="ow-btnBar" style="margin-bottom: 1vh;">
