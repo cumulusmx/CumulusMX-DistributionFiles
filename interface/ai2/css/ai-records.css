@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: records.css     | Version: 5.01
+    Author:     DNC Thomas      | 2026-07-04
+    -------------------------------------------
+    Last edit:  2026-08-11 09:47:30
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+.ow-dataBar.col3 {
+    grid-template-columns: 1fr 5.5rem 16rem;
+    justify-items: end;
+   /* & .small { font-size: 90%}*/
+}
+
+.ow-dataBar.ow-hover-none:hover { background:var(--color0);color:var(--color1);font-weight:400;}
+
+.ow-dataBar:not(.ow-hover-none) {
+    font-size: 95%;
+    & p:first-of-type {justify-self:start;}
+}
+
+.ignore { display:contents;}
+
+button { max-width:13em;}
+
+button:focus { outline: none;}
+
+.customGrid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas:
+		"tempPanel tempPanel rainPanel rainPanel"
+		"tempPanel tempPanel windPanel windPanel"
+		"humsPanel humsPanel pressPanel pressPanel"
+		". solarPanel solarPanel .";
+	gap: var(--rowGap) var(--colGap);
+}
+
+#dateFrom, #dateTo { 
+    max-width: 10em; 
+    text-align:center;
+    cursor:pointer;
+}
+
+#TempPanel, #TempsPanel { grid-area: tempPanel;}
+
+#RainPanel { grid-area: rainPanel;}
+
+#WindPanel, #WindsPanel { grid-area: windPanel;}
+
+#HumsPanel { grid-area: humsPanel;}
+
+#PressPanel { grid-area: pressPanel;}
+
+#SolarPanel{ grid-area: solarPanel;}
+
+
+@media (max-width: 1000px){/* If you only ever want one column, change this width to > 1200px */
+	#customGrid {
+		grid-template-columns: 1fr;
+		grid-template-areas: "tempPanel" "rainPanel" "windPanel" "humsPanel" "pressPanel" "solarPanel";
+	}
+}

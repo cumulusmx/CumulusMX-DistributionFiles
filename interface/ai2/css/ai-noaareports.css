@@ -1,0 +1,83 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: noaareports.css     | Version: 5.01
+    Author:     DNC Thomas          | 2026-07-070
+    -----------------------------------------------
+    Last edit:  2026-08-11 09:47:08
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+button { max-width: 20em; padding: .3em 1em;}
+            
+select {
+    width: 10em; 
+    padding: .3em 1em; 
+    text-align: center; 
+    cursor: pointer;
+}
+
+select:hover { background: var(--gradient-down)}
+
+#report { 
+    width: fit-content!important;
+    margin:auto; 
+    padding-bottom:1vh;
+    overflow-x: auto;
+    background: var(--color9);
+    & section:nth-of-type(2) {
+        width: max-content;
+        /*margin:auto;/* Uncomment this line if you want the Rainfall table centered*/
+    }
+    & section:nth-of-type(3) {
+        width: max-content;
+        /*margin:auto;/* Uncomment this line if you want the Windspeed table centered*/
+    }
+    & pre {
+        padding: 0 1vw;
+    }
+}
+
+#report-summary {
+    width:max-content;
+    margin:auto;
+    text-align: left;
+}
+ 
+table { 
+    width:100%;
+    border-collapse: collapse;
+    & th { 
+        vertical-align: bottom; 
+        padding: 0 .2em .2em .2em; 
+        border-bottom: 3px double var(--color3);
+    }
+    & td { padding: .3em .3em;}
+    & tr:hover td { background: var(--gradient-databar)}
+    & tr:last-of-type { 
+        font-weight: 600; 
+        border-top: 2px solid var(--color6)
+    }
+}
+
+#generate-button {
+    background: linear-gradient(var(--color9), red)
+}
+
+#generateAll-button{
+    background: linear-gradient( var(--color9), var(--colourRain)); 
+}
+
+#upload-button{
+    background: linear-gradient( var(--color9), green); 
+}
+
+#generate-button:hover {
+    background: linear-gradient( red, var(--color9));
+}
+
+#generateAll-button:hover{
+    background: linear-gradient(  var(--colourRain), var(--color9)); 
+}
+
+#upload-button:hover{
+    background: linear-gradient( green, var(--color9)); 
+}

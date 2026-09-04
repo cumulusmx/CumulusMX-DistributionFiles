@@ -1,0 +1,109 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: ai-configure.css    | Version: 5.2
+    Author:     DNC Thomas          | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:40:34
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+html {
+    --gridMargin: 0.5em;
+}
+
+.ow-reading {
+    color:var(--color1);
+    /*font-style: italic;*/
+    font-size: var(--dataFontSize);
+    font-weight: var(--dataFontWeight)
+}
+
+input:focus, select:focus { outline: none;}
+
+input[type="number"],
+select {
+    border-radius: 0.7em 0 0 0.7em;
+    border: thin solid var(--color2);
+    text-align: center;
+    padding: 0.2em 0;
+}
+
+.geom-grid-1 {
+    display:grid; 
+    grid-template-columns:repeat(2, 1fr 2em);
+    align-items:center;
+    row-gap: var(--gridMargin);
+    margin-bottom:var(--gridMargin);
+}
+
+.geom-grid-2 {
+    display:grid;
+    grid-template-columns: 1fr 5em; 
+    gap: var(--gridMargin) var(--colGap);
+    margin-bottom: var(--gridMargin);
+    align-items: center;
+}
+
+.theme-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--colGap);
+    align-items:baseline;
+}
+.led-grid-1 {
+    display:grid;
+    grid-template-columns:1fr 1fr 2.0rem;
+    grid-template-rows: auto;
+    gap: var(--gridMargin) 5px;
+    align-items: baseline;
+    margin-bottom:var(--gridMargin);
+}
+
+.led-grid-2 {
+    display:grid; 
+    grid-template-columns: 1fr 4em 2rem;
+    column-gap:5px;
+}
+.shadow-grid {
+    display:grid;grid-template-columns:repeat(2, 1fr); 
+    gap: var(--gridMargin) var(--colGap); 
+    align-items:baseline;
+    margin-bottom: var(--gridMargin);
+}
+
+.rainrate-grid {
+    display:grid;
+    grid-template-columns: 1fr 5em 1.5em;
+    gap: var(--gridMargin) var(--colGap);
+    align-items:center;
+}
+
+.animation-grid-1 {
+    display:grid;
+    grid-template-columns: 1fr 10em;
+    row-gap: var(--gridMargin);
+    align-items:center;
+    margin-bottom: var(--gridMargin);
+}
+
+.animation-grid-2 {
+    display: grid; 
+    grid-template-columns: 1fr 5em;
+    gap:var(--gridMargin) var(--colGap);
+}
+
+.panel-grid {
+    display:grid;
+    grid-template-columns: 1fr 5em; 
+    gap: var(--gridMargin) var(--colGap);
+    align-items: baseline;
+    margin-bottom: var(--gridMargin);
+}
+
+.colour-grid {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:var(--gridMargin) var(--colGap);
+    & div { padding: var(--gridMargin)}
+}
+

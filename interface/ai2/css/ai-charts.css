@@ -1,0 +1,74 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: charts.css      | Version: 5.01
+    Author:     DNC Thomas      | 2026-07-03
+    -------------------------------------------
+    Last edit:  2026-08-11 09:40:26
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+button:focus { outline:none;}
+
+button {
+    max-width: 14em;
+}
+
+.ow-selectaGrid {
+	display:grid;
+	grid-template-columns: 8em 2.5em;
+	column-gap: 0;
+    & select { 
+        font-size: 82%;
+    }
+    & select:hover { background: var(--gradient-down);}
+    & select:first-of-type { border-radius: 1em 0 0 1em;}
+    & select:last-of-type  {
+        border-radius: 0 1em 1em 0; 
+        border-left:none; 
+        padding-left:0.5em;
+    }
+}
+
+#dateFrom, #dateTo { max-width: 10em; text-align:center;}
+
+#chartcontainer {
+	display: grid;
+	grid-template-rows: 1fr 30em;
+	grid-auto-rows: 7em;
+	gap: 1em;
+	padding: 1em;
+	border: 1px solid var(--color5);
+	background: linear-gradient( 33deg, var(--color8), var(--color9));
+}
+
+.chart-buttons {
+	display: flex;
+	justify-content: space-between;
+	font-size: 80%;
+}
+
+.chart-buttons button {
+	border-radius: 1em;
+	border:thin solid var(--color5);
+	background: inherit;
+	color: var(--color1);
+	min-width:3em;
+	padding: .1em 1em;
+}
+
+.chart-buttons button:hover {
+	background: var(--gradient-down);
+    cursor: pointer;
+}
+
+#rangeButtons {
+	display: flex;
+	gap: 0.5vw;
+	align-items: baseline;
+}
+
+#mainChart, #navChart {
+	height: 100%;
+	width:100%;
+	background: white;
+}

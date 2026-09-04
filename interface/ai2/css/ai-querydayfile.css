@@ -1,0 +1,97 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: querydayfile.css    | Version: 5.01
+    Author:     DNC Thomas          | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:47:25
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+/* Overrides to BootStrap styes */
+.form-group { 
+    display: grid;
+    grid-template-columns: 1fr 18em 1fr; 
+    column-gap: var(--colGap);
+    align-items: baseline;
+    grid-template-areas: ". . helpblock";
+}
+
+.help-block { grid-area:helpblock;}
+
+.help-block:nth-of-type(2) { 
+    align-self: end; 
+    margin-top:4.4em; 
+    margin-bottom:2.2em;}
+
+.help-block:nth-of-type(3) { 
+    align-self: end; 
+    margin-top: 6.5em 
+}
+
+#ui-datepicker-div {
+    min-width:340px; 
+    max-width:370px;
+}
+
+#ui-datepicker-div > table{ 
+    min-width: 340px;
+    max-width:370px;
+}
+
+#ui-datepicker-div > div > div > select.ui-datepicker-month{ 
+    max-width:300px!important;
+}
+
+#ui-datepicker-div > div > div > select.ui-datepicker-year{
+    max-width:300px!important;
+}
+
+.resultGrid {
+	display:grid;
+	grid-template-columns:1fr 2fr;
+	gap: 1vh 2vh;
+	padding: 0 1vw;
+	margin-bottom:1vh;
+	align-items: baseline;
+    & p { font-size: 130%; font-weight: 700;}
+}
+
+.resultGrid > * {margin:0.2em;}
+
+#alpaca4, #alpaca5, #alpaca6, #alpaca7, #alpaca8, #alpaca10 { 
+    border-radius: 1em 0 0 1em; 
+    border:thin solid var(--color5);
+}
+
+#startDate, #endDate, #alpaca9 { 
+    border-radius: 1em; 
+    border: thin solid var(--color5);
+}
+
+*:focus {outline: none;}
+
+.alpaca-form-button-submit {
+	background: inherit;
+	color: inherit;
+}
+
+.alpaca-container-item-first { display:none; }
+
+.alpaca-form-button-submit {
+    border: thin solid var(--color5);
+    border-radius: 1em;
+    background: var(--color0);
+    color: var(--color1);
+    padding: .3em 2em;
+}
+.alpaca-form-button-submit:hover {
+    background: var(--gradient-down);
+}
+select { padding: .3em 0 .3em 1em; width:100%;}
+
+input[type=text] {
+    padding: .3em 1em;
+    text-align:center;
+    width:100%;
+
+}
+label { padding-bottom: .3em!important; }

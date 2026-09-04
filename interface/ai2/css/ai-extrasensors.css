@@ -1,0 +1,31 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: ai-editabletables.css   | Version: 5.01
+    Author:     DNC Thomas              | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:42:10
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    & td { padding: .3em 0;}
+    & td:first-of-type{ width: 12em; margin-left:-.5em; padding-left:.5em; }
+    & td:nth-of-type(2) {text-align:right;padding-right:.25em;}
+    & td:last-of-type { width: 3.6em; margin-right: -1em;}
+}
+
+tr:hover > td { background: var(--gradient-databar); }
+
+.dt-empty {
+    background: var(--color8);
+    font-style:italic;
+    border-top: 1px solid var(--color9);
+    border-left: 1px solid var(--color9);
+    border-right: thin solid var(--color5);
+    border-bottom: thin solid var(--color5);
+    text-align:center;
+}
+
+.dt-empty:hover { background: var(--color0);}

@@ -1,0 +1,60 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: todayVyesterday.css | Version: 5.01
+    Author:     DNC Thomas          | March 2026
+    -----------------------------------------------
+    Last edit:  2026-08-11 09:47:42
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+.customGrid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas:
+		"tempPanel tempPanel rainPanel rainPanel"
+		"tempPanel tempPanel windPanel windPanel"
+		"humsPanel humsPanel pressPanel pressPanel"
+		". solarPanel solarPanel .";
+	gap: var(--rowGap) var(--colGap);
+}
+
+#TempPanel { grid-area: tempPanel;}
+
+#RainPanel { grid-area: rainPanel;}
+
+#WindPanel { grid-area: windPanel;}
+
+#HumsPanel { grid-area: humsPanel;}
+
+#PressPanel { grid-area: pressPanel;}
+
+#SolarPanel{ grid-area: solarPanel;}
+
+
+@media (max-width: 1000px){/* If you only ever want one column, change this width to > 1200px */
+	#customGrid {
+		grid-template-columns: 1fr;
+		grid-template-areas: "tempPanel" "rainPanel" "windPanel" "humsPanel" "pressPanel" "solarPanel";
+	}
+}
+
+table { 
+    border-collapse: collapse; 
+    font-size: 95%;
+    width:100%;
+    & thead th { padding-bottom:1em; font-size: 110%;}
+}
+
+td { padding: .4em 0;}
+
+td:first-of-type { width: 16em!important; padding-left:.5em;}
+
+td:last-of-type { padding-right: .5em;}
+
+td:nth-of-type(3),td:nth-of-type(5) { width:6em!important;}
+
+tr:hover td { background: var(--gradient-databar); font-weight:600;}
+
+.left {text-align:left;}
+
+.right {text-align:right; padding-right: .5em;}

@@ -1,0 +1,65 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: ai-dataviewerMain.css    | Version: 1.0.0
+    Author:     DNC Thomas               | 2026-07-12
+    -------------------------------------------
+    Last edit:  2026-07-12 12:38:22
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+.customGrid {
+	display: grid;
+	gap: 1em 1vh;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas:
+	/* This list dictates how the various panels are arrainged	*/
+        "temp rain derived"
+        "wind solar derived"
+        "hums press degdays";
+	margin-bottom:1vh;
+}
+.tempPanel { grid-area: temp;}
+
+.humsPanel { grid-area: hums;}
+
+.pressPanel { grid-area: press;}
+
+.extrasPanel { grid-area: derived;}
+
+.windPanel { grid-area: wind;}
+
+.rainPanel { grid-area: rain;}
+
+.solarPanel { grid-area: solar;}
+
+.degdaysPanel { grid-area: degdays;}
+
+#customGrid .ows-titleFlex {margin-top:1vh;}
+
+@media (max-width: 800px) {
+	.customGrid {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas:
+			"temp derived"
+			"solar derived"
+			"degdays derived"
+			"wind rain"
+			"hums press"
+	}
+}
+
+.ow-btnBar {
+    justify-content: flex-start;
+    & select {
+        border-radius: 1em 0 0 1em;
+    }
+    & input[type=text] { text-align:center;}
+    & button { padding:.3em 1em;}
+    & h4 { width: 10em;}
+}
+
+.mylabel {
+	margin-left:1em;
+}
+
+input[type=checkbox] { cursor: pointer;}

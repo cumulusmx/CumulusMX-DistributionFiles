@@ -1,0 +1,70 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: ai-editrecords.css  | Version: 5.01
+    Author:     DNC Thomas          | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:42:10
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    & thead {
+        border-bottom: 2px solid var(--color5);
+        & th { text-align:center!important;}
+        & th:first-of-type { text-align: left!important;}
+    }
+    & tbody {
+        & tr:hover td { 
+            background: var(--gradient-databar);
+        }
+        & tr:nth-of-type(even) {
+            background:var(--color9)
+        }
+        & tr:last-of-type {
+            border-bottom: 1px solid var(--color2);
+        }
+        & td { 
+            padding: 0.3em;
+            border-right: thin dotted var(--color5);
+            & .editable-click { border-bottom: dashed 1px var(--color1);}
+        }
+        & td:not(td:first-of-type) {text-align:center;}
+        & td:last-of-type {
+            border: none;
+        }
+    }
+}
+
+#updaterError i {
+    color:red;
+    padding:.2em .75em;
+    border-radius: 1em!important;
+    cursor:pointer;
+}
+
+.loader {
+    --animation: spin 1.5s linear infinite;
+    margin: 0.5vh auto 1vh;
+    border: 0.7em solid var(--color7);
+    border-radius: 50%;
+    border-top: 0.7em dotted var(--color5);
+    width: 6em;
+    height: 6em;
+    -webkit-animation: var(--animation); /* Safari */
+    animation: var(--animation);
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.ow-btnBar.months button { max-width: 10em;}

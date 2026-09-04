@@ -1,0 +1,186 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: alpacaforms.css   | Version: 5.01
+    Author:     DNC Thomas        | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:40:17
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+ /*	~~~~	GLOBAL SETTINGS	~~~	*/
+.radio {
+	display:inline-block;
+	padding-left:40px;
+	vertical-align: middle;
+	margin-top:10px;
+}
+
+.radio, .radio + .radio, 
+.checkbox, .checkbox + .checkbox {
+	margin-top: 0px!important;
+}
+
+.btn-default,
+.alpaca-form-button { 
+	border-radius:1em!important;
+	padding:0.2em 2em!important;
+	font-size: 90%;
+	background: var(--color0);
+	border: thin solid var(--color5);
+	color: var(--color1)!important;
+	text-shadow: none!important;
+}
+
+.btn-default:focus,
+.alpaca-form-button:focus { outline: none!important; }
+
+.alpaca-form-button:hover { background: var(--gradient-down);}
+
+.alpaca-field > legend > .collapsed::before {
+	content: '\25B8';
+	padding-left: 0.5%;
+}
+
+.alpaca-field > legend > span::before {
+	content: '\25BE';
+	padding-left: 0.5%;
+}
+
+.alpaca-container-has-items {
+	margin-left: 1%;
+}
+
+.collapse.in {
+	margin-left: 1%;
+}
+
+.alpaca-form-buttons-container {
+	margin-bottom: 20px;
+	text-align: left;
+	font-size: 18px;
+}
+
+.help-block {
+	color: var(--color3);
+}
+
+.alpaca-field-table table tr td .alpaca-field { min-width:2em;}
+
+legend {
+	color: inherit;
+}
+
+.hideme {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	display: flex;
+}
+/* 
+.alpaca-form-buttons-container > button { border:thin solid var(--color5);}
+*/
+.alpaca-array-toolbar > button {
+	padding: 0.5em 2em!important;
+	border-radius:1.5em!important;
+}
+
+.alpaca-array-actionbar > .btn { border-radius: 1em 0 0 1em!important;}
+
+tbody td {border-color: var(--color7)!important;}
+
+.dropdown-menu {z-index:1!important;}
+
+#filesForm,
+#alarmsForm ,
+#intvlform,
+#dailyform{
+	thead tr {background-color:var(--color7);}
+	thead th {border-color: var(--color7);}
+	tbody tr {background: var(--color9);}
+	tbody td {border:thin solid var(--color8)!important;}
+	.alpaca-field-object { padding:0;}
+	.alpaca-container-has-items { margin-left:0;}	
+}
+
+#filesForm {
+	tbody td:first-of-type,
+	tbody td:nth-of-type(5){ width:5em;}
+	tbody td:nth-of-type(6){ width:7em;}
+	tbody td:nth-of-type(7){width:5rem;}
+	tbody td:last-of-type{ width:7.5rem;}
+}
+
+#intvlform td:last-of-type { max-width:16rem!important; }
+#dailyform td:last-of-type { max-width:14rem!important; }
+
+/*	User Alarms Form */
+#alarmsForm {
+	& td:nth-of-type(2),
+	& td:nth-of-type(3),
+	& td:nth-of-type(7),
+	& td:nth-of-type(8),
+	& td:nth-of-type(11) { min-width:10em;}
+	& td:nth-of-type(4) { min-width: 6em;}
+}
+
+.alpaca-field button { 
+	border-radius:1em; 
+	border:thin solid var(--color5);
+	padding-left: 1em;
+	padding-right:1em;}
+.alpaca-field button:hover { background:var(--gradient-down);}
+#results:before {content:"{{STATUS}}:"}
+
+legend { border-bottom: 1px solid var(--color5)}
+
+.alpaca-container-label button {
+	color: var(--color2)!important;
+	background: var(--color8);
+	border-radius: .75em .75em 0 0!important;
+	padding: 0 1em;
+	margin-bottom: -1px;
+}
+
+/* Notes Panels on User Defined Alarms, Custom Logs & HTTP Files */
+.ow-notes {
+    display:grid;
+    grid-template-columns:10em 1fr; 
+    gap: var(--colGap) var(--rowGap);
+    & p:nth-of-type(even) {
+        & b { display: none; }
+    }
+    & p:nth-of-type(odd) {
+        font-weight: 700;
+        border-top: thin dotted var(--color5);
+    }
+}
+            
+.alpaca-array-toolbar button {
+    background: var(--color0)!important;
+}
+
+.alpaca-array-toolbar button:hover {
+    background: var(--gradient-down)!important;
+}
+
+.alpaca-array-actionbar button { background: var(--color0)!important}
+
+.alpaca-array-actionbar button:hover { background: var(--gradient-down)!important;}
+
+.statusBar {    /* Move to common stylesheet */
+    border: thin solid var(--color5);
+    background: var(--color9);
+    padding: .3em 1em .3em 9em;
+    width:100%;
+}
+
+.statusBar:before { /* Move to common stylesheet */
+    text-align: left;
+    font-style: italic;
+    font-size: 90%;
+    baseline-shift: center;
+    margin-left: -9.5em;
+    color: var(--color7);
+}
+
+

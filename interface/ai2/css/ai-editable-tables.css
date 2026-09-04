@@ -1,0 +1,183 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: editable-tables.css  | Version: 5.02
+    Author:     DNC Thomas           | March 2026
+    ------------------------------------------------
+    Last edit:  2026-08-11 09:41:09
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+/* EditableTables */
+
+.dt-buttons {
+    button {
+        border-radius: 1em!important;
+        padding: 0.3em 1em!important;
+        background: var(--color0)!important;
+        color:var(--color1)!important;
+        border: thin solid var(--color5)!important;
+    }
+    & button:hover {
+        background: var(--gradient-down)!important;
+    }
+}
+
+.dt-button-down-arrow {
+    color: var(--color5);
+}
+
+.dt-paging /*,
+.dt-paging nav*/ {
+    display: flex;
+    justify-content: center;
+    gap: var(--rowGap) var(--colGap)!important;
+    align-items: baseline;
+    & button {
+        border-radius: 1em!important;
+        border: thin solid var(--color5)!important;
+        padding: 0.3em!important;
+        cursor: pointer!important;
+    }
+    & button:hover { 
+        background: var(--gradient-down)!important;
+    }
+    & input {
+        background: var(--color0);
+        border: none;
+        padding: 0 0.3em;
+        text-align:right;
+        max-width: max-content;
+    }
+}
+.dt-paging-input {
+    border: thin solid var(--color5);
+    padding: .3em .5em;
+    border-radius: .5em;
+    corner-shape: bevel;/* Ignored by some browsers. */
+}
+
+.dt-paging-button.disabled:hover  {background:var(--color0)!important; cursor: not-allowed!important;}
+
+#datalog_wrapper {
+    .top,
+    .bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "buttons info search " "paging paging paging";
+        gap: var(--rowGap) var(--colGap);
+        & .dt-buttons { 
+            grid-area: buttons
+        }
+        & .dt-search { 
+            grid-area: search;
+        }
+        & .dt-info { 
+            grid-area: info
+        }
+        & .dt-paging { 
+            grid-area: paging;
+            & button.disabled {
+                background:var(--color0)!important;
+                cursor:none!important;
+            }
+            & button.current {
+                background:var(--color7)!important;
+            }
+        }
+    }
+    & input[type=search] { border: 1px solid var(--color5)}
+    & .bottom { margin-top:1em;}
+    thead th { 
+        vertical-align:bottom; 
+        text-align: center;
+    }
+    tbody .tempUnits:after,
+          .percent:after,
+          .bearing:after {
+            font-size: .6em;
+            padding-left:.3em;
+            vertical-align:top;
+          }
+          .windUnits:after,
+          .windRunUnits:after,
+          .rainUnits:after,
+          .rainRateUnits:after,
+          .pressUnits:after,
+          .hours:after,
+          .solarUnits:after,
+          .SnowDepthUnits:after,
+          .LaserDepthUnits:after,
+          .LaserDistUnits:after {
+            font-size:.6em;
+            padding-left:.3em;
+            vertical-align:baseline;
+          }
+          & td { text-align:center;}
+          & tr.selected td {
+            background-color: var(--color1)!important;
+            mix-blend-mode: luminosity!important;
+            
+          }
+    tbody tr:nth-of-type(even) { background: var(--color9);}
+    tbody tr:hover td:not(.dtfc-fixed-start) {
+        background: var(--gradient-databar)!important;
+    }
+    .dtfc-fixed-start {
+        background: var(--color7);
+        z-index:0!important;
+        text-align:center;
+    }
+
+    .dtfc-fixed-left:last-of-type { border-left:2px solid var(--color5)!important;}
+
+}
+.modal-content {
+    background: var(--color9);
+    /*max-height: 90vh;*/
+    .modal-header {
+        position:relative;
+        background: var(--color5);
+        color: var(--color9);
+    }
+    h4 { text-align:left!important; padding: 0!important; margin:0!important; float:left;}
+    .close {
+/*        margin:0!important;
+        margin-top:-.5em!important; */
+        position:absolute;
+        top:0; right:0;
+        background: var(--color8);
+        border:thin solid var(--color9); 
+        border-radius:1em; 
+        float:right; 
+        padding: .3em .5em;
+    }
+    .modal-body {
+        overflow:auto;
+        max-height: 80vh;
+        .row {
+            margin-bottom: 0!important;
+            display: grid; 
+            grid-template-columns: 1px 15em 1fr 1fr 1px;
+            grid-template-rows: auto;
+            gap: var(--rowGap) var(--colGap);
+            .col-sm-3, .col-md-3, .col-lg-3 { width:100%;padding:0;}
+            .col-sm-8, .col-md-8, .col-lg-8 { width:100%;padding:0;}
+            .col-sm-9, .col-md-9, .col-lg-9 { width:100%;padding:0;}
+            label { margin:0!important; padding:0!important}
+        }
+    }
+    .modal-footer {
+        background: var(--color5);
+        color: var(--color1);
+        padding: .3em 1em!important;
+        border-top:1px solid var(--color1);
+        & button {
+            border-radius: 1em;
+            border:var(--color2);
+            padding: .3em 1em!important;
+            .btn-default { background:var(--color0)!important;}
+            .btn-primary { background: var(--color7)!important;}
+        }
+    }
+}
+

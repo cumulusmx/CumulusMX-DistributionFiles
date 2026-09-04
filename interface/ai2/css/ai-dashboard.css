@@ -1,0 +1,95 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: dashboard.css   | Version: 5.1
+    Author:     DNC Thomas      | Mary 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:40:55
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+/*	ID Elements */
+#lastupdatetime, #LastDataRead {
+	justify-self:end;
+	font-weight:700;
+}
+
+#DavisPanel {
+    background-color: var(--color6);
+    & span { 
+        float:right;
+    }
+    & .davisGrid {
+		grid-template-columns: 1fr 3.5em;
+		column-gap: 0.5vw;
+		align-items:baseline;
+		box-shadow:none!important;
+		& .rev {grid-template-columns: 1fr 4em;}
+    }
+    & .ow-titleBar {
+        background-color: var(--color5);
+    }
+}
+
+#AlarmsPanel {
+    background-color : var(--color6);
+    & .ow-titleBar { background-color: var(--color5)}
+	& .alarmGrid {
+		box-shadow:none!important;
+	}
+}
+
+/*	Class Elements */
+.panelGrid1 {
+	display:grid; 
+	grid-template-columns:1.2fr 2fr; 
+	grid-template-rows:3em 1.6em;
+	justify-items:center;
+	align-items:center;
+	gap: .5vh var(--colGap);
+	& p {grid-column-start: span 2;}
+	& .alignRight { justify-self:flex-end;}
+}
+
+.timerGrid {
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	grid-template-rows: 1.8em;
+	justify-items:center;
+	align-items:center;
+	gap: .3em var(--colGap);
+}
+
+.almanacGrid {
+	display: grid;
+	grid-template-columns:repeat(3, 1fr 6em);
+	grid-template-areas:
+		"sunrise sunriseVal sunset sunsetVal daylen daylenVal"
+		"dawn dawnVal dusk duskVal daylight daylightVal"
+		"moonrise moonriseVal moonset moonsetVal moonpct moonpctVal"
+		"moonphase moonphaseVal moonphaseVal . . ."
+		"forecast forecastVal forecastVal forecastVal forecastVal forecastVal";
+	gap: calc( var(--rowGap) / 3) var(--colGap);
+	margin: 1vh 0;
+    & p { margin:0;}
+}
+
+@media (max-width: 800px) {
+	.almanacGrid {
+		grid-template-columns: repeat(2, 1fr 10em);
+		grid-template-areas:
+			"sunrise sunriseVal sunset sunsetVal"
+			"dawn dawnVal dusk duskVal"
+			"daylen daylenVal daylight daylightVal"
+			"moonrise moonriseVal moonset moonsetVal"
+			"moonpct moonpctVal moonphase moonphaseVal"
+			"forecast forecastVal forecastVal forecastVal"
+	}
+	.w3-modal-content { min-width: 90%;}
+}
+
+.ow-reading {
+    /*color:var(--color1);
+    font-style: italic;*/
+    font-size: var(--dataFontSize);
+    font-weight: var(--dataFontWeignt);
+}
+

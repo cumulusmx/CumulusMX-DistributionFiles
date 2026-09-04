@@ -1,0 +1,686 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: main.css        | Version: 5.01
+    Author:     DNC Thomas      | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:45:44
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+html {
+    --pageWidth: 1200;
+    --pageWidth-px: calc( var(--pageWidth) * 1px );
+    --colGap: 1vw;
+    --rowGap: 2vh;
+    --dataFontSize: 150%;
+    --dataFontWeignt: 500;
+}
+
+html, body {
+    font-family: Inter;
+    font-size: clamp(0.8125rem, 0.7188rem + 0.375vw, 1rem); /* 13 to 16px */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Red Rose';
+}
+
+h1 { font-size: 2em;}
+h2 { font-size: 1.6em; font-weight:400}
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.1em; }
+h5 { font-size: 1em; font-style: italic;}
+h6 { font-size: .9em; font-style: italic;}
+
+/*  General element styles */
+.ow-smaller { font-size: 85%; }
+.ow-even-smaller{ font-size: 70%; }
+.ow-at:before {
+    content: "at";
+    font-size: 70%;
+    padding: 0 .4em;
+    font-style:italic;
+}
+.ow-on:before { content:"on"; font-size:70%; padding:0 .4em ;}
+
+.ow-in:before{ content:"in"; font-size:70%; padding: 0 .4em;}
+
+.ow-panel {
+    /* Alternative to w3-container */
+    padding: 0 1em 1em 1em;
+    border-radius: 0 0 .5em .5em;
+    position:relative;  /* Enables positioning of content */
+    /* border: thin solid var(--color5); */
+    & .ow-titleBar, .ow-titleBar3col {
+        padding-top: .1em;
+        padding-bottom: .3em;
+        column-gap: .2em;
+        background-color: var(--color7) ;
+    }
+}
+.ow-responsive{display:block;overflow-x:auto}
+.gullPanel {
+    position:absolute;
+    bottom:2em;
+    right:2em;
+    height:3em;
+    width:auto;
+}
+@media (max-width: 802px) {
+    .gullPanel{display:none;}
+}
+
+.ow-shadow-none {   /*  Prevent a panel having any shadow */
+    box-shadow:none!important;
+}
+.ow-tagline {
+    font-style: italic;
+    font-weight:600;
+}
+.ow-centre {
+    text-align: center;
+}
+.ow-border {
+    border: thin solid #000;
+}
+
+.ow-button {
+    border: thin solid var(--color5);
+    border-radius: 1em;
+    background: var(--color0);
+    cursor:pointer;
+    padding: .2em 1em;
+    text-align:center;
+    & a { text-decoration: none; color: var(--color1);}
+}
+
+.ow-button:hover {
+    background: var(--gradient-down);
+    flex-grow: 1;
+}
+.ow-image-small {
+    height: 1.2em;
+    width:auto;
+}
+
+.ow-modal {
+    z-index:100;
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background: var(--modal);
+    cursor:not-allowed;
+    & .content {
+        background:var(--color8);
+        border-radius: 1em;
+        border-left: thin solid var(--color5);
+        border-right: thin solid var(--color5);
+        box-shadow: var(--shadow2);
+        -webkit-box-shadow: var(--shadow2);
+        margin:0;
+        top:50%;
+        left:50%;
+        position:absolute;
+        min-width:min-content;
+        max-width:90vw!important;
+        cursor:auto;
+        -webkit-transform: translate(-50%, -60%);
+        -moz-transform: translate(-50%, -60%);
+        -ms-transform: translate(-50%, -60%);
+        -o-transform: translate(-50%, -60%);
+        transform: translate(-50%, -60%);
+        & .ow-panel { padding-bottom: 0;}
+        & .ow-titleBar:first-of-type{
+            border-radius: 1vh 1vh 0 0;
+            background: var(--color5);
+        }
+        & .ow-titleBar:last-of-type{
+            margin-bottom:0;
+            justify-content:flex-end;
+            border-radius: 0 0 1vh 1vh;
+        }
+    }
+}
+
+.ow-hide {
+    display: none!important;
+}
+
+.ow-disabled {
+    cursor: not-allowed!important;
+    opacity: 0.4;
+    & * {
+        pointer-events:none
+    }
+}
+.ow-disabled:hover {
+    box-shadow: none!important;
+    background: var(--color0)!important;
+    flex-grow:0!important;
+}
+
+.ow-divider {
+    height:2px;
+    background:var(--color5);
+}
+
+.ow-center {
+    text-align:center;
+}
+.ow-italic { font-style: italic;}
+
+/*  Unit Formatting */
+.RainUnit, .unit-rain,
+.TempUnit, 
+.PressUnit, .unit-press,
+.WindUnit, .unit-wind,
+.unit-windrun { padding-left:.25em;}
+
+/*  Section Styling */
+#pageHead {
+    position: relative;
+    border-bottom: 1vh solid var(--color1);
+    width:100%;
+    z-index:25;
+    & .subHead {
+        max-width: var(--pageWidth-px);
+        margin:auto;
+        min-height: 4em;    /* Temp */
+        display: grid;
+        align-items: end;   /* Forces elements to bottom */
+        grid-template-columns: minmax(1.2em,2em) 1fr minmax(15em,20em);/* You can increase the last value if your 'location' text doesn't fit */
+        grid-template-rows: repeat(3, auto)/* 2em*/;
+        grid-template-areas: ". logo stationName" "menu logo location";
+        & .siteLogo {
+            grid-area: logo;
+            justify-self: start;
+            margin-bottom: .5vh;
+            width: 24vw;
+            min-width: 18em;
+            max-width: 24em;
+            height: auto;
+        }
+        & .fa-bars { align-self:end; grid-area:menu;  font-size: 1.5em;margin:.2em 0;}
+        & .stationName {
+            grid-area:stationName;
+            font-weight: 600;
+            text-align:right;/* Set to left or center if prefered */
+            font-style:italic;
+            margin: .4em 0 0 0;
+        }
+        & .siteInfo { 
+            grid-area: location;
+            display: grid;
+            margin-top:.4em;
+            grid-template-columns: 1fr 7em;
+            grid-template-rows: repeat(3, 1.1em);
+            row-gap: .4vh;
+            column-gap: 1em;
+            & p { 
+                margin:0;
+                font-size: 90%;
+                line-height: 1rem;
+            }
+            & p:nth-of-type(odd) {
+                text-align:right;
+            }
+            & p:nth-of-type(even) {
+                font-weight:600;
+                text-align: right;
+            }
+        }
+    }
+    & .subHead.layout2 {
+        grid-template-columns: 2.5em 1fr 15em;/* You can increase the last value if your 'location' test doesn't fit */
+        grid-template-areas: ". logo stationName" "menu logo location";
+        grid-template-rows: auto;
+        & .fa-bars { justify-self: center;}
+    }
+    & .gull {
+        position: absolute;
+        width: 8vw;
+        min-width:3em;
+        height: auto;
+        right: 2vw;
+        top: 4vw;
+        transform: scaleX(-1);  /* Turns image around */
+    }
+}
+@media (min-width: 1400px) {
+    #headImg, .gullStanding {
+        animation: img-Fade-out 1s ;
+        opacity: 1;
+    }
+}
+@media (max-width: 1500px) {
+    #headImg, .gullStanding {
+        animation: img-Fade-in 1s;
+        opacity: 0.2;
+    }
+}
+@keyframes img-Fade-in {
+    0%   { opacity:1}
+    100% { pacity: 0.2}
+}
+@keyframes img-Fade-out {
+    0%   { opacity: 0.2}
+    100% { opacity:1}
+}
+@media (max-width:1200px) {
+    #pageHead, #pageTitle { padding: 0 .5em ;}
+}
+
+#pageContent {
+    position: relative;
+    overflow-x:auto;
+    scroll-behavior: smooth;
+    & .subContent {
+        max-width: var(--pageWidth-px);
+        margin:auto;
+        min-height: 40em;   /* Temp */
+        /*border:thin solid var(--color5);    /* Temp */
+    }
+}
+
+#pageFoot {
+    border-top: .5vh solid var(--color1);
+    width:100%;
+    position:relative;
+    & .subFoot {
+        max-width: var(--pageWidth-px);
+        margin:auto;
+        display: grid;
+        min-height:2em;
+        align-items:center; /* Vertically centered */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    & p {
+        margin:0.3em 0;
+        line-height: 1em;
+        color: var(--color3);
+        font-size: 80%;
+        font-style:italic;
+    }
+    & p:nth-of-type(even) {
+        text-align: right;
+        font-style: normal;
+    }
+    & .gull {
+        position: absolute;
+        transform-origin: center center;
+        width: 8vw;
+        min-width:3em;
+        height: auto;
+        left: 2vw;
+        bottom: 3.5vw;
+        z-index:1;
+        transform: scaleX(-1);  /* Turns image around */
+    }
+    & .gullStanding {
+        position: absolute;
+        transform-origin: center bottom;
+        right: 3em;
+        bottom:2em;
+        transform: scaleX(-1);
+        height: 4em;
+        width:auto;
+        z-index:-10;
+    }
+}
+/*  Animation keyframes for standing gull at bottom of screen */
+@keyframes gullFadeIn {
+    0%   { opacity: 0;}
+    100% { opacity: 1;}
+}
+@keyframes gullDrop {
+    0%   { transform: translateY(-80vh) scaleX( 0 ) scaleY(0)}
+    95%  { transform: translateY(0.5vh) scaleX(-1) scaleY(0.8)}
+    100% { transform: translateY(0) scaleX(-1) scaleY(1)}
+}
+@keyframes gullGrow {
+    0%   { transform: scale(0);}
+    90%  { transform: scaleX(-1) scaleY(1.2);}
+    100% { transform: scaleX(-1) scaleY(1);}
+}
+@keyframes gullSlideLtR {
+    0%   { transform: translateX(-10vw) scaleX(-0.2) scaleY( .5)}
+    90%  { transform: translateX(0.5vw) scaleX(-1)}
+    100% { transform: translateX(0) scaleX(-1) scaleY(1)}
+}
+@keyframes gullSlideRtL {
+    0%   { transform: translateX(100vw) scaleX(0.1) scaleY(0.2)}
+    80%  { transform: translateX(-0.5vw) scaleX(1) scaleY(1)}
+    100% { transform: translateX(0) scaleX(-1) scaleY(1)}
+}
+
+.ow-animate-entryOne {
+    transform-origin: top center;
+    animation: entryOne 0.5s;
+}
+@keyframes entryOne {
+    0% { translate: 0 1em ;scale: 1 .1; opacity: .1;}
+    30% { scale: 1 1; }
+    80% { translate: 0 0; opacity: 0.9;}
+    100% { opacity: 1;}
+}
+/*	~~~~~~~	  GRIDS   ~~~~~~~*/
+.ow-grid {
+    display:grid;
+    grid-gap: var(--rowGap) var(--colGap);
+    margin-bottom: var(--rowGap);
+    --space: calc( var(--pageWidth-px) - var(--colGap) );
+    &.col7 { --min-size: calc( var(--space) / 8 ); }
+    &.col6 { --min-size: calc( var(--space) / 7 ); }
+    &.col5 { --min-size: calc( var(--space) / 6 ); }
+    &.col4 { --min-size: calc( var(--space) / 5 ); }
+    &.col3 { --min-size: calc( var(--space) / 4 ); }
+    &.col2 { --min-size: calc( var(--space) / 3 ); }
+    &.col1 { --min-size: 100%; };
+	grid-template-columns: repeat( auto-fill, minmax( var(--min-size), 1fr ));
+    /*grid-template-rows:5em auto;*/
+    grid-auto-rows:minmax(1em, auto);
+}
+/*  ~~~~~~  FLEXBOXES    ~~~~~*/
+.ow-flex {
+    display:flex;
+    gap: var(--rowGap) var(--colGap);
+    margin-bottom: var(--rowGap);
+    flex-flow: row wrap;
+    --space: calc( var(--pageWidth-px) - var(--colGap));
+    &.col7 > * { flex-basis: calc( var(--space) / 8); flex-grow:1; }
+    &.col6 > * { flex-basis: calc( var(--space) / 7); flex-grow:1; }
+    &.col5 > * { flex-basis: calc( var(--space) / 6); flex-grow:1; }
+    &.col4 > * { flex-basis: calc( var(--space) / 5); flex-grow:1; }
+    &.col3 > * { flex-basis: calc( var(--space) / 4); flex-grow:1; }
+    &.col2 > * { flex-basis: calc( var(--space) / 3); flex-grow:1; }
+    &.col1 > * { min-width: 100%; }
+    &.ow-fixed {
+        /* Fixed width boxes */
+        justify-content: space-around;
+        &.col7 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap) * 6)) / 7); }
+        &.col6 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap) * 5)) / 6); }
+        &.col5 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap) * 4)) / 5); }
+        &.col4 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap) * 3)) / 4); }
+        &.col3 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap) * 2)) / 3); }
+        &.col2 > * { max-width: calc( ( var(--pageWidth-px) - (var(--colGap))) / 2); }
+    }
+}
+/*  Growing Flexbox individual divs */
+.ow-flex.col7.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) / 7 * 2 - var(--colGap) ); }
+.ow-flex.col6.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) / 3 - var(--colGap)); }
+.ow-flex.col5.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) / 5 * 2 - var(--colGap)); }
+.ow-flex.col4.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) / 2 - var(--colGap) ); }
+.ow-flex.col3.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) / 3 * 2 - var(--colGap)); }
+.ow-flex.col2.ow-fixed .ow-growX2 { max-width: calc( var(--pageWidth-px) ); }
+.ow-flex.col7.ow-fixed .ow-growX3 { max-width: calc( var(--pageWidth-px) / 7 * 3 - (var(--colGap) * 2)); }
+.ow-flex.col6.ow-fixed .ow-growX3 { max-width: calc( var(--pageWidth-px) / 2 - (var(--colGap) * 2)); }
+.ow-flex.col5.ow-fixed .ow-growX3 { max-width: calc( var(--pageWidth-px) / 5 * 3 - (var(--colGap) *2 )); }
+.ow-flex.col4.ow-fixed .ow-growX3 { max-width: calc( var(--pageWidth-px) / 4 * 3 - (var(--colGap) * 2 )); }
+.ow-flex.col7.ow-fixed .ow-growX4 { max-width: calc( var(--pageWidth-px) / 7 * 4 - (var(--colGap) * 3 )); }
+.ow-flex.col6.ow-fixed .ow-growX4 { max-width: calc( var(--pageWidth-px) / 6 * 4 ); }
+.ow-flex.col5.ow-fixed .ow-growX4 { max-width: calc( var(--pageWidth-px) / 5 * 4 ); }
+
+.col1 article #gullPanel {
+    display: none;
+}
+
+/* TITLE Bars */
+.ow-titleBar {
+    /* Any number of items as long as they fit on one row  */
+    display:flex;
+    justify-content: space-between;
+    align-items:baseline;
+    column-gap: var(--colGap);
+    margin: 0 -1em 1vh;
+    padding: 0 1em;
+}
+.ow-titleBar * {
+    /*  Any element in a title bar has no margin */
+    margin:0;
+}
+/*  Button Bars */
+.ow-btnBar {
+    display: flex;
+    justify-content: space-between;
+    gap: calc( var(--rowGap) / 2) calc(var(--colGap) / 2);
+    flex-flow: row wrap;
+    align-items:baseline;
+    & * { margin:0;}
+    & button,
+    & select {
+        cursor: pointer;
+        padding: .2em 1em;
+        border-radius: 1em;
+        border:thin solid var(--color5);
+        background: inherit;
+        color:inherit;
+    }
+    & input {
+        padding: .2em 1em;
+        border-radius: 1em;
+        border:thin solid var(--color5);
+        background:inherit;
+        color: inherit;
+    }
+    & select:focus { outline: none;}
+    & button:hover {
+        background: var(--gradient-down);
+        flex-grow: 1;   /* Set to 0 to stop buttons expanding; */
+    }
+}
+/*  ~~~~~   Navigation  ~~~~~ */
+/*  Side Navigation */
+#NavBars {
+    grid-area: logo;
+    align-self: end;
+    font-size: 130%;
+    z-index:50;
+}
+#NavBars:hover {
+    color: var(--color7);
+    cursor: pointer;
+}
+
+.sideNav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0; /* Change to 'right' to put menu on right */
+    background-color: var(--color2);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    & .backtotop {
+        position:absolute;
+        bottom:1em;
+        right:2em;
+        color:var(--color5);
+    }
+    & i { float: right; margin-right: 1em;}
+    & a , & .ow-dropdownBtn {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        color: var(--color9);
+        display: block;
+        transition: 0.3s;
+        width:100%;
+        border:none;
+        background:none;
+        text-align:left;
+        cursor:pointer;
+    }
+    & a:hover, .ow-dropdownBtn:hover {
+        color: var(--color6);
+    }
+    & .ow-dropdownBtn.active { background:var(--color5)}
+    & .closebtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 1.5em;
+        width:2em;
+        color: var(--color1);
+        /*display: none;  /* uncomment this to remove the sidepanel close button.  (This will also disable the 'back to top' feature) */
+    }
+    & .menuOwl {
+        position: absolute;
+        width: 5em;
+        height:auto;
+        top:1em;
+        right:1em;
+    }
+    & .dropdown-container {
+        display:none;
+        padding-left:1em;
+        position:absolute;
+        z-index:21;
+        background:var(--color3);
+        border-radius: 0 0 0.5vh .5vh;
+        padding-bottom: 1vh;
+        width:100%;
+        & .iconLeft { float:left; padding-right: .5em;}
+        & .iconRight {float:right; padding-left: .5em;
+        }
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sideNav {padding-top: 15px;}
+}
+
+/*  TOP NAVIGATION */
+.topNav {
+    --topBorder: 3px;
+    border:none;    /* Change to suite your needs */
+    position:relative;
+    & a {   /* Menu links */
+        float: left;
+        display: block;
+        color: var(--color9);
+        text-align: center;
+        padding: .5em 1em;
+        margin-right:.1em;
+        border-top:var(--topBorder) solid transparent;
+        text-decoration: none;
+    }
+    & a:hover { border-top: var(--topBorder) solid var(--color1); color: var(--color7); cursor: pointer;}
+    & .active { background-color: var(--color3);}
+    & .icon { display: none; margin-right:1em; margin:3px 1em 0 0; font-size: 120%;cursor: pointer; }
+    & .icon:hover { color: var(--color3);}
+    & .ow-dropdown {
+        float: left;
+        overflow: hidden;
+        & .ow-dropdownBtn {
+            border: none;
+            border-top: var(--topBorder) solid transparent;
+            outline: none;
+            color: inherit;
+            padding: 0.5em 1em;
+            margin-right:.1em;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            cursor:pointer;
+        }
+    }
+    & .ow-dropdown .active { 
+        background-color: var(--color6); 
+        border-top:var(--topBorder) solid var(--color1);
+    }
+    & .ow-dropdownBtn:hover { 
+        color:var(--color7); 
+        border-top:var(--topBorder) solid var(--color1);}
+
+    & .ow-dropdown:hover .dropdownBtn {
+        color: var(--color8);
+    }
+    & .dropdown-container {
+        display: none;
+        position: absolute;
+        background-color: var(--color7);
+        padding-bottom: 1vh;
+        border-radius: 0 0 .5vh .5vh;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 2000;
+        & .iconLeft { float:left; margin-right: 0.5em;}
+        & .iconRight { float:right; margin-left: 0.5em;}
+        & a {
+            float: none;
+            color: var(--color1);
+            padding: 0.5em 1.5em;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        & a:hover {
+            background-color: var(--color6);
+            border-top:none;
+        }
+    }
+    & .dropdown-container.megaMenu {
+        width:81%;
+        left:9.5%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .topNav a:not(:first-child), .topNav .ow-dropdownBtn { /*.topNav .dropdown  */
+        display: none;
+    }
+    
+    .topNav .icon {
+        float: right;
+        display: block;
+    }
+    .topNav.responsive {position: relative;}
+    .topNav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topNav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .topNav.responsive .ow-dropdown {float: none;}
+    .topNav.responsive .dropdown-container {position: relative;}
+    .topNav.responsive .ow-dropdown .ow-dropdownBtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+    .topNav.responsive .dropdown-container.megaMenu { width:100%; left:0;}
+}
+
+/* Data Bars */
+.ow-dataBar {
+    margin:.2em -.5em;
+    padding:.2em .5em;
+    display:grid;
+    grid-template-columns:1fr 5.5em;
+    column-gap: .2em;
+    & p { margin:0.1em 0em;}
+    & p:nth-of-type(even) { justify-self:end;}
+}
+.ow-dataBarFlex {
+    margin:.2em -.5em;
+    padding:.2em .5em;
+    display:flex;
+    justify-content: space-between ;
+    column-gap: .2em;
+    & p { margin:.1em 0}
+    & p:nth-of-type(even) {justify-self:end; text-align:right;}
+}
+.ow-dataBar:hover, .ow-dataBarFlex:hover {
+    background: var(--gradient-databar);
+    color: var(--color3);
+    & p:last-of-type { font-weight: 700;}
+}

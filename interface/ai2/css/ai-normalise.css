@@ -1,0 +1,148 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: normalise.css   | Version: 5.01
+    Author:     DNC Thomas      | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:47:18
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+/* W3.CSS 5.02 March 31 2025 by Jan Egil and Borge Refsnes */
+html{box-sizing:border-box}
+*,*:before,*:after{box-sizing:inherit}
+/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+html{-ms-txt-size-adjust:100%;-webkit-txt-size-adjust:100%}
+body{margin:0;}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}
+summary{display:list-item}
+audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+a{background-color:transparent}
+a:active,a:hover{outline-width:0}
+abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+b,strong{font-weight:bolder}
+dfn{font-style:italic}
+mark{background:#ff0;color:#000}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}
+sup{top:-0.5em}
+figure{margin:1em 40px}
+img{border-style:none}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}
+hr{box-sizing:content-box;height:0;overflow:visible}
+button,input,select,textarea,optgroup{font:inherit;margin:0}
+optgroup{font-weight:bold}
+button,input{overflow:visible}
+button,select{text-transform:none}
+button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button;appearance:button;}
+button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
+legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
+textarea{overflow:auto}
+[type=checkbox],[type=radio]{padding:0}
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px;appearance:textfield;}
+[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+input:focus{ outline:none;}
+
+/* Colors */
+.ow-amber,.ow-hvr-amber:hover{color:#000;background-color:#ffc107}
+.ow-aqua,.ow-hvr-aqua:hover{color:#000;background-color:#00ffff}
+.ow-blue,.ow-hvr-blue:hover{color:#fff;background-color:#2196F3}
+.ow-light-blue,.ow-hvr-light-blue:hover{color:#000;background-color:#87CEEB}
+.ow-brown,.ow-hvr-brown:hover{color:#fff;background-color:#795548}
+.ow-cyan,.ow-hvr-cyan:hover{color:#000;background-color:#00bcd4}
+.ow-blue-grey,.ow-hvr-blue-grey:hover,.ow-blue-gray,.ow-hvr-blue-gray:hover{color:#fff;background-color:#607d8b}
+.ow-green,.ow-hvr-green:hover{color:#fff;background-color:#4CAF50}
+.ow-light-green,.ow-hvr-light-green:hover{color:#000;background-color:#8bc34a}
+.ow-indigo,.ow-hvr-indigo:hover{color:#fff;background-color:#3f51b5}
+.ow-khaki,.ow-hvr-khaki:hover{color:#000;background-color:#f0e68c}
+.ow-lime,.ow-hvr-lime:hover{color:#000;background-color:#cddc39}
+.ow-orange,.ow-hvr-orange:hover{color:#000;background-color:#ff9800}
+.ow-deep-orange,.ow-hvr-deep-orange:hover{color:#fff;background-color:#ff5722}
+.ow-pink,.ow-hvr-pink:hover{color:#fff;background-color:#e91e63}
+.ow-purple,.ow-hvr-purple:hover{color:#fff;background-color:#9c27b0}
+.ow-deep-purple,.ow-hvr-deep-purple:hover{color:#fff;background-color:#673ab7}
+.ow-red,.ow-hvr-red:hover{color:#fff;background-color:#f44336}
+.ow-sand,.ow-hvr-sand:hover{color:#000;background-color:#fdf5e6}
+.ow-teal,.ow-hvr-teal:hover{color:#fff;background-color:#009688}
+.ow-yellow,.ow-hvr-yellow:hover{color:#000;background-color:#ffeb3b}
+.ow-white,.ow-hvr-white:hover{color:#000;background-color:#fff}
+.ow-black,.ow-hvr-black:hover{color:#fff;background-color:#000}
+.ow-grey,.ow-hvr-grey:hover,.ow-gray,.ow-hvr-gray:hover{color:#000;background-color:#9e9e9e}
+.ow-light-grey,.ow-hvr-light-grey:hover,.ow-light-gray,.ow-hvr-light-gray:hover{color:#000;background-color:#f1f1f1}
+.ow-dark-grey,.ow-hvr-dark-grey:hover,.ow-dark-gray,.ow-hvr-dark-gray:hover{color:#fff;background-color:#616161}
+.ow-asphalt,.ow-hvr-asphalt:hover{color:#fff;background-color:#343a40}
+.ow-crimson,.ow-hvr-crimson:hover{color:#fff;background-color:#a20025}
+.ow-cobalt,w3-hvr-cobalt:hover{color:#fff;background-color:#0050ef}
+.ow-emerald,.ow-hvr-emerald:hover{color:#fff;background-color:#008a00}
+.ow-olive,.ow-hvr-olive:hover{color:#fff;background-color:#6d8764}
+.ow-paper,.ow-hvr-paper:hover{color:#000;background-color:#f8f9fa}
+.ow-sienna,.ow-hvr-sienna:hover{color:#fff;background-color:#a0522d}
+.ow-taupe,.ow-hvr-taupe:hover{color:#fff;background-color:#87794e}
+.ow-danger{color:#fff;background-color:#dd0000}
+.ow-note{color:#000;background-color:#fff599}
+.ow-info{color:#fff;background-color:#0a6fc2}
+.ow-warning{color:#000;background-color:#ffb305}
+.ow-success{color:#fff;background-color:#008a00}
+.ow-pale-red,.ow-hvr-pale-red:hover{color:#000;background-color:#ffdddd}
+.ow-pale-green,.ow-hvr-pale-green:hover{color:#000;background-color:#ddffdd}
+.ow-pale-yellow,.ow-hvr-pale-yellow:hover{color:#000;background-color:#ffffcc}
+.ow-pale-blue,.ow-hvr-pale-blue:hover{color:#000;background-color:#ddffff}
+.ow-txt-amber,.ow-hvr-txt-amber:hover{color:#ffc107}
+.ow-txt-aqua,.ow-hvr-txt-aqua:hover{color:#00ffff}
+.ow-txt-blue,.ow-hvr-txt-blue:hover{color:#2196F3}
+.ow-txt-light-blue,.ow-hvr-txt-light-blue:hover{color:#87CEEB}
+.ow-txt-brown,.ow-hvr-txt-brown:hover{color:#795548}
+.ow-txt-cyan,.ow-hvr-txt-cyan:hover{color:#00bcd4}
+.ow-txt-blue-grey,.ow-hvr-txt-blue-grey:hover,.ow-txt-blue-gray,.ow-hvr-txt-blue-gray:hover{color:#607d8b}
+.ow-txt-green,.ow-hvr-txt-green:hover{color:#4CAF50}
+.ow-txt-light-green,.ow-hvr-txt-light-green:hover{color:#8bc34a}
+.ow-txt-indigo,.ow-hvr-txt-indigo:hover{color:#3f51b5}
+.ow-txt-khaki,.ow-hvr-txt-khaki:hover{color:#b4aa50}
+.ow-txt-lime,.ow-hvr-txt-lime:hover{color:#cddc39}
+.ow-txt-orange,.ow-hvr-txt-orange:hover{color:#ff9800}
+.ow-txt-deep-orange,.ow-hvr-txt-deep-orange:hover{color:#ff5722}
+.ow-txt-pink,.ow-hvr-txt-pink:hover{color:#e91e63}
+.ow-txt-purple,.ow-hvr-txt-purple:hover{color:#9c27b0}
+.ow-txt-deep-purple,.ow-hvr-txt-deep-purple:hover{color:#673ab7}
+.ow-txt-red,.ow-hvr-txt-red:hover{color:#f44336}
+.ow-txt-sand,.ow-hvr-txt-sand:hover{color:#fdf5e6}
+.ow-txt-teal,.ow-hvr-txt-teal:hover{color:#009688}
+.ow-txt-yellow,.ow-hvr-txt-yellow:hover{color:#d2be0e}
+.ow-txt-white,.ow-hvr-txt-white:hover{color:#fff}
+.ow-txt-black,.ow-hvr-txt-black:hover{color:#000}
+.ow-txt-grey,.ow-hvr-txt-grey:hover,.ow-txt-gray,.ow-hvr-txt-gray:hover{color:#757575}
+.ow-txt-light-grey,.ow-hvr-txt-light-grey:hover,.ow-txt-light-gray,.ow-hvr-txt-light-gray:hover{color:#f1f1f1}
+.ow-txt-dark-grey,.ow-hvr-txt-dark-grey:hover,.ow-txt-dark-gray,.ow-hvr-txt-dark-gray:hover{color:#3a3a3a}
+.ow-border-amber,.ow-hvr-border-amber:hover{border-color:#ffc107}
+.ow-border-aqua,.ow-hvr-border-aqua:hover{border-color:#00ffff}
+.ow-border-blue,.ow-hvr-border-blue:hover{border-color:#2196F3}
+.ow-border-light-blue,.ow-hvr-border-light-blue:hover{border-color:#87CEEB}
+.ow-border-brown,.ow-hvr-border-brown:hover{border-color:#795548}
+.ow-border-cyan,.ow-hvr-border-cyan:hover{border-color:#00bcd4}
+.ow-border-blue-grey,.ow-hvr-border-blue-grey:hover,.ow-border-blue-gray,.ow-hvr-border-blue-gray:hover{border-color:#607d8b}
+.ow-border-green,.ow-hvr-border-green:hover{border-color:#4CAF50}
+.ow-border-light-green,.ow-hvr-border-light-green:hover{border-color:#8bc34a}
+.ow-border-indigo,.ow-hvr-border-indigo:hover{border-color:#3f51b5}
+.ow-border-khaki,.ow-hvr-border-khaki:hover{border-color:#f0e68c}
+.ow-border-lime,.ow-hvr-border-lime:hover{border-color:#cddc39}
+.ow-border-orange,.ow-hvr-border-orange:hover{border-color:#ff9800}
+.ow-border-deep-orange,.ow-hvr-border-deep-orange:hover{border-color:#ff5722}
+.ow-border-pink,.ow-hvr-border-pink:hover{border-color:#e91e63}
+.ow-border-purple,.ow-hvr-border-purple:hover{border-color:#9c27b0}
+.ow-border-deep-purple,.ow-hvr-border-deep-purple:hover{border-color:#673ab7}
+.ow-border-red,.ow-hvr-border-red:hover{border-color:#f44336}
+.ow-border-sand,.ow-hvr-border-sand:hover{border-color:#fdf5e6}
+.ow-border-teal,.ow-hvr-border-teal:hover{border-color:#009688}
+.ow-border-yellow,.ow-hvr-border-yellow:hover{border-color:#ffeb3b}
+.ow-border-white,.ow-hvr-border-white:hover{border-color:#fff}
+.ow-border-black,.ow-hvr-border-black:hover{border-color:#000}
+.ow-border-grey,.ow-hvr-border-grey:hover,.ow-border-gray,.ow-hvr-border-gray:hover{border-color:#9e9e9e}
+.ow-border-light-grey,.ow-hvr-border-light-grey:hover,.ow-border-light-gray,.ow-hvr-border-light-gray:hover{border-color:#f1f1f1}
+.ow-border-dark-grey,.ow-hvr-border-dark-grey:hover,.ow-border-dark-gray,.ow-hvr-border-dark-gray:hover{border-color:#616161}
+.ow-border-pale-red,.ow-hvr-border-pale-red:hover{border-color:#ffe7e7}.ow-border-pale-green,.ow-hvr-border-pale-green:hover{border-color:#e7ffe7}
+.ow-border-pale-yellow,.ow-hvr-border-pale-yellow:hover{border-color:#ffffcc}.ow-border-pale-blue,.ow-hvr-border-pale-blue:hover{border-color:#e7ffff}

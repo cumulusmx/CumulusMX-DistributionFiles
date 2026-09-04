@@ -1,0 +1,115 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: weatherdiary.css   | Version: 5.01
+    Author:     DNC Thomas         | July 2026
+    ----------------------------------------------
+    Last edit:  2026-08-11 09:47:57
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+input:hover { cursor: pointer; }
+
+input:focus { outline: none;}
+
+input[type=number] { 
+    width: 5em;
+    border-radius: 1em 0 0 1em;
+    padding: .3em 0;
+    text-align: right;
+}
+
+input[type=time] {
+    width: 8em;
+    border-radius: 1em;
+    border: thin solid var(--color5);
+    padding: .3em .5em;
+    text-align: center;
+    background: var(--color0);
+}
+
+input[type=file] {
+    width: 16em;
+    max-width:19em;
+}
+
+input[type=file]:hover {
+    flex-grow:1;
+    background: var(--gradient-down);
+}
+
+select {
+    width:100%;
+    border:thin solid var(--color5);
+    border-radius: 1em 0 0 1em;
+    padding: .3em 1em;
+    text-align: center;
+    cursor:pointer;
+    background-color:var(--color0)!important;
+}
+
+select:hover { background: var(--gradient-down); }
+
+.commentGrid {
+    display:grid;
+    grid-template-columns: 5em 1fr;
+    column-gap: var(--colGap);
+    margin-bottom: 1vh;
+    align-items:baseline;
+    & * {margin:0;}
+    & input {
+        border-radius: 1em;
+        padding: .3em 1em;
+        border:thin solid var(--color5);
+        cursor:text;
+        background: var(--color9);
+    }
+}
+
+.conditionsGrid {
+    display:grid;
+    grid-template-columns: repeat(4, 1em 1fr);
+    gap: var(--rowGap) var(--colGap);
+    align-items:baseline;
+    margin-bottom: 1vh;
+}
+
+.autoReadingsGrid {
+    display:grid;
+    grid-template-columns: 11em 1fr;
+    gap:var(--rowGap) var(--colGap);
+    align-items:baseline;
+    margin-bottom:1vh;
+    & h5 { margin:0 0 0.3em 0;text-align:center;}
+    & select {
+        border-radius: 1em 0 0 1em;
+        border: thin solid var(--color5);
+    }
+}
+
+.ow-button {
+    border: thin solid var(--color5);
+    border-radius: 1em;
+    cursor:pointer;
+    padding: .2em 1em;
+    text-align:center;
+    & a { text-decoration: none; color: var(--color1);}
+}
+
+.ow-button:hover {
+    background: var(--gradient-down);
+    flex-grow: 1;
+}
+
+.statusBar {
+    border: thin solid var(--color5);
+    background: var(--color9);
+    padding: .3em 1em .3em 10em;
+    width:100%;
+}
+
+.statusBar:before {
+    content: "{{STATUS}}:";
+    text-align: left;
+    margin-left: -9em;
+    color: var(--color7);
+}

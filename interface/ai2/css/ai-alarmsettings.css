@@ -1,0 +1,60 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: alarmsettings.css   | Version: 1.00
+    Author:     DNC Thomas          | March 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:40:08
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+#alarms {
+    width:100%;
+    /*overflow-x:auto;*/
+    background: var(--color9);
+    border-collapse: collapse;
+    & thead {
+        & tr { 
+            background: var(--color7);
+            & th { padding: .3em 1em; vertical-align:bottom;}
+            }
+        }
+    & tbody {
+        tr:hover td {
+            background: var(--gradient-databar)
+        }
+    }
+    & tbody tr:nth-of-type(odd) { background: var(--color8);}
+    & td { text-align:center }
+    & td input {
+        border:thin solid var(--color9);
+    }
+    & td input[type=number] { width: 4.5em; text-align:right; }
+    & td input[type=text] { width: 10em; overflow-x: scroll;padding:.2em .5em;}
+    & td:nth-of-type(2) { text-align:left; white-space: nowrap;}
+    & td:nth-of-type(4) { text-align:left; font-size: 80%;}
+}
+            
+/*tbody tr:hover td { background: var(--gradient-databar)}*/
+
+#fromEmail, #destEmail {
+    border:thin solid var(--color9);
+}
+
+#emailAddresses {
+    display:grid;
+    grid-template-columns:repeat(2, 11em 1fr);
+    grid-template-rows:auto;
+    column-gap:1em;
+    align-items:baseline;
+}
+
+#emailConf {
+    display:grid;
+    grid-template-columns:1em 30% 1fr;
+    grid-template-rows:auto;
+    gap: 0.4vh 1vw; 
+    align-items:baseline;
+}
+@media (max-width: 40em){
+    #emailAddresses {grid-template-columns: 11em 1fr}
+}

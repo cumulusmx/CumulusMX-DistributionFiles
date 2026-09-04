@@ -1,0 +1,65 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: dashboard.css   | Version: 5.1
+    Author:     DNC Thomas      | Mary 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:45:29
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+html {
+    --ledOff: darkslategrey;
+    --ledOn: #F44;
+}
+
+.ledGrid {
+	display:grid;
+	grid-template-columns: 1.6em 1fr;
+	grid-template-areas: "leds ledLabel";
+	column-gap: 0.75vw;
+	align-items:center;
+    & .ow-led {grid-area: leds; justify-self: center }
+	& p { margin:0;}
+	& .ow-led-on:hover {cursor: pointer;}
+	}
+			
+/*  ~~~~~   LEDs    ~~~~  */
+.ow-led {display:inline-block;
+	background-color: var(--ledOff);
+	box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+    -webkit-box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+    -moz-box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+	width: 1.6rem;
+	height: 1.6rem;
+    &.ow-brick   { width: 1.6rem; height: 0.8rem; margin-bottom:0;    }
+    &.ow-oval    { width: 1.6rem; height: 0.8rem; margin-bottom:0; border-radius: 0.4rem; }
+    &.ow-lozenge { width: 1.6rem; height: 0.8rem; margin-bottom:0; border-radius: 50%; }
+    &.ow-round   { border-radius:50%; }
+    &.ow-small   { width:1rem; height:1rem; }
+    &.ow-diamond {
+        transform: scale(65%) rotate(45deg);
+        -webkit-transform: scale(65%) rotate(45deg);
+        -moz-transform: scale(65%) rotate(45deg);
+    }
+}
+
+.ow-led-on {
+	animation: pulseRed 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulseRed {
+	0%, 100% {
+        background-color: var(--ledOff);
+        box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+        -webkit-box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+        -moz-box-shadow: inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7);
+    }
+	20%, 70% {
+        background-color: var(--ledOn);
+        /*box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px rgba(109, 25, 25, 1);*/
+        box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
+        -webkit-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
+        -moz-box-shadow:inset 2px 2px 4px rgba(240, 240, 240, 0.7),inset -2px -2px 4px rgba(32, 32, 32, 0.7), 0 0 14px 1px var(--ledOn);
+    }
+}

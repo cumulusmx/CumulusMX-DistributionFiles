@@ -1,0 +1,45 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: dataViewer.css  | Version: 5.01
+    Author:     DNC Thomas      | 2026-07-12
+    -------------------------------------------
+    Last edit:  2026-07-12 12:34:14
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.ow-panel {
+    overflow-x:scroll;
+    margin-left:1em;
+    padding-top: 1em;
+}
+
+.ow-titleBar { 
+    border-bottom: .5vh solid red!important;
+    & #siteLogo { padding: 5px; }
+    & h3 { padding-right: 1em; }
+}
+
+#dvTable {
+    /*width: 100%;*/
+    border-collapse: collapse;
+    tr:last-of-type {
+        border-bottom: 1px solid orange; 
+        padding-bottom: .5vh;
+    }
+    & tbody {
+        & td { 
+            text-align:center;
+            padding: .3em .5em
+        }
+        & td:first-of-type {
+            text-align:right!important; 
+            white-space: nowrap;
+        }
+        & tr:hover td {
+            background: var(--gradient-databar);
+        }
+    }
+    & thead th {
+        border-bottom: 1px solid red!important;
+        padding: .3em .5em;
+    }
+}

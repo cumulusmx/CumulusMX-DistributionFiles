@@ -1,0 +1,39 @@
+@charset "utf-8";
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Stylesheet: extrawebfiles.css   | Version: 1.00
+    Author:     DNC Thomas          | July 2026
+    -------------------------------------------
+    Last edit:  2026-08-11 09:43:19
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+#tablecontent {
+    width: calc( 100% );
+    margin-top:1vh;
+    min-width:60em;
+    overflow-x: auto;
+    margin-bottom:1vh;
+    & td {
+        padding: 0.3em .5em;
+        border: thin solid var(--color5);
+        background: var(--color9);
+        white-space: nowrap;
+    }
+    & th {
+        padding: 0.4em 1em;
+        vertical-align: bottom;
+    }
+    & td:last-of-type {
+        background: var(--color8);
+    }
+    & input[type=text] {
+        background: var(--color2);
+        color: var(--color9);
+        border:thin solid var(--color6);
+    }
+}
+
+#paginator {
+    color: var(--color5);
+    & a { color: var(--color1);}
+}
