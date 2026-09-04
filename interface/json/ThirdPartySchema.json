@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/23 16:53:29",
+	"version": "Last Modified: 2026/09/01 16:45:14",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -518,17 +518,37 @@
 						"enabled": {
 							"type": "boolean"
 						},
-						"url": {
+						"entries": {
 							"type": "array",
-							"maxItems": 10
-						},
-						"interval": {
-							"type": "number"
+							"maxItems": 10,
+							"items": {
+								"type": "object",
+								"properties": {
+									"url": {
+										"type": "string"
+									},
+									"post": {
+										"type": "boolean"
+									},
+									"postjson": {},
+									"postbody": {
+										"type": "string"
+									},
+									"interval": {
+										"type": "number",
+										"enum": [1, 2, 4, 5, 10, 15, 20, 30],
+										"default": 10
+									}
+								},
+								"dependencies": {
+									"postbody": ["post"],
+									"postjson": ["post"]
+								}
+							}
 						}
 					},
 					"dependencies": {
-						"url": ["enabled"],
-						"interval": ["enabled"]
+						"entries": ["enabled"]
 					}
 				},
 				"customminutes": {
@@ -538,18 +558,37 @@
 						"enabled": {
 							"type": "boolean"
 						},
-						"url": {
+						"entries": {
 							"type": "array",
-							"maxItems": 10
-						},
-						"intervalindex": {
-							"type": "number",
-							"enum": [0,1,2,3,4,5,6,7,8,9,10,11]
+							"maxItems": 10,
+							"items": {
+								"type": "object",
+								"properties": {
+									"url": {
+										"type": "string"
+									},
+									"post": {
+										"type": "boolean"
+									},
+									"postjson": {},
+									"postbody": {
+										"type": "string"
+									},
+									"interval": {
+										"type": "number",
+										"enum": [1, 2, 4, 5, 10, 15, 20, 30, 60, 120],
+										"default": 10
+									}
+								},
+								"dependencies": {
+									"postbody": ["post"],
+									"postjson": ["post"]
+								}
+							}
 						}
 					},
 					"dependencies": {
-						"url": ["enabled"],
-						"intervalindex": ["enabled"]
+						"entries": ["enabled"]
 					}
 				},
 				"customrollover": {
@@ -559,9 +598,28 @@
 						"enabled": {
 							"type": "boolean"
 						},
-						"url": {
+						"entries": {
 							"type": "array",
-							"maxItems": 10
+							"maxItems": 10,
+							"items": {
+								"type": "object",
+								"properties": {
+									"url": {
+										"type": "string"
+									},
+									"post": {
+										"type": "boolean"
+									},
+									"postjson": {},
+									"postbody": {
+										"type": "string"
+									}
+								},
+								"dependencies": {
+									"postbody": ["post"],
+									"postjson": ["post"]
+								}
+							}
 						}
 					},
 					"dependencies": {

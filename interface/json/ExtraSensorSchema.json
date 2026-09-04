@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/04/09 21:30:39",
+	"version": "Last Modified: 2026/09/01 18:58:59",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -15,7 +15,7 @@
 				},
 				"aqi": {
 					"type": "number",
-					"enum": [0, 1, 2, 3, 4, 5, 6, 7]
+					"enum": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 				}
 			}
 		},

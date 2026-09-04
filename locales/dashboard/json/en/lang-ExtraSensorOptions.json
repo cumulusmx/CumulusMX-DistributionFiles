@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/04/09 21:33:21",
+    "_LAST_MODIFIED": "Last modified: 2026/09/01 18:58:23",
     "AL_ADDED_TO_STATION_LABEL": "This AirLink has been added as a Node to my main WLL station",
     "AL_ADDED_TO_STATION": "Added to station",
     "AL_AUTO_DISCOVERY_HELP1": "If you use DHCP, or do not know your AirLink IP address, this option will attempt to discover your AirLink for you and track any IP address changes.",
@@ -33,6 +33,7 @@
     "AQI_NEPM": "Australia - NEPM",
     "AQI_LKI": "Netherlands - LKI",
     "AQI_BELAQI": "Belgium - BelAQI",
+    "AQI_EEA_EAQI": "EEA - EAQI",
     "AQI": "Air Quality Index",
     "BGT": "Black Globe Temp",
     "BGT_LABEL": "Use the Black Globe Temperature data from your extra station",

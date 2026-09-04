@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/01/23 18:19:59",
+	"version": "Last Modified: 2026/09/01 17:40:14",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
@@ -775,22 +775,45 @@
 			"fields": {
 				"customseconds": {
 					"collapsible":true,
-					"collapsed": false,
+					"collapsed": true,
 					"helper": "{{CUSTOM_HELP1}}",
 					"fields": {
 						"enabled": {
 							"rightLabel": "{{ENABLED}}"
 						},
-						"url": {
+						"entries": {
 							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
-							"dependencies": {
-								"enabled": true
-							}
-						},
-						"interval": {
-							"label": "{{INTERVAL_SECS}}:",
+							"items": {
+								"fields": {
+									"url": {
+										"label": "URL"
+									},
+									"post": {
+										"label": "GET/POST",
+										"rightLabel": "{{USE_POST}}"
+									},
+									"postjson": {
+										"label": "{{POST_JSON_LABEL}}",
+										"rightLabel": "{{POST_JSON}}",
+										"dependencies": {
+											"post": true
+										}
+									},
+									"postbody": {
+										"label": "{{POST_DATA}}",
+										"type": "textarea",
+										"dependencies": {
+											"post": true
+										}
+									},
+									"interval": {
+										"label": "{{INTERVAL_SECS}}:",
+										"removeDefaultNone": true
+									}
+								}
+							},
 							"dependencies": {
 								"enabled": true
 							}
@@ -799,38 +822,45 @@
 				},
 				"customminutes": {
 					"collapsible":true,
-					"collapsed": false,
+					"collapsed": true,
 					"helper": "{{CUSTOM_MINS_HELP1}}",
 					"fields": {
 						"enabled": {
 							"rightLabel": "{{ENABLED}}"
 						},
-						"url": {
+						"entries": {
 							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
-							"dependencies": {
-								"enabled": true
-							}
-						},
-						"intervalindex": {
-							"label": "Interval:",
-							"optionLabels": [
-								"{{MIN01}}",
-								"{{MIN02}}",
-								"{{MIN03}}",
-								"{{MIN04}}",
-								"{{MIN05}}",
-								"{{MIN06}}",
-								"{{MIN10}}",
-								"{{MIN12}}",
-								"{{MIN15}}",
-								"{{MIN20}}",
-								"{{MIN30}}",
-								"{{MIN60}}"
-							],
-							"removeDefaultNone": true,
-							"sort": false,
+							"items": {
+								"fields": {
+									"url": {
+										"label": "URL"
+									},
+									"post": {
+										"label": "GET/POST",
+										"rightLabel": "{{USE_POST}}"
+									},
+									"postjson": {
+										"label": "{{POST_JSON_LABEL}}",
+										"rightLabel": "{{POST_JSON}}",
+										"dependencies": {
+											"post": true
+										}
+									},
+									"postbody": {
+										"label": "{{POST_DATA}}",
+										"type": "textarea",
+										"dependencies": {
+											"post": true
+										}
+									},
+									"interval": {
+										"label": "{{INTERVAL_MINS}}:",
+										"removeDefaultNone": true
+									}
+								}
+							},
 							"dependencies": {
 								"enabled": true
 							}
@@ -845,10 +875,35 @@
 						"enabled": {
 							"rightLabel": "{{ENABLED}}"
 						},
-						"url": {
+						"entries": {
 							"label": "{{HTTP_URLS}}:",
 							"collapsible": true,
 							"collapsed": false,
+							"items": {
+								"fields": {
+									"url": {
+										"label": "URL"
+									},
+									"post": {
+										"label": "GET/POST",
+										"rightLabel": "{{USE_POST}}"
+									},
+									"postjson": {
+										"label": "{{POST_JSON_LABEL}}",
+										"rightLabel": "{{POST_JSON}}",
+										"dependencies": {
+											"post": true
+										}
+									},
+									"postbody": {
+										"label": "{{POST_DATA}}",
+										"type": "textarea",
+										"dependencies": {
+											"post": true
+										}
+									}
+								}
+							},
 							"dependencies": {
 								"enabled": true
 							}

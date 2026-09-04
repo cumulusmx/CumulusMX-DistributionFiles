@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/04/09 21:30:37",
+	"version": "Last Modified: 2026/09/01 18:58:25",
 	"fields": {
 		"accessible": {
 			"fieldClass": "hideme"
@@ -34,7 +34,8 @@
 						"{{AQI_AQHI}}",
 						"{{AQI_NEPM}}",
 						"{{AQI_LKI}}",
-						"{{AQI_BELAQI}}"
+						"{{AQI_BELAQI}}",
+						"{{AQI_EEA_EAQI}}"
 					],
 					"sort": false,
 					"removeDefaultNone": true,

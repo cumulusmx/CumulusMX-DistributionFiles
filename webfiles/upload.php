@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2026/07/12 11:55:13";
+$last_Modified="2026/08/30 19:55:17";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -68,10 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_SERVER["HTTP_DATA"])) {
 
 // We need a timestamp to check the signature and validity
 $receivedTime = $_SERVER['REQUEST_TIME'];
-if (isset($_SERVER['HTTP_TS'])) {
-    $requestTime = $_SERVER['HTTP_TS'];
-} else {
-    exitCode(422, 'Error: No timestamp');
+$requestTime = getHeader('HTTP_TS');
+if ($requestTime === null) {
+    exitCode(422, 'Error: No timestamp supplied');
 }
 
 if (abs($receivedTime - $requestTime) > 20) {
@@ -82,15 +81,13 @@ if (abs($receivedTime - $requestTime) > 20) {
 }
 
 // The signature to test
-if (isset($_SERVER['HTTP_SIGNATURE'])) {
-    $signatureSent = $_SERVER['HTTP_SIGNATURE'];
-} else {
-    exitCode(422, 'Error: No signature');
+$signatureSent = getHeader('HTTP_SIGNATURE');
+if ($signatureSent === null) {
+    exitCode(422, 'Error: No signature supplied');
 }
 
-if (isset($_SERVER['HTTP_FILE'])) {
-    $name = $_SERVER['HTTP_FILE'];
-
+$name = getHeader('HTTP_FILE');
+if ($name !== null) {
     // first check if the file is escaping our local folder structure
     $name_dir = pathinfo($name)['dirname'];
     if ($limitPath) {
@@ -114,11 +111,11 @@ if (isset($_SERVER['HTTP_FILE'])) {
     // if the file exists, check the file is writable
     if (file_exists($name)) {
         if (!is_writable($name)) {
-            exitCode(500, "Error: Target file $name is not writable by this user " . `whoami`);
+            exitCode(500, "Error: Target file $name is not writable by this user " . shell_exec('whoami'));
         }
     } else {
         if (!touch($name)) {
-            exitCode(500, "Error: Cannot create the target file $name with this user " . `whoami`);
+            exitCode(500, "Error: Cannot create the target file $name with this user " . shell_exec('whoami'));
         }
     }
 } else {
@@ -126,35 +123,28 @@ if (isset($_SERVER['HTTP_FILE'])) {
 }
 
 // Now what are we doing with the file?
-if (isset($_SERVER["HTTP_ACTION"])) {
-    $action = $_SERVER['HTTP_ACTION'];
-    if ($action !== 'replace' && $action !== 'append') {
-        exitCode(422, "Error: Invalid header ACTION = $action");
-    }
-} else {
-    exitCode(422, 'Error: No action');
+$action = getHeader('HTTP_ACTION');
+if ($action === null) {
+    exitCode(422, 'Error: No action supplied');
+} else if ($action !== 'replace' && $action !== 'append') {
+    exitCode(422, "Error: Invalid header ACTION = $action");
 }
 
 // set to 'logfile' for appending CSV log file data, 'json' for incremental Graph files
 if ($action == 'append') {
-    if (isset($_SERVER['HTTP_FILETYPE'])) {
-        $fileType = $_SERVER['HTTP_FILETYPE'];
-        if ($fileType !== 'logfile' && $fileType !== 'json') {
-            exitCode(422, 'Error: Invalid file type = '. $fileType);
-        }
-    } else {
-        // backwards compatibility for pre-incremental log files
-        $fileType = 'json';
+    $fileType = getHeader('HTTP_FILETYPE', 'json');
+    if ($fileType !== 'logfile' && $fileType !== 'json') {
+        exitCode(422, 'Error: Invalid file type = '. $fileType);
     }
 }
 
 // If appending - get the earlist timestamp - JS timestamps overflow PHP int!
 if ($action === 'append' && $fileType === 'json') {
-    if (isset($_SERVER['HTTP_OLDEST'])) {
-        $oldestTs = (float)$_SERVER['HTTP_OLDEST'];
-    } else {
+    $oldestHeader = getHeader('HTTP_OLDEST');
+    if ($oldestHeader === null || $oldestHeader === '') {
         exitCode(422, 'Error: No oldest timestamp for appending to JSON file');
     }
+    $oldestTs = (float)$oldestHeader;
 }
 
 // If appending to a log file, get the expected existing file length (in lines)
@@ -166,42 +156,42 @@ if ($action === 'append' && $fileType === 'logfile') {
     }
 }
 
-$utf8 = $_SERVER['HTTP_UTF8'];
+$utf8 = getHeader('HTTP_UTF8', '1');
 if ($utf8 != '0' && $utf8 != '1') {
     // default to UTF-8 as before if not supplied
     $utf8 = '1';
 }
 
-$binary = $_SERVER['HTTP_BINARY'];
-if ($binary != '0' && $binary != '1') {
+$binary = getHeader('HTTP_BINARY');
+if ($binary !== '0' && $binary !== '1') {
     exitCode(422, "Error: Invalid header BINARY = $binary");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $data = $_SERVER["HTTP_DATA"];
+    $data = getHeader('HTTP_DATA');
+    if ($data === null) {
+        exitCode(422, 'Error: No data sent');
+    }
     // ALL (binary and text) GET data is encoded, only decode text before signature check
     if (!$binary) {
         $data =  base64_decode($data);
     }
 } else {
-    if (isset($_SERVER['HTTP_RAW_POST_DATA'])) {
-        $data = $_SERVER['HTTP_RAW_POST_DATA'];
-    } else {
-        $data = file_get_contents('php://input');
-    }
+    $data = file_get_contents('php://input');
 
     if (strlen($data) == 0) {
         exitCode(422, 'Error: No data sent');
     }
 
-    if (isset($_SERVER['HTTP_CONTENT_ENCODING'])) {
-        if ($_SERVER['HTTP_CONTENT_ENCODING'] == 'br') {
+    $contentEncoding = getHeader('HTTP_CONTENT_ENCODING');
+    if ($contentEncoding !== null) {
+        if ($contentEncoding == 'br') {
             echo "Decompressing Brotli data\n";
             $data = brotli_uncompress($data);
-        } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'gzip') {
+        } elseif ($contentEncoding == 'gzip') {
             echo "Unzipping data\n";
             $data = gzdecode($data);
-        } elseif ($_SERVER['HTTP_CONTENT_ENCODING'] == 'deflate') {
+        } elseif ($contentEncoding == 'deflate') {
             echo "Inflating data\n";
             $data = gzinflate($data);
         }
@@ -218,9 +208,9 @@ if ($debug) {
 $ourSignature = CalculateSignature($secret, $requestTime . $name . $data);
 if ($signatureSent != $ourSignature) {
     $msg = "Error: Invalid signature\n" .
-        "Data Sig   = $signatureSent\n" .
-        "Server Sig = $ourSignature\n" .
-        "Server sig data = " . $requestTime . $name . substr($data, 0, 50);
+        "Received Sig   = $signatureSent\n" .
+        "Calculated Sig = $ourSignature\n" .
+        "Calculated sig data = " . $requestTime . $name . substr($data, 0, 50);
     exitCode(422, $msg);
 }
 
@@ -257,6 +247,10 @@ exitCode(200);
 // ---------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------
+
+function getHeader(string $headerName, $default = null) {
+    return $_SERVER[$headerName] ?? $default;
+}
 
 function AppendJsondata() {
     global $data, $name, $debug, $oldestTs;
