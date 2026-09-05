@@ -19,6 +19,7 @@
     }
     & button:hover {
         background: var(--gradient-down)!important;
+        box-shadow: var(--buttonHover)!important;
     }
 }
 
