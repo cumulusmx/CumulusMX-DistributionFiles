@@ -99,8 +99,8 @@ h6 { font-size: .9em; font-style: italic;}
     /*background: var(--gradient-down);*/
     flex-grow: 1;
     box-shadow: var(--buttonHover);
-
 }
+
 .ow-image-small {
     height: 1.2em;
     width:auto;
