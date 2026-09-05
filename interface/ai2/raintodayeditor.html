@@ -102,7 +102,7 @@
                 </section>
 				<!-- Content -->
 				<section class="ow-flex col3 ow-fixed">
-					<div class="ow-panel">
+					<div class="ow-panel ow-theme8">
 						<div class="ow-titleBar">
 							<h2>{{TODAYS_RAIN_EDITOR_TITLE}}</h2>
 							<i class="fa-solid fa-droplet" style="color:var(--colourRain);"></i>
@@ -117,7 +117,9 @@
 								<input type="number" class="ow-theme1" id="inputRainMultiplier" step="0.001" readonly>
 								<div class="ow-divider" style="grid-column-start:span 2;"></div>
 								<label for="inputRainToday">{{RAIN_TODAY}}</label>
-								<input type="number" class="w3-center ows-theme0" id="inputRainToday" name="raintoday" step="0.01">
+								<input type="number" class="ow-center ow-theme0" id="inputRainToday" name="raintoday" step="0.01">
+                                <label for="inputMidnightRain">{{RAIN_SINCE_MIDNIGHT}}</label>
+                                <input type="number" class="ow-center ow-theme0" id="inputMidnightRain" name="midnightrain" step="0.01">
 								<div class="ow-divider" style="grid-column-start:span 2;"></div>
 								<div class="ow-btnBar" style="justify-content: flex-end; grid-column-start: span 2;">
 									<button type="submit" style="max-width:60%;" aria-label="Apply">{{APPLY_CHANGES}}</button>

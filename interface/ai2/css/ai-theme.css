@@ -39,6 +39,7 @@
     --gradient-ltr: linear-gradient( 90deg,  var(--color7), var(--color5));
     --gradient-rtl: linear-gradient( 90deg,  var(--color5), var(--color7));
     --gradient-databar: linear-gradient( var(--color5) 0%, transparent 20%, transparent 80%, var(--color5) 100%);
+    --buttonHover: inset -3px -3px 3px 0px rgba(109, 109, 109, 0.5), inset 3px 3px 3px 0px rgba(255, 255, 255, 0.5);
 }
 
 /*  Combination colours foreground/background */

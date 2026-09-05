@@ -34,7 +34,10 @@
 .btn-default:focus,
 .alpaca-form-button:focus { outline: none!important; }
 
-.alpaca-form-button:hover { background: var(--gradient-down);}
+.alpaca-form-button:hover { 
+	background: var(--gradient-down);
+	box-shadow: var(--buttonHover);
+}
 
 .alpaca-field > legend > .collapsed::before {
 	content: '\25B8';

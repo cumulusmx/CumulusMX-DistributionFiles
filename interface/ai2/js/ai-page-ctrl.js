@@ -236,6 +236,15 @@ function togglePopup( el ){
     $('#' + el).css( 'display', ($('#' + el).css('display') == 'none' ? 'block' : 'none'));
 }
 
+function setActive() {
+    const currentUrl = window.location.href;
+    let menuLinks = document.querySelectorAll('nav a');
+    menuLinks.forEach( link => {
+        if( link.href === currentUrl) {
+            $(link).addClass('active');
+        }
+    })
+}
 /*  Document ready */
 $().ready( function() {
     setTheme();
@@ -243,6 +252,7 @@ $().ready( function() {
     $.getScript( 'js/menu.js', function(){
         createMenu( menuSrc, false, '',true);
         navClicks();
+        setActive();
     })
     setPageGeometry( cmxConfig.Geometry );
     setPanelsStyles( cmxConfig.Panels );
