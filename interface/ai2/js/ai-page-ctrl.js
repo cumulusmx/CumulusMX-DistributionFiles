@@ -260,10 +260,6 @@ $().ready( function() {
     $('[data-owData="Version"]').text('5.21');
     setStaticData();
     setTimeout(setPageGeometry, 250, cmxConfig.Geometry);
-//    $('#pageContent').on('click', function() {
-//        var navWidth = parseInt( $('#mySideNav').css('width'));
-//       ( navWidth > 0 ? toggleSideNav() :'');
-//    })
 })
 
 $(window).on('resize', function() {
