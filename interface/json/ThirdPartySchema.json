@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/09/01 16:45:14",
+	"version": "Last Modified: 2026/09/05 20:13:26",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -530,7 +530,9 @@
 									"post": {
 										"type": "boolean"
 									},
-									"postjson": {},
+									"postjson": {
+										"type": "boolean"
+									},
 									"postbody": {
 										"type": "string"
 									},
@@ -570,7 +572,9 @@
 									"post": {
 										"type": "boolean"
 									},
-									"postjson": {},
+									"postjson": {
+										"type": "boolean"
+									},
 									"postbody": {
 										"type": "string"
 									},
@@ -610,7 +614,9 @@
 									"post": {
 										"type": "boolean"
 									},
-									"postjson": {},
+									"postjson": {
+										"type": "boolean"
+									},
 									"postbody": {
 										"type": "string"
 									}
