@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2026/08/30 19:55:17";
+$last_Modified="2026/09/08 16:35:26";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -68,10 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_SERVER["HTTP_DATA"])) {
 
 // We need a timestamp to check the signature and validity
 $receivedTime = $_SERVER['REQUEST_TIME'];
-$requestTime = getHeader('HTTP_TS');
-if ($requestTime === null) {
+$rawTsHeader = getHeader('HTTP_TS');
+if ($rawTsHeader === null || trim((string)$rawTsHeader) === '') {
     exitCode(422, 'Error: No timestamp supplied');
 }
+$requestTime = (int)trim((string)$rawTsHeader);
 
 if (abs($receivedTime - $requestTime) > 20) {
     $msg = "Error: TimeStamp is out of date\n" .
