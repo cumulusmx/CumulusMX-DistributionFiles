@@ -186,7 +186,7 @@ h6 { font-size: .9em; font-style: italic;}
 /*  Section Styling */
 #pageHead {
     position: relative;
-    border-bottom: 1vh solid var(--color1);
+    border-block-end: 1vh solid var(--color1);
     width:100%;
     z-index:25;
     & .subHead {
@@ -227,13 +227,11 @@ h6 { font-size: .9em; font-style: italic;}
                 margin:0;
                 font-size: 90%;
                 line-height: 1rem;
-            }
-            & p:nth-of-type(odd) {
                 text-align:right;
             }
             & p:nth-of-type(even) {
                 font-weight:600;
-                text-align: right;
+                justify-self:start;
             }
         }
     }
@@ -290,7 +288,7 @@ h6 { font-size: .9em; font-style: italic;}
 }
 
 #pageFoot {
-    border-top: .5vh solid var(--color1);
+    border-block-start: .5vh solid var(--color1);
     width:100%;
     position:relative;
     & .subFoot {
@@ -307,6 +305,7 @@ h6 { font-size: .9em; font-style: italic;}
         color: var(--color3);
         font-size: 80%;
         font-style:italic;
+        & span { font-weight: 600; color: var(--color8);}
     }
     & p:nth-of-type(even) {
         text-align: right;
@@ -621,10 +620,11 @@ h6 { font-size: .9em; font-style: italic;}
             text-decoration: none;
             display: block;
             text-align: left;
+            border-block-start: var(--topBorder) dotted transparent;
         }
         & a:hover {
             background-color: var(--color6);
-            border-top:none;
+            border-block-start: var(--topBorder) solid var(--color1);
         }
     }
     & .dropdown-container.megaMenu {
