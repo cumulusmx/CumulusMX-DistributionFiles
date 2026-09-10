@@ -60,6 +60,7 @@
 
 .mylabel {
 	margin-left:1em;
+	cursor:pointer;
 }
 
 input[type=checkbox] { cursor: pointer;}
