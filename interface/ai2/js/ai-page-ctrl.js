@@ -51,7 +51,7 @@ let setPanelsStyles = function( panels ) {
         case 'ow-theme-shadow3': $('.ow-grid, .ow.flex, .customGrid').chlidren().addClass( 'ow-theme-shadow3' ); break;
         default:    $('.ow-grid, .ow-flex, .customGrid').children().removeClass( shadows ) 
     }
-    console.log('Panel styles set');
+    //console.log('Panel styles set');
 }
 
 let setGull = function( gull ) {
@@ -65,7 +65,7 @@ let setGull = function( gull ) {
     }
     prompt = (gull.Animation == '' ? 'default' : gull.Animation.toLowerCase()) + " animation";
     //prompt += " and " + (gull.OnTop ? 'over' : 'below') + " other elements";
-    console.log('Gull set to ' + prompt );
+    //console.log('Gull set to ' + prompt );
     $('#footImg').css({'animation': animation + gull.Speed + 's', 'z-index': (gull.OnTop ? 0 : -100)});
 }
 
@@ -162,7 +162,7 @@ function createMenu(src, submenu, indent, navBar){
 }
 
 function navClicks() {  //  Allocates a click function to all dropdown buttons
-    console.log('Allocating click event to navigation buttons')
+    //console.log('Allocating click event to navigation buttons')
     //let count = 0;
     $('.ow-dropdownBtn').each( function() {
         $(this).on('click', function() {

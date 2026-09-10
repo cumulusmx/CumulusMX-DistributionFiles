@@ -595,10 +595,10 @@ h6 { font-size: .9em; font-style: italic;}
         background-color: var(--color6); 
         border-top:var(--topBorder) solid var(--color1);
     }
+    & .ow-dropdownBtn i {color: var(--color3);}
     & .ow-dropdownBtn:hover { 
         color:var(--color7); 
         border-top:var(--topBorder) solid var(--color1);}
-
     & .ow-dropdown:hover .dropdownBtn {
         color: var(--color8);
     }
