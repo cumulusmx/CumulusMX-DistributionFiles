@@ -11,64 +11,36 @@
 let useWebSockets = true; // set to false to use Ajax updating
 let updateInterval = 3;   // update interval in seconds, if Ajax updating is used
 let debug = false;
-
+const availRes = $.getJSON( {url: '/api/graphdata/availabledata.json'})
 
 var cp = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 // End of configuration section
 
-$(document).ready(function () {
+$().ready(function () {
 
 	let lastUpdateTimer, ws;
 
 	//	Added by NEIL
-	$.ajax({
-		url: '/api/settings/displayoptions.json',
-		dataType: 'json',
-		success: function (results) {
-			var dataVisible = results.DataVisibility;
-			if( dataVisible.temperature.Temp      == 0 ) { 
-				$('[data-cmxData="Temp"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.InTemp    == 0 ) { 
-				$('[data-cmxData="InTemp"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.DewPoint  == 0 ) { 
-				$('[data-cmxData="DewPoint"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.HeatIndex == 0 ) { 
-				$('[data-cmxData="HeatIndex"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.WindChill == 0 ) { 
-				$('[data-cmxData="WindChill"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.AppTemp   == 0 ) { 
-				$('[data-cmxData="AppTemp"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.FeelsLike == 0 ) { 
-				$('[data-cmxData="FeelsLike"]').addClass('ow-hide');
-			}
-			if( dataVisible.temperature.Humidex   == 0 ) { 
-				$('[data-cmxData="Humidex"]').addClass('ow-hide');}
 
-			if( dataVisible.humidity.InHum        == 0 && dataVisible.humidity.Hum == 0 ) { 
-				$('[data-cmxData="humidity"]').addClass('ow-hide');
-			} else {
-				if( dataVisible.humidity.Hum == 0 ) { $('[data-cmxData="Hum"]').addClass('ow-hide');}
-				if( dataVisible.humidity.InHum == 0 ) { $('[data-cmxData="InHum"]').addClass('ow-hide');}
-			}
-			if( dataVisible.solar.UV == 0 && dataVisible.solar.Solar == 0 && dataVisible.solar.Sunshine == 0 ){
-				$('[data-cmxData="solar"]').addClass('ow-hide');
-			} else {
-				if( dataVisible.solar.UV == 0 ) { $('[data-cmxData="UV"]').addClass('ow-hide');}
-				if( dataVisible.solar.Solar == 0 ) { $('[data-cmxData="Solar"]').addClass('ow-hide');}
-				if( dataVisible.solar.Sunshine == 0 ) { $('[data-cmxData="Sunshine"]').addClass('ow-hide')}
-			}
-			if( dataVisible.snow.Depth == 0) { 
-				$('[data-cmxData="Depth"]').addClass('ow-hide');
-			}
-			if( dataVisible.snow.Last24h == 0 ) { 
-				$('[data-cmxData="Last24h"]').addClass('ow-hide');
-			}
+	availRes.done( function( avail){
+		if( avail.Temperature != undefined && avail.Temperature.length > 0) {
+			if( !avail.Temperature.includes('Temperature')) { $('[data-cmxData="Temp"]').remove();}
+			if( !avail.Temperature.includes('Dew Point')) { $('[data-cmxData="DewPoint"]').remove();}
+			if( !avail.Temperature.includes('Indoor Temp')) { $('[data-cmxData="InTemp"]').remove();}
+			if( !avail.Temperature.includes('Heat Index')) { $('[data-cmxData="HeaIndex"]').remove();}
+			if( !avail.Temperature.includes('Wind Chill')) { $('[data-cmxData="WindChill"]').remove();}
+			if( !avail.Temperature.includes('Apparent Temperature')) { $('[data-cmxData="AppTemp"]').remove();}
+			if( !avail.Temperature.includes('Feels Like')) { $('[data-cmxData="FeelsLike"]').remove();}
+			if( !avail.Temperature.includes('Humidex')) { $('[data-cmxData="Humidex"]').remove();}
+			if( !avail.Temperature.includes('BGT')) { $('[data-cmxData="BGT"]').remove();}
+		}
+		console.log('Available data: ' + JSON.stringify(avail.Humidity));
+		if( avail.Humidity != undefined && avail.Humidity.length > 0) {
+			if( !avail.Humidity.includes('Indoor Hum')) { $('[data-cmxData="InHum"]').remove();}
+		}
+		if( avail.Solar != undefined && avail.Solar.length > 0 ) {
+			if( !avail.Solar.includes('Solar Rad')) { $('[data-cmxData="Solar"]').remove();}
+			if( !avail.Solar.includes('UV Index')) { $('[data-cmxData="UV"]').remove();}
 		}
 	})
 
