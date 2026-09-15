@@ -38,6 +38,7 @@
 
 #fromEmail, #destEmail {
     border:thin solid var(--color9);
+    padding: .3em 1em;
 }
 
 #emailAddresses {
