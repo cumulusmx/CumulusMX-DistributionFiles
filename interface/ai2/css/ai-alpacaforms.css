@@ -176,8 +176,8 @@ legend { border-bottom: 1px solid var(--color5)}
     padding: .3em 1em .3em 9em;
     width:100%;
 }
-
-.statusBar:before { /* Move to common stylesheet */
+/*
+.statusBar:before { /* Move to common stylesheet 
     text-align: left;
     font-style: italic;
     font-size: 90%;
@@ -185,5 +185,4 @@ legend { border-bottom: 1px solid var(--color5)}
     margin-left: -9.5em;
     color: var(--color7);
 }
-
-
+*/

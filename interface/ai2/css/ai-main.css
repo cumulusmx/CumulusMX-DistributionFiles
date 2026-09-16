@@ -176,6 +176,15 @@ h6 { font-size: .9em; font-style: italic;}
 }
 .ow-italic { font-style: italic;}
 
+.statusBar:before { /* Move to common stylesheet */
+    text-align: left;
+    font-style: italic;
+    font-size: 90%;
+    baseline-shift: center;
+    margin-left: -9.5em;
+    color: var(--color7);
+}
+
 /*  Unit Formatting */
 .RainUnit, .unit-rain,
 .TempUnit, 
