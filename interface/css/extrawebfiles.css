@@ -1,0 +1,122 @@
+/*
+Overrides for Alpaca table formatting
+Last Updated: 2026/09/23 16:26:00
+*/
+.alpaca-field-table table tr td .alpaca-field, .alpaca-field-table table tr td .alpaca-field .form-control, table.dt-rowReorder-float tr td .alpaca-field, table.dt-rowReorder-float tr td .alpaca-field .form-control {
+    min-width: 20px;
+}
+.alpaca-field-table .alpaca-control.checkbox, table.dt-rowReorder-float .alpaca-control.checkbox {
+    padding: 0;
+}
+.alpaca-array-actionbar.alpaca-array-actionbar-top {
+    padding: 2px 1px;
+}
+.alpaca-form-buttons-container {
+    text-align: center;
+}
+.btn-group-sm> .btn, .btn-sm {
+    padding: 5px 5px;
+}
+.form-control {
+    padding: 3px 3px;
+}
+select option {
+    color: white;
+    background-color: #333
+}
+/* Enabled */
+.table > thead > tr > th:nth-of-type(1) {
+    width: 30px;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* Local Filename */
+.table > thead > tr > th:nth-of-type(2) {
+    min-width: 150px;
+}
+/* Destination Filename */
+.table > thead > tr > th:nth-of-type(3) {
+    min-width: 150px;
+}
+/* Process */
+.table > thead > tr > th:nth-of-type(4) {
+    width: 30px;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* Upload */
+.table > thead > tr > th:nth-of-type(5) {
+    width: 30px;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* UTF8 */
+.table > thead > tr > th:nth-of-type(6) {
+    width: 30px ;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* Binary */
+.table > thead > tr > th:nth-of-type(7) {
+    width: 30px;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* Incremental */
+.table > thead > tr > th:nth-of-type(8) {
+    width: 30px;
+    min-width: 30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+/* Type */
+.table > thead > tr > th:nth-of-type(9) {
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+}
+/* Upload Interval */
+.table > thead > tr > th:nth-of-type(10) {
+    text-align: center;
+    width: 85px;
+    min-width: 85px;
+}
+/* First Upload Time */
+.table > thead > tr > th:nth-of-type(11) {
+    text-align: center;
+    width: 75px;
+    min-width: 75px;
+}
+/* Actions */
+.table > thead > tr > th:nth-of-type(12) {
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+}
+.table {
+    margin: 0;
+}
+.table > thead > tr > th {
+    white-space: normal;
+}
+.table > tbody > tr > td {
+    padding: 1px;
+    vertical-align: middle;
+}
+.table-responsive {
+    overflow-x: unset;
+}
+.table-responsive > .table-bordered {
+    border: 1px solid #ddd;
+}
+.checkbox {
+    margin: 0;
+}
+select {
+    background-color: #82caff;
+}
