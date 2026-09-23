@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/15 22:47:24
+Last modified: 2026/09/22 18:20:31
 -->
 <!doctype html>
 <html lang="en">
@@ -8,6 +8,7 @@ Last modified: 2025/08/15 22:47:24
     <title>{{EXTRA_WEB_FILES}} - Cumulus MX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
+
     <link href="css/main.css" rel="stylesheet">
 
     <!-- menu -->
@@ -22,43 +23,107 @@ Last modified: 2025/08/15 22:47:24
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="lib/editablegrid/editablegrid.js"></script>
-    <link rel="stylesheet" href="lib/editablegrid/editablegrid.css" type="text/css" media="screen">
-<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_renderers.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_editors.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_validators.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_utils.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="lib/editablegrid/editablegrid_charts.js" ></script>
+    <!-- DateTime Picker -->
+    <script src="lib/moment/moment.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script src="lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Alpaca -->
+    <script src="lib/handlebars/handlebars.min.js"></script>
+    <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
+    <script src="lib/alpaca/alpaca.min.js"></script>
 
     <script src="js/extrawebfiles.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
 
+    <!-- Style overrides for the wiidde table -->
     <style type="text/css">
         body {
             padding-top: 60px;
         }
         .top-buffer { margin-top:40px; }
-        .radio {display:inline-block;padding-left:40px;vertical-align: middle;margin-top:10px;}
-        .radio + .radio, .checkbox + .checkbox {margin-top: 10px;}
-        a { color: #548dc4; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 100%; min-width: 800px; max-width:1000px}
-        table.testgrid td, table.testgrid th { padding: 5px; border: 1px solid #E0E0E0; }
-        table.testgrid th { background: #E5E5E5; text-align: left; }
-        input.invalid { background: red; color: #FDFDFD; }
-        #paginator {text-align: center}
+        .alpaca-field-table table tr td .alpaca-field, .alpaca-field-table table tr td .alpaca-field .form-control, table.dt-rowReorder-float tr td .alpaca-field, table.dt-rowReorder-float tr td .alpaca-field .form-control {
+            min-width: 20px;
+        }
+        .alpaca-field-table .alpaca-control.checkbox, table.dt-rowReorder-float .alpaca-control.checkbox {
+            padding: 0;
+        }
+        .btn-group-sm>.btn, .btn-sm {
+            padding: 5px 5px;
+        }
+        .form-control {
+            padding: 3px 3px !important;
+        }
+        table {
+            margin: 0 !important;
+        }
+        .table > thead > tr > th:nth-of-type(1) {
+            width: 40px !important;
+            min-width: 40px !important;
+            writing-mode: vertical-rl;
+        }
+        .table > thead > tr > th:nth-of-type(2) {
+            min-width: 150px !important;
+        }
+        .table > thead > tr > th:nth-of-type(3) {
+            min-width: 150px !important;
+        }
+        .table > thead > tr > th:nth-of-type(4) {
+            width: 50px !important;
+            min-width: 50px !important;
+        }
+        .table > thead > tr > th:nth-of-type(5) {
+            width: 50px !important;
+            min-width: 50px !important;
+        }
+        .table > thead > tr > th:nth-of-type(6) {
+            width: 50px !important;
+            min-width: 50px !important;
+        }
+        .table > thead > tr > th:nth-of-type(7) {
+            width: 50px !important;
+            min-width: 50px !important;
+        }
+        .table > thead > tr > th:nth-of-type(8) {
+            width: 130px !important;
+            min-width: 130px !important;
+        }
+        .table > thead > tr > th:nth-of-type(9) {
+            width: 82px !important;
+            min-width: 82px !important;
+        }
+        .table > thead > tr > th:nth-of-type(10) {
+            width: 80px !important;
+            min-width: 80px !important;
+        }
+        .table > thead > tr > th:nth-of-type(11) {
+            width: 40px !important;
+            min-width: 40px !important;
+            writing-mode: vertical-rl;
+        }
+        .table > thead > tr > th:nth-of-type(12) {
+            width: 110px !important;
+            min-width: 80px !important;
+        }
+        table > tbody > tr > td {
+            padding: 1px !important;
+            vertical-align: middle !important;
+        }
+        .table-responsive {
+            overflow-x: unset;
+        }
+        .alpaca-form-buttons-container {
+            text-align: center;
+        }
+        .checkbox {
+            margin: 0;
+        }
+        .table-container {
+            min-width: 1200px !important;
+            width: 1400px !important;
+        }
     </style>
-
-    <script>
-        window.onload = function () {
-            editableGrid.onloadJSON("api/settings/extrawebfiles.json");
-            $.ajax({url: "api/info/version.json", dataType:"json", success: function (result) {
-                $('#Version').text(result.Version);
-                $('#Build').text(result.Build);
-            }});
-        };
-    </script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -79,25 +144,27 @@ Last modified: 2025/08/15 22:47:24
     <!-- END NAVIGATION MENU -->
 
     <div class="container">
-        <div class="row top-buffer">
+        <h1>{{EXTRA_WEB_FILES}}</h1>
+    </div>
+
+    <div class="container table-container">
+        <form id="filesForm"></form>
+    </div>
+
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-                <h1>{{EXTRA_WEB_FILES}}</h1>
-                <p>{{EXTRA_WEB_FILES_NOTE1}}<br>
-                {{EXTRA_WEB_FILES_NOTE2}}<br>
-                {{EXTRA_WEB_FILES_NOTE3}}</p>
-                <p>{{EXTRA_WEB_FILES_NOTE4}}</p>
+               <ul>
+                    <li>{{EXTRA_WEB_FILES_NOTE1}}
+                    <ul>
+                        <li>{{EXTRA_WEB_FILES_NOTE2}}</li>
+                        <li>{{EXTRA_WEB_FILES_NOTE3}}</li>
+                    </ul>
+                    <li>{{EXTRA_WEB_FILES_NOTE4}}</li>
+               </ul>
             </div>
         </div>
-        <div class="row top-buffer">
-            <div class="col-md-12">
-                <div id="tablecontent"></div>
-            </div>
-        </div>
-        <div class="row" style="margin: 10px;">
-            <div class="col-md-12">
-                <div id="paginator"></div>
-            </div>
-        </div>
+
     </div>
     <!-- FOOTER -->
     <div id="footerwrap">

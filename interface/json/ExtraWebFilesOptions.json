@@ -1,0 +1,93 @@
+{
+	"fields": {
+		"Accessible": {
+			"fieldClass": "hideme"
+		},
+		"Files": {
+			"type": "table",
+			"items": {
+				"fields": {
+					"Enabled": {
+						"label": "{{ENABLED}}"
+					},
+					"LocalFilename": {
+						"type": "text",
+						"label": "{{LOCAL_FILENAME}}"
+					},
+					"DestFilename": {
+						"type": "text",
+						"label": "{{DEST_FILENAME}}"
+					},
+					"Process": {
+						"label": "{{PROCESS}}"
+					},
+					"Upload": {
+						"label": "{{UPLOAD}}"
+					},
+					"Utf8": {
+						"label": "UTF8",
+						"dependencies": {
+							"Upload": true
+						}
+					},
+					"Binary": {
+						"label": "{{BINARY}}",
+						"dependencies": {
+							"Process": false,
+							"Upload": true
+						}
+					},
+					"Type": {
+						"type": "select",
+						"label": "{{TYPE}}",
+						"optionLabels": ["{{REALTIME}}", "{{INTERVAL}}", "{{END_OF_DAY}}", "{{CUST_INTERVAL}}", "{{SCHEDULED}}"],
+						"sort": false,
+						"removeDefaultNone": true
+					},
+					"Interval": {
+						"type": "select",
+						"label": "{{UPLOAD_INTERVAL}}",
+						"optionLabels": ["{{1_MIN}}","{{2_MINS}}","{{5_MINS}}","{{10_MINS}}","{{15_MINS}}","{{20_MINS}}","{{30_MINS}}","{{1_HR}}","{{2_HRS}}","{{3_HRS}}","{{4_HRS}}","{{6_HRS}}","{{8_HRS}}","{{12_HRS}}","{{24_HRS}}"],
+						"sort": false,
+						"removeDefaultNone": false,
+						"noneLabel": "{{SELECT}}",
+						"dependencies": {
+							"Type": [3,4]
+						}
+					},
+					"StartTime": {
+						"type": "time",
+						"label": "{{FIRST_UPLOAD_TIME}}",
+						"dateFormat": "HH:mm",
+						"placeholder": "00:00",
+						"dependencies": {
+							"Type": 4
+						}
+					},
+					"Incremental": {
+						"label": "{{INCREMENTAL}}",
+						"dependencies": {
+							"Binary": false
+						}
+					}
+				}
+			},
+			"actionbar": {
+				"label": "Form actions",
+				"actions": [{
+					"action": "add",
+					"enabled": true
+				}, {
+					"action": "remove",
+					"enabled": true
+				}, {
+					"action": "up",
+					"enabled": true
+				}, {
+					"action": "down",
+					"enabled": true
+				}]
+			}
+		}
+	}
+}

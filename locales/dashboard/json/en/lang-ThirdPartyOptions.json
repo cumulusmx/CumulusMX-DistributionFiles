@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/09/01 15:56:54",
+    "_LAST_MODIFIED": "Last modified: 2026/09/18 14:12:16",
     "AIR_QUALITY_HELP1": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
     "AIR_QUALITY_LABEL": "Include air quality data",
     "AIR_QUALITY": "Air Quality",
@@ -33,6 +33,7 @@
     "INDOOR_HELP1": "Include indoor temperature and humidity in the update",
     "INDOOR_LABEL": "Include indoor data",
     "INDOOR": "Indoor",
+    "INTERVAL": "Interval",
     "INTERVAL_HELP1": "Interval between updates in minutes",
     "INTERVAL_SECS": "Interval (seconds)",
     "INTERVAL_MINS": "Interval (minutes)",

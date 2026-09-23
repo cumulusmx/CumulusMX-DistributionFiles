@@ -1,0 +1,61 @@
+{
+    "type": "object",
+	"properties": {
+		"Accessible": {
+			"type": "boolean"
+		},
+		"Files": {
+			"type": "array",
+			"maxItems": 100,
+			"items": {
+				"type": "object",
+				"properties": {
+					"Enabled": {
+						"type": "boolean"
+					},
+					"LocalFilename": {
+						"type": "string"
+					},
+					"DestFilename": {
+						"type": "string"
+					},
+					"Process": {
+						"type": "boolean"
+					},
+					"Upload": {
+						"type": "boolean"
+					},
+					"Utf8": {
+						"type": "boolean"
+					},
+					"Binary": {
+						"type": "boolean"
+					},
+					"Type": {
+						"type": "number",
+						"enum": [0, 1, 2, 3, 4],
+						"required": true
+					},
+					"Interval": {
+						"type": "number",
+						"enum": [1,2,5,10,15,20,30,60,120,180,240,360,480,720,1440]
+					},
+					"StartTime": {
+						"type": "string",
+						"format": "time"
+					},
+					"Incremental": {
+						"type": "boolean"
+					}
+				},
+				"dependencies": {
+					"Binary": ["Process","Upload"],
+					"Utf8": "Upload",
+					"Interval": "Type",
+					"StartTime": "Type",
+					"Incremental": "Binary"
+				}
+			}
+		}
+	}
+}

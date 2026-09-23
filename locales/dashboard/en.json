@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/09/21 12:09:16",
+    "_LAST_MODIFIED": "Last modified: 2026/09/22 15:11:55",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -241,7 +241,7 @@
     "EXTRA_WEB_FILES_NOTE1": "Note that you can use replacable values in both the source and target file fields for Cumulus files that change their name periodically. The allowed values are:",
     "EXTRA_WEB_FILES_NOTE2": "&lt;currentlogfile&gt; &lt;currentextralogfile&gt; &lt;airlinklogfile&gt; &lt;noaayearfile&gt; &lt;noaamonthfile&gt; &lt;custinterval[1-10]&gt;",
     "EXTRA_WEB_FILES_NOTE3": "The tagged value will be replaced by the current logs file name.",
-    "EXTRA_WEB_FILES_NOTE4": "The Incremental setting is only used by PHP uploads. It is for incrementally uploading log files that grow a line at a time.",
+    "EXTRA_WEB_FILES_NOTE4": "The Incremental setting is for incrementally uploading log files that grow a line at a time. It can only be used for uploaded files.",
     "EXTRA_WEB_FILES_TAGLINE": "Identify additional files to be uploaded / copied to your systems.",
     "EXTRA_WEB_FILES": "Extra Web Files",
     "FEELS_LIKE_MAX": "Max Feels",
