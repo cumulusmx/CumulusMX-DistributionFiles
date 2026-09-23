@@ -37,6 +37,12 @@
 							"Upload": true
 						}
 					},
+					"Incremental": {
+						"label": "{{INCREMENTAL}}",
+						"dependencies": {
+							"Binary": false
+						}
+					},
 					"Type": {
 						"type": "select",
 						"label": "{{TYPE}}",
@@ -62,12 +68,6 @@
 						"placeholder": "00:00",
 						"dependencies": {
 							"Type": 4
-						}
-					},
-					"Incremental": {
-						"label": "{{INCREMENTAL}}",
-						"dependencies": {
-							"Binary": false
 						}
 					}
 				}

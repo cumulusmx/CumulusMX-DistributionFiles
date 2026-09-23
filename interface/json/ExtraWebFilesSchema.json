@@ -31,6 +31,9 @@
 					"Binary": {
 						"type": "boolean"
 					},
+					"Incremental": {
+						"type": "boolean"
+					},
 					"Type": {
 						"type": "number",
 						"enum": [0, 1, 2, 3, 4],
@@ -43,9 +46,6 @@
 					"StartTime": {
 						"type": "string",
 						"format": "time"
-					},
-					"Incremental": {
-						"type": "boolean"
 					}
 				},
 				"dependencies": {
