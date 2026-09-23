@@ -1,6 +1,6 @@
 /*
 Overrides for Alpaca table formatting
-Last Updated: 2026/09/23 16:26:00
+Last Updated: 2026/09/23 23:10:44
 */
 .alpaca-field-table table tr td .alpaca-field, .alpaca-field-table table tr td .alpaca-field .form-control, table.dt-rowReorder-float tr td .alpaca-field, table.dt-rowReorder-float tr td .alpaca-field .form-control {
     min-width: 20px;
@@ -95,17 +95,17 @@ select option {
 /* Actions */
 .table > thead > tr > th:nth-of-type(12) {
     text-align: center;
-    width: 110px;
-    min-width: 110px;
+    width: 115px;
+    min-width: 115px;
 }
 .table {
     margin: 0;
 }
 .table > thead > tr > th {
-    white-space: normal;
+    white-space: normal !important;
 }
 .table > tbody > tr > td {
-    padding: 1px;
+    padding: 2px;
     vertical-align: middle;
 }
 .table-responsive {

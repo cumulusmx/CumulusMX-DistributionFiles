@@ -63,6 +63,7 @@
 					},
 					"StartTime": {
 						"type": "time",
+						"inputType": "time",
 						"label": "{{FIRST_UPLOAD_TIME}}",
 						"dateFormat": "HH:mm",
 						"placeholder": "00:00",
