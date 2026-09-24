@@ -1,5 +1,5 @@
 <!--
-Last modified: 2026/01/16 16:11:03
+Last modified: 2026/09/24 12:31:22
 -->
 <!doctype html>
 <html lang="en">
@@ -28,64 +28,12 @@ Last modified: 2026/01/16 16:11:03
     <link href="lib/alpaca/alpaca.min.css" rel="stylesheet" />
     <script src="lib/alpaca/alpaca.min.js"></script>
 
-    <!-- Custom Files -->
-    <script src="js/useralarms.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/useralarms.css" rel="stylesheet">
 
-    <style type="text/css">
-        body {
-            padding-top: 60px;
-        }
-        .top-buffer { margin-top:40px; }
-        .alpaca-field-table table tr td .alpaca-field, .alpaca-field-table table tr td .alpaca-field .form-control, table.dt-rowReorder-float tr td .alpaca-field, table.dt-rowReorder-float tr td .alpaca-field .form-control {
-            min-width: 20px;
-        }
-        .form-control {
-            padding: 6px 6px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(1) {
-            width: 50px !important;
-            min-width: 50px !important
-        }
-        .table-striped > thead > tr > th:nth-of-type(2) {
-            width: 150px !important;
-            min-width: 150px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(3) {
-            min-width: 90px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(4) {
-            min-width: 90px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(5) {
-            min-width: 50px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(6) {
-            min-width: 55px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(7) {
-            min-width: 150px !important;
-        }
-        .table-striped > thead > tr > th:nth-of-type(8) {
-            min-width: 50px !important;
-        }
-        .table-responsive {
-            overflow-x: unset;
-        }
-        .alpaca-form-buttons-container {
-            text-align: center;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function () {
-            $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
-        });
-    </script>
+    <!-- Custom Files -->
+    <script src="js/useralarms.js"></script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -109,7 +57,7 @@ Last modified: 2026/01/16 16:11:03
         <h1>{{USER_ALARMS}}</h1>
     </div>
 
-    <div style="margin-left: 5%; margin-right: 5%;">
+    <div class="container alarmsContainer">
         <form id="alarmsForm"></form>
     </div>
 
