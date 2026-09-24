@@ -33,14 +33,19 @@
 		<link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" >
 		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
-		<!--	Editable Tables	-->
+		<!--	Editable Tables	
 		<script src="/lib/editablegrid/editablegrid.js"></script>
 		<link href="/lib/editablegrid/editablegrid.css" rel="stylesheet" type="text/css" media="screen">
-		<!-- [DO NOT DEPLOY] --> <script src="/lib/editablegrid/editablegrid_renderers.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/lib/editablegrid/editablegrid_editors.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/lib/editablegrid/editablegrid_validators.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/lib/editablegrid/editablegrid_utils.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/lib/editablegrid/editablegrid_charts.js" ></script>
+		<!-- [DO NOT DEPLOY]  <script src="/lib/editablegrid/editablegrid_renderers.js" ></script>
+		<!-- [DO NOT DEPLOY]  <script src="/lib/editablegrid/editablegrid_editors.js" ></script>
+		<!-- [DO NOT DEPLOY]  <script src="/lib/editablegrid/editablegrid_validators.js" ></script>
+		<!-- [DO NOT DEPLOY]  <script src="/lib/editablegrid/editablegrid_utils.js" ></script>
+		<!-- [DO NOT DEPLOY]  <script src="/lib/editablegrid/editablegrid_charts.js" ></script>
+        -->
+        <!-- Alpaca -->
+        <script src="/lib/handlebars/handlebars.min.js"></script>
+        <link href="/lib/alpaca/alpaca.min.css" rel="stylesheet" />
+        <script src="/lib/alpaca/alpaca.min.js"></script>
 
         <!--    Site Styles     -->
         <link rel="stylesheet" href="./css/ai-normalise.css">
@@ -57,14 +62,14 @@
         </style>
         <!--    Page Scripts    -->
 		<script src="/js/extrawebfiles.js"></script>	<!-- Default script	-->
-        <script>
+        <!--<script>
 			function image(file) {  // Loads the paginator images
 				return '/js/images/' + file;
 			}
             $().ready( function() { // Loads the table
                 editableGrid.onloadJSON("/api/settings/extrawebfiles.json");
             })
-        </script>
+        </script>-->
     </head>
     <body class="ow-theme9">
         <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
@@ -105,9 +110,10 @@
                         <p class="ow-tagline">{{EXTRA_WEB_FILES_TAGLINE}}</p>
                     </div>
                 </section>
-				<!-- Content -->
-				 <section class="ow-grid col1">
-					<div class="ow-panel ow-shadow-none" style="order:3;"><!-- Notes -->
+				<!-- Old Content
+
+				<section class="ow-grid col1">
+					<div class="ow-panel ow-shadow-none" style="order:3;">
 						<div class="ow-titleBar">
 							<h4>NOTES</h4>
 						</div>
@@ -117,13 +123,30 @@
                 			{{EXTRA_WEB_FILES_NOTE3}}
 						</p>
                 		<p>{{EXTRA_WEB_FILES_NOTE4}}</p>
-					</div><!-- End Notes -->
-					<div class="ow-panel ow-theme8" style=" order:2;"><!-- Grid -->
+					</div>
+					<div class="ow-panel ow-theme8" style=" order:2;">
 						<div id="tablecontent" ></div>
 						<div id="paginator" class="ow-center"></div>
                         <p class="ow-smaller"><em>{{TABLE_NOTE}}</em></p>
 					</div>
-				 </section>
+				</section>-->
+                <!-- New Content -->
+                <section class="ow-grid col1">
+                    <div class="ow-panel ow-shadow-none" style="order:3;">
+                        <div class="ow-titleBar"><h4>Notes</h4></div>
+                        <ul>
+                            <li>{{EXTRA_WEB_FILES_NOTE1}}
+                            <ul>
+                                <li>{{EXTRA_WEB_FILES_NOTE2}}</li>
+                                <li>{{EXTRA_WEB_FILES_NOTE3}}</li>
+                            </ul>
+                            <li>{{EXTRA_WEB_FILES_NOTE4}}</li>
+                        </ul>
+                    </div>
+                    <article class="ow-panel ow-theme8 table-container" style="order:2;">
+                        <form id="filesform"></form>
+                    </article>
+                </section>
 			</section>
 		</main>
 
