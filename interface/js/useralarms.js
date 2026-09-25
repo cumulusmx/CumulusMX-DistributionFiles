@@ -1,10 +1,17 @@
-// Last modified: 2026/01/16 16:11:44
+// Last modified: 2026/09/24 12:28:24
 
 let accessMode;
 let csvChar;
 
 
 $(document).ready(function () {
+    $(document).ready(function () {
+        $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+                $('#Version').text(result.Version);
+                $('#Build').text(result.Build);
+            }});
+    });
+
     $('#alarmsForm').alpaca({
         dataSource: '/api/settings/useralarms.json',
         optionsSource: '/json/UserAlarmsOptions.json',
