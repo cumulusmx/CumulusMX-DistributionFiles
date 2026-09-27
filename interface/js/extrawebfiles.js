@@ -1,7 +1,8 @@
-// Last modified: 2026/09/22 18:53:30
+// Last modified: 2026/09/27 13:41:10
 
 let accessMode;
 let csvChar;
+let x;
 
 
 $(document).ready(function () {
@@ -67,9 +68,50 @@ $(document).ready(function () {
 
             // Trigger changes is the accessibility mode is changed
             //accessObj.on('change', function() {onAccessChange(this)});
+
+
+            /*
+            let files = form.getControlByPath('Files');
+            console.log("files: %o", files);
+
+            //Also need to cope with array entries being dynamically added or removed.
+
+            files.children.forEach((file, index) => {
+                // Trigger changes if Process is updated
+                let processObj = file.getControlByPath('Process')
+                //processObj.on('change', setOptions(file));
+                processObj.on('change', function(e) {
+                    setOptions(e);
+                });
+
+                // Process = Disabled when:
+                // Binary Enabled || Incremental Enabled
+
+                // UTF8 = Disable when:
+                // Binary Enabled
+
+                // Binary = Disabled when:
+                // Process Enabled || Upload Disabled || UTF8 Enabled || Incremental Enabled
+
+                // Incremental Disabled when:
+                // Process Enabled || Binary Enabled
+           });
+           */
         }
     });
 });
+
+/*
+function setOptions(elm) {
+    if (elm === undefined) return;
+    x = elm;
+    console.log("Hi %o", elm);
+    console.log("He");
+    console.log("Ho " +  elm.currentTarget.attributes.name.value);
+    let form = $('form').alpaca('get');
+
+}
+*/
 
 function addButtons() {
     $('form legend').each(function () {
