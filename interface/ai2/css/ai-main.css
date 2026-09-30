@@ -123,7 +123,7 @@ h6 { font-size: .9em; font-style: italic;}
         border-left: thin solid var(--color5);
         border-right: thin solid var(--color5);
         box-shadow: var(--shadow2);
-        -webkit-box-shadow: var(--shadow2);
+        -webkit-box-shadow: var(--shadow1);
         margin:0;
         top:50%;
         left:50%;
@@ -616,8 +616,9 @@ h6 { font-size: .9em; font-style: italic;}
         position: absolute;
         background-color: var(--color7);
         padding-bottom: 1vh;
-        border-radius: 0 0 .5vh .5vh;
-        min-width: 160px;
+        padding-top:.5em;
+        border-radius: 0 0 .75em .75em;
+        min-width: 15em;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 2000;
         & .iconLeft { float:left; margin-right: 0.5em;}

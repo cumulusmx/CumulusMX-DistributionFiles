@@ -237,7 +237,7 @@ function togglePopup( el ){
 }
 
 function setActive() {
-    const currentUrl = window.location.href;
+    const currentUrl = window.location.href.split('#')[0];
     let menuLinks = document.querySelectorAll('nav a');
     menuLinks.forEach( link => {
         if( link.href === currentUrl) {

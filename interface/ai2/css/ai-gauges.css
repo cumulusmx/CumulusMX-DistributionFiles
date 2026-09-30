@@ -32,10 +32,11 @@ html {
     -webkit-transform: translateX(-50%);
   }
 }
-
+input { cursor:pointer;}
 label {
 	/*vertical-align: -0.25em;*/
 	padding-left: 0.5em;
+  cursor:pointer;
 }
 
 @font-face {
