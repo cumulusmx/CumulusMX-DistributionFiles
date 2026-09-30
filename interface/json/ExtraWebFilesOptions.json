@@ -25,10 +25,7 @@
 						"label": "{{UPLOAD}}"
 					},
 					"Utf8": {
-						"label": "UTF8",
-						"dependencies": {
-							"Upload": true
-						}
+						"label": "UTF8"
 					},
 					"Binary": {
 						"label": "{{BINARY}}",
@@ -40,6 +37,7 @@
 					"Incremental": {
 						"label": "{{INCREMENTAL}}",
 						"dependencies": {
+							"Process": false,
 							"Binary": false
 						}
 					},
@@ -55,8 +53,7 @@
 						"label": "{{UPLOAD_INTERVAL}}",
 						"optionLabels": ["{{1_MIN}}","{{2_MINS}}","{{5_MINS}}","{{10_MINS}}","{{15_MINS}}","{{20_MINS}}","{{30_MINS}}","{{1_HR}}","{{2_HRS}}","{{3_HRS}}","{{4_HRS}}","{{6_HRS}}","{{8_HRS}}","{{12_HRS}}","{{24_HRS}}"],
 						"sort": false,
-						"removeDefaultNone": false,
-						"noneLabel": "{{SELECT}}",
+						"removeDefaultNone": true,
 						"dependencies": {
 							"Type": [3,4]
 						}
