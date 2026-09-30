@@ -11,6 +11,7 @@
     grid-template-columns: 1fr 5.5rem 16rem;
     justify-items: end;
    /* & .small { font-size: 90%}*/
+   p:nth-of-type(3) { text-align:right;}
 }
 
 .ow-dataBar.ow-hover-none:hover { background:var(--color0);color:var(--color1);font-weight:400;}
