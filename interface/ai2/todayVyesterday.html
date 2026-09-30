@@ -43,6 +43,25 @@
         <!--    Page Styles     -->
         <link rel="stylesheet" href="css/ai-todayVyesterday.css">
         <style>
+            td:nth-of-type(3):before, td:nth-of-type(5):before { content:'@ '; font-size: 70%}
+            #TempTable, #WindTable {
+                tr:nth-of-type(3), tr:nth-of-type(4) {
+                    td:nth-of-type(3):before { content:'';}
+                    td:nth-of-type(5):before { content:'';}
+                }
+            }
+            #RainTable {
+                tr:nth-of-type(1) {
+                    td:nth-of-type(3):before { content:'';}
+                    td:nth-of-type(5):before { content:'';}
+                }
+            }
+            #SolarTable {
+                tr:nth-of-type(2) {
+                    td:nth-of-type(3):before { content:'';}
+                    td:nth-of-type(5):before { content:'';}
+                }
+            }
         </style>
         <!--    Page Scripts    -->
         <script src="/js/todayyest.js"></script>	<!-- DEFAULT SCRIPT -->
