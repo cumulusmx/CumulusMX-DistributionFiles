@@ -32,7 +32,6 @@
         border-radius: 1em;
         padding: .3em 1em;
         border:thin solid var(--color5);
-        cursor:text;
         background: var(--color9);
     }
 }
@@ -60,4 +59,4 @@
     color: var(--color7);
 }
 
-
+input { cursor: pointer;}

@@ -11,6 +11,7 @@ html {
     --gridMargin: 0.5em;
 }
 
+input { cursor: pointer ;}
 .ow-reading {
     color:var(--color1);
     /*font-style: italic;*/
