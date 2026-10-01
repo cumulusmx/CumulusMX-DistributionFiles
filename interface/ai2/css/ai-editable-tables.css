@@ -22,7 +22,8 @@
         box-shadow: var(--buttonHover)!important;
     }
 }
-
+#loadData { max-width:10em;}
+input, button { cursor:pointer;}
 .dt-button-down-arrow {
     color: var(--color5);
 }

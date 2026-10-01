@@ -87,6 +87,7 @@ legend {
 	border-radius:1.5em!important;
 }
 
+textarea  {resize: none;}
 .alpaca-array-actionbar > .btn { border-radius: 1em 0 0 1em!important;}
 
 tbody td {border-color: var(--color7)!important;}
@@ -163,12 +164,12 @@ legend { border-bottom: 1px solid var(--color5)}
 }
 
 .alpaca-array-toolbar button:hover {
-    background: var(--gradient-down)!important;
+    box-shadow: var(--buttonHover)!important;
 }
 
 .alpaca-array-actionbar button { background: var(--color0)!important}
 
-.alpaca-array-actionbar button:hover { background: var(--gradient-down)!important;}
+.alpaca-array-actionbar button:hover { background: var(--buttonHover)!important;}
 
 .statusBar {    /* Move to common stylesheet */
     border: thin solid var(--color5);
@@ -186,3 +187,7 @@ legend { border-bottom: 1px solid var(--color5)}
     color: var(--color7);
 }
 */
+.table-striped tbody tr:nth-last-of-type(odd) {
+	background: var(--color9)!important;
+}
+.table-striped tbody tr:hover {background: var(--color7)!important;}
