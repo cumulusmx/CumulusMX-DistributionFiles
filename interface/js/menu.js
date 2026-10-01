@@ -1,6 +1,6 @@
 /*
  Menu configuration file for NEW CuMX template
- Last modified: 2025/11/26 16:44:09
+ Last modified: 2026/10/01 16:12:10
  menu.js - typical name, you define the one used in setpagedata.js
 
  It is STRONGLY RECOMMENDED that if you customise this file, you create a new file with a different name, e.g. mymenu.js
@@ -44,7 +44,8 @@ let menuSrc = [
 	]},
 	{title: "{{REPORTS}}", submenu: true, label: "{{MENU_REPORTS_LABEL}}", items: [
 		{title: "{{NOAA_MONTHLY_REPORT}}", menu: "b", label: "{{NOAA_MONTHLY_REPORT}}", url: "noaamonthreport.html"},
-		{title: "{{NOAA_YEARLY_REPORT}}",  menu: "b", label: "{{NOAA_YEARLY_REPORT}}",  url: "noaayearreport.html"}
+		{title: "{{NOAA_YEARLY_REPORT}}",  menu: "b", label: "{{NOAA_YEARLY_REPORT}}",  url: "noaayearreport.html"},
+		{title: "{{SIMPLE_REPORTS}}",      menu: "b", label: "{{SIMPLE_REPORTS}}",      url: "simplereports.html"}
 	]},
 	{title: "{{SETTINGS}}", submenu: true, label: "{{MENU_SETTINGS_LABEL}}", items: [
 		{title: "{{MENU_CONFIG_WIZARD}}",    menu: "b",  label: "{{MENU_CONFIG_WIZARD}}",    url: "wizard.html"},
