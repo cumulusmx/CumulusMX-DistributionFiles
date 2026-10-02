@@ -38,6 +38,7 @@ menuSrc = [
 	{ title: "{{REPORTS}}",          name:'menuReports', subMenu: true,      items: [
 		{title: "{{NOAA_MONTHLY_REPORT}}",     url: "noaamonthreport.html",    icon: "fa-regular fa-clipboard"},
 		{title: "{{NOAA_YEARLY_REPORT}}",      url: "noaayearreport.html",     icon: "fa-regular fa-clipboard"},
+        {title: "{{SIMPLE_REPORTS}}",          url: "simplereports.html"},
 	]},
 	{ title: "{{MENU_LOGS}}",        name:'menuLogs', subMenu: true,      items: [
 		{title: "{{EDIT}} {{MONTHLY_DATA_LOGS}}",  url: "datalogeditor.html",      icon: "fa-regular fa-pen-to-square"},

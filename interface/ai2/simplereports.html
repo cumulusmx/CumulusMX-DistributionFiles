@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Page:   Simple Reports      | simplereports.html
+    Author:     DNC Thomas      | Created: 2026-10-02
+    Last Edit:  
+    Last Check: 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<!--<base href="/ai2/ows/">-->
+		<title>CumulusMX-AI Simple Reports</title>
+		<link rel="icon" type="image/png" href="img/ai-favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="" id="metaDescription">
+		<meta name="author" content="DNC Thomas 2026">
+
+        <!--	Fonts	-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
+		<!--	FontAwsome CDN	-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+		
+		<!--	jQuery (CDN)	-->
+		<!--<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script></script>-->
+        <!--    jQuery (Local)  -->
+        <script src="/lib/jquery/jquery-latest.min.js"></script>
+		<script src="/lib/jquery/jquery.tmpl.js"></script>
+
+        <!--    Site Styles     -->
+        <link rel="stylesheet" href="./css/ai-normalise.css">
+        <link rel="stylesheet" href="./css/ai-theme.css" id="Theme">
+        <link rel="stylesheet" href="./css/ai-main.css">
+
+        <!-- Bootstrap -->
+        <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom Files -->
+        <script src="/js/simplereports.js"></script>
+
+        <!--    Site Scripts    -->
+        <script src="./js/ai-settings.js?now=999999999999"></script>
+        <script src="js/ai-page-ctrl.js"></script>
+        
+        <!--    Page Styles     -->
+        <!--<link rel="stylesheet" href="css/dashboard.css">-->
+        <link rel="stylesheet" href="css/ai-LEDs.css">
+        <link rel="stylesheet" href="./css/ai-dashboard.css">
+        <style>
+        </style>
+        <!--    Page Scripts    -->
+        <script>
+
+        </script>
+    </head>
+    <body class="ow-theme9">
+        <header id="pageHead" class="ow-theme5" style="min-height: 6em;">
+            <img src="img/flying-gull.png" alt="Gull" id="headImg" class="gull">
+            <section class="subHead">
+                <img src="img/AI-Logo.png" id="#siteLogo" alt="CumulusMX AI Logo" class="siteLogo" style="padding:1vh 0 .5vh 0;">
+                <div class="stationName"><span data-cmxData="location">Site Name</span><span class="ow-smaller">&nbsp;on <span data-cmxData="Port">--</span></span></div>
+                <div class="siteInfo">
+                    <p>{{LATITUDE}}:</p>
+                    <p><span data-cmxData="latitude">N 179&deg; 59' 59"</span></p>
+                    <p>{{LONGITUDE}}:</p>
+                    <p><span data-cmxData="longitude">W 179&deg; 59' 59"</span></p>
+                    <p>{{ALTITUDE}}:</p>
+                    <p><span data-cmxData="altitude">5000 m</span></p>
+                </div>
+                <i id="NavBars" class="fa-solid fa-bars" aria-controls="mySideNav" role="navigation" aria-label="Navigation"
+                    onClick="toggleSideNav();"></i>
+            </section>
+            <nav id="myTopNav" class="topNav" style="min-height:2.1em; max-width:var(--pageWidth-px);margin:auto;color:var(--color9)">
+                <div class="theMenu" role="menu"></div>
+                <i class="fa-solid fa-bars ow-theme7-txt-hvr icon" style="margin-top:.5em;" aria-controls="topNav" onClick="toggleTopNav();"></i>
+            </nav>
+        </header>
+
+        <main id="pageContent">
+            <!--    Sidebar Navigation - Please do NOT modify the following <div> element -->
+            <nav id="mySideNav" class="sideNav" role="menu">
+                <a href="#" class="closebtn" name="closeBtn" onclick="toggleSideNav()">&times;</a>
+                <img src="./img/flying-gull.png" alt="Flying owl" class="menuOwl">
+                <div class="theMenu"></div>
+                <p style="position:absolute;bottom: 0;left:1em;color:var(--color5);display:none;">Oaktree Weather Systems</p>
+                <a class="ow-even-smaller backtotop" style="text-align:right;" href="#closeBtn">Back to top</a>
+            </nav>
+            <section class="subContent">
+                <section id="pageTitle">
+                    <div class="ow-titleBar">
+                        <h1>{{SIMPLE_REPORTS}}</h1>
+                        <p class="tagline">Generate a monthly overview from your dayfile</p>
+                    </div>
+                </section>
+                                
+                <section class="ow-grid col1">
+                    <article class="ow-panel ow-shadow-none">
+                        <div class="ow-btnBar" style="justify-content:start; margin-bottom:1em;">
+                            <label for="datepicker">{{SELECT_REPORT}}</label>
+                            <select id="datepicker" aria-label="select report" onchange="ChangeReport(event)">
+                                <option disabled selected value>{{SELECT_REPORT}}</option>
+                                <option value="temp">{{TEMPERATURE}}</option>
+                                <option value="rain">{{RAINFALL}}</option>
+                                <option value="windrun">{{WIND_RUN}}</option>
+                                <option value="sunshine">{{SUNSHINE_HOURS}}</option>
+                                <option value="et">{{EVAPOTRANSPIRATION}}</option>
+                                <option value="dry">{{DRY_DAYS}}</option>
+                                <option value="wet">{{WET_DAYS}}</option>
+                            </select>
+                        </div>
+                        <p>{{SIMPLE_REPORTS_NOTE}}</p>
+                    </article>
+                    <article class="ow-panel ow-theme8">
+                        <div class="ow-titleBar"><h2>Your data</h2></div>
+                        <div class="report-container" id="report">
+                            <pre id="reportcontent" style="background: var(--color1);">No data type selected</pre>
+                        </div>
+                    </article>
+                </section>
+            
+            </section>
+            
+        </main>
+
+        <footer id="pageFoot" class="ow-theme5">
+            <img src="img/flying-gull.png" alt="Gull" id="footImg" class="gull">
+            <img src="img/Gull.png" alt="Gull standing" class="gullStanding">
+            <section class="subFoot ow-theme4">
+                <p>{{SITE_DESIGN}} <span class="ow-theme9-txt">Oaktree Weather</span> Version: <span data-owData="Version">--</span></p>
+                <p>{{POWERED_BY}} <span class="ow-theme9-txt">CumulusMX</span> <span data-cmxData="Version">--</span> <span data-cmxData="Build" class="ow-smaller">--</span></p>
+            </section>
+        </footer>
+    </body>
+</html>
