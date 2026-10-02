@@ -97,7 +97,7 @@
                     <article class="ow-panel ow-shadow-none">
                         <div class="ow-btnBar" style="justify-content:start; margin-bottom:1em;">
                             <label for="datepicker">{{SELECT_REPORT}}</label>
-                            <select id="datepicker" aria-label="select report" onchange="ChangeReport(event)">
+                            <select id="datepicker" class="ow-button" style="max-width:12em;" aria-label="select report" onchange="ChangeReport(event)">
                                 <option disabled selected value>{{SELECT_REPORT}}</option>
                                 <option value="temp">{{TEMPERATURE}}</option>
                                 <option value="rain">{{RAINFALL}}</option>
@@ -113,7 +113,7 @@
                     <article class="ow-panel ow-theme8">
                         <div class="ow-titleBar"><h2>Your data</h2></div>
                         <div class="report-container" id="report">
-                            <pre id="reportcontent" style="background: var(--color1);"><p style="text-align:center;">No data type selected</p></pre>
+                            <pre id="reportcontent" style="background: var(--color1);max-width:max-content;margin:auto;"><p style="text-align:center;">No data type selected</p></pre>
                         </div>
                     </article>
                 </section>
