@@ -1,5 +1,5 @@
 <!--
-Last modified: 2026/10/01 21:47:22
+Last modified: 2026/10/02 17:39:56
 -->
 <!doctype html>
 <html lang="en">
@@ -27,6 +27,7 @@ Last modified: 2026/10/01 21:47:22
     <script src="js/simplereports.js"></script>
 
     <link href="css/cumulus.css" rel="stylesheet">
+    <link href="css/simplereports.css" rel="stylesheet">
 </head>
 <body>
     <!-- NAVIGATION MENU -->
@@ -48,33 +49,35 @@ Last modified: 2026/10/01 21:47:22
 
     <main class="container">
         <div class="row top-buffer">
-            <div class="col-sm-10 col-lg-10">
+            <div class="col-sm-12 col-lg-10">
                 <h1>{{SIMPLE_REPORTS}}</h1>
                 <div>
-                {{SELECT_REPORT}}:&nbsp;
-                <select id="datepicker" aria-label="select report" onchange="ChangeReport(event)">
-                    <option disabled selected value>{{SELECT_REPORT}}</option>
-                    <option value="temp">{{TEMPERATURE}}</option>
-                    <option value="rain">{{RAINFALL}}</option>
-                    <option value="windrun">{{WIND_RUN}}</option>
-                    <option value="sunshine">{{SUNSHINE_HOURS}}</option>
-                    <option value="et">{{EVAPOTRANSPIRATION}}</option>
-                    <option value="dry">{{DRY_DAYS}}</option>
-                    <option value="wet">{{WET_DAYS}}</option>
-                </select>
+                    {{SELECT_REPORT}}:&nbsp;
+                    <select id="datepicker" aria-label="select report" onchange="ChangeReport(event)">
+                        <option disabled selected value>{{SELECT_REPORT}}</option>
+                        <option value="temp">{{TEMPERATURE}}</option>
+                        <option value="rain">{{RAINFALL}}</option>
+                        <option value="windrun">{{WIND_RUN}}</option>
+                        <option value="sunshine">{{SUNSHINE_HOURS}}</option>
+                        <option value="et">{{EVAPOTRANSPIRATION}}</option>
+                        <option value="dry">{{DRY_DAYS}}</option>
+                        <option value="wet">{{WET_DAYS}}</option>
+                    </select><br>
+                    <label for="cbFormat" onchange="FormatChange(event)">
+                        <input id="cbFormat" type="checkbox"> {{REPORT_FORMAT}}
+                    </label>
                 </div>
             </div>
         </div>
         <div class="row top-buffer">
-            <div class="col-sm-10 col-lg-10">
+            <div class="col-sm-12 col-lg-10">
                 {{SIMPLE_REPORTS_NOTE}}
             </div>
         </div>
 
         <div class="row top-buffer">
-            <div class="col-sm-10 col-lg-10">
+            <div class="col-sm-12 col-lg-10">
                 <div class="report-container" id="report">
-                    <pre id="reportcontent"></pre>
                 </div>
             </div>
         </div>

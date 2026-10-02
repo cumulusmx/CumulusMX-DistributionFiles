@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/10/01 21:49:21",
+    "_LAST_MODIFIED": "Last modified: 2026/10/02 18:28:40",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -627,6 +627,7 @@
     "RELOAD_DAYFILE_TEXT2": "You may want to do this if you have bulk edited the dayfile with Cumulus running and do not want to restart it to perform the reload.",
     "RELOAD_DAYFILE": "Reload Dayfile",
     "REPORTS": "Reports",
+    "REPORT_FORMAT": "Format report as a plain text rather than HTML",
     "RESTORE": "Restore",
     "REUPLOAD_REPORT": "Re-upload Report",
     "SAVE_SETTINGS": "Save Settings",
@@ -801,6 +802,7 @@
     "WIZARD_SETTINGS_TAGLINE": "Use the Setup Wizard to quickly configure a basic Weather Station",
     "WIZARD_SETTINGS": "First Time Setup Wizard",
     "WIZARD_TITLE": "Welcome to the Wizard",
+    "YEAR": "Year",
     "YES": "Yes",
     "YESTERDAY": "Yesterday"
 }

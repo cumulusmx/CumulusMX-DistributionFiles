@@ -1,0 +1,67 @@
+/*
+HTML table formatting for simple reports
+Last Updated: 2026/10/02 17:43:08
+*/
+
+.report-container {
+    overflow-x: auto;
+}
+
+.table-content-html {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.table-content-html caption {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.table-content-html tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.table-content-html tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.table-content-html tbody th {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    background-color: #222;
+    color: white;
+    height: 30px;
+}
+
+.table-content-html th:nth-child(1) {
+    text-align: left;
+    padding-left: 4px;
+}
+
+.table-content-html th:last-child {
+    padding-right: 4px;
+}
+
+.table-content-html tbody tr:last-child {
+    font-weight: bold;
+    padding-right: 4px;
+}
+
+.table-content-html td {
+    text-align: right;
+}
+
+.table-content-html td:nth-child(1) {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 4px;
+}
+
+.table-content-html td:last-child {
+    font-weight: bold;
+    padding-right: 4px;
+}
