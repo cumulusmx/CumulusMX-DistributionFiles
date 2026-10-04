@@ -47,6 +47,16 @@
         
         <!--    Page Styles     -->
         <style>
+            .reportContent {
+                max-width:max-content;
+                margin:auto;
+                background:var(--color1);
+                color:var(--color9);
+                &::first-line {
+                    font-weight: 700;
+                    font-style:italic;
+                }
+            }
         </style>
         <!--    Page Scripts    -->
         <script>
@@ -95,7 +105,7 @@
                                 
                 <section class="ow-grid col1">
                     <article class="ow-panel ow-shadow-none">
-                        <div class="ow-btnBar" style="justify-content:start; margin-bottom:1em;">
+                        <div class="ow-btnBar" style="justify-content:start; margin-bottom:1em;column-gap:var(--colGap);">
                             <label for="datepicker">{{SELECT_REPORT}}</label>
                             <select id="datepicker" class="ow-button" style="max-width:12em;" aria-label="select report" onchange="ChangeReport(event)">
                                 <option disabled selected value>{{SELECT_REPORT}}</option>
@@ -107,11 +117,14 @@
                                 <option value="dry">{{DRY_DAYS}}</option>
                                 <option value="wet">{{WET_DAYS}}</option>
                             </select>
+                            <label for="cbFormat" onchange="FormatChange(event)">
+                                <input id="cbFormat" type="checkbox"> {{REPORT_FORMAT}}
+                            </label>
                         </div>
                         <p>{{SIMPLE_REPORTS_NOTE}}</p>
                     </article>
                     <article class="ow-panel ow-theme8">
-                        <div class="ow-titleBar"><h2>Your data</h2></div>
+                        <div class="ow-titleBar"><h2>Your Report</h2></div>
                         <div class="report-container" id="report">
                             <pre id="reportcontent" style="background: var(--color1);max-width:max-content;margin:auto;"><p style="text-align:center;">No data type selected</p></pre>
                         </div>
