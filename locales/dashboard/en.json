@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/10/02 18:28:40",
+    "_LAST_MODIFIED": "Last modified: 2026/10/05 17:03:25",
     "ACTION_PARAMS": "Action params",
     "ACTION": "Action",
     "ACTIONS_DESC": "Enable interval actions",
@@ -582,6 +582,7 @@
     "RAIN_RATE_BOUNDARIES": "Rain Rate boundaries",
     "RAIN_RATE_NOTE": "These rain rate values are used to determine which rain rate image to use.",
     "RAIN_RATE_NOTE2": "Rates above the 'medium' value will use the 'Heavy' rainfall rate image",
+    "RAIN_RATE_TODAY": "Max Rain Rate Today",
     "RAIN_RATE": "Rain Rate",
     "RAIN_RG11": "RG-11 Rain",
     "RAIN_SINCE_MIDNIGHT": "Rain Since Midnight",

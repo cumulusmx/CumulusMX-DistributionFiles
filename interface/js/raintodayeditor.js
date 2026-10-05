@@ -1,4 +1,4 @@
-// Last modified: 2026/07/21 22:30:21
+// Last modified: 2026/10/05 17:04:54
 
 $(document).ready(function() {
 
@@ -9,6 +9,7 @@ $(document).ready(function() {
         $('#inputRainMultiplier').val(result.rainmult);
         $('#inputRainToday').val(result.raintoday);
         $('#inputMidnightRain').val(result.midnightrain);
+        $('#inputRainRateToday').val(result.rainratetoday);
 
         $('#inputRainToday').attr('step',result.step);
     }});
