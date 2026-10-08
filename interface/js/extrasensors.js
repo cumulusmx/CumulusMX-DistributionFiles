@@ -1,4 +1,4 @@
-// Last modified: 2026/06/03 09:51:41
+// Last modified: 2026/10/08 12:21:37
 
 // set defaults
 $.extend( $.fn.dataTable.defaults, {
@@ -175,7 +175,7 @@ $(document).ready(function () {
             url: '/api/extra/lightning.json',
             method: 'GET',
             dataSrc: function(json) {
-                if (json.data && json.data.length > 0) {
+                if (json.data && json.data.length > 0 && json.data[0][1] !== '-' && json.data[1][1] !== '-') {
                     $('#LightningTableBlock').show();
                     return json.data;
                 } else {
@@ -285,5 +285,3 @@ $(document).ready(function () {
     }, 10000);
 
 });
-
-
