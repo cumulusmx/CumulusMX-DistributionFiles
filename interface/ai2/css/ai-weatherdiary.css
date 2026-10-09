@@ -61,7 +61,8 @@ select:hover { background: var(--gradient-down); }
         padding: .3em 1em;
         border:thin solid var(--color5);
         cursor:text;
-        background: var(--color9);
+        background: var(--color1);
+        color:var(--color9);
     }
 }
 
@@ -102,14 +103,15 @@ select:hover { background: var(--gradient-down); }
 
 .statusBar {
     border: thin solid var(--color5);
-    background: var(--color9);
-    padding: .3em 1em .3em 10em;
+    background: var(--color1);
+    color:var(--color1);
+    padding: .3em 1em .3em 4.5em;
     width:100%;
 }
 
 .statusBar:before {
     content: "{{STATUS}}:";
     text-align: left;
-    margin-left: -9em;
+    margin-left: -4em;
     color: var(--color7);
 }
