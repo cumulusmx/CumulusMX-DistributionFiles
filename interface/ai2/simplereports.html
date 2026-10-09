@@ -47,18 +47,33 @@
         
         <!--    Page Styles     -->
         <style>
-            .reportContent {
+            .report-container {
                 max-width:max-content;
                 margin:auto;
-                background:var(--color1);
-                color:var(--color9);
-                &::first-line {
-                    font-weight: 700;
-                    font-style:italic;
-                    color:var(--color7);
+                background: var(--color1);
+                color: var(--color9);
+                table {
+                    margin: 0 .5em;
+                    padding-bottom:1em;
+                    caption { font-weight:700; font-size: 120%}
+                    th,td {
+                        min-width: 4em; 
+                        text-align:right;
+                        padding: .3em 0.1em;
+                    }
+                    tr:not(:first-of-type):hover { background:var(--gradient-databar);}
                 }
-                & span { padding:.3em 5em;}
+                .reportContent {
+                    line-height: 1.9em;
+                    &::first-line {
+                        font-weight: 700;
+                        font-style:italic;
+                        color:var(--color7);
+                    }
+                    & span { padding:.3em 5em;}
+                }
             }
+            
         </style>
         <!--    Page Scripts    -->
         <script>
