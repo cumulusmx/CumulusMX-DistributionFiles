@@ -1,5 +1,5 @@
 <?php
-$last_Modified="2026/09/08 16:35:26";
+$last_Modified="2026/10/12 22:30:49";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
@@ -70,8 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_SERVER["HTTP_DATA"])) {
 $receivedTime = $_SERVER['REQUEST_TIME'];
 $rawTsHeader = getHeader('HTTP_TS');
 if ($rawTsHeader === null || trim((string)$rawTsHeader) === '') {
+    if (getHeader('HTTP_CONTENT_ENCODING') !== null) {
+        exitCode(200, 'Compression probe acknowledged');
+    }
     exitCode(422, 'Error: No timestamp supplied');
 }
+
 $requestTime = (int)trim((string)$rawTsHeader);
 
 if (abs($receivedTime - $requestTime) > 20) {
@@ -187,8 +191,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $contentEncoding = getHeader('HTTP_CONTENT_ENCODING');
     if ($contentEncoding !== null) {
         if ($contentEncoding == 'br') {
-            echo "Decompressing Brotli data\n";
-            $data = brotli_uncompress($data);
+            if (function_exists('brotli_uncompress')) {
+                echo "Decompressing Brotli data\n";
+                $data = brotli_uncompress($data);
+            } else {
+                exitCode(500, 'Error: Brotli encoding requested but brotli extension is missing');
+            }
         } elseif ($contentEncoding == 'gzip') {
             echo "Unzipping data\n";
             $data = gzdecode($data);
@@ -473,12 +481,15 @@ function resolvePath($path) {
 }
 
 function exitCode($code, $msg=null) {
-    if (null !== $msg)
-        echo $msg;
     http_response_code($code);
-    //header('Connection: close');
-    header('Content-Length: '.ob_get_length());
-    ob_end_flush(); // Strange behaviour, will not work
-    flush(); // Unless both are called !
+    if (null !== $msg) {
+        echo $msg;
+    }
+
+    if (ob_get_level() > 0) {
+        ob_end_flush();
+    }
+
+    flush();
     exit;
 }
