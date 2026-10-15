@@ -39,7 +39,8 @@
 
 .statusBar {    /* Move to common stylesheet */
     border: thin solid var(--color5);
-    background: var(--color9);
+    background: var(--color1);
+    color:var(--color9);
     padding: .3em 1em .3em 9em;
     width:100%;
 }
@@ -60,4 +61,4 @@
     color: var(--color7);
 }
 
-
+div.dt-container .dt-search input { border: 1px solid var(--color5); }
