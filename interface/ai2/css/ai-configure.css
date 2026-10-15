@@ -19,6 +19,7 @@ html {
 }
 
 input:focus, select:focus { outline: none;}
+input[type=checkbox] { cursor: pointer;}
 
 input[type="number"],
 select {

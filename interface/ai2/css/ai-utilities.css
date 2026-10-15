@@ -62,3 +62,5 @@
 }
 
 div.dt-container .dt-search input { border: 1px solid var(--color5); }
+
+input[type=checkbox] { cursor:pointer; }

@@ -29,3 +29,5 @@ tr:hover > td { background: var(--gradient-databar); }
 }
 
 .dt-empty:hover { background: var(--color0);}
+
+input[type=checkbox] { cursor:pointer;}
