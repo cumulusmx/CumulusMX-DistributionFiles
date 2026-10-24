@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2025/09/28 17:14:29",
+	"version": "Last Modified: 2026/10/17 14:06:49",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -385,6 +385,9 @@
 				"transparent": {
 					"type": "boolean"
 				},
+				"rotate": {
+					"type": "boolean"
+				},
 				"includemoonimage": {
 					"type": "boolean"
 				},
@@ -402,6 +405,7 @@
 				"includemoonimage": ["enabled"],
 				"size": ["enabled"],
 				"transparent": ["enabled"],
+				"rotate": ["enabled"],
 				"ftpdest": ["includemoonimage"],
 				"copyimage": ["enabled"],
 				"copydest": ["copyimage"]

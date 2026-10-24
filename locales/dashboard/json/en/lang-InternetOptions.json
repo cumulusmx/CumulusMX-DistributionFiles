@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:20",
+    "_LAST_MODIFIED": "Last modified: 2026/10/24 22:24:36",
     "ACTIVE_FTPS": "Enable Active FTP(S) mode",
     "AUTHENTICATION": "Authentication",
     "AUTO_CONNECTION_HELP1": "Enabling this means the FTP client attempts to discover a working configuration for your server",
@@ -79,6 +79,10 @@
     "REAL_TIME_INTERVAL": "Real time interval",
     "REAL_TIME": "Real time",
     "REMOTE_FTP_DIR": "Remote FTP Directory",
+    "ROTATE": "Rotate",
+    "ROTATE_MOON": "Rotate the Moon image",
+    "ROTATE_MOON_HELPER1": "Rotates the Moon image to reflect the appearance relative to your local horizon",
+    "ROTATE_MOON_HELPER2": "Enabling this option means the Moon image will be updated every 30 mins rather than hourly",
     "SERVER_NAME": "Server Name",
     "SFTP_AUTH_HELP1": "Select the authentication method for SFTP connections",
     "SFTP_AUTH": "SFTP Authentication method",
