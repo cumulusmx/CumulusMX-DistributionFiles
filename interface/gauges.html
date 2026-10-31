@@ -1,5 +1,5 @@
 <!--
-Last modified: 2025/08/10 16:22:40
+Last modified: 2026/10/31 12:03:12
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,18 @@ Last modified: 2025/08/10 16:22:40
 
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
+    <script>
+        window.appConfig = {
+            lang: '{{LANG}}'
+        };
+        $(document).ready(function () {
+            $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
+                    $('#Version').text(result.Version);
+                    $('#Build').text(result.Build);
+                }});
+        });
+    </script>
+
     <!-- SteelSeries -->
     <script src="lib/steelseries/scripts/steelseries_tween.min.js"></script>
     <script src="lib/steelseries/scripts/language.min.js"></script>
@@ -41,14 +53,6 @@ Last modified: 2025/08/10 16:22:40
         }
     </style>
 
-    <script>
-        $(document).ready(function () {
-            $.ajax({url: "api/info/version.json", dataType: "json", success: function (result) {
-                    $('#Version').text(result.Version);
-                    $('#Build').text(result.Build);
-                }});
-        });
-    </script>
 </head>
 <body>
     <!-- NAVIGATION MENU -->

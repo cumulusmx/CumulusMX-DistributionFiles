@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2024/12/15 12:31:13
+ * Last Modified: 2026/10/31 12:04:54
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -34,10 +34,10 @@
 var gauges;
 gauges = (function () {
     'use strict';
-    var strings = LANG.EN,         // Set to your default language. Store all the strings in one object
+    var strings = LANG[window.appConfig.lang],         // Set to your default language. Store all the strings in one object. Set manually with eg. strings = LANG.EN
         config = {
             // Script configuration parameters you may want to 'tweak'
-            scriptVer          : '2.7.6',
+            scriptVer          : '2.7.7',
             weatherProgram     : 0,                      // Set 0=Cumulus, 1=Weather Display, 2=VWS, 3=WeatherCat, 4=Meteobridge, 5=WView, 6=WeeWX, 7=WLCOM
             imgPathURL         : './images/',            // *** Change this to the relative path for your 'Trend' graph images
             oldGauges          : 'gauges.htm',           // *** Change this to the relative path for your 'old' gauges page.
