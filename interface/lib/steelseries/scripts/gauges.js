@@ -1,6 +1,6 @@
 /*!
  * THIS VERSION CUSTOMISED FROM CUMULUS MX DEFAULT WEB SITE
- * Last Modified: 2026/10/31 12:04:54
+ * Last Modified: 2026/11/01 09:50:43
  *
  * A starter gauges page for Cumulus and Weather Display, based
  * on the JavaScript SteelSeries gauges by Gerrit Grunwald.
@@ -34,7 +34,7 @@
 var gauges;
 gauges = (function () {
     'use strict';
-    var strings = LANG[window.appConfig.lang],         // Set to your default language. Store all the strings in one object. Set manually with eg. strings = LANG.EN
+    var strings = LANG[window.appConfig.lang] || LANG.EN,         // Set to your default language. Store all the strings in one object. Set manually with eg. strings = LANG.EN
         config = {
             // Script configuration parameters you may want to 'tweak'
             scriptVer          : '2.7.7',
