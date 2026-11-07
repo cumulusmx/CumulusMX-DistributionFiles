@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/09/05 20:13:26",
+	"version": "Last Modified: 2026/11/07 16:34:54",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -481,7 +481,7 @@
 						"properties": {
 							"time": {
 								"title": "Time to run",
-								"enum": ["sunrise", "sunset", "dawn", "dusk"]
+								"enum": ["sunrise", "noon", "sunset", "dawn", "dusk"]
 							},
 							"file": {
 								"title": "Template file",
