@@ -37,3 +37,24 @@
     color: var(--color5);
     & a { color: var(--color1);}
 }
+
+.btn-sm,
+.alpaca-form-button-submit {
+    padding:.3em 1em;
+    border-radius:1em;
+    border: thin solid var(--color1);
+    background:transparent;
+    text-shadow:none;
+    color:var(--color1);
+    &:hover {
+        box-shadow: var(--buttonHover);
+        background: var(--color7);
+        color:var(--color1);
+    }
+}
+
+.hideme {display:none;}
+
+.table-striped>tbody>tr:nth-of-type(odd) { background: var(--color7);}
+
+.alpaca-array-actionbar.btn-group { width:max-content;}

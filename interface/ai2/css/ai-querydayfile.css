@@ -16,7 +16,12 @@
 }
 
 select, input, button { cursor: pointer;}
-.help-block { grid-area:helpblock;}
+.help-block { 
+    grid-area:helpblock;
+    margin: 0 .4vw;
+    align-self: start;
+    & i { width: 1em;}
+}
 
 .help-block:nth-of-type(2) { 
     align-self: end; 
