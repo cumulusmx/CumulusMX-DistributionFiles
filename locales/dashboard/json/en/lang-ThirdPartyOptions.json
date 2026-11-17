@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2026/09/18 14:12:16",
+    "_LAST_MODIFIED": "Last modified: 2026/11/07 16:37:00",
     "AIR_QUALITY_HELP1": "Include the pm2.5 (and pm10 if available) data. You also need to set the Primary AQ sensor in Station Options settings",
     "AIR_QUALITY_LABEL": "Include air quality data",
     "AIR_QUALITY": "Air Quality",
@@ -97,6 +97,7 @@
     "STATION_UID": "Station UID",
     "TIME_DAWN_START": "Dawn Start",
     "TIME_DUSK_END": "Dusk End",
+    "TIME_SUN_NOON": "Solar Noon",
     "TIME_SUN_RISE": "Sun Rise",
     "TIME_SUN_SET": "Sun Set",
     "USE_POST": "Use POST rather than GET",

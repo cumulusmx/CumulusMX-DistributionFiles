@@ -1,11 +1,11 @@
 <?php
-$last_Modified="2026/10/12 22:30:49";
+$last_Modified="2026/11/13 15:26:23";
 /*
 ******** PHP Upload script for Cumulus MX ********
 
 Use as an alternative to FTP/SFTP upload of data
 
-Mark Crossley - 2023-2024
+Mark Crossley - 2023-2026
 
 */
 
@@ -271,7 +271,7 @@ function AppendJsondata() {
         if (!$debug){
             echo "Received data: $data\n";
         }
-        exitCode(406, 'No valid JSON data in the received data');
+        exitCode(400, 'No valid JSON data in the received data');
     }
 
     // next check we have an existing file to append
@@ -390,7 +390,7 @@ function AppendLogData() {
     $file = new \SplFileObject($name);
     while($file->valid()) $file->fgets();
     if ($file->key() > $linecount + 1) {
-        exitCode(406, "The file [$name] has [" . $file->key() . "] lines, should be [$linecount]");
+        exitCode(400, "The file [$name] has [" . $file->key() . "] lines, should be [$linecount]");
     }
     $file = null;
 
