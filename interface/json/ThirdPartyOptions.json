@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/11/07 16:35:38",
+	"version": "Last Modified: 2026/11/19 16:48:13",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
@@ -670,6 +670,74 @@
 					"dependencies": {
 						"enabled": true
 					}
+				}
+			}
+		},
+		"neverin": {
+			"collapsible":true,
+			"collapsed": true,
+			"fields": {
+				"enabled": {
+					"rightLabel": "{{ENABLED}}"
+				},
+				"password": {
+					"label": "{{KEY}}:",
+					"type": "password",
+					"helper": "{{NEVERIN_KEY_HELP1}}"
+				},
+				"interval": {
+					"label": "{{INTERVAL}}:",
+					"placeholder": "{{DISABLED}}",
+					"helper":  "{{NEVERIN_INTERVAL_HELP1}}"
+				},
+				"includeuv": {
+					"label": "{{UV_I}}:",
+					"rightLabel": "Include UV-I",
+					"helper": "{{UV_I_HELP1}}"
+				},
+				"includesolar": {
+					"label": "{{SOLAR}}:",
+					"rightLabel": "{{SOLAR_LABEL}}",
+					"helper": "{{SOLAR_HELP1}}"
+				},
+				"includeaq": {
+					"label": "{{AIR_QUALITY}}:",
+					"rightLabel": "{{AIR_QUALITY_LABEL}}",
+					"helper": "{{AIR_QUALITY_HELP1}}"
+				},
+				"lightning": {
+					"label": "{{LIGHTNING}}:",
+					"rightLabel": "{{LIGHTNING_LABEL}}"
+				},
+				"extratemp": {
+					"label": "{{EXTRA_TEMPERATURE}}",
+					"collapsible": true,
+					"collapsed": true,
+					"toolbarSticky": false
+				},
+				"extrahum": {
+					"label": "{{EXTRA_HUMIDITY}}",
+					"collapsible": true,
+					"collapsed": true,
+					"toolbarSticky": false
+				},
+				"soiltemp": {
+					"label": "{{SOIL_TEMP}}",
+					"collapsible": true,
+					"collapsed": true,
+					"toolbarSticky": false
+				},
+				"soilmoist": {
+					"label": "{{SOIL_MOIST}}",
+					"collapsible": true,
+					"collapsed": true,
+					"toolbarSticky": false
+				},
+				"leafwet": {
+					"label": "{{LEAF_WET}}",
+					"collapsible": true,
+					"collapsed": true,
+					"toolbarSticky": false
 				}
 			}
 		},

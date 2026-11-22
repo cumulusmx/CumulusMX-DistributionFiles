@@ -1,4 +1,4 @@
-// Last modified: 2026/01/16 16:02:37
+// Last modified: 2026/11/19 10:54:19
 
 let accessMode;
 
@@ -70,6 +70,12 @@ $(document).ready(function() {
             .focusin(function() {
                 $(this).attr('type', 'text');
             });
+
+            setSensorLabels(form, 'neverin/extratemp');
+            setSensorLabels(form, 'neverin/extrahum');
+            setSensorLabels(form, 'neverin/soiltemp');
+            setSensorLabels(form, 'neverin/soilmoist');
+            setSensorLabels(form, 'neverin/leafwet');
         }
     });
 });
@@ -153,4 +159,14 @@ function onAccessChange(that, val) {
         expanded.style.setProperty('display','');
         removeButtons();
     }
+}
+
+function setSensorLabels(form, path) {
+    let i = 1;
+    form.getControlByPath(path)
+        .children
+        .forEach(sensor => {
+            sensor.options.label = '{{SENSOR}} ' + i++;
+            sensor.refresh()
+        });
 }

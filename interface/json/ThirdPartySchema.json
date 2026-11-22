@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/11/07 16:34:54",
+	"version": "Last Modified: 2026/11/19 16:48:33",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -433,6 +433,84 @@
 				"password": ["enabled"],
 				"interval": ["enabled"],
 				"includerain": ["enabled"]
+			}
+		},
+		"neverin": {
+			"title": "Neverin",
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"password": {
+				},
+				"interval": {
+					"type": "number",
+					"minimum": 5,
+					"maximum": 600
+				},
+				"includeuv": {
+					"type": "boolean"
+				},
+				"includesolar": {
+					"type": "boolean"
+				},
+				"includeaq": {
+					"type": "boolean"
+				},
+				"lightning": {
+					"type": "boolean"
+				},
+				"extratemp": {
+					"type": "array",
+					"minItems": 8,
+					"maxItems": 8,
+					"items": {
+						"type": "boolean"
+					}
+				},
+				"extrahum": {
+					"type": "array",
+					"minItems": 8,
+					"maxItems": 8,
+					"items": {
+						"type": "boolean"
+					}
+				},
+				"soiltemp": {
+					"type": "array",
+					"minItems": 8,
+					"maxItems": 8,
+					"items": {
+						"type": "boolean"
+					}
+				},
+				"soilmoist": {
+					"type": "array",
+					"minItems": 8,
+					"maxItems": 8,
+					"items": {
+						"type": "boolean"
+					}
+				},
+				"leafwet": {
+					"type": "array",
+					"minItems": 8,
+					"maxItems": 8,
+					"items": {
+						"type": "boolean"
+					}
+				}
+			},
+			"dependencies": {
+				"interval": ["enabled"],
+				"password": ["enabled"],
+				"includeuv": ["enabled"],
+				"includesolar": ["enabled"],
+				"extratemp": ["enabled"],
+				"soiltemp": ["enabled"],
+				"soilmoist": ["enabled"],
+				"leafwet": ["enabled"]
 			}
 		},
 		"bluesky": {
