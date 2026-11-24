@@ -1,4 +1,4 @@
-// Last modified: 2026/11/24 00:02:10
+// Last modified: 2026/11/24 11:12:53
 
 let mainChart, navChart, config, avail;
 
@@ -452,12 +452,7 @@ const doWindDir = () => {
             data: resp.avgbearing,
             borderColor:  config.series.avgbearing.colour,
             backgroundColor: config.series.avgbearing.colour,
-            yAxisID: 'y_bearing',
-            tooltip: {
-                callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y?.toFixedMX(0) ?? '—'}°`
-                }
-            }
+            yAxisID: 'y_bearing'
         }, {
             label: config.series.bearing.name,
             data: resp.bearing,
@@ -469,11 +464,13 @@ const doWindDir = () => {
         CmxChartJsHelpers.HideLoading();
 
         mainChart = new Chart(document.getElementById('mainChart'), {
-            type: 'scatter',
+            type: 'line',
             data: {datasets: dataSets},
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                showLine: false,
+                pointRadius: 3,
                 scales: scales,
                 plugins: {
                     legend: {
@@ -484,11 +481,22 @@ const doWindDir = () => {
                         text: '{{WIND_DIRECTION}}'
                     },
                     tooltip: {
-                        filter: (item) => { return item.datasetIndex === 0; }
+                        filter: item => {
+                            return item.datasetIndex === 0;
+                        },
+                        callbacks: {
+                            label: item => {
+                                return ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y?.toFixedMX(0) + '°' ?? '—'}`
+                            }
+                        },
+                        mode: 'nearest',
+                        intersect: false
                     }
                 },
                 interaction: {
-                    mode: 'x'
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
                 }
             }
         });

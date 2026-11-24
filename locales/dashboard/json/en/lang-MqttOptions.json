@@ -1,5 +1,5 @@
 {
-    "_LAST_MODIFIED": "Last modified: 2025/08/25 11:16:35",
+    "_LAST_MODIFIED": "Last modified: 2026/11/23 11:00:45",
     "SERVER_NAME": "Server Name",
     "SERVER_NAME_HELP1": "Your MQTT Server network name or IP address",
     "SERVER_PORT": "Server port",
@@ -19,5 +19,5 @@
     "PROTOCOL_VERSION_HELP1": "Select the MQTT protocol version to use for the connection",
     "ON_DATA_UPDATE": "Messages are sent when the data updates",
     "TEMPLATE_FILE": "Template File",
-    "TEMPLATE_FILE_HELP1": "Specify the name of the template file in the /mqtt folder to define the topic(s) and format the content of these messages"
+    "TEMPLATE_FILE_HELP1": "Specify the name of the template file in the /mqtt folder, or the full path of your file, to define the topic(s) and format the content of these messages"
 }
