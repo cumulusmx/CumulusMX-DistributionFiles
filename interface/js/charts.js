@@ -1,4 +1,4 @@
-// Last modified: 2026/06/04 16:33:39
+// Last modified: 2026/11/24 00:02:10
 
 let mainChart, navChart, config, avail;
 
@@ -455,7 +455,7 @@ const doWindDir = () => {
             yAxisID: 'y_bearing',
             tooltip: {
                 callbacks: {
-                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y?.toFixedMX(0) ?? '—'} '°'`
+                    label: item => ` ${item.dataset.label} ${item.parsed.y == 0 ? '{{WIND_CALM}}' : item.parsed.y?.toFixedMX(0) ?? '—'}°`
                 }
             }
         }, {
