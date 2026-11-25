@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/11/19 16:48:13",
+	"version": "Last Modified: 2026/11/25 10:18:23",
 	"definitions": {
 		"wundextratemp": {
 			"optionLabels": ["{{DISABLED}}","{{SENSOR}} 1","{{SENSOR}} 2","{{SENSOR}} 3","{{SENSOR}} 4","{{SENSOR}}","{{SENSOR}} 6","{{SENSOR}} 7","{{SENSOR}} 8","{{SENSOR}} 9","{{SENSOR}} 10"],
@@ -222,84 +222,6 @@
 					"helper": "{{CATCH_UP_HELP1}}",
 					"dependencies": {
 						"enabled": true
-					}
-				}
-			}
-		},
-		"wow": {
-			"collapsible":true,
-			"collapsed": true,
-			"fields": {
-				"enabled": {
-					"rightLabel": "{{ENABLED}}"
-				},
-				"stationid": {
-					"label": "{{SITE_ID}}:",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"password": {
-					"label": "{{AUTH_KEY}}:",
-					"type": "password",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"interval": {
-					"label": "{{INTERVAL}}:",
-					"helper":  "{{INTERVAL_HELP1}}",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"includeuv": {
-					"label": "{{UV_I}}:",
-					"rightLabel": "{{UV_I_LABEL}}",
-					"helper": "{{UV_I_HELP1}}",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"includesolar": {
-					"label": "{{SOLAR}}:",
-					"rightLabel": "{{SOLAR_LABEL}}",
-					"helper": "{{SOLAR_HELP1}}",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"includesoiltemp": {
-					"label": "{{SOIL_TEMP}}:",
-					"rightLabel": "{{SOIL_TEMP_LABEL}}",
-					"helper": "{{SOIL_TEMP_HELP1}}",
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"soiltempsensor": {
-					"label": "{{SOIL_TEMP_SENSOR}}:",
-					"dependencies": {
-						"enabled": true,
-						"includesoiltemp": true
-					}
-				},
-				"includesoilmoisture": {
-					"label": "{{SOIL_MOIST}}:",
-					"rightLabel": "{{SOIL_MOIST_LABEL}}",
-					"helpers": [
-						"{{SOIL_MOIST_HELP1}}",
-						"{{WOW_SOIL_MOIST_HELP2}}"
-					],
-					"dependencies": {
-						"enabled": true
-					}
-				},
-				"soilmoistsensor": {
-					"label": "{{SOIL_MOIST_SENSOR}}:",
-					"dependencies": {
-						"enabled": true,
-						"includesoilmoisture": true
 					}
 				}
 			}

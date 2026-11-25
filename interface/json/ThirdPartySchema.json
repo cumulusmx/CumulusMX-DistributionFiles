@@ -1,5 +1,5 @@
 {
-	"version": "Last Modified: 2026/11/19 16:48:33",
+	"version": "Last Modified: 2026/11/25 10:18:35",
 	"type": "object",
 	"properties": {
 		"accessible": {
@@ -141,56 +141,6 @@
 				"includeuv": ["enabled"],
 				"includesolar": ["enabled"],
 				"catchup": ["enabled"]
-			}
-		},
-		"wow": {
-			"title": "Met Office WOW",
-			"type": "object",
-			"properties": {
-				"enabled": {
-					"type": "boolean"
-				},
-				"stationid": {
-				},
-				"password": {
-				},
-				"interval": {
-					"type": "integer",
-					"minimum": 1
-				},
-				"includeuv": {
-					"type": "boolean"
-				},
-				"includesolar": {
-					"type": "boolean"
-				},
-				"includesoiltemp": {
-					"type": "boolean"
-				},
-				"soiltempsensor": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 16
-				},
-				"includesoilmoisture": {
-					"type": "boolean"
-				},
-				"soilmoistsensor": {
-					"type": "integer",
-					"minimum": 1,
-					"maximum": 16
-				}
-			},
-			"dependencies": {
-				"stationid": ["enabled"],
-				"password": ["enabled"],
-				"interval": ["enabled"],
-				"includeuv": ["enabled"],
-				"includesolar": ["enabled"],
-				"includesoiltemp": ["enabled"],
-				"soiltempsensor": ["enabled","includesoiltemp"],
-				"includesoilmoisture": ["enabled"],
-				"soilmoistsensor": ["enabled", "includesoilmoisture"]
 			}
 		},
 		"wowbe": {
